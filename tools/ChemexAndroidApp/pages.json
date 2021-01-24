@@ -1,0 +1,41 @@
+{
+	"easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [
+		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "Chemex App"
+			}
+		},
+		{
+			"path": "pages/setting/setting",
+			"style": {
+				"navigationBarTitleText": "站点配置",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/query/query",
+			"style": {
+				"navigationBarTitleText": "查询模式",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/check/check",
+			"style": {
+				"navigationBarTitleText": "盘点模式",
+				"enablePullDownRefresh": false
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "Chemex App",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	}
+}

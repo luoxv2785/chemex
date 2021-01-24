@@ -1,0 +1,6 @@
+### 查询物品详情
+# 传入物品类型和物品id的base64编码后的参数
+
+GET http://{{server}}/api/info/ZGV2aWNlOjY=
+Content-Type: application/json
+Authorization: Bearer {{token}}

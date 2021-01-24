@@ -1,0 +1,6 @@
+### 刷新jwt
+# 获取新的jwt，如果存在生命周期，则同时刷新生命周期
+
+POST http://{{server}}/api/auth/refresh
+Content-Type: application/json
+Authorization: Bearer {{token}}

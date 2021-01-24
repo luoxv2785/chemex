@@ -1,0 +1,6 @@
+### 我的信息
+# 注销查看我的信息
+
+POST http://{{server}}/api/auth/me
+Content-Type: application/json
+Authorization: Bearer {{token}}
