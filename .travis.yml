@@ -15,6 +15,7 @@ cache:
     - vendor
 
 before_script:
+  - echo "extension = ldap.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - cp .env.travis .env
   - sudo mysql -e 'CREATE DATABASE testing DEFAULT CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci;'
   - composer self-update
