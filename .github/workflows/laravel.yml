@@ -2,9 +2,9 @@ name: Laravel
 
 on:
   push:
-    branches: [ main ]
+    branches: [ gesha ]
   pull_request:
-    branches: [ main ]
+    branches: [ gesha ]
 
 jobs:
   laravel-tests:

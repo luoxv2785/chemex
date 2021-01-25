@@ -3,11 +3,6 @@
 </p>
 
 <p align="center">
-<a href="http://chemex.it" target="_blank">咖啡壶（chemex）官方网站</a> |
-<a href="https://chemex.famio.cn" target="_blank">Demo 演示站点</a>
-</p>
-
-<p align="center">
     <img src="https://img.shields.io/badge/Latest Release-3.0.0-orange" />
     <img src="https://img.shields.io/badge/PHP-7.3+-green" />
     <img src="https://img.shields.io/badge/MariaDB-10.2+-blueviolet" />
@@ -25,6 +20,10 @@
 </p>
 
 ## 鸣谢
+
+<p align="center">
+    <img src="http://chemex-saas.celaraze.com/admin_uploads/images/ea3131e930c4709bb3664705bdf5b415.png"/>
+</p>
 
 没有它们就没有 咖啡壶（Chemex）：
 
