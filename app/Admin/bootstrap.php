@@ -24,6 +24,7 @@ use App\Services\ConfigService;
 use Dcat\Admin\Layout\Navbar;
 
 ConfigService::init();
+\Celaraze\DcatSetting\Support::initConfig();
 
 // 获取当前用户的通知
 $user = AdminUser::where('id', auth('admin')->id())->first();

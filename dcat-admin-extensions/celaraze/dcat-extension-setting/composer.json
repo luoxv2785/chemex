@@ -1,0 +1,34 @@
+{
+    "name": "celaraze/dcat-extension-setting",
+    "description": "为 DcatAdmin 提供在线管理站点配置的能力。",
+    "type": "library",
+    "keywords": [
+        "dcat-admin",
+        "extension"
+    ],
+    "homepage": "https://github.com/celaraze/dcat-extension-setting",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Celaraze",
+            "email": "celaraze@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "dcat/laravel-admin": "~2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Celaraze\\DcatSetting\\": "src/"
+        }
+    },
+    "extra": {
+        "dcat-admin": "Celaraze\\DcatSetting\\ServiceProvider",
+        "laravel": {
+            "providers": [
+                "Celaraze\\DcatSetting\\ServiceProvider"
+            ]
+        }
+    }
+}

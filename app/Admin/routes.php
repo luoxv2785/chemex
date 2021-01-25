@@ -33,8 +33,6 @@ Route::group([
     /**
      * 配置
      */
-    $router->get('/configurations/site', 'ConfigurationSiteController@index')
-        ->name('configurations.site.index');
     $router->get('/configurations/ldap', 'ConfigurationLDAPController@index')
         ->name('configurations.ldap.index');
 

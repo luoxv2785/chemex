@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Admin\Forms;
+namespace Celaraze\DcatSetting\Forms;
 
+use Celaraze\DcatSetting\Support;
 use Dcat\Admin\Widgets\Form;
 
-class ConfigurationSiteForm extends Form
+class DcatSettingForm extends Form
 {
     /**
      * Handle the form request.
@@ -27,22 +28,22 @@ class ConfigurationSiteForm extends Form
      */
     public function form()
     {
-        $this->url('site_url')
+        $this->url('site_url', Support::trans('settings-site.site_url'))
             ->help('站点域名决定了静态资源（头像、图片等）的显示路径，可以包含端口号，例如 http://chemex.it:8000 。')
             ->required()
             ->default(admin_setting('site_url'));
-        $this->text('site_title')
+        $this->text('site_title', Support::trans('settings-site.site_title'))
             ->required()
             ->default(admin_setting('site_title'));
-        $this->text('site_logo_text')
+        $this->text('site_logo_text', Support::trans('settings-site.site_logo_text'))
             ->help('文本LOGO显示的优先度低于图片，当没有上传图片作为LOGO时，此项将生效。')
             ->required()
             ->default(admin_setting('site_logo_text'));
-        $this->image('site_logo')
+        $this->image('site_logo', Support::trans('settings-site.site_logo'))
             ->autoUpload()
             ->uniqueName()
             ->default(admin_setting('site_logo'));
-        $this->image('site_logo_mini')
+        $this->image('site_logo_mini', Support::trans('settings-site.site_logo_mini'))
             ->autoUpload()
             ->uniqueName()
             ->default(admin_setting('site_logo_mini'));

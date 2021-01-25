@@ -13,7 +13,7 @@ return [
     | login page.
     |
     */
-    'name' => env('ADMIN_NAME', '咖啡壶'),
+    'name' => env('ADMIN_NAME', ''),
 
     /*
     |--------------------------------------------------------------------------
@@ -24,7 +24,7 @@ return [
     | `img` tag, eg '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo' => env('ADMIN_LOGO', '咖啡壶'),
+    'logo' => env('ADMIN_LOGO', ''),
 
     /*
     |--------------------------------------------------------------------------
@@ -36,7 +36,7 @@ return [
     | '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo-mini' => env('ADMIN_LOGO_MINI', 'CX'),
+    'logo-mini' => env('ADMIN_LOGO_MINI', ''),
 
     /*
      |--------------------------------------------------------------------------
