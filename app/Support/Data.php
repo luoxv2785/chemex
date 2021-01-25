@@ -256,4 +256,17 @@ class Data
         ];
     }
 
+    /**
+     * 返回emoji
+     * @return string[]
+     */
+    public static function emoji(): array
+    {
+        return [
+            'happy' => '😀 愉快',
+            'normal' => '😐 一般',
+            'sad' => '😟 悲伤'
+        ];
+    }
+
 }
