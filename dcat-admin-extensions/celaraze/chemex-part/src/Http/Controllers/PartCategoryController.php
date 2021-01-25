@@ -5,6 +5,7 @@ namespace Celaraze\Chemex\Part\Http\Controllers;
 use App\Models\DepreciationRule;
 use Celaraze\Chemex\Part\Actions\Tree\ToolAction\PartCategoryImportAction;
 use Celaraze\Chemex\Part\Repositories\PartCategory;
+use Celaraze\Chemex\Part\Support;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
@@ -15,6 +16,11 @@ use Dcat\Admin\Tree;
 
 class PartCategoryController extends AdminController
 {
+    public function __construct()
+    {
+        $this->title = Support::trans('part-category.title');
+    }
+
     public function index(Content $content): Content
     {
         return $content
@@ -43,10 +49,10 @@ class PartCategoryController extends AdminController
     {
         return Grid::make(new PartCategory(['parent', 'depreciation']), function (Grid $grid) {
             $grid->column('id');
-            $grid->column('name');
-            $grid->column('description');
-            $grid->column('parent.name');
-            $grid->column('depreciation.name');
+            $grid->column('name', Support::trans('part-category.name'));
+            $grid->column('description', Support::trans('part-category.description'));
+            $grid->column('parent.name', Support::trans('part-category.parent.name'));
+            $grid->column('depreciation.name', Support::trans('part-category.name'));
 
             $grid->enableDialogCreate();
 
@@ -69,10 +75,10 @@ class PartCategoryController extends AdminController
     {
         return Show::make($id, new PartCategory(['parent', 'depreciation']), function (Show $show) {
             $show->field('id');
-            $show->field('name');
-            $show->field('description');
-            $show->field('parent.name');
-            $show->field('depreciation.name');
+            $show->field('name', Support::trans('part-category.name'));
+            $show->field('description', Support::trans('part-category.description'));
+            $show->field('parent.name', Support::trans('part-category.parent.name'));
+            $show->field('depreciation.name', Support::trans('part-category.depreciation.name'));
             $show->field('created_at');
             $show->field('updated_at');
         });
@@ -87,12 +93,12 @@ class PartCategoryController extends AdminController
     {
         return Form::make(new PartCategory(), function (Form $form) {
             $form->display('id');
-            $form->text('name')->required();
-            $form->text('description');
-            $form->select('parent_id', admin_trans_label('Parent'))
+            $form->text('name', Support::trans('part-category.name'))->required();
+            $form->text('description', Support::trans('part-category.description'));
+            $form->select('parent_id', Support::trans('part-category.parent.name'))
                 ->options(\Celaraze\Chemex\Part\Models\PartCategory::all()
                     ->pluck('name', 'id'));
-            $form->select('depreciation_rule_id', admin_trans_label('Depreciation Rule Id'))
+            $form->select('depreciation_rule_id', Support::trans('part-category.depreciation.name'))
                 ->options(DepreciationRule::all()
                     ->pluck('name', 'id'));
             $form->display('created_at');

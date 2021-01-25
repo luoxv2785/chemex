@@ -38,6 +38,11 @@ use Dcat\Admin\Widgets\Card;
  */
 class SoftwareRecordController extends AdminController
 {
+    public function __construct()
+    {
+        $this->title = Support::trans('software-record.title');
+    }
+
     public function index(Content $content): Content
     {
         return $content
@@ -64,27 +69,27 @@ class SoftwareRecordController extends AdminController
     {
         return Grid::make(new SoftwareRecord(['category', 'vendor']), function (Grid $grid) {
             $grid->column('id');
-            $grid->column('qrcode')->qrcode(function () {
+            $grid->column('qrcode', Support::trans('software-record.qrcode'))->qrcode(function () {
                 return 'software:' . $this->id;
             }, 200, 200);
-            $grid->column('name');
-            $grid->column('description');
-            $grid->column('asset_number');
-            $grid->column('category.name');
-            $grid->column('version');
-            $grid->column('vendor.name');
-            $grid->column('price');
-            $grid->column('purchased');
-            $grid->column('expired');
-            $grid->column('distribution')->using(Data::distribution());
-            $grid->column('counts');
-            $grid->column('', admin_trans_label('Left Counts'))->display(function () {
+            $grid->column('name', Support::trans('software-record.name'));
+            $grid->column('description', Support::trans('software-record.description'));
+            $grid->column('asset_number', Support::trans('software-record.asset_number'));
+            $grid->column('category.name', Support::trans('software-record.category.name'));
+            $grid->column('version', Support::trans('software-record.version'));
+            $grid->column('vendor.name', Support::trans('software-record.vendor.name'));
+            $grid->column('price', Support::trans('software-record.price'));
+            $grid->column('purchased', Support::trans('software-record.purchased'));
+            $grid->column('expired', Support::trans('software-record.expired'));
+            $grid->column('distribution', Support::trans('software-record.distribution'))->using(Data::distribution());
+            $grid->column('counts', Support::trans('software-record.counts'));
+            $grid->column('left_counts', Support::trans('software-record.left_counts'))->display(function () {
                 return Support::leftSoftwareCounts($this->id);
             });
-            $grid->column('', admin_trans_label('Expiration Left Days'))->display(function () {
+            $grid->column('expiration_left_days', Support::trans('software-record.expiration_left_days'))->display(function () {
                 return ExpirationService::itemExpirationLeftDaysRender('software', $this->id);
             });
-            $grid->column('location');
+            $grid->column('location', Support::trans('software-record.location'));
 
             $grid->actions(function (RowActions $actions) {
                 if (Admin::user()->can('software.record.delete')) {
@@ -151,12 +156,12 @@ class SoftwareRecordController extends AdminController
                             $grid->withBorder();
 
                             $grid->column('id');
-                            $grid->column('device.name')->link(function () {
+                            $grid->column('device.name', Support::trans('software-record.device.name'))->link(function () {
                                 if (!empty($this->device)) {
                                     return route('device.records.show', $this->device['id']);
                                 }
                             });
-                            $grid->column('device.staff.name');
+                            $grid->column('device.staff.name', Support::trans('software-record.device.staff.name'));
 
                             $grid->disableToolbar();
                             $grid->disableBatchDelete();
@@ -190,19 +195,19 @@ class SoftwareRecordController extends AdminController
     {
         return Show::make($id, new SoftwareRecord(['category', 'vendor', 'channel']), function (Show $show) {
             $show->field('id');
-            $show->field('name');
-            $show->field('asset_number');
-            $show->field('description');
-            $show->field('category.name');
-            $show->field('version');
-            $show->field('vendor.name');
-            $show->field('channel.name');
-            $show->field('price');
-            $show->field('purchased');
-            $show->field('expired');
-            $show->field('distribution')->using(Data::distribution());
-            $show->field('counts');
-            $show->field('location');
+            $show->field('name', Support::trans('software-record.name'));
+            $show->field('asset_number', Support::trans('software-record.asset_number'));
+            $show->field('description', Support::trans('software-record.description'));
+            $show->field('category.name', Support::trans('software-record.category.name'));
+            $show->field('version', Support::trans('software-record.version'));
+            $show->field('vendor.name', Support::trans('software-record.vendor.name'));
+            $show->field('channel.name', Support::trans('software-record.channel.name'));
+            $show->field('price', Support::trans('software-record.price'));
+            $show->field('purchased', Support::trans('software-record.purchased'));
+            $show->field('expired', Support::trans('software-record.expired'));
+            $show->field('distribution', Support::trans('software-record.distribution'))->using(Data::distribution());
+            $show->field('counts', Support::trans('software-record.counts'));
+            $show->field('location', Support::trans('software-record.location'));
             $show->field('created_at');
             $show->field('updated_at');
 
@@ -229,33 +234,33 @@ class SoftwareRecordController extends AdminController
     {
         return Form::make(new SoftwareRecord(), function (Form $form) {
             $form->display('id');
-            $form->text('name')->required();
-            $form->text('version')->required();
-            $form->select('category_id', admin_trans_label('Category'))
+            $form->text('name', Support::trans('software-record.name'))->required();
+            $form->text('version', Support::trans('software-record.version'))->required();
+            $form->select('category_id', Support::trans('software-record.category.name'))
                 ->options(SoftwareCategory::selectOptions())
                 ->required();
-            $form->select('vendor_id', admin_trans_label('Vendor'))
+            $form->select('vendor_id', Support::trans('software-record.vendor.name'))
                 ->options(VendorRecord::all()->pluck('name', 'id'))
                 ->required();
-            $form->select('distribution')
+            $form->select('distribution', Support::trans('software-record.distribution'))
                 ->options(Data::distribution())
                 ->default('u')
                 ->required();
-            $form->number('counts')
+            $form->number('counts', Support::trans('software-record.counts'))
                 ->min(-1)
                 ->default(1)
                 ->required()
                 ->help('"-1"表示无限制。');
             $form->divider();
-            $form->text('sn');
-            $form->text('description');
-            $form->text('asset_number');
-            $form->select('purchased_channel_id', admin_trans_label('Purchased Channel Id'))
+            $form->text('sn', Support::trans('software-record.sn'));
+            $form->text('description', Support::trans('software-record.description'));
+            $form->text('asset_number', Support::trans('software-record.asset_number'));
+            $form->select('purchased_channel_id', Support::trans('software-record.channel.name'))
                 ->options(PurchasedChannel::all()->pluck('name', 'id'));
-            $form->currency('price')->default(0);
-            $form->date('purchased');
-            $form->date('expired');
-            $form->text('location')
+            $form->currency('price', Support::trans('software-record.price'))->default(0);
+            $form->date('purchased', Support::trans('software-record.purchased'));
+            $form->date('expired', Support::trans('software-record.expired'));
+            $form->text('location', Support::trans('software-record.location'))
                 ->help('记录存放位置，例如某个货架、某个抽屉。');
 
             $form->display('created_at');

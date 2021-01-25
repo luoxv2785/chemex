@@ -4,6 +4,7 @@ namespace Celaraze\Chemex\Software\Http\Controllers;
 
 use Celaraze\Chemex\Software\Actions\Tree\ToolAction\SoftwareCategoryImportAction;
 use Celaraze\Chemex\Software\Repositories\SoftwareCategory;
+use Celaraze\Chemex\Software\Support;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
@@ -14,6 +15,10 @@ use Dcat\Admin\Tree;
 
 class SoftwareCategoryController extends AdminController
 {
+    public function __construct()
+    {
+        $this->title = Support::trans('software-category.title');
+    }
 
     public function index(Content $content): Content
     {
@@ -43,9 +48,9 @@ class SoftwareCategoryController extends AdminController
     {
         return Grid::make(new SoftwareCategory(['parent']), function (Grid $grid) {
             $grid->column('id');
-            $grid->column('name');
-            $grid->column('description');
-            $grid->column('parent.name');
+            $grid->column('name', Support::trans('software-category.name'));
+            $grid->column('description', Support::trans('software-category.description'));
+            $grid->column('parent.name', Support::trans('software-category.parent.name'));
 
             $grid->enableDialogCreate();
 
@@ -68,9 +73,9 @@ class SoftwareCategoryController extends AdminController
     {
         return Show::make($id, new SoftwareCategory(['parent']), function (Show $show) {
             $show->field('id');
-            $show->field('name');
-            $show->field('description');
-            $show->field('parent.name');
+            $show->field('name', Support::trans('software-category.name'));
+            $show->field('description', Support::trans('software-category.description'));
+            $show->field('parent.name', Support::trans('software-category.parent.name'));
             $show->field('created_at');
             $show->field('updated_at');
         });
@@ -85,9 +90,9 @@ class SoftwareCategoryController extends AdminController
     {
         return Form::make(new SoftwareCategory(), function (Form $form) {
             $form->display('id');
-            $form->text('name')->required();
-            $form->text('description');
-            $form->select('parent_id', admin_trans_label('Parent'))
+            $form->text('name', Support::trans('software-category.name'))->required();
+            $form->text('description', Support::trans('software-category.description'));
+            $form->select('parent_id', Support::trans('software-category.parent.name'))
                 ->options(\Celaraze\Chemex\Software\Models\SoftwareCategory::all()
                     ->pluck('name', 'id'));
             $form->display('created_at');

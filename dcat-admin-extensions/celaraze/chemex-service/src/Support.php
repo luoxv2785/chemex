@@ -3,7 +3,6 @@
 
 namespace Celaraze\Chemex\Service;
 
-
 use Celaraze\Chemex\Service\Models\ServiceIssue;
 use Celaraze\Chemex\Service\Models\ServiceRecord;
 use Celaraze\Chemex\Service\Models\ServiceTrack;
@@ -74,5 +73,15 @@ class Support
         }
         $services = json_decode($services, true);
         return $services;
+    }
+
+    /**
+     * 快速翻译（为了缩短代码量）
+     * @param $string
+     * @return array|string|null
+     */
+    public static function trans($string)
+    {
+        return ServiceProvider::trans($string);
     }
 }
