@@ -1,6 +1,3 @@
-> genesis 分支与以往版本完全不兼容，请不要视图在 2.x 版本上升级使用 genesis 分支，目前还在开发，且是一个全新的架构。
-> 任何不兼容的升级都可能导致数据丢失，请万分注意。
-
 <p align="center">
     <img src="https://chemex.celaraze.com/chemex-red.png" width="120" height="120"/>
 </p>
@@ -18,7 +15,7 @@
 </p>
 
 <p align="center">
-    <img src="https://travis-ci.com/Celaraze/Chemex.svg?branch=main" />
+    <img src="https://travis-ci.com/Celaraze/Chemex.svg?branch=gesha" />
     <img src="https://github.com/Celaraze/Chemex/workflows/Laravel/badge.svg?event=push" />
     <img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2FCelaraze%2FChemex.svg?type=shield" />
 </p>
@@ -65,36 +62,35 @@
 
 咖啡壶（Chemex）是一个轻量的、现代设计风格的 ICT 资产管理系统。得益于 [Laravel](https://laravel.com/) 框架以及 [Dcat Admin](https://dcatadmin.com)
 开发平台，使其具备了优雅、简洁的优秀体验。 咖啡壶（Chemex）
-是完全免费且开源的，任何人都可以无限制的修改代码以及部署服务，这对于很多想要对ICT资产做信息化管理的中小型企业来说，是一个很好的选择：低廉的成本换回的是高效的管理方案，同时又有健康的生态提供支持。
-
-`1.x` 版本升级到 `2.x`
-版本请参考：[1.x升级2.x的操作方式](https://gitee.com/celaraze/Chemex/wikis/1.x%E5%8D%87%E7%BA%A72.x%E7%9A%84%E6%93%8D%E4%BD%9C%E6%96%B9%E5%BC%8F)
-。
+是完全免费且开源的，任何人都可以无限制的修改代码以及部署服务，这对于很多想要对ICT资产做信息化管理的中小型企业来说，是一个很好的选择：低廉的成本换回的是高效的管理方案，同时又有健康的生态提供支持。 。
 
 ## 特点
 
-涵盖 IT 资产管理的基本功能需求，项目主导者有八年多运维管理经验。
+经典的 LNMP 环境即可运行。
 
-社区响应速度快，提出 Issue 后都会及时回复。
+使用先进的 Web 框架进行开发。
 
-尽可能的操作简化，能一步解决的，绝不会设计第二步。
+简洁优雅的使用体验。
 
-UI设计来自多个优秀开源项目，例如：Bootstrap、AdminLTE、Apex Charts等。
-
-### 版本号命名
+### 版本
 
 咖啡壶（Chemex）将会以咖啡豆品种作为 `major` 版本的命名，例如 `1.x` 版本称为 `肯亚（Kenya）`，旨在为 ICT 运维人员提供管理能力的同时，普及咖啡知识，静下心喝一杯属于当前版本的冲煮咖啡。
 
 |major|版本名|发布|
 |----|----|----|
 |1.x|肯亚（Kenya）|✔|
-|2.x|耶加雪菲（Yirgacheffe）|➖|
+|2.x|耶加雪菲（Yirgacheffe）|✔|
+|3.x|瑰夏（Gesha）|最新滚动版本|
+
+在 `3.x` 中，我们对整体进行了全面的重构解耦，因此该版本不可直接兼容从 `2.x` 升级，仅支持最新部署，升级策略后续会提供一个完善的解决方案。
 
 ## 环境要求
 
 `git`，用于管理版本，部署和升级必要工具。
 
-`PHP 7.3 +`
+'composer'，用于安装 PHP 依赖，这是 PHP 的包管理工具。
+
+`PHP 7.3 +`，暂时不要使用 PHP8，目前有一些小问题需要解决。
 
 `MariaDB 10.2 +`，数据库引擎，理论上 `MySQL 5.6+` 兼容支持。
 
@@ -104,21 +100,23 @@ UI设计来自多个优秀开源项目，例如：Bootstrap、AdminLTE、Apex Ch
 
 `ext-fileinfo` 扩展，注意和 PHP 版本相同。
 
+`ext-ldap` 扩展，注意和 PHP 版本相同。
+
+`ext-bcmath` 扩展，注意和 PHP 版本相同。
+
 ## 部署
-
-### Git部署
-
-> 注意：使用过程中，必须避免直接修改数据库数据，Laravel 拥有强大的 Eloquent ORM 模型层，Chemex 中的所有逻辑交互都由模型关联完成，直接修改数据库数据将会导致未知的错误。应用脱离数据库直接交互是现在最流行的做法。
-
-> 视频部署演示教程：https://www.bilibili.com/video/BV1uK4y1j7pw/
 
 生产环境下为遵守安全策略，非常建议在服务器本地进行部署，暂时不提供相关线上初始化安装的功能。因此，虽然前期部署的步骤较多，但已经为大家自动化处理了很大部分的流程，只需要跟着下面的命令一步步执行，一般是不会有部署问题的。
 
-1：为你的计算机安装 `git`，Windows 环境请安装这个，Linux 环境一般都会自带，如果没有就执行 `yum/apt` 命令来安装即可。
+1：为你的计算机安装 `git`，Windows 环境请安装 [Git for Windows](https://git-scm.com/download/win) ，Linux
+环境一般都会自带，如果没有就执行 `yum install git' 或者 'apt install git` 命令来安装即可。
 
 2：为你的计算机安装 `PHP` 环境，参考：[PHP官方](https://www.php.net/downloads) 。
 
 3：为你的计算机安装 `mariaDB`。
+
+4：为你的计算机安装 `composer` 包管理工具，没有此工具请安装 [Composer Install](https://getcomposer.org/download/) ，Ubuntu
+环境下可以直接执行 `apt install composer` 完成安装。
 
 4：创建一个数据库，命名任意，但记得之后填写配置时需要对应正确，并且数据库字符集为 `utf8-general-ci`。
 
@@ -126,7 +124,10 @@ UI设计来自多个优秀开源项目，例如：Bootstrap、AdminLTE、Apex Ch
 
 6：在项目根目录中，复制 `.env.example` 文件为一份新的，并重命名为 `.env`。
 
-7：在 `.env` 中配置数据库信息以及 `APP_URL` 信息。
+7：在 `.env` 中配置数据库信息。
+
+8：在项目根目录中，执行 `composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/`
+，然后继续执行 `composer install -vvv` 来安装依赖。
 
 8：进入项目根目录，执行 `php artisan chemex:install` 进行安装。
 
@@ -135,32 +136,19 @@ UI设计来自多个优秀开源项目，例如：Bootstrap、AdminLTE、Apex Ch
 
 10：修改web服务器的伪静态规则为：`try_files $uri $uri/ /index.php?$args;`。
 
-11：此时可以通过访问 `http://your_domain` 来使用 咖啡壶（Chemex）。管理员账号密码为：`admin / admin`。
-
-### OVF 部署
-
-1：下载 OVF 镜像：[https://pan.baidu.com/s/16mc-q0pGtzwjOR4SqAoBuA](https://pan.baidu.com/s/16mc-q0pGtzwjOR4SqAoBuA)
-，提取码 `95m4`。
-
-2: Linux 的 root 用户名和密码都是 `root` ， OVF 镜像的 LNMP 环境使用了 `AppNode` 面板，部署完后需要更新下 `AppNode` 的面板授权关系和 Chemex 站点域名。
-
-3：面板地址：http://your-ip:8888 ，用户名和密码都是 `admin`，数据库 root 用户的密码是 `chemex`。
-
-4：具体使用方法可以参考 `AppNode` 官方说明：[https://www.appnode.com/](https://www.appnode.com/) 。
-
-5：为什么不用 `宝塔面板` ：因为宝塔在部署完成后必须要绑定手机号码才能继续使用，我无法将自己的手机号码绑定到面板中去再通过 OVF 镜像分发给你们。
-
-6：访问 `http://your-ip` 来访问咖啡壶（Chemex），用户名密码都是 `admin`。
+11：此时可以通过访问 `http://your_domain` 来使用 咖啡壶。管理员账号密码为：`admin / admin`。
 
 ## 更新（通过Git Pull方式）
 
 随时随地保持更新可以在项目根目录中执行 `sudo git reset --hard && git pull --force` 命令，将会同步分支的最新修改内容。
 
+接着，执行 `composer update -vvv` 来更新底层依赖。
+
 接着，执行 `php artisan chemex:update` 来进行升级。
 
-注意：只有 `main` 分支才是适用于生产环境的分支。
+## 开启更多功能
 
-享受使用吧。
+在左侧菜单的 `扩展` 中，可以启用增强功能，例如 `软件管理` 、`配件管理` 等等。
 
 ## 截图
 
