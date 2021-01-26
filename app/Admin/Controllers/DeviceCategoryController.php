@@ -12,6 +12,7 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
 use Dcat\Admin\Tree;
+use Illuminate\Http\Request;
 
 class DeviceCategoryController extends AdminController
 {
@@ -33,6 +34,12 @@ class DeviceCategoryController extends AdminController
                 $tools->add(new DeviceCategoryImportAction());
             });
         });
+    }
+
+    public function selectList(Request $request)
+    {
+        $q = $request->get('q');
+        return \App\Models\DeviceCategory::where('name', 'like', "%$q%")->paginate(null, ['id', 'name as text']);
     }
 
     /**
@@ -89,12 +96,16 @@ class DeviceCategoryController extends AdminController
             $form->display('id');
             $form->text('name')->required();
             $form->text('description');
-            $form->select('parent_id', admin_trans_label('Parent'))
-                ->options(\App\Models\DeviceCategory::all()
-                    ->pluck('name', 'id'));
-            $form->select('depreciation_rule_id', admin_trans_label('Depreciation Rule Id'))
-                ->options(DepreciationRule::all()
-                    ->pluck('name', 'id'));
+            $form->selectCreate('parent_id', admin_trans_label('Parent'))
+                ->options(\App\Models\DeviceCategory::class)
+                ->ajax(route('selection.device.categories'))
+                ->url(route('device.categories.create'))
+                ->required();
+            $form->selectCreate('depreciation_rule_id', admin_trans_label('Depreciation Rule Id'))
+                ->options(DepreciationRule::class)
+                ->ajax(route('selection.depreciation.rules'))
+                ->url(route('depreciation.rules.create'))
+                ->required();
             $form->display('created_at');
             $form->display('updated_at');
 

@@ -1,8 +1,14 @@
 <?php
 
 use App\Admin\Controllers\CheckRecordController;
+use App\Admin\Controllers\DepreciationRuleController;
+use App\Admin\Controllers\DeviceCategoryController;
 use App\Admin\Controllers\DeviceRecordController;
 use App\Admin\Controllers\NotificationController;
+use App\Admin\Controllers\PurchasedChannelController;
+use App\Admin\Controllers\StaffDepartmentController;
+use App\Admin\Controllers\StaffRecordController;
+use App\Admin\Controllers\VendorRecordController;
 use Dcat\Admin\Admin;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
@@ -54,7 +60,8 @@ Route::group([
      */
     $router->resource('/device/records', 'DeviceRecordController', ['names' => [
         'index' => 'device.records.index',
-        'show' => 'device.records.show'
+        'show' => 'device.records.show',
+        'create' => 'device.records.create'
     ]]);
     $router->resource('/device/tracks', 'DeviceTrackController', ['names' => [
         'index' => 'device.tracks.index',
@@ -62,18 +69,31 @@ Route::group([
     ]]);
     $router->resource('/device/categories', 'DeviceCategoryController', ['names' => [
         'index' => 'device.categories.index',
-        'show' => 'device.categories.show'
+        'show' => 'device.categories.show',
+        'create' => 'device.categories.create'
     ]]);
+    $router->get('/selection/device/records', [DeviceRecordController::class, 'selectList'])
+        ->name('selection.device.records');
+    $router->get('/selection/device/categories', [DeviceCategoryController::class, 'selectList'])
+        ->name('selection.device.categories');
 
     /**
      * 厂商管理
      */
-    $router->resource('/vendor/records', 'VendorRecordController');
+    $router->resource('/vendor/records', 'VendorRecordController', ['names' => [
+        'create' => 'vendor.records.create'
+    ]]);
+    $router->get('/selection/vendor/records', [VendorRecordController::class, 'selectList'])
+        ->name('selection.vendor.records');
 
     /**
      * 购入途径管理
      */
-    $router->resource('/purchased/channels', 'PurchasedChannelController');
+    $router->resource('/purchased/channels', 'PurchasedChannelController', ['names' => [
+        'create' => 'purchased.channels.create'
+    ]]);
+    $router->get('/selection/purchased/channels', [PurchasedChannelController::class, 'selectList'])
+        ->name('selection.purchased.channels');
 
     /**
      * 组织管理
@@ -82,6 +102,10 @@ Route::group([
         'index' => 'staff.records.index'
     ]]);
     $router->resource('/staff/departments', 'StaffDepartmentController');
+    $router->get('/selection/staff/records', [StaffRecordController::class, 'selectList'])
+        ->name('selection.staff.records');
+    $router->get('/selection/staff/departments', [StaffDepartmentController::class, 'selectList'])
+        ->name('selection.staff.departments');
 
     /**
      * 盘点管理
@@ -100,7 +124,11 @@ Route::group([
     /**
      * 折旧规则
      */
-    $router->resource('/depreciation/rules', 'DepreciationRuleController');
+    $router->resource('/depreciation/rules', 'DepreciationRuleController', ['names' => [
+        'create' => 'depreciation.rules.create'
+    ]]);
+    $router->get('/selection/depreciation/rules', [DepreciationRuleController::class, 'selectList'])
+        ->name('selection.depreciation.rules');
 
     /**
      * 图表管理 TODO

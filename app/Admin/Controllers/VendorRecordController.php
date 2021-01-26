@@ -9,9 +9,17 @@ use Dcat\Admin\Form\NestedForm;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Show;
+use Illuminate\Http\Request;
 
 class VendorRecordController extends AdminController
 {
+    public function selectList(Request $request)
+    {
+        $q = $request->get('q');
+
+        return \App\Models\VendorRecord::where('name', 'like', "%$q%")->paginate(null, ['id', 'name as text']);
+    }
+
     /**
      * Make a grid builder.
      *

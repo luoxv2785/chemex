@@ -11,9 +11,17 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
 use Dcat\Admin\Tree;
+use Illuminate\Http\Request;
 
 class StaffDepartmentController extends AdminController
 {
+
+    public function selectList(Request $request)
+    {
+        $q = $request->get('q');
+
+        return \App\Models\StaffDepartment::where('name', 'like', "%$q%")->paginate(null, ['id', 'name as text']);
+    }
 
     public function index(Content $content): Content
     {
