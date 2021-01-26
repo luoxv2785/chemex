@@ -23,14 +23,14 @@ use App\Models\AdminUser;
 use App\Services\ConfigService;
 use Dcat\Admin\Layout\Navbar;
 
+Admin::style(
+    <<<CSS
+.
+CSS
+
+);
+
 ConfigService::init();
-
-// 如果启用了dcat-setting扩展，则加载
-if (Admin::extension()->enabled('celaraze.dcat-extension-setting')) {
-    $class = "Celaraze\\DcatSetting\\Support";
-    $class::initConfig();
-}
-
 
 // 获取当前用户的通知
 $user = AdminUser::where('id', auth('admin')->id())->first();
