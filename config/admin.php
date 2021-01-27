@@ -276,15 +276,15 @@ return [
     | This value is the layout of admin pages.
     */
     'layout' => [
-        // default, blue, blue-light, blue-dark, green
-        'color' => 'blue-light',
+        // default, blue, blue-light, green
+        'color' => 'default',
 
-        'body_class' => 'dark-mode',
+        'body_class' => '',
 
         'sidebar_collapsed' => false,
 
         // light, primary, dark
-        'sidebar_style' => '',
+        'sidebar_style' => 'light',
 
         'dark_mode_switch' => true,
 
@@ -321,5 +321,5 @@ return [
     ],
 
     'demo' => env('ADMIN_DEMO', false),
-    'chemex_version' => '2.1.0'
+    'chemex_version' => '3.0.0'
 ];

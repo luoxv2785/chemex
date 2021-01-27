@@ -25,7 +25,6 @@ use App\Traits\HasDeviceRelatedGrid;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
-use Dcat\Admin\Grid\Tools\Selector;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Layout\Content;
@@ -254,16 +253,12 @@ class DeviceRecordController extends AdminController
                 ->placeholder('试着搜索一下')
                 ->auto(false);
 
-            $grid->selector(function (Selector $selector) {
-                $selector->select('category_id', '设备分类', DeviceCategory::all()
-                    ->pluck('name', 'id'));
-            });
-
             $grid->filter(function ($filter) {
-                $filter->panel();
+                $filter->equal('category_id', '设备分类')->select(DeviceCategory::all()->pluck('name', 'id'));
                 $filter->equal('vendor_id', '厂商')->select(VendorRecord::all()->pluck('name', 'id'));
                 $filter->equal('staff.department_id', '部门')->select(StaffDepartment::all()->pluck('name', 'id'));
                 $filter->equal('depreciation_id', '折旧规则')->select(DepreciationRule::all()->pluck('name', 'id'));
+                $filter->equal('location', '位置');
             });
 
             $grid->toolsWithOutline(false);
