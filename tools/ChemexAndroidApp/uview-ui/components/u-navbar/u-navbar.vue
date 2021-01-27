@@ -33,7 +33,8 @@
             </view>
         </view>
         <!-- 解决fixed定位后导航栏塌陷的问题 -->
-        <view v-if="isFixed && !immersive" :style="{ width: '100%', height: Number(navbarHeight) + statusBarHeight + 'px' }"
+        <view v-if="isFixed && !immersive"
+              :style="{ width: '100%', height: Number(navbarHeight) + statusBarHeight + 'px' }"
               class="u-navbar-placeholder"></view>
     </view>
 </template>

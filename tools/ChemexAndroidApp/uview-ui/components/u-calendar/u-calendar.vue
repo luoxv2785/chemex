@@ -1,5 +1,6 @@
 <template>
-    <u-popup v-model="value" :border-radius="borderRadius" :closeable="closeable" :maskCloseAble="maskCloseAble" :popup="false" :safeAreaInsetBottom="safeAreaInsetBottom"
+    <u-popup v-model="value" :border-radius="borderRadius" :closeable="closeable" :maskCloseAble="maskCloseAble"
+             :popup="false" :safeAreaInsetBottom="safeAreaInsetBottom"
              :z-index="uZIndex" closeable length="auto" mode="bottom"
              @close="close">
         <view class="u-calendar">
@@ -46,7 +47,8 @@
                     <view :style="{color: getColor(index,2)}" class="u-calendar__content__item__inner">
                         <view>{{ index + 1 }}</view>
                     </view>
-                    <view v-if="mode== 'range' && startDate==`${year}-${month}-${index+1}` && startDate!=endDate" :style="{color:activeColor}"
+                    <view v-if="mode== 'range' && startDate==`${year}-${month}-${index+1}` && startDate!=endDate"
+                          :style="{color:activeColor}"
                           class="u-calendar__content__item__tips">
                         {{ startText }}
                     </view>

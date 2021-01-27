@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 use App\Admin\Actions\Tree\ToolAction\DeviceCategoryImportAction;
 use App\Admin\Repositories\DeviceCategory;
 use App\Models\DepreciationRule;
+use App\Support\Info;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
@@ -96,16 +97,33 @@ class DeviceCategoryController extends AdminController
             $form->display('id');
             $form->text('name')->required();
             $form->text('description');
-            $form->selectCreate('parent_id', admin_trans_label('Parent'))
-                ->options(\App\Models\DeviceCategory::class)
-                ->ajax(route('selection.device.categories'))
-                ->url(route('device.categories.create'))
-                ->required();
-            $form->selectCreate('depreciation_rule_id', admin_trans_label('Depreciation Rule Id'))
-                ->options(DepreciationRule::class)
-                ->ajax(route('selection.depreciation.rules'))
-                ->url(route('depreciation.rules.create'))
-                ->required();
+
+            if (Info::ifSelectCreate()) {
+                $form->selectCreate('parent_id', admin_trans_label('Parent'))
+                    ->options(\App\Models\DeviceCategory::class)
+                    ->ajax(route('selection.device.categories'))
+                    ->url(route('device.categories.create'))
+                    ->required();
+            } else {
+                $form->select('parent_id', admin_trans_label('Parent'))
+                    ->options(\App\Models\DeviceCategory::all()
+                        ->pluck('name', 'id'))
+                    ->required();
+            }
+
+            if (Info::ifSelectCreate()) {
+                $form->selectCreate('depreciation_rule_id', admin_trans_label('Depreciation Rule Id'))
+                    ->options(DepreciationRule::class)
+                    ->ajax(route('selection.depreciation.rules'))
+                    ->url(route('depreciation.rules.create'))
+                    ->required();
+            } else {
+                $form->select('depreciation_rule_id', admin_trans_label('Depreciation Rule Id'))
+                    ->options(DepreciationRule::all()
+                        ->pluck('name', 'id'))
+                    ->required();
+            }
+
             $form->display('created_at');
             $form->display('updated_at');
 

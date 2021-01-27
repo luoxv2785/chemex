@@ -1,6 +1,7 @@
 <template>
     <view>
-        <u-popup v-model="value" :border-radius="borderRadius" :length="width" :mask-close-able="maskCloseAble" :negative-top="negativeTop" :popup="false"
+        <u-popup v-model="value" :border-radius="borderRadius" :length="width" :mask-close-able="maskCloseAble"
+                 :negative-top="negativeTop" :popup="false"
                  :z-index="uZIndex" :zoom="zoom" mode="center"
                  @close="popupClose">
             <view class="u-model">
@@ -17,7 +18,8 @@
                           hover-class="u-model__btn--hover" @tap="cancel">
                         {{ cancelText }}
                     </view>
-                    <view v-if="showConfirmButton || $slots['confirm-button']" :hover-class="asyncClose ? 'none' : 'u-model__btn--hover'"
+                    <view v-if="showConfirmButton || $slots['confirm-button']"
+                          :hover-class="asyncClose ? 'none' : 'u-model__btn--hover'"
                           :hover-stay-time="100"
                           :style="[confirmBtnStyle]" class="u-model__footer__button hairline-left" @tap="confirm">
                         <slot v-if="$slots['confirm-button']" name="confirm-button"></slot>

@@ -56,7 +56,8 @@
             @input="handleInput"
         />
         <view class="u-input__right-icon u-flex">
-            <view v-if="clearable && value != '' && focused" class="u-input__right-icon__clear u-input__right-icon__item"
+            <view v-if="clearable && value != '' && focused"
+                  class="u-input__right-icon__clear u-input__right-icon__item"
                   @tap="onClear">
                 <u-icon color="#c0c4cc" name="close-circle-fill" size="32"/>
             </view>

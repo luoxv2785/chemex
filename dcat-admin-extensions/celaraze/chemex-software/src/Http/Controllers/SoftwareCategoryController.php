@@ -2,6 +2,7 @@
 
 namespace Celaraze\Chemex\Software\Http\Controllers;
 
+use App\Support\Info;
 use Celaraze\Chemex\Software\Actions\Tree\ToolAction\SoftwareCategoryImportAction;
 use Celaraze\Chemex\Software\Repositories\SoftwareCategory;
 use Celaraze\Chemex\Software\Support;
@@ -12,12 +13,19 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
 use Dcat\Admin\Tree;
+use Illuminate\Http\Request;
 
 class SoftwareCategoryController extends AdminController
 {
     public function __construct()
     {
         $this->title = Support::trans('software-category.title');
+    }
+
+    public function selectList(Request $request)
+    {
+        $q = $request->get('q');
+        return \Celaraze\Chemex\Software\Models\SoftwareCategory::where('name', 'like', "%$q%")->paginate(null, ['id', 'name as text']);
     }
 
     public function index(Content $content): Content
@@ -92,9 +100,18 @@ class SoftwareCategoryController extends AdminController
             $form->display('id');
             $form->text('name', Support::trans('software-category.name'))->required();
             $form->text('description', Support::trans('software-category.description'));
-            $form->select('parent_id', Support::trans('software-category.parent.name'))
-                ->options(\Celaraze\Chemex\Software\Models\SoftwareCategory::all()
-                    ->pluck('name', 'id'));
+
+            if (Info::ifSelectCreate()) {
+                $form->selectCreate('parent_id', Support::trans('software-category.parent.name'))
+                    ->options(\Celaraze\Chemex\Software\Models\SoftwareCategory::class)
+                    ->ajax(route('selection.software.categories'))
+                    ->url(route('software.categories.create'));
+            } else {
+                $form->select('parent_id', Support::trans('software-category.parent.name'))
+                    ->options(\Celaraze\Chemex\Software\Models\SoftwareCategory::all()
+                        ->pluck('name', 'id'));
+            }
+
             $form->display('created_at');
             $form->display('updated_at');
 

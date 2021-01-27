@@ -13,12 +13,19 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
 use Dcat\Admin\Tree;
+use Illuminate\Http\Request;
 
 class PartCategoryController extends AdminController
 {
     public function __construct()
     {
         $this->title = Support::trans('part-category.title');
+    }
+
+    public function selectList(Request $request)
+    {
+        $q = $request->get('q');
+        return \Celaraze\Chemex\Part\Models\PartCategory::where('name', 'like', "%$q%")->paginate(null, ['id', 'name as text']);
     }
 
     public function index(Content $content): Content

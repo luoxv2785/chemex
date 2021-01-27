@@ -3,6 +3,7 @@
 namespace Celaraze\Chemex\Software\Forms;
 
 use App\Models\DeviceRecord;
+use App\Support\Info;
 use Celaraze\Chemex\Software\Models\SoftwareRecord;
 use Celaraze\Chemex\Software\Models\SoftwareTrack;
 use Dcat\Admin\Admin;
@@ -102,9 +103,16 @@ class SoftwareTrackCreateUpdateForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        $this->select('device_id', '新设备')
-            ->options(DeviceRecord::all()->pluck('name', 'id'))
-            ->help('选择新设备后，将会自动解除此软件与老设备的归属关系。')
-            ->required();
+        if (Info::ifSelectCreate()) {
+            $this->selectCreate('device_id', '新设备')
+                ->options(DeviceRecord::class)
+                ->ajax(route('selection.device.records'))
+                ->url(route('device.records.create'));
+        } else {
+            $this->select('device_id', '新设备')
+                ->options(DeviceRecord::all()->pluck('name', 'id'))
+                ->help('选择新设备后，将会自动解除此软件与老设备的归属关系。')
+                ->required();
+        }
     }
 }

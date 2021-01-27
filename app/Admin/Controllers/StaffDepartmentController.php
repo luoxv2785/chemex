@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Tree\ToolAction\StaffDepartmentImportAction;
 use App\Admin\Repositories\StaffDepartment;
+use App\Support\Info;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
@@ -100,10 +101,18 @@ class StaffDepartmentController extends AdminController
             $form->display('id');
             $form->text('name')->required();
             $form->text('description');
-            $form->select('parent_id', admin_trans_label('Parent'))
-                ->options(\App\Models\StaffDepartment::all()
-                    ->pluck('name', 'id'))
-                ->default(0);
+            if (Info::ifSelectCreate()) {
+                $form->selectCreate('parent_id', admin_trans_label('Parent'))
+                    ->options(\App\Models\StaffDepartment::class)
+                    ->ajax(route('selection.staff.departments'))
+                    ->url(route('staff.departments.create'))
+                    ->default(0);
+            } else {
+                $form->select('parent_id', admin_trans_label('Parent'))
+                    ->options(\App\Models\StaffDepartment::all()
+                        ->pluck('name', 'id'))
+                    ->default(0);
+            }
 
             $form->display('created_at');
             $form->display('updated_at');

@@ -1,5 +1,6 @@
 <template>
-    <u-popup v-model="value" :maskCloseAble="maskCloseAble" :popup="false" :safeAreaInsetBottom="safeAreaInsetBottom" :z-index="uZIndex"
+    <u-popup v-model="value" :maskCloseAble="maskCloseAble" :popup="false" :safeAreaInsetBottom="safeAreaInsetBottom"
+             :z-index="uZIndex"
              length="auto" mode="bottom" @close="close">
         <view class="u-datetime-picker">
             <view class="u-picker-header" @touchmove.stop.prevent="">

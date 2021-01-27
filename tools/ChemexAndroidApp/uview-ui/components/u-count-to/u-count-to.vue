@@ -1,11 +1,11 @@
 <template>
     <view
-        class="u-count-num"
         :style="{
 			fontSize: fontSize + 'rpx',
 			fontWeight: bold ? 'bold' : 'normal',
 			color: color
 		}"
+        class="u-count-num"
     >
         {{ displayValue }}
     </view>

@@ -291,27 +291,43 @@ class DeviceRecordController extends AdminController
         return Form::make(new DeviceRecord(), function (Form $form) {
             $form->display('id');
             $form->text('name')->required();
-            $form->selectCreate('category_id', admin_trans_label('Category'))
-                ->options(DeviceCategory::class)
-                ->ajax(route('selection.device.categories'))
-                ->url(route('device.categories.create'))
-                ->required();
-            $form->selectCreate('vendor_id', admin_trans_label('Vendor'))
-                ->options(VendorRecord::class)
-                ->ajax(route('selection.vendor.records'))
-                ->url(route('vendor.records.create'))
-                ->required();
+
+            if (Info::ifSelectCreate()) {
+                $form->selectCreate('category_id', admin_trans_label('Category'))
+                    ->options(DeviceCategory::class)
+                    ->ajax(route('selection.device.categories'))
+                    ->url(route('device.categories.create'))
+                    ->required();
+                $form->selectCreate('vendor_id', admin_trans_label('Vendor'))
+                    ->options(VendorRecord::class)
+                    ->ajax(route('selection.vendor.records'))
+                    ->url(route('vendor.records.create'))
+                    ->required();
+            } else {
+                $form->select('category_id', admin_trans_label('Category'))
+                    ->options(DeviceCategory::all()->pluck('name', 'id'))
+                    ->required();
+                $form->select('vendor_id', admin_trans_label('Vendor'))
+                    ->options(VendorRecord::all()->pluck('name', 'id'))
+                    ->required();
+            }
+
             $form->divider();
             $form->text('asset_number');
             $form->text('description');
-//            $form->select('purchased_channel_id', admin_trans_label('Purchased Channel Id'))
-//                ->options(PurchasedChannel::all()
-//                    ->pluck('name', 'id'));
-            $form->selectCreate('purchased_channel_id', admin_trans_label('Purchased Channel Id'))
-                ->options(PurchasedChannel::class)
-                ->ajax(route('selection.purchased.channels'))
-                ->url(route('purchased.channels.create'))
-                ->required();
+
+            if (Info::ifSelectCreate()) {
+                $form->selectCreate('purchased_channel_id', admin_trans_label('Purchased Channel Id'))
+                    ->options(PurchasedChannel::class)
+                    ->ajax(route('selection.purchased.channels'))
+                    ->url(route('purchased.channels.create'))
+                    ->required();
+            } else {
+                $form->select('purchased_channel_id', admin_trans_label('Purchased Channel Id'))
+                    ->options(PurchasedChannel::all()
+                        ->pluck('name', 'id'));
+            }
+
             $form->text('sn');
             $form->text('mac');
             $form->text('ip');
@@ -326,16 +342,21 @@ class DeviceRecordController extends AdminController
                 ->help('安全密码，可以代表BIOS密码等。');
             $form->password('admin_password')
                 ->help('管理员密码，可以代表计算机管理员账户密码以及打印机管理员密码等。');
-//            $form->select('depreciation_rule_id', admin_trans_label('Depreciation Rule Id'))
-//                ->options(DepreciationRule::all()
-//                    ->pluck('name', 'id'))
-//                ->help('设备记录的折旧规则将优先于其分类所指定的折旧规则。');
-            $form->selectCreate('depreciation_rule_id', admin_trans_label('Depreciation Rule Id'))
-                ->options(DepreciationRule::class)
-                ->ajax(route('selection.depreciation.rules'))
-                ->url(route('depreciation.rules.create'))
-                ->help('设备记录的折旧规则将优先于其分类所指定的折旧规则。')
-                ->required();
+
+            if (Info::ifSelectCreate()) {
+                $form->selectCreate('depreciation_rule_id', admin_trans_label('Depreciation Rule Id'))
+                    ->options(DepreciationRule::class)
+                    ->ajax(route('selection.depreciation.rules'))
+                    ->url(route('depreciation.rules.create'))
+                    ->help('设备记录的折旧规则将优先于其分类所指定的折旧规则。')
+                    ->required();
+            } else {
+                $form->select('depreciation_rule_id', admin_trans_label('Depreciation Rule Id'))
+                    ->options(DepreciationRule::all()
+                        ->pluck('name', 'id'))
+                    ->help('设备记录的折旧规则将优先于其分类所指定的折旧规则。');
+            }
+
             $form->text('location')
                 ->help('记录存放位置，例如某个货架、某个抽屉。');
             $form->display('created_at');

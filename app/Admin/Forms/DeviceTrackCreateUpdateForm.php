@@ -5,6 +5,7 @@ namespace App\Admin\Forms;
 use App\Models\DeviceRecord;
 use App\Models\DeviceTrack;
 use App\Models\StaffRecord;
+use App\Support\Info;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
@@ -92,9 +93,18 @@ class DeviceTrackCreateUpdateForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        $this->select('staff_id', '新使用者')
-            ->options(StaffRecord::all()->pluck('name', 'id'))
-            ->help('选择新使用者后，将会自动解除此设备与老使用者的归属关系。')
-            ->required();
+        if (Info::ifSelectCreate()) {
+            $this->selectCreate('staff_id', '新使用者')
+                ->options(StaffRecord::class)
+                ->ajax(route('selection.staff.records'))
+                ->url(route('staff.records.create'))
+                ->help('选择新使用者后，将会自动解除此设备与老使用者的归属关系。')
+                ->required();
+        } else {
+            $this->select('staff_id', '新使用者')
+                ->options(StaffRecord::all()->pluck('name', 'id'))
+                ->help('选择新使用者后，将会自动解除此设备与老使用者的归属关系。')
+                ->required();
+        }
     }
 }

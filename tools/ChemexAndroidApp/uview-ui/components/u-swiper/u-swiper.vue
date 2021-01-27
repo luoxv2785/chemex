@@ -3,7 +3,8 @@
 		borderRadius: `${borderRadius}rpx`
 	}" class="u-swiper-wrap">
         <swiper :autoplay="autoplay" :circular="circular" :current="elCurrent" :duration="duration"
-                :interval="interval" :next-margin="effect3d ? effect3dPreviousMargin + 'rpx' : '0'" :previous-margin="effect3d ? effect3dPreviousMargin + 'rpx' : '0'"
+                :interval="interval" :next-margin="effect3d ? effect3dPreviousMargin + 'rpx' : '0'"
+                :previous-margin="effect3d ? effect3dPreviousMargin + 'rpx' : '0'"
                 :style="{
 				height: height + 'rpx',
 				backgroundColor: bgColor

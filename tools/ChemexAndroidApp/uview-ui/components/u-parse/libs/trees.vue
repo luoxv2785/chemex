@@ -7,7 +7,8 @@
                 <rich-text v-if="ctrl[i]!=0"
                            :nodes="[{attrs:{src:loading&&(ctrl[i]||0)<2?loading:(lazyLoad&&!ctrl[i]?placeholder:(ctrl[i]==3?errorImg:n.attrs.src||'')),alt:n.attrs.alt||'',width:n.attrs.width||'',style:'-webkit-touch-callout:none;max-width:100%;display:block'+(n.attrs.height?';height:'+n.attrs.height:'')},name:'img'}]"/>
                 <image :data-i="i" :data-index="n.attrs.i" :lazy-load="lazyLoad"
-                       :show-menu-by-longpress="!n.attrs.ignore" :src="lazyLoad&&!ctrl[i]?placeholder:n.attrs.src" class="_image" data-source="img"
+                       :show-menu-by-longpress="!n.attrs.ignore" :src="lazyLoad&&!ctrl[i]?placeholder:n.attrs.src"
+                       class="_image" data-source="img"
                        @error="error"
                        @load="loadImg"/>
             </view>
@@ -20,11 +21,13 @@
             <view v-else-if="((n.lazyLoad&&!n.attrs.autoplay)||(n.name=='video'&&!loadVideo))&&ctrl[i]==undefined"
                   :id="n.attrs.id"
                   :class="'_video '+(n.attrs.class||'')" :data-i="i" :style="n.attrs.style" @tap.stop="_loadVideo"/>
-            <video v-else-if="n.name=='video'" :id="n.attrs.id" :autoplay="n.attrs.autoplay||ctrl[i]==0" :class="n.attrs.class"
+            <video v-else-if="n.name=='video'" :id="n.attrs.id" :autoplay="n.attrs.autoplay||ctrl[i]==0"
+                   :class="n.attrs.class"
                    :controls="n.attrs.controls"
                    :data-i="i" :data-id="n.attrs.id" :loop="n.attrs.loop" :muted="n.attrs.muted"
                    :poster="n.attrs.poster"
-                   :src="n.attrs.source[ctrl[i]||0]" :style="n.attrs.style" :unit-id="n.attrs['unit-id']" data-source="video" @error="error"
+                   :src="n.attrs.source[ctrl[i]||0]" :style="n.attrs.style" :unit-id="n.attrs['unit-id']"
+                   data-source="video" @error="error"
                    @play="play"/>
             <!--音频-->
             <audio v-else-if="n.name=='audio'" :ref="n.attrs.id" :author="n.attrs.author" :autoplay="n.attrs.autoplay"
@@ -76,7 +79,8 @@
                 </view>
             </view>
             <!--#ifdef APP-PLUS-->
-            <iframe v-else-if="n.name=='iframe'" :allowfullscreen="n.attrs.allowfullscreen" :frameborder="n.attrs.frameborder"
+            <iframe v-else-if="n.name=='iframe'" :allowfullscreen="n.attrs.allowfullscreen"
+                    :frameborder="n.attrs.frameborder"
                     :height="n.attrs.height"
                     :src="n.attrs.src" :style="n.attrs.style" :width="n.attrs.width"/>
             <embed v-else-if="n.name=='embed'" :height="n.attrs.height" :src="n.attrs.src" :style="n.attrs.style"

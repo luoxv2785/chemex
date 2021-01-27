@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * @method static where(string $key, string $value)
+ * @method static where(string $key, string $value1, string $value2 = null)
  * @property string|null description
  * @property string name
  */

@@ -6,7 +6,6 @@ use App\Admin\Actions\Grid\RowAction\CheckTrackUpdateAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\CheckTrack;
 use App\Models\CheckRecord;
-use App\Models\DeviceRecord;
 use App\Support\Data;
 use App\Support\Info;
 use Dcat\Admin\Admin;
@@ -36,7 +35,7 @@ class CheckTrackController extends AdminController
                     return '任务状态异常';
                 } else {
                     $check_item = $check->check_item;
-                    $item = Info::getItemRecordByClass($check_item,$item_id);
+                    $item = Info::getItemRecordByClass($check_item, $item_id);
                     if (empty($item)) {
                         return '物品状态异常';
                     } else {

@@ -19,5 +19,8 @@ Route::resource('/part/tracks', PartTrackController::class, ['names' => [
 ]]);
 Route::resource('/part/categories', PartCategoryController::class, ['names' => [
     'index' => 'part.categories.index',
-    'show' => 'part.categories.show'
+    'show' => 'part.categories.show',
+    'create' => 'part.categories.create'
 ]]);
+Route::get('/selection/part/categories', [PartCategoryController::class, 'selectList'])
+    ->name('selection.part.categories');

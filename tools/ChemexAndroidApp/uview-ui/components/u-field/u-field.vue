@@ -21,7 +21,8 @@
                               :fixed="fixed"
                               :focus="focus" :maxlength="inputMaxlength" :placeholder="placeholder"
                               :placeholderStyle="placeholderStyle"
-                              :style="[fieldStyle]" :value="value" class="u-flex-1 u-textarea-class" @blur="onBlur" @confirm="onConfirm"
+                              :style="[fieldStyle]" :value="value" class="u-flex-1 u-textarea-class" @blur="onBlur"
+                              @confirm="onConfirm"
                               @focus="onFocus" @input="onInput"
                               @tap="fieldClick"/>
                     <input

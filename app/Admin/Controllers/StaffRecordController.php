@@ -9,6 +9,7 @@ use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\StaffRecord;
 use App\Models\StaffDepartment;
 use App\Support\Data;
+use App\Support\Info;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
@@ -116,9 +117,17 @@ class StaffRecordController extends AdminController
         return Form::make(new StaffRecord(), function (Form $form) {
             $form->display('id');
             $form->text('name')->required();
-            $form->select('department_id', admin_trans_label('Department'))
-                ->options(StaffDepartment::selectOptions())
-                ->required();
+            if (Info::ifSelectCreate()) {
+                $form->selectCreate('department_id', admin_trans_label('Department'))
+                    ->options(StaffDepartment::class)
+                    ->ajax(route('selection.staff.departments'))
+                    ->url(route('staff.departments.create'))
+                    ->default(0);
+            } else {
+                $form->select('department_id', admin_trans_label('Department'))
+                    ->options(StaffDepartment::selectOptions())
+                    ->required();
+            }
             $form->select('gender')
                 ->options(Data::genders())
                 ->required();

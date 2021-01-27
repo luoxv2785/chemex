@@ -8,6 +8,7 @@ use App\Models\PurchasedChannel;
 use App\Models\VendorRecord;
 use App\Services\ExpirationService;
 use App\Support\Data;
+use App\Support\Info;
 use Celaraze\Chemex\Software\Actions\Grid\BatchAction\SoftwareRecordBatchDeleteAction;
 use Celaraze\Chemex\Software\Actions\Grid\RowAction\SoftwareRecordDeleteAction;
 use Celaraze\Chemex\Software\Actions\Grid\RowAction\SoftwareTrackCreateUpdateAction;
@@ -236,12 +237,31 @@ class SoftwareRecordController extends AdminController
             $form->display('id');
             $form->text('name', Support::trans('software-record.name'))->required();
             $form->text('version', Support::trans('software-record.version'))->required();
-            $form->select('category_id', Support::trans('software-record.category.name'))
-                ->options(SoftwareCategory::selectOptions())
-                ->required();
-            $form->select('vendor_id', Support::trans('software-record.vendor.name'))
-                ->options(VendorRecord::all()->pluck('name', 'id'))
-                ->required();
+
+            if (Info::ifSelectCreate()) {
+                $form->selectCreate('category_id', Support::trans('software-record.category.name'))
+                    ->options(SoftwareCategory::class)
+                    ->ajax(route('selection.software.categories'))
+                    ->url(route('software.categories.create'))
+                    ->required();
+            } else {
+                $form->select('category_id', Support::trans('software-record.category.name'))
+                    ->options(SoftwareCategory::selectOptions())
+                    ->required();
+            }
+
+            if (Info::ifSelectCreate()) {
+                $form->selectCreate('vendor_id', Support::trans('software-record.vendor.name'))
+                    ->options(VendorRecord::class)
+                    ->ajax(route('selection.vendor.records'))
+                    ->url(route('vendor.records.create'))
+                    ->required();
+            } else {
+                $form->select('vendor_id', Support::trans('software-record.vendor.name'))
+                    ->options(VendorRecord::all()->pluck('name', 'id'))
+                    ->required();
+            }
+
             $form->select('distribution', Support::trans('software-record.distribution'))
                 ->options(Data::distribution())
                 ->default('u')
@@ -255,8 +275,17 @@ class SoftwareRecordController extends AdminController
             $form->text('sn', Support::trans('software-record.sn'));
             $form->text('description', Support::trans('software-record.description'));
             $form->text('asset_number', Support::trans('software-record.asset_number'));
-            $form->select('purchased_channel_id', Support::trans('software-record.channel.name'))
-                ->options(PurchasedChannel::all()->pluck('name', 'id'));
+
+            if (Info::ifSelectCreate()) {
+                $form->selectCreate('purchased_channel_id', Support::trans('software-record.channel.name'))
+                    ->options(VendorRecord::class)
+                    ->ajax(route('selection.purchased.channels'))
+                    ->url(route('purchased.channels.create'));
+            } else {
+                $form->select('purchased_channel_id', Support::trans('software-record.channel.name'))
+                    ->options(PurchasedChannel::all()->pluck('name', 'id'));
+            }
+
             $form->currency('price', Support::trans('software-record.price'))->default(0);
             $form->date('purchased', Support::trans('software-record.purchased'));
             $form->date('expired', Support::trans('software-record.expired'));

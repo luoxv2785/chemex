@@ -186,27 +186,67 @@ class PartRecordController extends AdminController
         return Form::make(new PartRecord(), function (Form $form) {
             $form->display('id');
             $form->text('name', Support::trans('part-record.name'))->required();
-            $form->select('category_id', Support::trans('part-record.category.name'))
-                ->options(PartCategory::selectOptions())
-                ->required();
+
+            if (Info::ifSelectCreate()) {
+                $form->selectCreate('category_id', Support::trans('part-record.category.name'))
+                    ->options(PartCategory::class)
+                    ->ajax(route('selection.part.categories'))
+                    ->url(route('part.categories.create'))
+                    ->required();
+            } else {
+                $form->select('category_id', Support::trans('part-record.category.name'))
+                    ->options(PartCategory::selectOptions())
+                    ->required();
+            }
+
             $form->text('specification', Support::trans('part-record.specification'))->required();
-            $form->select('vendor_id', Support::trans('part-record.vendor.name'))
-                ->options(VendorRecord::all()
-                    ->pluck('name', 'id'))
-                ->required();
+
+            if (Info::ifSelectCreate()) {
+                $form->selectCreate('vendor_id', Support::trans('part-record.vendor.name'))
+                    ->options(VendorRecord::class)                    ->ajax(route('selection.vendor.records'))
+                    ->ajax(route('selection.vendor.records'))
+                    ->url(route('vendor.record.create'))
+                    ->required();
+            } else {
+                $form->select('vendor_id', Support::trans('part-record.vendor.name'))
+                    ->options(VendorRecord::all()
+                        ->pluck('name', 'id'))
+                    ->required();
+            }
+
             $form->divider();
             $form->text('asset_number', Support::trans('part-record.asset_number'));
             $form->text('description', Support::trans('part-record.description'));
-            $form->select('purchased_channel_id', Support::trans('part-record.channel.name'))
-                ->options(PurchasedChannel::all()
-                    ->pluck('name', 'id'));
+
+            if (Info::ifSelectCreate()) {
+                $form->selectCreate('purchased_channel_id', Support::trans('part-record.channel.name'))
+                    ->options(PurchasedChannel::class)                    ->ajax(route('selection.purchased.channels'))
+                    ->ajax(route('selection.purchased.channels'))
+                    ->url(route('purchased.channels.create'))
+                    ->required();
+            } else {
+                $form->select('purchased_channel_id', Support::trans('part-record.channel.name'))
+                    ->options(PurchasedChannel::all()
+                        ->pluck('name', 'id'));
+            }
+
             $form->text('sn', Support::trans('part-record.sn'));
             $form->currency('price', Support::trans('part-record.price'));
             $form->date('purchased', Support::trans('part-record.purchased'));
             $form->date('expired', Support::trans('part-record.expired'));
-            $form->select('depreciation_rule_id', Support::trans('part-record.depreciation.name'))
-                ->options(DepreciationRule::all()
-                    ->pluck('name', 'id'));
+
+            if (Info::ifSelectCreate()) {
+                $form->selectCreate('depreciation_rule_id', Support::trans('part-record.depreciation.name'))
+                    ->options(DepreciationRule::class)
+                    ->ajax(route('selection.depreciation.rules'))
+                    ->url(route('depreciation.rules.create'))
+                    ->required();
+            } else {
+                $form->select('depreciation_rule_id', Support::trans('part-record.depreciation.name'))
+                    ->options(DepreciationRule::all()
+                        ->pluck('name', 'id'));
+            }
+
             $form->text('location', Support::trans('part-record.location'))
                 ->help('记录存放位置，例如某个货架、某个抽屉。');
 

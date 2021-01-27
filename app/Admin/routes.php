@@ -39,6 +39,8 @@ Route::group([
     /**
      * 配置
      */
+    $router->get('/configurations/platform', 'ConfigurationPlatformController@index')
+        ->name('configurations.platform.index');
     $router->get('/configurations/ldap', 'ConfigurationLDAPController@index')
         ->name('configurations.ldap.index');
 

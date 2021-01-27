@@ -7,7 +7,6 @@ namespace App\Support;
 use App\Models\CheckRecord;
 use App\Models\CheckTrack;
 use App\Models\DeviceTrack;
-use Illuminate\Database\Eloquent\Collection;
 
 class Track
 {

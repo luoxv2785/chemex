@@ -21,5 +21,7 @@ Route::resource('/software/tracks', SoftwareTrackController::class, ['names' => 
     'index' => 'software.tracks.index',
     'show' => 'software.tracks.show'
 ]]);
+Route::get('/selection/software/categories', [SoftwareCategoryController::class, 'selectList'])
+    ->name('selection.software.categories');
 Route::get('/export/software/{software_id}/history', [SoftwareRecordController::class, 'exportHistory'])
     ->name('export.software.history');

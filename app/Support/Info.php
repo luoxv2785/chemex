@@ -8,6 +8,7 @@ use App\Models\DepreciationRule;
 use App\Models\DeviceCategory;
 use App\Models\DeviceRecord;
 use App\Models\StaffRecord;
+use Dcat\Admin\Admin;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 
@@ -246,5 +247,18 @@ class Info
     public static function extensionStatus($service_provider)
     {
         return admin_extension_setting($service_provider);
+    }
+
+    /**
+     * 判断是否切换到selectCreate
+     * @return bool
+     */
+    public static function ifSelectCreate(): bool
+    {
+        if (admin_setting('switch_to_select_create') && Admin::extension()->enabled('celaraze.dcat-extension-plus')) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
