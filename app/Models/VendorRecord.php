@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * @method static where(string $key, string $value)
+ * @method static where(string $key, string $value1, string $value2 = null)
  * @property string name
  * @property string description
  * @property string location

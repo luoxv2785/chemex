@@ -23,13 +23,6 @@ use App\Models\AdminUser;
 use App\Services\ConfigService;
 use Dcat\Admin\Layout\Navbar;
 
-Admin::style(
-    <<<CSS
-.
-CSS
-
-);
-
 ConfigService::init();
 
 // 获取当前用户的通知

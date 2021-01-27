@@ -9,9 +9,12 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * @method static where(string $key, string $value)
+ * @method static where(string $key, string $value1, string $value2 = null)
+ * @property int id
  * @property string name
- * @property string description
+ * @property string|null description
+ * @property string|null depreciation_rule_id
+ * @property string|null parent_id
  */
 class DeviceCategory extends Model
 {
