@@ -19,8 +19,7 @@ class StaffCounts extends Card
      */
     public function content($content): StaffCounts
     {
-        $counts = StaffRecord::all()->count();
-        $route = route('staff.records.index');
+        $counts = StaffRecord::count();
         $html = <<<HTML
 <div class="small-box" style="margin-bottom: 0;background: rgba(139,195,74,0.7);border-radius: .25rem">
   <div class="inner">

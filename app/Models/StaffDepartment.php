@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @method static where(string $key, string $value1, string $value2 = null)
  * @method static truncate()
+ * @method static pluck(string $text, string $id)
  * @property string name
  * @property string|null description
  * @property int parent_id

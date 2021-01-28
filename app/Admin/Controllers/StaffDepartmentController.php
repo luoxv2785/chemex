@@ -109,8 +109,7 @@ class StaffDepartmentController extends AdminController
                     ->default(0);
             } else {
                 $form->select('parent_id', admin_trans_label('Parent'))
-                    ->options(\App\Models\StaffDepartment::all()
-                        ->pluck('name', 'id'))
+                    ->options(\App\Models\StaffDepartment::pluck('name', 'id'))
                     ->default(0);
             }
 

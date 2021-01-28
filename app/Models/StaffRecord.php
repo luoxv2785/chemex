@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @method static where(string $key, string $value1, string $value2 = null)
  * @method static truncate()
+ * @method static pluck(string $text, string $id)
+ * @method static count()
  * @property int department_id
  * @property string name
  * @property string gender

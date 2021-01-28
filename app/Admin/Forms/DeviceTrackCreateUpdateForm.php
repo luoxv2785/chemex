@@ -102,7 +102,7 @@ class DeviceTrackCreateUpdateForm extends Form implements LazyRenderable
                 ->required();
         } else {
             $this->select('staff_id', '新使用者')
-                ->options(StaffRecord::all()->pluck('name', 'id'))
+                ->options(StaffRecord::pluck('name', 'id'))
                 ->help('选择新使用者后，将会自动解除此设备与老使用者的归属关系。')
                 ->required();
         }

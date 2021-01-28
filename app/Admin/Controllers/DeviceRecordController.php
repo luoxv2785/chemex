@@ -254,10 +254,10 @@ class DeviceRecordController extends AdminController
                 ->auto(false);
 
             $grid->filter(function ($filter) {
-                $filter->equal('category_id', '设备分类')->select(DeviceCategory::all()->pluck('name', 'id'));
-                $filter->equal('vendor_id', '厂商')->select(VendorRecord::all()->pluck('name', 'id'));
-                $filter->equal('staff.department_id', '部门')->select(StaffDepartment::all()->pluck('name', 'id'));
-                $filter->equal('depreciation_id', '折旧规则')->select(DepreciationRule::all()->pluck('name', 'id'));
+                $filter->equal('category_id', '设备分类')->select(DeviceCategory::pluck('name', 'id'));
+                $filter->equal('vendor_id', '厂商')->select(VendorRecord::pluck('name', 'id'));
+                $filter->equal('staff.department_id', '部门')->select(StaffDepartment::pluck('name', 'id'));
+                $filter->equal('depreciation_id', '折旧规则')->select(DepreciationRule::pluck('name', 'id'));
                 $filter->equal('location', '位置');
             });
 
@@ -300,10 +300,10 @@ class DeviceRecordController extends AdminController
                     ->required();
             } else {
                 $form->select('category_id', admin_trans_label('Category'))
-                    ->options(DeviceCategory::all()->pluck('name', 'id'))
+                    ->options(DeviceCategory::pluck('name', 'id'))
                     ->required();
                 $form->select('vendor_id', admin_trans_label('Vendor'))
-                    ->options(VendorRecord::all()->pluck('name', 'id'))
+                    ->options(VendorRecord::pluck('name', 'id'))
                     ->required();
             }
 
@@ -319,8 +319,7 @@ class DeviceRecordController extends AdminController
                     ->required();
             } else {
                 $form->select('purchased_channel_id', admin_trans_label('Purchased Channel Id'))
-                    ->options(PurchasedChannel::all()
-                        ->pluck('name', 'id'));
+                    ->options(PurchasedChannel::pluck('name', 'id'));
             }
 
             $form->text('sn');
@@ -347,8 +346,7 @@ class DeviceRecordController extends AdminController
                     ->required();
             } else {
                 $form->select('depreciation_rule_id', admin_trans_label('Depreciation Rule Id'))
-                    ->options(DepreciationRule::all()
-                        ->pluck('name', 'id'))
+                    ->options(DepreciationRule::pluck('name', 'id'))
                     ->help('设备记录的折旧规则将优先于其分类所指定的折旧规则。');
             }
 

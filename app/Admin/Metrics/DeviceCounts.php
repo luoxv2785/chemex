@@ -23,8 +23,7 @@ class DeviceCounts extends Card
         if ($content instanceof LazyGrid) {
             $content->simple();
         }
-        $counts = DeviceRecord::all()->count();
-        $route = route('device.records.index');
+        $counts = DeviceRecord::count();
         $html = <<<HTML
 <div class="small-box" style="margin-bottom: 0;background: rgba(103,58,183,0.7);border-radius: .25rem">
   <div class="inner">

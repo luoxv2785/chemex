@@ -106,8 +106,7 @@ class DeviceCategoryController extends AdminController
                     ->required();
             } else {
                 $form->select('parent_id', admin_trans_label('Parent'))
-                    ->options(\App\Models\DeviceCategory::all()
-                        ->pluck('name', 'id'))
+                    ->options(\App\Models\DeviceCategory::pluck('name', 'id'))
                     ->required();
             }
 
@@ -119,8 +118,7 @@ class DeviceCategoryController extends AdminController
                     ->required();
             } else {
                 $form->select('depreciation_rule_id', admin_trans_label('Depreciation Rule Id'))
-                    ->options(DepreciationRule::all()
-                        ->pluck('name', 'id'))
+                    ->options(DepreciationRule::pluck('name', 'id'))
                     ->required();
             }
 

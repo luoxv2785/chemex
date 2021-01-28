@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @method static where(string $key, string $value, string $value = null)
+ * @method static pluck(string $text, string $id)
  */
 class DepreciationRule extends Model
 {

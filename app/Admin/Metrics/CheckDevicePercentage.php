@@ -27,7 +27,7 @@ class CheckDevicePercentage extends Card
             $content->simple();
         }
 
-        $device_records_all = DeviceRecord::all()->count();
+        $device_records_all = DeviceRecord::count();
         $check_record = CheckRecord::where('check_item', 'device')->where('status', 0)->first();
         if (!empty($check_record)) {
             $check_tracks_counts = CheckTrack::where('check_id', $check_record->id)
