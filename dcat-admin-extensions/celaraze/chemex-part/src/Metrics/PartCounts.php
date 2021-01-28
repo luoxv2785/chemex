@@ -24,7 +24,6 @@ class PartCounts extends Card
             $content->simple();
         }
         $counts = PartRecord::all()->count();
-        $route = route('part.records.index');
         $html = <<<HTML
 <div class="small-box" style="margin-bottom: 0;background: rgba(33,150,243,0.7);border-radius: .25rem">
   <div class="inner">

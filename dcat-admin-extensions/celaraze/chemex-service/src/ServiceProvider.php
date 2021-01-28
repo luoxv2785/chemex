@@ -14,25 +14,25 @@ class ServiceProvider extends BaseServiceProvider
     ];
     protected $menu = [
         [
-            'title' => '服务管理',
+            'title' => 'Service Management',
             'uri' => '',
             'icon' => 'feather icon-activity'
         ],
         [
-            'parent' => '服务管理',
-            'title' => '服务',
+            'parent' => 'Service Management',
+            'title' => 'Service Records',
             'uri' => 'service/records',
             'icon' => ''
         ],
         [
-            'parent' => '服务管理',
-            'title' => '服务归属记录',
+            'parent' => 'Service Management',
+            'title' => 'Service Tracks',
             'uri' => 'service/tracks',
             'icon' => ''
         ],
         [
-            'parent' => '服务管理',
-            'title' => '服务故障',
+            'parent' => 'Service Management',
+            'title' => 'Service Issues',
             'uri' => 'service/issues',
             'icon' => ''
         ]

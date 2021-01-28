@@ -14,25 +14,25 @@ class ServiceProvider extends BaseServiceProvider
     ];
     protected $menu = [
         [
-            'title' => '软件管理',
+            'title' => 'Software Management',
             'uri' => '',
             'icon' => 'feather icon-disc'
         ],
         [
-            'parent' => '软件管理',
-            'title' => '软件',
+            'parent' => 'Software Management',
+            'title' => 'Software',
             'uri' => 'software/records',
             'icon' => ''
         ],
         [
-            'parent' => '软件管理',
-            'title' => '软件分类',
+            'parent' => 'Software Management',
+            'title' => 'Software Categories',
             'uri' => 'software/categories',
             'icon' => ''
         ],
         [
-            'parent' => '软件管理',
-            'title' => '软件归属记录',
+            'parent' => 'Software Management',
+            'title' => 'Software Tracks',
             'uri' => 'software/tracks',
             'icon' => ''
         ]

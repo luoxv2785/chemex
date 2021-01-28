@@ -86,7 +86,7 @@
 
 `git`，用于管理版本，部署和升级必要工具。
 
-'composer'，用于安装 PHP 依赖，这是 PHP 的包管理工具。
+`composer`，用于安装 PHP 依赖，这是 PHP 的包管理工具。
 
 `PHP 7.3 +`，暂时不要使用 PHP8，目前有一些小问题需要解决。
 
@@ -107,7 +107,7 @@
 生产环境下为遵守安全策略，非常建议在服务器本地进行部署，暂时不提供相关线上初始化安装的功能。因此，虽然前期部署的步骤较多，但已经为大家自动化处理了很大部分的流程，只需要跟着下面的命令一步步执行，一般是不会有部署问题的。
 
 1：为你的计算机安装 `git`，Windows 环境请安装 [Git for Windows](https://git-scm.com/download/win) ，Linux
-环境一般都会自带，如果没有就执行 `yum install git' 或者 'apt install git` 命令来安装即可。
+环境一般都会自带，如果没有就执行 `yum install git` 或者 `apt install git` 命令来安装即可。
 
 2：为你的计算机安装 `PHP` 环境，参考：[PHP官方](https://www.php.net/downloads) 。
 

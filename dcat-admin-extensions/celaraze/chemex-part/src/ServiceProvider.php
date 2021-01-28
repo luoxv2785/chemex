@@ -14,25 +14,25 @@ class ServiceProvider extends BaseServiceProvider
     ];
     protected $menu = [
         [
-            'title' => '配件管理',
+            'title' => 'Part Management',
             'uri' => '',
             'icon' => 'feather icon-server'
         ],
         [
-            'parent' => '配件管理',
-            'title' => '配件',
+            'parent' => 'Part Management',
+            'title' => 'Part Records',
             'uri' => 'part/records',
             'icon' => ''
         ],
         [
-            'parent' => '配件管理',
-            'title' => '配件分类',
+            'parent' => 'Part Management',
+            'title' => 'Part Categories',
             'uri' => 'part/categories',
             'icon' => ''
         ],
         [
-            'parent' => '配件管理',
-            'title' => '配件归属记录',
+            'parent' => 'Part Management',
+            'title' => 'Part Tracks',
             'uri' => 'part/tracks',
             'icon' => ''
         ]
@@ -45,9 +45,6 @@ class ServiceProvider extends BaseServiceProvider
 
     public function init()
     {
-        parent::init();
-
-        //
 
     }
 }

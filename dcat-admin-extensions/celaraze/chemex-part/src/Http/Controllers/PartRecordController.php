@@ -205,7 +205,7 @@ class PartRecordController extends AdminController
                 $form->selectCreate('vendor_id', Support::trans('part-record.vendor.name'))
                     ->options(VendorRecord::class)                    ->ajax(route('selection.vendor.records'))
                     ->ajax(route('selection.vendor.records'))
-                    ->url(route('vendor.record.create'))
+                    ->url(route('vendor.records.create'))
                     ->required();
             } else {
                 $form->select('vendor_id', Support::trans('part-record.vendor.name'))

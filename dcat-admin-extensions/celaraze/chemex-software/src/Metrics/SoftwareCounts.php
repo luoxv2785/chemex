@@ -20,7 +20,6 @@ class SoftwareCounts extends Card
     public function content($content): SoftwareCounts
     {
         $counts = SoftwareRecord::all()->count();
-        $route = route('software.records.index');
         $html = <<<HTML
 <div class="small-box" style="margin-bottom: 0;background: rgba(0,150,136,0.7);border-radius: .25rem">
   <div class="inner">
