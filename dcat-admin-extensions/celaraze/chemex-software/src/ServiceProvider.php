@@ -20,7 +20,7 @@ class ServiceProvider extends BaseServiceProvider
         ],
         [
             'parent' => 'Software Management',
-            'title' => 'Software',
+            'title' => 'Software records',
             'uri' => 'software/records',
             'icon' => ''
         ],

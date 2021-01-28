@@ -45,6 +45,6 @@ class ServiceProvider extends BaseServiceProvider
 
     public function init()
     {
-
+        parent::init();
     }
 }

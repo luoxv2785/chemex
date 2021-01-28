@@ -47,8 +47,25 @@ class Install extends Command
         $this->call('jwt:secret');
         $this->info('正在处理数据库迁移！');
         $this->call('migrate');
-        $this->info('正在初始化数据！');
-        $this->call('db:seed', ['--class' => 'AdminTablesSeeder']);
+        $this->info('正在初始化基础数据！');
+        // 填充菜单
+        $this->call('db:seed', ['--class' => 'AdminMenuTableSeeder']);
+        // 填充扩展
+        $this->call('db:seed', ['--class' => 'AdminExtensionsTableSeeder']);
+        // 填充配置
+        $this->call('db:seed', ['--class' => 'AdminSettingsTableSeeder']);
+        // 填充用户
+        $this->call('db:seed', ['--class' => 'AdminUsersTableSeeder']);
+        // 填充角色
+        $this->call('db:seed', ['--class' => 'AdminRolesTableSeeder']);
+        // 填充权限
+        $this->call('db:seed', ['--class' => 'AdminPermissionsTableSeeder']);
+        // 填充权限-菜单
+        $this->call('db:seed', ['--class' => 'AdminPermissionMenuTableSeeder']);
+        // 填充角色-菜单
+        $this->call('db:seed', ['--class' => 'AdminRoleMenuTableSeeder']);
+        // 填充角色-权限
+        $this->call('db:seed', ['--class' => 'AdminRolePermissionsTableSeeder']);
         $this->call('chemex:fill');
         $this->call('chemex:reset');
         $this->info('安装完成！');
