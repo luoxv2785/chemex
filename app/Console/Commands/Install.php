@@ -66,6 +66,8 @@ class Install extends Command
         $this->call('db:seed', ['--class' => 'AdminRoleMenuTableSeeder']);
         // 填充角色-权限
         $this->call('db:seed', ['--class' => 'AdminRolePermissionsTableSeeder']);
+        // 填充用户-角色
+        $this->call('db:seed', ['--class' => 'AdminRoleUsersTableSeeder']);
         $this->call('chemex:fill');
         $this->call('chemex:reset');
         $this->info('安装完成！');
