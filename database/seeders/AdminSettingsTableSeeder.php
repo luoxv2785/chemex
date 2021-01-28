@@ -92,16 +92,16 @@ class AdminSettingsTableSeeder extends Seeder
             10 =>
                 array(
                     'slug' => 'site_logo_text',
-                    'value' => '',
+                    'value' => '咖啡壶',
                     'created_at' => '2020-12-20 13:57:11',
-                    'updated_at' => '2020-12-20 13:57:11',
+                    'updated_at' => '2021-01-28 20:34:45',
                 ),
             11 =>
                 array(
                     'slug' => 'site_title',
-                    'value' => '',
+                    'value' => '咖啡壶',
                     'created_at' => '2020-12-20 13:57:11',
-                    'updated_at' => '2020-12-20 13:57:11',
+                    'updated_at' => '2021-01-28 20:34:45',
                 ),
             12 =>
                 array(
@@ -114,6 +114,13 @@ class AdminSettingsTableSeeder extends Seeder
                 array(
                     'slug' => 'theme_color',
                     'value' => 'blue-light',
+                    'created_at' => '2021-01-28 16:47:25',
+                    'updated_at' => '2021-01-28 16:47:25',
+                ),
+            14 =>
+                array(
+                    'slug' => 'switch_to_select_create',
+                    'value' => '1',
                     'created_at' => '2021-01-28 16:47:25',
                     'updated_at' => '2021-01-28 16:47:25',
                 ),

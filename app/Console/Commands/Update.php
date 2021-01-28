@@ -41,8 +41,6 @@ class Update extends Command
         $this->info('数据库迁移完成！');
         // 填充菜单
         $this->call('db:seed', ['--class' => 'AdminMenuTableSeeder']);
-        // 填充扩展
-        $this->call('db:seed', ['--class' => 'AdminExtensionsTableSeeder']);
         // 填充权限
         $this->call('db:seed', ['--class' => 'AdminPermissionsTableSeeder']);
         // 填充权限-菜单
