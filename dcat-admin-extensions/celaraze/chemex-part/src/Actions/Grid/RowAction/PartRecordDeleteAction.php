@@ -2,7 +2,7 @@
 
 namespace Celaraze\Chemex\Part\Actions\Grid\RowAction;
 
-use Celaraze\Chemex\Part\Services\PartRecordService;
+use Celaraze\Chemex\Part\Services\PartService;
 use Dcat\Admin\Actions\Response;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\RowAction;
@@ -23,7 +23,7 @@ class PartRecordDeleteAction extends RowAction
                 ->refresh();
         }
 
-        PartRecordService::partDelete($this->getKey());
+        PartService::partDelete($this->getKey());
 
         return $this->response()
             ->success('成功删除配件！')

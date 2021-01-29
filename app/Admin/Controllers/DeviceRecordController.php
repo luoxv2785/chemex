@@ -315,8 +315,7 @@ class DeviceRecordController extends AdminController
                 $form->selectCreate('purchased_channel_id', admin_trans_label('Purchased Channel Id'))
                     ->options(PurchasedChannel::class)
                     ->ajax(route('selection.purchased.channels'))
-                    ->url(route('purchased.channels.create'))
-                    ->required();
+                    ->url(route('purchased.channels.create'));
             } else {
                 $form->select('purchased_channel_id', admin_trans_label('Purchased Channel Id'))
                     ->options(PurchasedChannel::pluck('name', 'id'));
@@ -342,8 +341,7 @@ class DeviceRecordController extends AdminController
                     ->options(DepreciationRule::class)
                     ->ajax(route('selection.depreciation.rules'))
                     ->url(route('depreciation.rules.create'))
-                    ->help('设备记录的折旧规则将优先于其分类所指定的折旧规则。')
-                    ->required();
+                    ->help('设备记录的折旧规则将优先于其分类所指定的折旧规则。');
             } else {
                 $form->select('depreciation_rule_id', admin_trans_label('Depreciation Rule Id'))
                     ->options(DepreciationRule::pluck('name', 'id'))
