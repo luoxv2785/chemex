@@ -23,7 +23,6 @@ class ToolChemexAppController extends Controller
             ->body(function (Row $row) {
                 $row->column(12, function (Column $column) {
                     $column->row(new Card('第一步', view('tool_chemex_app.download')));
-                    $column->row(new Card('第二步', view('tool_chemex_app.setting')));
                 });
             });
     }
