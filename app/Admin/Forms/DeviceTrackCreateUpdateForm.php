@@ -5,7 +5,7 @@ namespace App\Admin\Forms;
 use App\Models\DeviceRecord;
 use App\Models\DeviceTrack;
 use App\Models\StaffRecord;
-use App\Support\Info;
+use App\Support\Support;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
@@ -93,7 +93,7 @@ class DeviceTrackCreateUpdateForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        if (Info::ifSelectCreate()) {
+        if (Support::ifSelectCreate()) {
             $this->selectCreate('staff_id', '新使用者')
                 ->options(StaffRecord::class)
                 ->ajax(route('selection.staff.records'))

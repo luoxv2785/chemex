@@ -1,43 +1,13 @@
 <?php
 
 
-namespace App\Support;
+namespace App\Services;
 
 
-use Exception;
 use Illuminate\Support\Facades\Http;
 
-class System
+class VersionService
 {
-    /**
-     * 检查WebSSH服务是否启动
-     * @param $url
-     * @return int|mixed
-     */
-    public static function checkWebSSHServiceStatus($url): int
-    {
-        try {
-            $response = Http::get($url);
-            return $response->status();
-        } catch (Exception $e) {
-            return $e->getCode();
-        }
-    }
-
-    /**
-     * 检查WebSSH服务是否被安装
-     * @return int
-     */
-    public static function checkWebSSHServiceInstalled(): int
-    {
-        $result = exec('which wssh', $outputs);
-        if (empty($result)) {
-            return 0;
-        } else {
-            return 1;
-        }
-    }
-
     /**
      * 从Gitee获取最新发行版本
      * @return string|null

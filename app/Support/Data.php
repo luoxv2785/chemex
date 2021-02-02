@@ -4,7 +4,6 @@
 namespace App\Support;
 
 
-use App\Models\DeviceRecord;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Widgets\Alert;
 
@@ -149,7 +148,7 @@ class Data
                 'froyo',
                 'gingerbread',
                 'honeycomb',
-                'icecreansandwich',
+                'icecreamsandwich',
                 'jellybean',
                 'kitkat',
                 'lollipop',
@@ -208,39 +207,6 @@ class Data
             'none' => 'primary',
             'default' => Admin::color()->gray()
         ];
-    }
-
-    /**
-     * 获取所有物品的类型和ID，并且以 device:1 形式加入到数组中返回
-     * @return array
-     */
-    public static function getAllItemTypeAndId(): array
-    {
-        $data = [];
-        $device_records = DeviceRecord::all();
-        if (Admin::extension()->enabled('celaraze/chemex-part')) {
-            $class = 'Celaraze\\Chemex\\Part\\Models\\PartRecord';
-            $part_records = $class::all();
-        } else {
-            $part_records = [];
-        }
-        if (Admin::extension()->enabled('celaraze/chemex-software')) {
-            $class = 'Celaraze\\Chemex\\Software\\Models\\SoftwareRecord';
-            $software_records = $class::all();
-        } else {
-            $software_records = [];
-        }
-
-        foreach ($device_records as $device_record) {
-            array_push($data, 'device:' . $device_record->id . '&#10;');
-        }
-        foreach ($part_records as $part_record) {
-            array_push($data, 'part:' . $part_record->id . '&#10;');
-        }
-        foreach ($software_records as $software_record) {
-            array_push($data, 'software:' . $software_record->id . '&#10;');
-        }
-        return $data;
     }
 
     /**

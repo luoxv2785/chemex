@@ -20,7 +20,7 @@ use App\Models\VendorRecord;
 use App\Services\DeviceService;
 use App\Services\ExpirationService;
 use App\Services\ExportService;
-use App\Support\Info;
+use App\Support\Support;
 use App\Traits\HasDeviceRelatedGrid;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
@@ -52,7 +52,7 @@ class DeviceRecordController extends AdminController
      */
     public function show($id, Content $content): Content
     {
-        $name = Info::deviceIdToStaffName($id);
+        $name = Support::deviceIdToStaffName($id);
         $history = DeviceService::history($id);
         return $content
             ->title($this->title())
@@ -126,8 +126,8 @@ class DeviceRecordController extends AdminController
             $show->field('expiration_left_days', admin_trans_label('Depreciation Price'))->as(function () {
                 $device_record = \App\Models\DeviceRecord::where('id', $this->id)->first();
                 if (!empty($device_record)) {
-                    $depreciation_rule_id = Info::getDepreciationRuleId($device_record);
-                    return Info::depreciationPrice($this->price, $this->purchased, $depreciation_rule_id);
+                    $depreciation_rule_id = Support::getDepreciationRuleId($device_record);
+                    return Support::depreciationPrice($this->price, $this->purchased, $depreciation_rule_id);
                 }
             });
             $show->field('purchased');
@@ -186,7 +186,7 @@ class DeviceRecordController extends AdminController
             $grid->column('asset_number');
             $grid->column('photo')->image('', 50, 50);
             $grid->column('name')->display(function ($name) {
-                $tag = Info::getSoftwareIcon($this->id);
+                $tag = Support::getSoftwareIcon($this->id);
                 if (empty($tag)) {
                     return $name;
                 } else {
@@ -287,7 +287,7 @@ class DeviceRecordController extends AdminController
             $form->display('id');
             $form->text('name')->required();
 
-            if (Info::ifSelectCreate()) {
+            if (Support::ifSelectCreate()) {
                 $form->selectCreate('category_id', admin_trans_label('Category'))
                     ->options(DeviceCategory::class)
                     ->ajax(route('selection.device.categories'))
@@ -311,7 +311,7 @@ class DeviceRecordController extends AdminController
             $form->text('asset_number');
             $form->text('description');
 
-            if (Info::ifSelectCreate()) {
+            if (Support::ifSelectCreate()) {
                 $form->selectCreate('purchased_channel_id', admin_trans_label('Purchased Channel Id'))
                     ->options(PurchasedChannel::class)
                     ->ajax(route('selection.purchased.channels'))
@@ -336,7 +336,7 @@ class DeviceRecordController extends AdminController
             $form->password('admin_password')
                 ->help('管理员密码，可以代表计算机管理员账户密码以及打印机管理员密码等。');
 
-            if (Info::ifSelectCreate()) {
+            if (Support::ifSelectCreate()) {
                 $form->selectCreate('depreciation_rule_id', admin_trans_label('Depreciation Rule Id'))
                     ->options(DepreciationRule::class)
                     ->ajax(route('selection.depreciation.rules'))

@@ -4,16 +4,131 @@
 namespace App\Support;
 
 
+use App\Models\CheckRecord;
+use App\Models\CheckTrack;
 use App\Models\DepreciationRule;
 use App\Models\DeviceCategory;
 use App\Models\DeviceRecord;
+use App\Models\DeviceTrack;
 use App\Models\StaffRecord;
 use Dcat\Admin\Admin;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 
-class Info
+class Support
 {
+    /**
+     * 获取所有物品的类型和ID，并且以 device:1 形式加入到数组中返回
+     * @return array
+     */
+    public static function getAllItemTypeAndId(): array
+    {
+        $data = [];
+        $device_records = DeviceRecord::all();
+        if (Admin::extension()->enabled('celaraze/chemex-part')) {
+            $class = 'Celaraze\\Chemex\\Part\\Models\\PartRecord';
+            $part_records = $class::all();
+        } else {
+            $part_records = [];
+        }
+        if (Admin::extension()->enabled('celaraze/chemex-software')) {
+            $class = 'Celaraze\\Chemex\\Software\\Models\\SoftwareRecord';
+            $software_records = $class::all();
+        } else {
+            $software_records = [];
+        }
+
+        foreach ($device_records as $device_record) {
+            array_push($data, 'device:' . $device_record->id . '&#10;');
+        }
+        foreach ($part_records as $part_record) {
+            array_push($data, 'part:' . $part_record->id . '&#10;');
+        }
+        foreach ($software_records as $software_record) {
+            array_push($data, 'software:' . $software_record->id . '&#10;');
+        }
+        return $data;
+    }
+
+    /**
+     * 获取设备当前最新的使用者
+     * @param $device_id
+     * @return string
+     */
+    public static function currentDeviceTrackStaff($device_id)
+    {
+        $device_track = DeviceTrack::where('device_id', $device_id)->first();
+        if (empty($device_track)) {
+            return 0;
+        } else {
+            $staff = $device_track->staff;
+            if (empty($staff)) {
+                return -1;
+            } else {
+                return $staff->id;
+            }
+        }
+    }
+
+    /**
+     * 物品履历 形成清单数组（未排序）
+     * @param $template
+     * @param $item_track
+     * @param array $data
+     * @return array
+     */
+    public static function itemTrack($template, $item_track, $data = []): array
+    {
+        $template['status'] = '+';
+        $template['datetime'] = json_decode($item_track, true)['created_at'];
+        array_push($data, $template);
+        if (!empty($item_track->deleted_at)) {
+            $template['status'] = '-';
+            $template['datetime'] = json_decode($item_track, true)['deleted_at'];
+            array_push($data, $template);
+        }
+        return $data;
+    }
+
+    /**
+     * 计算盘点任务记录的数量
+     * @param $check_id
+     * @param string $type
+     * @return int
+     */
+    public static function checkTrackCounts($check_id, $type = 'A'): int
+    {
+        $check_record = CheckRecord::where('id', $check_id)->first();
+        if (empty($check_record)) {
+            return 0;
+        }
+
+        switch ($type) {
+            case 'Y':
+                $count = CheckTrack::where('check_id', $check_id)
+                    ->where('status', 1)
+                    ->count();
+                break;
+            case 'N':
+                $count = CheckTrack::where('check_id', $check_id)
+                    ->where('status', 2)
+                    ->count();
+                break;
+            case 'L':
+                $count = CheckTrack::where('check_id', $check_id)
+                    ->where('status', 0)
+                    ->count();
+                break;
+            default:
+                $count = CheckTrack::where('check_id', $check_id)
+                    ->withTrashed()
+                    ->count();
+
+        }
+
+        return $count;
+    }
+
     /**
      * 雇员id换取name
      * @param $staff_id

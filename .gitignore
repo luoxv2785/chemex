@@ -14,8 +14,4 @@ yarn-error.log
 composer.lock
 /tools/ChemexTool/unpackage
 /vendor
-/dcat-admin-extensions/celaraze/chemex-consumable
-/dcat-admin-extensions/celaraze/chemex-todo
-/dcat-admin-extensions/celaraze/chemex-mirage
-/dcat-admin-extensions/celaraze/chemex-ticket
 /packages

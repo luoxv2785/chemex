@@ -4,7 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Tree\ToolAction\StaffDepartmentImportAction;
 use App\Admin\Repositories\StaffDepartment;
-use App\Support\Info;
+use App\Support\Support;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
@@ -101,7 +101,7 @@ class StaffDepartmentController extends AdminController
             $form->display('id');
             $form->text('name')->required();
             $form->text('description');
-            if (Info::ifSelectCreate()) {
+            if (Support::ifSelectCreate()) {
                 $form->selectCreate('parent_id', admin_trans_label('Parent'))
                     ->options(\App\Models\StaffDepartment::class)
                     ->ajax(route('selection.staff.departments'))

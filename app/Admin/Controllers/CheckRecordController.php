@@ -12,8 +12,7 @@ use App\Models\CheckTrack;
 use App\Models\DeviceRecord;
 use App\Services\CheckService;
 use App\Support\Data;
-use App\Support\Info;
-use App\Support\Track;
+use App\Support\Support;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
@@ -54,7 +53,7 @@ class CheckRecordController extends AdminController
                     return '任务状态异常';
                 } else {
                     $check_item = $check->check_item;
-                    $item = Info::getItemRecordByClass($check_item, $item_id);
+                    $item = Support::getItemRecordByClass($check_item, $item_id);
                     if (empty($item)) {
                         return '物品状态异常';
                     } else {
@@ -114,16 +113,16 @@ class CheckRecordController extends AdminController
             $show->field('user.name');
             $show->field('status')->using(Data::checkRecordStatus());
             $show->field('check_all_counts')->as(function () {
-                return Track::checkTrackCounts($this->id);
+                return Support::checkTrackCounts($this->id);
             });
             $show->field('check_yes_counts')->as(function () {
-                return Track::checkTrackCounts($this->id, 'Y');
+                return Support::checkTrackCounts($this->id, 'Y');
             });
             $show->field('check_no_counts')->as(function () {
-                return Track::checkTrackCounts($this->id, 'N');
+                return Support::checkTrackCounts($this->id, 'N');
             });
             $show->field('check_left_counts')->as(function () {
-                return Track::checkTrackCounts($this->id, 'L');
+                return Support::checkTrackCounts($this->id, 'L');
             });
             $show->field('created_at');
             $show->field('updated_at');
@@ -148,16 +147,16 @@ class CheckRecordController extends AdminController
             $grid->column('user.name');
             $grid->column('status')->using(Data::checkRecordStatus());
             $grid->column('check_all_counts')->display(function () {
-                return Track::checkTrackCounts($this->id);
+                return Support::checkTrackCounts($this->id);
             });
             $grid->column('check_yes_counts')->display(function () {
-                return Track::checkTrackCounts($this->id, 'Y');
+                return Support::checkTrackCounts($this->id, 'Y');
             });
             $grid->column('check_no_counts')->display(function () {
-                return Track::checkTrackCounts($this->id, 'N');
+                return Support::checkTrackCounts($this->id, 'N');
             });
             $grid->column('check_left_counts')->display(function () {
-                return Track::checkTrackCounts($this->id, 'L');
+                return Support::checkTrackCounts($this->id, 'L');
             });
 
             $grid->disableRowSelector();

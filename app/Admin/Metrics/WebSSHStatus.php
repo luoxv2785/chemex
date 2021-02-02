@@ -4,7 +4,7 @@
 namespace App\Admin\Metrics;
 
 
-use App\Support\System;
+use App\Services\SSHService;
 use Dcat\Admin\Widgets\Metrics\Line;
 use Illuminate\Http\Request;
 
@@ -19,8 +19,8 @@ class WebSSHStatus extends Line
      */
     public function handle(Request $request)
     {
-        $web_ssh_installed = System::checkWebSSHServiceInstalled();
-        $web_ssh_service = System::checkWebSSHServiceStatus('http://127.0.0.1:8222');
+        $web_ssh_installed = SSHService::checkWebSSHServiceInstalled();
+        $web_ssh_service = SSHService::checkWebSSHServiceStatus('http://127.0.0.1:8222');
         if ($web_ssh_service == 200) {
             $text = '正常';
             $color = '#00c054';

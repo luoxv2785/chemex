@@ -1,0 +1,31 @@
+{
+    "name": "celaraze/chemex-mirage",
+    "description": "Description...",
+    "type": "library",
+    "keywords": ["dcat-admin", "extension"],
+    "homepage": "https://github.com/celaraze/chemex-mirage",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "your name",
+            "email": "your email"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "dcat/laravel-admin": "~2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Celaraze\\Chemex\\Mirage\\": "src/"
+        }
+    },
+    "extra": {
+        "dcat-admin": "ServiceProvider",
+        "laravel": {
+            "providers": [
+              "ServiceProvider"
+            ]
+        }
+    }
+}

@@ -92,13 +92,14 @@ class StaffRecordImportForm extends Form
     public function form()
     {
         $this->select('type')
-            ->when('file', function (Form $form) {
+            ->when('file', function () {
                 $this->file('file', '表格文件')
                     ->help('导入支持xls、xlsx、csv文件，且表格头必填栏位【名称、部门、性别】，可选栏位【职位、手机、邮箱】。')
                     ->accept('xls,xlsx,csv')
                     ->uniqueName()
                     ->autoUpload();
             })
+            //TODO 这里怎么回事，上面$this，下面$form
             ->when('ldap', function (Form $form) {
                 $form->radio('mode')
                     ->options(['rewrite' => '覆盖', 'merge' => '合并'])

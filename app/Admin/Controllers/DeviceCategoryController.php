@@ -5,7 +5,7 @@ namespace App\Admin\Controllers;
 use App\Admin\Actions\Tree\ToolAction\DeviceCategoryImportAction;
 use App\Admin\Repositories\DeviceCategory;
 use App\Models\DepreciationRule;
-use App\Support\Info;
+use App\Support\Support;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
@@ -98,7 +98,7 @@ class DeviceCategoryController extends AdminController
             $form->text('name')->required();
             $form->text('description');
 
-            if (Info::ifSelectCreate()) {
+            if (Support::ifSelectCreate()) {
                 $form->selectCreate('parent_id', admin_trans_label('Parent'))
                     ->options(\App\Models\DeviceCategory::class)
                     ->ajax(route('selection.device.categories'))
@@ -108,7 +108,7 @@ class DeviceCategoryController extends AdminController
                     ->options(\App\Models\DeviceCategory::pluck('name', 'id'));
             }
 
-            if (Info::ifSelectCreate()) {
+            if (Support::ifSelectCreate()) {
                 $form->selectCreate('depreciation_rule_id', admin_trans_label('Depreciation Rule Id'))
                     ->options(DepreciationRule::class)
                     ->ajax(route('selection.depreciation.rules'))

@@ -36,7 +36,6 @@ class AdminUser extends User implements JWTSubject
 
     /**
      * 获取JWT验证器
-     * @return mixed
      */
     public function getJWTIdentifier()
     {

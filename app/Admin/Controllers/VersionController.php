@@ -4,14 +4,13 @@ namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Services\ConfigService;
-use App\Support\System;
+use App\Services\VersionService;
 use App\Support\Version;
 use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Card;
 use Illuminate\Http\JsonResponse;
-use Pour\Base\Uni;
 
 class VersionController extends Controller
 {
@@ -46,9 +45,15 @@ class VersionController extends Controller
     {
         $result = ConfigService::migrate();
         if ($result) {
-            $return = Uni::rr(200, '更新数据库结构成功');
+            $return = response()->json([
+                'code' => 200,
+                'message' => '更新数据库结构成功'
+            ]);
         } else {
-            $return = Uni::rr(500, '更新数据库结构失败');
+            $return = response()->json([
+                'code' => 500,
+                'message' => '更新数据库结构失败'
+            ]);
         }
         return response()->json($return);
     }
@@ -61,9 +66,15 @@ class VersionController extends Controller
     {
         $result = ConfigService::clear();
         if ($result) {
-            $return = Uni::rr(200, '缓存清理成功');
+            $return = response()->json([
+                'code' => 200,
+                'message' => '缓存清理成功'
+            ]);
         } else {
-            $return = Uni::rr(500, '缓存清理失败');
+            $return = response()->json([
+                'code' => 500,
+                'message' => '缓存清理失败'
+            ]);
         }
         return response()->json($return);
     }
@@ -74,6 +85,6 @@ class VersionController extends Controller
      */
     public function getRemoteVersion(): ?string
     {
-        return System::getLatestVersionFromGitee();
+        return VersionService::getLatestVersionFromGitee();
     }
 }

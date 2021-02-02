@@ -4,7 +4,6 @@ namespace App\Admin\Forms;
 
 use App\Models\DeviceRecord;
 use App\Models\MaintenanceRecord;
-use App\Models\PartRecord;
 use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
@@ -41,7 +40,8 @@ class MaintenanceCreateForm extends Form implements LazyRenderable
 
         switch ($item) {
             case 'part':
-                $item_record = PartRecord::where('id', $item_id)->first();
+                $class = '\\Celaraze\\Chemex\\Part\\Models\\PartRecord';
+                $item_record = $class::where('id', $item_id)->first();
                 break;
             default:
                 $item_record = DeviceRecord::where('id', $item_id)->first();
