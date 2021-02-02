@@ -8,7 +8,6 @@ use Celaraze\Chemex\Service\Actions\Grid\RowAction\ServiceIssueCreateAction;
 use Celaraze\Chemex\Service\Actions\Grid\RowAction\ServiceRecordDeleteAction;
 use Celaraze\Chemex\Service\Actions\Grid\RowAction\ServiceTrackCreateUpdateAction;
 use Celaraze\Chemex\Service\Repositories\ServiceRecord;
-use Celaraze\Chemex\Service\Support;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
@@ -20,11 +19,6 @@ use Dcat\Admin\Show;
  */
 class ServiceRecordController extends AdminController
 {
-    public function __construct()
-    {
-        $this->title = Support::trans('service-record.title');
-    }
-
     /**
      * Make a grid builder.
      *
@@ -34,10 +28,10 @@ class ServiceRecordController extends AdminController
     {
         return Grid::make(new ServiceRecord(['device']), function (Grid $grid) {
             $grid->column('id');
-            $grid->column('name', Support::trans('service-record.name'));
-            $grid->column('description', Support::trans('service-record.description'));
-            $grid->column('status', Support::trans('service-record.status'))->switch('green');
-            $grid->column('device.name', Support::trans('service-record.device.name'))->link(function () {
+            $grid->column('name');
+            $grid->column('description');
+            $grid->column('status')->switch('green');
+            $grid->column('device.name')->link(function () {
                 if (!empty($this->device)) {
                     return route('device.records.show', $this->device['id']);
                 }
@@ -80,9 +74,9 @@ class ServiceRecordController extends AdminController
     {
         return Show::make($id, new ServiceRecord(['device']), function (Show $show) {
             $show->field('id');
-            $show->field('name', Support::trans('service-record.name'));
-            $show->field('description', Support::trans('service-record.description'));
-            $show->field('device.name', Support::trans('service-record.device.name'));
+            $show->field('name');
+            $show->field('description');
+            $show->field('device.name');
             $show->field('created_at');
             $show->field('updated_at');
 
@@ -99,9 +93,9 @@ class ServiceRecordController extends AdminController
     {
         return Form::make(new ServiceRecord(), function (Form $form) {
             $form->display('id');
-            $form->text('name', Support::trans('service-record.name'))->required();
-            $form->text('description', Support::trans('service-record.description'));
-            $form->switch('status', Support::trans('service-record.status'))
+            $form->text('name')->required();
+            $form->text('description');
+            $form->switch('status')
                 ->default(0)
                 ->help('勾选此项为暂停服务。');
 

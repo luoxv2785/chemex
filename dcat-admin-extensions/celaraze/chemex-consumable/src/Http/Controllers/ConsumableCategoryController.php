@@ -13,11 +13,6 @@ use Dcat\Admin\Tree;
 
 class ConsumableCategoryController extends AdminController
 {
-    public function __construct()
-    {
-        $this->title = Support::trans('consumable-category.title');
-    }
-
     public function index(Content $content): Content
     {
         return $content
@@ -46,10 +41,10 @@ class ConsumableCategoryController extends AdminController
     {
         return Form::make(new ConsumableCategory(), function (Form $form) {
             $form->display('id');
-            $form->text('name', Support::trans('consumable-category.name'))
+            $form->text('name')
                 ->required();
-            $form->text('description', Support::trans('consumable-category.description'));
-            $form->select('parent_id', Support::trans('consumable-category.parent_id'))
+            $form->text('description');
+            $form->select('parent_id')
                 ->options(\Celaraze\Chemex\Consumable\Models\ConsumableCategory::all()
                     ->pluck('name', 'id'));
 

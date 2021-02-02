@@ -15,11 +15,6 @@ use Dcat\Admin\Show;
 
 class ConsumableRecordController extends AdminController
 {
-    public function __construct()
-    {
-        $this->title = Support::trans('consumable-record.title');
-    }
-
     /**
      * Make a grid builder.
      *
@@ -29,13 +24,13 @@ class ConsumableRecordController extends AdminController
     {
         return Grid::make(new ConsumableRecord(['category', 'vendor']), function (Grid $grid) {
             $grid->column('id');
-            $grid->column('name', Support::trans('consumable-record.name'));
-            $grid->column('description', Support::trans('consumable-record.description'));
-            $grid->column('specification', Support::trans('consumable-record.specification'));
-            $grid->column('category.name', Support::trans('consumable-record.category.name'));
-            $grid->column('vendor.name', Support::trans('consumable-record.vendor.name'));
-            $grid->column('price', Support::trans('consumable-record.price'));
-            $grid->column('number', Support::trans('consumable-record.number'))->display(function () {
+            $grid->column('name');
+            $grid->column('description');
+            $grid->column('specification');
+            $grid->column('category.name');
+            $grid->column('vendor.name');
+            $grid->column('price');
+            $grid->column('number')->display(function () {
                 return Support::consumableAllNumber($this->id);
             });
 
@@ -63,12 +58,12 @@ class ConsumableRecordController extends AdminController
     {
         return Show::make($id, new ConsumableRecord(['category', 'vendor']), function (Show $show) {
             $show->field('id');
-            $show->field('name', Support::trans('consumable-record.name'));
-            $show->field('description', Support::trans('consumable-record.description'));
-            $show->field('specification', Support::trans('consumable-record.specification'));
-            $show->field('category.name', Support::trans('consumable-record.category.name'));
-            $show->field('vendor.name', Support::trans('consumable-record.vendor.name'));
-            $show->field('price', Support::trans('consumable-record.price'));
+            $show->field('name');
+            $show->field('description');
+            $show->field('specification');
+            $show->field('category.name');
+            $show->field('vendor.name');
+            $show->field('price');
             $show->field('created_at');
             $show->field('updated_at');
         });
@@ -83,20 +78,20 @@ class ConsumableRecordController extends AdminController
     {
         return Form::make(new ConsumableRecord(), function (Form $form) {
             $form->display('id');
-            $form->text('name', Support::trans('consumable-record.name'))
+            $form->text('name')
                 ->required();
-            $form->text('description', Support::trans('consumable-record.description'));
-            $form->text('specification', Support::trans('consumable-record.specification'))
+            $form->text('description');
+            $form->text('specification')
                 ->required();
-            $form->select('category_id', Support::trans('consumable-record.category.name'))
+            $form->select('category_id', admin_trans_label('Category Id'))
                 ->options(ConsumableCategory::all()
                     ->pluck('name', 'id'))
                 ->required();
-            $form->select('vendor_id', Support::trans('consumable-record.vendor.name'))
+            $form->select('vendor_id', admin_trans_label('Vendor Id'))
                 ->options(VendorRecord::all()
                     ->pluck('name', 'id'))
                 ->required();
-            $form->text('price', Support::trans('consumable-record.price'));
+            $form->text('price');
 
             $form->display('created_at');
             $form->display('updated_at');

@@ -4,7 +4,6 @@ namespace Celaraze\Chemex\Todo\Forms;
 
 use App\Support\Data;
 use Celaraze\Chemex\Todo\Models\TodoRecord;
-use Celaraze\Chemex\Todo\Support;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
@@ -28,13 +27,13 @@ class TodoRecordUpdateForm extends Form
 
         if (empty($end) || empty($done_description) || empty($id)) {
             return $this->response()
-                ->error(Support::trans('main.required'));
+                ->error('缺少必要的字段！');
         }
         try {
             $todo_record = TodoRecord::where('id', $id)->first();
             if (empty($todo_record)) {
                 return $this->response()
-                    ->error(Support::trans('main.none'));
+                    ->error('没有这条记录！');
             }
             $todo_record->end = $end;
             $todo_record->done_description = $done_description;
@@ -42,12 +41,12 @@ class TodoRecordUpdateForm extends Form
             $todo_record->save();
             $return = $this
                 ->response()
-                ->success(Support::trans('main.success'))
+                ->success('成功！')
                 ->refresh();
         } catch (Exception $e) {
             $return = $this
                 ->response()
-                ->error(Support::trans('main.error') . $e->getMessage());
+                ->error('失败：' . $e->getMessage());
         }
 
         return $return;
@@ -58,9 +57,9 @@ class TodoRecordUpdateForm extends Form
      */
     public function form()
     {
-        $this->datetime('end', Support::trans('todo-record.end'))->required();
-        $this->textarea('done_description', Support::trans('todo-record.done_description'))->required();
-        $this->select('emoji', Support::trans('todo-record.emoji'))
+        $this->datetime('end')->required();
+        $this->textarea('done_description')->required();
+        $this->select('emoji')
             ->options(Data::emoji());
     }
 }

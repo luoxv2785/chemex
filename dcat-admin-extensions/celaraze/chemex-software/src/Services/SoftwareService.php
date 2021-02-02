@@ -4,7 +4,7 @@
 namespace Celaraze\Chemex\Software\Services;
 
 
-use App\Support\Track;
+use App\Support\Support;
 use Celaraze\Chemex\Software\Models\SoftwareRecord;
 use Celaraze\Chemex\Software\Models\SoftwareTrack;
 use Dcat\EasyExcel\Excel;
@@ -76,7 +76,7 @@ class SoftwareService
         foreach ($software_tracks as $software_track) {
             $single['type'] = '设备';
             $single['name'] = optional($software_track->device)->name;
-            $data = Track::itemTrack($single, $software_track, $data);
+            $data = Support::itemTrack($single, $software_track, $data);
         }
 
         $datetime = array_column($data, 'datetime');

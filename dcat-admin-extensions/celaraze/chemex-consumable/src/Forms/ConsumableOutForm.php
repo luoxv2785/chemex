@@ -5,7 +5,6 @@ namespace Celaraze\Chemex\Consumable\Forms;
 use App\Models\StaffRecord;
 use Celaraze\Chemex\Consumable\Models\ConsumableRecord;
 use Celaraze\Chemex\Consumable\Models\ConsumableTrack;
-use Celaraze\Chemex\Consumable\Support;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Widgets\Form;
 use Exception;
@@ -24,13 +23,13 @@ class ConsumableOutForm extends Form
         $staff_id = $input['staff_id'] ?? null;
         if (empty($consumable_record_id) || empty($number) || empty($staff_id)) {
             return $this->response()
-                ->error(Support::trans('main.required'));
+                ->error('缺少必要的字段！');
         }
         try {
             $consumable_track = ConsumableTrack::where('consumable_id', $consumable_record_id)->first();
             if (empty($consumable_track)) {
                 return $this->response()
-                    ->error(Support::trans('main.none'));
+                    ->error('没有此条记录！');
             } else {
                 $new_consumable_track = $consumable_track->replicate();
                 $new_consumable_track->number -= $number;
@@ -41,12 +40,12 @@ class ConsumableOutForm extends Form
                 $consumable_track->delete();
             }
             $return = $this->response()
-                ->success(Support::trans('main.success'))
+                ->success('成功！')
                 ->refresh();
         } catch (Exception $e) {
             $return = $this
                 ->response()
-                ->error(Support::trans('main.error') . $e->getMessage());
+                ->error('失败：' . $e->getMessage());
         }
 
         return $return;
@@ -57,14 +56,14 @@ class ConsumableOutForm extends Form
      */
     public function form()
     {
-        $this->select('consumable_id', Support::trans('consumable-record.name'))
+        $this->select('consumable_id')
             ->options(ConsumableRecord::all()
                 ->pluck('name', 'id'))
             ->required();
-        $this->currency('number', Support::trans('consumable-track.number'))
+        $this->currency('number')
             ->symbol('')
             ->required();
-        $this->select('staff_id', Support::trans('consumable-track.staff.name'))
+        $this->select('staff_id')
             ->options(StaffRecord::all()
                 ->pluck('name', 'id'))
             ->required();

@@ -259,7 +259,7 @@ return [
 
         // Menu table and model.
         'menu_table' => 'admin_menu',
-        'menu_model' => App\Models\AdminMenu::class,
+        'menu_model' => Dcat\Admin\Models\Menu::class,
 
         // Pivot table for table above.
         'role_users_table' => 'admin_role_users',

@@ -4,7 +4,7 @@
 namespace Celaraze\Chemex\Part\Services;
 
 
-use App\Support\Track;
+use App\Support\Support;
 use Celaraze\Chemex\Part\Models\PartRecord;
 use Celaraze\Chemex\Part\Models\PartTrack;
 
@@ -39,7 +39,7 @@ class PartService
         foreach ($part_tracks as $part_track) {
             $single['type'] = '设备';
             $single['name'] = optional($part_track->device)->name;
-            $data = Track::itemTrack($single, $part_track, $data);
+            $data = Support::itemTrack($single, $part_track, $data);
         }
 
         $datetime = array_column($data, 'datetime');

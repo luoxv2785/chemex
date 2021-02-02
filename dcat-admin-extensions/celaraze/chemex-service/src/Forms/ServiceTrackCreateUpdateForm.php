@@ -4,6 +4,7 @@ namespace Celaraze\Chemex\Service\Forms;
 
 use App\Models\DeviceRecord;
 use App\Support\Info;
+use App\Support\Support;
 use Celaraze\Chemex\Service\Models\ServiceRecord;
 use Celaraze\Chemex\Service\Models\ServiceTrack;
 use Dcat\Admin\Admin;
@@ -88,7 +89,7 @@ class ServiceTrackCreateUpdateForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        if (Info::ifSelectCreate()) {
+        if (Support::ifSelectCreate()) {
             $this->selectCreate('device_id', '新设备')
                 ->options(DeviceRecord::class)
                 ->ajax(route('selection.device.records'))

@@ -27,14 +27,4 @@ class Support
             return $software->counts - $used;
         }
     }
-
-    /**
-     * 快速翻译（为了缩短代码量）
-     * @param $string
-     * @return array|string|null
-     */
-    public static function trans($string)
-    {
-        return ServiceProvider::trans($string);
-    }
 }

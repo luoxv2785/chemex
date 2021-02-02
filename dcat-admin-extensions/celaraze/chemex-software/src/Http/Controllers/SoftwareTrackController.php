@@ -6,7 +6,6 @@ use App\Admin\Grid\Displayers\RowActions;
 use App\Support\Data;
 use Celaraze\Chemex\Software\Actions\Grid\RowAction\SoftwareTrackDeleteAction;
 use Celaraze\Chemex\Software\Repositories\SoftwareTrack;
-use Celaraze\Chemex\Software\Support;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
@@ -17,11 +16,6 @@ use Dcat\Admin\Widgets\Alert;
  */
 class SoftwareTrackController extends AdminController
 {
-    public function __construct()
-    {
-        $this->title = Support::trans('software-track.title');
-    }
-
     /**
      * Make a grid builder.
      *
@@ -31,8 +25,8 @@ class SoftwareTrackController extends AdminController
     {
         return Grid::make(new SoftwareTrack(['software', 'device']), function (Grid $grid) {
             $grid->column('id');
-            $grid->column('software.name', Support::trans('software-track.software.name'));
-            $grid->column('device.name', Support::trans('software-track.device.name'));
+            $grid->column('software.name');
+            $grid->column('device.name');
             $grid->column('created_at');
             $grid->column('updated_at');
 

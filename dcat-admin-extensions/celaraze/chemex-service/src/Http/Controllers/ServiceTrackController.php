@@ -6,7 +6,6 @@ use App\Admin\Grid\Displayers\RowActions;
 use App\Support\Data;
 use Celaraze\Chemex\Service\Actions\Grid\RowAction\ServiceTrackDeleteAction;
 use Celaraze\Chemex\Service\Repositories\ServiceTrack;
-use Celaraze\Chemex\Service\Support;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
@@ -17,11 +16,6 @@ use Dcat\Admin\Widgets\Alert;
  */
 class ServiceTrackController extends AdminController
 {
-    public function __construct()
-    {
-        $this->title = Support::trans('service-track.title');
-    }
-
     /**
      * Make a grid builder.
      *
@@ -31,8 +25,8 @@ class ServiceTrackController extends AdminController
     {
         return Grid::make(new ServiceTrack(['service', 'device']), function (Grid $grid) {
             $grid->column('id');
-            $grid->column('service.name', Support::trans('service-track.service.name'));
-            $grid->column('device.name', Support::trans('service-track.device.name'));
+            $grid->column('service.name');
+            $grid->column('device.name');
             $grid->column('created_at');
             $grid->column('updated_at');
 

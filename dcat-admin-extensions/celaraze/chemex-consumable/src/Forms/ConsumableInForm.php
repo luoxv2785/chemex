@@ -4,7 +4,6 @@ namespace Celaraze\Chemex\Consumable\Forms;
 
 use Celaraze\Chemex\Consumable\Models\ConsumableRecord;
 use Celaraze\Chemex\Consumable\Models\ConsumableTrack;
-use Celaraze\Chemex\Consumable\Support;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Widgets\Form;
 use Exception;
@@ -24,7 +23,7 @@ class ConsumableInForm extends Form
         $expired = $input['expired'] ?? null;
         if (empty($consumable_record_id) || empty($number)) {
             return $this->response()
-                ->error(Support::trans('main.required'));
+                ->error('缺少必要的字段！');
         }
         try {
             $consumable_track = ConsumableTrack::where('consumable_id', $consumable_record_id)->first();
@@ -48,12 +47,12 @@ class ConsumableInForm extends Form
                 $consumable_track->delete();
             }
             $return = $this->response()
-                ->success(Support::trans('main.success'))
+                ->success('成功！')
                 ->refresh();
         } catch (Exception $e) {
             $return = $this
                 ->response()
-                ->error(Support::trans('main.error') . $e->getMessage());
+                ->error('失败：' . $e->getMessage());
         }
 
         return $return;
@@ -64,14 +63,14 @@ class ConsumableInForm extends Form
      */
     public function form()
     {
-        $this->select('consumable', Support::trans('consumable-record.name'))
+        $this->select('consumable')
             ->options(ConsumableRecord::all()
                 ->pluck('name', 'id'))
             ->required();
-        $this->currency('number', Support::trans('consumable-track.number'))
+        $this->currency('number')
             ->symbol('')
             ->required();
-        $this->date('purchased', Support::trans('consumable-track.purchased'));
-        $this->date('expired', Support::trans('consumable-track.expired'));
+        $this->date('purchased');
+        $this->date('expired');
     }
 }

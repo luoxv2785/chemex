@@ -24,11 +24,6 @@ use Dcat\Admin\Widgets\Alert;
  */
 class TodoRecordController extends AdminController
 {
-    public function __construct()
-    {
-        $this->title = Support::trans('todo-record.title');
-    }
-
     public function index(Content $content): Content
     {
         return $content
@@ -53,13 +48,13 @@ class TodoRecordController extends AdminController
     {
         return Grid::make(new TodoRecord(['user']), function (Grid $grid) {
             $grid->column('id');
-            $grid->column('name', Support::trans('todo-record.name'));
-            $grid->column('start', Support::trans('todo-record.start'));
-            $grid->column('end', Support::trans('todo-record.end'));
-            $grid->column('priority', Support::trans('todo-record.priority'))->using(Support::priority());
-            $grid->column('user.name', Support::trans('todo-record.user.name'));
-            $grid->column('tags', Support::trans('todo-record.tags'))->explode()->label();
-            $grid->column('emoji', Support::trans('todo-record.emoji'));
+            $grid->column('name');
+            $grid->column('start');
+            $grid->column('end');
+            $grid->column('priority')->using(Support::priority());
+            $grid->column('user.name');
+            $grid->column('tags')->explode()->label();
+            $grid->column('emoji');
 
             $grid->actions(function (RowActions $actions) {
                 if (empty($this->end)) {
@@ -91,15 +86,15 @@ class TodoRecordController extends AdminController
     {
         return Show::make($id, new TodoRecord(), function (Show $show) {
             $show->field('id');
-            $show->field('name', Support::trans('todo-record.name'));
-            $show->field('description', Support::trans('todo-record.description'));
-            $show->field('start', Support::trans('todo-record.start'));
-            $show->field('end', Support::trans('todo-record.end'));
-            $show->field('priority', Support::trans('todo-record.priority'));
-            $show->field('user_id', Support::trans('todo-record.user.name'));
-            $show->field('tags', Support::trans('todo-record.tags'));
-            $show->field('done_description', Support::trans('todo-record.done_description'));
-            $show->field('emoji', Support::trans('todo-record.emoji'));
+            $show->field('name');
+            $show->field('description');
+            $show->field('start');
+            $show->field('end');
+            $show->field('priority');
+            $show->field('user_id');
+            $show->field('tags');
+            $show->field('done_description');
+            $show->field('emoji');
             $show->field('created_at');
             $show->field('updated_at');
 

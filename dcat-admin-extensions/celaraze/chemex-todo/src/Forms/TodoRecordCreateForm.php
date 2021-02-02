@@ -34,7 +34,7 @@ class TodoRecordCreateForm extends Form
         $tags = $input['tags'] ?? null;
         if (empty($name) || empty($start)) {
             return $this->response()
-                ->error(Support::trans('main.required'));
+                ->error('缺少必要的字段！');
         }
         try {
             $todo_record = new TodoRecord();
@@ -47,12 +47,12 @@ class TodoRecordCreateForm extends Form
             $todo_record->save();
             $return = $this
                 ->response()
-                ->success(Support::trans('main.success'))
+                ->success('成功！')
                 ->refresh();
         } catch (Exception $e) {
             $return = $this
                 ->response()
-                ->error(Support::trans('main.error') . $e->getMessage());
+                ->error('失败：' . $e->getMessage());
         }
 
         return $return;
@@ -63,18 +63,18 @@ class TodoRecordCreateForm extends Form
      */
     public function form()
     {
-        $this->text('name', Support::trans('todo-record.name'))->required();
-        $this->datetime('start', Support::trans('todo-record.start'))->required();
+        $this->text('name')->required();
+        $this->datetime('start')->required();
         $this->divider();
-        $this->select('priority', Support::trans('todo-record.priority'))
+        $this->select('priority')
             ->options(Support::priority())
             ->default('normal');
-        $this->textarea('description', Support::trans('todo-record.description'));
+        $this->textarea('description');
 
-        $this->select('user_id', Support::trans('todo-record.user.name'))
+        $this->select('user_id')
             ->options(AdminUser::all()
                 ->pluck('name', 'id'));
-        $this->tags('tags', Support::trans('todo-record.tags'))
+        $this->tags('tags')
             ->help('随意打上标签，输入后按空格新增。');
     }
 }

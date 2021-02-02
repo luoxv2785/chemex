@@ -2,6 +2,7 @@
 
 namespace Celaraze\Chemex\Part\Models;
 
+use App\Models\DepreciationRule;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Dcat\Admin\Traits\ModelTree;
 use Illuminate\Database\Eloquent\Model;
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @method static where(string $key, string $value1, string $value2 = null)
+ * @method static pluck(string $string, string $string1)
  * @property string name
  * @property string description
  */

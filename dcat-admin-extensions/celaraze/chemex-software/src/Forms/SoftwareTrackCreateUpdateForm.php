@@ -3,7 +3,7 @@
 namespace Celaraze\Chemex\Software\Forms;
 
 use App\Models\DeviceRecord;
-use App\Support\Info;
+use App\Support\Support;
 use Celaraze\Chemex\Software\Models\SoftwareRecord;
 use Celaraze\Chemex\Software\Models\SoftwareTrack;
 use Dcat\Admin\Admin;
@@ -103,7 +103,7 @@ class SoftwareTrackCreateUpdateForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        if (Info::ifSelectCreate()) {
+        if (Support::ifSelectCreate()) {
             $this->selectCreate('device_id', '新设备')
                 ->options(DeviceRecord::class)
                 ->ajax(route('selection.device.records'))
