@@ -174,6 +174,7 @@ return array(
     'App\\Admin\\Controllers\\ChartRecordController' => $baseDir . '/app/Admin/Controllers/ChartRecordController.php',
     'App\\Admin\\Controllers\\CheckRecordController' => $baseDir . '/app/Admin/Controllers/CheckRecordController.php',
     'App\\Admin\\Controllers\\CheckTrackController' => $baseDir . '/app/Admin/Controllers/CheckTrackController.php',
+    'App\\Admin\\Controllers\\ConfigurationExtensionController' => $baseDir . '/app/Admin/Controllers/ConfigurationExtensionController.php',
     'App\\Admin\\Controllers\\ConfigurationLDAPController' => $baseDir . '/app/Admin/Controllers/ConfigurationLDAPController.php',
     'App\\Admin\\Controllers\\ConfigurationPlatformController' => $baseDir . '/app/Admin/Controllers/ConfigurationPlatformController.php',
     'App\\Admin\\Controllers\\DepreciationRuleController' => $baseDir . '/app/Admin/Controllers/DepreciationRuleController.php',
