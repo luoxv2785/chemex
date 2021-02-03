@@ -92,8 +92,8 @@ class StaffRecordImportForm extends Form
     public function form()
     {
         $this->select('type')
-            ->when('file', function () {
-                $this->file('file', '表格文件')
+            ->when('file', function (Form $form) {
+                $form->file('file', '表格文件')
                     ->help('导入支持xls、xlsx、csv文件，且表格头必填栏位【名称、部门、性别】，可选栏位【职位、手机、邮箱】。')
                     ->accept('xls,xlsx,csv')
                     ->uniqueName()

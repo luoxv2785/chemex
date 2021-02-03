@@ -34,7 +34,7 @@ class StaffRecordController extends AdminController
                 $tab = new Tab();
                 $tab->add('雇员', $this->grid(), true);
                 $tab->addLink('部门', route('staff.departments.index'));
-                $row->column(12, $tab->withCard());
+                $row->column(12, $tab);
             });
     }
 

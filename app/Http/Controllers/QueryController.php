@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PartRecord;
-use App\Models\SoftwareRecord;
 use App\Support\Info;
 use Illuminate\Http\JsonResponse;
 use Pour\Base\Uni;

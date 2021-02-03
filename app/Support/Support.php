@@ -6,12 +6,22 @@ namespace App\Support;
 
 use App\Models\CheckRecord;
 use App\Models\CheckTrack;
+use App\Models\ConsumableTrack;
 use App\Models\DepreciationRule;
 use App\Models\DeviceCategory;
 use App\Models\DeviceRecord;
 use App\Models\DeviceTrack;
+use App\Models\PartCategory;
+use App\Models\PartRecord;
+use App\Models\PartTrack;
+use App\Models\ServiceIssue;
+use App\Models\ServiceRecord;
+use App\Models\ServiceTrack;
+use App\Models\SoftwareRecord;
+use App\Models\SoftwareTrack;
 use App\Models\StaffRecord;
 use Dcat\Admin\Admin;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 
@@ -25,18 +35,8 @@ class Support
     {
         $data = [];
         $device_records = DeviceRecord::all();
-        if (Admin::extension()->enabled('celaraze/chemex-part')) {
-            $class = 'Celaraze\\Chemex\\Part\\Models\\PartRecord';
-            $part_records = $class::all();
-        } else {
-            $part_records = [];
-        }
-        if (Admin::extension()->enabled('celaraze/chemex-software')) {
-            $class = 'Celaraze\\Chemex\\Software\\Models\\SoftwareRecord';
-            $software_records = $class::all();
-        } else {
-            $software_records = [];
-        }
+        $part_records = PartRecord::all();
+        $software_records = SoftwareRecord::all();
 
         foreach ($device_records as $device_record) {
             array_push($data, 'device:' . $device_record->id . '&#10;');
@@ -185,19 +185,16 @@ class Support
      */
     public static function getSoftwareIcon($device_id): string
     {
-        $class = 'Celaraze\\Chemex\\Software\\Models\\SoftwareTrack';
-        if (class_exists($class)) {
-            $software_tracks = $class::where('device_id', $device_id)
-                ->get();
-            $tags = Data::softwareTags();
-            $keys = array_keys($tags);
-            foreach ($software_tracks as $software_track) {
-                $name = trim($software_track->software()->withTrashed()->first()->name);
-                for ($n = 0; $n < count($tags); $n++) {
-                    for ($i = 0; $i < count($tags[$keys[$n]]); $i++) {
-                        if (stristr($name, $tags[$keys[$n]][$i]) != false) {
-                            return $keys[$n];
-                        }
+        $software_tracks = SoftwareTrack::where('device_id', $device_id)
+            ->get();
+        $tags = Data::softwareTags();
+        $keys = array_keys($tags);
+        foreach ($software_tracks as $software_track) {
+            $name = trim($software_track->software()->withTrashed()->first()->name);
+            for ($n = 0; $n < count($tags); $n++) {
+                for ($i = 0; $i < count($tags[$keys[$n]]); $i++) {
+                    if (stristr($name, $tags[$keys[$n]][$i]) != false) {
+                        return $keys[$n];
                     }
                 }
             }
@@ -266,16 +263,10 @@ class Support
         $item_record = null;
         switch ($item) {
             case 'part':
-                $class = 'Celaraze\\Chemex\\Part\\Models\\PartRecord';
-                if (class_exists($class)) {
-                    $item_record = $class::where('id', $item_id)->first();
-                }
+                $item_record = PartRecord::where('id', $item_id)->first();
                 break;
             case 'software':
-                $class = 'Celaraze\\Chemex\\Software\\Models\\SoftwareRecord';
-                if (class_exists($class)) {
-                    $item_record = $class::where('id', $item_id)->first();
-                }
+                $item_record = SoftwareRecord::where('id', $item_id)->first();
                 break;
             default:
                 $item_record = DeviceRecord::where('id', $item_id)->first();
@@ -344,10 +335,8 @@ class Support
             if ($model instanceof DeviceRecord) {
                 $category = DeviceCategory::where('id', $model->category_id)->first();
             }
-            $part_record_class = 'Celaraze\\Chemex\\Part\\Models\\PartRecord';
-            $part_category_class = 'Celaraze\\Chemex\\Part\\Models\\PartCategory';
-            if (class_exists($part_record_class) && $model instanceof $part_record_class) {
-                $category = $part_category_class::where('id', $model->category_id)->first();
+            if ($model instanceof PartRecord) {
+                $category = PartCategory::where('id', $model->category_id)->first();
             }
             if (!empty($category) && !empty($category->depreciation_rule_id)) {
                 $depreciation_rule_id = $category->depreciation_rule_id;
@@ -357,11 +346,6 @@ class Support
         }
 
         return $depreciation_rule_id;
-    }
-
-    public static function extensionStatus($service_provider)
-    {
-        return admin_extension_setting($service_provider);
     }
 
     /**
@@ -374,6 +358,126 @@ class Support
             return true;
         } else {
             return false;
+        }
+    }
+
+    /**
+     * 某个耗材总数
+     * @param $consumable_id
+     * @return float
+     */
+    public static function consumableAllNumber($consumable_id): float
+    {
+        $consumable_track = ConsumableTrack::where('consumable_id', $consumable_id)->first();
+        if (empty($consumable_track)) {
+            return 0;
+        } else {
+            return $consumable_track->number;
+        }
+    }
+
+    /**
+     * 获取配件当前归属的设备
+     * @param $part_id
+     * @return string
+     */
+    public static function currentPartTrack($part_id): string
+    {
+        $part_track = PartTrack::where('part_id', $part_id)->first();
+        if (empty($part_track)) {
+            return '闲置';
+        } else {
+            $device = $part_track->device;
+            if (empty($device)) {
+                return '设备失踪';
+            } else {
+                return $device->name;
+            }
+        }
+    }
+
+    /**
+     * 获取服务异常总览（看板）
+     * @return ServiceRecord[]|Collection
+     */
+    public static function getServiceIssueStatus()
+    {
+        $services = ServiceRecord::all();
+        foreach ($services as $service) {
+            $service_status = $service->status;
+            $service->start = null;
+            $service->end = null;
+            $service_track = ServiceTrack::where('service_id', $service->id)
+                ->first();
+            if (empty($service_track) || empty($service_track->device)) {
+                $service->device_name = '未知';
+            } else {
+                $service->device_name = $service_track->device->name;
+            }
+            $issues = [];
+            $service_issues = ServiceIssue::where('service_id', $service->id)
+                ->get();
+            foreach ($service_issues as $service_issue) {
+                if (empty($service->start)) {
+                    $service->start = $service_issue->start;
+                }
+                if (strtotime($service_issue->start) < strtotime($service->start)) {
+                    $service->start = $service_issue->start;
+                }
+                // 如果异常待修复
+                if ($service_issue->status == 1) {
+                    $service->status = 1;
+                    $issue = $service_issue->issue . '<br>';
+                    array_push($issues, $issue);
+                }
+                // 如果是修复的
+                if ($service_issue->status == 2) {
+                    $service->status = 0;
+                    $issue = '<span class="status-recovery">[已修复最近一个问题]</span> ' . $service_issue->issue . '<br>';
+                    if ((time() - strtotime($service_issue->end)) > (24 * 60 * 60)) {
+                        $issue = '';
+                        $service->start = '';
+                    } else {
+                        // 如果结束时间是空，还没修复
+                        if (empty($service->end)) {
+                            $service->end = $service_issue->end;
+                        }
+                        // 如果结束时间大于开始时间，修复了
+                        if (strtotime($service_issue->end) > strtotime($service->end)) {
+                            $service->end = $service_issue->end;
+                        }
+                    }
+                    array_push($issues, $issue);
+                }
+            }
+            // 如果暂停了
+            if ($service_status == 1) {
+                $service->status = 3;
+                $service->start = date('Y-m-d H:i:s', strtotime($service->updated_at));
+            }
+            $service->issues = $issues;
+        }
+        $services = json_decode($services, true);
+        return $services;
+    }
+
+    /**
+     * 获取软件当前剩余授权数量
+     * @param $software_id
+     * @return int|string
+     */
+    public static function leftSoftwareCounts($software_id)
+    {
+        $software = SoftwareRecord::where('id', $software_id)->first();
+        if (empty($software)) {
+            return '软件状态异常';
+        }
+        $software_tracks = SoftwareTrack::where('software_id', $software_id)->get();
+        $used = count($software_tracks);
+        if ($software->counts == -1) {
+            return '不受限';
+        } else {
+            return $software->counts - $used;
         }
     }
 }

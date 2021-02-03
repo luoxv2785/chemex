@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Support\LDAP;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
+use Dcat\Admin\Widgets\Card;
 use Dcat\Admin\Widgets\Tab;
 
 class ConfigurationLDAPController extends Controller
@@ -28,8 +29,8 @@ class ConfigurationLDAPController extends Controller
                 $tab = new Tab();
                 $tab->addLink('平台', route('configurations.platform.index'));
                 $tab->addLink('扩展', route('configurations.extensions.index'));
-                $tab->add('LDAP', new ConfigurationLDAPForm(), true);
-                $row->column(12, $tab->withCard());
+                $tab->add('LDAP', new Card(new ConfigurationLDAPForm()), true);
+                $row->column(12, $tab);
             });
     }
 

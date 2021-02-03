@@ -26,10 +26,10 @@ class DeviceTrackController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink('设备', route('device.records.index'));
-                $tab->addLink('分类', route('device.categories.index'));
-                $tab->add('归属', $this->grid(), true);
-                $row->column(12, $tab->withCard());
+                $tab->addLink(Data::icon('record') . '清单', route('device.records.index'));
+                $tab->addLink(Data::icon('category') . '分类', route('device.categories.index'));
+                $tab->add(Data::icon('track') . '归属', $this->grid(), true);
+                $row->column(12, $tab);
             });
     }
 

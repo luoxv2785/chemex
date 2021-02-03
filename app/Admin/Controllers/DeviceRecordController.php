@@ -17,6 +17,7 @@ use App\Models\VendorRecord;
 use App\Services\DeviceService;
 use App\Services\ExpirationService;
 use App\Services\ExportService;
+use App\Support\Data;
 use App\Support\Support;
 use App\Traits\HasDeviceRelatedGrid;
 use Dcat\Admin\Admin;
@@ -154,14 +155,14 @@ class DeviceRecordController extends AdminController
     public function index(Content $content): Content
     {
         return $content
-            ->title($this->title())
+            ->header($this->title())
             ->description($this->description()['index'] ?? trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add('设备', $this->grid(), true);
-                $tab->addLink('分类', route('device.categories.index'));
-                $tab->addLink('归属', route('device.tracks.index'));
-                $row->column(12, $tab->withCard());
+                $tab->add(Data::icon('record') . '清单', $this->grid(), true);
+                $tab->addLink(Data::icon('category') . '分类', route('device.categories.index'));
+                $tab->addLink(Data::icon('track') . '归属', route('device.tracks.index'));
+                $row->column(12, $tab);
 
 
 //                $row->column(12, function (Column $column) {

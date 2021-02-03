@@ -235,4 +235,33 @@ class Data
         ];
     }
 
+    /**
+     * 返回控制器图标
+     * @param $string
+     * @return string
+     */
+    public static function icon($string): string
+    {
+        $array = [
+            'record' => '<i class="fa feather icon-list"></i> ',
+            'category' => '<i class="fa feather icon-pie-chart"></i> ',
+            'track' => '<i class="fa feather icon-archive"></i> ',
+            'issue' => '<i class="fa feather icon-alert-triangle"></i> '
+        ];
+        return $array[$string];
+    }
+
+    /**
+     * 返回优先级的键值对
+     * @return string[]
+     */
+    public static function priority(): array
+    {
+        return [
+            'high' => '高',
+            'normal' => '普通',
+            'low' => '低'
+        ];
+    }
+
 }

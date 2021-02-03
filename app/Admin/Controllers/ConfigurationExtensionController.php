@@ -24,7 +24,7 @@ class ConfigurationExtensionController extends ExtensionController
                 $tab->addLink('平台', route('configurations.platform.index'));
                 $tab->add('扩展', $this->grid(), true);
                 $tab->addLink('LDAP', route('configurations.ldap.index'));
-                $row->column(12, $tab->withCard());
+                $row->column(12, $tab);
             });
     }
 }

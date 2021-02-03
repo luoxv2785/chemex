@@ -22,7 +22,6 @@ class CreateMaintenanceRecordsTable extends Migration
             $table->dateTime('ng_time');
             $table->dateTime('ok_time')->nullable();
             $table->integer('status')->default(0);
-            $table->string('creator');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -5,7 +5,6 @@ namespace App\Admin\Metrics;
 
 
 use Closure;
-use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\LazyRenderable as LazyGrid;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Card;
@@ -29,22 +28,15 @@ class AllWorth extends Card
         if (empty($device)) {
             $device = 0;
         }
-        if (Admin::extension()->enabled('celaraze/chemex-part')) {
-            $part = DB::select('SELECT SUM(price) as total from part_records WHERE deleted_at IS NULL');
-            $part = $part[0]->total;
-            if (empty($part)) {
-                $part = 0;
-            }
-        } else {
+        $part = DB::select('SELECT SUM(price) as total from part_records WHERE deleted_at IS NULL');
+        $part = $part[0]->total;
+        if (empty($part)) {
             $part = 0;
         }
-        if (Admin::extension()->enabled('celaraze/chemex-software')) {
-            $software = DB::select('SELECT SUM(price) as total from software_records WHERE deleted_at IS NULL');
-            $software = $software[0]->total;
-            if (empty($software)) {
-                $software = 0;
-            }
-        } else {
+
+        $software = DB::select('SELECT SUM(price) as total from software_records WHERE deleted_at IS NULL');
+        $software = $software[0]->total;
+        if (empty($software)) {
             $software = 0;
         }
 

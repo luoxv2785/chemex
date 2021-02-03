@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 use App\Admin\Actions\Tree\ToolAction\DeviceCategoryImportAction;
 use App\Admin\Repositories\DeviceCategory;
 use App\Models\DepreciationRule;
+use App\Support\Data;
 use App\Support\Support;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
@@ -26,10 +27,10 @@ class DeviceCategoryController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink('设备', route('device.records.index'));
-                $tab->add('分类', $this->treeView(), true);
-                $tab->addLink('归属', route('device.tracks.index'));
-                $row->column(12, $tab->withCard());
+                $tab->addLink(Data::icon('record') . '清单', route('device.records.index'));
+                $tab->add(Data::icon('category') . '分类', $this->treeView(), true);
+                $tab->addLink(Data::icon('track') . '归属', route('device.tracks.index'));
+                $row->column(12, $tab);
             });
     }
 

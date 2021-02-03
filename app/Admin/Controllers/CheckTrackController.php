@@ -31,7 +31,7 @@ class CheckTrackController extends AdminController
                 $tab = new Tab();
                 $tab->addLink('盘点任务', route('check.records.index'));
                 $tab->add('盘点追踪', $this->grid(), true);
-                $row->column(12, $tab->withCard());
+                $row->column(12, $tab);
             });
     }
 

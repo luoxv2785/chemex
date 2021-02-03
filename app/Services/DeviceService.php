@@ -6,6 +6,8 @@ namespace App\Services;
 
 use App\Models\DeviceRecord;
 use App\Models\DeviceTrack;
+use App\Models\PartTrack;
+use App\Models\SoftwareTrack;
 use App\Support\Data;
 use App\Support\Support;
 
@@ -80,31 +82,25 @@ class DeviceService
         }
 
         // 处理设备配件变动履历
-        $class = 'Celaraze\\Chemex\\Part\\Models\\PartTrack';
-        if (class_exists($class)) {
-            $part_tracks = $class::withTrashed()
-                ->where('device_id', $id)
-                ->get();
-            foreach ($part_tracks as $part_track) {
-                $single['type'] = '配件';
-                $part = $part_track->part()->withTrashed()->first();
-                $single['name'] = $part->name . ' - ' . $part->specification;
-                $data = Support::itemTrack($single, $part_track, $data);
-            }
+        $part_tracks = PartTrack::withTrashed()
+            ->where('device_id', $id)
+            ->get();
+        foreach ($part_tracks as $part_track) {
+            $single['type'] = '配件';
+            $part = $part_track->part()->withTrashed()->first();
+            $single['name'] = $part->name . ' - ' . $part->specification;
+            $data = Support::itemTrack($single, $part_track, $data);
         }
 
         // 处理设备软件变动履历
-        $class = 'Celaraze\\Chemex\\Software\\Models\\SoftwareTrack';
-        if (class_exists($class)) {
-            $software_tracks = $class::withTrashed()
-                ->where('device_id', $id)
-                ->get();
-            foreach ($software_tracks as $software_track) {
-                $single['type'] = '软件';
-                $software = $software_track->software()->withTrashed()->first();
-                $single['name'] = $software->name . ' ' . $software->version;
-                $data = Support::itemTrack($single, $software_track, $data);
-            }
+        $software_tracks = SoftwareTrack::withTrashed()
+            ->where('device_id', $id)
+            ->get();
+        foreach ($software_tracks as $software_track) {
+            $single['type'] = '软件';
+            $software = $software_track->software()->withTrashed()->first();
+            $single['name'] = $software->name . ' ' . $software->version;
+            $data = Support::itemTrack($single, $software_track, $data);
         }
 
         $datetime = array_column($data, 'datetime');
@@ -128,32 +124,23 @@ class DeviceService
             }
 
             // 软删除配件归属记录
-            $class = 'Celaraze\\Chemex\\Part\\Models\\PartTrack';
-            if (class_exists($class)) {
-                $part_tracks = $class::where('device_id', $device_id)->get();
-                foreach ($part_tracks as $part_track) {
-                    $part_track->delete();
-                }
+            $part_tracks = PartTrack::where('device_id', $device_id)->get();
+            foreach ($part_tracks as $part_track) {
+                $part_track->delete();
             }
 
             // 软删除软件归属记录
-            $class = 'Celaraze\\Chemex\\Software\\Models\\SoftwareTrack';
-            if (class_exists($class)) {
-                $software_tracks = $class::where('device_id', $device_id)->get();
-                foreach ($software_tracks as $software_track) {
-                    $software_track->delete();
-                }
+            $software_tracks = SoftwareTrack::where('device_id', $device_id)->get();
+            foreach ($software_tracks as $software_track) {
+                $software_track->delete();
             }
 
             // 软删除服务归属记录
-            $class = 'Celaraze\\Chemex\\Service\\Models\\ServiceTrack';
-            if (class_exists($class)) {
-                $service_tracks = $class::where('device_id', $device_id)->get();
-                foreach ($service_tracks as $service_track) {
-                    $service_track->delete();
-                }
-                $device_record->delete();
+            $service_tracks = SoftwareTrack::where('device_id', $device_id)->get();
+            foreach ($service_tracks as $service_track) {
+                $service_track->delete();
             }
+            $device_record->delete();
         }
     }
 }
