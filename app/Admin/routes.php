@@ -40,6 +40,9 @@ Route::group([
      */
     $router->get('/configurations/platform', 'ConfigurationPlatformController@index')
         ->name('configurations.platform.index');
+    $router->resource('/configurations/extensions', 'ConfigurationExtensionController', ['names' => [
+        'index' => 'configurations.extensions.index'
+    ]]);
     $router->get('/configurations/ldap', 'ConfigurationLDAPController@index')
         ->name('configurations.ldap.index');
 

@@ -6,7 +6,7 @@
         <a href="#" data-toggle="dropdown">
             更多<i class="feather icon-more-vertical"></i>
         </a>
-        <ul class="dropdown-menu drop-right" style="left: -65px;">
+        <ul class="dropdown-menu drop-right">
 
             @foreach($default as $action)
                 <li class="dropdown-item">{!! Dcat\Admin\Support\Helper::render($action) !!}</li>
@@ -33,6 +33,6 @@
     }
 
     .dropdown .drop-right:before {
-        left: 10.2rem;
+        left: 9rem;
     }
 </style>

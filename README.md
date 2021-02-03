@@ -86,8 +86,6 @@
 
 `git`，用于管理版本，部署和升级必要工具。
 
-`composer`，用于安装 PHP 依赖，这是 PHP 的包管理工具。
-
 `PHP 7.3 +` ，已经支持 PHP8 。
 
 `MariaDB 10.2 +`，数据库引擎，理论上 `MySQL 5.6+` 兼容支持。
@@ -113,9 +111,6 @@
 
 3：为你的计算机安装 `mariaDB`。
 
-4：为你的计算机安装 `composer` 包管理工具，没有此工具请安装 [Composer Install](https://getcomposer.org/download/) ，Ubuntu
-环境下可以直接执行 `apt install composer` 完成安装。
-
 4：创建一个数据库，命名任意，但记得之后填写配置时需要对应正确，并且数据库字符集为 `utf8-general-ci`。
 
 5：在你想要的目录中，执行 `git clone https://gitee.com/celaraze/Chemex.git` 完成下载。
@@ -123,9 +118,6 @@
 6：在项目根目录中，复制 `.env.example` 文件为一份新的，并重命名为 `.env`。
 
 7：在 `.env` 中配置数据库信息。
-
-8：在项目根目录中，执行 `composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/`
-，然后继续执行 `composer install -vvv` 来安装依赖。
 
 8：进入项目根目录，执行 `php artisan chemex:install` 进行安装。
 
@@ -139,8 +131,6 @@
 ## 更新（通过Git Pull方式）
 
 随时随地保持更新可以在项目根目录中执行 `sudo git reset --hard && git pull --force` 命令，将会同步分支的最新修改内容。
-
-接着，执行 `composer update -vvv` 来更新底层依赖。
 
 接着，执行 `php artisan chemex:update` 来进行升级。
 

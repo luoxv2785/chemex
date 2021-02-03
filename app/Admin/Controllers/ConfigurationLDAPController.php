@@ -9,7 +9,8 @@ use App\Admin\Forms\ConfigurationLDAPForm;
 use App\Http\Controllers\Controller;
 use App\Support\LDAP;
 use Dcat\Admin\Layout\Content;
-use Dcat\Admin\Widgets\Card;
+use Dcat\Admin\Layout\Row;
+use Dcat\Admin\Widgets\Tab;
 
 class ConfigurationLDAPController extends Controller
 {
@@ -21,9 +22,15 @@ class ConfigurationLDAPController extends Controller
     public function index(Content $content): Content
     {
         return $content
-            ->header('LDAP配置')
-            ->description('提供对LDAP的支持')
-            ->body(new Card(new ConfigurationLDAPForm()));
+            ->title(admin_trans_label('LDAP'))
+            ->description(trans('admin.list'))
+            ->body(function (Row $row) {
+                $tab = new Tab();
+                $tab->addLink('平台', route('configurations.platform.index'));
+                $tab->addLink('扩展', route('configurations.extensions.index'));
+                $tab->add('LDAP', new ConfigurationLDAPForm(), true);
+                $row->column(12, $tab->withCard());
+            });
     }
 
     /**

@@ -94,10 +94,10 @@
                         <div class="media-body">
                             <h6 class="primary media-heading">微信群</h6>
                             <small class="notification-text">
-                                如果你想和其他咖啡壶用户交流，可以添加以下二维码，如果提示二维码过期，请更新咖啡壶至最新版本即可。
+                                如果你想和其他咖啡壶用户交流，可以扫描以下微信二维码，备注 Chemex 用户，我会第一时间将你拉入用户群。
                             </small>
                             <div class="mt-1">
-                                <img src="https://chemex.celaraze.com/wechat_qrcode.jpg" style="width: 100%;">
+                                <img src="https://chemex.celaraze.com/wechat.jpg" style="width: 100%;">
                             </div>
                         </div>
                     </div>

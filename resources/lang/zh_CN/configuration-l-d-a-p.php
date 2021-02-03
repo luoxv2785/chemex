@@ -1,6 +1,7 @@
 <?php
 return [
     'labels' => [
+        'LDAP' => 'LDAP',
         'ldap' => 'LDAP'
     ],
     'fields' => [

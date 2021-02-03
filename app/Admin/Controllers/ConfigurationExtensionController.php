@@ -2,13 +2,12 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Forms\ConfigurationPlatformForm;
-use App\Http\Controllers\Controller;
+use Dcat\Admin\Http\Controllers\ExtensionController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Tab;
 
-class ConfigurationPlatformController extends Controller
+class ConfigurationExtensionController extends ExtensionController
 {
     /**
      * 页面
@@ -18,12 +17,12 @@ class ConfigurationPlatformController extends Controller
     public function index(Content $content): Content
     {
         return $content
-            ->title(admin_trans_label('Platform'))
+            ->title(admin_trans_label('Extension'))
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add('平台', new ConfigurationPlatformForm(), true);
-                $tab->addLink('扩展', route('configurations.extensions.index'));
+                $tab->addLink('平台', route('configurations.platform.index'));
+                $tab->add('扩展', $this->grid(), true);
                 $tab->addLink('LDAP', route('configurations.ldap.index'));
                 $row->column(12, $tab->withCard());
             });

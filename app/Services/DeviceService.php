@@ -7,7 +7,7 @@ namespace App\Services;
 use App\Models\DeviceRecord;
 use App\Models\DeviceTrack;
 use App\Support\Data;
-use App\Support\Track;
+use App\Support\Support;
 
 /**
  * 和设备记录相关的功能服务
@@ -76,7 +76,7 @@ class DeviceService
                     ->withTrashed()
                     ->first()
                     ->name;
-            $data = Track::itemTrack($single, $device_track, $data);
+            $data = Support::itemTrack($single, $device_track, $data);
         }
 
         // 处理设备配件变动履历
@@ -89,7 +89,7 @@ class DeviceService
                 $single['type'] = '配件';
                 $part = $part_track->part()->withTrashed()->first();
                 $single['name'] = $part->name . ' - ' . $part->specification;
-                $data = Track::itemTrack($single, $part_track, $data);
+                $data = Support::itemTrack($single, $part_track, $data);
             }
         }
 
@@ -103,7 +103,7 @@ class DeviceService
                 $single['type'] = '软件';
                 $software = $software_track->software()->withTrashed()->first();
                 $single['name'] = $software->name . ' ' . $software->version;
-                $data = Track::itemTrack($single, $software_track, $data);
+                $data = Support::itemTrack($single, $software_track, $data);
             }
         }
 

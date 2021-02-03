@@ -5,7 +5,7 @@ namespace App\Services;
 
 
 use App\Models\DeviceRecord;
-use App\Support\Info;
+use App\Support\Support;
 
 /**
  * 检测记录是否过期（比如保固时间）
@@ -63,7 +63,7 @@ class ExpirationService
     public static function itemExpirationLeftDays($item_type, $id)
     {
         $item = null;
-        $item = Info::getItemRecordByClass($item_type, $id);
+        $item = Support::getItemRecordByClass($item_type, $id);
         $day = 0;
         if ($item) {
             if (empty($item->expired)) {
