@@ -20,6 +20,7 @@ use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
+use Dcat\Admin\Widgets\Tab;
 
 /**
  * @property int status
@@ -31,6 +32,76 @@ class CheckRecordController extends AdminController
     public function exportReport($check_id)
     {
         return CheckService::report($check_id);
+    }
+
+    public function index(Content $content): Content
+    {
+        return $content
+            ->title($this->title())
+            ->description(trans('admin.list'))
+            ->body(function (Row $row) {
+                $tab = new Tab();
+                $tab->add('盘点任务', $this->grid(), true);
+                $tab->addLink('盘点追踪', route('check.tracks.index'));
+                $row->column(12, $tab->withCard());
+            });
+    }
+
+    /**
+     * Make a grid builder.
+     *
+     * @return Grid
+     */
+    protected function grid(): Grid
+    {
+        return Grid::make(new CheckRecord(['user']), function (Grid $grid) {
+            $grid->column('id');
+            $grid->column('check_item')->using(Data::items());
+            $grid->column('start_time');
+            $grid->column('end_time');
+            $grid->column('user.name');
+            $grid->column('status')->using(Data::checkRecordStatus());
+            $grid->column('check_all_counts')->display(function () {
+                return Support::checkTrackCounts($this->id);
+            });
+            $grid->column('check_yes_counts')->display(function () {
+                return Support::checkTrackCounts($this->id, 'Y');
+            });
+            $grid->column('check_no_counts')->display(function () {
+                return Support::checkTrackCounts($this->id, 'N');
+            });
+            $grid->column('check_left_counts')->display(function () {
+                return Support::checkTrackCounts($this->id, 'L');
+            });
+
+            $grid->disableRowSelector();
+            $grid->disableBatchActions();
+            $grid->disableEditButton();
+            $grid->disableDeleteButton();
+
+            $grid->actions(function (RowActions $actions) {
+                if ($this->status == 0) {
+                    if (Admin::user()->can('check.record.update.yes')) {
+                        $actions->append(new CheckRecordUpdateYesAction());
+                    }
+                    if (Admin::user()->can('check.record.update.no')) {
+                        $actions->append(new CheckRecordUpdateNoAction());
+                    }
+                }
+                $report_url = route('export.check.report', ['check_id' => $this->id]);
+                $actions->append("<a href='$report_url' target='_blank'>✨ 生成报告</a>");
+            });
+
+            $grid->toolsWithOutline(false);
+
+            $grid->enableDialogCreate();
+
+            $grid->quickSearch('id', 'user.name')
+                ->placeholder('试着搜索一下')
+                ->auto(false);
+
+            $grid->export();
+        });
     }
 
     /**
@@ -129,63 +200,6 @@ class CheckRecordController extends AdminController
 
             $show->disableEditButton();
             $show->disableDeleteButton();
-        });
-    }
-
-    /**
-     * Make a grid builder.
-     *
-     * @return Grid
-     */
-    protected function grid(): Grid
-    {
-        return Grid::make(new CheckRecord(['user']), function (Grid $grid) {
-            $grid->column('id');
-            $grid->column('check_item')->using(Data::items());
-            $grid->column('start_time');
-            $grid->column('end_time');
-            $grid->column('user.name');
-            $grid->column('status')->using(Data::checkRecordStatus());
-            $grid->column('check_all_counts')->display(function () {
-                return Support::checkTrackCounts($this->id);
-            });
-            $grid->column('check_yes_counts')->display(function () {
-                return Support::checkTrackCounts($this->id, 'Y');
-            });
-            $grid->column('check_no_counts')->display(function () {
-                return Support::checkTrackCounts($this->id, 'N');
-            });
-            $grid->column('check_left_counts')->display(function () {
-                return Support::checkTrackCounts($this->id, 'L');
-            });
-
-            $grid->disableRowSelector();
-            $grid->disableBatchActions();
-            $grid->disableEditButton();
-            $grid->disableDeleteButton();
-
-            $grid->actions(function (RowActions $actions) {
-                if ($this->status == 0) {
-                    if (Admin::user()->can('check.record.update.yes')) {
-                        $actions->append(new CheckRecordUpdateYesAction());
-                    }
-                    if (Admin::user()->can('check.record.update.no')) {
-                        $actions->append(new CheckRecordUpdateNoAction());
-                    }
-                }
-                $report_url = route('export.check.report', ['check_id' => $this->id]);
-                $actions->append("<a href='$report_url' target='_blank'>✨ 生成报告</a>");
-            });
-
-            $grid->toolsWithOutline(false);
-
-            $grid->enableDialogCreate();
-
-            $grid->quickSearch('id', 'user.name')
-                ->placeholder('试着搜索一下')
-                ->auto(false);
-
-            $grid->export();
         });
     }
 

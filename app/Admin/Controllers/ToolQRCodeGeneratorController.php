@@ -3,7 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Support\Data;
+use App\Support\Support;
 use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
@@ -24,7 +24,7 @@ class ToolQRCodeGeneratorController extends Controller
             ->body(function (Row $row) {
                 $row->column(12, function (Column $column) {
                     $column->row(new Card('第一步', view('tool_qrcode_generator.download')));
-                    $data = Data::getAllItemTypeAndId();
+                    $data = Support::getAllItemTypeAndId();
                     $column->row(new Card('第二步', view('tool_qrcode_generator.data')->with('data', $data)));
                     $column->row(new Card('第三步', view('tool_qrcode_generator.run')));
                 });

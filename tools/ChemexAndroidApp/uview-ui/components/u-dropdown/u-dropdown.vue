@@ -16,7 +16,8 @@
                     <view :class="{
 						'u-dropdown__menu__item__arrow--rotate': index === current
 					}" class="u-dropdown__menu__item__arrow">
-                        <u-icon :color="index === current || highlightIndex == index ? activeColor : '#c0c4cc'" :custom-style="{display: 'flex'}" :name="menuIcon"
+                        <u-icon :color="index === current || highlightIndex == index ? activeColor : '#c0c4cc'"
+                                :custom-style="{display: 'flex'}" :name="menuIcon"
                                 :size="$u.addUnit(menuIconSize)"></u-icon>
                     </view>
                 </view>

@@ -17,7 +17,7 @@ class ConsumableInForm extends Form
      */
     public function handle(array $input): JsonResponse
     {
-        $consumable_record_id = $input['consumable'] ?? null;
+        $consumable_record_id = $input['consumable_id'] ?? null;
         $number = $input['number'] ?? null;
         $purchased = $input['purchased'] ?? null;
         $expired = $input['expired'] ?? null;
@@ -63,7 +63,7 @@ class ConsumableInForm extends Form
      */
     public function form()
     {
-        $this->select('consumable')
+        $this->select('consumable_id')
             ->options(ConsumableRecord::all()
                 ->pluck('name', 'id'))
             ->required();

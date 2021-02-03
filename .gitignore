@@ -13,5 +13,4 @@ npm-debug.log
 yarn-error.log
 composer.lock
 /tools/ChemexTool/unpackage
-/vendor
 /packages

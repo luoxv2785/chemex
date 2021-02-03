@@ -1,5 +1,6 @@
 <template>
-    <u-popup v-model="value" :border-radius="borderRadius" :maskCloseAble="maskCloseAble" :popup="false" :safeAreaInsetBottom="safeAreaInsetBottom"
+    <u-popup v-model="value" :border-radius="borderRadius" :maskCloseAble="maskCloseAble" :popup="false"
+             :safeAreaInsetBottom="safeAreaInsetBottom"
              :z-index="uZIndex" length="auto" mode="bottom" @close="popupClose">
         <view v-if="tips.text" :style="[tipsStyle]" class="u-tips u-border-bottom">
             {{ tips.text }}

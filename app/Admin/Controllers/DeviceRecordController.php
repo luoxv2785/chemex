@@ -8,9 +8,6 @@ use App\Admin\Actions\Grid\RowAction\DeviceTrackCreateUpdateAction;
 use App\Admin\Actions\Grid\RowAction\MaintenanceCreateAction;
 use App\Admin\Actions\Grid\ToolAction\DeviceRecordImportAction;
 use App\Admin\Grid\Displayers\RowActions;
-use App\Admin\Metrics\CheckDevicePercentage;
-use App\Admin\Metrics\DeviceAboutToExpireCounts;
-use App\Admin\Metrics\DeviceExpiredCounts;
 use App\Admin\Repositories\DeviceRecord;
 use App\Models\DepreciationRule;
 use App\Models\DeviceCategory;
@@ -31,6 +28,7 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
 use Dcat\Admin\Widgets\Card;
+use Dcat\Admin\Widgets\Tab;
 use Illuminate\Http\Request;
 
 /**
@@ -159,14 +157,21 @@ class DeviceRecordController extends AdminController
             ->title($this->title())
             ->description($this->description()['index'] ?? trans('admin.list'))
             ->body(function (Row $row) {
-                $row->column(12, function (Column $column) {
-                    $column->row(function (Row $row) {
-                        $row->column(3, new CheckDevicePercentage());
-                        $row->column(3, new DeviceAboutToExpireCounts());
-                        $row->column(3, new DeviceExpiredCounts());
-                    });
-                });
-                $row->column(12, $this->grid());
+                $tab = new Tab();
+                $tab->add('设备', $this->grid(), true);
+                $tab->addLink('分类', route('device.categories.index'));
+                $tab->addLink('归属', route('device.tracks.index'));
+                $row->column(12, $tab->withCard());
+
+
+//                $row->column(12, function (Column $column) {
+//                    $column->row(function (Row $row) {
+//                        $row->column(3, new CheckDevicePercentage());
+//                        $row->column(3, new DeviceAboutToExpireCounts());
+//                        $row->column(3, new DeviceExpiredCounts());
+//                    });
+//                });
+//                $row->column(12, $this->grid());
             });
     }
 

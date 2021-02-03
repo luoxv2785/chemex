@@ -71,7 +71,7 @@ class TodoRecordCreateForm extends Form
             ->default('normal');
         $this->textarea('description');
 
-        $this->select('user_id')
+        $this->select('user_id', admin_trans_label('User Id'))
             ->options(AdminUser::all()
                 ->pluck('name', 'id'));
         $this->tags('tags')

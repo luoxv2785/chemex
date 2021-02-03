@@ -3,7 +3,8 @@
 			zIndex: zIndex,
 			background: bgColor
 		}" class="u-tabs">
-        <scroll-view :scroll-left="scrollLeft" :style="{ zIndex: zIndex + 1 }" class="u-scroll-view" scroll-with-animation
+        <scroll-view :scroll-left="scrollLeft" :style="{ zIndex: zIndex + 1 }" class="u-scroll-view"
+                     scroll-with-animation
                      scroll-x>
             <view :class="{'u-tabs-scorll-flex': !isScroll}" class="u-tabs-scroll-box">
                 <view v-for="(item, index) in getTabs" :key="index"

@@ -10,14 +10,31 @@ use Dcat\Admin\Admin;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Grid\Tools\Selector;
 use Dcat\Admin\Http\Controllers\AdminController;
+use Dcat\Admin\Layout\Content;
+use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
 use Dcat\Admin\Widgets\Alert;
+use Dcat\Admin\Widgets\Tab;
 
 /**
  * @property int status
  */
 class ServiceIssueController extends AdminController
 {
+    public function index(Content $content): Content
+    {
+        return $content
+            ->title($this->title())
+            ->description(trans('admin.list'))
+            ->body(function (Row $row) {
+                $tab = new Tab();
+                $tab->addLink('服务', route('service.records.index'));
+                $tab->addLink('归属', route('service.tracks.index'));
+                $tab->add('异常', $this->grid(), true);
+                $row->column(12, $tab->withCard());
+            });
+    }
+
     /**
      * Make a grid builder.
      *

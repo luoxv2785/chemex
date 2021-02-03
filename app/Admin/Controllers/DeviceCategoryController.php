@@ -13,6 +13,7 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
 use Dcat\Admin\Tree;
+use Dcat\Admin\Widgets\Tab;
 use Illuminate\Http\Request;
 
 class DeviceCategoryController extends AdminController
@@ -24,7 +25,11 @@ class DeviceCategoryController extends AdminController
             ->title($this->title())
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
-                $row->column(12, $this->treeView());
+                $tab = new Tab();
+                $tab->addLink('设备', route('device.records.index'));
+                $tab->add('分类', $this->treeView(), true);
+                $tab->addLink('归属', route('device.tracks.index'));
+                $row->column(12, $tab->withCard());
             });
     }
 

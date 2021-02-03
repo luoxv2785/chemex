@@ -9,11 +9,13 @@
         <!-- 加载中和没有更多的状态才显示两边的横线 -->
         <view :class="status == 'loadmore' || status == 'nomore' ? 'u-more' : ''" class="u-load-more-inner">
             <view class="u-loadmore-icon-wrap">
-                <u-loading :color="iconColor" :mode="iconType == 'circle' ? 'circle' : 'flower'" :show="status == 'loading' && icon"
+                <u-loading :color="iconColor" :mode="iconType == 'circle' ? 'circle' : 'flower'"
+                           :show="status == 'loading' && icon"
                            class="u-loadmore-icon"></u-loading>
             </view>
             <!-- 如果没有更多的状态下，显示内容为dot（粗点），加载特定样式 -->
-            <view :class="[(status == 'nomore' && isDot == true) ? 'u-dot-text' : 'u-more-text']" :style="[loadTextStyle]"
+            <view :class="[(status == 'nomore' && isDot == true) ? 'u-dot-text' : 'u-more-text']"
+                  :style="[loadTextStyle]"
                   class="u-line-1" @tap="loadMore">
                 {{ showText }}
             </view>

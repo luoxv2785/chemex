@@ -14,7 +14,7 @@ class VersionService
      */
     public static function getLatestVersionFromGitee(): ?string
     {
-        $response = Http::get('https://gitee.com/api/v5/repos/celaraze/Chemex/tags')->json();
+        $response = Http::get('https://gitee.com/api/v5/repos/celaraze/chemex/tags')->json();
         if (empty($response)) {
             return null;
         }

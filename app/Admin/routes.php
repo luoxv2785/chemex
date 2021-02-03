@@ -102,7 +102,9 @@ Route::group([
     $router->resource('/staff/records', 'StaffRecordController', ['names' => [
         'index' => 'staff.records.index'
     ]]);
-    $router->resource('/staff/departments', 'StaffDepartmentController');
+    $router->resource('/staff/departments', 'StaffDepartmentController', ['names' => [
+        'index' => 'staff.departments.index'
+    ]]);
     $router->get('/selection/staff/records', [StaffRecordController::class, 'selectList'])
         ->name('selection.staff.records');
     $router->get('/selection/staff/departments', [StaffDepartmentController::class, 'selectList'])
@@ -115,7 +117,10 @@ Route::group([
         'index' => 'check.records.index',
         'show' => 'check.records.show'
     ]]);
-    $router->resource('/check/tracks', 'CheckTrackController');
+    $router->resource('/check/tracks', 'CheckTrackController', ['names' => [
+        'index' => 'check.tracks.index',
+        'show' => 'check.tracks.show'
+    ]]);
 
     /**
      * 故障维护

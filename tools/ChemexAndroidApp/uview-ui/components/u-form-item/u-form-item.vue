@@ -1,6 +1,7 @@
 <template>
-    <view :class="{'u-border-bottom': elBorderBottom, 'u-form-item__border-bottom--error': validateState === 'error' && showError('border-bottom')}"
-          class="u-form-item">
+    <view
+        :class="{'u-border-bottom': elBorderBottom, 'u-form-item__border-bottom--error': validateState === 'error' && showError('border-bottom')}"
+        class="u-form-item">
         <view :style="{
 			flexDirection: elLabelPosition == 'left' ? 'row' : 'column'
 		}" class="u-form-item__body">

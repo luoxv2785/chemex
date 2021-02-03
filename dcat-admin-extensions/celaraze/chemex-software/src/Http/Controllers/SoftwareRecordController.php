@@ -13,9 +13,6 @@ use Celaraze\Chemex\Software\Actions\Grid\RowAction\SoftwareRecordDeleteAction;
 use Celaraze\Chemex\Software\Actions\Grid\RowAction\SoftwareTrackCreateUpdateAction;
 use Celaraze\Chemex\Software\Actions\Grid\RowAction\SoftwareTrackDeleteAction;
 use Celaraze\Chemex\Software\Actions\Grid\ToolAction\SoftwareRecordImportAction;
-use Celaraze\Chemex\Software\Metrics\CheckSoftwarePercentage;
-use Celaraze\Chemex\Software\Metrics\SoftwareAboutToExpireCounts;
-use Celaraze\Chemex\Software\Metrics\SoftwareExpiredCounts;
 use Celaraze\Chemex\Software\Models\SoftwareCategory;
 use Celaraze\Chemex\Software\Repositories\SoftwareRecord;
 use Celaraze\Chemex\Software\Repositories\SoftwareTrack;
@@ -30,6 +27,7 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
 use Dcat\Admin\Widgets\Card;
+use Dcat\Admin\Widgets\Tab;
 
 /**
  * @property  DeviceRecord device
@@ -44,14 +42,20 @@ class SoftwareRecordController extends AdminController
             ->title($this->title())
             ->description($this->description()['index'] ?? trans('admin.list'))
             ->body(function (Row $row) {
-                $row->column(12, function (Column $column) {
-                    $column->row(function (Row $row) {
-                        $row->column(3, new CheckSoftwarePercentage());
-                        $row->column(3, new SoftwareAboutToExpireCounts());
-                        $row->column(3, new SoftwareExpiredCounts());
-                    });
-                });
-                $row->column(12, $this->grid());
+                $tab = new Tab();
+                $tab->add('软件', $this->grid(), true);
+                $tab->addLink('分类', route('software.categories.index'));
+                $tab->addLink('归属', route('software.tracks.index'));
+                $row->column(12, $tab->withCard());
+
+//                $row->column(12, function (Column $column) {
+//                    $column->row(function (Row $row) {
+//                        $row->column(3, new CheckSoftwarePercentage());
+//                        $row->column(3, new SoftwareAboutToExpireCounts());
+//                        $row->column(3, new SoftwareExpiredCounts());
+//                    });
+//                });
+//                $row->column(12, $this->grid());
             });
     }
 

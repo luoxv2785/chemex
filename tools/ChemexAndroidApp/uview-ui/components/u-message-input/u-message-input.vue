@@ -1,7 +1,8 @@
 <template>
     <view class="u-char-box">
         <view class="u-char-flex">
-            <input :disabled="disabledKeyboard" :focus="focus" :maxlength="maxlength" :value="valueModel" class="u-input"
+            <input :disabled="disabledKeyboard" :focus="focus" :maxlength="maxlength" :value="valueModel"
+                   class="u-input"
                    type="number" @input="getVal"/>
             <view v-for="(item, index) in loopCharArr" :key="index">
                 <view :class="[breathe && charArrLength == index ? 'u-breathe' : '', 'u-char-item',

@@ -4,12 +4,12 @@ namespace Celaraze\Chemex\Consumable\Http\Controllers;
 
 use Celaraze\Chemex\Consumable\Actions\Tree\ToolAction\ConsumableCategoryImportAction;
 use Celaraze\Chemex\Consumable\Repositories\ConsumableCategory;
-use Celaraze\Chemex\Consumable\Support;
 use Dcat\Admin\Form;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Tree;
+use Dcat\Admin\Widgets\Tab;
 
 class ConsumableCategoryController extends AdminController
 {
@@ -19,7 +19,11 @@ class ConsumableCategoryController extends AdminController
             ->title($this->title())
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
-                $row->column(12, $this->treeView());
+                $tab = new Tab();
+                $tab->addLink('耗材', route('consumable.records.index'));
+                $tab->add('分类', $this->treeView(), true);
+                $tab->addLink('记录', route('consumable.tracks.index'));
+                $row->column(12, $tab->withCard());
             });
     }
 

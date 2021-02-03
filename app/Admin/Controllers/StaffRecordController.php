@@ -14,7 +14,10 @@ use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
+use Dcat\Admin\Layout\Content;
+use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
+use Dcat\Admin\Widgets\Tab;
 use Illuminate\Http\Request;
 
 /**
@@ -22,11 +25,17 @@ use Illuminate\Http\Request;
  */
 class StaffRecordController extends AdminController
 {
-    public function selectList(Request $request)
+    public function index(Content $content): Content
     {
-        $q = $request->get('q');
-
-        return \App\Models\StaffRecord::where('name', 'like', "%$q%")->paginate(null, ['id', 'name as text']);
+        return $content
+            ->title($this->title())
+            ->description(trans('admin.list'))
+            ->body(function (Row $row) {
+                $tab = new Tab();
+                $tab->add('雇员', $this->grid(), true);
+                $tab->addLink('部门', route('staff.departments.index'));
+                $row->column(12, $tab->withCard());
+            });
     }
 
     /**
@@ -76,6 +85,13 @@ class StaffRecordController extends AdminController
 
             $grid->export();
         });
+    }
+
+    public function selectList(Request $request)
+    {
+        $q = $request->get('q');
+
+        return \App\Models\StaffRecord::where('name', 'like', "%$q%")->paginate(null, ['id', 'name as text']);
     }
 
     /**

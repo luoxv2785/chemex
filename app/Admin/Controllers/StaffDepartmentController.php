@@ -12,11 +12,11 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
 use Dcat\Admin\Tree;
+use Dcat\Admin\Widgets\Tab;
 use Illuminate\Http\Request;
 
 class StaffDepartmentController extends AdminController
 {
-
     public function selectList(Request $request)
     {
         $q = $request->get('q');
@@ -30,7 +30,10 @@ class StaffDepartmentController extends AdminController
             ->title($this->title())
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
-                $row->column(12, $this->treeView());
+                $tab = new Tab();
+                $tab->addLink('雇员', route('staff.records.index'));
+                $tab->add('部门', $this->treeView(), true);
+                $row->column(12, $tab->withCard());
             });
     }
 

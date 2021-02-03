@@ -12,13 +12,30 @@ use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
+use Dcat\Admin\Layout\Content;
+use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
+use Dcat\Admin\Widgets\Tab;
 
 /**
  * @property  DeviceRecord device
  */
 class ServiceRecordController extends AdminController
 {
+    public function index(Content $content): Content
+    {
+        return $content
+            ->title($this->title())
+            ->description(trans('admin.list'))
+            ->body(function (Row $row) {
+                $tab = new Tab();
+                $tab->add('服务', $this->grid(), true);
+                $tab->addLink('归属', route('service.tracks.index'));
+                $tab->addLink('异常', route('service.issues.index'));
+                $row->column(12, $tab->withCard());
+            });
+    }
+
     /**
      * Make a grid builder.
      *

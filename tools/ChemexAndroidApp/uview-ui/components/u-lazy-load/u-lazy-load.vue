@@ -8,7 +8,8 @@
           class="u-wrap">
         <view :class="'u-lazy-item-' + elIndex">
             <image v-if="!isError" :mode="imgMode" :src="isShow ? image : loadingImg"
-                   :style="{borderRadius: borderRadius + 'rpx', height: imgHeight}" class="u-lazy-item" @error="loadError" @load="imgLoaded"
+                   :style="{borderRadius: borderRadius + 'rpx', height: imgHeight}" class="u-lazy-item"
+                   @error="loadError" @load="imgLoaded"
                    @tap="clickImg"></image>
             <image v-else :mode="imgMode" :src="errorImg"
                    :style="{borderRadius: borderRadius + 'rpx', height: imgHeight}"

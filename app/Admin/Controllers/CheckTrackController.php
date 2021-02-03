@@ -11,7 +11,10 @@ use App\Support\Support;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
+use Dcat\Admin\Layout\Content;
+use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Alert;
+use Dcat\Admin\Widgets\Tab;
 
 /**
  * @property int check_id
@@ -19,6 +22,19 @@ use Dcat\Admin\Widgets\Alert;
  */
 class CheckTrackController extends AdminController
 {
+    public function index(Content $content): Content
+    {
+        return $content
+            ->title($this->title())
+            ->description(trans('admin.list'))
+            ->body(function (Row $row) {
+                $tab = new Tab();
+                $tab->addLink('盘点任务', route('check.records.index'));
+                $tab->add('盘点追踪', $this->grid(), true);
+                $row->column(12, $tab->withCard());
+            });
+    }
+
     /**
      * Make a grid builder.
      *

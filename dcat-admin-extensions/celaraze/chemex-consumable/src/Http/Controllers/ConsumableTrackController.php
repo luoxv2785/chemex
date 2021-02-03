@@ -5,10 +5,27 @@ namespace Celaraze\Chemex\Consumable\Http\Controllers;
 use Celaraze\Chemex\Consumable\Repositories\ConsumableTrack;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
+use Dcat\Admin\Layout\Content;
+use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
+use Dcat\Admin\Widgets\Tab;
 
 class ConsumableTrackController extends AdminController
 {
+    public function index(Content $content): Content
+    {
+        return $content
+            ->title($this->title())
+            ->description(trans('admin.list'))
+            ->body(function (Row $row) {
+                $tab = new Tab();
+                $tab->addLink('耗材', route('consumable.records.index'));
+                $tab->addLink('分类', route('consumable.categories.index'));
+                $tab->add('记录', $this->grid(), true);
+                $row->column(12, $tab->withCard());
+            });
+    }
+
     /**
      * Make a grid builder.
      *

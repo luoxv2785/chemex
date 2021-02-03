@@ -14,19 +14,16 @@ use Celaraze\Chemex\Part\Actions\Grid\BatchAction\PartRecordBatchDeleteAction;
 use Celaraze\Chemex\Part\Actions\Grid\RowAction\PartRecordDeleteAction;
 use Celaraze\Chemex\Part\Actions\Grid\RowAction\PartTrackCreateUpdateAction;
 use Celaraze\Chemex\Part\Actions\Grid\ToolAction\PartRecordImportAction;
-use Celaraze\Chemex\Part\Metrics\CheckPartPercentage;
-use Celaraze\Chemex\Part\Metrics\PartAboutToExpireCounts;
-use Celaraze\Chemex\Part\Metrics\PartExpiredCounts;
 use Celaraze\Chemex\Part\Models\PartCategory;
 use Celaraze\Chemex\Part\Repositories\PartRecord;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
-use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
+use Dcat\Admin\Widgets\Tab;
 
 /**
  * @property DeviceRecord device
@@ -42,14 +39,21 @@ class PartRecordController extends AdminController
             ->title($this->title())
             ->description($this->description()['index'] ?? trans('admin.list'))
             ->body(function (Row $row) {
-                $row->column(12, function (Column $column) {
-                    $column->row(function (Row $row) {
-                        $row->column(3, new CheckPartPercentage());
-                        $row->column(3, new PartAboutToExpireCounts());
-                        $row->column(3, new PartExpiredCounts());
-                    });
-                });
-                $row->column(12, $this->grid());
+                $tab = new Tab();
+                $tab->add('配件', $this->grid(), true);
+                $tab->addLink('分类', route('part.categories.index'));
+                $tab->addLink('归属', route('part.tracks.index'));
+                $row->column(12, $tab->withCard());
+
+//                $row->column(12, function (Column $column) {
+//
+//                    $column->row(function (Row $row) {
+//                        $row->column(3, new CheckPartPercentage());
+//                        $row->column(3, new PartAboutToExpireCounts());
+//                        $row->column(3, new PartExpiredCounts());
+//                    });
+//                });
+//                $row->column(12, $this->grid());
             });
     }
 

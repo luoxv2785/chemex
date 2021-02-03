@@ -17,4 +17,6 @@ Route::resource('/service/records', ServiceRecordController::class, ['names' => 
 Route::resource('/service/issues', ServiceIssueController::class, ['names' => [
     'index' => 'service.issues.index'
 ]]);
-Route::resource('/service/tracks', ServiceTrackController::class);
+Route::resource('/service/tracks', ServiceTrackController::class, ['names' => [
+    'index' => 'service.tracks.index'
+]]);

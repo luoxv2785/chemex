@@ -18,6 +18,10 @@ return [
             'name' => '厂商'
         ],
         'price' => '价格',
-        'number' => '总数'
+        'number' => '总数',
+        'consumable_id' => '耗材',
+        'staff_id' => '雇员（领用人）',
+        'purchased' => '购入日期',
+        'expired' => '过保日期'
     ]
 ];

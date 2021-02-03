@@ -2,7 +2,8 @@
 return [
     'labels' => [
         'TodoRecord' => '待办',
-        'records' => '待办'
+        'records' => '待办',
+        'User Id' => '用户'
     ],
     'fields' => [
         'name' => '名称',

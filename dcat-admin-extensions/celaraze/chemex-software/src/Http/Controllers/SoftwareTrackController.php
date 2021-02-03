@@ -9,13 +9,30 @@ use Celaraze\Chemex\Software\Repositories\SoftwareTrack;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
+use Dcat\Admin\Layout\Content;
+use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Alert;
+use Dcat\Admin\Widgets\Tab;
 
 /**
  * @property string deleted_at
  */
 class SoftwareTrackController extends AdminController
 {
+    public function index(Content $content): Content
+    {
+        return $content
+            ->title($this->title())
+            ->description(trans('admin.list'))
+            ->body(function (Row $row) {
+                $tab = new Tab();
+                $tab->addLink('软件', route('software.records.index'));
+                $tab->addLink('分类', route('software.tracks.index'));
+                $tab->add('归属', $this->grid(), true);
+                $row->column(12, $tab->withCard());
+            });
+    }
+
     /**
      * Make a grid builder.
      *

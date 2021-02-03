@@ -1,5 +1,6 @@
 <template>
-    <u-popup v-model="value" :mask="mask" :maskCloseAble="maskCloseAble" :popup="false" :safeAreaInsetBottom="safeAreaInsetBottom" :zIndex="uZIndex"
+    <u-popup v-model="value" :mask="mask" :maskCloseAble="maskCloseAble" :popup="false"
+             :safeAreaInsetBottom="safeAreaInsetBottom" :zIndex="uZIndex"
              class=""
              length="auto" mode="bottom" @close="popupClose">
         <slot/>

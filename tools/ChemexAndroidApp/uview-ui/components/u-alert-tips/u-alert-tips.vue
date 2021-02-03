@@ -8,7 +8,8 @@
 		borderColor: borderColor
 	}" class="u-alert-tips">
         <view class="u-icon-wrap">
-            <u-icon v-if="showIcon" :color="uIconType" :custom-style="iconStyle" :name="uIcon" :size="description ? 40 : 32"
+            <u-icon v-if="showIcon" :color="uIconType" :custom-style="iconStyle" :name="uIcon"
+                    :size="description ? 40 : 32"
                     class="u-icon"></u-icon>
         </view>
         <view class="u-alert-content" @tap.stop="click">
