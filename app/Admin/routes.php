@@ -2,6 +2,7 @@
 
 use App\Admin\Controllers\CheckRecordController;
 use App\Admin\Controllers\DepreciationRuleController;
+use App\Admin\Controllers\DeviceCategoryController;
 use App\Admin\Controllers\DeviceRecordController;
 use App\Admin\Controllers\NotificationController;
 use App\Admin\Controllers\PartCategoryController;
@@ -76,9 +77,9 @@ Route::group([
         'show' => 'device.categories.show',
         'create' => 'device.categories.create'
     ]]);
-    $router->get('/selection/device/records', ['DeviceRecordController', 'selectList'])
+    $router->get('/selection/device/records', [DeviceRecordController::class, 'selectList'])
         ->name('selection.device.records');
-    $router->get('/selection/device/categories', ['DeviceCategoryController', 'selectList'])
+    $router->get('/selection/device/categories', [DeviceCategoryController::class, 'selectList'])
         ->name('selection.device.categories');
 
     /**

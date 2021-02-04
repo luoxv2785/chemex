@@ -29,8 +29,8 @@ class CheckTrackController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink('盘点任务', route('check.records.index'));
-                $tab->add('盘点追踪', $this->grid(), true);
+                $tab->addLink(admin_trans_label('check_record.records'), route('check.records.index'));
+                $tab->add(admin_trans_label('check_track.tracks'), $this->grid(), true);
                 $row->column(12, $tab);
             });
     }
@@ -48,12 +48,12 @@ class CheckTrackController extends AdminController
             $grid->column('item_id')->display(function ($item_id) {
                 $check = CheckRecord::where('id', $this->check_id)->first();
                 if (empty($check)) {
-                    return '任务状态异常';
+                    return trans('main.check_record_none');
                 } else {
                     $check_item = $check->check_item;
                     $item = Support::getItemRecordByClass($check_item, $item_id);
                     if (empty($item)) {
-                        return '物品状态异常';
+                        return trans('main.item_none');
                     } else {
                         return $item->name;
                     }
@@ -80,7 +80,7 @@ class CheckTrackController extends AdminController
             $grid->toolsWithOutline(false);
 
             $grid->quickSearch('id', 'check_id', 'checker.name')
-                ->placeholder('试着搜索一下')
+                ->placeholder(trans('main.quick_search'))
                 ->auto(false);
         });
     }

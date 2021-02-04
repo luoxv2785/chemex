@@ -1,11 +1,10 @@
 <?php
 return [
     'labels' => [
-        'Extension' => '平台配置',
-        'extensions' => '扩展',
+        'CheckRecord' => '盘点',
+        'chemex_app' => 'Chemex客户端'
     ],
     'fields' => [
-
     ],
     'options' => [
     ],

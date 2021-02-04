@@ -77,24 +77,22 @@ class DeviceRecordController extends AdminController
                 }
                 $row->column($column_a_width, $this->detail($id));
                 $row->column($column_b_width, function (Column $column) use ($id, $name, $history) {
-                    $column->row(Card::make()->content('当前使用者：' . $name));
-                    // 判断是否启用了配件or软件or服务扩展
-                    $isExtensions = Admin::extension()->enabled('celaraze.chemex-part') || Admin::extension()->enabled('celaraze.chemex-software') || Admin::extension()->enabled('celaraze.chemex-service');
-                    if (Admin::user()->can('device.related') && $isExtensions) {
+                    $column->row(Card::make()->content(trans('main.device_record_current_staff') . '：' . $name));
+                    if (Admin::user()->can('device.related')) {
                         $result = self::hasDeviceRelated($id);
                         if ($result['part']) {
-                            $column->row(new Card('配件', $result['part']));
+                            $column->row(new Card(admin_trans('menu.part'), $result['part']));
                         }
                         if ($result['software']) {
-                            $column->row(new Card('软件', $result['software']));
+                            $column->row(new Card(admin_trans('menu.software'), $result['software']));
                         }
                         if ($result['service']) {
-                            $column->row(new Card('服务', $result['service']));
+                            $column->row(new Card(admin_trans('menu.service'), $result['service']));
                         }
                     }
                 });
                 if (Admin::user()->can('device.history')) {
-                    $card = new Card('履历', view('history')->with('data', $history));
+                    $card = new Card(trans('main.history'), view('history')->with('data', $history));
                     $row->column($column_c_width, $card->tool('<a class="btn btn-primary btn-xs" href="' . route('export.device.history', $id) . '" target="_blank">导出到 Excel</a>'));
                 }
             });
@@ -159,9 +157,9 @@ class DeviceRecordController extends AdminController
             ->description($this->description()['index'] ?? trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add(Data::icon('record') . '清单', $this->grid(), true);
-                $tab->addLink(Data::icon('category') . '分类', route('device.categories.index'));
-                $tab->addLink(Data::icon('track') . '归属', route('device.tracks.index'));
+                $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
+                $tab->addLink(Data::icon('category') . trans('main.category'), route('device.categories.index'));
+                $tab->addLink(Data::icon('track') . trans('main.track'), route('device.tracks.index'));
                 $row->column(12, $tab);
 
 
@@ -256,15 +254,15 @@ class DeviceRecordController extends AdminController
                 'staff.department.name',
                 'location'
             )
-                ->placeholder('试着搜索一下')
+                ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
             $grid->filter(function ($filter) {
-                $filter->equal('category_id', '设备分类')->select(DeviceCategory::pluck('name', 'id'));
-                $filter->equal('vendor_id', '厂商')->select(VendorRecord::pluck('name', 'id'));
-                $filter->equal('staff.department_id', '部门')->select(StaffDepartment::pluck('name', 'id'));
-                $filter->equal('depreciation_id', '折旧规则')->select(DepreciationRule::pluck('name', 'id'));
-                $filter->equal('location', '位置');
+                $filter->equal('category_id')->select(DeviceCategory::pluck('name', 'id'));
+                $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
+                $filter->equal('staff.department_id')->select(StaffDepartment::pluck('name', 'id'));
+                $filter->equal('depreciation_id')->select(DepreciationRule::pluck('name', 'id'));
+                $filter->equal('location');
             });
 
             $grid->toolsWithOutline(false);
@@ -333,29 +331,29 @@ class DeviceRecordController extends AdminController
             $form->image('photo')
                 ->autoUpload()
                 ->uniqueName()
-                ->help('可以选择提供一张设备的照片作为概览。');
+                ->help(trans('device_record_photo_help'));
             $form->currency('price');
             $form->date('purchased');
             $form->date('expired');
             $form->password('security_password')
-                ->help('安全密码，可以代表BIOS密码等。');
+                ->help(trans('main.device_record_security_password_help'));
             $form->password('admin_password')
-                ->help('管理员密码，可以代表计算机管理员账户密码以及打印机管理员密码等。');
+                ->help(trans('main.device_record_admin_password_help'));
 
             if (Support::ifSelectCreate()) {
                 $form->selectCreate('depreciation_rule_id', admin_trans_label('Depreciation Rule Id'))
                     ->options(DepreciationRule::class)
                     ->ajax(route('selection.depreciation.rules'))
                     ->url(route('depreciation.rules.create'))
-                    ->help('设备记录的折旧规则将优先于其分类所指定的折旧规则。');
+                    ->help(trans('main.device_record_depreciation_rule_id_help'));
             } else {
                 $form->select('depreciation_rule_id', admin_trans_label('Depreciation Rule Id'))
                     ->options(DepreciationRule::pluck('name', 'id'))
-                    ->help('设备记录的折旧规则将优先于其分类所指定的折旧规则。');
+                    ->help(trans('main.device_record_depreciation_rule_id_help'));
             }
 
             $form->text('location')
-                ->help('记录存放位置，例如某个货架、某个抽屉。');
+                ->help(trans('main.location_help'));
             $form->display('created_at');
             $form->display('updated_at');
 

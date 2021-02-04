@@ -1,7 +1,7 @@
 <?php
 return [
     'labels' => [
-        'ServiceTrack' => '服务归属记录',
+        'ServiceTrack' => '服务',
         'tracks' => '服务归属记录'
     ],
     'fields' => [

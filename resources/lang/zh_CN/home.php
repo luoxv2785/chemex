@@ -1,11 +1,10 @@
 <?php
 return [
     'labels' => [
-        'Extension' => '平台配置',
-        'extensions' => '扩展',
+        'Dashboard' => '仪表盘',
+        'description' => '掌握你的一切资源',
     ],
     'fields' => [
-
     ],
     'options' => [
     ],

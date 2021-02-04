@@ -27,8 +27,8 @@ class HomeController extends Controller
     public function index(Content $content): Content
     {
         return $content
-            ->header('仪表盘')
-            ->description('随时掌握你的资源情况')
+            ->title(admin_trans_label('Dashboard'))
+            ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $row->column(12, function (Column $column) {
                     $column->row(function (Row $row) {
@@ -36,7 +36,7 @@ class HomeController extends Controller
                             $user = AdminUser::where('id', auth('admin')->id())->first();
                             $notifications = $user->notifications;
                             $notifications = json_decode($notifications, true);
-                            $column->row(new Card('我的待办', view('todo')->with('notifications', $notifications)));
+                            $column->row(new Card(trans('main.my_todo'), view('todo')->with('notifications', $notifications)));
                             $column->row(new WorthTrend());
                             $column->row(new MaintenanceTrend());
                             $column->row(new IssueTrend());
@@ -55,7 +55,7 @@ class HomeController extends Controller
                                 $row->column(3, new ServiceIssueCounts());
                             });
                             $services = Support::getServiceIssueStatus();
-                            $column->row(new Card('服务程序状态', view('services_dashboard')->with('services', $services)));
+                            $column->row(new Card(trans('main.service_status'), view('services_dashboard')->with('services', $services)));
                         });
                     });
                 });

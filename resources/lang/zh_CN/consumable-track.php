@@ -1,7 +1,7 @@
 <?php
 return [
     'labels' => [
-        'ConsumableTrack' => '耗材记录',
+        'ConsumableTrack' => '耗材',
         'tracks' => '耗材记录'
     ],
     'fields' => [

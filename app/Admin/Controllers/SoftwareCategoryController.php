@@ -21,7 +21,8 @@ class SoftwareCategoryController extends AdminController
     public function selectList(Request $request)
     {
         $q = $request->get('q');
-        return \App\Models\SoftwareCategory::where('name', 'like', "%$q%")->paginate(null, ['id', 'name as text']);
+        return \App\Models\SoftwareCategory::where('name', 'like', "%$q%")
+            ->paginate(null, ['id', 'name as text']);
     }
 
     public function index(Content $content): Content
@@ -31,9 +32,9 @@ class SoftwareCategoryController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(Data::icon('record') . '清单', route('software.records.index'));
-                $tab->add(Data::icon('category') . '分类', $this->treeView(), true);
-                $tab->addLink(Data::icon('track') . '归属', route('software.tracks.index'));
+                $tab->addLink(Data::icon('record') . trans('main.record'), route('software.records.index'));
+                $tab->add(Data::icon('category') . trans('main.category'), $this->treeView(), true);
+                $tab->addLink(Data::icon('track') . trans('main.track'), route('software.tracks.index'));
                 $row->column(12, $tab);
             });
     }
@@ -65,7 +66,7 @@ class SoftwareCategoryController extends AdminController
             $grid->toolsWithOutline(false);
 
             $grid->quickSearch('id', 'name', 'description')
-                ->placeholder('试着搜索一下')
+                ->placeholder(trans('main.quick_search'))
                 ->auto(false);
         });
     }
@@ -108,8 +109,7 @@ class SoftwareCategoryController extends AdminController
                     ->url(route('software.categories.create'));
             } else {
                 $form->select('parent_id')
-                    ->options(\App\Models\SoftwareCategory::all()
-                        ->pluck('name', 'id'));
+                    ->options(\App\Models\SoftwareCategory::pluck('name', 'id'));
             }
 
             $form->display('created_at');

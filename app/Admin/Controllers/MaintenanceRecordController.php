@@ -58,14 +58,14 @@ class MaintenanceRecordController extends AdminController
             });
 
             $grid->quickSearch('id', 'item', 'ng_description', 'ok_description')
-                ->placeholder('试着搜索一下')
+                ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
             $grid->selector(function (Selector $selector) {
-                $selector->select('status', '状态', [
-                    0 => '等待处理',
-                    1 => '处理完毕',
-                    2 => '取消'
+                $selector->select('status', [
+                    0 => trans('main.maintenance_record_status_waiting'),
+                    1 => trans('main.maintenance_record_status_done'),
+                    2 => trans('main.maintenance_record_status_cancelled')
                 ]);
             });
 

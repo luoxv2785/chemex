@@ -41,9 +41,9 @@ class PartRecordController extends AdminController
             ->description($this->description()['index'] ?? trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add(Data::icon('record') . '清单', $this->grid(), true);
-                $tab->addLink(Data::icon('category') . '分类', route('part.categories.index'));
-                $tab->addLink(Data::icon('track') . '归属', route('part.tracks.index'));
+                $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
+                $tab->addLink(Data::icon('category') . trans('main.category'), route('part.categories.index'));
+                $tab->addLink(Data::icon('track') . trans('main.track'), route('part.tracks.index'));
                 $row->column(12, $tab);
 
 //                $row->column(12, function (Column $column) {
@@ -115,7 +115,7 @@ class PartRecordController extends AdminController
                 'device.name',
                 'location'
             )
-                ->placeholder('尝试搜索一下')
+                ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
             $grid->enableDialogCreate();
@@ -244,7 +244,7 @@ class PartRecordController extends AdminController
             }
 
             $form->text('location')
-                ->help('记录存放位置，例如某个货架、某个抽屉。');
+                ->help(trans('main.location_help'));
 
             $form->display('created_at');
             $form->display('updated_at');

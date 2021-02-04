@@ -1,7 +1,7 @@
 <?php
 return [
     'labels' => [
-        'StaffDepartment' => '部门',
+        'StaffDepartment' => '组织',
         'Parent' => '父级部门',
         'departments' => '部门'
     ],

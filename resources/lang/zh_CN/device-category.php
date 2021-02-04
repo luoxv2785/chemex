@@ -1,7 +1,7 @@
 <?php
 return [
     'labels' => [
-        'DeviceCategory' => '设备分类',
+        'DeviceCategory' => '设备',
         'categories' => '设备分类',
         'Parent' => '父级分类',
         'Depreciation Rule Id' => '折旧规则'

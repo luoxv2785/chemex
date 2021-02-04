@@ -8,6 +8,7 @@ use App\Admin\Actions\Grid\RowAction\ServiceTrackCreateUpdateAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\ServiceRecord;
 use App\Models\DeviceRecord;
+use App\Support\Data;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
@@ -29,9 +30,9 @@ class ServiceRecordController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add('服务', $this->grid(), true);
-                $tab->addLink('归属', route('service.tracks.index'));
-                $tab->addLink('异常', route('service.issues.index'));
+                $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
+                $tab->addLink(Data::icon('track') . trans('main.track'), route('service.tracks.index'));
+                $tab->addLink(Data::icon('issue') . trans('main.issue'), route('service.issues.index'));
                 $row->column(12, $tab);
             });
     }
@@ -73,7 +74,7 @@ class ServiceRecordController extends AdminController
             $grid->toolsWithOutline(false);
 
             $grid->quickSearch('id', 'name', 'description', 'device.name')
-                ->placeholder('试着搜索一下')
+                ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
             $grid->export();
@@ -114,7 +115,7 @@ class ServiceRecordController extends AdminController
             $form->text('description');
             $form->switch('status')
                 ->default(0)
-                ->help('勾选此项为暂停服务。');
+                ->help(trans('service_record_status_help'));
 
             $form->display('created_at');
             $form->display('updated_at');

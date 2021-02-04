@@ -28,9 +28,9 @@ class ServiceIssueController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink('服务', route('service.records.index'));
-                $tab->addLink('归属', route('service.tracks.index'));
-                $tab->add('异常', $this->grid(), true);
+                $tab->addLink(Data::icon('record') . trans('main.record'), route('service.records.index'));
+                $tab->addLink(Data::icon('track') . trans('main.track'), route('service.tracks.index'));
+                $tab->add(Data::icon('issue') . trans('main.issue'), $this->grid(), true);
                 $row->column(12, $tab);
             });
     }
@@ -69,13 +69,13 @@ class ServiceIssueController extends AdminController
             $grid->disableDeleteButton();
 
             $grid->quickSearch('id', 'service.name', 'issue')
-                ->placeholder('试着搜索一下')
+                ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
             $grid->selector(function (Selector $selector) {
-                $selector->select('status', '状态', [
-                    1 => '故障',
-                    2 => '恢复'
+                $selector->select('status', [
+                    1 => trans('service_issue_status_ng'),
+                    2 => trans('service_issue_status_ok')
                 ]);
             });
 

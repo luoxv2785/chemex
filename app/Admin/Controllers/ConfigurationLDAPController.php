@@ -27,9 +27,9 @@ class ConfigurationLDAPController extends Controller
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink('平台', route('configurations.platform.index'));
-                $tab->addLink('扩展', route('configurations.extensions.index'));
-                $tab->add('LDAP', new Card(new ConfigurationLDAPForm()), true);
+                $tab->addLink(admin_trans_label('configuration-platform.platform'), route('configurations.platform.index'));
+                $tab->addLink(admin_trans_label('configuration-extension.extensions'), route('configurations.extensions.index'));
+                $tab->add(admin_trans_label('configuration-l-d-a-p.ldap'), new Card(new ConfigurationLDAPForm()), true);
                 $row->column(12, $tab);
             });
     }

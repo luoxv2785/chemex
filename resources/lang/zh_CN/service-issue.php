@@ -1,8 +1,8 @@
 <?php
 return [
     'labels' => [
-        'ServiceIssue' => '服务故障',
-        'issues' => '服务故障'
+        'ServiceIssue' => '服务',
+        'issues' => '服务异常'
     ],
     'fields' => [
         'service' => [

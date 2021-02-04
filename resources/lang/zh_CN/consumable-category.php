@@ -1,7 +1,7 @@
 <?php
 return [
     'labels' => [
-        'ConsumableCategory' => '耗材分类',
+        'ConsumableCategory' => '耗材',
         'categories' => '耗材分类',
     ],
     'fields' => [

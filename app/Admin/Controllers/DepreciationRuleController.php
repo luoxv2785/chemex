@@ -35,7 +35,7 @@ class DepreciationRuleController extends AdminController
             $grid->toolsWithOutline(false);
 
             $grid->quickSearch('id', 'name', 'description')
-                ->placeholder('试着搜索以下')
+                ->placeholder(trans('main.quick_search'))
                 ->auto(false);
         });
     }
@@ -71,7 +71,7 @@ class DepreciationRuleController extends AdminController
             $form->display('id');
             $form->text('name')->required();
             $form->text('description')
-                ->help('周期填入最大即可，例如2年代表超过2年，5年代表超过5年，规则会优先从高到低匹配，先判断是否超过5年，如果没有超过则再判断是否超过3年，以此类推。');
+                ->help(trans('main.depreciation_rule_description_help'));
             $form->table('rules', function (NestedForm $table) {
                 $table->number('number')
                     ->min(0)
@@ -84,11 +84,11 @@ class DepreciationRuleController extends AdminController
                     ])
                     ->required();
                 $table->currency('ratio')
-                    ->symbol('0.00 ~ 1.00 之间')
+                    ->symbol(trans('main.depreciation_rule_rules_symbol'))
                     ->required();
             });
             $form->date('termination')
-                ->help('可代表报废时间。');
+                ->help(trans('main.depreciation_rule_termination_help'));
 
             $form->display('created_at');
             $form->display('updated_at');

@@ -20,9 +20,9 @@ class ConsumableCategoryController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink('耗材', route('consumable.records.index'));
-                $tab->add('分类', $this->treeView(), true);
-                $tab->addLink('记录', route('consumable.tracks.index'));
+                $tab->addLink(admin_trans_label('consumable-record.records'), route('consumable.records.index'));
+                $tab->add(admin_trans_label('consumable-category.categories'), $this->treeView(), true);
+                $tab->addLink(admin_trans_label('consumable-track.tracks'), route('consumable.tracks.index'));
                 $row->column(12, $tab);
             });
     }

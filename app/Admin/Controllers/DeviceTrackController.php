@@ -26,9 +26,9 @@ class DeviceTrackController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(Data::icon('record') . '清单', route('device.records.index'));
-                $tab->addLink(Data::icon('category') . '分类', route('device.categories.index'));
-                $tab->add(Data::icon('track') . '归属', $this->grid(), true);
+                $tab->addLink(Data::icon('record') . trans('main.record'), route('device.records.index'));
+                $tab->addLink(Data::icon('category') . trans('main.category'), route('device.categories.index'));
+                $tab->add(Data::icon('track') . trans('main.track'), $this->grid(), true);
                 $row->column(12, $tab);
             });
     }
@@ -63,13 +63,13 @@ class DeviceTrackController extends AdminController
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->panel();
-                $filter->scope('history', '查看历史归属记录')->onlyTrashed();
+                $filter->scope('history', trans('main.device_track_history_scope'))->onlyTrashed();
             });
 
             $grid->toolsWithOutline(false);
 
             $grid->quickSearch('id', 'device.name', 'staff.name')
-                ->placeholder('试着搜索一下')
+                ->placeholder(trans('main.quick_search'))
                 ->auto(false);
         });
     }

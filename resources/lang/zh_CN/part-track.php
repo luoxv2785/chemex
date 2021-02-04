@@ -1,7 +1,7 @@
 <?php
 return [
     'labels' => [
-        'PartTrack' => '配件归属记录',
+        'PartTrack' => '配件',
         'tracks' => '配件归属记录'
     ],
     'fields' => [

@@ -23,9 +23,9 @@ class ConfigurationPlatformController extends Controller
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add('平台', new Card(new ConfigurationPlatformForm()), true);
-                $tab->addLink('扩展', route('configurations.extensions.index'));
-                $tab->addLink('LDAP', route('configurations.ldap.index'));
+                $tab->add(admin_trans_label('configuration-platform.platform'), new Card(new ConfigurationPlatformForm()), true);
+                $tab->addLink(admin_trans_label('configuration-extension.extensions'), route('configurations.extensions.index'));
+                $tab->addLink(admin_trans_label('configuration-l-d-a-p.ldap'), route('configurations.ldap.index'));
                 $row->column(12, $tab);
             });
     }

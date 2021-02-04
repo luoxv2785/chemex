@@ -16,7 +16,8 @@ class PurchasedChannelController extends AdminController
     {
         $q = $request->get('q');
 
-        return \App\Models\PurchasedChannel::where('name', 'like', "%$q%")->paginate(null, ['id', 'name as text']);
+        return \App\Models\PurchasedChannel::where('name', 'like', "%$q%")
+            ->paginate(null, ['id', 'name as text']);
     }
 
     /**
@@ -40,7 +41,7 @@ class PurchasedChannelController extends AdminController
             ]);
 
             $grid->quickSearch('id', 'name', 'description')
-                ->placeholder('试着搜索一下')
+                ->placeholder(trans('main.quick_search'))
                 ->auto(false);
         });
     }

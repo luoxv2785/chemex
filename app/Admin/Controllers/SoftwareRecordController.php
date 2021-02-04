@@ -43,9 +43,9 @@ class SoftwareRecordController extends AdminController
             ->description($this->description()['index'] ?? trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add(Data::icon('record') . '清单', $this->grid(), true);
-                $tab->addLink(Data::icon('category') . '分类', route('software.categories.index'));
-                $tab->addLink(Data::icon('track') . '归属', route('software.tracks.index'));
+                $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
+                $tab->addLink(Data::icon('category') . trans('main.category'), route('software.categories.index'));
+                $tab->addLink(Data::icon('track') . trans('main.track'), route('software.tracks.index'));
                 $row->column(12, $tab);
 
 //                $row->column(12, function (Column $column) {
@@ -99,7 +99,7 @@ class SoftwareRecordController extends AdminController
                 }
                 if (Admin::user()->can('software.track.list')) {
                     $tracks_route = route('software.tracks.index', ['_search_' => $this->id]);
-                    $actions->append("<a href='$tracks_route'>💿 管理归属</a>");
+                    $actions->append("<a href='$tracks_route'>💿 " . trans('software_record_track_action') . "</a>");
                 }
             });
 
@@ -115,7 +115,7 @@ class SoftwareRecordController extends AdminController
                 'price',
                 'location'
             )
-                ->placeholder('试着搜索一下')
+                ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
             $grid->enableDialogCreate();
@@ -175,9 +175,9 @@ class SoftwareRecordController extends AdminController
                                 }
                             });
                         });
-                        $column->row(new Card('管理归属（授权）', $grid));
-                        $card = new Card('履历', view('history')->with('data', $history));
-                        $column->row($card->tool('<a class="btn btn-primary btn-xs" href="' . route('export.software.history', $id) . '" target="_blank">导出到 Excel</a>'));
+                        $column->row(new Card(trans('main.software_record_track_title'), $grid));
+                        $card = new Card(trans('main.software_record_history_title'), view('history')->with('data', $history));
+                        $column->row($card->tool('<a class="btn btn-primary btn-xs" href="' . route('export.software.history', $id) . '" target="_blank">' . trans('main.export_to_excel') . '</a>'));
                     });
                 }
             });
@@ -268,7 +268,7 @@ class SoftwareRecordController extends AdminController
                 ->min(-1)
                 ->default(1)
                 ->required()
-                ->help('"-1"表示无限制。');
+                ->help(trans('main.software_record_counts_help'));
             $form->divider();
             $form->text('sn');
             $form->text('description');
@@ -288,7 +288,7 @@ class SoftwareRecordController extends AdminController
             $form->date('purchased');
             $form->date('expired');
             $form->text('location')
-                ->help('记录存放位置，例如某个货架、某个抽屉。');
+                ->help(trans('main.location_help'));
 
             $form->display('created_at');
             $form->display('updated_at');

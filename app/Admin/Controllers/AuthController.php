@@ -29,10 +29,6 @@ class AuthController extends BaseAuthController
     {
         $form = $this->settingForm();
 
-        if (config('admin.demo')) {
-            return $form->response()->error('演示模式下不允许此修改操作');
-        }
-
         if (!$this->validateCredentialsWhenUpdatingPassword()) {
             $form->responseValidationMessages('old_password', trans('admin.old_password_error'));
         }
@@ -46,9 +42,6 @@ class AuthController extends BaseAuthController
      * @param Request $request
      *
      * @return mixed
-     * @throws BindException
-     * @throws PasswordRequiredException
-     * @throws UsernameRequiredException
      */
     public function postLogin(Request $request)
     {

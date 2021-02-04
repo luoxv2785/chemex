@@ -1,7 +1,7 @@
 <?php
 return [
     'labels' => [
-        'CheckRecord' => '盘点任务',
+        'CheckRecord' => '盘点',
         'User' => '负责人',
         'records' => '盘点任务'
     ],

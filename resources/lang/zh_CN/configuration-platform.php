@@ -1,7 +1,7 @@
 <?php
 return [
     'labels' => [
-        'Platform' => '平台',
+        'Platform' => '平台配置',
         'platform' => '平台',
     ],
     'fields' => [

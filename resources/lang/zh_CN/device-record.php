@@ -31,7 +31,8 @@ return [
             'name' => '雇员',
             'department' => [
                 'name' => '部门'
-            ]
+            ],
+            'department_id' => '部门',
         ],
         'price' => '价格',
         'purchased' => '购入日期',
@@ -67,7 +68,10 @@ return [
             'name' => '折旧规则'
         ],
         'asset_number' => '资产编号',
-        'location' => '位置'
+        'location' => '位置',
+        'category_id' => '分类',
+        'vendor_id' => '厂商',
+        'depreciation_id' => '折旧规则'
     ],
     'options' => [
     ],

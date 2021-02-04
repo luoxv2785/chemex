@@ -21,7 +21,8 @@ class PartCategoryController extends AdminController
     public function selectList(Request $request)
     {
         $q = $request->get('q');
-        return \App\Models\PartCategory::where('name', 'like', "%$q%")->paginate(null, ['id', 'name as text']);
+        return \App\Models\PartCategory::where('name', 'like', "%$q%")
+            ->paginate(null, ['id', 'name as text']);
     }
 
     public function index(Content $content): Content
@@ -31,9 +32,9 @@ class PartCategoryController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(Data::icon('record') . '清单', route('part.records.index'));
-                $tab->add(Data::icon('category') . '分类', $this->treeView(), true);
-                $tab->addLink(Data::icon('track') . '归属', route('part.tracks.index'));
+                $tab->addLink(Data::icon('record') . trans('main.record'), route('part.records.index'));
+                $tab->add(Data::icon('category') . trans('main.category'), $this->treeView(), true);
+                $tab->addLink(Data::icon('track') . trans('main.track'), route('part.tracks.index'));
                 $row->column(12, $tab);
             });
     }
@@ -66,7 +67,7 @@ class PartCategoryController extends AdminController
             $grid->toolsWithOutline(false);
 
             $grid->quickSearch('id', 'name', 'description')
-                ->placeholder('试着搜索一下')
+                ->placeholder(trans('admin.quick_search'))
                 ->auto(false);
         });
     }

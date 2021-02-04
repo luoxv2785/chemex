@@ -1,7 +1,7 @@
 <?php
 return [
     'labels' => [
-        'PartCategory' => '配件分类',
+        'PartCategory' => '配件',
         'categories' => '配件分类'
     ],
     'fields' => [

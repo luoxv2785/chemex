@@ -25,9 +25,9 @@ class ConsumableRecordController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add('耗材', $this->grid(), true);
-                $tab->addLink('分类', route('consumable.categories.index'));
-                $tab->addLink('记录', route('consumable.tracks.index'));
+                $tab->add(admin_trans_label('consumable-record.records'), $this->grid(), true);
+                $tab->addLink(admin_trans_label('consumable-category.categories'), route('consumable.categories.index'));
+                $tab->addLink(admin_trans_label('consumable-track.tracks'), route('consumable.tracks.index'));
                 $row->column(12, $tab);
             });
     }

@@ -1,7 +1,7 @@
 <?php
 return [
     'labels' => [
-        'StaffRecord' => '雇员',
+        'StaffRecord' => '组织',
         'Department' => '部门',
         'records' => '雇员'
     ],

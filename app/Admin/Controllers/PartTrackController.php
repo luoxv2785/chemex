@@ -26,9 +26,9 @@ class PartTrackController extends AdminController
             ->description($this->description()['index'] ?? trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(Data::icon('record') . '清单', route('part.records.index'));
-                $tab->addLink(Data::icon('category') . '分类', route('part.categories.index'));
-                $tab->add(Data::icon('track') . '归属', $this->grid(), true);
+                $tab->addLink(Data::icon('record') . trans('main.record'), route('part.records.index'));
+                $tab->addLink(Data::icon('category') . trans('main.record'), route('part.categories.index'));
+                $tab->add(Data::icon('track') . trans('main.track'), $this->grid(), true);
                 $row->column(12, $tab);
             });
     }
@@ -63,13 +63,13 @@ class PartTrackController extends AdminController
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->panel();
-                $filter->scope('history', '查看历史归属记录')->onlyTrashed();
+                $filter->scope('history', trans('main.history'))->onlyTrashed();
             });
 
             $grid->toolsWithOutline(false);
 
             $grid->quickSearch('id', 'part.name', 'device.name')
-                ->placeholder('试着搜索一下')
+                ->placeholder(trans('main.quick_search'))
                 ->auto(false);
         });
     }

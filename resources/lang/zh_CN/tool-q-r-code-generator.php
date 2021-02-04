@@ -1,11 +1,10 @@
 <?php
 return [
     'labels' => [
-        'Extension' => '平台配置',
-        'extensions' => '扩展',
+        'CheckRecord' => '盘点',
+        'qrcode_generator' => '二维码批量生成'
     ],
     'fields' => [
-
     ],
     'options' => [
     ],

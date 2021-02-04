@@ -26,9 +26,9 @@ class ServiceTrackController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink('服务', route('service.records.index'));
-                $tab->add('归属', $this->grid(), true);
-                $tab->addLink('异常', route('service.issues.index'));
+                $tab->addLink(Data::icon('record') . trans('main.record'), route('service.records.index'));
+                $tab->add(Data::icon('track') . trans('main.track'), $this->grid(), true);
+                $tab->addLink(Data::icon('issue') . trans('main.issue'), route('service.issues.index'));
                 $row->column(12, $tab);
             });
     }
@@ -64,11 +64,11 @@ class ServiceTrackController extends AdminController
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->panel();
-                $filter->scope('history', '查看历史归属记录')->onlyTrashed();
+                $filter->scope('history', trans('main.history'))->onlyTrashed();
             });
 
             $grid->quickSearch('id', 'service.name', 'device.name')
-                ->placeholder('试着搜索一下')
+                ->placeholder(trans('admin.quick_search'))
                 ->auto(false);
         });
     }

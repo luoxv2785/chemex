@@ -10,6 +10,8 @@ use App\Admin\Repositories\CheckRecord;
 use App\Models\AdminUser;
 use App\Models\CheckTrack;
 use App\Models\DeviceRecord;
+use App\Models\PartRecord;
+use App\Models\SoftwareRecord;
 use App\Services\CheckService;
 use App\Support\Data;
 use App\Support\Support;
@@ -41,8 +43,8 @@ class CheckRecordController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add('盘点任务', $this->grid(), true);
-                $tab->addLink('盘点追踪', route('check.tracks.index'));
+                $tab->add(admin_trans_label('check-record.records'), $this->grid(), true);
+                $tab->addLink(admin_trans_label('check-track.tracks'), route('check.tracks.index'));
                 $row->column(12, $tab);
             });
     }
@@ -89,7 +91,7 @@ class CheckRecordController extends AdminController
                     }
                 }
                 $report_url = route('export.check.report', ['check_id' => $this->id]);
-                $actions->append("<a href='$report_url' target='_blank'>✨ 生成报告</a>");
+                $actions->append("<a href='$report_url' target='_blank'>✨ " . trans('main.generate_report') . "</a>");
             });
 
             $grid->toolsWithOutline(false);
@@ -97,7 +99,7 @@ class CheckRecordController extends AdminController
             $grid->enableDialogCreate();
 
             $grid->quickSearch('id', 'user.name')
-                ->placeholder('试着搜索一下')
+                ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
             $grid->export();
@@ -121,12 +123,12 @@ class CheckRecordController extends AdminController
             $grid->column('item_id')->display(function ($item_id) {
                 $check = \App\Models\CheckRecord::where('id', $this->check_id)->first();
                 if (empty($check)) {
-                    return '任务状态异常';
+                    return trans('main.check_record_none');
                 } else {
                     $check_item = $check->check_item;
                     $item = Support::getItemRecordByClass($check_item, $item_id);
                     if (empty($item)) {
-                        return '物品状态异常';
+                        return trans('item_none');
                     } else {
                         return $item->name;
                     }
@@ -153,7 +155,7 @@ class CheckRecordController extends AdminController
             $grid->toolsWithOutline(false);
 
             $grid->quickSearch('id', 'check_id', 'checker.name')
-                ->placeholder('试着搜索一下')
+                ->placeholder(trans('quick_search'))
                 ->auto(false);
         });
 
@@ -235,7 +237,7 @@ class CheckRecordController extends AdminController
                     ->first();
                 if (!empty($check_record)) {
                     return $form->response()
-                        ->error('还有未完成的相同盘点内容，请先处理');
+                        ->error(trans('check_record_incomplete'));
                 }
             });
 
@@ -244,16 +246,10 @@ class CheckRecordController extends AdminController
                 $items = [];
                 switch ($form->check_item) {
                     case 'part':
-                        $class = "Celaraze\\Chemex\\Part\\Models\\PartRecord";
-                        if (class_exists($class)) {
-                            $items = $class::all();
-                        }
+                        $items = PartRecord::all();
                         break;
                     case 'software':
-                        $class = "Celaraze\\Chemex\\Software\\Models\\SoftwareRecord";
-                        if (class_exists($class)) {
-                            $items = $class::all();
-                        }
+                        $items = SoftwareRecord::all();
                         break;
                     default:
                         $items = DeviceRecord::all();

@@ -1,7 +1,7 @@
 <?php
 return [
     'labels' => [
-        'LDAP' => 'LDAP',
+        'LDAP' => '平台配置',
         'ldap' => 'LDAP'
     ],
     'fields' => [

@@ -27,9 +27,9 @@ class DeviceCategoryController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(Data::icon('record') . '清单', route('device.records.index'));
-                $tab->add(Data::icon('category') . '分类', $this->treeView(), true);
-                $tab->addLink(Data::icon('track') . '归属', route('device.tracks.index'));
+                $tab->addLink(Data::icon('record') . trans('main.record'), route('device.records.index'));
+                $tab->add(Data::icon('category') . trans('main.category'), $this->treeView(), true);
+                $tab->addLink(Data::icon('track') . trans('main.track'), route('device.tracks.index'));
                 $row->column(12, $tab);
             });
     }
@@ -67,7 +67,7 @@ class DeviceCategoryController extends AdminController
             $grid->enableDialogCreate();
 
             $grid->quickSearch('id', 'name', 'description')
-                ->placeholder('试着搜索一下')
+                ->placeholder(trans('main.quick_search'))
                 ->auto(false);
         });
     }
