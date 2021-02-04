@@ -48,12 +48,12 @@ class CheckTrackController extends AdminController
             $grid->column('item_id')->display(function ($item_id) {
                 $check = CheckRecord::where('id', $this->check_id)->first();
                 if (empty($check)) {
-                    return trans('main.check_record_none');
+                    return admin_trans_label('Record None');
                 } else {
                     $check_item = $check->check_item;
                     $item = Support::getItemRecordByClass($check_item, $item_id);
                     if (empty($item)) {
-                        return trans('main.item_none');
+                        return admin_trans_label('Item None');
                     } else {
                         return $item->name;
                     }

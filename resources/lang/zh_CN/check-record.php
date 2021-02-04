@@ -2,8 +2,12 @@
 return [
     'labels' => [
         'CheckRecord' => '盘点',
+        'records' => '盘点任务',
         'User' => '负责人',
-        'records' => '盘点任务'
+        'Report' => '生成报告',
+        'Record None' => '没有此盘点任务',
+        'Item None' => '没有此物资',
+        'Incomplete' => '还有未完成的相同盘点，请先处理'
     ],
     'fields' => [
         'check_item' => '盘点项目',

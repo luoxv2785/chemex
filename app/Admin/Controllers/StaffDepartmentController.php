@@ -21,7 +21,8 @@ class StaffDepartmentController extends AdminController
     {
         $q = $request->get('q');
 
-        return \App\Models\StaffDepartment::where('name', 'like', "%$q%")->paginate(null, ['id', 'name as text']);
+        return \App\Models\StaffDepartment::where('name', 'like', "%$q%")
+            ->paginate(null, ['id', 'name as text']);
     }
 
     public function index(Content $content): Content
@@ -31,8 +32,8 @@ class StaffDepartmentController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink('雇员', route('staff.records.index'));
-                $tab->add('部门', $this->treeView(), true);
+                $tab->addLink(admin_trans_label('Staff Record'), route('staff.records.index'));
+                $tab->add(admin_trans_label('Staff Department'), $this->treeView(), true);
                 $row->column(12, $tab);
             });
     }
@@ -70,7 +71,9 @@ class StaffDepartmentController extends AdminController
 
             $grid->toolsWithOutline(false);
 
-            $grid->quickSearch('id', 'name', 'description', 'parent.name');
+            $grid->quickSearch('id', 'name', 'description', 'parent.name')
+                ->placeholder(trans('main.quick_search'))
+                ->auto(false);
         });
     }
 

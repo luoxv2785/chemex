@@ -316,12 +316,12 @@ class DeviceRecordController extends AdminController
             $form->text('description');
 
             if (Support::ifSelectCreate()) {
-                $form->selectCreate('purchased_channel_id', admin_trans_label('Purchased Channel Id'))
+                $form->selectCreate('purchased_channel_id', admin_trans_label('Purchased Channel'))
                     ->options(PurchasedChannel::class)
                     ->ajax(route('selection.purchased.channels'))
                     ->url(route('purchased.channels.create'));
             } else {
-                $form->select('purchased_channel_id', admin_trans_label('Purchased Channel Id'))
+                $form->select('purchased_channel_id', admin_trans_label('Purchased Channel'))
                     ->options(PurchasedChannel::pluck('name', 'id'));
             }
 
@@ -331,29 +331,29 @@ class DeviceRecordController extends AdminController
             $form->image('photo')
                 ->autoUpload()
                 ->uniqueName()
-                ->help(trans('device_record_photo_help'));
+                ->help(admin_trans_label('Photo Help'));
             $form->currency('price');
             $form->date('purchased');
             $form->date('expired');
             $form->password('security_password')
-                ->help(trans('main.device_record_security_password_help'));
+                ->help(admin_trans_label('Security Password Help'));
             $form->password('admin_password')
-                ->help(trans('main.device_record_admin_password_help'));
+                ->help(admin_trans_label('Admin Password Help'));
 
             if (Support::ifSelectCreate()) {
-                $form->selectCreate('depreciation_rule_id', admin_trans_label('Depreciation Rule Id'))
+                $form->selectCreate('depreciation_rule_id', admin_trans_label('Depreciation Rule'))
                     ->options(DepreciationRule::class)
                     ->ajax(route('selection.depreciation.rules'))
                     ->url(route('depreciation.rules.create'))
-                    ->help(trans('main.device_record_depreciation_rule_id_help'));
+                    ->help(admin_trans_label('Depreciation Rule Help'));
             } else {
-                $form->select('depreciation_rule_id', admin_trans_label('Depreciation Rule Id'))
+                $form->select('depreciation_rule_id', admin_trans_label('Depreciation Rule'))
                     ->options(DepreciationRule::pluck('name', 'id'))
-                    ->help(trans('main.device_record_depreciation_rule_id_help'));
+                    ->help(admin_trans_label('Depreciation Rule Help'));
             }
 
             $form->text('location')
-                ->help(trans('main.location_help'));
+                ->help(admin_trans_label('Location Help'));
             $form->display('created_at');
             $form->display('updated_at');
 

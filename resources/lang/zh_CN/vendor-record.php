@@ -2,7 +2,7 @@
 return [
     'labels' => [
         'VendorRecord' => '厂商',
-        'records' => '厂商'
+        'records' => '厂商',
     ],
     'fields' => [
         'name_chs' => '中文名',

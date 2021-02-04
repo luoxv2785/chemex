@@ -2,13 +2,22 @@
 return [
     'labels' => [
         'DeviceRecord' => '设备',
+        'records' => '设备',
         'Category' => '分类',
         'Vendor' => '厂商',
-        'Purchased Channel Id' => '购入途径',
+        'Purchased Channel' => '购入途径',
         'Expiration Left Days' => '保固剩余天数',
-        'records' => '设备',
-        'Depreciation Rule Id' => '折旧规则',
-        'Depreciation Price' => '折旧价格'
+        'Depreciation Rule' => '折旧规则',
+        'Depreciation Price' => '折旧价格',
+        'Current Staff' => '当前使用者',
+        'Photo Help' => '可以选择提供一张设备的照片作为概览。',
+        'Security Password Help' => '安全密码，可以代表BIOS密码等。',
+        'Admin Password Help' => '管理员密码，可以代表计算机管理员账户密码以及打印机管理员密码等。',
+        'Depreciation Rule Help' => '设备记录的折旧规则将优先于其分类所指定的折旧规则。',
+        'Location Help' => '记录存放位置，例如某个货架、某个抽屉。',
+        'Batch Delete' => '批量删除设备',
+        'Batch Delete Confirm' => '您确定要删除选中的设备吗？',
+        'Batch Delete Success' => '批量删除设备成功！'
     ],
     'fields' => [
         'qrcode' => '二维码',

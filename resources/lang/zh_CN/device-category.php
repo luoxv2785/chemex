@@ -4,7 +4,7 @@ return [
         'DeviceCategory' => '设备',
         'categories' => '设备分类',
         'Parent' => '父级分类',
-        'Depreciation Rule Id' => '折旧规则'
+        'Depreciation Rule' => '折旧规则'
     ],
     'fields' => [
         'name' => '名称',

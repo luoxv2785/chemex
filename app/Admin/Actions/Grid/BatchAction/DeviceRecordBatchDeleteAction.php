@@ -9,14 +9,16 @@ use Dcat\Admin\Grid\BatchAction;
 
 class DeviceRecordBatchDeleteAction extends BatchAction
 {
-    protected $action;
-
-    protected $title = '🔨 批量删除设备';
+    public function __construct($title = null)
+    {
+        parent::__construct($title);
+        $this->title = '🔨 ' . admin_trans_label('Batch Delete');
+    }
 
     // 确认弹窗信息
     public function confirm(): string
     {
-        return '您确定要删除选中的设备吗？';
+        return admin_trans_label('Batch Delete Confirm');
     }
 
     // 处理请求
@@ -24,7 +26,7 @@ class DeviceRecordBatchDeleteAction extends BatchAction
     {
         if (!Admin::user()->can('device.batch.delete')) {
             return $this->response()
-                ->error('你没有权限执行此操作！')
+                ->error(trans('main.unauthorized'))
                 ->refresh();
         }
 
@@ -35,6 +37,6 @@ class DeviceRecordBatchDeleteAction extends BatchAction
             DeviceService::deviceDelete($key);
         }
 
-        return $this->response()->success('批量删除设备成功！')->refresh();
+        return $this->response()->success(admin_trans_label('Batch Delete Success'))->refresh();
     }
 }

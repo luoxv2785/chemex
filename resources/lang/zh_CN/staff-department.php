@@ -3,7 +3,9 @@ return [
     'labels' => [
         'StaffDepartment' => '组织',
         'Parent' => '父级部门',
-        'departments' => '部门'
+        'departments' => '部门',
+        'Staff Record' => '雇员',
+        'Staff Department' => '部门',
     ],
     'fields' => [
         'name' => '名称',

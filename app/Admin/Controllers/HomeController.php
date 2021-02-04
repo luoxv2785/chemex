@@ -36,7 +36,7 @@ class HomeController extends Controller
                             $user = AdminUser::where('id', auth('admin')->id())->first();
                             $notifications = $user->notifications;
                             $notifications = json_decode($notifications, true);
-                            $column->row(new Card(trans('main.my_todo'), view('todo')->with('notifications', $notifications)));
+                            $column->row(new Card(admin_trans_label('My Todo'), view('todo')->with('notifications', $notifications)));
                             $column->row(new WorthTrend());
                             $column->row(new MaintenanceTrend());
                             $column->row(new IssueTrend());
@@ -55,7 +55,7 @@ class HomeController extends Controller
                                 $row->column(3, new ServiceIssueCounts());
                             });
                             $services = Support::getServiceIssueStatus();
-                            $column->row(new Card(trans('main.service_status'), view('services_dashboard')->with('services', $services)));
+                            $column->row(new Card(admin_trans_label('Service Status'), view('services_dashboard')->with('services', $services)));
                         });
                     });
                 });

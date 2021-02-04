@@ -74,8 +74,8 @@ class ServiceIssueController extends AdminController
 
             $grid->selector(function (Selector $selector) {
                 $selector->select('status', [
-                    1 => trans('service_issue_status_ng'),
-                    2 => trans('service_issue_status_ok')
+                    1 => admin_trans_label('Status NG'),
+                    2 => admin_trans_label('Status OK')
                 ]);
             });
 

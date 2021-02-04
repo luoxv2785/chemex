@@ -22,14 +22,14 @@ class VersionController extends Controller
     public function index(Content $content): Content
     {
         $version = config('admin.chemex_version');
-        $description = Version::list()['yirgacheffe'];
+        $description = Version::list()['gesha'];
 
         return $content
-            ->header('版本')
-            ->description('列出了与咖啡壶相关的版本信息')
+            ->header(admin_trans_label('Version'))
+            ->description(admin_trans_label('Description'))
             ->body(function (Row $row) use ($version, $description) {
                 $row->column(3, function (Column $column) use ($version) {
-                    $column->row(new Card('当前版本', $version));
+                    $column->row(new Card(admin_trans_label('Current Version'), $version));
                 });
                 $row->column(9, function (Column $column) use ($version, $description) {
                     $column->row(new Card($description['name'], $description['description']));
@@ -47,12 +47,12 @@ class VersionController extends Controller
         if ($result) {
             $return = response()->json([
                 'code' => 200,
-                'message' => '更新数据库结构成功'
+                'message' => admin_trans_label('Migrate Success')
             ]);
         } else {
             $return = response()->json([
                 'code' => 500,
-                'message' => '更新数据库结构失败'
+                'message' => admin_trans_label('Migrate Fail')
             ]);
         }
         return response()->json($return);
@@ -68,12 +68,12 @@ class VersionController extends Controller
         if ($result) {
             $return = response()->json([
                 'code' => 200,
-                'message' => '缓存清理成功'
+                'message' => admin_trans_label('Clear Success')
             ]);
         } else {
             $return = response()->json([
                 'code' => 500,
-                'message' => '缓存清理失败'
+                'message' => admin_trans_label('Clear Fail')
             ]);
         }
         return response()->json($return);

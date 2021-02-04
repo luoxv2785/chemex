@@ -26,9 +26,9 @@ class SoftwareTrackController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(Data::icon('record') . '清单', route('software.records.index'));
-                $tab->addLink(Data::icon('category') . '分类', route('software.tracks.index'));
-                $tab->add(Data::icon('track') . '归属', $this->grid(), true);
+                $tab->addLink(Data::icon('record') . trans('main.record'), route('software.records.index'));
+                $tab->addLink(Data::icon('category') . trans('main.category'), route('software.tracks.index'));
+                $tab->add(Data::icon('track') . trans('main.track'), $this->grid(), true);
                 $row->column(12, $tab);
             });
     }
@@ -61,12 +61,12 @@ class SoftwareTrackController extends AdminController
             });
 
             $grid->quickSearch('id', 'software.name', 'device.name')
-                ->placeholder('试着搜索一下')
+                ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->panel();
-                $filter->scope('history', '查看历史归属记录')->onlyTrashed();
+                $filter->scope('history', trans('main.history'))->onlyTrashed();
             });
 
             $grid->toolsWithOutline(false);

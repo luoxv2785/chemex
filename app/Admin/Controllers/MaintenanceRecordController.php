@@ -63,9 +63,9 @@ class MaintenanceRecordController extends AdminController
 
             $grid->selector(function (Selector $selector) {
                 $selector->select('status', [
-                    0 => trans('main.maintenance_record_status_waiting'),
-                    1 => trans('main.maintenance_record_status_done'),
-                    2 => trans('main.maintenance_record_status_cancelled')
+                    0 => admin_trans_label('Status Waiting'),
+                    1 => admin_trans_label('Status Done'),
+                    2 => admin_trans_label('Status Cancelled')
                 ]);
             });
 

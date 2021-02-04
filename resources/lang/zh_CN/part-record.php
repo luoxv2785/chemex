@@ -3,10 +3,14 @@ return [
     'labels' => [
         'PartRecord' => '配件',
         'records' => '配件',
-        'Category Id' => '分类',
-        'Vendor Id' => '厂商',
-        'Purchased Channel Id' => '购入途径',
-        'Depreciation Rule Id' => '折旧规则'
+        'Category' => '分类',
+        'Vendor' => '厂商',
+        'Purchased Channel' => '购入途径',
+        'Depreciation Rule' => '折旧规则',
+        'Location Help' => '记录存放位置，例如某个货架、某个抽屉。',
+        'Batch Delete' => '批量删除配件',
+        'Batch Delete Confirm' => '您确定要删除选中的配件吗？',
+        'Batch Delete Success' => '批量删除配件成功！'
     ],
     'fields' => [
         'qrcode' => '二维码',

@@ -16,7 +16,8 @@ class DepreciationRuleController extends AdminController
     {
         $q = $request->get('q');
 
-        return \App\Models\DepreciationRule::where('name', 'like', "%$q%")->paginate(null, ['id', 'name as text']);
+        return \App\Models\DepreciationRule::where('name', 'like', "%$q%")
+            ->paginate(null, ['id', 'name as text']);
     }
 
     /**
@@ -71,7 +72,7 @@ class DepreciationRuleController extends AdminController
             $form->display('id');
             $form->text('name')->required();
             $form->text('description')
-                ->help(trans('main.depreciation_rule_description_help'));
+                ->help(admin_trans_label('Description Help'));
             $form->table('rules', function (NestedForm $table) {
                 $table->number('number')
                     ->min(0)
@@ -84,11 +85,11 @@ class DepreciationRuleController extends AdminController
                     ])
                     ->required();
                 $table->currency('ratio')
-                    ->symbol(trans('main.depreciation_rule_rules_symbol'))
+                    ->symbol(admin_trans_label('Rules Symbol'))
                     ->required();
             });
             $form->date('termination')
-                ->help(trans('main.depreciation_rule_termination_help'));
+                ->help(admin_trans_label('Termination Help'));
 
             $form->display('created_at');
             $form->display('updated_at');

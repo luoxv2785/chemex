@@ -3,8 +3,8 @@ return [
     'labels' => [
         'ConsumableRecord' => '耗材',
         'records' => '耗材',
-        'Category Id' => '分类',
-        'Vendor Id' => '厂商'
+        'Category' => '分类',
+        'Vendor' => '厂商'
 
     ],
     'fields' => [

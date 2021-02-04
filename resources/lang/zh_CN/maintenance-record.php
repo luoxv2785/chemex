@@ -2,7 +2,10 @@
 return [
     'labels' => [
         'MaintenanceRecord' => '物资故障',
-        'records' => '物资故障'
+        'records' => '物资故障',
+        'Status Waiting' => '等待处理',
+        'Status Done' => '完成',
+        'Status Cancelled' => '取消',
     ],
     'fields' => [
         'item' => '物品类型',

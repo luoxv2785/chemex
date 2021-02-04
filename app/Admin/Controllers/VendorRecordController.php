@@ -17,7 +17,8 @@ class VendorRecordController extends AdminController
     {
         $q = $request->get('q');
 
-        return \App\Models\VendorRecord::where('name', 'like', "%$q%")->paginate(null, ['id', 'name as text']);
+        return \App\Models\VendorRecord::where('name', 'like', "%$q%")
+            ->paginate(null, ['id', 'name as text']);
     }
 
     /**
@@ -34,7 +35,7 @@ class VendorRecordController extends AdminController
             $grid->column('location');
 
             $grid->quickSearch('id', 'name', 'description', 'location')
-                ->placeholder('试着搜索一下')
+                ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
             $grid->disableRowSelector();

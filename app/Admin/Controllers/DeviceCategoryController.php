@@ -46,7 +46,8 @@ class DeviceCategoryController extends AdminController
     public function selectList(Request $request)
     {
         $q = $request->get('q');
-        return \App\Models\DeviceCategory::where('name', 'like', "%$q%")->paginate(null, ['id', 'name as text']);
+        return \App\Models\DeviceCategory::where('name', 'like', "%$q%")
+            ->paginate(null, ['id', 'name as text']);
     }
 
     /**
@@ -115,12 +116,12 @@ class DeviceCategoryController extends AdminController
             }
 
             if (Support::ifSelectCreate()) {
-                $form->selectCreate('depreciation_rule_id', admin_trans_label('Depreciation Rule Id'))
+                $form->selectCreate('depreciation_rule_id', admin_trans_label('Depreciation Rule'))
                     ->options(DepreciationRule::class)
                     ->ajax(route('selection.depreciation.rules'))
                     ->url(route('depreciation.rules.create'));
             } else {
-                $form->select('depreciation_rule_id', admin_trans_label('Depreciation Rule Id'))
+                $form->select('depreciation_rule_id', admin_trans_label('Depreciation Rule'))
                     ->options(DepreciationRule::pluck('name', 'id'));
             }
 

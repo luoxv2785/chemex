@@ -187,13 +187,13 @@ class PartRecordController extends AdminController
             $form->text('name')->required();
 
             if (Support::ifSelectCreate()) {
-                $form->selectCreate('category_id', admin_trans_label('Category Id'))
+                $form->selectCreate('category_id', admin_trans_label('Category'))
                     ->options(PartCategory::class)
                     ->ajax(route('selection.part.categories'))
                     ->url(route('part.categories.create'))
                     ->required();
             } else {
-                $form->select('category_id', admin_trans_label('Category Id'))
+                $form->select('category_id', admin_trans_label('Category'))
                     ->options(PartCategory::selectOptions())
                     ->required();
             }
@@ -201,13 +201,13 @@ class PartRecordController extends AdminController
             $form->text('specification')->required();
 
             if (Support::ifSelectCreate()) {
-                $form->selectCreate('vendor_id', admin_trans_label('Vendor Id'))
+                $form->selectCreate('vendor_id', admin_trans_label('Vendor'))
                     ->options(VendorRecord::class)->ajax(route('selection.vendor.records'))
                     ->ajax(route('selection.vendor.records'))
                     ->url(route('vendor.records.create'))
                     ->required();
             } else {
-                $form->select('vendor_id', admin_trans_label('Vendor Id'))
+                $form->select('vendor_id', admin_trans_label('Vendor'))
                     ->options(VendorRecord::pluck('name', 'id'))
                     ->required();
             }
@@ -217,13 +217,13 @@ class PartRecordController extends AdminController
             $form->text('description');
 
             if (Support::ifSelectCreate()) {
-                $form->selectCreate('purchased_channel_id', admin_trans_label('Purchased Channel Id'))
+                $form->selectCreate('purchased_channel_id', admin_trans_label('Purchased Channel'))
                     ->options(PurchasedChannel::class)->ajax(route('selection.purchased.channels'))
                     ->ajax(route('selection.purchased.channels'))
                     ->url(route('purchased.channels.create'))
                     ->required();
             } else {
-                $form->select('purchased_channel_id', admin_trans_label('Purchased Channel Id'))
+                $form->select('purchased_channel_id', admin_trans_label('Purchased Channel'))
                     ->options(PurchasedChannel::pluck('name', 'id'));
             }
 
@@ -233,18 +233,18 @@ class PartRecordController extends AdminController
             $form->date('expired');
 
             if (Support::ifSelectCreate()) {
-                $form->selectCreate('depreciation_rule_id', admin_trans_label('Depreciation Rule Id'))
+                $form->selectCreate('depreciation_rule_id', admin_trans_label('Depreciation Rule'))
                     ->options(DepreciationRule::class)
                     ->ajax(route('selection.depreciation.rules'))
                     ->url(route('depreciation.rules.create'))
                     ->required();
             } else {
-                $form->select('depreciation_rule_id', admin_trans_label('Depreciation Rule Id'))
+                $form->select('depreciation_rule_id', admin_trans_label('Depreciation Rule'))
                     ->options(DepreciationRule::pluck('name', 'id'));
             }
 
             $form->text('location')
-                ->help(trans('main.location_help'));
+                ->help(admin_trans_label('Location Help'));
 
             $form->display('created_at');
             $form->display('updated_at');

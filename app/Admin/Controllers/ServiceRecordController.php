@@ -115,7 +115,7 @@ class ServiceRecordController extends AdminController
             $form->text('description');
             $form->switch('status')
                 ->default(0)
-                ->help(trans('service_record_status_help'));
+                ->help(admin_trans_label('Status Help'));
 
             $form->display('created_at');
             $form->display('updated_at');

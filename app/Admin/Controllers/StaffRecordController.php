@@ -32,8 +32,8 @@ class StaffRecordController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add('雇员', $this->grid(), true);
-                $tab->addLink('部门', route('staff.departments.index'));
+                $tab->add(admin_trans_label('Staff Record'), $this->grid(), true);
+                $tab->addLink(admin_trans_label('Staff Department'), route('staff.departments.index'));
                 $row->column(12, $tab);
             });
     }
@@ -80,7 +80,7 @@ class StaffRecordController extends AdminController
             ]);
 
             $grid->quickSearch('id', 'name', 'department.name', 'gender', 'title', 'mobile', 'email')
-                ->placeholder('试着搜索一下')
+                ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
             $grid->export();
@@ -91,7 +91,8 @@ class StaffRecordController extends AdminController
     {
         $q = $request->get('q');
 
-        return \App\Models\StaffRecord::where('name', 'like', "%$q%")->paginate(null, ['id', 'name as text']);
+        return \App\Models\StaffRecord::where('name', 'like', "%$q%")
+            ->paginate(null, ['id', 'name as text']);
     }
 
     /**

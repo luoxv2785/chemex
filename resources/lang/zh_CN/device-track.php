@@ -2,7 +2,8 @@
 return [
     'labels' => [
         'DeviceTrack' => '设备',
-        'tracks' => '设备归属记录'
+        'tracks' => '设备归属记录',
+        'History Scope' => '查看历史归属记录',
     ],
     'fields' => [
         'device' => [

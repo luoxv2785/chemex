@@ -2,7 +2,9 @@
 return [
     'labels' => [
         'CheckTrack' => '盘点',
-        'tracks' => '盘点记录'
+        'tracks' => '盘点记录',
+        'Record None' => '没有此盘点任务',
+        'Item None' => '没有此物资',
     ],
     'fields' => [
         'check_id' => '任务ID',

@@ -18,11 +18,11 @@ class ToolChemexAppController extends Controller
     public function index(Content $content): Content
     {
         return $content
-            ->header('Chemex客户端')
-            ->description('用于移动端查询、盘点的客户端工具')
+            ->header(admin_trans_label('ChemexApp'))
+            ->description(admin_trans_label('Description'))
             ->body(function (Row $row) {
                 $row->column(12, function (Column $column) {
-                    $column->row(new Card('第一步', view('tool_chemex_app.download')));
+                    $column->row(new Card(admin_trans_label('Step One'), view('tool_chemex_app.download')));
                 });
             });
     }

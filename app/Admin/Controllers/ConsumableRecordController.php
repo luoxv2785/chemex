@@ -7,6 +7,7 @@ use App\Admin\Actions\Grid\ToolAction\ConsumableOutAction;
 use App\Admin\Repositories\ConsumableRecord;
 use App\Models\ConsumableCategory;
 use App\Models\VendorRecord;
+use App\Support\Data;
 use App\Support\Support;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
@@ -25,9 +26,9 @@ class ConsumableRecordController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add(admin_trans_label('consumable-record.records'), $this->grid(), true);
-                $tab->addLink(admin_trans_label('consumable-category.categories'), route('consumable.categories.index'));
-                $tab->addLink(admin_trans_label('consumable-track.tracks'), route('consumable.tracks.index'));
+                $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
+                $tab->addLink(Data::icon('record') . trans('main.record'), route('consumable.categories.index'));
+                $tab->addLink(Data::icon('record') . trans('main.record'), route('consumable.tracks.index'));
                 $row->column(12, $tab);
             });
     }
@@ -100,13 +101,11 @@ class ConsumableRecordController extends AdminController
             $form->text('description');
             $form->text('specification')
                 ->required();
-            $form->select('category_id', admin_trans_label('Category Id'))
-                ->options(ConsumableCategory::all()
-                    ->pluck('name', 'id'))
+            $form->select('category_id', admin_trans_label('Category'))
+                ->options(ConsumableCategory::pluck('name', 'id'))
                 ->required();
-            $form->select('vendor_id', admin_trans_label('Vendor Id'))
-                ->options(VendorRecord::all()
-                    ->pluck('name', 'id'))
+            $form->select('vendor_id', admin_trans_label('Vendor'))
+                ->options(VendorRecord::pluck('name', 'id'))
                 ->required();
             $form->text('price');
 

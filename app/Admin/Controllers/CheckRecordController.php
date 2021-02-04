@@ -91,7 +91,7 @@ class CheckRecordController extends AdminController
                     }
                 }
                 $report_url = route('export.check.report', ['check_id' => $this->id]);
-                $actions->append("<a href='$report_url' target='_blank'>✨ " . trans('main.generate_report') . "</a>");
+                $actions->append("<a href='$report_url' target='_blank'>✨ " . admin_trans_label('Report') . "</a>");
             });
 
             $grid->toolsWithOutline(false);
@@ -123,12 +123,12 @@ class CheckRecordController extends AdminController
             $grid->column('item_id')->display(function ($item_id) {
                 $check = \App\Models\CheckRecord::where('id', $this->check_id)->first();
                 if (empty($check)) {
-                    return trans('main.check_record_none');
+                    return admin_trans_label('Record None');
                 } else {
                     $check_item = $check->check_item;
                     $item = Support::getItemRecordByClass($check_item, $item_id);
                     if (empty($item)) {
-                        return trans('item_none');
+                        return admin_trans_label('Item None');
                     } else {
                         return $item->name;
                     }
@@ -237,7 +237,7 @@ class CheckRecordController extends AdminController
                     ->first();
                 if (!empty($check_record)) {
                     return $form->response()
-                        ->error(trans('check_record_incomplete'));
+                        ->error(admin_trans_label('Incomplete'));
                 }
             });
 

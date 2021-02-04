@@ -99,7 +99,7 @@ class SoftwareRecordController extends AdminController
                 }
                 if (Admin::user()->can('software.track.list')) {
                     $tracks_route = route('software.tracks.index', ['_search_' => $this->id]);
-                    $actions->append("<a href='$tracks_route'>💿 " . trans('software_record_track_action') . "</a>");
+                    $actions->append("<a href='$tracks_route'>💿 " . admin_trans_label('Manage Track') . "</a>");
                 }
             });
 
@@ -175,9 +175,9 @@ class SoftwareRecordController extends AdminController
                                 }
                             });
                         });
-                        $column->row(new Card(trans('main.software_record_track_title'), $grid));
-                        $card = new Card(trans('main.software_record_history_title'), view('history')->with('data', $history));
-                        $column->row($card->tool('<a class="btn btn-primary btn-xs" href="' . route('export.software.history', $id) . '" target="_blank">' . trans('main.export_to_excel') . '</a>'));
+                        $column->row(new Card(admin_trans_label('Track Card Title'), $grid));
+                        $card = new Card(admin_trans_label('History Card Title'), view('history')->with('data', $history));
+                        $column->row($card->tool('<a class="btn btn-primary btn-xs" href="' . route('export.software.history', $id) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>'));
                     });
                 }
             });
@@ -268,7 +268,7 @@ class SoftwareRecordController extends AdminController
                 ->min(-1)
                 ->default(1)
                 ->required()
-                ->help(trans('main.software_record_counts_help'));
+                ->help(admin_trans_label('Counts Help'));
             $form->divider();
             $form->text('sn');
             $form->text('description');
@@ -288,7 +288,7 @@ class SoftwareRecordController extends AdminController
             $form->date('purchased');
             $form->date('expired');
             $form->text('location')
-                ->help(trans('main.location_help'));
+                ->help(admin_trans_label('Location Help'));
 
             $form->display('created_at');
             $form->display('updated_at');
