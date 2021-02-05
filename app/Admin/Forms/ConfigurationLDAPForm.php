@@ -18,7 +18,7 @@ class ConfigurationLDAPForm extends Form
         admin_setting($input);
         return $this
             ->response()
-            ->success('LDAP配置更新成功！')
+            ->success(admin_trans_label('Configuration Success'))
             ->refresh();
     }
 
@@ -31,23 +31,23 @@ class ConfigurationLDAPForm extends Form
             ->default(admin_setting('ad_enabled'));
         $this->divider();
         $this->text('ad_host_primary')
-            ->help('域控主机的域名地址或者ip地址。')
+            ->help(admin_trans_label('Host Primary Help'))
             ->required()
             ->default(admin_setting('ad_host_primary'));
         $this->text('ad_host_secondary')
-            ->help('域控主机的域名地址或者ip地址，这是一个备用地址，如果主域控无法连接，将自动选择备域控。')
+            ->help(admin_trans_label('Host Secondary Help'))
             ->default(admin_setting('ad_host_secondary'));
         $this->number('ad_port_primary')
-            ->help('主域控服务的端口号。')
+            ->help(admin_trans_label('Port Primary Help'))
             ->max(65535)
             ->required()
             ->default(admin_setting('ad_port_primary'));
         $this->number('ad_port_secondary')
-            ->help('备域控服务的端口号。')
+            ->help(admin_trans_label('Port Secondary Help'))
             ->max(65535)
             ->default(admin_setting('ad_port_secondary'));
         $this->text('ad_base_dn')
-            ->help('域控的起始域名，格式请按照 dc=corp,dc=acme,dc=org 填写。')
+            ->help(admin_trans_label('Base DN'))
             ->required()
             ->default(admin_setting('ad_base_dn'));
         $this->text('ad_username')
@@ -62,15 +62,22 @@ class ConfigurationLDAPForm extends Form
             ->default(admin_setting('ad_use_tls'));
         $this->divider();
         $this->switch('ad_login')
-            ->help('域登录将优先于传统登录。')
+            ->help(admin_trans_label('Login'))
             ->default(admin_setting('ad_login'));
         $this->email('ad_bind_administrator')
-            ->help('指定的域账户将作为咖啡壶的管理员角色。')
+            ->help(admin_trans_label('Bind Administrator'))
             ->required()
             ->default(admin_setting('ad_bind_administrator'));
         $this->html(function () {
+            $test_connection = admin_trans_label('Test Connection');
+            $connect_success = admin_trans_label('Connect Success');
+            $connect_missing_password = admin_trans_label('Connect Missing Password');
+            $connect_missing_username = admin_trans_label('Connect Missing Username');
+            $ldap_disabled = admin_trans_label('LDAP Disabled');
+            $connect_fail = admin_trans_label('Connect Fail');
+            $connect_error = admin_trans_label('Connect Error');
             return <<<HTML
-<a class='btn btn-success' style='color: #FFFFFF;' onclick="test()">测试连接（请先保存配置）</a>
+<a class='btn btn-success' style='color: #FFFFFF;' onclick="test()">{$test_connection}</a>
 <script>
 function test(){
     $.ajax({
@@ -79,29 +86,29 @@ function test(){
                 res *=1;
                 switch (res){
                     case 1:
-                        Dcat.success('连接LDAP服务器验证成功！');
+                        Dcat.success("{$connect_success}");
                     break;
                     case -1:
-                        Dcat.error('缺失必要的密码！');
+                        Dcat.error("{$connect_missing_password}");
                     break;
                     case -2:
-                        Dcat.error('缺失必要的用户名！');
+                        Dcat.error("{$connect_missing_username}");
                     break;
                     case -3:
-                        Dcat.error('LDAP未启用！');
+                        Dcat.error("{$ldap_disabled}");
                     break;
                     default:
-                        Dcat.error('连接失败，请确认配置信息！');
+                        Dcat.error("{$connect_fail}");
                 }
             },
             error: function (res) {
                 console.log(res);
-                Dcat.error('执行错误：' + res);
+                Dcat.error("{$connect_error}" + res);
             }
         });
 }
 </script>
 HTML;
-        })->help('请先保存配置后进行连接测试。');
+        })->help(admin_trans_label('Test Connection Help'));
     }
 }

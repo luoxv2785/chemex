@@ -23,13 +23,13 @@ class ConsumableOutForm extends Form
         $staff_id = $input['staff_id'] ?? null;
         if (empty($consumable_record_id) || empty($number) || empty($staff_id)) {
             return $this->response()
-                ->error('缺少必要的字段！');
+                ->error(trans('main.parameter_missing'));
         }
         try {
             $consumable_track = ConsumableTrack::where('consumable_id', $consumable_record_id)->first();
             if (empty($consumable_track)) {
                 return $this->response()
-                    ->error('没有此条记录！');
+                    ->error(admin_trans_label('Track None'));
             } else {
                 $new_consumable_track = $consumable_track->replicate();
                 $new_consumable_track->number -= $number;
@@ -40,12 +40,12 @@ class ConsumableOutForm extends Form
                 $consumable_track->delete();
             }
             $return = $this->response()
-                ->success('成功！')
+                ->success(admin_trans_label('Out Success'))
                 ->refresh();
         } catch (Exception $e) {
             $return = $this
                 ->response()
-                ->error('失败：' . $e->getMessage());
+                ->error(admin_trans_label('Out Fail') . $e->getMessage());
         }
 
         return $return;

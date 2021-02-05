@@ -23,7 +23,7 @@ class ConsumableInForm extends Form
         $expired = $input['expired'] ?? null;
         if (empty($consumable_record_id) || empty($number)) {
             return $this->response()
-                ->error('缺少必要的字段！');
+                ->error(trans('main.parameter_missing'));
         }
         try {
             $consumable_track = ConsumableTrack::where('consumable_id', $consumable_record_id)->first();
@@ -47,12 +47,12 @@ class ConsumableInForm extends Form
                 $consumable_track->delete();
             }
             $return = $this->response()
-                ->success('成功！')
+                ->success(admin_trans_label('In Success'))
                 ->refresh();
         } catch (Exception $e) {
             $return = $this
                 ->response()
-                ->error('失败：' . $e->getMessage());
+                ->error(admin_trans_label('In Success') . $e->getMessage());
         }
 
         return $return;

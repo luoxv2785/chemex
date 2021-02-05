@@ -22,7 +22,7 @@ class CheckTrackUpdateForm extends Form implements LazyRenderable
     {
         if (!Admin::user()->can('check.track.update')) {
             return $this->response()
-                ->error('你没有权限执行此操作！')
+                ->error(trans('main.unauthorized'))
                 ->refresh();
         }
 
@@ -38,13 +38,13 @@ class CheckTrackUpdateForm extends Form implements LazyRenderable
         // 如果没有盘点id返回错误
         if (!$track_id || !$status) {
             return $this->response()
-                ->error('参数错误');
+                ->error(trans('main.parameter_missing'));
         }
 
         $check_track = CheckTrack::where('id', $track_id)->first();
         if (empty($check_track)) {
             return $this->response()
-                ->error('没有找到此盘点追踪');
+                ->error(admin_trans_label('Track None'));
         } else {
             $check_track->status = $status;
             $check_track->description = $description;
@@ -53,7 +53,7 @@ class CheckTrackUpdateForm extends Form implements LazyRenderable
         }
 
         return $this->response()
-            ->success('盘点操作成功')
+            ->success(admin_trans_label('Track Success'))
             ->refresh();
     }
 
@@ -62,10 +62,10 @@ class CheckTrackUpdateForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        $this->radio('status', '盘点状态')
-            ->options([1 => '盘到啦', 2 => '没盘到'])
+        $this->radio('status')
+            ->options([1 => admin_trans_label('Check Yes'), 2 => admin_trans_label('Check No')])
             ->default(1)
             ->required();
-        $this->textarea('description', '描述');
+        $this->textarea('description');
     }
 }
