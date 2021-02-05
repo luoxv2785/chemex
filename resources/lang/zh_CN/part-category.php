@@ -2,7 +2,8 @@
 return [
     'labels' => [
         'PartCategory' => '配件',
-        'categories' => '配件分类'
+        'categories' => '配件分类',
+        'Import' => '导入'
     ],
     'fields' => [
         'name' => '名称',

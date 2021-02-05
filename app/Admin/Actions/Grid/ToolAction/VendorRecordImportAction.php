@@ -8,7 +8,11 @@ use Dcat\Admin\Widgets\Modal;
 
 class VendorRecordImportAction extends AbstractTool
 {
-    protected $title = '导入';
+    public function __construct($title = null)
+    {
+        parent::__construct($title);
+        $this->title = admin_trans_label('Import');
+    }
 
     /**
      * 渲染模态框

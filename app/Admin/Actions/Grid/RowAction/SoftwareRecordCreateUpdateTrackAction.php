@@ -7,9 +7,14 @@ use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\RowAction;
 use Dcat\Admin\Widgets\Modal;
 
-class SoftwareTrackCreateUpdateAction extends RowAction
+class SoftwareRecordCreateUpdateTrackAction extends RowAction
 {
-    protected $title = '💻 归属到设备';
+
+    public function __construct($title = null)
+    {
+        parent::__construct($title);
+        $this->title = '💻 ' . admin_trans_label('Track Create Update');
+    }
 
     /**
      * 渲染模态框
@@ -18,7 +23,7 @@ class SoftwareTrackCreateUpdateAction extends RowAction
     public function render()
     {
         if (!Admin::user()->can('software.track.create_update')) {
-            return '你没有权限执行此操作！';
+            return trans('main.unauthorized');
         }
 
         // 实例化表单类并传递自定义参数
@@ -26,7 +31,7 @@ class SoftwareTrackCreateUpdateAction extends RowAction
 
         return Modal::make()
             ->lg()
-            ->title('将 ' . $this->getRow()->name . ' 归属到设备')
+            ->title(admin_trans_label('Track Create Update'))
             ->body($form)
             ->button($this->title);
     }

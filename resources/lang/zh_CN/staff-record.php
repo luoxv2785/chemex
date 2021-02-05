@@ -8,7 +8,12 @@ return [
         'Staff Department' => '部门',
         'Batch Delete' => '批量删除雇员',
         'Batch Delete Confirm' => '您确定要删除选中的雇员吗？',
-        'Batch Delete Success' => '批量删除雇员成功！'
+        'Batch Delete Success' => '批量删除雇员成功！',
+        'Delete' => '删除雇员',
+        'Delete Success' => '成功删除雇员！',
+        'Delete Confirm' => '确认删除？',
+        'Delete Confirm Description' => '删除的同时将会解除所有与之关联的归属关系',
+        'Import' => '导入'
     ],
     'fields' => [
         'name' => '名称',

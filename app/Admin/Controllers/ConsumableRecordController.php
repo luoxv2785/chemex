@@ -27,8 +27,8 @@ class ConsumableRecordController extends AdminController
             ->body(function (Row $row) {
                 $tab = new Tab();
                 $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
-                $tab->addLink(Data::icon('record') . trans('main.record'), route('consumable.categories.index'));
-                $tab->addLink(Data::icon('record') . trans('main.record'), route('consumable.tracks.index'));
+                $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('consumable.categories.index'));
+                $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('consumable.tracks.index'));
                 $row->column(12, $tab);
             });
     }

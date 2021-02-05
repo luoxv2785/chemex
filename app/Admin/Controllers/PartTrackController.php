@@ -26,8 +26,8 @@ class PartTrackController extends AdminController
             ->description($this->description()['index'] ?? trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(Data::icon('record') . trans('main.record'), route('part.records.index'));
-                $tab->addLink(Data::icon('category') . trans('main.record'), route('part.categories.index'));
+                $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('part.records.index'));
+                $tab->addLink(Data::icon('category') . trans('main.record'), admin_route('part.categories.index'));
                 $tab->add(Data::icon('track') . trans('main.track'), $this->grid(), true);
                 $row->column(12, $tab);
             });

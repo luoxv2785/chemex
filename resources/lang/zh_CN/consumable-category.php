@@ -3,6 +3,7 @@ return [
     'labels' => [
         'ConsumableCategory' => '耗材',
         'categories' => '耗材分类',
+        'Import' => '导入'
     ],
     'fields' => [
         'name' => '名称',

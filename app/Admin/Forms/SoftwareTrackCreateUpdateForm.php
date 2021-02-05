@@ -106,8 +106,8 @@ class SoftwareTrackCreateUpdateForm extends Form implements LazyRenderable
         if (Support::ifSelectCreate()) {
             $this->selectCreate('device_id', '新设备')
                 ->options(DeviceRecord::class)
-                ->ajax(route('selection.device.records'))
-                ->url(route('device.records.create'));
+                ->ajax(admin_route('selection.device.records'))
+                ->url(admin_route('device.records.create'));
         } else {
             $this->select('device_id', '新设备')
                 ->options(DeviceRecord::all()->pluck('name', 'id'))

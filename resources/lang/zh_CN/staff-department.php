@@ -6,6 +6,7 @@ return [
         'departments' => '部门',
         'Staff Record' => '雇员',
         'Staff Department' => '部门',
+        'Import' => '导入'
     ],
     'fields' => [
         'name' => '名称',

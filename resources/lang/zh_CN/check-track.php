@@ -5,6 +5,7 @@ return [
         'tracks' => '盘点记录',
         'Record None' => '没有此盘点任务',
         'Item None' => '没有此物资',
+        'Update Track' => '处理盘点'
     ],
     'fields' => [
         'check_id' => '任务ID',

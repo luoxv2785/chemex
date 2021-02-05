@@ -127,7 +127,7 @@
                 <li class="scrollable-container media-list ps ps--active-y">
                     @foreach($notifications as $notification)
                         <a class="media d-flex justify-content-between"
-                           href="{{route('notification.read',$notification['id'])}}">
+                           href="{{admin_route('notification.read',$notification['id'])}}">
                             <div class="d-flex align-items-start">
                                 <div class="media-left">
                                 </div>
@@ -142,7 +142,7 @@
                     @endforeach
                 </li>
                 <li class="dropdown-menu-footer">
-                    <a class="dropdown-item p-1 text-center" href="{{route('notification.read.all')}}">全部已读</a>
+                    <a class="dropdown-item p-1 text-center" href="{{admin_route('notification.read.all')}}">全部已读</a>
                 </li>
             @endif
         </ul>

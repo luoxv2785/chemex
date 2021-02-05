@@ -8,7 +8,12 @@ use Dcat\Admin\Widgets\Modal;
 
 class MaintenanceUpdateAction extends RowAction
 {
-    protected $title = '🧱 修复故障';
+
+    public function __construct($title = null)
+    {
+        parent::__construct($title);
+        $this->title = '🧱 ' . admin_trans_label('Update');
+    }
 
     /**
      * 渲染模态框
@@ -21,7 +26,7 @@ class MaintenanceUpdateAction extends RowAction
 
         return Modal::make()
             ->lg()
-            ->title('处理物资故障')
+            ->title(admin_trans_label('Update'))
             ->body($form)
             ->button($this->title);
     }

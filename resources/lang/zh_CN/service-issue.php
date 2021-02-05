@@ -5,6 +5,7 @@ return [
         'issues' => '服务异常',
         'Status NG' => '故障',
         'Status OK' => '恢复',
+        'Update' => '处理故障'
     ],
     'fields' => [
         'service' => [

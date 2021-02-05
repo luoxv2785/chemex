@@ -21,9 +21,9 @@ class ConfigurationExtensionController extends ExtensionController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(admin_trans_label('configuration-platform.platform'), route('configurations.platform.index'));
-                $tab->add(admin_trans_label('configuration-extension.extensions'), $this->grid(), true);
-                $tab->addLink(admin_trans_label('configuration-l-d-a-p.ldap'), route('configurations.ldap.index'));
+                $tab->addLink(admin_trans_label('platform'), admin_route('configurations.platform.index'));
+                $tab->add(admin_trans_label('extensions'), $this->grid(), true);
+                $tab->addLink(admin_trans_label('ldap'), admin_route('configurations.ldap.index'));
                 $row->column(12, $tab);
             });
     }

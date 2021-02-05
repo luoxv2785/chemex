@@ -9,7 +9,12 @@ use Dcat\Admin\Grid\RowAction;
 
 class SoftwareTrackDeleteAction extends RowAction
 {
-    protected $title = '🔗 解除归属';
+
+    public function __construct($title = null)
+    {
+        parent::__construct($title);
+        $this->title = '🔗 ' . admin_trans_label('Delete');
+    }
 
     /**
      * 处理动作逻辑
@@ -19,7 +24,7 @@ class SoftwareTrackDeleteAction extends RowAction
     {
         if (!Admin::user()->can('software.track.delete')) {
             return $this->response()
-                ->error('你没有权限执行此操作！')
+                ->error(trans('main.unauthorized'))
                 ->refresh();
         }
 
@@ -27,13 +32,13 @@ class SoftwareTrackDeleteAction extends RowAction
 
         if (empty($software_track)) {
             return $this->response()
-                ->error('找不到此软件归属记录！');
+                ->error(admin_trans_label('Track None'));
         }
 
         $software_track->delete();
 
         return $this->response()
-            ->success('软件归属解除成功！')
+            ->success(admin_trans_label('Delete Success'))
             ->refresh();
     }
 
@@ -43,6 +48,6 @@ class SoftwareTrackDeleteAction extends RowAction
      */
     public function confirm(): array
     {
-        return ['确认解除与此设备的关联？', '解除后相应的授权数量等将会同步更新'];
+        return [admin_trans_label('Delete Confirm'), admin_trans_label('Delete Confirm Description')];
     }
 }

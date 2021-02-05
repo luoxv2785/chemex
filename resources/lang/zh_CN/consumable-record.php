@@ -4,8 +4,9 @@ return [
         'ConsumableRecord' => '耗材',
         'records' => '耗材',
         'Category' => '分类',
-        'Vendor' => '厂商'
-
+        'Vendor' => '厂商',
+        'In' => '入库',
+        'Out' => '领用'
     ],
     'fields' => [
         'name' => '名称',

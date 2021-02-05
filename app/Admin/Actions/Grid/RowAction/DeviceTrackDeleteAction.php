@@ -9,7 +9,12 @@ use Dcat\Admin\Grid\RowAction;
 
 class DeviceTrackDeleteAction extends RowAction
 {
-    protected $title = '🔗 解除归属';
+
+    public function __construct($title = null)
+    {
+        parent::__construct($title);
+        $this->title = '🔗 ' . admin_trans_label('Delete');
+    }
 
     /**
      * 处理动作逻辑
@@ -19,7 +24,7 @@ class DeviceTrackDeleteAction extends RowAction
     {
         if (!Admin::user()->can('device.track.delete')) {
             return $this->response()
-                ->error('你没有权限执行此操作！')
+                ->error(trans('main.unauthorized'))
                 ->refresh();
         }
 
@@ -27,13 +32,13 @@ class DeviceTrackDeleteAction extends RowAction
 
         if (empty($device_track)) {
             return $this->response()
-                ->error('找不到此设备归属记录！');
+                ->error(admin_trans_label('Track None'));
         }
 
         $device_track->delete();
 
         return $this->response()
-            ->success('设备归属解除成功！')
+            ->success(admin_trans_label('Delete Success'))
             ->refresh();
     }
 
@@ -43,6 +48,6 @@ class DeviceTrackDeleteAction extends RowAction
      */
     public function confirm(): array
     {
-        return ['确认解除与此雇员的关联？'];
+        return [admin_trans_label('Delete Confirm')];
     }
 }

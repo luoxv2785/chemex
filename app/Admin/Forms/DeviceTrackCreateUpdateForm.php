@@ -96,8 +96,8 @@ class DeviceTrackCreateUpdateForm extends Form implements LazyRenderable
         if (Support::ifSelectCreate()) {
             $this->selectCreate('staff_id', '新使用者')
                 ->options(StaffRecord::class)
-                ->ajax(route('selection.staff.records'))
-                ->url(route('staff.records.create'))
+                ->ajax(admin_route('selection.staff.records'))
+                ->url(admin_route('staff.records.create'))
                 ->help('选择新使用者后，将会自动解除此设备与老使用者的归属关系。')
                 ->required();
         } else {

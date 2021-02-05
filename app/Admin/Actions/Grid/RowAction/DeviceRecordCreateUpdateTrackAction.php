@@ -7,9 +7,14 @@ use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\RowAction;
 use Dcat\Admin\Widgets\Modal;
 
-class DeviceTrackCreateUpdateAction extends RowAction
+class DeviceRecordCreateUpdateTrackAction extends RowAction
 {
-    protected $title = '👨‍💼 分配使用者';
+
+    public function __construct($title = null)
+    {
+        parent::__construct($title);
+        $this->title = '👨‍💼 ' . admin_trans_label('Track Create Update');
+    }
 
     /**
      * 渲染模态框
@@ -18,7 +23,7 @@ class DeviceTrackCreateUpdateAction extends RowAction
     public function render()
     {
         if (!Admin::user()->can('device.track.create_update')) {
-            return '你没有权限执行此操作！';
+            return trans('main.unauthorized');
         }
 
         // 实例化表单类并传递自定义参数
@@ -26,7 +31,7 @@ class DeviceTrackCreateUpdateAction extends RowAction
 
         return Modal::make()
             ->lg()
-            ->title('为 ' . $this->getRow()->name . ' 分配使用者')
+            ->title(admin_trans_label('Track Create Update'))
             ->body($form)
             ->button($this->title);
     }

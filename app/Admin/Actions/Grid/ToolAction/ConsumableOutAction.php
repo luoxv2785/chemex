@@ -8,7 +8,12 @@ use Dcat\Admin\Widgets\Modal;
 
 class ConsumableOutAction extends AbstractTool
 {
-    protected $title = '领用';
+
+    public function __construct($title = null)
+    {
+        parent::__construct($title);
+        $this->title = admin_trans_label('Out');
+    }
 
     /**
      * 渲染模态框

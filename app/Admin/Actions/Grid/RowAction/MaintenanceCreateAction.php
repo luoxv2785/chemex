@@ -10,13 +10,11 @@ class MaintenanceCreateAction extends RowAction
 {
     protected $item = null;
 
-    protected $title = '🔧 报告故障';
-
     public function __construct($item)
     {
-        $this->item = $item;
-
         parent::__construct();
+        $this->title = '🔧 ' . admin_trans_label('Maintenance Create');
+        $this->item = $item;
     }
 
     /**
@@ -33,7 +31,7 @@ class MaintenanceCreateAction extends RowAction
 
         return Modal::make()
             ->lg()
-            ->title('报告 ' . $this->getRow()->name . ' 发生的故障')
+            ->title(admin_trans_label('Maintenance Create'))
             ->body($form)
             ->button($this->title);
     }

@@ -8,7 +8,11 @@ use Dcat\Admin\Widgets\Modal;
 
 class ConsumableInAction extends AbstractTool
 {
-    protected $title = '入库';
+    public function __construct($title = null)
+    {
+        parent::__construct($title);
+        $this->title = admin_trans_label('In');
+    }
 
     /**
      * 渲染模态框

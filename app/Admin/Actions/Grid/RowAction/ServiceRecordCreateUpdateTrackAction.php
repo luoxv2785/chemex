@@ -7,9 +7,14 @@ use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\RowAction;
 use Dcat\Admin\Widgets\Modal;
 
-class ServiceTrackCreateUpdateAction extends RowAction
+class ServiceRecordCreateUpdateTrackAction extends RowAction
 {
-    protected $title = '💻 归属设备';
+
+    public function __construct($title = null)
+    {
+        parent::__construct($title);
+        $this->title = '💻 ' . admin_trans_label('Track Create Update');
+    }
 
     /**
      * 渲染模态框
@@ -18,14 +23,14 @@ class ServiceTrackCreateUpdateAction extends RowAction
     public function render()
     {
         if (!Admin::user()->can('service.track.create_update')) {
-            return '你没有权限执行此操作！';
+            return trans('main.unauthorized');
         }
         // 实例化表单类并传递自定义参数
         $form = ServiceTrackCreateUpdateForm::make()->payload(['id' => $this->getKey()]);
 
         return Modal::make()
             ->lg()
-            ->title('将 ' . $this->getRow()->name . ' 归属到设备')
+            ->title(admin_trans_label('Track Create Update'))
             ->body($form)
             ->button($this->title);
     }

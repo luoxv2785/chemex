@@ -4,7 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Grid\BatchAction\DeviceRecordBatchDeleteAction;
 use App\Admin\Actions\Grid\RowAction\DeviceRecordDeleteAction;
-use App\Admin\Actions\Grid\RowAction\DeviceTrackCreateUpdateAction;
+use App\Admin\Actions\Grid\RowAction\DeviceRecordCreateUpdateTrackAction;
 use App\Admin\Actions\Grid\RowAction\MaintenanceCreateAction;
 use App\Admin\Actions\Grid\ToolAction\DeviceRecordImportAction;
 use App\Admin\Grid\Displayers\RowActions;
@@ -93,7 +93,7 @@ class DeviceRecordController extends AdminController
                 });
                 if (Admin::user()->can('device.history')) {
                     $card = new Card(trans('main.history'), view('history')->with('data', $history));
-                    $row->column($column_c_width, $card->tool('<a class="btn btn-primary btn-xs" href="' . route('export.device.history', $id) . '" target="_blank">导出到 Excel</a>'));
+                    $row->column($column_c_width, $card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.device.history', $id) . '" target="_blank">导出到 Excel</a>'));
                 }
             });
     }
@@ -158,8 +158,8 @@ class DeviceRecordController extends AdminController
             ->body(function (Row $row) {
                 $tab = new Tab();
                 $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
-                $tab->addLink(Data::icon('category') . trans('main.category'), route('device.categories.index'));
-                $tab->addLink(Data::icon('track') . trans('main.track'), route('device.tracks.index'));
+                $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('device.categories.index'));
+                $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('device.tracks.index'));
                 $row->column(12, $tab);
 
 
@@ -229,7 +229,7 @@ class DeviceRecordController extends AdminController
                     $actions->append(new DeviceRecordDeleteAction());
                 }
                 if (Admin::user()->can('device.track.create_update')) {
-                    $actions->append(new DeviceTrackCreateUpdateAction());
+                    $actions->append(new DeviceRecordCreateUpdateTrackAction());
                 }
                 if (Admin::user()->can('device.maintenance.create')) {
                     $actions->append(new MaintenanceCreateAction('device'));
@@ -294,13 +294,13 @@ class DeviceRecordController extends AdminController
             if (Support::ifSelectCreate()) {
                 $form->selectCreate('category_id', admin_trans_label('Category'))
                     ->options(DeviceCategory::class)
-                    ->ajax(route('selection.device.categories'))
-                    ->url(route('device.categories.create'))
+                    ->ajax(admin_route('selection.device.categories'))
+                    ->url(admin_route('device.categories.create'))
                     ->required();
                 $form->selectCreate('vendor_id', admin_trans_label('Vendor'))
                     ->options(VendorRecord::class)
-                    ->ajax(route('selection.vendor.records'))
-                    ->url(route('vendor.records.create'))
+                    ->ajax(admin_route('selection.vendor.records'))
+                    ->url(admin_route('vendor.records.create'))
                     ->required();
             } else {
                 $form->select('category_id', admin_trans_label('Category'))
@@ -318,8 +318,8 @@ class DeviceRecordController extends AdminController
             if (Support::ifSelectCreate()) {
                 $form->selectCreate('purchased_channel_id', admin_trans_label('Purchased Channel'))
                     ->options(PurchasedChannel::class)
-                    ->ajax(route('selection.purchased.channels'))
-                    ->url(route('purchased.channels.create'));
+                    ->ajax(admin_route('selection.purchased.channels'))
+                    ->url(admin_route('purchased.channels.create'));
             } else {
                 $form->select('purchased_channel_id', admin_trans_label('Purchased Channel'))
                     ->options(PurchasedChannel::pluck('name', 'id'));
@@ -343,8 +343,8 @@ class DeviceRecordController extends AdminController
             if (Support::ifSelectCreate()) {
                 $form->selectCreate('depreciation_rule_id', admin_trans_label('Depreciation Rule'))
                     ->options(DepreciationRule::class)
-                    ->ajax(route('selection.depreciation.rules'))
-                    ->url(route('depreciation.rules.create'))
+                    ->ajax(admin_route('selection.depreciation.rules'))
+                    ->url(admin_route('depreciation.rules.create'))
                     ->help(admin_trans_label('Depreciation Rule Help'));
             } else {
                 $form->select('depreciation_rule_id', admin_trans_label('Depreciation Rule'))

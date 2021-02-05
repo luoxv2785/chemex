@@ -2,9 +2,9 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\Grid\RowAction\ServiceIssueCreateAction;
+use App\Admin\Actions\Grid\RowAction\ServiceRecordCreateIssueAction;
 use App\Admin\Actions\Grid\RowAction\ServiceRecordDeleteAction;
-use App\Admin\Actions\Grid\RowAction\ServiceTrackCreateUpdateAction;
+use App\Admin\Actions\Grid\RowAction\ServiceRecordCreateUpdateTrackAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\ServiceRecord;
 use App\Models\DeviceRecord;
@@ -31,8 +31,8 @@ class ServiceRecordController extends AdminController
             ->body(function (Row $row) {
                 $tab = new Tab();
                 $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
-                $tab->addLink(Data::icon('track') . trans('main.track'), route('service.tracks.index'));
-                $tab->addLink(Data::icon('issue') . trans('main.issue'), route('service.issues.index'));
+                $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('service.tracks.index'));
+                $tab->addLink(Data::icon('issue') . trans('main.issue'), admin_route('service.issues.index'));
                 $row->column(12, $tab);
             });
     }
@@ -51,7 +51,7 @@ class ServiceRecordController extends AdminController
             $grid->column('status')->switch('green');
             $grid->column('device.name')->link(function () {
                 if (!empty($this->device)) {
-                    return route('device.records.show', $this->device['id']);
+                    return admin_route('device.records.show', $this->device['id']);
                 }
             });
             $grid->actions(function (RowActions $actions) {
@@ -59,10 +59,10 @@ class ServiceRecordController extends AdminController
                     $actions->append(new ServiceRecordDeleteAction());
                 }
                 if (Admin::user()->can('service.track.create_update')) {
-                    $actions->append(new ServiceTrackCreateUpdateAction());
+                    $actions->append(new ServiceRecordCreateUpdateTrackAction());
                 }
                 if (Admin::user()->can('service.issue.create')) {
-                    $actions->append(new ServiceIssueCreateAction());
+                    $actions->append(new ServiceRecordCreateIssueAction());
                 }
             });
 

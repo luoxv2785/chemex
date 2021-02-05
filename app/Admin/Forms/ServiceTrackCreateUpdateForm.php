@@ -91,8 +91,8 @@ class ServiceTrackCreateUpdateForm extends Form implements LazyRenderable
         if (Support::ifSelectCreate()) {
             $this->selectCreate('device_id', '新设备')
                 ->options(DeviceRecord::class)
-                ->ajax(route('selection.device.records'))
-                ->url(route('device.records.create'))
+                ->ajax(admin_route('selection.device.records'))
+                ->url(admin_route('device.records.create'))
                 ->help('选择新设备后，将会自动解除此服务程序与老设备的归属关系。')
                 ->required();
         } else {

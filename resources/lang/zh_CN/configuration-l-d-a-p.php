@@ -2,7 +2,9 @@
 return [
     'labels' => [
         'LDAP' => '平台配置',
-        'ldap' => 'LDAP'
+        'ldap' => 'LDAP',
+        'platform' => '平台',
+        'extensions' => '扩展',
     ],
     'fields' => [
         'ad_enabled' => '启用状态',

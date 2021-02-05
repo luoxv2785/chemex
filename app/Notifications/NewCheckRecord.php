@@ -56,7 +56,7 @@ class NewCheckRecord extends Notification
             'title' => '你有新的盘点任务',
             'content' => '一份' . $item_type . '盘点任务已经交由你负责。',
             'expired' => $this->check_record->end_time,
-            'url' => route('check.records.show', $this->check_record->id)
+            'url' => admin_route('check.records.show', $this->check_record->id)
         ];
     }
 }

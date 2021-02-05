@@ -4,7 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Grid\BatchAction\SoftwareRecordBatchDeleteAction;
 use App\Admin\Actions\Grid\RowAction\SoftwareRecordDeleteAction;
-use App\Admin\Actions\Grid\RowAction\SoftwareTrackCreateUpdateAction;
+use App\Admin\Actions\Grid\RowAction\SoftwareRecordCreateUpdateTrackAction;
 use App\Admin\Actions\Grid\RowAction\SoftwareTrackDeleteAction;
 use App\Admin\Actions\Grid\ToolAction\SoftwareRecordImportAction;
 use App\Admin\Grid\Displayers\RowActions;
@@ -44,8 +44,8 @@ class SoftwareRecordController extends AdminController
             ->body(function (Row $row) {
                 $tab = new Tab();
                 $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
-                $tab->addLink(Data::icon('category') . trans('main.category'), route('software.categories.index'));
-                $tab->addLink(Data::icon('track') . trans('main.track'), route('software.tracks.index'));
+                $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('software.categories.index'));
+                $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('software.tracks.index'));
                 $row->column(12, $tab);
 
 //                $row->column(12, function (Column $column) {
@@ -95,10 +95,10 @@ class SoftwareRecordController extends AdminController
                     $actions->append(new SoftwareRecordDeleteAction());
                 }
                 if (Admin::user()->can('software.track.create_update')) {
-                    $actions->append(new SoftwareTrackCreateUpdateAction());
+                    $actions->append(new SoftwareRecordCreateUpdateTrackAction());
                 }
                 if (Admin::user()->can('software.track.list')) {
-                    $tracks_route = route('software.tracks.index', ['_search_' => $this->id]);
+                    $tracks_route = admin_route('software.tracks.index', ['_search_' => $this->id]);
                     $actions->append("<a href='$tracks_route'>💿 " . admin_trans_label('Manage Track') . "</a>");
                 }
             });
@@ -157,7 +157,7 @@ class SoftwareRecordController extends AdminController
                             $grid->column('id');
                             $grid->column('device.name')->link(function () {
                                 if (!empty($this->device)) {
-                                    return route('device.records.show', $this->device['id']);
+                                    return admin_route('device.records.show', $this->device['id']);
                                 }
                             });
                             $grid->column('device.staff.name');
@@ -177,7 +177,7 @@ class SoftwareRecordController extends AdminController
                         });
                         $column->row(new Card(admin_trans_label('Track Card Title'), $grid));
                         $card = new Card(admin_trans_label('History Card Title'), view('history')->with('data', $history));
-                        $column->row($card->tool('<a class="btn btn-primary btn-xs" href="' . route('export.software.history', $id) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>'));
+                        $column->row($card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.software.history', $id) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>'));
                     });
                 }
             });
@@ -239,8 +239,8 @@ class SoftwareRecordController extends AdminController
             if (Support::ifSelectCreate()) {
                 $form->selectCreate('category_id')
                     ->options(SoftwareCategory::class)
-                    ->ajax(route('selection.software.categories'))
-                    ->url(route('software.categories.create'))
+                    ->ajax(admin_route('selection.software.categories'))
+                    ->url(admin_route('software.categories.create'))
                     ->required();
             } else {
                 $form->select('category_id')
@@ -251,8 +251,8 @@ class SoftwareRecordController extends AdminController
             if (Support::ifSelectCreate()) {
                 $form->selectCreate('vendor_id')
                     ->options(VendorRecord::class)
-                    ->ajax(route('selection.vendor.records'))
-                    ->url(route('vendor.records.create'))
+                    ->ajax(admin_route('selection.vendor.records'))
+                    ->url(admin_route('vendor.records.create'))
                     ->required();
             } else {
                 $form->select('vendor_id')
@@ -277,8 +277,8 @@ class SoftwareRecordController extends AdminController
             if (Support::ifSelectCreate()) {
                 $form->selectCreate('purchased_channel_id')
                     ->options(VendorRecord::class)
-                    ->ajax(route('selection.purchased.channels'))
-                    ->url(route('purchased.channels.create'));
+                    ->ajax(admin_route('selection.purchased.channels'))
+                    ->url(admin_route('purchased.channels.create'));
             } else {
                 $form->select('purchased_channel_id')
                     ->options(PurchasedChannel::pluck('name', 'id'));

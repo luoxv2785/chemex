@@ -6,9 +6,14 @@ use App\Admin\Forms\DeviceSSHInfoForm;
 use Dcat\Admin\Grid\RowAction;
 use Dcat\Admin\Widgets\Modal;
 
-class DeviceSSHInfoAction extends RowAction
+class DeviceRecordUpdateSSHAction extends RowAction
 {
-    protected $title = '✍ 编辑SSH连接信息';
+
+    public function __construct($title = null)
+    {
+        parent::__construct($title);
+        $this->title = '✍ ' . admin_trans_label('Update SSH');
+    }
 
     /**
      * 渲染模态框
@@ -21,7 +26,7 @@ class DeviceSSHInfoAction extends RowAction
 
         return Modal::make()
             ->lg()
-            ->title('为 ' . $this->getRow()->name . ' 补充SSH连接信息')
+            ->title(admin_trans_label('Update SSH'))
             ->body($form)
             ->button($this->title);
     }

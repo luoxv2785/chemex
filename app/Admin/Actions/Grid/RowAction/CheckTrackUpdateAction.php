@@ -9,7 +9,11 @@ use Dcat\Admin\Widgets\Modal;
 
 class CheckTrackUpdateAction extends RowAction
 {
-    protected $title = '👨‍💼 处理盘点';
+    public function __construct($title = null)
+    {
+        parent::__construct($title);
+        $this->title = '👨‍💼 ' . admin_trans_label('Update Track');
+    }
 
     /**
      * 渲染模态框
@@ -18,7 +22,7 @@ class CheckTrackUpdateAction extends RowAction
     public function render()
     {
         if (!Admin::user()->can('check.track.update')) {
-            return '你没有权限执行此操作！';
+            return trans('main.unauthorized');
         }
 
         // 实例化表单类并传递自定义参数
@@ -26,7 +30,7 @@ class CheckTrackUpdateAction extends RowAction
 
         return Modal::make()
             ->lg()
-            ->title('处理盘点')
+            ->title(admin_trans_label('Update Track'))
             ->body($form)
             ->button($this->title);
     }

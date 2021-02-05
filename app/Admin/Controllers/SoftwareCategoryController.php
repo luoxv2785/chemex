@@ -32,9 +32,9 @@ class SoftwareCategoryController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(Data::icon('record') . trans('main.record'), route('software.records.index'));
+                $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('software.records.index'));
                 $tab->add(Data::icon('category') . trans('main.category'), $this->treeView(), true);
-                $tab->addLink(Data::icon('track') . trans('main.track'), route('software.tracks.index'));
+                $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('software.tracks.index'));
                 $row->column(12, $tab);
             });
     }
@@ -105,8 +105,8 @@ class SoftwareCategoryController extends AdminController
             if (Support::ifSelectCreate()) {
                 $form->selectCreate('parent_id')
                     ->options(\App\Models\SoftwareCategory::class)
-                    ->ajax(route('selection.software.categories'))
-                    ->url(route('software.categories.create'));
+                    ->ajax(admin_route('selection.software.categories'))
+                    ->url(admin_route('software.categories.create'));
             } else {
                 $form->select('parent_id')
                     ->options(\App\Models\SoftwareCategory::pluck('name', 'id'));

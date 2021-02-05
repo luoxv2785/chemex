@@ -32,7 +32,7 @@ class StaffDepartmentController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(admin_trans_label('Staff Record'), route('staff.records.index'));
+                $tab->addLink(admin_trans_label('Staff Record'), admin_route('staff.records.index'));
                 $tab->add(admin_trans_label('Staff Department'), $this->treeView(), true);
                 $row->column(12, $tab);
             });
@@ -110,8 +110,8 @@ class StaffDepartmentController extends AdminController
             if (Support::ifSelectCreate()) {
                 $form->selectCreate('parent_id', admin_trans_label('Parent'))
                     ->options(\App\Models\StaffDepartment::class)
-                    ->ajax(route('selection.staff.departments'))
-                    ->url(route('staff.departments.create'))
+                    ->ajax(admin_route('selection.staff.departments'))
+                    ->url(admin_route('staff.departments.create'))
                     ->default(0);
             } else {
                 $form->select('parent_id', admin_trans_label('Parent'))

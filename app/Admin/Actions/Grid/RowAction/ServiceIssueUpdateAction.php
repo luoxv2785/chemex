@@ -9,7 +9,12 @@ use Dcat\Admin\Widgets\Modal;
 
 class ServiceIssueUpdateAction extends RowAction
 {
-    protected $title = '🔧 修复故障';
+
+    public function __construct($title = null)
+    {
+        parent::__construct($title);
+        $this->title = '🔧 ' . admin_trans_label('Update');
+    }
 
     /**
      * 渲染模态框
@@ -18,7 +23,7 @@ class ServiceIssueUpdateAction extends RowAction
     public function render()
     {
         if (!Admin::user()->can('service.issue.update')) {
-            return '你没有权限执行此操作！';
+            return trans('main.unauthorized');
         }
 
         // 实例化表单类并传递自定义参数
@@ -26,7 +31,7 @@ class ServiceIssueUpdateAction extends RowAction
 
         return Modal::make()
             ->lg()
-            ->title('处理服务故障')
+            ->title(admin_trans_label('Update'))
             ->body($form)
             ->button($this->title);
     }

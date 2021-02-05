@@ -26,8 +26,8 @@ class SoftwareTrackController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(Data::icon('record') . trans('main.record'), route('software.records.index'));
-                $tab->addLink(Data::icon('category') . trans('main.category'), route('software.tracks.index'));
+                $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('software.records.index'));
+                $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('software.tracks.index'));
                 $tab->add(Data::icon('track') . trans('main.track'), $this->grid(), true);
                 $row->column(12, $tab);
             });

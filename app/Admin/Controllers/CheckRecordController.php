@@ -44,7 +44,7 @@ class CheckRecordController extends AdminController
             ->body(function (Row $row) {
                 $tab = new Tab();
                 $tab->add(admin_trans_label('check-record.records'), $this->grid(), true);
-                $tab->addLink(admin_trans_label('check-track.tracks'), route('check.tracks.index'));
+                $tab->addLink(admin_trans_label('check-track.tracks'), admin_route('check.tracks.index'));
                 $row->column(12, $tab);
             });
     }
@@ -90,7 +90,7 @@ class CheckRecordController extends AdminController
                         $actions->append(new CheckRecordUpdateNoAction());
                     }
                 }
-                $report_url = route('export.check.report', ['check_id' => $this->id]);
+                $report_url = admin_route('export.check.report', ['check_id' => $this->id]);
                 $actions->append("<a href='$report_url' target='_blank'>✨ " . admin_trans_label('Report') . "</a>");
             });
 

@@ -6,6 +6,7 @@ return [
         'Status Waiting' => '等待处理',
         'Status Done' => '完成',
         'Status Cancelled' => '取消',
+        'Update' => '处理故障'
     ],
     'fields' => [
         'item' => '物品类型',

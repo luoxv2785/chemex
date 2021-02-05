@@ -7,9 +7,14 @@ use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\RowAction;
 use Dcat\Admin\Widgets\Modal;
 
-class ServiceIssueCreateAction extends RowAction
+class ServiceRecordCreateIssueAction extends RowAction
 {
-    protected $title = '❓ 报告故障';
+
+    public function __construct($title = null)
+    {
+        parent::__construct($title);
+        $this->title = '❓ ' . admin_trans_label('Issue Create');
+    }
 
     /**
      * 渲染模态框
@@ -18,7 +23,7 @@ class ServiceIssueCreateAction extends RowAction
     public function render()
     {
         if (!Admin::user()->can('service.issue.create')) {
-            return '你没有权限执行此操作！';
+            return trans('main.unauthorized');
         }
 
         // 实例化表单类并传递自定义参数
@@ -26,7 +31,7 @@ class ServiceIssueCreateAction extends RowAction
 
         return Modal::make()
             ->lg()
-            ->title('报告 ' . $this->getRow()->name . ' 发生的故障')
+            ->title(admin_trans_label('Issue Create'))
             ->body($form)
             ->button($this->title);
     }

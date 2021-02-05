@@ -29,7 +29,7 @@ trait HasDeviceRelatedGrid
             $grid->column('part.category.name');
             $grid->column('part.name')->link(function () {
                 if (!empty($this->part)) {
-                    return route('part.records.show', $this->part['id']);
+                    return admin_route('part.records.show', $this->part['id']);
                 }
             });
             $grid->column('part.specification');
@@ -53,7 +53,7 @@ trait HasDeviceRelatedGrid
             $grid->column('software.category.name');
             $grid->column('software.name')->link(function () {
                 if (!empty($this->software)) {
-                    return route('software.records.show', $this->software['id']);
+                    return admin_route('software.records.show', $this->software['id']);
                 }
             });
             $grid->column('software.version');
@@ -76,7 +76,7 @@ trait HasDeviceRelatedGrid
             $grid->column('id');
             $grid->column('service.name')->link(function () {
                 if (!empty($this->service)) {
-                    return route('service.records.show', $this->service['id']);
+                    return admin_route('service.records.show', $this->service['id']);
                 }
             });
 

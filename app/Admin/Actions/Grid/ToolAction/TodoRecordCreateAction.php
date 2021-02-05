@@ -8,7 +8,12 @@ use Dcat\Admin\Widgets\Modal;
 
 class TodoRecordCreateAction extends AbstractTool
 {
-    protected $title = '创建待办';
+
+    public function __construct($title = null)
+    {
+        parent::__construct($title);
+        $this->title = admin_trans_label('Create');
+    }
 
     /**
      * 渲染模态框

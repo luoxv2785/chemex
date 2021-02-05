@@ -28,8 +28,8 @@ class ServiceIssueController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(Data::icon('record') . trans('main.record'), route('service.records.index'));
-                $tab->addLink(Data::icon('track') . trans('main.track'), route('service.tracks.index'));
+                $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('service.records.index'));
+                $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('service.tracks.index'));
                 $tab->add(Data::icon('issue') . trans('main.issue'), $this->grid(), true);
                 $row->column(12, $tab);
             });

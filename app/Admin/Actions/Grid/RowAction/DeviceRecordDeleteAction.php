@@ -9,7 +9,11 @@ use Dcat\Admin\Grid\RowAction;
 
 class DeviceRecordDeleteAction extends RowAction
 {
-    protected $title = '🔨 删除设备';
+    public function __construct($title = null)
+    {
+        parent::__construct($title);
+        $this->title = '🔨 ' . admin_trans_label('Delete');
+    }
 
     /**
      * 处理动作逻辑
@@ -19,14 +23,14 @@ class DeviceRecordDeleteAction extends RowAction
     {
         if (!Admin::user()->can('device.record.delete')) {
             return $this->response()
-                ->error('你没有权限执行此操作！')
+                ->error('main.unauthorized')
                 ->refresh();
         }
 
         DeviceService::deviceDelete($this->getKey());
 
         return $this->response()
-            ->success('成功删除设备！')
+            ->success(admin_trans_label('Delete Success'))
             ->refresh();
     }
 
@@ -36,6 +40,6 @@ class DeviceRecordDeleteAction extends RowAction
      */
     public function confirm(): array
     {
-        return ['确认删除？', '删除的同时将会解除所有与之关联的归属关系'];
+        return [admin_trans_label('Delete Confirm'), admin_trans_label('Delete Confirm Description')];
     }
 }

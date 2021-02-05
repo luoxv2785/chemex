@@ -17,7 +17,15 @@ return [
         'Location Help' => '记录存放位置，例如某个货架、某个抽屉。',
         'Batch Delete' => '批量删除设备',
         'Batch Delete Confirm' => '您确定要删除选中的设备吗？',
-        'Batch Delete Success' => '批量删除设备成功！'
+        'Batch Delete Success' => '批量删除设备成功！',
+        'Delete' => '删除设备',
+        'Delete Success' => '成功删除设备！',
+        'Delete Confirm' => '确认删除？',
+        'Delete Confirm Description' => '删除的同时将会解除所有与之关联的归属关系',
+        'Update SSH' => '编辑SSH连接信息',
+        'Track Create Update' => '分配使用者',
+        'Maintenance Create' => '报告故障',
+        'Import' => '导入'
     ],
     'fields' => [
         'qrcode' => '二维码',

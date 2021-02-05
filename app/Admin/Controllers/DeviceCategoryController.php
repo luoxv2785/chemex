@@ -27,9 +27,9 @@ class DeviceCategoryController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(Data::icon('record') . trans('main.record'), route('device.records.index'));
+                $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('device.records.index'));
                 $tab->add(Data::icon('category') . trans('main.category'), $this->treeView(), true);
-                $tab->addLink(Data::icon('track') . trans('main.track'), route('device.tracks.index'));
+                $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('device.tracks.index'));
                 $row->column(12, $tab);
             });
     }
@@ -108,8 +108,8 @@ class DeviceCategoryController extends AdminController
             if (Support::ifSelectCreate()) {
                 $form->selectCreate('parent_id', admin_trans_label('Parent'))
                     ->options(\App\Models\DeviceCategory::class)
-                    ->ajax(route('selection.device.categories'))
-                    ->url(route('device.categories.create'));
+                    ->ajax(admin_route('selection.device.categories'))
+                    ->url(admin_route('device.categories.create'));
             } else {
                 $form->select('parent_id', admin_trans_label('Parent'))
                     ->options(\App\Models\DeviceCategory::pluck('name', 'id'));
@@ -118,8 +118,8 @@ class DeviceCategoryController extends AdminController
             if (Support::ifSelectCreate()) {
                 $form->selectCreate('depreciation_rule_id', admin_trans_label('Depreciation Rule'))
                     ->options(DepreciationRule::class)
-                    ->ajax(route('selection.depreciation.rules'))
-                    ->url(route('depreciation.rules.create'));
+                    ->ajax(admin_route('selection.depreciation.rules'))
+                    ->url(admin_route('depreciation.rules.create'));
             } else {
                 $form->select('depreciation_rule_id', admin_trans_label('Depreciation Rule'))
                     ->options(DepreciationRule::pluck('name', 'id'));

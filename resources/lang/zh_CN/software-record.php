@@ -11,7 +11,13 @@ return [
         'Location Help' => '记录存放位置，例如某个货架、某个抽屉。',
         'Batch Delete' => '批量删除软件',
         'Batch Delete Confirm' => '您确定要删除选中的软件吗？',
-        'Batch Delete Success' => '批量删除软件成功！'
+        'Batch Delete Success' => '批量删除软件成功！',
+        'Delete' => '删除软件',
+        'Delete Success' => '成功删除软件！',
+        'Delete Confirm' => '确认删除？',
+        'Delete Confirm Description' => '删除的同时将会解除所有与之关联的归属关系',
+        'Track Create Update' => '归属到设备',
+        'Import' => '导入'
     ],
     'fields' => [
         'qrcode' => '二维码',

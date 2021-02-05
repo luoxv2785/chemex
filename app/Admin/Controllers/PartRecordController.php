@@ -5,7 +5,7 @@ namespace App\Admin\Controllers;
 use App\Admin\Actions\Grid\BatchAction\PartRecordBatchDeleteAction;
 use App\Admin\Actions\Grid\RowAction\MaintenanceCreateAction;
 use App\Admin\Actions\Grid\RowAction\PartRecordDeleteAction;
-use App\Admin\Actions\Grid\RowAction\PartTrackCreateUpdateAction;
+use App\Admin\Actions\Grid\RowAction\PartRecordCreateUpdateTrackAction;
 use App\Admin\Actions\Grid\ToolAction\PartRecordImportAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\PartRecord;
@@ -42,8 +42,8 @@ class PartRecordController extends AdminController
             ->body(function (Row $row) {
                 $tab = new Tab();
                 $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
-                $tab->addLink(Data::icon('category') . trans('main.category'), route('part.categories.index'));
-                $tab->addLink(Data::icon('track') . trans('main.track'), route('part.tracks.index'));
+                $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('part.categories.index'));
+                $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('part.tracks.index'));
                 $row->column(12, $tab);
 
 //                $row->column(12, function (Column $column) {
@@ -82,7 +82,7 @@ class PartRecordController extends AdminController
             });
             $grid->column('device.name')->link(function () {
                 if (!empty($this->device)) {
-                    return route('device.records.show', $this->device['id']);
+                    return admin_route('device.records.show', $this->device['id']);
                 }
             });
             $grid->column('depreciation.name');
@@ -93,7 +93,7 @@ class PartRecordController extends AdminController
                     $actions->append(new PartRecordDeleteAction());
                 }
                 if (Admin::user()->can('part.track.create_update')) {
-                    $actions->append(new PartTrackCreateUpdateAction());
+                    $actions->append(new PartRecordCreateUpdateTrackAction());
                 }
                 if (Admin::user()->can('part.maintenance.create')) {
                     $actions->append(new MaintenanceCreateAction('part'));
@@ -189,8 +189,8 @@ class PartRecordController extends AdminController
             if (Support::ifSelectCreate()) {
                 $form->selectCreate('category_id', admin_trans_label('Category'))
                     ->options(PartCategory::class)
-                    ->ajax(route('selection.part.categories'))
-                    ->url(route('part.categories.create'))
+                    ->ajax(admin_route('selection.part.categories'))
+                    ->url(admin_route('part.categories.create'))
                     ->required();
             } else {
                 $form->select('category_id', admin_trans_label('Category'))
@@ -202,9 +202,9 @@ class PartRecordController extends AdminController
 
             if (Support::ifSelectCreate()) {
                 $form->selectCreate('vendor_id', admin_trans_label('Vendor'))
-                    ->options(VendorRecord::class)->ajax(route('selection.vendor.records'))
-                    ->ajax(route('selection.vendor.records'))
-                    ->url(route('vendor.records.create'))
+                    ->options(VendorRecord::class)->ajax(admin_route('selection.vendor.records'))
+                    ->ajax(admin_route('selection.vendor.records'))
+                    ->url(admin_route('vendor.records.create'))
                     ->required();
             } else {
                 $form->select('vendor_id', admin_trans_label('Vendor'))
@@ -218,9 +218,9 @@ class PartRecordController extends AdminController
 
             if (Support::ifSelectCreate()) {
                 $form->selectCreate('purchased_channel_id', admin_trans_label('Purchased Channel'))
-                    ->options(PurchasedChannel::class)->ajax(route('selection.purchased.channels'))
-                    ->ajax(route('selection.purchased.channels'))
-                    ->url(route('purchased.channels.create'))
+                    ->options(PurchasedChannel::class)->ajax(admin_route('selection.purchased.channels'))
+                    ->ajax(admin_route('selection.purchased.channels'))
+                    ->url(admin_route('purchased.channels.create'))
                     ->required();
             } else {
                 $form->select('purchased_channel_id', admin_trans_label('Purchased Channel'))
@@ -235,8 +235,8 @@ class PartRecordController extends AdminController
             if (Support::ifSelectCreate()) {
                 $form->selectCreate('depreciation_rule_id', admin_trans_label('Depreciation Rule'))
                     ->options(DepreciationRule::class)
-                    ->ajax(route('selection.depreciation.rules'))
-                    ->url(route('depreciation.rules.create'))
+                    ->ajax(admin_route('selection.depreciation.rules'))
+                    ->url(admin_route('depreciation.rules.create'))
                     ->required();
             } else {
                 $form->select('depreciation_rule_id', admin_trans_label('Depreciation Rule'))
