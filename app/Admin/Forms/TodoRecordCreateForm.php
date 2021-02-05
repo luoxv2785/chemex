@@ -21,7 +21,7 @@ class TodoRecordCreateForm extends Form
     {
         if (!Admin::user()->can('todo.record.create')) {
             return $this->response()
-                ->error('你没有权限执行此操作！')
+                ->error(trans('main.unauthorized'))
                 ->refresh();
         }
 
@@ -34,7 +34,7 @@ class TodoRecordCreateForm extends Form
         $tags = $input['tags'] ?? null;
         if (empty($name) || empty($start)) {
             return $this->response()
-                ->error('缺少必要的字段！');
+                ->error(trans('main.parameter_missing'));
         }
         try {
             $todo_record = new TodoRecord();
@@ -47,12 +47,12 @@ class TodoRecordCreateForm extends Form
             $todo_record->save();
             $return = $this
                 ->response()
-                ->success('成功！')
+                ->success(admin_trans_label('Create Success'))
                 ->refresh();
         } catch (Exception $e) {
             $return = $this
                 ->response()
-                ->error('失败：' . $e->getMessage());
+                ->error(admin_trans_label('Create Fail') . $e->getMessage());
         }
 
         return $return;
@@ -75,6 +75,6 @@ class TodoRecordCreateForm extends Form
             ->options(AdminUser::all()
                 ->pluck('name', 'id'));
         $this->tags('tags')
-            ->help('随意打上标签，输入后按空格新增。');
+            ->help(admin_trans_label('Tag Help'));
     }
 }

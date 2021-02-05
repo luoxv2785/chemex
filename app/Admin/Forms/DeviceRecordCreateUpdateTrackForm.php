@@ -14,10 +14,10 @@ use Dcat\Admin\Widgets\Form;
 
 /**
  * 设备记录分配使用者
- * Class DeviceTrackCreateUpdateForm
+ * Class DeviceRecordCreateUpdateTrackForm
  * @package App\Admin\Forms
  */
-class DeviceTrackCreateUpdateForm extends Form implements LazyRenderable
+class DeviceRecordCreateUpdateTrackForm extends Form implements LazyRenderable
 {
     use LazyWidget;
 
@@ -30,7 +30,7 @@ class DeviceTrackCreateUpdateForm extends Form implements LazyRenderable
     {
         if (!Admin::user()->can('device.track.create_update')) {
             return $this->response()
-                ->error('你没有权限执行此操作！')
+                ->error(trans('main.unauthorized'))
                 ->refresh();
         }
 
@@ -43,7 +43,7 @@ class DeviceTrackCreateUpdateForm extends Form implements LazyRenderable
         // 如果没有设备id或者雇员id则返回错误
         if (!$device_id || !$staff_id) {
             return $this->response()
-                ->error('参数错误');
+                ->error(trans('main.parameter_missing'));
         }
 
         // 设备记录
@@ -51,7 +51,7 @@ class DeviceTrackCreateUpdateForm extends Form implements LazyRenderable
         // 如果没有找到这个设备记录则返回错误
         if (!$device) {
             return $this->response()
-                ->error('设备不存在');
+                ->error(admin_trans_label('Record None'));
         }
 
         // 雇员记录
@@ -59,7 +59,7 @@ class DeviceTrackCreateUpdateForm extends Form implements LazyRenderable
         // 如果没有找到这个雇员记录则返回错误
         if (!$staff) {
             return $this->response()
-                ->error('雇员不存在');
+                ->error(admin_trans_label('Staff Record None'));
         }
 
         // 设备追踪
@@ -71,7 +71,7 @@ class DeviceTrackCreateUpdateForm extends Form implements LazyRenderable
             // 如果新使用者和旧使用者相同，返回错误
             if ($device_track->staff_id == $staff_id) {
                 return $this->response()
-                    ->error('使用者没有改变，无需重新分配');
+                    ->error(admin_trans_label('Staff Record Same'));
             } else {
                 $device_track->delete();
             }
@@ -84,7 +84,7 @@ class DeviceTrackCreateUpdateForm extends Form implements LazyRenderable
         $device_track->save();
 
         return $this->response()
-            ->success('使用者分配成功')
+            ->success('Update Track Success')
             ->refresh();
     }
 
@@ -94,16 +94,16 @@ class DeviceTrackCreateUpdateForm extends Form implements LazyRenderable
     public function form()
     {
         if (Support::ifSelectCreate()) {
-            $this->selectCreate('staff_id', '新使用者')
+            $this->selectCreate('staff_id', admin_trans_label('New Staff Record'))
                 ->options(StaffRecord::class)
                 ->ajax(admin_route('selection.staff.records'))
                 ->url(admin_route('staff.records.create'))
-                ->help('选择新使用者后，将会自动解除此设备与老使用者的归属关系。')
+                ->help(admin_trans_label('Staff Id Help'))
                 ->required();
         } else {
-            $this->select('staff_id', '新使用者')
+            $this->select('staff_id', admin_trans_label('New Staff Record'))
                 ->options(StaffRecord::pluck('name', 'id'))
-                ->help('选择新使用者后，将会自动解除此设备与老使用者的归属关系。')
+                ->help(admin_trans_label('Staff Id Help'))
                 ->required();
         }
     }

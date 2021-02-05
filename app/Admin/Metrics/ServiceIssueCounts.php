@@ -34,11 +34,12 @@ class ServiceIssueCounts extends Card
                 $counts++;
             }
         }
+        $service_issue_counts = admin_trans_label('Service Issue Counts');
         $html = <<<HTML
 <div class="small-box" style="margin-bottom: 0;background: rgba(239,83,80,0.7);border-radius: .25rem">
   <div class="inner">
     <h3 class="font-grey">{$counts}</h3>
-    <p class="font-grey">服务程序异常</p>
+    <p class="font-grey">{$service_issue_counts}</p>
   </div>
 </div>
 HTML;

@@ -27,13 +27,13 @@ class TodoRecordUpdateForm extends Form
 
         if (empty($end) || empty($done_description) || empty($id)) {
             return $this->response()
-                ->error('缺少必要的字段！');
+                ->error(trans('main.unauthorized'));
         }
         try {
             $todo_record = TodoRecord::where('id', $id)->first();
             if (empty($todo_record)) {
                 return $this->response()
-                    ->error('没有这条记录！');
+                    ->error(admin_trans_label('Record None'));
             }
             $todo_record->end = $end;
             $todo_record->done_description = $done_description;
@@ -41,12 +41,12 @@ class TodoRecordUpdateForm extends Form
             $todo_record->save();
             $return = $this
                 ->response()
-                ->success('成功！')
+                ->success(admin_trans_label('Update Success'))
                 ->refresh();
         } catch (Exception $e) {
             $return = $this
                 ->response()
-                ->error('失败：' . $e->getMessage());
+                ->error(admin_trans_label('Update Fail') . $e->getMessage());
         }
 
         return $return;

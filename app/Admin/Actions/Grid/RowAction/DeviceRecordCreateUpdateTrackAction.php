@@ -2,7 +2,7 @@
 
 namespace App\Admin\Actions\Grid\RowAction;
 
-use App\Admin\Forms\DeviceTrackCreateUpdateForm;
+use App\Admin\Forms\DeviceRecordCreateUpdateTrackForm;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\RowAction;
 use Dcat\Admin\Widgets\Modal;
@@ -27,7 +27,7 @@ class DeviceRecordCreateUpdateTrackAction extends RowAction
         }
 
         // 实例化表单类并传递自定义参数
-        $form = DeviceTrackCreateUpdateForm::make()->payload(['id' => $this->getKey()]);
+        $form = DeviceRecordCreateUpdateTrackForm::make()->payload(['id' => $this->getKey()]);
 
         return Modal::make()
             ->lg()

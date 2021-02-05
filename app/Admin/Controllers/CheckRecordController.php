@@ -43,8 +43,8 @@ class CheckRecordController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add(admin_trans_label('check-record.records'), $this->grid(), true);
-                $tab->addLink(admin_trans_label('check-track.tracks'), admin_route('check.tracks.index'));
+                $tab->add(Data::icon('record') . trans('main.check_record'), $this->grid(), true);
+                $tab->addLink(Data::icon('track') . trans('main.check_track'), admin_route('check.tracks.index'));
                 $row->column(12, $tab);
             });
     }

@@ -34,14 +34,14 @@ class CheckSoftwarePercentage extends Card
                 ->where('status', '!=', 0)
                 ->get()
                 ->count();
-            $done_counts = '盘点进度：' . $check_tracks_counts . ' / ' . $software_records_all;
+            $done_counts = admin_trans_label('Check Process') . $check_tracks_counts . ' / ' . $software_records_all;
             try {
                 $percentage = round($check_tracks_counts / $software_records_all * 100, 2);
             } catch (Exception $exception) {
                 $percentage = 0;
             }
         } else {
-            $done_counts = '未找到在列的盘点任务';
+            $done_counts = admin_trans_label('Check None');
             $percentage = 0;
         }
 

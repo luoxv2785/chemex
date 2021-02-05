@@ -24,11 +24,12 @@ class DeviceCounts extends Card
             $content->simple();
         }
         $counts = DeviceRecord::count();
+        $device_counts = admin_trans_label('Device Counts');
         $html = <<<HTML
 <div class="small-box" style="margin-bottom: 0;background: rgba(103,58,183,0.7);border-radius: .25rem">
   <div class="inner">
     <h3 class="font-grey">{$counts}</h3>
-    <p class="font-grey">设备数量</p>
+    <p class="font-grey">{$device_counts}</p>
   </div>
 </div>
 HTML;

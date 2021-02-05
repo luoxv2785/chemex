@@ -24,11 +24,12 @@ class ServiceCounts extends Card
             $content->simple();
         }
         $counts = ServiceRecord::all()->count();
+        $service_counts = admin_trans_label('Service Counts');
         $html = <<<HTML
 <div class="small-box" style="margin-bottom: 0;background: rgba(255,109,0,0.7);border-radius: .25rem">
   <div class="inner">
     <h3 class="font-grey">{$counts}</h3>
-    <p class="font-grey">服务程序数量</p>
+    <p class="font-grey">{$service_counts}</p>
   </div>
 </div>
 HTML;

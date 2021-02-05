@@ -28,6 +28,7 @@ class PartWorth extends Card
         if (empty($total)) {
             $total = 0;
         }
+        $part_worth = admin_trans_label('Part Worth');
         $html = <<<HTML
 <div class="small-box" style="margin-bottom: 0;background: rgba(34,34,51,0.5);border-radius: .25rem">
   <div class="inner">

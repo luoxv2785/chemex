@@ -68,7 +68,7 @@ class ServiceTrackController extends AdminController
             });
 
             $grid->quickSearch('id', 'service.name', 'device.name')
-                ->placeholder(trans('admin.quick_search'))
+                ->placeholder(trans('main.quick_search'))
                 ->auto(false);
         });
     }

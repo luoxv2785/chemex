@@ -34,7 +34,7 @@ class DeviceSSHInfoForm extends Form implements LazyRenderable
         // 如果没有设备id或者SSH相关信息则返回错误
         if (!$device_id || !$ssh_username || !$ssh_password || !$ssh_port) {
             return $this->response()
-                ->error('参数错误！');
+                ->error(trans('main.parameter_missing'));
         }
 
         // 设备记录
@@ -42,7 +42,7 @@ class DeviceSSHInfoForm extends Form implements LazyRenderable
         // 如果没有找到这个设备记录则返回错误
         if (!$device) {
             return $this->response()
-                ->error('设备不存在！');
+                ->error(admin_trans_label('Record None'));
         }
 
         $device->ssh_username = $ssh_username;
@@ -51,7 +51,7 @@ class DeviceSSHInfoForm extends Form implements LazyRenderable
         $device->save();
 
         return $this->response()
-            ->success('SSH信息配置成功！')
+            ->success(admin_trans_label('Update SSH Success'))
             ->refresh();
     }
 
@@ -60,11 +60,11 @@ class DeviceSSHInfoForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        $this->text('ssh_username', 'SSH账户')
+        $this->text('ssh_username')
             ->required();
-        $this->text('ssh_password', 'SSH密码')
+        $this->text('ssh_password')
             ->required();
-        $this->number('ssh_port', 'SSH端口')
+        $this->number('ssh_port')
             ->min(0)
             ->max(65535)
             ->default(22)

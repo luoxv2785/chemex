@@ -11,16 +11,20 @@ class WorthTrend extends Line
     /**
      * @var string
      */
-    protected $label = '资产价值趋势（每月）';
-
+    protected $label = '';
     /**
      * 图表默认高度.
      *
      * @var int
      */
     protected $chartHeight = 140;
-
     protected $chartMarginRight = 1;
+
+    public function __construct($title = null, $icon = null)
+    {
+        parent::__construct($title, $icon);
+        $this->label = admin_trans_label('Worth Trend Title');
+    }
 
     /**
      * 处理请求
@@ -61,7 +65,7 @@ class WorthTrend extends Line
             array_push($data, $temp);
         }
 
-        $this->withContent('全年：' . $year_all);
+        $this->withContent(trans('main.all_year') . $year_all);
         // 图表数据
         $this->withChart($data);
     }
@@ -97,7 +101,7 @@ HTML
         return $this->chart([
             'series' => [
                 [
-                    'name' => '价值',
+                    'name' => trans('main.worth'),
                     'data' => $data,
                 ],
             ],
@@ -120,8 +124,8 @@ HTML
 
         $this->title($this->label);
         $this->dropdown([
-            'current_year' => '今年度',
-            'pre_year' => '上年度'
+            'current_year' => admin_trans_label('Current Year'),
+            'pre_year' => admin_trans_label('Last Year')
         ]);
     }
 

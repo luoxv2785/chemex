@@ -42,8 +42,8 @@ class NewTodoRecord extends Notification
     {
         return [
             'todo_record_id' => $this->todo_record->id,
-            'title' => '你有新的待办',
-            'content' => '一个新的待办已经交由你负责。',
+            'title' => trans('new_todo_record_title'),
+            'content' => trans('new_todo_record_content'),
             'expired' => $this->todo_record->end,
             'url' => admin_route('todo.records.show', $this->todo_record->id)
         ];

@@ -52,24 +52,24 @@ class StaffRecordImportForm extends Form
                             $staff_record->save();
                         } else {
                             return $this->response()
-                                ->error('缺少必要的字段！');
+                                ->error(trans('main.parameter_missing'));
                         }
                     } catch (Exception $exception) {
                         return $this->response()->error($exception->getMessage());
                     }
                 }
                 return $this->response()
-                    ->success('文件导入成功！')
+                    ->success(trans('main.upload_success'))
                     ->refresh();
             } catch (IOException $e) {
                 return $this->response()
-                    ->error('文件读写失败：' . $e->getMessage());
+                    ->error(trans('main.file_io_error') . $e->getMessage());
             } catch (UnsupportedTypeException $e) {
                 return $this->response()
-                    ->error('不支持的文件类型：' . $e->getMessage());
+                    ->error(trans('main.file_format') . $e->getMessage());
             } catch (FileNotFoundException $e) {
                 return $this->response()
-                    ->error('文件不存在：' . $e->getMessage());
+                    ->error(trans('main.file_none') . $e->getMessage());
             }
         }
 
@@ -77,7 +77,7 @@ class StaffRecordImportForm extends Form
             $result = LDAPService::importStaffRecords($input['mode']);
             if ($result) {
                 return $this->response()
-                    ->success('LDAP导入成功！')
+                    ->success(admin_trans_label('LDAP Import Success'))
                     ->refresh();
             } else {
                 return $this->response()
@@ -93,8 +93,8 @@ class StaffRecordImportForm extends Form
     {
         $this->select('type')
             ->when('file', function (Form $form) {
-                $form->file('file', '表格文件')
-                    ->help('导入支持xls、xlsx、csv文件，且表格头必填栏位【名称、部门、性别】，可选栏位【职位、手机、邮箱】。')
+                $form->file('file')
+                    ->help(admin_trans_label('File Help'))
                     ->accept('xls,xlsx,csv')
                     ->uniqueName()
                     ->autoUpload();
@@ -102,11 +102,11 @@ class StaffRecordImportForm extends Form
             //TODO 这里怎么回事，上面$this，下面$form
             ->when('ldap', function (Form $form) {
                 $form->radio('mode')
-                    ->options(['rewrite' => '覆盖', 'merge' => '合并'])
+                    ->options(['rewrite' => admin_trans_label('Rewrite'), 'merge' => admin_trans_label('Merge')])
                     ->required()
                     ->default('merge');
             })
-            ->options(['file' => '文件', 'ldap' => '域控'])
+            ->options(['file' => admin_trans_label('File'), 'ldap' => admin_trans_label('LDAP')])
             ->required()
             ->default('file');
     }

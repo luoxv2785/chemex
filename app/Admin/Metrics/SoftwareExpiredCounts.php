@@ -25,12 +25,12 @@ class SoftwareExpiredCounts extends Card
         }
 
         $counts = SoftwareRecord::where('expired', '<', date(now()))->count();
-
+        $software_expired_counts = admin_trans_label('Software Expired Counts');
         $html = <<<HTML
 <div class="info-box" style="background:transparent;margin-bottom: 0;padding: 0;">
     <span class="info-box-icon"><i class="feather icon-disc" style="color:rgba(178,68,71,1);"></i></span>
     <div class="info-box-content">
-        <span class="info-box-text mt-1">已过保的软件数量</span>
+        <span class="info-box-text mt-1">{$software_expired_counts}</span>
         <span class="info-box-number">{$counts}</span>
     </div>
 </div>

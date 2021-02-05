@@ -40,21 +40,10 @@ class NewCheckRecord extends Notification
      */
     public function toArray(): array
     {
-        switch ($this->check_record->check_item) {
-            case 'part':
-                $item_type = '配件';
-                break;
-            case 'software':
-                $item_type = '软件';
-                break;
-            default:
-                $item_type = '设备';
-        }
-
         return [
             'check_record_id' => $this->check_record->id,
-            'title' => '你有新的盘点任务',
-            'content' => '一份' . $item_type . '盘点任务已经交由你负责。',
+            'title' => trans('new_check_record_title'),
+            'content' => trans('new_check_record_content'),
             'expired' => $this->check_record->end_time,
             'url' => admin_route('check.records.show', $this->check_record->id)
         ];

@@ -24,11 +24,12 @@ class PartCounts extends Card
             $content->simple();
         }
         $counts = PartRecord::all()->count();
+        $part_counts = admin_trans_label('Part Counts');
         $html = <<<HTML
 <div class="small-box" style="margin-bottom: 0;background: rgba(33,150,243,0.7);border-radius: .25rem">
   <div class="inner">
     <h3 class="font-grey">{$counts}</h3>
-    <p class="font-grey">配件数量</p>
+    <p class="font-grey">{$part_counts}</p>
   </div>
 </div>
 HTML;

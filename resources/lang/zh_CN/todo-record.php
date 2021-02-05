@@ -5,7 +5,13 @@ return [
         'records' => '待办',
         'User Id' => '用户',
         'Update' => '处理待办',
-        'Create' => '创建待办'
+        'Create' => '创建待办',
+        'Create Success' => '成功！',
+        'Create Fail' => '失败：',
+        'Tag Help' => '随意打上标签，输入后按空格新增。',
+        'Record None' => '没有这条待办',
+        'Update Success' => '成功！',
+        'Update Fail' => '失败：',
     ],
     'fields' => [
         'name' => '名称',

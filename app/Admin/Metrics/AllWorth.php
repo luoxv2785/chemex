@@ -41,11 +41,12 @@ class AllWorth extends Card
         }
 
         $total = $device + $part + $software;
+        $all_worth = admin_trans_label('All Worth');
         $html = <<<HTML
 <div class="small-box" style="margin-bottom: 0;background: rgba(34,34,51,0.5);border-radius: .25rem;">
   <div class="inner">
     <h3 class="font-grey">{$total}</h3>
-    <p class="font-grey">资产总价值</p>
+    <p class="font-grey">{$all_worth}</p>
   </div>
 </div>
 HTML;

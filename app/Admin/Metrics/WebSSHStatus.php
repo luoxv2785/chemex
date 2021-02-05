@@ -22,14 +22,14 @@ class WebSSHStatus extends Line
         $web_ssh_installed = SSHService::checkWebSSHServiceInstalled();
         $web_ssh_service = SSHService::checkWebSSHServiceStatus('http://127.0.0.1:8222');
         if ($web_ssh_service == 200) {
-            $text = '正常';
+            $text = admin_trans_label('Normal');
             $color = '#00c054';
         } else {
-            $text = '未启动';
+            $text = admin_trans_label('Stopped');
             $color = '#997643';
         }
         if ($web_ssh_installed == 0) {
-            $text = '未安装';
+            $text = admin_trans_label('Not Installed');
             $color = '#9f1447';
         }
 
@@ -63,6 +63,6 @@ HTML
     {
         parent::init();
 
-        $this->title('WebSSH服务')->height(120);
+        $this->title(admin_trans_label('Web SSH Service'))->height(120);
     }
 }

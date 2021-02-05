@@ -4,6 +4,7 @@ namespace App\Admin\Forms;
 
 use App\Models\DeviceRecord;
 use App\Models\MaintenanceRecord;
+use App\Models\PartRecord;
 use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
@@ -35,13 +36,12 @@ class MaintenanceCreateForm extends Form implements LazyRenderable
         // 如果没有物品、物品id、故障说明、故障时间则返回错误
         if (!$item || !$item_id || !$ng_description || !$ng_time) {
             return $this->response()
-                ->error('参数错误');
+                ->error(trans('main.parameter_missing'));
         }
 
         switch ($item) {
             case 'part':
-                $class = '\\Celaraze\\Chemex\\Part\\Models\\PartRecord';
-                $item_record = $class::where('id', $item_id)->first();
+                $item_record = PartRecord::where('id', $item_id)->first();
                 break;
             default:
                 $item_record = DeviceRecord::where('id', $item_id)->first();
@@ -50,7 +50,7 @@ class MaintenanceCreateForm extends Form implements LazyRenderable
         // 如果没有找到这个物品记录则返回错误
         if (!$item_record) {
             return $this->response()
-                ->error('物品不存在');
+                ->error(admin_trans_label('Item None'));
         }
 
         // 创建新的配件追踪
@@ -63,7 +63,7 @@ class MaintenanceCreateForm extends Form implements LazyRenderable
         $maintenance_record->save();
 
         return $this->response()
-            ->success('维修记录保存成功')
+            ->success(admin_trans_label('Create Maintenance Success'))
             ->refresh();
     }
 
@@ -72,7 +72,7 @@ class MaintenanceCreateForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        $this->text('ng_description', '故障说明')->required();
-        $this->datetime('ng_time', '故障时间')->required();
+        $this->text('ng_description')->required();
+        $this->datetime('ng_time')->required();
     }
 }

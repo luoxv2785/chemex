@@ -14,7 +14,7 @@ use Dcat\Admin\Widgets\Form;
 
 /**
  * 设备记录分配使用者
- * Class DeviceTrackCreateUpdateForm
+ * Class DeviceRecordCreateUpdateTrackForm
  * @package App\Admin\Forms
  */
 class SoftwareTrackCreateUpdateForm extends Form implements LazyRenderable

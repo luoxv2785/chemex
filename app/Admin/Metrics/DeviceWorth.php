@@ -28,11 +28,12 @@ class DeviceWorth extends Card
         if (empty($total)) {
             $total = 0;
         }
+        $device_worth = admin_trans_label('Device Worth');
         $html = <<<HTML
 <div class="small-box" style="margin-bottom: 0;background: rgba(34,34,51,0.5);border-radius: .25rem">
     <div class="inner">
         <h3 class="font-grey">{$total}</h3>
-        <p class="font-grey">设备总价值</p>
+        <p class="font-grey">{$device_worth}</p>
     </div>
 </div>
 HTML;

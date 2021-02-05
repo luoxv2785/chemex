@@ -27,11 +27,12 @@ class DeviceAboutToExpireCounts extends Card
         $to = date('Y-m-d', time() + (60 * 60 * 24 * 30));
         $counts = DeviceRecord::whereBetween('expired', [$from, $to])->count();
 
+        $device_about_to_expired_counts = admin_trans_label('Device About To Expired Counts');
         $html = <<<HTML
 <div class="info-box" style="background:transparent;margin-bottom: 0;padding: 0;">
 <span class="info-box-icon"><i class="feather icon-monitor" style="color:rgba(255,153,76,1);"></i></span>
   <div class="info-box-content">
-    <span class="info-box-text mt-1">即将过保的设备数量</span>
+    <span class="info-box-text mt-1">{$device_about_to_expired_counts}</span>
     <span class="info-box-number">{$counts}</span>
   </div>
 </div>

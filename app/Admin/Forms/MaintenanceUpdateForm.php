@@ -22,7 +22,7 @@ class MaintenanceUpdateForm extends Form implements LazyRenderable
     {
         if (!Admin::user()->can('maintenance.update')) {
             return $this->response()
-                ->error('你没有权限执行此操作！')
+                ->error(trans('main.unauthorized'))
                 ->refresh();
         }
 
@@ -41,7 +41,7 @@ class MaintenanceUpdateForm extends Form implements LazyRenderable
         // 如果没有物品、物品id、故障说明、故障时间则返回错误
         if (!$id || !$ok_description || !$ok_time || !$status) {
             return $this->response()
-                ->error('参数错误');
+                ->error(trans('main.parameter_missing'));
         }
 
         $maintenance_record = MaintenanceRecord::where('id', $id)->first();
@@ -49,7 +49,7 @@ class MaintenanceUpdateForm extends Form implements LazyRenderable
         // 如果没有找到这个物品记录则返回错误
         if (!$maintenance_record) {
             return $this->response()
-                ->error('物品不存在');
+                ->error(admin_trans_label('Item None'));
         }
 
         // 创建新的配件追踪
@@ -59,7 +59,7 @@ class MaintenanceUpdateForm extends Form implements LazyRenderable
         $maintenance_record->save();
 
         return $this->response()
-            ->success('维修记录更新成功')
+            ->success(admin_trans_label('Update Success'))
             ->refresh();
     }
 
@@ -68,11 +68,11 @@ class MaintenanceUpdateForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        $this->text('ok_description', '故障说明')->required();
-        $this->datetime('ok_time', '故障时间')->required();
-        $this->select('status', '处理结果')->options([
-            1 => '已维修',
-            2 => '取消维修'
+        $this->text('ok_description')->required();
+        $this->datetime('ok_time')->required();
+        $this->select('status')->options([
+            1 => admin_trans_label('Update Done'),
+            2 => admin_trans_label('Update Cancelled')
         ])->required();
     }
 }
