@@ -18,6 +18,10 @@
     <img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2FCelaraze%2FChemex.svg?type=large" />
 </p>
 
+## Gitee Star 趋势
+
+[![Stargazers over time](https://whnb.wang/img/celaraze/chemex)](https://whnb.wang/celaraze/chemex)
+
 ## 鸣谢
 
 <p align="center">
