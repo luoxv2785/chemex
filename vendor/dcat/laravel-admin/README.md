@@ -27,17 +27,13 @@
 - [Demo源码 (码云)](https://gitee.com/jqhph/dcat-admin-demo)
 - [扩展](#)
 
+
+![](https://cdn.learnku.com/uploads/images/202101/28/38389/YLmL7PLqH7.png!large)
+
+
 ### 关于官网备案暂停访问的公告
 
 大家好，[Dcat Admin官网](http://www.dcatadmin.com)正在进行备案中，在备案期间会关闭网站访问，直至备案完成。在此期间大家可以通过[Learnku中文文档](https://learnku.com/docs/dcat-admin/2.x)查看文档，给大家带来的不便之处敬请谅解，谢谢支持！
-
-### 截图
-
-![](https://cdn.learnku.com/uploads/images/202008/23/38389/Oam6CYOobf.jpeg!large)
-![](https://cdn.learnku.com/uploads/images/202007/24/38389/35KJXfVXib.png!large)
-![](https://cdn.learnku.com/uploads/images/202008/23/38389/Lu7LZDSX0M.jpg!large)
-![](https://cdn.learnku.com/uploads/images/202004/24/38389/GBkt9jYnW0.png!large)
-![](https://cdn.learnku.com/uploads/images/202008/08/38389/lGYIdhifb5.jpg!large)
 
 
 ### 功能特性
@@ -77,7 +73,7 @@
 
 > 如果安装过程中出现`composer`下载过慢或安装失败的情况，请运行命令`composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/`把`composer`镜像更换为阿里云镜像。
 
-首先需要安装`laravel`，如已安装可以跳过此步骤
+首先需要安装`laravel`框架，如已安装可以跳过此步骤。如果您是第一次使用`laravel`，请务必先阅读文档 [安装 《Laravel中文文档》](https://learnku.com/docs/laravel/8.x/installation/9354) ！
 ```bash
 composer create-project --prefer-dist laravel/laravel 项目名称 7.*
 # 或

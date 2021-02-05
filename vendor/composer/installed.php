@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '5a8436a266bd5c0e9e522ca0ae7ac9a372d04df7',
+    'reference' => '79312cb8caab9c02d609b2e3687229f28154b3e6',
     'name' => 'celaraze/chemex',
   ),
   'versions' => 
@@ -63,7 +63,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '5a8436a266bd5c0e9e522ca0ae7ac9a372d04df7',
+      'reference' => '79312cb8caab9c02d609b2e3687229f28154b3e6',
     ),
     'composer/ca-bundle' => 
     array (
@@ -144,12 +144,12 @@
     ),
     'dcat/laravel-admin' => 
     array (
-      'pretty_version' => '2.0.16-beta',
-      'version' => '2.0.16.0-beta',
+      'pretty_version' => '2.0.17-beta',
+      'version' => '2.0.17.0-beta',
       'aliases' => 
       array (
       ),
-      'reference' => 'de3a532cc1de27d15aab9e11ba8f8d6a7203baaa',
+      'reference' => 'c8226661ee38202cf7b91a93c99a72851144e14b',
     ),
     'dnoegel/php-xdg-base-dir' => 
     array (
@@ -234,12 +234,12 @@
     ),
     'enlightn/enlightn' => 
     array (
-      'pretty_version' => 'v1.8.0',
-      'version' => '1.8.0.0',
+      'pretty_version' => 'v1.10.0',
+      'version' => '1.10.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '3755969ae7c0149c4ec2143a39fe8b4a96d909cf',
+      'reference' => '8d79d4458188592e2452f6dfe89f6f2adc24ed63',
     ),
     'enlightn/security-checker' => 
     array (

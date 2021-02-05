@@ -24,7 +24,7 @@ class ConfigurationPlatformController extends Controller
             ->body(function (Row $row) {
                 $tab = new Tab();
                 $tab->add(admin_trans_label('configuration-platform.platform'), new Card(new ConfigurationPlatformForm()), true);
-                $tab->addLink(admin_trans_label('configuration-extension.extensions'), route('configurations.extensions.index'));
+                $tab->addLink(admin_trans_label('configuration-extension.extensions'), route('configurations.extensions'));
                 $tab->addLink(admin_trans_label('configuration-l-d-a-p.ldap'), route('configurations.ldap.index'));
                 $row->column(12, $tab);
             });

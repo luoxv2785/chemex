@@ -11,7 +11,11 @@ use Dcat\Admin\Grid\RowAction;
 
 class CheckRecordUpdateNoAction extends RowAction
 {
-    protected $title = '❌ 取消盘点任务';
+    public function __construct($title = null)
+    {
+        parent::__construct($title);
+        $this->title = '❌ ' . admin_trans_label('Cancel Check');
+    }
 
     /**
      * 处理动作逻辑
@@ -21,7 +25,7 @@ class CheckRecordUpdateNoAction extends RowAction
     {
         if (!Admin::user()->can('check.record.update.no')) {
             return $this->response()
-                ->error('你没有权限执行此操作！')
+                ->error(trans('main.unauthorized'))
                 ->refresh();
         }
 
@@ -32,11 +36,11 @@ class CheckRecordUpdateNoAction extends RowAction
         $check_record = CheckRecord::where('id', $this->getKey())->firstOrFail();
         if ($check_record->status == 1) {
             return $this->response()
-                ->warning('失败，此项盘点任务已经完成了。');
+                ->warning(admin_trans_label('Cancel Fail Done'));
         }
         if ($check_record->status == 2) {
             return $this->response()
-                ->warning('失败，此项盘点任务已经取消过了。');
+                ->warning(admin_trans_label('Cancel Fail Cancelled'));
         }
 
         NotificationService::deleteNotificationWhenCheckFinishedOrCancelled($this->getKey());
@@ -44,7 +48,7 @@ class CheckRecordUpdateNoAction extends RowAction
         $check_record->status = 2;
         $check_record->save();
         return $this->response()
-            ->success('盘点任务已经取消！')
+            ->success(admin_trans_label('Cancelled'))
             ->refresh();
     }
 
@@ -54,6 +58,6 @@ class CheckRecordUpdateNoAction extends RowAction
      */
     public function confirm(): array
     {
-        return ['取消此盘点任务？', '取消后，相应的盘点追踪将全部被移除。'];
+        return [admin_trans_label('Cancel Confirm'), admin_trans_label('Cancel Confirm Description')];
     }
 }

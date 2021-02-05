@@ -63,18 +63,18 @@ abstract class Analyzer
     public $traces = [];
 
     /**
+     * Determine whether the analyzer should be run in CI mode.
+     *
+     * @var bool
+     */
+    public static $runInCI = true;
+
+    /**
      * The exception thrown during the analysis.
      *
      * @var array
      */
     protected $exceptionMessage = null;
-
-    /**
-     * The view partial of the analyzer.
-     *
-     * @var string|null
-     */
-    protected $view = null;
 
     /**
      * Determine whether the analyzer passed.
@@ -124,20 +124,32 @@ abstract class Analyzer
      *
      * @param  string  $path
      * @param  int  $lineNumber
+     * @param  string|null  $details
      * @return $this
      */
-    public function addTrace(string $path, $lineNumber = 0)
+    public function addTrace(string $path, $lineNumber = 0, $details = null)
     {
         if ($lineNumber == 0) {
             return $this->markFailed();
         }
 
-        if (! isset($this->traces[$path])) {
-            $this->traces[$path] = [];
+        if (! in_array($trace = new Trace($path, $lineNumber, $details), $this->traces)) {
+            $this->traces[] = $trace;
         }
 
-        if (! in_array($lineNumber, $this->traces[$path])) {
-            $this->traces[$path][] = $lineNumber;
+        return $this->markFailed();
+    }
+
+    /**
+     * Push a trace to the traces array.
+     *
+     * @param \Enlightn\Enlightn\Analyzers\Trace $trace
+     * @return $this
+     */
+    public function pushTrace(Trace $trace)
+    {
+        if (! in_array($trace, $this->traces)) {
+            $this->traces[] = $trace;
         }
 
         return $this->markFailed();
@@ -166,22 +178,6 @@ abstract class Analyzer
         $this->exceptionMessage = $message;
 
         return $this->markSkipped();
-    }
-
-    /**
-     * Add an associated path and line numbers.
-     *
-     * @param  string  $path
-     * @param  array  $lineNumbers
-     * @return $this
-     */
-    public function addTraces(string $path, $lineNumbers = [])
-    {
-        collect($lineNumbers)->each(function ($lineNumber) use ($path) {
-            $this->addTrace($path, $lineNumber);
-        });
-
-        return $this;
     }
 
     /**

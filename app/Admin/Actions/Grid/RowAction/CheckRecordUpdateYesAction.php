@@ -11,12 +11,10 @@ use Dcat\Admin\Grid\RowAction;
 
 class CheckRecordUpdateYesAction extends RowAction
 {
-    protected $title = '⚡ 完成任务';
-
     public function __construct($title = null)
     {
-        $this->title = admin_setting('title');
         parent::__construct($title);
+        $this->title = '⚡ ' . admin_trans_label('Finish Record');
     }
 
     /**
@@ -27,7 +25,7 @@ class CheckRecordUpdateYesAction extends RowAction
     {
         if (!Admin::user()->can('check.record.update.yes')) {
             return $this->response()
-                ->error('你没有权限执行此操作！')
+                ->error('main.unauthorized')
                 ->refresh();
         }
 
@@ -36,11 +34,11 @@ class CheckRecordUpdateYesAction extends RowAction
             $check_record = CheckRecord::where('id', $this->getKey())->firstOrFail();
             if ($check_record->status == 1) {
                 return $this->response()
-                    ->warning('失败，此项盘点任务已经被完成过了。');
+                    ->warning(admin_trans_label('Finish Fail Done'));
             }
             if ($check_record->status == 2) {
                 return $this->response()
-                    ->warning('失败，此项盘点任务已经被提前中止了。');
+                    ->warning(admin_trans_label('Finish Fail Cancelled'));
             }
 
             NotificationService::deleteNotificationWhenCheckFinishedOrCancelled($this->getKey());
@@ -49,11 +47,11 @@ class CheckRecordUpdateYesAction extends RowAction
             $check_record->save();
 
             return $this->response()
-                ->success('太棒了，已经完成了此项盘点全部内容！')
+                ->success(admin_trans_label('Finished'))
                 ->refresh();
         } else {
             return $this->response()
-                ->error('失败，至少还有一项未完成的盘点追踪：' . $check_track->id);
+                ->error(admin_trans_label('Finish Fail Left') . $check_track->id);
         }
     }
 
@@ -63,6 +61,6 @@ class CheckRecordUpdateYesAction extends RowAction
      */
     public function confirm(): array
     {
-        return ['完成盘点任务？', '请确认已经完成了所有相关的盘点追踪工作。'];
+        return [admin_trans_label('Finish Confirm'), admin_trans_label('Finish Confirm Description')];
     }
 }

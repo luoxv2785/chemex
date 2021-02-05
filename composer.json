@@ -19,7 +19,7 @@
         "ext-zip": "*",
         "adldap2/adldap2-laravel": "^6.1",
         "dcat/easy-excel": "^1.0",
-        "dcat/laravel-admin": "^2.0",
+        "dcat/laravel-admin": "2.0.17-beta",
         "doctrine/dbal": "^3.0",
         "enlightn/enlightn": "^1.7",
         "fideloper/proxy": "^4.2",

@@ -41,9 +41,8 @@ Route::group([
      */
     $router->get('/configurations/platform', 'ConfigurationPlatformController@index')
         ->name('configurations.platform.index');
-    $router->resource('/configurations/extensions', 'ConfigurationExtensionController', ['names' => [
-        'index' => 'configurations.extensions.index'
-    ]]);
+    $router->resource('/configurations/extensions', 'ConfigurationExtensionController')
+        ->names('configurations.extensions');
     $router->get('/configurations/ldap', 'ConfigurationLDAPController@index')
         ->name('configurations.ldap.index');
 
@@ -63,20 +62,12 @@ Route::group([
     /**
      * 设备管理
      */
-    $router->resource('/device/records', 'DeviceRecordController', ['names' => [
-        'index' => 'device.records.index',
-        'show' => 'device.records.show',
-        'create' => 'device.records.create'
-    ]]);
-    $router->resource('/device/tracks', 'DeviceTrackController', ['names' => [
-        'index' => 'device.tracks.index',
-        'show' => 'device.tracks.show'
-    ]]);
-    $router->resource('/device/categories', 'DeviceCategoryController', ['names' => [
-        'index' => 'device.categories.index',
-        'show' => 'device.categories.show',
-        'create' => 'device.categories.create'
-    ]]);
+    $router->resource('/device/records', 'DeviceRecordController')
+        ->names('device.records');
+    $router->resource('/device/tracks', 'DeviceTrackController')
+        ->names('device.tracks');
+    $router->resource('/device/categories', 'DeviceCategoryController')
+        ->names('device.categories');
     $router->get('/selection/device/records', [DeviceRecordController::class, 'selectList'])
         ->name('selection.device.records');
     $router->get('/selection/device/categories', [DeviceCategoryController::class, 'selectList'])
@@ -85,107 +76,78 @@ Route::group([
     /**
      * 配件管理
      */
-    Route::resource('/part/records', 'PartRecordController', ['names' => [
-        'index' => 'part.records.index',
-        'show' => 'part.records.show'
-    ]]);
-    Route::resource('/part/tracks', 'PartTrackController', ['names' => [
-        'index' => 'part.tracks.index',
-        'show' => 'part.tracks.show'
-    ]]);
-    Route::resource('/part/categories', 'PartCategoryController', ['names' => [
-        'index' => 'part.categories.index',
-        'show' => 'part.categories.show',
-        'create' => 'part.categories.create'
-    ]]);
-    Route::get('/selection/part/categories', [PartCategoryController::class, 'selectList'])
+    $router->resource('/part/records', 'PartRecordController')
+        ->names('part.records');
+    $router->resource('/part/tracks', 'PartTrackController')
+        ->names('part.tracks');
+    $router->resource('/part/categories', 'PartCategoryController')
+        ->names('part.categories');
+    $router->get('/selection/part/categories', [PartCategoryController::class, 'selectList'])
         ->name('selection.part.categories');
 
     /**
      * 软件管理
      */
-    Route::resource('/software/records', 'SoftwareRecordController', ['names' => [
-        'index' => 'software.records.index',
-        'show' => 'software.records.show'
-    ]]);
-    Route::resource('/software/categories', 'SoftwareCategoryController', ['names' => [
-        'index' => 'software.categories.index',
-        'show' => 'software.categories.show'
-    ]]);
-    Route::resource('/software/tracks', 'SoftwareTrackController', ['names' => [
-        'index' => 'software.tracks.index',
-        'show' => 'software.tracks.show'
-    ]]);
-    Route::get('/selection/software/categories', ['SoftwareCategoryController', 'selectList'])
+    $router->resource('/software/records', 'SoftwareRecordController')
+        ->names('software.records');
+    $router->resource('/software/categories', 'SoftwareCategoryController')
+        ->names('software.categories');
+    $router->resource('/software/tracks', 'SoftwareTrackController')
+        ->names('software.tracks');
+    $router->get('/selection/software/categories', ['SoftwareCategoryController', 'selectList'])
         ->name('selection.software.categories');
-    Route::get('/export/software/{software_id}/history', ['SoftwareRecordController', 'exportHistory'])
+    $router->get('/export/software/{software_id}/history', ['SoftwareRecordController', 'exportHistory'])
         ->name('export.software.history');
 
     /**
      * 服务管理
      */
-    Route::resource('/service/records', 'ServiceRecordController', ['names' => [
-        'index' => 'service.records.index',
-        'show' => 'service.records.show'
-    ]]);
-    Route::resource('/service/issues', 'ServiceIssueController', ['names' => [
-        'index' => 'service.issues.index'
-    ]]);
-    Route::resource('/service/tracks', 'ServiceTrackController', ['names' => [
-        'index' => 'service.tracks.index'
-    ]]);
+    $router->resource('/service/records', 'ServiceRecordController')
+        ->names('service.records');
+    $router->resource('/service/issues', 'ServiceIssueController')
+        ->names('service.issues');
+    $router->resource('/service/tracks', 'ServiceTrackController')
+        ->names('service.tracks');
 
     /**
      * 耗材管理
      */
-    Route::resource('/consumable/records', 'ConsumableRecordController', ['names' => [
-        'index' => 'consumable.records.index',
-        'show' => 'consumable.records.show'
-    ]]);
-    Route::resource('/consumable/categories', 'ConsumableCategoryController', ['names' => [
-        'index' => 'consumable.categories.index',
-        'show' => 'consumable.categories.show'
-    ]]);
-    Route::resource('/consumable/tracks', 'ConsumableTrackController', ['names' => [
-        'index' => 'consumable.tracks.index',
-        'show' => 'consumable.tracks.show'
-    ]]);
+    $router->resource('/consumable/records', 'ConsumableRecordController')
+        ->names('consumable.records');
+    $router->resource('/consumable/categories', 'ConsumableCategoryController')
+        ->names('consumable.categories');
+    $router->resource('/consumable/tracks', 'ConsumableTrackController')
+        ->names('consumable.tracks');
 
     /**
      * 待办
      */
-    Route::resource('/todo/records', 'TodoRecordController', ['names' => [
-        'index' => 'todo.records.index',
-        'show' => 'todo.records.show'
-    ]]);
+    $router->resource('/todo/records', 'TodoRecordController')
+        ->names('todo.records');
 
     /**
      * 厂商管理
      */
-    $router->resource('/vendor/records', 'VendorRecordController', ['names' => [
-        'create' => 'vendor.records.create'
-    ]]);
+    $router->resource('/vendor/records', 'VendorRecordController')
+        ->names('vendor.records');
     $router->get('/selection/vendor/records', [VendorRecordController::class, 'selectList'])
         ->name('selection.vendor.records');
 
     /**
      * 购入途径管理
      */
-    $router->resource('/purchased/channels', 'PurchasedChannelController', ['names' => [
-        'create' => 'purchased.channels.create'
-    ]]);
+    $router->resource('/purchased/channels', 'PurchasedChannelController')
+        ->names('purchased.channels');
     $router->get('/selection/purchased/channels', [PurchasedChannelController::class, 'selectList'])
         ->name('selection.purchased.channels');
 
     /**
      * 组织管理
      */
-    $router->resource('/staff/records', 'StaffRecordController', ['names' => [
-        'index' => 'staff.records.index'
-    ]]);
-    $router->resource('/staff/departments', 'StaffDepartmentController', ['names' => [
-        'index' => 'staff.departments.index'
-    ]]);
+    $router->resource('/staff/records', 'StaffRecordController')
+        ->names('staff.records');
+    $router->resource('/staff/departments', 'StaffDepartmentController')
+        ->names('staff.departments');
     $router->get('/selection/staff/records', [StaffRecordController::class, 'selectList'])
         ->name('selection.staff.records');
     $router->get('/selection/staff/departments', [StaffDepartmentController::class, 'selectList'])
@@ -194,26 +156,22 @@ Route::group([
     /**
      * 盘点管理
      */
-    $router->resource('/check/records', 'CheckRecordController', ['names' => [
-        'index' => 'check.records.index',
-        'show' => 'check.records.show'
-    ]]);
-    $router->resource('/check/tracks', 'CheckTrackController', ['names' => [
-        'index' => 'check.tracks.index',
-        'show' => 'check.tracks.show'
-    ]]);
+    $router->resource('/check/records', 'CheckRecordController')
+        ->names('check.records');
+    $router->resource('/check/tracks', 'CheckTrackController')
+        ->names('check.tracks');
 
     /**
      * 故障维护
      */
-    $router->resource('/maintenance/records', 'MaintenanceRecordController');
+    $router->resource('/maintenance/records', 'MaintenanceRecordController')
+        ->names('maintenance.records');
 
     /**
      * 折旧规则
      */
-    $router->resource('/depreciation/rules', 'DepreciationRuleController', ['names' => [
-        'create' => 'depreciation.rules.create'
-    ]]);
+    $router->resource('/depreciation/rules', 'DepreciationRuleController')
+        ->names('depreciation.rules');
     $router->get('/selection/depreciation/rules', [DepreciationRuleController::class, 'selectList'])
         ->name('selection.depreciation.rules');
 

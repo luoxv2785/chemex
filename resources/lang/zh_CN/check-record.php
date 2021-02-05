@@ -7,7 +7,20 @@ return [
         'Report' => '生成报告',
         'Record None' => '没有此盘点任务',
         'Item None' => '没有此物资',
-        'Incomplete' => '还有未完成的相同盘点，请先处理'
+        'Incomplete' => '还有未完成的相同盘点，请先处理',
+        'Cancel Record' => '取消盘点任务',
+        'Cancel Fail Done' => '失败，此项盘点任务已经完成了。',
+        'Cancel Fail Cancelled' => '失败，此项盘点任务已经取消过了。',
+        'Cancelled' => '盘点任务已经取消！',
+        'Cancel Confirm' => '取消此盘点任务？',
+        'Cancel Confirm Description' => '取消后，相应的盘点追踪将全部被移除。',
+        'Finish Record' => '完成盘点任务',
+        'Finish Fail Done' => '失败，此项盘点任务已经被完成过了。',
+        'Finish Fail Cancelled' => '失败，此项盘点任务已经被提前中止了。',
+        'Finished' => '太棒了，已经完成了此项盘点全部内容！',
+        'Finish Fail Left' => '失败，至少还有一项未完成的盘点追踪：',
+        'Finish Confirm' => '完成盘点任务？',
+        'Finish Confirm Description' => '请确认已经完成了所有相关的盘点追踪工作。'
     ],
     'fields' => [
         'check_item' => '盘点项目',

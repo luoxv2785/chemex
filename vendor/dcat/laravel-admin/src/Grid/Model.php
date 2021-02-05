@@ -173,7 +173,7 @@ class Model
     /**
      * @return AbstractPaginator|LengthAwarePaginator
      */
-    public function paginator(): AbstractPaginator
+    public function paginator(): ?AbstractPaginator
     {
         $this->buildData();
 
@@ -510,13 +510,11 @@ class Model
      *
      * @param $method
      *
-     * @return static
+     * @return Collection
      */
     public function findQueryByMethod($method)
     {
-        return $this->queries->first(function ($query) use ($method) {
-            return $query['method'] == $method;
-        });
+        return $this->queries->where('method', $method);
     }
 
     /**
