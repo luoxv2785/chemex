@@ -28,7 +28,7 @@ class ServiceProvider extends BaseServiceProvider
     ];
     protected $menu = [
         [
-            'title' => 'Plus',
+            'title' => 'Dcat Plus',
             'uri' => 'dcat-plus/site',
             'icon' => 'feather icon-settings'
         ]

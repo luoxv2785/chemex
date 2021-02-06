@@ -18,6 +18,7 @@ return [
     'part' => '配件',
     'software' => '软件',
     'device' => '设备',
+    'service' => '服务',
     'new_check_record_title' => '你有新的盘点任务',
     'new_check_record_content' => '新的盘点任务已经交由你负责。',
     'new_todo_record_title' => '你有新的待办',

@@ -36,7 +36,7 @@ return [
         'Staff Id Help' => '选择新使用者后，将会自动解除此设备与老使用者的归属关系。',
         'Item None' => '物品不存在',
         'Create Maintenance Success' => '维修记录保存成功',
-
+        'Export To Excel' => '导出到Excel',
     ],
     'fields' => [
         'qrcode' => '二维码',
@@ -93,7 +93,8 @@ return [
             'name' => '名称'
         ],
         'depreciation' => [
-            'name' => '折旧规则'
+            'name' => '折旧规则',
+            'termination' => '报废日期'
         ],
         'asset_number' => '资产编号',
         'location' => '位置',

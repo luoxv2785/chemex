@@ -3,8 +3,8 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Grid\BatchAction\DeviceRecordBatchDeleteAction;
-use App\Admin\Actions\Grid\RowAction\DeviceRecordDeleteAction;
 use App\Admin\Actions\Grid\RowAction\DeviceRecordCreateUpdateTrackAction;
+use App\Admin\Actions\Grid\RowAction\DeviceRecordDeleteAction;
 use App\Admin\Actions\Grid\RowAction\MaintenanceCreateAction;
 use App\Admin\Actions\Grid\ToolAction\DeviceRecordImportAction;
 use App\Admin\Grid\Displayers\RowActions;
@@ -77,23 +77,23 @@ class DeviceRecordController extends AdminController
                 }
                 $row->column($column_a_width, $this->detail($id));
                 $row->column($column_b_width, function (Column $column) use ($id, $name, $history) {
-                    $column->row(Card::make()->content(trans('main.device_record_current_staff') . '：' . $name));
+                    $column->row(Card::make()->content(admin_trans_label('Current Staff') . '：' . $name));
                     if (Admin::user()->can('device.related')) {
                         $result = self::hasDeviceRelated($id);
                         if ($result['part']) {
-                            $column->row(new Card(admin_trans('menu.part'), $result['part']));
+                            $column->row(new Card(trans('main.part'), $result['part']));
                         }
                         if ($result['software']) {
-                            $column->row(new Card(admin_trans('menu.software'), $result['software']));
+                            $column->row(new Card(trans('main.software'), $result['software']));
                         }
                         if ($result['service']) {
-                            $column->row(new Card(admin_trans('menu.service'), $result['service']));
+                            $column->row(new Card(trans('main.service'), $result['service']));
                         }
                     }
                 });
                 if (Admin::user()->can('device.history')) {
                     $card = new Card(trans('main.history'), view('history')->with('data', $history));
-                    $row->column($column_c_width, $card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.device.history', $id) . '" target="_blank">导出到 Excel</a>'));
+                    $row->column($column_c_width, $card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.device.history', ['device_id' => 1]) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>'));
                 }
             });
     }
@@ -334,8 +334,10 @@ class DeviceRecordController extends AdminController
                 ->help(admin_trans_label('Photo Help'));
             $form->currency('price');
             $form->date('purchased');
-            $form->date('expired');
+            $form->date('expired')
+                ->attribute('autocomplete', 'off');
             $form->password('security_password')
+                ->attribute('autocomplete', 'new-password')
                 ->help(admin_trans_label('Security Password Help'));
             $form->password('admin_password')
                 ->help(admin_trans_label('Admin Password Help'));
