@@ -171,7 +171,7 @@ final class Versions
   'sebastian/type' => '2.3.1@81cd61ab7bbf2de744aba0ea61fae32f721df3d2',
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'theseer/tokenizer' => '1.2.0@75a63c33a8577608444246075ea0af0d052e452a',
-  'celaraze/chemex' => 'dev-main@1aec1c169314d13c2aad6f24dac85921989e1b09',
+  'celaraze/chemex' => 'dev-main@9bb6c7e6c928585c50f75b66a3be0889877078df',
 );
 
     private function __construct()
