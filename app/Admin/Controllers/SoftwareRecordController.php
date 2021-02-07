@@ -137,7 +137,20 @@ class SoftwareRecordController extends AdminController
             ]);
 
             $grid->toolsWithOutline(false);
-
+            $grid->quickCreate(function (Grid\Tools\QuickCreate $create) {
+                $create->text('name')->required();
+                $create->text('version')->required();
+                $create->select('category_id')
+                    ->options(SoftwareCategory::selectOptions())
+                    ->required();
+                $create->select('vendor_id')
+                    ->options(VendorRecord::pluck('name', 'id'))
+                    ->required();
+                $create->select('distribution')
+                    ->options(Data::distribution())
+                    ->default('u')
+                    ->required();
+            });
             $grid->export();
         });
     }
@@ -271,8 +284,7 @@ class SoftwareRecordController extends AdminController
                 ->default('u')
                 ->required();
             $form->number('counts')
-                ->min(-1)
-                ->default(1)
+                ->default(-1)
                 ->required()
                 ->help(admin_trans_label('Counts Help'));
             $form->divider();

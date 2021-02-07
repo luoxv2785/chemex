@@ -108,6 +108,7 @@ class StaffDepartmentController extends AdminController
         return Form::make(new StaffDepartment(), function (Form $form) {
             $form->display('id');
             $form->text('name')->required();
+            $form->divider();
             $form->text('description');
             if (Support::ifSelectCreate()) {
                 $form->selectCreate('parent_id', admin_trans_label('Parent'))

@@ -83,6 +83,13 @@ class StaffRecordController extends AdminController
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
+            $grid->quickCreate(function (Grid\Tools\QuickCreate $create) {
+                $create->text('name')->required();
+                $create->select('gender')
+                    ->options(Data::genders())
+                    ->required();
+            });
+
             $grid->filter(function ($filter) {
                 $filter->equal('department.name')->select(StaffDepartment::pluck('name', 'id'));
             });
@@ -138,6 +145,10 @@ class StaffRecordController extends AdminController
         return Form::make(new StaffRecord(), function (Form $form) {
             $form->display('id');
             $form->text('name')->required();
+            $form->select('gender')
+                ->options(Data::genders())
+                ->required();
+            $form->divider();
             if (Support::ifSelectCreate()) {
                 $form->selectCreate('department_id', admin_trans_label('Department'))
                     ->options(StaffDepartment::class)
@@ -149,9 +160,6 @@ class StaffRecordController extends AdminController
                     ->options(StaffDepartment::selectOptions())
                     ->required();
             }
-            $form->select('gender')
-                ->options(Data::genders())
-                ->required();
             $form->text('title');
             $form->mobile('mobile');
             $form->email('email');

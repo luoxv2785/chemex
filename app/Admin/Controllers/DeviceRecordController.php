@@ -136,6 +136,7 @@ class DeviceRecordController extends AdminController
             $show->field('depreciation.name');
             $show->field('depreciation.termination');
             $show->field('location');
+            $show->field('extended_fields')->view('extended_fields');
             $show->field('created_at');
             $show->field('updated_at');
 
@@ -265,6 +266,16 @@ class DeviceRecordController extends AdminController
                 $filter->equal('location');
             });
 
+            $grid->quickCreate(function (Grid\Tools\QuickCreate $create) {
+                $create->text('name')->required();
+                $create->select('category_id', admin_trans_label('Category'))
+                    ->options(DeviceCategory::pluck('name', 'id'))
+                    ->required();
+                $create->select('vendor_id', admin_trans_label('Vendor'))
+                    ->options(VendorRecord::pluck('name', 'id'))
+                    ->required();
+            });
+            $grid->enableDialogCreate();
             $grid->toolsWithOutline(false);
             $grid->export();
         });
@@ -353,9 +364,12 @@ class DeviceRecordController extends AdminController
                     ->options(DepreciationRule::pluck('name', 'id'))
                     ->help(admin_trans_label('Depreciation Rule Help'));
             }
-
             $form->text('location')
                 ->help(admin_trans_label('Location Help'));
+            $form->table('extended_fields', function (Form\NestedForm $table) {
+                $table->text('key', trans('main.key'));
+                $table->textarea('value', trans('main.value'));
+            });
             $form->display('created_at');
             $form->display('updated_at');
 

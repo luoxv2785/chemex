@@ -77,6 +77,10 @@ class ServiceRecordController extends AdminController
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
+            $grid->quickCreate(function (Grid\Tools\QuickCreate $create) {
+                $create->text('name')->required();
+            });
+
             $grid->filter(function ($filter) {
                 $filter->equal('device.name');
             });
@@ -116,6 +120,7 @@ class ServiceRecordController extends AdminController
         return Form::make(new ServiceRecord(), function (Form $form) {
             $form->display('id');
             $form->text('name')->required();
+            $form->divider();
             $form->text('description');
             $form->switch('status')
                 ->default(0)

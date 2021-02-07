@@ -35,6 +35,7 @@ class CreateDeviceTables extends Migration
             $table->string('admin_password')->nullable();
             $table->integer('purchased_channel_id')->nullable();
             $table->integer('depreciation_rule_id')->nullable();
+            $table->string('extended_fields')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -46,6 +47,7 @@ class CreateDeviceTables extends Migration
             $table->integer('depreciation_rule_id')->nullable();
             $table->integer('parent_id')->nullable();
             $table->string('order')->default(0);
+            $table->string('extended_fields')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -54,6 +56,7 @@ class CreateDeviceTables extends Migration
             $table->id();
             $table->integer('device_id');
             $table->integer('staff_id');
+            $table->string('extended_fields')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

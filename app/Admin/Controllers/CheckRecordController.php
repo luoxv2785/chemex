@@ -222,8 +222,7 @@ class CheckRecordController extends AdminController
             $form->datetime('end_time')
                 ->required();
             $form->select('user_id', admin_trans_label('User'))
-                ->options(AdminUser::all()
-                    ->pluck('name', 'id'))
+                ->options(AdminUser::pluck('name', 'id'))
                 ->required();
 
             $form->display('created_at');

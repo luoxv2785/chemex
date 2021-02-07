@@ -24,6 +24,7 @@ class CreateTodoTables extends Migration
             $table->string('tags')->nullable();
             $table->text('done_description')->nullable();
             $table->string('emoji')->nullable();
+            $table->string('extended_fields')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,6 +33,7 @@ class CreateTodoTables extends Migration
             $table->id();
             $table->integer('todo_id');
             $table->text('origin_json_string');
+            $table->string('extended_fields')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

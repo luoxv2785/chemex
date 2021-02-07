@@ -18,6 +18,7 @@ class CreateServiceTables extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->integer('status');
+            $table->string('extended_fields')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -26,6 +27,7 @@ class CreateServiceTables extends Migration
             $table->id();
             $table->integer('service_id');
             $table->integer('device_id');
+            $table->string('extended_fields')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -39,6 +41,7 @@ class CreateServiceTables extends Migration
             $table->dateTime('start');
             $table->dateTime('end')->nullable();
             $table->integer('checker')->nullable();
+            $table->string('extended_fields')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

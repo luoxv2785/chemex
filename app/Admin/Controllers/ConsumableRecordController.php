@@ -60,6 +60,20 @@ class ConsumableRecordController extends AdminController
                 new ConsumableOutAction()
             ]);
 
+            $grid->enableDialogCreate();
+            $grid->quickCreate(function (Grid\Tools\QuickCreate $create) {
+                $create->text('name')
+                    ->required();
+                $create->text('specification')
+                    ->required();
+                $create->select('category_id', admin_trans_label('Category'))
+                    ->options(ConsumableCategory::pluck('name', 'id'))
+                    ->required();
+                $create->select('vendor_id', admin_trans_label('Vendor'))
+                    ->options(VendorRecord::pluck('name', 'id'))
+                    ->required();
+            });
+
             $grid->filter(function ($filter) {
                 $filter->equal('category_id')->select(DeviceCategory::pluck('name', 'id'));
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
@@ -100,7 +114,6 @@ class ConsumableRecordController extends AdminController
             $form->display('id');
             $form->text('name')
                 ->required();
-            $form->text('description');
             $form->text('specification')
                 ->required();
             $form->select('category_id', admin_trans_label('Category'))
@@ -109,6 +122,8 @@ class ConsumableRecordController extends AdminController
             $form->select('vendor_id', admin_trans_label('Vendor'))
                 ->options(VendorRecord::pluck('name', 'id'))
                 ->required();
+            $form->divider();
+            $form->text('description');
             $form->text('price');
 
             $form->display('created_at');

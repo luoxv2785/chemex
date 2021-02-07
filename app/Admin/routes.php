@@ -7,6 +7,8 @@ use App\Admin\Controllers\DeviceRecordController;
 use App\Admin\Controllers\NotificationController;
 use App\Admin\Controllers\PartCategoryController;
 use App\Admin\Controllers\PurchasedChannelController;
+use App\Admin\Controllers\SoftwareCategoryController;
+use App\Admin\Controllers\SoftwareRecordController;
 use App\Admin\Controllers\StaffDepartmentController;
 use App\Admin\Controllers\StaffRecordController;
 use App\Admin\Controllers\VendorRecordController;
@@ -94,9 +96,9 @@ Route::group([
         ->names('software.categories');
     $router->resource('/software/tracks', 'SoftwareTrackController')
         ->names('software.tracks');
-    $router->get('/selection/software/categories', ['SoftwareCategoryController', 'selectList'])
+    $router->get('/selection/software/categories', [SoftwareCategoryController::class, 'selectList'])
         ->name('selection.software.categories');
-    $router->get('/export/software/{software_id}/history', ['SoftwareRecordController', 'exportHistory'])
+    $router->get('/export/software/{software_id}/history', [SoftwareRecordController::class, 'exportHistory'])
         ->name('export.software.history');
 
     /**

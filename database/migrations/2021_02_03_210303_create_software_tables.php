@@ -20,6 +20,7 @@ class CreateSoftwareTables extends Migration
             $table->string('description')->nullable();  //描述
             $table->integer('parent_id')->default(null)->nullable();
             $table->string('order')->default(0);
+            $table->string('extended_fields')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -38,8 +39,9 @@ class CreateSoftwareTables extends Migration
             $table->date('expired')->nullable(); //有效期
             $table->char('distribution')->default('u');   //分发方式,u未知，o开源，f免费，b商业
             $table->string('sn')->nullable();   //序列号
-            $table->integer('counts')->default(1);  //授权数量
+            $table->integer('counts')->default(-1);  //授权数量
             $table->integer('purchased_channel_id')->nullable();
+            $table->string('extended_fields')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -48,6 +50,7 @@ class CreateSoftwareTables extends Migration
             $table->id();
             $table->integer('software_id');
             $table->integer('device_id');
+            $table->string('extended_fields')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

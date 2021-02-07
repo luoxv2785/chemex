@@ -138,6 +138,15 @@ class PartRecordController extends AdminController
                 new PartRecordImportAction()
             ]);
 
+            $grid->quickCreate(function (Grid\Tools\QuickCreate $create) {
+                $create->text('name')->required();
+                $create->select('category_id', admin_trans_label('Category'))
+                    ->options(PartCategory::selectOptions())
+                    ->required();
+                $create->text('specification')->required();
+                $create->select('vendor_id', admin_trans_label('Vendor'))
+                    ->options(VendorRecord::pluck('name', 'id'));
+            });
             $grid->toolsWithOutline(false);
             $grid->export();
         });
@@ -228,8 +237,7 @@ class PartRecordController extends AdminController
                 $form->selectCreate('purchased_channel_id', admin_trans_label('Purchased Channel'))
                     ->options(PurchasedChannel::class)->ajax(admin_route('selection.purchased.channels'))
                     ->ajax(admin_route('selection.purchased.channels'))
-                    ->url(admin_route('purchased.channels.create'))
-                    ->required();
+                    ->url(admin_route('purchased.channels.create'));
             } else {
                 $form->select('purchased_channel_id', admin_trans_label('Purchased Channel'))
                     ->options(PurchasedChannel::pluck('name', 'id'));
@@ -244,8 +252,7 @@ class PartRecordController extends AdminController
                 $form->selectCreate('depreciation_rule_id', admin_trans_label('Depreciation Rule'))
                     ->options(DepreciationRule::class)
                     ->ajax(admin_route('selection.depreciation.rules'))
-                    ->url(admin_route('depreciation.rules.create'))
-                    ->required();
+                    ->url(admin_route('depreciation.rules.create'));
             } else {
                 $form->select('depreciation_rule_id', admin_trans_label('Depreciation Rule'))
                     ->options(DepreciationRule::pluck('name', 'id'));
@@ -258,7 +265,6 @@ class PartRecordController extends AdminController
             $form->display('updated_at');
 
             $form->disableDeleteButton();
-
             $form->disableCreatingCheck();
             $form->disableEditingCheck();
             $form->disableViewCheck();

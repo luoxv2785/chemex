@@ -20,6 +20,7 @@ class CreateCheckTables extends Migration
             $table->dateTime('end_time');
             $table->integer('user_id');
             $table->integer('status')->default(0);
+            $table->string('extended_fields')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -31,6 +32,7 @@ class CreateCheckTables extends Migration
             $table->integer('status');
             $table->integer('checker');
             $table->string('description')->nullable();
+            $table->string('extended_fields')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

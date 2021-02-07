@@ -26,5 +26,7 @@ return [
     'all_year' => '全年：',
     'issue_times' => '异常次数',
     'maintenance_times' => '故障次数',
-    'worth' => '价值'
+    'worth' => '价值',
+    'key' => '字段名',
+    'value' => '字段值'
 ];

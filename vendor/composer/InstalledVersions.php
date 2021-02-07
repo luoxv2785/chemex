@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '644d91afbcdd2c5bd8517ca3335fc01ad06e4d51',
+    'reference' => '1aec1c169314d13c2aad6f24dac85921989e1b09',
     'name' => 'celaraze/chemex',
   ),
   'versions' => 
@@ -87,7 +87,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '644d91afbcdd2c5bd8517ca3335fc01ad06e4d51',
+      'reference' => '1aec1c169314d13c2aad6f24dac85921989e1b09',
     ),
     'composer/ca-bundle' => 
     array (
@@ -273,15 +273,6 @@ private static $installed = array (
       array (
       ),
       'reference' => '378b2493cb3bc7961c836ad164b3393c33a20754',
-    ),
-    'ezyang/htmlpurifier' => 
-    array (
-      'pretty_version' => 'v4.13.0',
-      'version' => '4.13.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '08e27c97e4c6ed02f37c5b2b20488046c8d90d75',
     ),
     'facade/flare-client-php' => 
     array (
@@ -687,15 +678,6 @@ private static $installed = array (
       array (
       ),
       'reference' => '3b9dff8aaf7323590c1d2e443db701eb1f9aa0d3',
-    ),
-    'mews/purifier' => 
-    array (
-      'pretty_version' => '3.3.3',
-      'version' => '3.3.3.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '8e0b3d87c79b38b8d88aeb3c0ba8b000a393a74c',
     ),
     'mockery/mockery' => 
     array (

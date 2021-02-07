@@ -10,6 +10,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
  * @method static where(string $key, string $value)
+ * @method static pluck(string $string, string $string1)
  * @property int id
  * @property string username
  * @property string password

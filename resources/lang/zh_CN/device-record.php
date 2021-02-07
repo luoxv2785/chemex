@@ -102,7 +102,8 @@ return [
         'vendor_id' => '厂商',
         'depreciation_id' => '折旧规则',
         'ng_description' => '故障说明',
-        'ng_time' => '故障发生时间'
+        'ng_time' => '故障发生时间',
+        'extended_fields' => '自定义信息'
     ],
     'options' => [
     ],

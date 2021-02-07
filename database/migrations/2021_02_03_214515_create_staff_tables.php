@@ -22,6 +22,7 @@ class CreateStaffTables extends Migration
             $table->string('mobile')->nullable();
             $table->string('email')->nullable();
             $table->integer('ad_tag')->default(0);
+            $table->string('extended_fields')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -33,6 +34,7 @@ class CreateStaffTables extends Migration
             $table->integer('parent_id')->nullable();
             $table->string('order')->default(0);
             $table->integer('ad_tag')->default(0);
+            $table->string('extended_fields')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

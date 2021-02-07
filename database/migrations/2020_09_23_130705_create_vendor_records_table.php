@@ -19,6 +19,7 @@ class CreateVendorRecordsTable extends Migration
             $table->string('description')->nullable();  //描述
             $table->string('location')->nullable(); //所在国家、地区
             $table->longText('contacts')->nullable();
+            $table->string('extended_fields')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
