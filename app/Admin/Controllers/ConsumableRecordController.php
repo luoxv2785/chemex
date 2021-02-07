@@ -98,6 +98,7 @@ class ConsumableRecordController extends AdminController
             $show->field('category.name');
             $show->field('vendor.name');
             $show->field('price');
+            $show->field('extended_fields')->view('extended_fields');
             $show->field('created_at');
             $show->field('updated_at');
         });
@@ -125,7 +126,10 @@ class ConsumableRecordController extends AdminController
             $form->divider();
             $form->text('description');
             $form->text('price');
-
+            $form->table('extended_fields', function (Form\NestedForm $table) {
+                $table->text('key', trans('main.key'));
+                $table->textarea('value', trans('main.value'));
+            });
             $form->display('created_at');
             $form->display('updated_at');
         });

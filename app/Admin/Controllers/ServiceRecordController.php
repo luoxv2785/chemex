@@ -103,6 +103,7 @@ class ServiceRecordController extends AdminController
             $show->field('name');
             $show->field('description');
             $show->field('device.name');
+            $show->field('extended_fields')->view('extended_fields');
             $show->field('created_at');
             $show->field('updated_at');
 
@@ -125,7 +126,10 @@ class ServiceRecordController extends AdminController
             $form->switch('status')
                 ->default(0)
                 ->help(admin_trans_label('Status Help'));
-
+            $form->table('extended_fields', function (Form\NestedForm $table) {
+                $table->text('key', trans('main.key'));
+                $table->textarea('value', trans('main.value'));
+            });
             $form->display('created_at');
             $form->display('updated_at');
 

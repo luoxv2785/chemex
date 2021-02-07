@@ -226,6 +226,7 @@ class SoftwareRecordController extends AdminController
             $show->field('distribution')->using(Data::distribution());
             $show->field('counts');
             $show->field('location');
+            $show->field('extended_fields')->view('extended_fields');
             $show->field('created_at');
             $show->field('updated_at');
 
@@ -307,7 +308,10 @@ class SoftwareRecordController extends AdminController
             $form->date('expired');
             $form->text('location')
                 ->help(admin_trans_label('Location Help'));
-
+            $form->table('extended_fields', function (Form\NestedForm $table) {
+                $table->text('key', trans('main.key'));
+                $table->textarea('value', trans('main.value'));
+            });
             $form->display('created_at');
             $form->display('updated_at');
 

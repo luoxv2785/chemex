@@ -185,6 +185,7 @@ class PartRecordController extends AdminController
             $show->field('depreciation.name');
             $show->field('depreciation.termination');
             $show->field('location');
+            $show->field('extended_fields')->view('extended_fields');
             $show->field('created_at');
             $show->field('updated_at');
 
@@ -257,10 +258,12 @@ class PartRecordController extends AdminController
                 $form->select('depreciation_rule_id', admin_trans_label('Depreciation Rule'))
                     ->options(DepreciationRule::pluck('name', 'id'));
             }
-
             $form->text('location')
                 ->help(admin_trans_label('Location Help'));
-
+            $form->table('extended_fields', function (Form\NestedForm $table) {
+                $table->text('key', trans('main.key'));
+                $table->textarea('value', trans('main.value'));
+            });
             $form->display('created_at');
             $form->display('updated_at');
 
