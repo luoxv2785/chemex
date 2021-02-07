@@ -42,6 +42,7 @@ class SoftwareCategoryController extends AdminController
     protected function treeView(): Tree
     {
         return new Tree(new \App\Models\SoftwareCategory(), function (Tree $tree) {
+            $tree->disableCreateButton();
             $tree->tools(function (Tree\Tools $tools) {
                 $tools->add(new SoftwareCategoryImportAction());
             });

@@ -37,6 +37,7 @@ class DeviceCategoryController extends AdminController
     protected function treeView(): Tree
     {
         return new Tree(new \App\Models\DeviceCategory(), function (Tree $tree) {
+            $tree->disableCreateButton();
             $tree->tools(function (Tree\Tools $tools) {
                 $tools->add(new DeviceCategoryImportAction());
             });

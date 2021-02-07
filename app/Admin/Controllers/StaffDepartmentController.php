@@ -42,6 +42,7 @@ class StaffDepartmentController extends AdminController
     protected function treeView(): Tree
     {
         return new Tree(new \App\Models\StaffDepartment(), function (Tree $tree) {
+            $tree->disableCreateButton();
             $tree->branch(function ($branch) {
                 $display = "{$branch['name']}";
                 if ($branch['ad_tag'] === 1) {

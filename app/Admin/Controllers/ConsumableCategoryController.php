@@ -31,6 +31,7 @@ class ConsumableCategoryController extends AdminController
     protected function treeView(): Tree
     {
         return new Tree(new \App\Models\ConsumableCategory(), function (Tree $tree) {
+            $tree->disableCreateButton();
             $tree->tools(function (Tree\Tools $tools) {
                 $tools->add(new ConsumableCategoryImportAction());
             });
