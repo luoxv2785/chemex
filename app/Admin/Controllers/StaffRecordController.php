@@ -32,8 +32,8 @@ class StaffRecordController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add(admin_trans_label('Staff Record'), $this->grid(), true);
-                $tab->addLink(admin_trans_label('Staff Department'), admin_route('staff.departments.index'));
+                $tab->add(Data::icon('user') . admin_trans_label('Staff Record'), $this->grid(), true);
+                $tab->addLink(Data::icon('department') . admin_trans_label('Staff Department'), admin_route('staff.departments.index'));
                 $row->column(12, $tab);
             });
     }
@@ -82,6 +82,10 @@ class StaffRecordController extends AdminController
             $grid->quickSearch('id', 'name', 'department.name', 'gender', 'title', 'mobile', 'email')
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
+
+            $grid->filter(function ($filter) {
+                $filter->equal('department.name')->select(StaffDepartment::pluck('name', 'id'));
+            });
 
             $grid->export();
         });

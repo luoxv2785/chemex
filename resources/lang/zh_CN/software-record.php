@@ -3,6 +3,7 @@ return [
     'labels' => [
         'SoftwareRecord' => '软件',
         'records' => '软件',
+        'Purchased Channel' => '购入途径',
         'Manage Track' => '管理归属',
         'Track Card Title' => '授权',
         'History Card Title' => '履历',
@@ -49,6 +50,9 @@ return [
         'asset_number' => '资产编号',
         'location' => '位置',
         'expiration_left_days' => '剩余保固时间',
+        'category_id' => '分类',
+        'vendor_id' => '厂商',
+        'depreciation_id' => '折旧规则',
     ],
     'options' => [
     ],

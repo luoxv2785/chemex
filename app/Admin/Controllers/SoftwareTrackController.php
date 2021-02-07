@@ -66,7 +66,7 @@ class SoftwareTrackController extends AdminController
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->panel();
-                $filter->scope('history', trans('main.history'))->onlyTrashed();
+                $filter->scope('history', admin_trans_label('History Scope'))->onlyTrashed();
             });
 
             $grid->toolsWithOutline(false);

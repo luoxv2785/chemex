@@ -27,7 +27,7 @@ class PartTrackController extends AdminController
             ->body(function (Row $row) {
                 $tab = new Tab();
                 $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('part.records.index'));
-                $tab->addLink(Data::icon('category') . trans('main.record'), admin_route('part.categories.index'));
+                $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('part.categories.index'));
                 $tab->add(Data::icon('track') . trans('main.track'), $this->grid(), true);
                 $row->column(12, $tab);
             });
@@ -63,7 +63,7 @@ class PartTrackController extends AdminController
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->panel();
-                $filter->scope('history', trans('main.history'))->onlyTrashed();
+                $filter->scope('history', admin_trans_label('History Scope'))->onlyTrashed();
             });
 
             $grid->toolsWithOutline(false);

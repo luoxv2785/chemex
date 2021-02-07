@@ -54,7 +54,7 @@ final class Versions
   'doctrine/lexer' => '1.2.1@e864bbf5904cb8f5bb334f99209b48018522f042',
   'dragonmantank/cron-expression' => 'v3.1.0@7a8c6e56ab3ffcc538d05e8155bb42269abf1a0c',
   'egulias/email-validator' => '2.1.25@0dbf5d78455d4d6a41d186da50adc1122ec066f4',
-  'enlightn/enlightn' => 'v1.10.0@8d79d4458188592e2452f6dfe89f6f2adc24ed63',
+  'enlightn/enlightn' => 'v1.11.0@78d0d3fcc003c679c58dce6d93f9d0a66cd37f38',
   'enlightn/security-checker' => 'v1.4@378b2493cb3bc7961c836ad164b3393c33a20754',
   'fideloper/proxy' => '4.4.1@c073b2bd04d1c90e04dc1b787662b558dd65ade0',
   'fruitcake/laravel-cors' => 'v2.0.3@01de0fe5f71c70d1930ee9a80385f9cc28e0f63a',
@@ -79,7 +79,7 @@ final class Versions
   'opis/closure' => '3.6.1@943b5d70cc5ae7483f6aff6ff43d7e34592ca0f5',
   'orangehill/iseed' => 'v3.0.1@874f77a20d49aa4c6c5fec2daf0daa070514e013',
   'phpoption/phpoption' => '1.7.5@994ecccd8f3283ecf5ac33254543eb0ac946d525',
-  'phpstan/phpstan' => '0.12.71@d508fa3b0ecc5fc91ac70c6c7ac2862f968ba2b5',
+  'phpstan/phpstan' => '0.12.72@ae32fb1c5e97979f424c3ccec4ee435a35754769',
   'psr/container' => '1.0.0@b7ce3b176482dbbc1245ebf52b181af44c2cf55f',
   'psr/event-dispatcher' => '1.0.0@dbefd12671e8a14ec7f180cab83036ed26714bb0',
   'psr/http-client' => '1.0.1@2dfb5f6c5eff0e91e20e913f8c5452ed95b86621',
@@ -135,7 +135,7 @@ final class Versions
   'webmozart/assert' => '1.9.1@bafc69caeb4d49c39fd0779086c03a3738cbb389',
   'doctrine/instantiator' => '1.4.0@d56bf6102915de5702778fe20f2de3b2fe570b5b',
   'facade/flare-client-php' => '1.3.7@fd688d3c06658f2b3b5f7bb19f051ee4ddf02492',
-  'facade/ignition' => '2.5.10@98154e8b991fb616304c213cd405299ffedc26f5',
+  'facade/ignition' => '2.5.11@e91d67353054bf827c64687fcac5ea44e4dcec54',
   'facade/ignition-contracts' => '1.0.2@3c921a1cdba35b68a7f0ccffc6dffc1995b18267',
   'filp/whoops' => '2.9.2@df7933820090489623ce0be5e85c7e693638e536',
   'fzaninotto/faker' => 'dev-master@5ffe7db6c80f441f150fc88008d64e64af66634b',
@@ -171,7 +171,7 @@ final class Versions
   'sebastian/type' => '2.3.1@81cd61ab7bbf2de744aba0ea61fae32f721df3d2',
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'theseer/tokenizer' => '1.2.0@75a63c33a8577608444246075ea0af0d052e452a',
-  'celaraze/chemex' => 'dev-main@79312cb8caab9c02d609b2e3687229f28154b3e6',
+  'celaraze/chemex' => 'dev-main@cc3df8046962cf06daa4c0a3d22170dc73fd3261',
 );
 
     private function __construct()

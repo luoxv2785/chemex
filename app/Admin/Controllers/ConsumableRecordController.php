@@ -6,6 +6,7 @@ use App\Admin\Actions\Grid\ToolAction\ConsumableInAction;
 use App\Admin\Actions\Grid\ToolAction\ConsumableOutAction;
 use App\Admin\Repositories\ConsumableRecord;
 use App\Models\ConsumableCategory;
+use App\Models\DeviceCategory;
 use App\Models\VendorRecord;
 use App\Support\Data;
 use App\Support\Support;
@@ -28,7 +29,7 @@ class ConsumableRecordController extends AdminController
                 $tab = new Tab();
                 $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
                 $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('consumable.categories.index'));
-                $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('consumable.tracks.index'));
+                $tab->addLink(Data::icon('track') . trans('main.history'), admin_route('consumable.tracks.index'));
                 $row->column(12, $tab);
             });
     }
@@ -59,8 +60,9 @@ class ConsumableRecordController extends AdminController
                 new ConsumableOutAction()
             ]);
 
-            $grid->filter(function (Grid\Filter $filter) {
-                $filter->equal('id');
+            $grid->filter(function ($filter) {
+                $filter->equal('category_id')->select(DeviceCategory::pluck('name', 'id'));
+                $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
             });
         });
     }

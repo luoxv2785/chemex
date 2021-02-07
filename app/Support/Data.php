@@ -246,7 +246,9 @@ class Data
             'record' => '<i class="fa feather icon-list"></i> ',
             'category' => '<i class="fa feather icon-pie-chart"></i> ',
             'track' => '<i class="fa feather icon-archive"></i> ',
-            'issue' => '<i class="fa feather icon-alert-triangle"></i> '
+            'issue' => '<i class="fa feather icon-alert-triangle"></i> ',
+            'user' => '<i class="fa feather icon-users"></i> ',
+            'department' => '<i class="fa feather icon-copy"></i> ',
         ];
         return $array[$string];
     }

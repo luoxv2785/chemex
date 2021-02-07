@@ -3,8 +3,8 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Grid\BatchAction\SoftwareRecordBatchDeleteAction;
-use App\Admin\Actions\Grid\RowAction\SoftwareRecordDeleteAction;
 use App\Admin\Actions\Grid\RowAction\SoftwareRecordCreateUpdateTrackAction;
+use App\Admin\Actions\Grid\RowAction\SoftwareRecordDeleteAction;
 use App\Admin\Actions\Grid\RowAction\SoftwareTrackDeleteAction;
 use App\Admin\Actions\Grid\ToolAction\SoftwareRecordImportAction;
 use App\Admin\Grid\Displayers\RowActions;
@@ -117,6 +117,12 @@ class SoftwareRecordController extends AdminController
             )
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
+
+            $grid->filter(function ($filter) {
+                $filter->equal('category_id')->select(SoftwareCategory::pluck('name', 'id'));
+                $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
+                $filter->equal('location');
+            });
 
             $grid->enableDialogCreate();
             $grid->disableDeleteButton();
@@ -275,12 +281,12 @@ class SoftwareRecordController extends AdminController
             $form->text('asset_number');
 
             if (Support::ifSelectCreate()) {
-                $form->selectCreate('purchased_channel_id')
+                $form->selectCreate('purchased_channel_id', admin_trans_label('Purchased Channel'))
                     ->options(VendorRecord::class)
                     ->ajax(admin_route('selection.purchased.channels'))
                     ->url(admin_route('purchased.channels.create'));
             } else {
-                $form->select('purchased_channel_id')
+                $form->select('purchased_channel_id', admin_trans_label('Purchased Channel'))
                     ->options(PurchasedChannel::pluck('name', 'id'));
             }
 

@@ -28,6 +28,8 @@ return [
         'consumable_id' => '耗材',
         'staff_id' => '雇员（领用人）',
         'purchased' => '购入日期',
-        'expired' => '过保日期'
+        'expired' => '过保日期',
+        'category_id' => '分类',
+        'vendor_id' => '厂商',
     ]
 ];

@@ -46,5 +46,8 @@ return [
         'asset_number' => '资产编号',
         'location' => '位置',
         'expiration_left_days' => '剩余保固时间',
+        'category_id' => '分类',
+        'vendor_id' => '厂商',
+        'depreciation_id' => '折旧规则',
     ]
 ];

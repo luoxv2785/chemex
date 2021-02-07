@@ -4,8 +4,8 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Grid\BatchAction\PartRecordBatchDeleteAction;
 use App\Admin\Actions\Grid\RowAction\MaintenanceCreateAction;
-use App\Admin\Actions\Grid\RowAction\PartRecordDeleteAction;
 use App\Admin\Actions\Grid\RowAction\PartRecordCreateUpdateTrackAction;
+use App\Admin\Actions\Grid\RowAction\PartRecordDeleteAction;
 use App\Admin\Actions\Grid\ToolAction\PartRecordImportAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\PartRecord;
@@ -117,6 +117,14 @@ class PartRecordController extends AdminController
             )
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
+
+            $grid->filter(function ($filter) {
+                $filter->equal('category_id')->select(PartCategory::pluck('name', 'id'));
+                $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
+                $filter->equal('device.name');
+                $filter->equal('depreciation_id')->select(DepreciationRule::pluck('name', 'id'));
+                $filter->equal('location');
+            });
 
             $grid->enableDialogCreate();
             $grid->disableDeleteButton();

@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Tree\ToolAction\StaffDepartmentImportAction;
 use App\Admin\Repositories\StaffDepartment;
+use App\Support\Data;
 use App\Support\Support;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
@@ -32,8 +33,8 @@ class StaffDepartmentController extends AdminController
             ->description(trans('admin.list'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(admin_trans_label('Staff Record'), admin_route('staff.records.index'));
-                $tab->add(admin_trans_label('Staff Department'), $this->treeView(), true);
+                $tab->addLink(Data::icon('user') . admin_trans_label('Staff Record'), admin_route('staff.records.index'));
+                $tab->add(Data::icon('department') . admin_trans_label('Staff Department'), $this->treeView(), true);
                 $row->column(12, $tab);
             });
     }

@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '79312cb8caab9c02d609b2e3687229f28154b3e6',
+    'reference' => 'cc3df8046962cf06daa4c0a3d22170dc73fd3261',
     'name' => 'celaraze/chemex',
   ),
   'versions' => 
@@ -87,7 +87,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '79312cb8caab9c02d609b2e3687229f28154b3e6',
+      'reference' => 'cc3df8046962cf06daa4c0a3d22170dc73fd3261',
     ),
     'composer/ca-bundle' => 
     array (
@@ -258,12 +258,12 @@ private static $installed = array (
     ),
     'enlightn/enlightn' => 
     array (
-      'pretty_version' => 'v1.10.0',
-      'version' => '1.10.0.0',
+      'pretty_version' => 'v1.11.0',
+      'version' => '1.11.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '8d79d4458188592e2452f6dfe89f6f2adc24ed63',
+      'reference' => '78d0d3fcc003c679c58dce6d93f9d0a66cd37f38',
     ),
     'enlightn/security-checker' => 
     array (
@@ -285,12 +285,12 @@ private static $installed = array (
     ),
     'facade/ignition' => 
     array (
-      'pretty_version' => '2.5.10',
-      'version' => '2.5.10.0',
+      'pretty_version' => '2.5.11',
+      'version' => '2.5.11.0',
       'aliases' => 
       array (
       ),
-      'reference' => '98154e8b991fb616304c213cd405299ffedc26f5',
+      'reference' => 'e91d67353054bf827c64687fcac5ea44e4dcec54',
     ),
     'facade/ignition-contracts' => 
     array (
@@ -852,12 +852,12 @@ private static $installed = array (
     ),
     'phpstan/phpstan' => 
     array (
-      'pretty_version' => '0.12.71',
-      'version' => '0.12.71.0',
+      'pretty_version' => '0.12.72',
+      'version' => '0.12.72.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'd508fa3b0ecc5fc91ac70c6c7ac2862f968ba2b5',
+      'reference' => 'ae32fb1c5e97979f424c3ccec4ee435a35754769',
     ),
     'phpunit/php-code-coverage' => 
     array (

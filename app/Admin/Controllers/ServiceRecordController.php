@@ -3,8 +3,8 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Grid\RowAction\ServiceRecordCreateIssueAction;
-use App\Admin\Actions\Grid\RowAction\ServiceRecordDeleteAction;
 use App\Admin\Actions\Grid\RowAction\ServiceRecordCreateUpdateTrackAction;
+use App\Admin\Actions\Grid\RowAction\ServiceRecordDeleteAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\ServiceRecord;
 use App\Models\DeviceRecord;
@@ -76,6 +76,10 @@ class ServiceRecordController extends AdminController
             $grid->quickSearch('id', 'name', 'description', 'device.name')
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
+
+            $grid->filter(function ($filter) {
+                $filter->equal('device.name');
+            });
 
             $grid->export();
         });

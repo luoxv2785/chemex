@@ -14,7 +14,7 @@ return [
         'number' => '周期',
         'scale' => '尺度',
         'ratio' => '比率',
-        'termination' => '失效日期'
+        'termination' => '报废日期'
     ],
     'options' => [
     ],
