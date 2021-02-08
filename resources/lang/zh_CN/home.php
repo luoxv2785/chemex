@@ -33,6 +33,7 @@ return [
         'Last Year' => '上年度',
         'Maintenance Trend Title' => '故障次数趋势（每月）',
         'Worth Trend Title' => '资产价值趋势（每月）',
+        'All Days Worth Heatmap Title' => '每日资产价值热图（全年）'
     ],
     'fields' => [
     ],

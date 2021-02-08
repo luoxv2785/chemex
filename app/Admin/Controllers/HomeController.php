@@ -7,6 +7,7 @@ use App\Admin\Metrics\DeviceCounts;
 use App\Admin\Metrics\DeviceWorth;
 use App\Admin\Metrics\IssueTrend;
 use App\Admin\Metrics\MaintenanceTrend;
+use App\Admin\Metrics\PartCounts;
 use App\Admin\Metrics\PartWorth;
 use App\Admin\Metrics\ServiceCounts;
 use App\Admin\Metrics\ServiceIssueCounts;
@@ -14,6 +15,7 @@ use App\Admin\Metrics\ServiceWorth;
 use App\Admin\Metrics\SoftwareCounts;
 use App\Admin\Metrics\SoftwareWorth;
 use App\Admin\Metrics\StaffCounts;
+use App\Admin\Metrics\WorthHeatmap;
 use App\Admin\Metrics\WorthTrend;
 use App\Http\Controllers\Controller;
 use App\Models\AdminUser;
@@ -37,26 +39,36 @@ class HomeController extends Controller
                             $user = AdminUser::where('id', auth('admin')->id())->first();
                             $notifications = $user->notifications;
                             $notifications = json_decode($notifications, true);
-                            $column->row(new Card(admin_trans_label('My Todo'), view('todo')->with('notifications', $notifications)));
+                            $column->row(new Card(admin_trans_label('My Todo'), view('todo')
+                                ->with('notifications', $notifications)));
                             $column->row(new WorthTrend());
                             $column->row(new MaintenanceTrend());
                             $column->row(new IssueTrend());
                         });
                         $row->column(9, function (Column $column) {
                             $column->row(function (Row $row) {
-                                $row->column(4, new AllWorth());
-                                $row->column(4, new DeviceWorth());
-                                $row->column(4, new PartWorth());
-                                $row->column(4, new SoftwareWorth());
-                                $row->column(4, new ServiceWorth());
-                                $row->column(4, new DeviceCounts());
-                                $row->column(4, new SoftwareCounts());
-                                $row->column(4, new StaffCounts());
-                                $row->column(4, new ServiceCounts());
-                                $row->column(4, new ServiceIssueCounts());
+                                $all_days_worth = WorthHeatmap::handle();
+                                $row->column(6, new Card(admin_trans_label('All Days Worth Heatmap Title'), view('apex_charts.all_days_worth_heatmap')
+                                    ->with('worth', $all_days_worth)));
+                            });
+                            $column->row(function (Row $row) {
+                                $row->column(0, new AllWorth());
+                                $row->column(0, new DeviceWorth());
+                                $row->column(0, new PartWorth());
+                                $row->column(0, new SoftwareWorth());
+                                $row->column(0, new ServiceWorth());
+                            });
+                            $column->row(function (Row $row) {
+                                $row->column(2, new DeviceCounts());
+                                $row->column(2, new PartCounts());
+                                $row->column(2, new SoftwareCounts());
+                                $row->column(2, new StaffCounts());
+                                $row->column(2, new ServiceCounts());
+                                $row->column(2, new ServiceIssueCounts());
                             });
                             $services = Support::getServiceIssueStatus();
-                            $column->row(new Card(admin_trans_label('Service Status'), view('services_dashboard')->with('services', $services)));
+                            $column->row(new Card(admin_trans_label('Service Status'), view('services_dashboard')
+                                ->with('services', $services)));
                         });
                     });
                 });
