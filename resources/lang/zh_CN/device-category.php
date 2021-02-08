@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'DeviceCategory' => '设备',
+        'description' => '支持多级树形结构',
         'categories' => '设备分类',
         'Parent' => '父级分类',
         'Depreciation Rule' => '折旧规则',

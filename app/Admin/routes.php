@@ -4,11 +4,15 @@ use App\Admin\Controllers\CheckRecordController;
 use App\Admin\Controllers\DepreciationRuleController;
 use App\Admin\Controllers\DeviceCategoryController;
 use App\Admin\Controllers\DeviceRecordController;
+use App\Admin\Controllers\DeviceStatisticsController;
 use App\Admin\Controllers\NotificationController;
 use App\Admin\Controllers\PartCategoryController;
+use App\Admin\Controllers\PartStatisticsController;
 use App\Admin\Controllers\PurchasedChannelController;
+use App\Admin\Controllers\ServiceStatisticsController;
 use App\Admin\Controllers\SoftwareCategoryController;
 use App\Admin\Controllers\SoftwareRecordController;
+use App\Admin\Controllers\SoftwareStatisticsController;
 use App\Admin\Controllers\StaffDepartmentController;
 use App\Admin\Controllers\StaffRecordController;
 use App\Admin\Controllers\VendorRecordController;
@@ -70,6 +74,8 @@ Route::group([
         ->names('device.tracks');
     $router->resource('/device/categories', 'DeviceCategoryController')
         ->names('device.categories');
+    $router->get('/device/statistics', [DeviceStatisticsController::class, 'index'])
+        ->name('device.statistics');
     $router->get('/selection/device/records', [DeviceRecordController::class, 'selectList'])
         ->name('selection.device.records');
     $router->get('/selection/device/categories', [DeviceCategoryController::class, 'selectList'])
@@ -84,6 +90,8 @@ Route::group([
         ->names('part.tracks');
     $router->resource('/part/categories', 'PartCategoryController')
         ->names('part.categories');
+    $router->get('/part/statistics', [PartStatisticsController::class, 'index'])
+        ->name('part.statistics');
     $router->get('/selection/part/categories', [PartCategoryController::class, 'selectList'])
         ->name('selection.part.categories');
 
@@ -96,6 +104,8 @@ Route::group([
         ->names('software.categories');
     $router->resource('/software/tracks', 'SoftwareTrackController')
         ->names('software.tracks');
+    $router->get('/software/statistics', [SoftwareStatisticsController::class, 'index'])
+        ->name('software.statistics');
     $router->get('/selection/software/categories', [SoftwareCategoryController::class, 'selectList'])
         ->name('selection.software.categories');
     $router->get('/export/software/{software_id}/history', [SoftwareRecordController::class, 'exportHistory'])
@@ -110,6 +120,8 @@ Route::group([
         ->names('service.issues');
     $router->resource('/service/tracks', 'ServiceTrackController')
         ->names('service.tracks');
+    $router->get('/service/statistics', [ServiceStatisticsController::class, 'index'])
+        ->name('service.statistics');
 
     /**
      * 耗材管理

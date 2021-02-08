@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'ServiceIssue' => '服务',
+        'description' => '报告的异常',
         'issues' => '服务异常',
         'Status NG' => '故障',
         'Status OK' => '恢复',

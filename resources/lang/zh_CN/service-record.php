@@ -2,7 +2,9 @@
 return [
     'labels' => [
         'ServiceRecord' => '服务',
+        'description' => '主数据列表',
         'records' => '服务',
+        'Purchased Channel' => '购入途径',
         'Status Help' => '勾选此项为暂停服务。',
         'Issue Create' => '报告异常',
         'Delete' => '删除服务',
@@ -19,6 +21,12 @@ return [
         'status' => '状态',
         'device' => [
             'name' => '设备名称'
+        ],
+        'price' => '价格',
+        'purchased' => '购入日期',
+        'expired' => '过保日期',
+        'channel' => [
+            'name' => '购入途径'
         ],
         'extended_fields' => '自定义信息',
         'device_id' => '设备',

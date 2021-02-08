@@ -2,11 +2,11 @@
 
 namespace App\Admin\Metrics;
 
-use App\Models\ServiceIssue;
+use App\Models\ServiceRecord;
 use Dcat\Admin\Widgets\Metrics\Line;
 use Illuminate\Http\Request;
 
-class IssueTrend extends Line
+class ServiceWorthTrend extends Line
 {
     /**
      * 图表默认高度.
@@ -32,7 +32,7 @@ class IssueTrend extends Line
         $from = date('Y-m-d', mktime(0, 0, 0, 1, 1, $year));
         $to = date('Y-m-d', mktime(23, 59, 59, 12, 31, $year));
 
-        $records = ServiceIssue::whereBetween('start', [$from, $to])->get();
+        $records = ServiceRecord::whereBetween('purchased', [$from, $to])->get();
 
         $data = [];
 
@@ -41,13 +41,15 @@ class IssueTrend extends Line
         for ($i = 1; $i <= 12; $i++) {
             $temp = 0;
             foreach ($records as $record) {
-                $month = date('m', strtotime($record->start));
+                $month = date('m', strtotime($record->purchased));
                 if ($i == $month) {
-                    $temp++;
+                    if (!empty($record->price)) {
+                        $temp += $record->price;
+                    }
                 }
                 // 全年数据，以最后一个月来计算，这里12目的是让循环只执行一次
-                if ($i == 12) {
-                    $year_all++;
+                if ($i == 12 && !empty($record->price)) {
+                    $year_all += $record->price;
                 }
             }
             array_push($data, $temp);
@@ -63,9 +65,9 @@ class IssueTrend extends Line
      *
      * @param string $content
      *
-     * @return IssueTrend
+     * @return ServiceWorthTrend
      */
-    public function withContent(string $content): IssueTrend
+    public function withContent(string $content): ServiceWorthTrend
     {
         return $this->content(
             <<<HTML
@@ -81,15 +83,15 @@ HTML
      *
      * @param array $data
      *
-     * @return IssueTrend
+     * @return ServiceWorthTrend
      */
-    public function withChart(array $data): IssueTrend
+    public function withChart(array $data): ServiceWorthTrend
     {
         $this->chartOptions['tooltip']['x']['show'] = true;
         return $this->chart([
             'series' => [
                 [
-                    'name' => trans('main.issue_times'),
+                    'name' => trans('main.worth'),
                     'data' => $data,
                 ],
             ],
@@ -97,9 +99,6 @@ HTML
                 'x' => [
                     'show' => true
                 ]
-            ],
-            'colors' => [
-                '#52338F'
             ]
         ]);
     }
@@ -113,7 +112,7 @@ HTML
     {
         parent::init();
 
-        $this->title(trans('main.issue_trend'));
+        $this->title(trans('main.service_worth_trend_title'));
         $this->dropdown([
             'current_year' => admin_trans_label('Current Year'),
             'pre_year' => admin_trans_label('Last Year')

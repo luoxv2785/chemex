@@ -8,7 +8,9 @@ use App\Admin\Actions\Grid\RowAction\ServiceRecordDeleteAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\ServiceRecord;
 use App\Models\DeviceRecord;
+use App\Models\PurchasedChannel;
 use App\Support\Data;
+use App\Support\Support;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
@@ -27,12 +29,13 @@ class ServiceRecordController extends AdminController
     {
         return $content
             ->title($this->title())
-            ->description(trans('admin.list'))
+            ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
                 $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
                 $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('service.tracks.index'));
                 $tab->addLink(Data::icon('issue') . trans('main.issue'), admin_route('service.issues.index'));
+                $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('service.statistics'));
                 $row->column(12, $tab);
             });
     }
@@ -98,11 +101,15 @@ class ServiceRecordController extends AdminController
      */
     protected function detail($id): Show
     {
-        return Show::make($id, new ServiceRecord(['device']), function (Show $show) {
+        return Show::make($id, new ServiceRecord(['channel', 'device']), function (Show $show) {
             $show->field('id');
             $show->field('name');
             $show->field('description');
             $show->field('device.name');
+            $show->field('price');
+            $show->field('purchased');
+            $show->field('expired');
+            $show->field('channel.name');
             $show->field('extended_fields')->view('extended_fields');
             $show->field('created_at');
             $show->field('updated_at');
@@ -126,6 +133,19 @@ class ServiceRecordController extends AdminController
             $form->switch('status')
                 ->default(0)
                 ->help(admin_trans_label('Status Help'));
+            $form->currency('price');
+            $form->date('purchased');
+            $form->date('expired');
+
+            if (Support::ifSelectCreate()) {
+                $form->selectCreate('purchased_channel_id', admin_trans_label('Purchased Channel'))
+                    ->options(PurchasedChannel::class)->ajax(admin_route('selection.purchased.channels'))
+                    ->ajax(admin_route('selection.purchased.channels'))
+                    ->url(admin_route('purchased.channels.create'));
+            } else {
+                $form->select('purchased_channel_id', admin_trans_label('Purchased Channel'))
+                    ->options(PurchasedChannel::pluck('name', 'id'));
+            }
             $form->table('extended_fields', function (Form\NestedForm $table) {
                 $table->text('key', trans('main.key'));
                 $table->textarea('value', trans('main.value'));

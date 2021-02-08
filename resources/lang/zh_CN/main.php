@@ -6,6 +6,7 @@ return [
     'track' => '归属',
     'issue' => '异常',
     'history' => '履历',
+    'statistics' => '统计',
     'check_record' => '任务',
     'check_track' => '明细',
     'quick_search' => '快速搜索一下',
@@ -36,5 +37,12 @@ return [
     'no_change' => '没有改变',
     'check_record_fail_done' => '失败，盘点任务已经完成。',
     'check_record_fail_cancelled' => '失败，盘点任务已经取消。',
-    'check_record_fail_left' => '失败，还有未处理的盘点明细'
+    'check_record_fail_left' => '失败，还有未处理的盘点明细',
+    'device_worth_trend_title' => '设备价值趋势（每月）',
+    'part_worth_trend_title' => '配件价值趋势（每月）',
+    'software_worth_trend_title' => '软件价值趋势（每月）',
+    'service_worth_trend_title' => '服务价值趋势（每月）',
+    'worth_trend' => '总价值趋势（每月）',
+    'maintenance_trend' => '故障次数趋势（每月）',
+    'issue_trend' => '服务异常趋势（每月）'
 ];

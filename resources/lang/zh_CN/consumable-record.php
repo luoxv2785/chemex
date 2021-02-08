@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'ConsumableRecord' => '耗材',
+        'description' => '主数据列表',
         'records' => '耗材',
         'Category' => '分类',
         'Vendor' => '厂商',

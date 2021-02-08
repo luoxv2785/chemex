@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'ConsumableTrack' => '耗材',
+        'description' => '入库领用记录',
         'tracks' => '耗材记录'
     ],
     'fields' => [

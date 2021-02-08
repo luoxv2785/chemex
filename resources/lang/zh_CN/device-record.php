@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'DeviceRecord' => '设备',
+        'description' => '主数据列表',
         'records' => '设备',
         'Category' => '分类',
         'Vendor' => '厂商',

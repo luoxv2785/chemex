@@ -155,23 +155,14 @@ class DeviceRecordController extends AdminController
     {
         return $content
             ->header($this->title())
-            ->description($this->description()['index'] ?? trans('admin.list'))
+            ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
                 $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
                 $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('device.categories.index'));
                 $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('device.tracks.index'));
+                $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('device.statistics'));
                 $row->column(12, $tab);
-
-
-//                $row->column(12, function (Column $column) {
-//                    $column->row(function (Row $row) {
-//                        $row->column(3, new CheckDevicePercentage());
-//                        $row->column(3, new DeviceAboutToExpireCounts());
-//                        $row->column(3, new DeviceExpiredCounts());
-//                    });
-//                });
-//                $row->column(12, $this->grid());
             });
     }
 

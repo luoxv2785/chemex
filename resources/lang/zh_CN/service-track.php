@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'ServiceTrack' => '服务',
+        'description' => '与设备的归属关系',
         'tracks' => '服务归属记录',
         'Delete' => '解除归属',
         'History Scope' => '查看历史归属记录',

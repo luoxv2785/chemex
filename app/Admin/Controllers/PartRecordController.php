@@ -38,23 +38,14 @@ class PartRecordController extends AdminController
     {
         return $content
             ->title($this->title())
-            ->description($this->description()['index'] ?? trans('admin.list'))
+            ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
                 $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
                 $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('part.categories.index'));
                 $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('part.tracks.index'));
+                $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('part.statistics'));
                 $row->column(12, $tab);
-
-//                $row->column(12, function (Column $column) {
-//
-//                    $column->row(function (Row $row) {
-//                        $row->column(3, new CheckPartPercentage());
-//                        $row->column(3, new PartAboutToExpireCounts());
-//                        $row->column(3, new PartExpiredCounts());
-//                    });
-//                });
-//                $row->column(12, $this->grid());
             });
     }
 

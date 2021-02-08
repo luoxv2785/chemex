@@ -10,6 +10,7 @@ use App\Admin\Metrics\MaintenanceTrend;
 use App\Admin\Metrics\PartWorth;
 use App\Admin\Metrics\ServiceCounts;
 use App\Admin\Metrics\ServiceIssueCounts;
+use App\Admin\Metrics\ServiceWorth;
 use App\Admin\Metrics\SoftwareCounts;
 use App\Admin\Metrics\SoftwareWorth;
 use App\Admin\Metrics\StaffCounts;
@@ -43,16 +44,16 @@ class HomeController extends Controller
                         });
                         $row->column(9, function (Column $column) {
                             $column->row(function (Row $row) {
-                                $row->column(3, new AllWorth());
-                                $row->column(3, new DeviceWorth());
-                                $row->column(3, new PartWorth());
-                                $row->column(3, new SoftwareWorth());
-                                $row->column(3, new DeviceCounts());
-                                $row->column(3, new PartWorth());
-                                $row->column(3, new SoftwareCounts());
-                                $row->column(3, new StaffCounts());
-                                $row->column(3, new ServiceCounts());
-                                $row->column(3, new ServiceIssueCounts());
+                                $row->column(4, new AllWorth());
+                                $row->column(4, new DeviceWorth());
+                                $row->column(4, new PartWorth());
+                                $row->column(4, new SoftwareWorth());
+                                $row->column(4, new ServiceWorth());
+                                $row->column(4, new DeviceCounts());
+                                $row->column(4, new SoftwareCounts());
+                                $row->column(4, new StaffCounts());
+                                $row->column(4, new ServiceCounts());
+                                $row->column(4, new ServiceIssueCounts());
                             });
                             $services = Support::getServiceIssueStatus();
                             $column->row(new Card(admin_trans_label('Service Status'), view('services_dashboard')->with('services', $services)));

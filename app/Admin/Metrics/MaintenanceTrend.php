@@ -9,22 +9,12 @@ use Illuminate\Http\Request;
 class MaintenanceTrend extends Line
 {
     /**
-     * @var string
-     */
-    protected $label = '';
-    /**
      * 图表默认高度.
      *
      * @var int
      */
     protected $chartHeight = 140;
     protected $chartMarginRight = 1;
-
-    public function __construct($title = null, $icon = null)
-    {
-        parent::__construct($title, $icon);
-        $this->label = admin_trans_label('Maintenance Trend Title');
-    }
 
     /**
      * 处理请求
@@ -122,7 +112,7 @@ HTML
     {
         parent::init();
 
-        $this->title($this->label);
+        $this->title(trans('main.maintenance_trend'));
         $this->dropdown([
             'current_year' => admin_trans_label('Current Year'),
             'pre_year' => admin_trans_label('Last Year')

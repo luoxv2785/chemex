@@ -18,6 +18,7 @@ return [
         'Part Worth' => '配件总价值',
         'Service Counts' => '服务数量',
         'Service Issue Counts' => '服务异常数量',
+        'Service Worth' => '服务总价值',
         'Software About To Expired Counts' => '即将过期的软件数量',
         'Software Counts' => '软件数量',
         'Software Expired Counts' => '已经过保的软件数量',

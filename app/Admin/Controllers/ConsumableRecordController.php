@@ -24,7 +24,7 @@ class ConsumableRecordController extends AdminController
     {
         return $content
             ->title($this->title())
-            ->description(trans('admin.list'))
+            ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
                 $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);

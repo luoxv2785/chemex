@@ -5,11 +5,13 @@ namespace App\Models;
 use App\Traits\HasExtendedFields;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @method static where(string $key, string $value)
+ * @method static whereBetween(string $string, array $array)
  */
 class ServiceRecord extends Model
 {
@@ -18,6 +20,15 @@ class ServiceRecord extends Model
     use SoftDeletes;
 
     protected $table = 'service_records';
+
+    /**
+     * 配件记录有一个购入途径
+     * @return HasOne
+     */
+    public function channel(): HasOne
+    {
+        return $this->hasOne(PurchasedChannel::class, 'id', 'purchased_channel_id');
+    }
 
     /**
      * 服务程序在远处有一个设备记录

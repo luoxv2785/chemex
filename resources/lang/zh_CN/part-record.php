@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'PartRecord' => '配件',
+        'description' => '主数据列表',
         'records' => '配件',
         'Category' => '分类',
         'Vendor' => '厂商',

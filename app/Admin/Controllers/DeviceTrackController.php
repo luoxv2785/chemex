@@ -23,12 +23,13 @@ class DeviceTrackController extends AdminController
     {
         return $content
             ->title($this->title())
-            ->description(trans('admin.list'))
+            ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
                 $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('device.records.index'));
                 $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('device.categories.index'));
                 $tab->add(Data::icon('track') . trans('main.track'), $this->grid(), true);
+                $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('device.statistics'));
                 $row->column(12, $tab);
             });
     }

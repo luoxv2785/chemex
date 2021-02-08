@@ -3,15 +3,14 @@
 namespace App\Admin\Metrics;
 
 use App\Models\DeviceRecord;
+use App\Models\PartRecord;
+use App\Models\ServiceRecord;
+use App\Models\SoftwareRecord;
 use Dcat\Admin\Widgets\Metrics\Line;
 use Illuminate\Http\Request;
 
 class WorthTrend extends Line
 {
-    /**
-     * @var string
-     */
-    protected $label = '';
     /**
      * 图表默认高度.
      *
@@ -19,12 +18,6 @@ class WorthTrend extends Line
      */
     protected $chartHeight = 140;
     protected $chartMarginRight = 1;
-
-    public function __construct($title = null, $icon = null)
-    {
-        parent::__construct($title, $icon);
-        $this->label = admin_trans_label('Worth Trend Title');
-    }
 
     /**
      * 处理请求
@@ -42,7 +35,10 @@ class WorthTrend extends Line
         $from = date('Y-m-d', mktime(0, 0, 0, 1, 1, $year));
         $to = date('Y-m-d', mktime(23, 59, 59, 12, 31, $year));
 
-        $records = DeviceRecord::whereBetween('purchased', [$from, $to])->get();
+        $device_records = DeviceRecord::whereBetween('purchased', [$from, $to])->get();
+        $part_records = PartRecord::whereBetween('purchased', [$from, $to])->get();
+        $software_records = SoftwareRecord::whereBetween('purchased', [$from, $to])->get();
+        $service_records = ServiceRecord::whereBetween('purchased', [$from, $to])->get();
 
         $data = [];
 
@@ -50,18 +46,58 @@ class WorthTrend extends Line
 
         for ($i = 1; $i <= 12; $i++) {
             $temp = 0;
-            foreach ($records as $record) {
-                $month = date('m', strtotime($record->purchased));
+            foreach ($device_records as $device_record) {
+                $month = date('m', strtotime($device_record->purchased));
                 if ($i == $month) {
-                    if (!empty($record->price)) {
-                        $temp += $record->price;
+                    if (!empty($device_record->price)) {
+                        $temp += $device_record->price;
                     }
                 }
                 // 全年数据，以最后一个月来计算，这里12目的是让循环只执行一次
-                if ($i == 12 && !empty($record->price)) {
-                    $year_all += $record->price;
+                if ($i == 12 && !empty($device_record->price)) {
+                    $year_all += $device_record->price;
                 }
             }
+
+            foreach ($part_records as $part_record) {
+                $month = date('m', strtotime($part_record->purchased));
+                if ($i == $month) {
+                    if (!empty($part_record->price)) {
+                        $temp += $part_record->price;
+                    }
+                }
+                // 全年数据，以最后一个月来计算，这里12目的是让循环只执行一次
+                if ($i == 12 && !empty($part_record->price)) {
+                    $year_all += $part_record->price;
+                }
+            }
+
+            foreach ($software_records as $software_record) {
+                $month = date('m', strtotime($software_record->purchased));
+                if ($i == $month) {
+                    if (!empty($software_record->price)) {
+                        $temp += $software_record->price;
+                    }
+                }
+                // 全年数据，以最后一个月来计算，这里12目的是让循环只执行一次
+                if ($i == 12 && !empty($software_record->price)) {
+                    $year_all += $software_record->price;
+                }
+            }
+
+            foreach ($service_records as $service_record) {
+                $month = date('m', strtotime($service_record->purchased));
+                if ($i == $month) {
+                    if (!empty($service_record->price)) {
+                        $temp += $service_record->price;
+                    }
+                }
+                // 全年数据，以最后一个月来计算，这里12目的是让循环只执行一次
+                if ($i == 12 && !empty($service_record->price)) {
+                    $year_all += $service_record->price;
+                }
+            }
+
             array_push($data, $temp);
         }
 
@@ -122,7 +158,7 @@ HTML
     {
         parent::init();
 
-        $this->title($this->label);
+        $this->title(trans('main.worth_trend'));
         $this->dropdown([
             'current_year' => admin_trans_label('Current Year'),
             'pre_year' => admin_trans_label('Last Year')

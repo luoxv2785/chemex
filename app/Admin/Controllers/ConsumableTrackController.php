@@ -17,7 +17,7 @@ class ConsumableTrackController extends AdminController
     {
         return $content
             ->title($this->title())
-            ->description(trans('admin.list'))
+            ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
                 $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('consumable.records.index'));

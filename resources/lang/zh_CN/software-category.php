@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'SoftwareCategory' => '软件',
+        'description' => '支持多级树形结构',
         'categories' => '软件分类',
         'Import' => '导入',
         'File Help' => '导入支持xls、xlsx、csv文件，且表格头必须使用【名称，描述】。'
