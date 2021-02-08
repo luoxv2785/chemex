@@ -96,8 +96,9 @@ class StaffRecordImportForm extends Form
                 $form->file('file')
                     ->help(admin_trans_label('File Help'))
                     ->accept('xls,xlsx,csv')
+                    ->autoUpload()
                     ->uniqueName()
-                    ->autoUpload();
+                    ->required();
             })
             ->when('ldap', function (Form $form) {
                 $form->radio('mode')

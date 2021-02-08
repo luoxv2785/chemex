@@ -25,16 +25,6 @@ use Dcat\Admin\Layout\Navbar;
 
 ConfigService::init();
 
-\Dcat\Admin\Admin::style(
-    <<<CSS
-.grid__actions__{
-width: 20%;
-text-align: right;
-}
-CSS
-
-);
-
 // 获取当前用户的通知
 $user = AdminUser::where('id', auth('admin')->id())->first();
 $notifications = [];

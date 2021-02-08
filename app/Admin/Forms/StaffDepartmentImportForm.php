@@ -90,7 +90,9 @@ class StaffDepartmentImportForm extends Form
                 $form->file('file')
                     ->help(admin_trans_label('File Help'))
                     ->accept('xls,xlsx,csv')
-                    ->autoUpload();
+                    ->autoUpload()
+                    ->uniqueName()
+                    ->required();
             })
             ->when('ldap', function (Form $form) {
                 $form->radio('mode')

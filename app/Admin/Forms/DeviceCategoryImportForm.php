@@ -73,6 +73,7 @@ class DeviceCategoryImportForm extends Form
         $this->file('file')
             ->accept('xls,xlsx,csv')
             ->autoUpload()
+            ->uniqueName()
             ->required()
             ->help(admin_trans_label('File Help'));
     }

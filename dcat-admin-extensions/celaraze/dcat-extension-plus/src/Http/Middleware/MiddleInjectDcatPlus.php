@@ -26,6 +26,7 @@ class MiddleInjectDcatPlus
         $support->injectFields();
         $support->footerRemove();
         $support->headerBlocks();
+        $support->gridRowActionsRight();
 
         return $next($request);
     }

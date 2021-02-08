@@ -37,6 +37,6 @@ class SoftwareRecordBatchDeleteAction extends BatchAction
             SoftwareService::deleteSoftware($key);
         }
 
-        return $this->response()->success(admin_trans_label('Batch Delete Success'))->refresh();
+        return $this->response()->success(trans('main.success'))->refresh();
     }
 }

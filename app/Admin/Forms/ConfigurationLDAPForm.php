@@ -18,7 +18,7 @@ class ConfigurationLDAPForm extends Form
         admin_setting($input);
         return $this
             ->response()
-            ->success(admin_trans_label('Configuration Success'))
+            ->success(trans('main.success'))
             ->refresh();
     }
 
@@ -51,9 +51,11 @@ class ConfigurationLDAPForm extends Form
             ->required()
             ->default(admin_setting('ad_base_dn'));
         $this->text('ad_username')
+            ->attribute('autocomplete', 'off')
             ->required()
             ->default(admin_setting('ad_username'));
         $this->password('ad_password')
+            ->attribute('autocomplete', 'new-password')
             ->required()
             ->default(admin_setting('ad_password'));
         $this->switch('ad_use_ssl')
