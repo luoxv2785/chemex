@@ -22,7 +22,7 @@
         const options = {
             series: series,
             chart: {
-                height: 350,
+                height: 425 ,
                 type: 'heatmap',
                 toolbar: {
                     show: false

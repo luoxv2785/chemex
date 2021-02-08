@@ -48,15 +48,15 @@ class HomeController extends Controller
                         $row->column(9, function (Column $column) {
                             $column->row(function (Row $row) {
                                 $all_days_worth = WorthHeatmap::handle();
-                                $row->column(6, new Card(admin_trans_label('All Days Worth Heatmap Title'), view('apex_charts.all_days_worth_heatmap')
+                                $row->column(10, new Card(admin_trans_label('All Days Worth Heatmap Title'), view('apex_charts.all_days_worth_heatmap')
                                     ->with('worth', $all_days_worth)));
-                            });
-                            $column->row(function (Row $row) {
-                                $row->column(0, new AllWorth());
-                                $row->column(0, new DeviceWorth());
-                                $row->column(0, new PartWorth());
-                                $row->column(0, new SoftwareWorth());
-                                $row->column(0, new ServiceWorth());
+                                $row->column(2, function (Column $column) {
+                                    $column->row(new AllWorth());
+                                    $column->row(new DeviceWorth());
+                                    $column->row(new PartWorth());
+                                    $column->row(new SoftwareWorth());
+                                    $column->row(new ServiceWorth());
+                                });
                             });
                             $column->row(function (Row $row) {
                                 $row->column(2, new DeviceCounts());
