@@ -2,7 +2,7 @@
 
 namespace App\Admin\Actions\Grid\RowAction;
 
-use App\Admin\Forms\ServiceIssueForm;
+use App\Admin\Forms\ServiceIssueCreateForm;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\RowAction;
 use Dcat\Admin\Widgets\Modal;
@@ -13,7 +13,7 @@ class ServiceRecordCreateIssueAction extends RowAction
     public function __construct($title = null)
     {
         parent::__construct($title);
-        $this->title = '❓ ' . admin_trans_label('Issue Create');
+        $this->title = '📢 ' . admin_trans_label('Issue Create');
     }
 
     /**
@@ -27,7 +27,7 @@ class ServiceRecordCreateIssueAction extends RowAction
         }
 
         // 实例化表单类并传递自定义参数
-        $form = ServiceIssueForm::make()->payload(['id' => $this->getKey()]);
+        $form = ServiceIssueCreateForm::make()->payload(['id' => $this->getKey()]);
 
         return Modal::make()
             ->lg()

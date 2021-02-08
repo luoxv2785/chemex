@@ -23,14 +23,14 @@ class DeviceRecordDeleteAction extends RowAction
     {
         if (!Admin::user()->can('device.record.delete')) {
             return $this->response()
-                ->error('main.unauthorized')
+                ->error(trans('main.unauthorized'))
                 ->refresh();
         }
 
         DeviceService::deviceDelete($this->getKey());
 
         return $this->response()
-            ->success(admin_trans_label('Delete Success'))
+            ->success(trans('main.success'))
             ->refresh();
     }
 

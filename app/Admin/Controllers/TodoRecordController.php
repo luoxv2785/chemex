@@ -53,7 +53,7 @@ class TodoRecordController extends AdminController
             $grid->column('priority')->using(Data::priority());
             $grid->column('user.name');
             $grid->column('tags')->explode()->label();
-            $grid->column('emoji');
+            $grid->column('emoji')->using(Data::emoji());
 
             $grid->actions(function (RowActions $actions) {
                 if (empty($this->end)) {

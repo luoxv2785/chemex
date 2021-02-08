@@ -18,7 +18,9 @@ return [
         'Delete Confirm' => '确认删除？',
         'Delete Confirm Description' => '删除的同时将会解除所有与之关联的归属关系',
         'Track Create Update' => '归属到设备',
-        'Import' => '导入'
+        'Import' => '导入',
+        'File Help' => '导入支持xls、xlsx、csv文件，且表格头必须使用【名称，描述，分类，资产编号，厂商，版本，价格，购入日期，过保日期，购入途径】。',
+        'Device Help' => '选择新设备后，将会自动解除此软件与老设备的归属关系。'
     ],
     'fields' => [
         'qrcode' => '二维码',
@@ -53,7 +55,9 @@ return [
         'category_id' => '分类',
         'vendor_id' => '厂商',
         'depreciation_id' => '折旧规则',
-        'extended_fields' => '自定义信息'
+        'extended_fields' => '自定义信息',
+        'file' => '文件',
+        'device_id' => '设备'
     ],
     'options' => [
     ],

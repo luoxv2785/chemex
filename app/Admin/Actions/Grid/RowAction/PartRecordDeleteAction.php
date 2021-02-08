@@ -31,7 +31,7 @@ class PartRecordDeleteAction extends RowAction
         PartService::partDelete($this->getKey());
 
         return $this->response()
-            ->success(admin_trans_label('Delete Success'))
+            ->success(trans('main.success'))
             ->refresh();
     }
 

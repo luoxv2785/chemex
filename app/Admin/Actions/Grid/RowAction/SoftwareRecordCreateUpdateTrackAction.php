@@ -2,7 +2,7 @@
 
 namespace App\Admin\Actions\Grid\RowAction;
 
-use App\Admin\Forms\SoftwareTrackCreateUpdateForm;
+use App\Admin\Forms\SoftwareRecordCreateUpdateTrackForm;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\RowAction;
 use Dcat\Admin\Widgets\Modal;
@@ -27,7 +27,7 @@ class SoftwareRecordCreateUpdateTrackAction extends RowAction
         }
 
         // 实例化表单类并传递自定义参数
-        $form = SoftwareTrackCreateUpdateForm::make()->payload(['id' => $this->getKey()]);
+        $form = SoftwareRecordCreateUpdateTrackForm::make()->payload(['id' => $this->getKey()]);
 
         return Modal::make()
             ->lg()

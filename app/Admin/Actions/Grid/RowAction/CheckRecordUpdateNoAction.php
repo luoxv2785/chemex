@@ -36,11 +36,11 @@ class CheckRecordUpdateNoAction extends RowAction
         $check_record = CheckRecord::where('id', $this->getKey())->firstOrFail();
         if ($check_record->status == 1) {
             return $this->response()
-                ->warning(admin_trans_label('Cancel Fail Done'));
+                ->warning(trans('main.check_record_fail_done'));
         }
         if ($check_record->status == 2) {
             return $this->response()
-                ->warning(admin_trans_label('Cancel Fail Cancelled'));
+                ->warning(trans('main.check_record_fail_cancelled'));
         }
 
         NotificationService::deleteNotificationWhenCheckFinishedOrCancelled($this->getKey());
@@ -48,7 +48,7 @@ class CheckRecordUpdateNoAction extends RowAction
         $check_record->status = 2;
         $check_record->save();
         return $this->response()
-            ->success(admin_trans_label('Cancelled'))
+            ->success(trans('main.success'))
             ->refresh();
     }
 

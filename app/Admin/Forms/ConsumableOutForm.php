@@ -57,15 +57,13 @@ class ConsumableOutForm extends Form
     public function form()
     {
         $this->select('consumable_id')
-            ->options(ConsumableRecord::all()
-                ->pluck('name', 'id'))
+            ->options(ConsumableRecord::pluck('name', 'id'))
             ->required();
         $this->currency('number')
             ->symbol('')
             ->required();
         $this->select('staff_id')
-            ->options(StaffRecord::all()
-                ->pluck('name', 'id'))
+            ->options(StaffRecord::pluck('name', 'id'))
             ->required();
     }
 }

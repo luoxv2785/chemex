@@ -78,7 +78,7 @@ class PartRecordImportForm extends Form
                         $part_record->save();
                     } else {
                         return $this->response()
-                            ->error('缺少必要的字段！');
+                            ->error(trans('main.parameter_missing'));
                     }
                 } catch (Exception $exception) {
                     return $this->response()->error($exception->getMessage());
@@ -86,20 +86,20 @@ class PartRecordImportForm extends Form
             }
             $return = $this
                 ->response()
-                ->success('文件导入成功！')
+                ->success(trans('main.upload_success'))
                 ->refresh();
         } catch (IOException $e) {
             $return = $this
                 ->response()
-                ->error('文件读写失败：' . $e->getMessage());
+                ->error(trans('main.file_io_error') . $e->getMessage());
         } catch (UnsupportedTypeException $e) {
             $return = $this
                 ->response()
-                ->error('不支持的文件类型：' . $e->getMessage());
+                ->error(trans('main.file_format') . $e->getMessage());
         } catch (FileNotFoundException $e) {
             $return = $this
                 ->response()
-                ->error('文件不存在：' . $e->getMessage());
+                ->error(trans('main.file_none') . $e->getMessage());
         }
 
         return $return;
@@ -110,11 +110,11 @@ class PartRecordImportForm extends Form
      */
     public function form()
     {
-        $this->file('file', '表格文件')
+        $this->file('file')
             ->accept('xls,xlsx,csv')
             ->autoUpload()
             ->uniqueName()
             ->required()
-            ->help('导入支持xls、xlsx、csv文件，且表格头必须使用【名称，描述，分类，资产编号，厂商，序列号，规格，价格，购入日期，过保日期，购入途径】。');
+            ->help(admin_trans_label('File Help'));
     }
 }

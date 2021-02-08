@@ -51,7 +51,7 @@ class ServiceRecordController extends AdminController
             $grid->column('status')->switch('green');
             $grid->column('device.name')->link(function () {
                 if (!empty($this->device)) {
-                    return admin_route('device.records.show', $this->device['id']);
+                    return admin_route('device.records.show', [$this->device['id']]);
                 }
             });
             $grid->actions(function (RowActions $actions) {

@@ -15,7 +15,8 @@ return [
         'contacts' => '联系人',
         'contact_name' => '姓名',
         'phone' => '联系电话',
-        'title' => '职位'
+        'title' => '职位',
+        'file' => '文件'
     ],
     'options' => [
     ],

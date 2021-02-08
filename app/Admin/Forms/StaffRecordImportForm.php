@@ -77,7 +77,7 @@ class StaffRecordImportForm extends Form
             $result = LDAPService::importStaffRecords($input['mode']);
             if ($result) {
                 return $this->response()
-                    ->success(admin_trans_label('LDAP Import Success'))
+                    ->success(trans('main.success'))
                     ->refresh();
             } else {
                 return $this->response()
@@ -99,7 +99,6 @@ class StaffRecordImportForm extends Form
                     ->uniqueName()
                     ->autoUpload();
             })
-            //TODO 这里怎么回事，上面$this，下面$form
             ->when('ldap', function (Form $form) {
                 $form->radio('mode')
                     ->options(['rewrite' => admin_trans_label('Rewrite'), 'merge' => admin_trans_label('Merge')])

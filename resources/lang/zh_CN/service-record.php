@@ -4,14 +4,14 @@ return [
         'ServiceRecord' => '服务',
         'records' => '服务',
         'Status Help' => '勾选此项为暂停服务。',
-        'Issue Create' => '报告故障',
+        'Issue Create' => '报告异常',
         'Delete' => '删除服务',
         'Record None' => '没有此服务记录！',
         'Delete Success' => '成功删除服务: ',
         'Delete Confirm' => '确认删除？',
         'Delete Confirm Description' => '删除的同时将会解除所有与之关联的归属关系',
         'Track Create Update' => '归属到设备',
-
+        'Device Help' => '选择新设备后，将会自动解除此服务程序与老设备的归属关系。'
     ],
     'fields' => [
         'name' => '名称',
@@ -20,7 +20,10 @@ return [
         'device' => [
             'name' => '设备名称'
         ],
-        'extended_fields' => '自定义信息'
+        'extended_fields' => '自定义信息',
+        'device_id' => '设备',
+        'issue' => '异常',
+        'start' => '开始时间'
     ],
     'options' => [
     ],

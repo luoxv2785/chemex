@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Crypt;
  * @method static where(string $key, string $value, string $value = null)
  * @method static whereBetween(string $string, array $array)
  * @method static count()
+ * @method static pluck(string $string, string $string1)
  * @property string name
  * @property string description
  * @property int category_id

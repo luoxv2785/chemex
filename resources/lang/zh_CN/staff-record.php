@@ -30,7 +30,8 @@ return [
         'title' => '职位',
         'mobile' => '手机',
         'email' => '邮箱',
-        'mode' => '模式'
+        'mode' => '模式',
+        'file' => '文件'
     ],
     'options' => [
     ],

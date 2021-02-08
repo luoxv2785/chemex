@@ -4,12 +4,11 @@ namespace App\Admin\Forms;
 
 use App\Models\MaintenanceRecord;
 use Dcat\Admin\Admin;
-use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 
-class MaintenanceUpdateForm extends Form implements LazyRenderable
+class MaintenanceUpdateForm extends Form
 {
     use LazyWidget;
 
@@ -49,7 +48,7 @@ class MaintenanceUpdateForm extends Form implements LazyRenderable
         // 如果没有找到这个物品记录则返回错误
         if (!$maintenance_record) {
             return $this->response()
-                ->error(admin_trans_label('Item None'));
+                ->error(trans('main.record_none'));
         }
 
         // 创建新的配件追踪
@@ -59,7 +58,7 @@ class MaintenanceUpdateForm extends Form implements LazyRenderable
         $maintenance_record->save();
 
         return $this->response()
-            ->success(admin_trans_label('Update Success'))
+            ->success(trans('success'))
             ->refresh();
     }
 

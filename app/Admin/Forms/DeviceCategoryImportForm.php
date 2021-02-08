@@ -70,10 +70,10 @@ class DeviceCategoryImportForm extends Form
      */
     public function form()
     {
-        $this->file('file', '表格文件')
+        $this->file('file')
             ->accept('xls,xlsx,csv')
             ->autoUpload()
             ->required()
-            ->help('导入支持xls、xlsx、csv文件，且表格头必须使用【名称，描述】。');
+            ->help(admin_trans_label('File Help'));
     }
 }

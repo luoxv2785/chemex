@@ -7,7 +7,6 @@ use App\Models\PartRecord;
 use App\Models\PartTrack;
 use App\Support\Support;
 use Dcat\Admin\Admin;
-use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
@@ -17,7 +16,7 @@ use Dcat\Admin\Widgets\Form;
  * Class DeviceRecordCreateUpdateTrackForm
  * @package App\Admin\Forms
  */
-class PartTrackCreateUpdateForm extends Form implements LazyRenderable
+class PartRecordCreateUpdateTrackForm extends Form
 {
     use LazyWidget;
 
@@ -30,7 +29,7 @@ class PartTrackCreateUpdateForm extends Form implements LazyRenderable
     {
         if (!Admin::user()->can('part.track.create_update')) {
             return $this->response()
-                ->error('你没有权限执行此操作！')
+                ->error(trans('main.unauthorized'))
                 ->refresh();
         }
 
@@ -43,7 +42,7 @@ class PartTrackCreateUpdateForm extends Form implements LazyRenderable
         // 如果没有配件id或者设备id则返回错误
         if (!$part_id || !$device_id) {
             return $this->response()
-                ->error('参数错误');
+                ->error(trans('main.parameter_missing'));
         }
 
         // 配件记录
@@ -51,7 +50,7 @@ class PartTrackCreateUpdateForm extends Form implements LazyRenderable
         // 如果没有找到这个配件记录则返回错误
         if (!$part) {
             return $this->response()
-                ->error('配件不存在');
+                ->error(trans('main.record_none'));
         }
 
         // 设备记录
@@ -59,7 +58,7 @@ class PartTrackCreateUpdateForm extends Form implements LazyRenderable
         // 如果没有找到这个设备记录则返回错误
         if (!$device) {
             return $this->response()
-                ->error('设备不存在');
+                ->error(trans('main.record_none'));
         }
 
         // 配件追踪
@@ -71,7 +70,7 @@ class PartTrackCreateUpdateForm extends Form implements LazyRenderable
             // 如果新设备和旧设备相同，返回错误
             if ($part_track->device_id == $device_id) {
                 return $this->response()
-                    ->error('设备没有改变，无需重新归属');
+                    ->error(trans('main.no_change'));
             } else {
                 $part_track->delete();
             }
@@ -84,7 +83,7 @@ class PartTrackCreateUpdateForm extends Form implements LazyRenderable
         $part_track->save();
 
         return $this->response()
-            ->success('配件归属成功')
+            ->success(trans('success'))
             ->refresh();
     }
 
@@ -94,16 +93,16 @@ class PartTrackCreateUpdateForm extends Form implements LazyRenderable
     public function form()
     {
         if (Support::ifSelectCreate()) {
-            $this->selectCreate('device_id', '新设备')
+            $this->selectCreate('device_id')
                 ->options(DeviceRecord::class)
                 ->ajax(admin_route('selection.device.records'))
                 ->url(admin_route('device.records.create'))
-                ->help('选择新设备后，将会自动解除此配件与老设备的归属关系。')
+                ->help(admin_trans_label('Device Help'))
                 ->required();
         } else {
-            $this->select('device_id', '新设备')
-                ->options(DeviceRecord::all()->pluck('name', 'id'))
-                ->help('选择新设备后，将会自动解除此配件与老设备的归属关系。')
+            $this->select('device_id')
+                ->options(DeviceRecord::pluck('name', 'id'))
+                ->help(admin_trans_label('Device Help'))
                 ->required();
         }
     }

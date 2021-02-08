@@ -4,12 +4,11 @@ namespace App\Admin\Forms;
 
 use App\Models\ServiceIssue;
 use App\Models\ServiceRecord;
-use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 
-class ServiceIssueForm extends Form implements LazyRenderable
+class ServiceIssueCreateForm extends Form
 {
     use LazyWidget;
 
@@ -32,7 +31,7 @@ class ServiceIssueForm extends Form implements LazyRenderable
         // 如果没有服务id或者设备id则返回错误
         if (!$service_id || !$issue || !$start) {
             return $this->response()
-                ->error('参数错误');
+                ->error(trans('main.parameter_missing'));
         }
 
         // 服务记录
@@ -40,7 +39,7 @@ class ServiceIssueForm extends Form implements LazyRenderable
         // 如果没有找到这个服务记录则返回错误
         if (!$service) {
             return $this->response()
-                ->error('服务程序不存在');
+                ->error(trans('main.record_none'));
         }
 
         $service_issue = new ServiceIssue();
@@ -51,7 +50,7 @@ class ServiceIssueForm extends Form implements LazyRenderable
         $service_issue->save();
 
         return $this->response()
-            ->success('服务程序异常报告成功')
+            ->success(trans('main.success'))
             ->refresh();
     }
 
@@ -60,9 +59,9 @@ class ServiceIssueForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        $this->text('issue', '异常')
+        $this->text('issue',)
             ->required();
-        $this->datetime('start', '开始时间')
+        $this->datetime('start')
             ->required();
     }
 }

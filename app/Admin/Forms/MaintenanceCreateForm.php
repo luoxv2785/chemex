@@ -5,12 +5,11 @@ namespace App\Admin\Forms;
 use App\Models\DeviceRecord;
 use App\Models\MaintenanceRecord;
 use App\Models\PartRecord;
-use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 
-class MaintenanceCreateForm extends Form implements LazyRenderable
+class MaintenanceCreateForm extends Form
 {
     use LazyWidget;
 
@@ -50,7 +49,7 @@ class MaintenanceCreateForm extends Form implements LazyRenderable
         // 如果没有找到这个物品记录则返回错误
         if (!$item_record) {
             return $this->response()
-                ->error(admin_trans_label('Item None'));
+                ->error(trans('main.record_none'));
         }
 
         // 创建新的配件追踪
@@ -63,7 +62,7 @@ class MaintenanceCreateForm extends Form implements LazyRenderable
         $maintenance_record->save();
 
         return $this->response()
-            ->success(admin_trans_label('Create Maintenance Success'))
+            ->success(trans('main.success'))
             ->refresh();
     }
 

@@ -32,7 +32,7 @@ class ServiceRecordDeleteAction extends RowAction
         $service = ServiceRecord::where('id', $this->getKey())->first();
         if (empty($service)) {
             return $this->response()
-                ->error(admin_trans_label('Record None'));
+                ->error(trans('main.record_none'));
         }
 
         $service_tracks = ServiceTrack::where('service_id', $service->id)
@@ -45,7 +45,7 @@ class ServiceRecordDeleteAction extends RowAction
         $service->delete();
 
         return $this->response()
-            ->success(admin_trans_label('Delete Success') . $service->name)
+            ->success(trans('main.success'))
             ->refresh();
     }
 

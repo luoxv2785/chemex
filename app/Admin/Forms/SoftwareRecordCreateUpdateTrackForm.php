@@ -7,7 +7,6 @@ use App\Models\SoftwareRecord;
 use App\Models\SoftwareTrack;
 use App\Support\Support;
 use Dcat\Admin\Admin;
-use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
@@ -17,7 +16,7 @@ use Dcat\Admin\Widgets\Form;
  * Class DeviceRecordCreateUpdateTrackForm
  * @package App\Admin\Forms
  */
-class SoftwareTrackCreateUpdateForm extends Form implements LazyRenderable
+class SoftwareRecordCreateUpdateTrackForm extends Form
 {
     use LazyWidget;
 
@@ -30,7 +29,7 @@ class SoftwareTrackCreateUpdateForm extends Form implements LazyRenderable
     {
         if (!Admin::user()->can('software.track.create_update')) {
             return $this->response()
-                ->error('你没有权限执行此操作！')
+                ->error(trans('main.unauthorized'))
                 ->refresh();
         }
 
@@ -43,7 +42,7 @@ class SoftwareTrackCreateUpdateForm extends Form implements LazyRenderable
         // 如果没有软件id或者设备id则返回错误
         if (!$software_id || !$device_id) {
             return $this->response()
-                ->error('参数错误');
+                ->error(trans('main.parameter_missing'));
         }
 
         // 软件记录
@@ -51,7 +50,7 @@ class SoftwareTrackCreateUpdateForm extends Form implements LazyRenderable
         // 如果没有找到这个软件记录则返回错误
         if (!$software) {
             return $this->response()
-                ->error('软件不存在');
+                ->error(trans('main.record_none'));
         }
 
         // 设备记录
@@ -59,7 +58,7 @@ class SoftwareTrackCreateUpdateForm extends Form implements LazyRenderable
         // 如果没有找到这个设备记录则返回错误
         if (!$device) {
             return $this->response()
-                ->error('设备不存在');
+                ->error(trans('main.record_none'));
         }
 
         // 软件追踪
@@ -83,7 +82,7 @@ class SoftwareTrackCreateUpdateForm extends Form implements LazyRenderable
             // 如果新设备和旧设备相同，返回错误
             if ($software_track->device_id == $device_id) {
                 return $this->response()
-                    ->error('设备没有改变，无需重新归属');
+                    ->error(trans('main.no_change'));
             }
         }
 
@@ -94,7 +93,7 @@ class SoftwareTrackCreateUpdateForm extends Form implements LazyRenderable
         $software_track->save();
 
         return $this->response()
-            ->success('软件归属成功')
+            ->success(trans('main.success'))
             ->refresh();
     }
 
@@ -104,14 +103,16 @@ class SoftwareTrackCreateUpdateForm extends Form implements LazyRenderable
     public function form()
     {
         if (Support::ifSelectCreate()) {
-            $this->selectCreate('device_id', '新设备')
+            $this->selectCreate('device_id')
                 ->options(DeviceRecord::class)
                 ->ajax(admin_route('selection.device.records'))
-                ->url(admin_route('device.records.create'));
+                ->url(admin_route('device.records.create'))
+                ->help(admin_trans_label('Device Help'))
+                ->required();
         } else {
-            $this->select('device_id', '新设备')
-                ->options(DeviceRecord::all()->pluck('name', 'id'))
-                ->help('选择新设备后，将会自动解除此软件与老设备的归属关系。')
+            $this->select('device_id')
+                ->options(DeviceRecord::pluck('name', 'id'))
+                ->help(admin_trans_label('Device Help'))
                 ->required();
         }
     }

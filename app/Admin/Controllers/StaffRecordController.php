@@ -84,10 +84,10 @@ class StaffRecordController extends AdminController
                 ->auto(false);
 
             $grid->quickCreate(function (Grid\Tools\QuickCreate $create) {
-                $create->text('name')->required();
+                $create->text('name');
                 $create->select('gender')
-                    ->options(Data::genders())
-                    ->required();
+                    ->options(Data::genders());
+                $create->hidden('department_id')->default(0);
             });
 
             $grid->filter(function ($filter) {

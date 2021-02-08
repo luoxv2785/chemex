@@ -2,7 +2,7 @@
 
 namespace App\Admin\Actions\Grid\RowAction;
 
-use App\Admin\Forms\PartTrackCreateUpdateForm;
+use App\Admin\Forms\PartRecordCreateUpdateTrackForm;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\RowAction;
 use Dcat\Admin\Widgets\Modal;
@@ -26,7 +26,7 @@ class PartRecordCreateUpdateTrackAction extends RowAction
         }
 
         // 实例化表单类并传递自定义参数
-        $form = PartTrackCreateUpdateForm::make()->payload(['id' => $this->getKey()]);
+        $form = PartRecordCreateUpdateTrackForm::make()->payload(['id' => $this->getKey()]);
 
         return Modal::make()
             ->lg()

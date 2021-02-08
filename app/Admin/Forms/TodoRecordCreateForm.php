@@ -47,12 +47,12 @@ class TodoRecordCreateForm extends Form
             $todo_record->save();
             $return = $this
                 ->response()
-                ->success(admin_trans_label('Create Success'))
+                ->success(trans('main.success'))
                 ->refresh();
         } catch (Exception $e) {
             $return = $this
                 ->response()
-                ->error(admin_trans_label('Create Fail') . $e->getMessage());
+                ->error(trans('main.fail') . $e->getMessage());
         }
 
         return $return;
@@ -72,8 +72,7 @@ class TodoRecordCreateForm extends Form
         $this->textarea('description');
 
         $this->select('user_id', admin_trans_label('User Id'))
-            ->options(AdminUser::all()
-                ->pluck('name', 'id'));
+            ->options(AdminUser::pluck('name', 'id'));
         $this->tags('tags')
             ->help(admin_trans_label('Tag Help'));
     }

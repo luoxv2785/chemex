@@ -30,7 +30,7 @@ class StaffRecordDeleteAction extends RowAction
         StaffService::deleteStaff($this->getKey());
 
         return $this->response()
-            ->success(admin_trans_label('Delete Success'))
+            ->success(trans('main.success'))
             ->refresh();
     }
 

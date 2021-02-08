@@ -82,7 +82,7 @@ class PartRecordController extends AdminController
             });
             $grid->column('device.name')->link(function () {
                 if (!empty($this->device)) {
-                    return admin_route('device.records.show', $this->device['id']);
+                    return admin_route('device.records.show', [$this->device['id']]);
                 }
             });
             $grid->column('depreciation.name');

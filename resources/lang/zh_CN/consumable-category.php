@@ -11,6 +11,7 @@ return [
         'description' => '描述',
         'parent_id' => '父级节点',
         'order' => '排序',
+        'file' => '文件'
     ],
     'options' => [
     ],

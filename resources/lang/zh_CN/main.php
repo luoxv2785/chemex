@@ -28,5 +28,13 @@ return [
     'maintenance_times' => '故障次数',
     'worth' => '价值',
     'key' => '字段名',
-    'value' => '字段值'
+    'value' => '字段值',
+    'record_none' => '记录不存在',
+    'record_same' => '已存在相同记录',
+    'success' => '成功',
+    'fail' => '失败',
+    'no_change' => '没有改变',
+    'check_record_fail_done' => '失败，盘点任务已经完成。',
+    'check_record_fail_cancelled' => '失败，盘点任务已经取消。',
+    'check_record_fail_left' => '失败，还有未处理的盘点明细'
 ];

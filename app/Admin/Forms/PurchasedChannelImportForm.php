@@ -38,7 +38,7 @@ class PurchasedChannelImportForm extends Form
                         $purchased_channel->save();
                     } else {
                         return $this->response()
-                            ->error('缺少必要的字段！');
+                            ->error(trans('main.parameter_missing'));
                     }
                 } catch (Exception $exception) {
                     return $this->response()->error($exception->getMessage());
@@ -46,20 +46,20 @@ class PurchasedChannelImportForm extends Form
             }
             $return = $this
                 ->response()
-                ->success('文件导入成功！')
+                ->success(trans('main.upload_success'))
                 ->refresh();
         } catch (IOException $e) {
             $return = $this
                 ->response()
-                ->error('文件读写失败：' . $e->getMessage());
+                ->error(trans('main.file_io_error') . $e->getMessage());
         } catch (UnsupportedTypeException $e) {
             $return = $this
                 ->response()
-                ->error('不支持的文件类型：' . $e->getMessage());
+                ->error(trans('main.file_format') . $e->getMessage());
         } catch (FileNotFoundException $e) {
             $return = $this
                 ->response()
-                ->error('文件不存在：' . $e->getMessage());
+                ->error(trans('main.file_none') . $e->getMessage());
         }
 
         return $return;

@@ -7,7 +7,6 @@ use App\Models\DeviceTrack;
 use App\Models\StaffRecord;
 use App\Support\Support;
 use Dcat\Admin\Admin;
-use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
@@ -17,7 +16,7 @@ use Dcat\Admin\Widgets\Form;
  * Class DeviceRecordCreateUpdateTrackForm
  * @package App\Admin\Forms
  */
-class DeviceRecordCreateUpdateTrackForm extends Form implements LazyRenderable
+class DeviceRecordCreateUpdateTrackForm extends Form
 {
     use LazyWidget;
 
@@ -51,7 +50,7 @@ class DeviceRecordCreateUpdateTrackForm extends Form implements LazyRenderable
         // 如果没有找到这个设备记录则返回错误
         if (!$device) {
             return $this->response()
-                ->error(admin_trans_label('Record None'));
+                ->error(trans('main.record_none'));
         }
 
         // 雇员记录
@@ -59,19 +58,18 @@ class DeviceRecordCreateUpdateTrackForm extends Form implements LazyRenderable
         // 如果没有找到这个雇员记录则返回错误
         if (!$staff) {
             return $this->response()
-                ->error(admin_trans_label('Staff Record None'));
+                ->error(trans('main.record_none'));
         }
 
         // 设备追踪
-        $device_track = DeviceTrack::where('device_id', $device_id)
-            ->first();
+        $device_track = DeviceTrack::where('device_id', $device_id)->first();
 
         // 如果设备追踪非空，则删除旧追踪，为了留下流水记录
         if (!empty($device_track)) {
             // 如果新使用者和旧使用者相同，返回错误
             if ($device_track->staff_id == $staff_id) {
                 return $this->response()
-                    ->error(admin_trans_label('Staff Record Same'));
+                    ->error(trans('main.record_same'));
             } else {
                 $device_track->delete();
             }
@@ -84,7 +82,7 @@ class DeviceRecordCreateUpdateTrackForm extends Form implements LazyRenderable
         $device_track->save();
 
         return $this->response()
-            ->success('Update Track Success')
+            ->success(trans('main.success'))
             ->refresh();
     }
 
@@ -94,14 +92,14 @@ class DeviceRecordCreateUpdateTrackForm extends Form implements LazyRenderable
     public function form()
     {
         if (Support::ifSelectCreate()) {
-            $this->selectCreate('staff_id', admin_trans_label('New Staff Record'))
+            $this->selectCreate('staff_id', admin_trans_label('New Staff Id'))
                 ->options(StaffRecord::class)
                 ->ajax(admin_route('selection.staff.records'))
                 ->url(admin_route('staff.records.create'))
                 ->help(admin_trans_label('Staff Id Help'))
                 ->required();
         } else {
-            $this->select('staff_id', admin_trans_label('New Staff Record'))
+            $this->select('staff_id', admin_trans_label('New Staff Id'))
                 ->options(StaffRecord::pluck('name', 'id'))
                 ->help(admin_trans_label('Staff Id Help'))
                 ->required();

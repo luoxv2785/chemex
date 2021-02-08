@@ -32,13 +32,13 @@ class SoftwareTrackDeleteAction extends RowAction
 
         if (empty($software_track)) {
             return $this->response()
-                ->error(admin_trans_label('Track None'));
+                ->error(trans('main.record_none'));
         }
 
         $software_track->delete();
 
         return $this->response()
-            ->success(admin_trans_label('Delete Success'))
+            ->success(trans('main.success'))
             ->refresh();
     }
 

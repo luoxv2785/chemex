@@ -64,8 +64,7 @@ class ConsumableInForm extends Form
     public function form()
     {
         $this->select('consumable_id')
-            ->options(ConsumableRecord::all()
-                ->pluck('name', 'id'))
+            ->options(ConsumableRecord::pluck('name', 'id'))
             ->required();
         $this->currency('number')
             ->symbol('')

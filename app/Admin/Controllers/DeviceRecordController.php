@@ -238,7 +238,17 @@ class DeviceRecordController extends AdminController
             });
 
             $grid->showColumnSelector();
-            $grid->hideColumns(['description', 'price', 'expired', 'depreciation.name', 'location']);
+            $grid->hideColumns([
+                'photo',
+                'vendor.name',
+                'description',
+                'price',
+                'expired',
+                'depreciation.name',
+                'location',
+                'expiration_left_days',
+                'staff.department.name'
+            ]);
 
             $grid->quickSearch(
                 'id',

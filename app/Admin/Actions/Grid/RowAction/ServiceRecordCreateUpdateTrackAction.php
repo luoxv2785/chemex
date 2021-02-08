@@ -2,7 +2,7 @@
 
 namespace App\Admin\Actions\Grid\RowAction;
 
-use App\Admin\Forms\ServiceTrackCreateUpdateForm;
+use App\Admin\Forms\ServiceRecordCreateUpdateTrackForm;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\RowAction;
 use Dcat\Admin\Widgets\Modal;
@@ -26,7 +26,7 @@ class ServiceRecordCreateUpdateTrackAction extends RowAction
             return trans('main.unauthorized');
         }
         // 实例化表单类并传递自定义参数
-        $form = ServiceTrackCreateUpdateForm::make()->payload(['id' => $this->getKey()]);
+        $form = ServiceRecordCreateUpdateTrackForm::make()->payload(['id' => $this->getKey()]);
 
         return Modal::make()
             ->lg()

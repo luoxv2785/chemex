@@ -33,7 +33,7 @@ class TodoRecordUpdateForm extends Form
             $todo_record = TodoRecord::where('id', $id)->first();
             if (empty($todo_record)) {
                 return $this->response()
-                    ->error(admin_trans_label('Record None'));
+                    ->error(trans('main.record_none'));
             }
             $todo_record->end = $end;
             $todo_record->done_description = $done_description;
@@ -41,12 +41,12 @@ class TodoRecordUpdateForm extends Form
             $todo_record->save();
             $return = $this
                 ->response()
-                ->success(admin_trans_label('Update Success'))
+                ->success(trans('main.success'))
                 ->refresh();
         } catch (Exception $e) {
             $return = $this
                 ->response()
-                ->error(admin_trans_label('Update Fail') . $e->getMessage());
+                ->error(trans('main.fail') . $e->getMessage());
         }
 
         return $return;

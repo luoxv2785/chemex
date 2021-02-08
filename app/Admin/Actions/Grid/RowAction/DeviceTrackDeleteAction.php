@@ -32,13 +32,13 @@ class DeviceTrackDeleteAction extends RowAction
 
         if (empty($device_track)) {
             return $this->response()
-                ->error(admin_trans_label('Track None'));
+                ->error(trans('main.fail'));
         }
 
         $device_track->delete();
 
         return $this->response()
-            ->success(admin_trans_label('Delete Success'))
+            ->success(trans('main.success'))
             ->refresh();
     }
 

@@ -27,16 +27,11 @@ return [
         'Maintenance Create' => '报告故障',
         'Import' => '导入',
         'File Help' => '导入支持xls、xlsx、csv文件，且表格头必须使用【名称，描述，分类，厂商，资产编号，雇员，序列号，MAC，IP，价格，购入日期，过保日期，购入途径】。',
-        'Record None' => '设备不存在',
         'Update SSH Success' => 'SSH信息配置成功！',
-        'Staff Record None' => '雇员不存在',
-        'Staff Record Same' => '使用者没有改变，无需重新分配',
-        'Update Track Success' => '使用者分配成功',
-        'New Staff Record' => '新使用者',
+        'New Staff Id' => '新使用者',
         'Staff Id Help' => '选择新使用者后，将会自动解除此设备与老使用者的归属关系。',
-        'Item None' => '物品不存在',
-        'Create Maintenance Success' => '维修记录保存成功',
         'Export To Excel' => '导出到Excel',
+        'NG Description' => '故障描述'
     ],
     'fields' => [
         'qrcode' => '二维码',
@@ -103,7 +98,9 @@ return [
         'depreciation_id' => '折旧规则',
         'ng_description' => '故障说明',
         'ng_time' => '故障发生时间',
-        'extended_fields' => '自定义信息'
+        'extended_fields' => '自定义信息',
+        'staff_same' => '用户已存在',
+        'file' => '文件'
     ],
     'options' => [
     ],
