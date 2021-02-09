@@ -3,7 +3,6 @@
 
 namespace App\Admin\Metrics;
 
-
 use App\Models\CheckRecord;
 use App\Models\CheckTrack;
 use App\Models\PartRecord;
@@ -27,7 +26,7 @@ class CheckPartPercentage extends Card
             $content->simple();
         }
 
-        $part_records_all = PartRecord::all()->count();
+        $part_records_all = PartRecord::count();
         $check_record = CheckRecord::where('check_item', 'software')->where('status', 0)->first();
         if (!empty($check_record)) {
             $check_tracks_counts = CheckTrack::where('check_id', $check_record->id)

@@ -3,6 +3,7 @@
 namespace App\Admin\Metrics;
 
 use App\Models\ServiceRecord;
+use App\Support\Support;
 use Dcat\Admin\Widgets\Metrics\Line;
 use Illuminate\Http\Request;
 
@@ -29,8 +30,8 @@ class ServiceWorthTrend extends Line
         if ($request->get('option') == 'pre_year') {
             $year = (int)$year - 1;
         }
-        $from = date('Y-m-d', mktime(0, 0, 0, 1, 1, $year));
-        $to = date('Y-m-d', mktime(23, 59, 59, 12, 31, $year));
+        $from = Support::makeYearDate($year);
+        $to = Support::makeYearDate($year, 'to');
 
         $records = ServiceRecord::whereBetween('purchased', [$from, $to])->get();
 

@@ -19,7 +19,7 @@ class SoftwareCounts extends Card
      */
     public function content($content): SoftwareCounts
     {
-        $counts = SoftwareRecord::all()->count();
+        $counts = SoftwareRecord::count();
         $software_counts = admin_trans_label('Software Counts');
         $html = <<<HTML
 <div class="small-box" style="margin-bottom: 0;background: rgba(0,150,136,0.7);border-radius: .25rem">

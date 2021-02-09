@@ -71,13 +71,17 @@ class DeviceService
         foreach ($device_tracks as $device_track) {
             $single['type'] = '用户';
             $device = $device_track->staff()->withTrashed()->first();
-            $single['name'] = $device->name . ' - ' . $device_track->staff()
-                    ->withTrashed()
-                    ->first()
-                    ->department()
-                    ->withTrashed()
-                    ->first()
-                    ->name;
+            $username = $device->name;
+            $department = $device_track->staff()
+                ->withTrashed()
+                ->first()
+                ->department()
+                ->withTrashed()
+                ->first();
+            if (empty($department)) {
+                $department = '无部门';
+            }
+            $single['name'] = $username . ' - ' . $department;
             $data = Support::itemTrack($single, $device_track, $data);
         }
 

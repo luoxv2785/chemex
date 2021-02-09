@@ -33,7 +33,10 @@ return [
         'Last Year' => '上年度',
         'Maintenance Trend Title' => '故障次数趋势（每月）',
         'Worth Trend Title' => '资产价值趋势（每月）',
-        'All Days Worth Heatmap Title' => '每日资产价值热图（全年）'
+        'All Days Worth Heatmap Title' => '每日资产价值热图（全年）',
+        'Device About To Expire Counts' => '即将过保的设备数量',
+        'Part About To Expire Counts' => '即将过保的配件数量',
+        'Software About To Expire Counts' => '即将过保的软件数量'
     ],
     'fields' => [
     ],

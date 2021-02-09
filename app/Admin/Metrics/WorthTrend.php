@@ -6,6 +6,7 @@ use App\Models\DeviceRecord;
 use App\Models\PartRecord;
 use App\Models\ServiceRecord;
 use App\Models\SoftwareRecord;
+use App\Support\Support;
 use Dcat\Admin\Widgets\Metrics\Line;
 use Illuminate\Http\Request;
 
@@ -32,8 +33,8 @@ class WorthTrend extends Line
         if ($request->get('option') == 'pre_year') {
             $year = (int)$year - 1;
         }
-        $from = date('Y-m-d', mktime(0, 0, 0, 1, 1, $year));
-        $to = date('Y-m-d', mktime(23, 59, 59, 12, 31, $year));
+        $from = Support::makeYearDate($year);
+        $to = Support::makeYearDate($year, 'to');
 
         $device_records = DeviceRecord::whereBetween('purchased', [$from, $to])->get();
         $part_records = PartRecord::whereBetween('purchased', [$from, $to])->get();

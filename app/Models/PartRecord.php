@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @method static where(string $key, string $value, string $value = null)
  * @method static whereBetween(string $string, array $array)
+ * @method static count()
  * @property double price
  * @property string purchased
  * @property string expired

@@ -27,7 +27,7 @@ class CheckSoftwarePercentage extends Card
             $content->simple();
         }
 
-        $software_records_all = SoftwareRecord::all()->count();
+        $software_records_all = SoftwareRecord::count();
         $check_record = CheckRecord::where('check_item', 'software')->where('status', 0)->first();
         if (!empty($check_record)) {
             $check_tracks_counts = CheckTrack::where('check_id', $check_record->id)

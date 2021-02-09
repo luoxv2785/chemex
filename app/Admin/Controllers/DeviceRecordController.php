@@ -57,44 +57,19 @@ class DeviceRecordController extends AdminController
             ->title($this->title())
             ->description($this->description()['index'] ?? trans('admin.show'))
             ->body(function (Row $row) use ($id, $name, $history) {
-                $column_b_width = 0;
-                $column_c_width = 0;
-                // 如果B和C权限都有
-                if (Admin::user()->can('device.related') && Admin::user()->can('device.history')) {
-                    $column_a_width = 4;
-                    $column_b_width = 4;
-                    $column_c_width = 4;
-                } elseif (Admin::user()->can('device.related') && !Admin::user()->can('device.history')) {
-                    // 如果只有B
-                    $column_a_width = 6;
-                    $column_b_width = 6;
-                } elseif (!Admin::user()->can('device.related') && Admin::user()->can('device.history')) {
-                    // 如果只有C
-                    $column_a_width = 6;
-                    $column_c_width = 6;
-                } else {
-                    $column_a_width = 12;
-                }
-                $row->column($column_a_width, $this->detail($id));
-                $row->column($column_b_width, function (Column $column) use ($id, $name, $history) {
+                $row->column(7, $this->detail($id));
+                $row->column(5, function (Column $column) use ($id, $name, $history) {
                     $column->row(Card::make()->content(admin_trans_label('Current Staff') . '：' . $name));
-                    if (Admin::user()->can('device.related')) {
-                        $result = self::hasDeviceRelated($id);
-                        if ($result['part']) {
-                            $column->row(new Card(trans('main.part'), $result['part']));
-                        }
-                        if ($result['software']) {
-                            $column->row(new Card(trans('main.software'), $result['software']));
-                        }
-                        if ($result['service']) {
-                            $column->row(new Card(trans('main.service'), $result['service']));
-                        }
-                    }
-                });
-                if (Admin::user()->can('device.history')) {
+                    $column->row(new Card('归属关系', view('apex_charts.device_related_treemap')));
+                    $result = self::hasDeviceRelated($id);
+                    $column->row(new Card(trans('main.part'), $result['part']));
+                    $column->row(new Card(trans('main.software'), $result['software']));
+                    $column->row(new Card(trans('main.service'), $result['service']));
+//                    $column->row(new Card(view('apex_charts.device_related_treemap')));
+
                     $card = new Card(trans('main.history'), view('history')->with('data', $history));
-                    $row->column($column_c_width, $card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.device.history', ['device_id' => 1]) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>'));
-                }
+                    $column->row($card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.device.history', ['device_id' => 1]) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>'));
+                });
             });
     }
 

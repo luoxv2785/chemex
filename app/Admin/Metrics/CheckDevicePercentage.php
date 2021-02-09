@@ -3,7 +3,6 @@
 
 namespace App\Admin\Metrics;
 
-
 use App\Models\CheckRecord;
 use App\Models\CheckTrack;
 use App\Models\DeviceRecord;

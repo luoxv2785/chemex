@@ -23,7 +23,7 @@ class ServiceCounts extends Card
         if ($content instanceof LazyGrid) {
             $content->simple();
         }
-        $counts = ServiceRecord::all()->count();
+        $counts = ServiceRecord::count();
         $service_counts = admin_trans_label('Service Counts');
         $html = <<<HTML
 <div class="small-box" style="margin-bottom: 0;background: rgba(255,109,0,0.7);border-radius: .25rem">

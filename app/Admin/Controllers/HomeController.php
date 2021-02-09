@@ -4,15 +4,21 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Metrics\AllWorth;
 use App\Admin\Metrics\DefectTrend;
+use App\Admin\Metrics\DeviceAboutToExpireCounts;
 use App\Admin\Metrics\DeviceCounts;
+use App\Admin\Metrics\DeviceExpiredCounts;
 use App\Admin\Metrics\DeviceWorth;
 use App\Admin\Metrics\ItemWorthTrend;
+use App\Admin\Metrics\PartAboutToExpireCounts;
 use App\Admin\Metrics\PartCounts;
+use App\Admin\Metrics\PartExpiredCounts;
 use App\Admin\Metrics\PartWorth;
 use App\Admin\Metrics\ServiceCounts;
 use App\Admin\Metrics\ServiceIssueCounts;
 use App\Admin\Metrics\ServiceWorth;
+use App\Admin\Metrics\SoftwareAboutToExpireCounts;
 use App\Admin\Metrics\SoftwareCounts;
+use App\Admin\Metrics\SoftwareExpiredCounts;
 use App\Admin\Metrics\SoftwareWorth;
 use App\Admin\Metrics\StaffCounts;
 use App\Admin\Metrics\WorthTrend;
@@ -37,22 +43,12 @@ class HomeController extends Controller
                 $row->column(12, function (Column $column) {
                     $column->row(function (Row $row) {
                         $row->column(3, function (Column $column) {
-//                            $user = AdminUser::where('id', auth('admin')->id())->first();
                             $column->row(new WorthTrend());
                             $column->row(new DefectTrend());
-//                            $column->row(new MaintenanceTrend());
-//                            $column->row(new IssueTrend());
-//                            $notifications = $user->notifications;
-//                            $notifications = json_decode($notifications, true);
-//                            $column->row(new Card(admin_trans_label('My Todo'), view('todo')
-//                                ->with('notifications', $notifications)));
                         });
                         $row->column(9, function (Column $column) {
                             $column->row(function (Row $row) {
                                 $row->column(8, new ItemWorthTrend());
-//                                $all_days_worth = WorthHeatmap::handle();
-//                                $row->column(8, new Card(admin_trans_label('All Days Worth Heatmap Title'), view('apex_charts.all_days_worth_heatmap')
-//                                    ->with('worth', $all_days_worth)));
                                 $row->column(4, function (Column $column) {
                                     $column->row(new AllWorth());
                                     $column->row(function (Row $row) {
@@ -76,6 +72,12 @@ class HomeController extends Controller
                         });
                     });
                 });
+                $row->column(3, new DeviceAboutToExpireCounts());
+                $row->column(3, new DeviceExpiredCounts());
+                $row->column(3, new PartAboutToExpireCounts());
+                $row->column(3, new PartExpiredCounts());
+                $row->column(3, new SoftwareAboutToExpireCounts());
+                $row->column(3, new SoftwareExpiredCounts());
             });
     }
 }

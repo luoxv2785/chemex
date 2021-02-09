@@ -4,6 +4,7 @@ namespace App\Admin\Metrics;
 
 use App\Models\MaintenanceRecord;
 use App\Models\ServiceIssue;
+use App\Support\Support;
 use Dcat\Admin\Widgets\Metrics\Line;
 use Illuminate\Http\Request;
 
@@ -30,8 +31,8 @@ class DefectTrend extends Line
         if ($request->get('option') == 'pre_year') {
             $year = (int)$year - 1;
         }
-        $from = date('Y-m-d', mktime(0, 0, 0, 1, 1, $year));
-        $to = date('Y-m-d', mktime(23, 59, 59, 12, 31, $year));
+        $from = Support::makeYearDate($year);
+        $to = Support::makeYearDate($year, 'to');
 
         $maintenance_records = MaintenanceRecord::whereBetween('ng_time', [$from, $to])->get();
         $service_issues = ServiceIssue::whereBetween('start', [$from, $to])->get();

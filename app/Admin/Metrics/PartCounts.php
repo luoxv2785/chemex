@@ -23,7 +23,7 @@ class PartCounts extends Card
         if ($content instanceof LazyGrid) {
             $content->simple();
         }
-        $counts = PartRecord::all()->count();
+        $counts = PartRecord::count();
         $part_counts = admin_trans_label('Part Counts');
         $html = <<<HTML
 <div class="small-box" style="margin-bottom: 0;background: rgba(33,150,243,0.7);border-radius: .25rem">
