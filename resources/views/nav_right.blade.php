@@ -176,10 +176,10 @@
         $.ajax({
             url: "/version/migrate",
             success: function (res) {
-                if (res.code === 200) {
-                    Dcat.success(res.message);
+                if (res.original.code === 200) {
+                    Dcat.success(res.original.message);
                 } else {
-                    Dcat.warning(res.message);
+                    Dcat.warning(res.original.message);
                 }
             },
             error: function (res) {
@@ -195,10 +195,10 @@
         $.ajax({
             url: "/version/clear",
             success: function (res) {
-                if (res.code === 200) {
-                    Dcat.success(res.message);
+                if (res.original.code === 200) {
+                    Dcat.success(res.original.message);
                 } else {
-                    Dcat.warning(res.message);
+                    Dcat.warning(res.original.message);
                 }
             },
             error: function (res) {

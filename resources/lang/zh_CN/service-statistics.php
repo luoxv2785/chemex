@@ -8,7 +8,7 @@ return [
         'Part About To Expire Counts' => '即将过保的配件数量',
         'Part Expired Counts' => '已经过保的配件数量',
         'Current Year' => '今年度',
-        'Last Year' => '上年度'
+        'Last Year' => '上年度',
     ],
     'fields' => [
 

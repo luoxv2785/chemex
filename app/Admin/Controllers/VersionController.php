@@ -47,12 +47,12 @@ class VersionController extends Controller
         if ($result) {
             $return = response()->json([
                 'code' => 200,
-                'message' => admin_trans_label('Migrate Success')
+                'message' => trans('main.success')
             ]);
         } else {
             $return = response()->json([
                 'code' => 500,
-                'message' => admin_trans_label('Migrate Fail')
+                'message' => trans('main.fail')
             ]);
         }
         return response()->json($return);
@@ -68,12 +68,12 @@ class VersionController extends Controller
         if ($result) {
             $return = response()->json([
                 'code' => 200,
-                'message' => admin_trans_label('Clear Success')
+                'message' => trans('main.success')
             ]);
         } else {
             $return = response()->json([
                 'code' => 500,
-                'message' => admin_trans_label('Clear Fail')
+                'message' => trans('main.fail')
             ]);
         }
         return response()->json($return);

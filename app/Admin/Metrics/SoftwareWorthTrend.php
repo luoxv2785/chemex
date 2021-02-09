@@ -13,7 +13,7 @@ class SoftwareWorthTrend extends Line
      *
      * @var int
      */
-    protected $chartHeight = 140;
+    protected $chartHeight = 100;
     protected $chartMarginRight = 1;
 
     /**
@@ -72,7 +72,7 @@ class SoftwareWorthTrend extends Line
         return $this->content(
             <<<HTML
 <div class="d-flex justify-content-between align-items-center mt-1" style="margin-bottom: 2px">
-    <h2 class="ml-1 font-lg-1">{$content}</h2>
+    <h4 class="ml-1">{$content}</h4>
 </div>
 HTML
         );

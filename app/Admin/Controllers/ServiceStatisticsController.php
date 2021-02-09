@@ -5,8 +5,10 @@ namespace App\Admin\Controllers;
 use App\Admin\Metrics\ServiceWorthTrend;
 use App\Http\Controllers\Controller;
 use App\Support\Data;
+use App\Support\Support;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
+use Dcat\Admin\Widgets\Card;
 use Dcat\Admin\Widgets\Tab;
 
 class ServiceStatisticsController extends Controller
@@ -26,6 +28,9 @@ class ServiceStatisticsController extends Controller
             })
             ->body(function (Row $row) {
                 $row->column(12, new ServiceWorthTrend());
+                $services = Support::getServiceIssueStatus();
+                $row->column(12, new Card(trans('main.service_status_title'), view('services_dashboard')
+                    ->with('services', $services)));
             });
     }
 }

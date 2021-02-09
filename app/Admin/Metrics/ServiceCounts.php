@@ -28,7 +28,7 @@ class ServiceCounts extends Card
         $html = <<<HTML
 <div class="small-box" style="margin-bottom: 0;background: rgba(255,109,0,0.7);border-radius: .25rem">
   <div class="inner">
-    <h3 class="font-grey">{$counts}</h3>
+    <h4 class="font-grey">{$counts}</h4>
     <p class="font-grey">{$service_counts}</p>
   </div>
 </div>

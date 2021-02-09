@@ -22,7 +22,7 @@
         const options = {
             series: series,
             chart: {
-                height: 425 ,
+                height: 215,
                 type: 'heatmap',
                 toolbar: {
                     show: false
@@ -36,13 +36,14 @@
                 heatmap: {
                     shadeIntensity: 0.5,
                     radius: 2,
+                    distributed: true,
                     colorScale: {
                         ranges: [
                             {
                                 from: 0,
                                 to: 0,
                                 name: '当天无价值',
-                                color: '#DDDDDD'
+                                color: '#E4F2FE'
                             },
                         ],
                     }

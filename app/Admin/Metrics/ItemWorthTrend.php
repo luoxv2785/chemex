@@ -9,14 +9,14 @@ use App\Models\SoftwareRecord;
 use Dcat\Admin\Widgets\Metrics\Line;
 use Illuminate\Http\Request;
 
-class WorthTrend extends Line
+class ItemWorthTrend extends Line
 {
     /**
      * 图表默认高度.
      *
      * @var int
      */
-    protected $chartHeight = 106;
+    protected $chartHeight = 228;
     protected $chartMarginRight = 1;
 
     /**
@@ -41,15 +41,25 @@ class WorthTrend extends Line
         $service_records = ServiceRecord::whereBetween('purchased', [$from, $to])->get();
 
         $data = [];
+        $data['worth'] = [];
+        $data['device'] = [];
+        $data['part'] = [];
+        $data['software'] = [];
+        $data['service'] = [];
 
         $year_all = 0;
         for ($i = 1; $i <= 12; $i++) {
             $item = 0;
+            $device = 0;
+            $part = 0;
+            $software = 0;
+            $service = 0;
             foreach ($device_records as $device_record) {
                 $month = date('m', strtotime($device_record->purchased));
                 if ($i == $month) {
                     if (!empty($device_record->price)) {
                         $item += $device_record->price;
+                        $device = $device_record->price;
                     }
                 }
                 // 全年数据，以最后一个月来计算，这里12目的是让循环只执行一次
@@ -63,6 +73,7 @@ class WorthTrend extends Line
                 if ($i == $month) {
                     if (!empty($part_record->price)) {
                         $item += $part_record->price;
+                        $part += $part_record->price;
                     }
                 }
                 // 全年数据，以最后一个月来计算，这里12目的是让循环只执行一次
@@ -76,6 +87,7 @@ class WorthTrend extends Line
                 if ($i == $month) {
                     if (!empty($software_record->price)) {
                         $item += $software_record->price;
+                        $software = $software_record->price;
                     }
                 }
                 // 全年数据，以最后一个月来计算，这里12目的是让循环只执行一次
@@ -89,6 +101,7 @@ class WorthTrend extends Line
                 if ($i == $month) {
                     if (!empty($service_record->price)) {
                         $item += $service_record->price;
+                        $service = $service_record->price;
                     }
                 }
                 // 全年数据，以最后一个月来计算，这里12目的是让循环只执行一次
@@ -97,7 +110,11 @@ class WorthTrend extends Line
                 }
             }
 
-            array_push($data, $item);
+            array_push($data['worth'], $item);
+            array_push($data['device'], $device);
+            array_push($data['part'], $part);
+            array_push($data['software'], $software);
+            array_push($data['service'], $service);
         }
 
         $this->withContent(trans('main.all_year') . $year_all);
@@ -110,14 +127,13 @@ class WorthTrend extends Line
      *
      * @param string $content
      *
-     * @return WorthTrend
+     * @return ItemWorthTrend
      */
-    public function withContent(string $content): WorthTrend
+    public function withContent(string $content): ItemWorthTrend
     {
         return $this->content(
             <<<HTML
 <div class="d-flex justify-content-between align-items-center mt-1" style="margin-bottom: 2px">
-    <h4 class="ml-1">{$content}</h4>
 </div>
 HTML
         );
@@ -128,22 +144,40 @@ HTML
      *
      * @param array $data
      *
-     * @return WorthTrend
+     * @return ItemWorthTrend
      */
-    public function withChart(array $data): WorthTrend
+    public function withChart(array $data): ItemWorthTrend
     {
         $this->chartOptions['tooltip']['x']['show'] = true;
         return $this->chart([
             'series' => [
                 [
-                    'name' => trans('main.worth'),
-                    'data' => $data
+                    'name' => trans('main.device'),
+                    'data' => $data['device'],
+                ],
+                [
+                    'name' => trans('main.part'),
+                    'data' => $data['part'],
+                ],
+                [
+                    'name' => trans('main.software'),
+                    'data' => $data['software'],
+                ],
+                [
+                    'name' => trans('main.service'),
+                    'data' => $data['service'],
                 ],
             ],
             'tooltip' => [
                 'x' => [
                     'show' => true
                 ]
+            ],
+            'colors' => [
+                '#9475CC',
+                '#63B5F7',
+                '#4CB5AB',
+                '#FF994C'
             ],
         ]);
     }
@@ -157,7 +191,7 @@ HTML
     {
         parent::init();
 
-        $this->title(trans('main.worth_trend'));
+        $this->title(trans('main.item_worth_trend'));
         $this->dropdown([
             'current_year' => admin_trans_label('Current Year'),
             'pre_year' => admin_trans_label('Last Year')

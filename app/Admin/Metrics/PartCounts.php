@@ -28,7 +28,7 @@ class PartCounts extends Card
         $html = <<<HTML
 <div class="small-box" style="margin-bottom: 0;background: rgba(33,150,243,0.7);border-radius: .25rem">
   <div class="inner">
-    <h3 class="font-grey">{$counts}</h3>
+    <h4 class="font-grey">{$counts}</h4>
     <p class="font-grey">{$part_counts}</p>
   </div>
 </div>

@@ -43,6 +43,9 @@ return [
     'software_worth_trend_title' => '软件价值趋势（每月）',
     'service_worth_trend_title' => '服务价值趋势（每月）',
     'worth_trend' => '总价值趋势（每月）',
+    'item_worth_trend' => '资产总价值趋势（每月）',
     'maintenance_trend' => '故障次数趋势（每月）',
-    'issue_trend' => '服务异常趋势（每月）'
+    'issue_trend' => '服务异常趋势（每月）',
+    'service_status_title' => '服务状态',
+    'defect_trend_title' => '缺陷趋势（每月）'
 ];

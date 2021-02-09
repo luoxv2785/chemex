@@ -2,18 +2,19 @@
 
 namespace App\Admin\Metrics;
 
+use App\Models\MaintenanceRecord;
 use App\Models\ServiceIssue;
 use Dcat\Admin\Widgets\Metrics\Line;
 use Illuminate\Http\Request;
 
-class IssueTrend extends Line
+class DefectTrend extends Line
 {
     /**
      * 图表默认高度.
      *
      * @var int
      */
-    protected $chartHeight = 92;
+    protected $chartHeight = 106;
     protected $chartMarginRight = 1;
 
     /**
@@ -32,45 +33,58 @@ class IssueTrend extends Line
         $from = date('Y-m-d', mktime(0, 0, 0, 1, 1, $year));
         $to = date('Y-m-d', mktime(23, 59, 59, 12, 31, $year));
 
-        $records = ServiceIssue::whereBetween('start', [$from, $to])->get();
+        $maintenance_records = MaintenanceRecord::whereBetween('ng_time', [$from, $to])->get();
+        $service_issues = ServiceIssue::whereBetween('start', [$from, $to])->get();
 
         $data = [];
+        $data['maintenance'] = [];
+        $data['issue'] = [];
 
         $year_all = 0;
 
         for ($i = 1; $i <= 12; $i++) {
-            $temp = 0;
-            foreach ($records as $record) {
-                $month = date('m', strtotime($record->start));
+            $maintenance = 0;
+            $issue = 0;
+            foreach ($maintenance_records as $maintenance_record) {
+                $month = date('m', strtotime($maintenance_record->ng_time));
                 if ($i == $month) {
-                    $temp++;
+                    $maintenance++;
                 }
                 // 全年数据，以最后一个月来计算，这里12目的是让循环只执行一次
                 if ($i == 12) {
                     $year_all++;
                 }
             }
-            array_push($data, $temp);
+            foreach ($service_issues as $service_issue) {
+                $month = date('m', strtotime($service_issue->start));
+                if ($i == $month) {
+                    $issue++;
+                }
+                // 全年数据，以最后一个月来计算，这里12目的是让循环只执行一次
+                if ($i == 12) {
+                    $year_all++;
+                }
+            }
+            array_push($data['maintenance'], $maintenance);
+            array_push($data['issue'], $issue);
         }
 
-        $this->withContent(trans('main.all_year') . $year_all);
         // 图表数据
+        $this->withContent();
         $this->withChart($data);
     }
 
     /**
      * 设置卡片内容.
      *
-     * @param string $content
-     *
-     * @return IssueTrend
+     * @return DefectTrend
      */
-    public function withContent(string $content): IssueTrend
+    public function withContent(): DefectTrend
     {
         return $this->content(
             <<<HTML
 <div class="d-flex justify-content-between align-items-center mt-1" style="margin-bottom: 2px">
-    <h4 class="ml-1">{$content}</h4>
+    <h4 class="ml-1"></h4>
 </div>
 HTML
         );
@@ -81,16 +95,19 @@ HTML
      *
      * @param array $data
      *
-     * @return IssueTrend
+     * @return DefectTrend
      */
-    public function withChart(array $data): IssueTrend
+    public function withChart(array $data): DefectTrend
     {
-        $this->chartOptions['tooltip']['x']['show'] = true;
         return $this->chart([
             'series' => [
                 [
+                    'name' => trans('main.maintenance_times'),
+                    'data' => $data['maintenance'],
+                ],
+                [
                     'name' => trans('main.issue_times'),
-                    'data' => $data,
+                    'data' => $data['issue'],
                 ],
             ],
             'tooltip' => [
@@ -99,7 +116,7 @@ HTML
                 ]
             ],
             'colors' => [
-                '#52338F'
+                '#F48684'
             ]
         ]);
     }
@@ -113,7 +130,7 @@ HTML
     {
         parent::init();
 
-        $this->title(trans('main.issue_trend'));
+        $this->title(trans('main.defect_trend_title'));
         $this->dropdown([
             'current_year' => admin_trans_label('Current Year'),
             'pre_year' => admin_trans_label('Last Year')
