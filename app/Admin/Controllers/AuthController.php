@@ -24,6 +24,9 @@ class AuthController extends BaseAuthController
      */
     public function putSetting()
     {
+        if (config('admin.demo')) {
+            abort(401, '演示模式下不允许修改');
+        }
         $form = $this->settingForm();
 
         if (!$this->validateCredentialsWhenUpdatingPassword()) {
