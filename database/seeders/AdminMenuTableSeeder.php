@@ -333,7 +333,7 @@ class AdminMenuTableSeeder extends Seeder
             ),
             24 => 
             array (
-                'id' => 26,
+                'id' => 27,
                 'parent_id' => 19,
                 'order' => 19,
                 'title' => 'Dcat Plus',
@@ -341,8 +341,8 @@ class AdminMenuTableSeeder extends Seeder
                 'uri' => 'dcat-plus/site',
                 'extension' => 'celaraze.dcat-extension-plus',
                 'show' => 1,
-                'created_at' => '2021-01-28 16:39:46',
-                'updated_at' => '2021-02-04 08:34:12',
+                'created_at' => '2021-02-09 08:11:19',
+                'updated_at' => '2021-02-10 09:58:05',
             ),
         ));
         

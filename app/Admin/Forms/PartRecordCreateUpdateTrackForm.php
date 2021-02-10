@@ -83,7 +83,7 @@ class PartRecordCreateUpdateTrackForm extends Form
         $part_track->save();
 
         return $this->response()
-            ->success(trans('success'))
+            ->success(trans('main.success'))
             ->refresh();
     }
 

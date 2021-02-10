@@ -54,8 +54,6 @@ class CreatePartTables extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
-
-        Artisan::call('db:seed', ['--class' => 'PartCategoriesTableSeeder']);
     }
 
     /**

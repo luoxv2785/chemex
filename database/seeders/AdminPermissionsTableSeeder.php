@@ -129,30 +129,6 @@ class AdminPermissionsTableSeeder extends Seeder
             ),
             9 => 
             array (
-                'id' => 11,
-                'name' => '设备关联信息清单',
-                'slug' => 'device.related',
-                'http_method' => '',
-                'http_path' => '',
-                'order' => 14,
-                'parent_id' => 7,
-                'created_at' => '2020-11-19 08:59:54',
-                'updated_at' => '2020-12-28 16:24:30',
-            ),
-            10 => 
-            array (
-                'id' => 12,
-                'name' => '设备变动履历',
-                'slug' => 'device.history',
-                'http_method' => '',
-                'http_path' => '',
-                'order' => 15,
-                'parent_id' => 7,
-                'created_at' => '2020-11-19 09:00:27',
-                'updated_at' => '2020-12-28 16:24:30',
-            ),
-            11 => 
-            array (
                 'id' => 13,
                 'name' => '设备故障',
                 'slug' => 'device.maintenance.create',
@@ -163,7 +139,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 09:23:03',
                 'updated_at' => '2020-12-28 16:24:30',
             ),
-            12 => 
+            10 => 
             array (
                 'id' => 14,
                 'name' => '设备管理',
@@ -175,7 +151,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 09:55:45',
                 'updated_at' => '2020-11-19 13:11:45',
             ),
-            13 => 
+            11 => 
             array (
                 'id' => 15,
                 'name' => '软件管理',
@@ -187,7 +163,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 09:59:31',
                 'updated_at' => '2020-12-28 16:24:30',
             ),
-            14 => 
+            12 => 
             array (
                 'id' => 16,
                 'name' => '配件管理',
@@ -199,7 +175,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 09:59:57',
                 'updated_at' => '2020-12-28 16:25:16',
             ),
-            15 => 
+            13 => 
             array (
                 'id' => 17,
                 'name' => '组织管理',
@@ -211,7 +187,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:00:31',
                 'updated_at' => '2020-12-29 23:52:18',
             ),
-            16 => 
+            14 => 
             array (
                 'id' => 18,
                 'name' => '服务管理',
@@ -223,7 +199,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:00:55',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            17 => 
+            15 => 
             array (
                 'id' => 19,
                 'name' => '盘点管理',
@@ -235,7 +211,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:01:27',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            18 => 
+            16 => 
             array (
                 'id' => 20,
                 'name' => '物资故障',
@@ -247,7 +223,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:01:59',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            19 => 
+            17 => 
             array (
                 'id' => 21,
                 'name' => '厂商',
@@ -259,7 +235,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:03:42',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            20 => 
+            18 => 
             array (
                 'id' => 22,
                 'name' => '购入途径',
@@ -271,7 +247,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:04:11',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            21 => 
+            19 => 
             array (
                 'id' => 23,
                 'name' => '版本信息',
@@ -283,7 +259,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:04:37',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            22 => 
+            20 => 
             array (
                 'id' => 24,
                 'name' => '动作',
@@ -295,7 +271,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:06:25',
                 'updated_at' => '2020-12-28 16:24:30',
             ),
-            23 => 
+            21 => 
             array (
                 'id' => 25,
                 'name' => '软件删除',
@@ -307,7 +283,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:09:16',
                 'updated_at' => '2020-12-28 16:24:30',
             ),
-            24 => 
+            22 => 
             array (
                 'id' => 26,
                 'name' => '软件归属',
@@ -319,7 +295,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:09:40',
                 'updated_at' => '2020-12-28 16:25:16',
             ),
-            25 => 
+            23 => 
             array (
                 'id' => 27,
                 'name' => '软件归属解除',
@@ -331,7 +307,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:10:02',
                 'updated_at' => '2020-12-28 16:25:16',
             ),
-            26 => 
+            24 => 
             array (
                 'id' => 28,
                 'name' => '软件变动履历',
@@ -343,7 +319,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:10:28',
                 'updated_at' => '2020-12-28 16:25:16',
             ),
-            27 => 
+            25 => 
             array (
                 'id' => 29,
                 'name' => '软件管理归属',
@@ -355,7 +331,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:11:19',
                 'updated_at' => '2020-12-28 16:25:16',
             ),
-            28 => 
+            26 => 
             array (
                 'id' => 30,
                 'name' => '动作',
@@ -367,7 +343,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:14:24',
                 'updated_at' => '2020-12-28 16:25:16',
             ),
-            29 => 
+            27 => 
             array (
                 'id' => 31,
                 'name' => '配件删除',
@@ -379,7 +355,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:15:02',
                 'updated_at' => '2020-12-28 16:25:16',
             ),
-            30 => 
+            28 => 
             array (
                 'id' => 32,
                 'name' => '配件归属',
@@ -391,7 +367,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:15:12',
                 'updated_at' => '2020-12-28 16:25:16',
             ),
-            31 => 
+            29 => 
             array (
                 'id' => 33,
                 'name' => '配件变动履历',
@@ -403,7 +379,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:15:27',
                 'updated_at' => '2020-12-28 16:25:16',
             ),
-            32 => 
+            30 => 
             array (
                 'id' => 34,
                 'name' => '配件故障',
@@ -415,7 +391,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:15:44',
                 'updated_at' => '2020-12-28 16:25:16',
             ),
-            33 => 
+            31 => 
             array (
                 'id' => 35,
                 'name' => '配件归属解除',
@@ -427,7 +403,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:16:04',
                 'updated_at' => '2020-12-28 16:25:16',
             ),
-            34 => 
+            32 => 
             array (
                 'id' => 36,
                 'name' => '动作',
@@ -439,7 +415,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:18:46',
                 'updated_at' => '2020-12-28 16:25:16',
             ),
-            35 => 
+            33 => 
             array (
                 'id' => 37,
                 'name' => '雇员删除',
@@ -451,7 +427,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:18:57',
                 'updated_at' => '2020-12-28 16:25:16',
             ),
-            36 => 
+            34 => 
             array (
                 'id' => 38,
                 'name' => '动作',
@@ -463,7 +439,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:19:54',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            37 => 
+            35 => 
             array (
                 'id' => 39,
                 'name' => '服务删除',
@@ -475,7 +451,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:20:16',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            38 => 
+            36 => 
             array (
                 'id' => 40,
                 'name' => '服务归属',
@@ -487,7 +463,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:20:26',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            39 => 
+            37 => 
             array (
                 'id' => 41,
                 'name' => '服务故障',
@@ -499,7 +475,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:21:32',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            40 => 
+            38 => 
             array (
                 'id' => 42,
                 'name' => '服务归属解除',
@@ -511,7 +487,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:21:56',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            41 => 
+            39 => 
             array (
                 'id' => 43,
                 'name' => '服务故障修复',
@@ -523,7 +499,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:22:25',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            42 => 
+            40 => 
             array (
                 'id' => 44,
                 'name' => '动作',
@@ -535,7 +511,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:29:48',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            43 => 
+            41 => 
             array (
                 'id' => 45,
                 'name' => '盘点动作',
@@ -547,7 +523,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:30:28',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            44 => 
+            42 => 
             array (
                 'id' => 47,
                 'name' => '动作',
@@ -559,7 +535,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:31:18',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            45 => 
+            43 => 
             array (
                 'id' => 48,
                 'name' => '物资故障修复',
@@ -571,7 +547,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:31:43',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            46 => 
+            44 => 
             array (
                 'id' => 49,
                 'name' => '盘点完成',
@@ -583,7 +559,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:35:29',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            47 => 
+            45 => 
             array (
                 'id' => 50,
                 'name' => '盘点取消',
@@ -595,7 +571,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 10:35:38',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            48 => 
+            46 => 
             array (
                 'id' => 51,
                 'name' => '表单基础：只读',
@@ -607,7 +583,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 13:18:12',
                 'updated_at' => '2020-11-19 13:32:26',
             ),
-            49 => 
+            47 => 
             array (
                 'id' => 52,
                 'name' => '表单基础：全部',
@@ -619,7 +595,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 13:21:28',
                 'updated_at' => '2020-12-19 01:19:54',
             ),
-            50 => 
+            48 => 
             array (
                 'id' => 53,
                 'name' => '表单基础：只读',
@@ -631,7 +607,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 13:22:53',
                 'updated_at' => '2020-12-28 16:24:30',
             ),
-            51 => 
+            49 => 
             array (
                 'id' => 54,
                 'name' => '表单基础：全部',
@@ -643,7 +619,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 13:23:56',
                 'updated_at' => '2020-12-28 16:24:30',
             ),
-            52 => 
+            50 => 
             array (
                 'id' => 55,
                 'name' => '表单基础：只读',
@@ -655,7 +631,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 13:37:36',
                 'updated_at' => '2020-12-28 16:25:16',
             ),
-            53 => 
+            51 => 
             array (
                 'id' => 56,
                 'name' => '表单基础：全部',
@@ -667,7 +643,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 13:38:18',
                 'updated_at' => '2020-12-28 16:25:16',
             ),
-            54 => 
+            52 => 
             array (
                 'id' => 57,
                 'name' => '表单基础：只读',
@@ -679,7 +655,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 13:40:44',
                 'updated_at' => '2020-12-28 16:25:16',
             ),
-            55 => 
+            53 => 
             array (
                 'id' => 58,
                 'name' => '表单基础：全部',
@@ -691,7 +667,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 13:41:10',
                 'updated_at' => '2020-12-28 16:25:16',
             ),
-            56 => 
+            54 => 
             array (
                 'id' => 59,
                 'name' => '表单基础：只读',
@@ -703,7 +679,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 13:44:25',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            57 => 
+            55 => 
             array (
                 'id' => 60,
                 'name' => '表单基础：全部',
@@ -715,7 +691,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 13:45:00',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            58 => 
+            56 => 
             array (
                 'id' => 61,
                 'name' => '表单基础：只读',
@@ -727,7 +703,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 14:00:10',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            59 => 
+            57 => 
             array (
                 'id' => 62,
                 'name' => '表单基础：全部',
@@ -739,7 +715,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 14:00:45',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            60 => 
+            58 => 
             array (
                 'id' => 63,
                 'name' => '表单基础：只读',
@@ -751,7 +727,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 14:01:46',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            61 => 
+            59 => 
             array (
                 'id' => 64,
                 'name' => '表单基础：全部',
@@ -763,7 +739,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 14:02:10',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            62 => 
+            60 => 
             array (
                 'id' => 65,
                 'name' => '表单基础：只读',
@@ -775,7 +751,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 14:03:07',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            63 => 
+            61 => 
             array (
                 'id' => 66,
                 'name' => '表单基础：全部',
@@ -787,7 +763,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 14:03:24',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            64 => 
+            62 => 
             array (
                 'id' => 67,
                 'name' => '表单基础：只读',
@@ -799,7 +775,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 14:04:08',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            65 => 
+            63 => 
             array (
                 'id' => 68,
                 'name' => '表单基础：全部',
@@ -811,7 +787,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 14:04:39',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            66 => 
+            64 => 
             array (
                 'id' => 69,
                 'name' => '表单基础：只读',
@@ -823,7 +799,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 14:05:14',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            67 => 
+            65 => 
             array (
                 'id' => 70,
                 'name' => '动作',
@@ -835,7 +811,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 14:05:40',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            68 => 
+            66 => 
             array (
                 'id' => 72,
                 'name' => '更新数据库结构',
@@ -847,7 +823,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-11-19 14:06:39',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            69 => 
+            67 => 
             array (
                 'id' => 73,
                 'name' => '折旧规则',
@@ -859,7 +835,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-12-19 01:16:23',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            70 => 
+            68 => 
             array (
                 'id' => 74,
                 'name' => '表单基础：只读',
@@ -871,7 +847,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-12-19 01:17:19',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            71 => 
+            69 => 
             array (
                 'id' => 75,
                 'name' => '表单基础：全部',
@@ -883,7 +859,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-12-19 01:18:30',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            72 => 
+            70 => 
             array (
                 'id' => 76,
                 'name' => '站点配置',
@@ -895,7 +871,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-12-19 01:18:30',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            73 => 
+            71 => 
             array (
                 'id' => 77,
                 'name' => '表单基础：只读',
@@ -907,7 +883,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-12-19 01:18:30',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            74 => 
+            72 => 
             array (
                 'id' => 78,
                 'name' => '表单基础：全部',
@@ -919,7 +895,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-12-19 01:18:30',
                 'updated_at' => '2020-12-29 23:52:05',
             ),
-            75 => 
+            73 => 
             array (
                 'id' => 79,
                 'name' => '设备批量删除',
@@ -931,7 +907,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-12-28 16:24:23',
                 'updated_at' => '2020-12-28 16:24:30',
             ),
-            76 => 
+            74 => 
             array (
                 'id' => 80,
                 'name' => '软件批量删除',
@@ -943,7 +919,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-12-28 16:24:50',
                 'updated_at' => '2020-12-28 16:25:16',
             ),
-            77 => 
+            75 => 
             array (
                 'id' => 81,
                 'name' => '配件批量删除',
@@ -955,7 +931,7 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2020-12-28 16:25:06',
                 'updated_at' => '2020-12-28 16:25:16',
             ),
-            78 => 
+            76 => 
             array (
                 'id' => 82,
                 'name' => '雇员批量删除',

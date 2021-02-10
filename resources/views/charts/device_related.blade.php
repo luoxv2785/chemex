@@ -7,47 +7,7 @@
         const myChart = echarts.init(chartDom);
         let option;
 
-        let data = {
-            name: 'PC001',
-            children: [
-                {
-                    name: "配件",
-                    children: [
-                        {
-                            name: "i5-10500"
-                        },
-                        {
-                            name: "WD 500 GB"
-                        }
-                    ]
-                },
-                {
-                    name: "软件",
-                    children: [
-                        {
-                            name: "Windows 10 pro"
-                        },
-                        {
-                            name: "Office 2016 STD"
-                        }
-                    ]
-                },
-                {
-                    name: "服务",
-                    children: [
-                        {
-                            name: "LDAP"
-                        },
-                        {
-                            name: "FTP"
-                        },
-                        {
-                            name: "AD"
-                        }
-                    ]
-                }
-            ]
-        };
+        let data = {!! $related !!}
 
         myChart.setOption(option = {
             tooltip: {

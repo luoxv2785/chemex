@@ -496,4 +496,44 @@ class Support
         }
         return $from;
     }
+
+    /**
+     * 设备详情页的归属关系拓扑图的数据
+     * @param $device_id
+     * @return array|false|string
+     */
+    public static function makeDeviceRelatedChartData($device_id)
+    {
+        $return = [];
+        $device_record = DeviceRecord::where('id', $device_id)->first();
+        if (!empty($device_record)) {
+            $return = [
+                'name' => $device_record->name,
+                'children' => [
+                    [
+                        'name' => trans('main.part'),
+                        'children' => []
+                    ],
+                    [
+                        'name' => trans('main.software'),
+                        'children' => []
+                    ],
+                    [
+                        'name' => trans('main.service'),
+                        'children' => []
+                    ]
+                ]
+            ];
+            foreach ($device_record->part as $part) {
+                array_push($return['children'][0]['children'], ['name' => $part->name]);
+            }
+            foreach ($device_record->software as $software) {
+                array_push($return['children'][1]['children'], ['name' => $software->name]);
+            }
+            foreach ($device_record->service as $service) {
+                array_push($return['children'][2]['children'], ['name' => $service->name]);
+            }
+        }
+        return json_encode($return);
+    }
 }

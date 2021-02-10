@@ -144,15 +144,27 @@
 
 ## 截图
 
-![](https://oss.celaraze.com/chemex/screencapture-127-0-0-1-8000-auth-login-1607935370690.png)
+![](https://chemex.celaraze.com/screenshots/0.png)
 
-![](https://oss.celaraze.com/chemex/screencapture-127-0-0-1-8000-1607935088660.png)
+![](https://chemex.celaraze.com/screenshots/1.png)
 
-![](https://oss.celaraze.com/chemex/screencapture-127-0-0-1-8000-software-records-1-1607935148432.png)
+![](https://chemex.celaraze.com/screenshots/2.png)
 
-![](https://oss.celaraze.com/chemex/screencapture-127-0-0-1-8000-software-records-1-1607935148432.png)
+![](https://chemex.celaraze.com/screenshots/3.png)
 
-![](https://oss.celaraze.com/chemex/screencapture-127-0-0-1-8000-device-records-1607935130912.png)
+![](https://chemex.celaraze.com/screenshots/4.png)
+
+![](https://chemex.celaraze.com/screenshots/5.png)
+
+![](https://chemex.celaraze.com/screenshots/6.png)
+
+![](https://chemex.celaraze.com/screenshots/7.png)
+
+![](https://chemex.celaraze.com/screenshots/8.png)
+
+![](https://chemex.celaraze.com/screenshots/9.png)
+
+![](https://chemex.celaraze.com/screenshots/10.png)
 
 ## 咖啡壶没有满足我的需求，我想要咖啡壶成为我想要的样子
 

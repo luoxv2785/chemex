@@ -39,6 +39,8 @@ class Fill extends Command
     {
         $this->call('db:seed', ['--class' => 'DeviceCategoriesTableSeeder']);
         $this->call('db:seed', ['--class' => 'VendorRecordsTableSeeder']);
+        $this->call('db:seed', ['--class' => 'PartCategoriesTableSeeder']);
+        $this->call('db:seed', ['--class' => 'SoftwareCategoriesTableSeeder']);
         return 0;
     }
 }
