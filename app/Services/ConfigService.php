@@ -22,7 +22,6 @@ class ConfigService
     {
         try {
             Artisan::call('migrate');
-            Artisan::call('db:seed --class=UpdateSeeder');
             return true;
         } catch (Exception $exception) {
             return false;
