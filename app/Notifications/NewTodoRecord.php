@@ -11,7 +11,7 @@ class NewTodoRecord extends Notification
 {
     use Queueable;
 
-    public $todo_record;
+    public $todoRecord;
 
     /**
      * Create a new notification instance.
@@ -20,7 +20,7 @@ class NewTodoRecord extends Notification
      */
     public function __construct(TodoRecord $todoRecord)
     {
-        $this->todo_record = $todoRecord;
+        $this->todoRecord = $todoRecord;
     }
 
     /**
@@ -41,11 +41,11 @@ class NewTodoRecord extends Notification
     public function toArray(): array
     {
         return [
-            'todo_record_id' => $this->todo_record->id,
+            'todo_record_id' => $this->todoRecord->id,
             'title' => trans('new_todo_record_title'),
             'content' => trans('new_todo_record_content'),
-            'expired' => $this->todo_record->end,
-            'url' => admin_route('todo.records.show', [$this->todo_record->id])
+            'expired' => $this->todoRecord->end,
+            'url' => admin_route('todo.records.show', [$this->todoRecord->id])
         ];
     }
 }

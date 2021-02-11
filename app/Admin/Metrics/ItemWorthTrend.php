@@ -118,19 +118,17 @@ class ItemWorthTrend extends Line
             array_push($data['service'], $service);
         }
 
-        $this->withContent(trans('main.all_year') . $year_all);
+        $this->withContent();
         // 图表数据
         $this->withChart($data);
     }
 
     /**
-     * 设置卡片内容.
-     *
-     * @param string $content
+     * 设置卡片内
      *
      * @return ItemWorthTrend
      */
-    public function withContent(string $content): ItemWorthTrend
+    public function withContent(): ItemWorthTrend
     {
         return $this->content(
             <<<HTML

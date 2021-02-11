@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\CheckRecord;
 use App\Models\CheckTrack;
-use App\Support\Info;
+use App\Support\Support;
 use Illuminate\Http\JsonResponse;
-use Pour\Base\Uni;
 
 class CheckController extends Controller
 {
@@ -30,20 +29,36 @@ class CheckController extends Controller
                 ->where('status', 0)
                 ->first();
             if (empty($check_record)) {
-                $return = Uni::rr(404, '没有找到相对应的盘点任务');
+                $return = [
+                    'code' => 404,
+                    'message' => '没有找到相对应的盘点任务',
+                    'data' => []
+                ];
                 return response()->json($return);
             }
-            $item = Info::getItemRecordByClass($item, $id);
+            $item = Support::getItemRecordByClass($item, $id);
             if (empty($item)) {
-                $return = Uni::rr(404, '没有找到对应的物品');
+                $return = [
+                    'code' => 404,
+                    'message' => '没有找到对应的物品',
+                    'data' => []
+                ];
             } else {
                 $check_track = CheckTrack::where('check_id', $check_record->id)
                     ->where('item_id', $item->id)
                     ->first();
-                $return = Uni::rr(200, '查询成功', $check_track);
+                $return = [
+                    'code' => 200,
+                    'message' => '查询成功',
+                    'data' => $check_track
+                ];
             }
         } else {
-            $return = Uni::rr(404, '参数不完整');
+            $return = [
+                'code' => 404,
+                'message' => '参数不完整',
+                'data' => []
+            ];
         }
         return response()->json($return);
     }
@@ -60,15 +75,27 @@ class CheckController extends Controller
             $user = auth('api')->user();
             $check_track = CheckTrack::where('id', $track_id)->first();
             if (empty($check_track)) {
-                $return = Uni::rr(404, '没有找到盘点内容');
+                $return = [
+                    'code' => 404,
+                    'message' => '没有找到盘点内容',
+                    'data' => []
+                ];
             } else {
                 $check_track->status = $check_option;
                 $check_track->checker = $user->id;
                 $check_track->save();
-                $return = Uni::rr(200, '操作成功');
+                $return = [
+                    'code' => 200,
+                    'message' => '操作成功',
+                    'data' => []
+                ];
             }
         } else {
-            $return = Uni::rr(404, '参数不完整');
+            $return = [
+                'code' => 404,
+                'message' => '参数不完整',
+                'data' => []
+            ];
         }
         return response()->json($return);
     }

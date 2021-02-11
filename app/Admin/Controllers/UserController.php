@@ -193,7 +193,7 @@ class UserController extends BaseUserController
                     ->options(function () {
                         $roleModel = config('admin.database.roles_model');
 
-                        return $roleModel::all()->pluck('name', 'id');
+                        return $roleModel::pluck('name', 'id');
                     })
                     ->customFormat(function ($v) {
                         return array_column($v, 'id');

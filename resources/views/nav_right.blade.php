@@ -97,7 +97,7 @@
                                 如果你想和其他咖啡壶用户交流，可以扫描以下微信二维码，备注 Chemex 用户，我会第一时间将你拉入用户群。
                             </small>
                             <div class="mt-1">
-                                <img src="https://chemex.celaraze.com/wechat.jpg" style="width: 100%;">
+                                <img src="https://chemex.celaraze.com/wechat.jpg" style="width: 100%;" alt="chemex">
                             </div>
                         </div>
                     </div>

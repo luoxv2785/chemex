@@ -10,6 +10,10 @@ use Dcat\Admin\Widgets\Card;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * Class AllWorth
+ * @package App\Admin\Metrics
+ */
 class AllWorth extends Card
 {
     /**

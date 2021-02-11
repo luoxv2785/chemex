@@ -11,7 +11,7 @@ class NewCheckRecord extends Notification
 {
     use Queueable;
 
-    public $check_record;
+    public $checkRecord;
 
     /**
      * Create a new notification instance.
@@ -20,7 +20,7 @@ class NewCheckRecord extends Notification
      */
     public function __construct(CheckRecord $checkRecord)
     {
-        $this->check_record = $checkRecord;
+        $this->checkRecord = $checkRecord;
     }
 
     /**
@@ -41,11 +41,11 @@ class NewCheckRecord extends Notification
     public function toArray(): array
     {
         return [
-            'check_record_id' => $this->check_record->id,
+            'check_record_id' => $this->checkRecord->id,
             'title' => trans('new_check_record_title'),
             'content' => trans('new_check_record_content'),
-            'expired' => $this->check_record->end_time,
-            'url' => admin_route('check.records.show', [$this->check_record->id])
+            'expired' => $this->checkRecord->end_time,
+            'url' => admin_route('check.records.show', [$this->checkRecord->id])
         ];
     }
 }
