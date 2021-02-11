@@ -10,7 +10,7 @@ return [
         'Expiration Left Days' => '保固剩余天数',
         'Depreciation Rule' => '折旧规则',
         'Depreciation Price' => '折旧价格',
-        'Current Staff' => '当前使用者',
+        'Current User' => '当前使用者',
         'Photo Help' => '可以选择提供一张设备的照片作为概览。',
         'Security Password Help' => '安全密码，可以代表BIOS密码等。',
         'Admin Password Help' => '管理员密码，可以代表计算机管理员账户密码以及打印机管理员密码等。',
@@ -27,10 +27,10 @@ return [
         'Track Create Update' => '分配使用者',
         'Maintenance Create' => '报告故障',
         'Import' => '导入',
-        'File Help' => '导入支持xls、xlsx、csv文件，且表格头必须使用【名称，描述，分类，厂商，资产编号，雇员，序列号，MAC，IP，价格，购入日期，过保日期，购入途径】。',
+        'File Help' => '导入支持xls、xlsx、csv文件，且表格头必须使用【名称，描述，分类，厂商，资产编号，用户，序列号，MAC，IP，价格，购入日期，过保日期，购入途径】。',
         'Update SSH Success' => 'SSH信息配置成功！',
-        'New Staff Id' => '新使用者',
-        'Staff Id Help' => '选择新使用者后，将会自动解除此设备与老使用者的归属关系。',
+        'New User Id' => '新使用者',
+        'User Id Help' => '选择新使用者后，将会自动解除此设备与老使用者的归属关系。',
         'Export To Excel' => '导出到Excel',
         'NG Description' => '故障描述'
     ],
@@ -51,8 +51,8 @@ return [
         'mac' => 'MAC',
         'ip' => 'IP',
         'photo' => '照片',
-        'staff' => [
-            'name' => '雇员',
+        'user' => [
+            'name' => '用户',
             'department' => [
                 'name' => '部门'
             ],
@@ -100,7 +100,7 @@ return [
         'ng_description' => '故障说明',
         'ng_time' => '故障发生时间',
         'extended_fields' => '自定义信息',
-        'staff_same' => '用户已存在',
+        'user_same' => '用户已存在',
         'file' => '文件'
     ],
     'options' => [

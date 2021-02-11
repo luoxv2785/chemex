@@ -247,15 +247,15 @@ return [
 
         // User tables and model.
         'users_table' => 'admin_users',
-        'users_model' => Dcat\Admin\Models\Administrator::class,
+        'users_model' => App\Models\User::class,
 
         // Role table and model.
         'roles_table' => 'admin_roles',
-        'roles_model' => Dcat\Admin\Models\Role::class,
+        'roles_model' => App\Models\AdminRole::class,
 
         // Permission table and model.
         'permissions_table' => 'admin_permissions',
-        'permissions_model' => Dcat\Admin\Models\Permission::class,
+        'permissions_model' => App\Models\AdminPermission::class,
 
         // Menu table and model.
         'menu_table' => 'admin_menu',

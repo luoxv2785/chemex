@@ -27,7 +27,7 @@ class TodoRecordController extends AdminController
     {
         return $content
             ->title($this->title())
-            ->description($this->description()['index'] ?? trans('admin.list'))
+            ->description(admin_trans_label('Description'))
             ->body(function (Row $row) {
                 $row->column(12, function (Column $column) {
                     $column->row(function (Row $row) {

@@ -29,8 +29,8 @@ class ConsumableTrack extends Model
         return $this->hasOne(ConsumableRecord::class, 'id', 'consumable_id');
     }
 
-    public function staff(): HasOne
+    public function user(): HasOne
     {
-        return $this->hasOne(StaffRecord::class, 'id', 'staff_id');
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 }

@@ -6,7 +6,7 @@ use App\Models\DeviceCategory;
 use App\Models\DeviceRecord;
 use App\Models\DeviceTrack;
 use App\Models\PurchasedChannel;
-use App\Models\StaffRecord;
+use App\Models\User;
 use App\Models\VendorRecord;
 use Box\Spout\Common\Exception\IOException;
 use Box\Spout\Common\Exception\UnsupportedTypeException;
@@ -34,7 +34,7 @@ class DeviceRecordImportForm extends Form
                     if (!empty($row['名称']) && !empty($row['分类']) && !empty($row['厂商'])) {
                         $device_category = DeviceCategory::where('name', $row['分类'])->first();
                         $vendor_record = VendorRecord::where('name', $row['厂商'])->first();
-                        $staff_record = StaffRecord::where('name', $row['雇员'])->first();
+                        $user = User::where('name', $row['用户'])->first();
                         if (empty($device_category)) {
                             $device_category = new DeviceCategory();
                             $device_category->name = $row['分类'];
@@ -45,12 +45,12 @@ class DeviceRecordImportForm extends Form
                             $vendor_record->name = $row['厂商'];
                             $vendor_record->save();
                         }
-                        if (empty($staff_record)) {
-                            $staff_record = new StaffRecord();
-                            $staff_record->name = $row['雇员'];
-                            $staff_record->department_id = 0;
-                            $staff_record->gender = '无';
-                            $staff_record->save();
+                        if (empty($user)) {
+                            $user = new User();
+                            $user->name = $row['用户'];
+                            $user->department_id = 0;
+                            $user->gender = '无';
+                            $user->save();
                         }
                         $device_record = new DeviceRecord();
                         $device_record->name = $row['名称'];
@@ -97,7 +97,7 @@ class DeviceRecordImportForm extends Form
 
                         $device_track = new DeviceTrack();
                         $device_track->device_id = $device_record->id;
-                        $device_track->staff_id = $staff_record->id;
+                        $device_track->user_id = $user->id;
                         $device_track->save();
                     } else {
                         return $this->response()

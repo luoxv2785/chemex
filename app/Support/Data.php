@@ -249,6 +249,8 @@ class Data
             'issue' => '<i class="fa feather icon-alert-triangle"></i> ',
             'user' => '<i class="fa feather icon-users"></i> ',
             'department' => '<i class="fa feather icon-copy"></i> ',
+            'role' => '<i class="fa feather icon-users"></i> ',
+            'permission' => '<i class="fa feather icon-lock"></i> ',
             'statistics' => '<i class="fa feather icon-bar-chart-2"></i> ',
         ];
         return $array[$string];

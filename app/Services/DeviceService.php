@@ -70,9 +70,9 @@ class DeviceService
             ->get();
         foreach ($device_tracks as $device_track) {
             $single['type'] = '用户';
-            $device = $device_track->staff()->withTrashed()->first();
+            $device = $device_track->user()->withTrashed()->first();
             $username = $device->name;
-            $department = $device_track->staff()
+            $department = $device_track->user()
                 ->withTrashed()
                 ->first()
                 ->department()

@@ -41,11 +41,11 @@ class DeviceTrackController extends AdminController
      */
     protected function grid(): Grid
     {
-        return Grid::make(new DeviceTrack(['device', 'staff']), function (Grid $grid) {
+        return Grid::make(new DeviceTrack(['device', 'user']), function (Grid $grid) {
 
             $grid->column('id');
             $grid->column('device.name');
-            $grid->column('staff.name');
+            $grid->column('user.name');
             $grid->column('created_at');
             $grid->column('updated_at');
 
@@ -69,7 +69,7 @@ class DeviceTrackController extends AdminController
 
             $grid->toolsWithOutline(false);
 
-            $grid->quickSearch('id', 'device.name', 'staff.name')
+            $grid->quickSearch('id', 'device.name', 'user.name')
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
         });

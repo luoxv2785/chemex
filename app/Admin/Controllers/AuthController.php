@@ -3,7 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Models\AdminRoleUser;
-use App\Models\AdminUser;
+use App\Models\User;
 use App\Support\LDAP;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Http\Controllers\AuthController as BaseAuthController;
@@ -55,9 +55,9 @@ class AuthController extends BaseAuthController
             $ldap = new LDAP();
             try {
                 if ($ldap->auth($username, $password)) {
-                    $admin_user = AdminUser::where('username', $username)->first();
+                    $admin_user = User::where('username', $username)->first();
                     if (empty($admin_user)) {
-                        $admin_user = new AdminUser();
+                        $admin_user = new User();
                     }
                     $admin_user->username = $username;
                     $admin_user->password = bcrypt($password);

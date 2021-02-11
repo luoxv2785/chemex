@@ -4,7 +4,7 @@ namespace App\Admin\Forms;
 
 use App\Models\ConsumableRecord;
 use App\Models\ConsumableTrack;
-use App\Models\StaffRecord;
+use App\Models\User;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Widgets\Form;
 use Exception;
@@ -20,8 +20,8 @@ class ConsumableOutForm extends Form
     {
         $consumable_record_id = $input['consumable_id'] ?? null;
         $number = $input['number'] ?? null;
-        $staff_id = $input['staff_id'] ?? null;
-        if (empty($consumable_record_id) || empty($number) || empty($staff_id)) {
+        $user_id = $input['user_id'] ?? null;
+        if (empty($consumable_record_id) || empty($number) || empty($user_id)) {
             return $this->response()
                 ->error(trans('main.parameter_missing'));
         }
@@ -34,7 +34,7 @@ class ConsumableOutForm extends Form
                 $new_consumable_track = $consumable_track->replicate();
                 $new_consumable_track->number -= $number;
                 $new_consumable_track->change = $number;
-                $new_consumable_track->staff_id = $staff_id;
+                $new_consumable_track->user_id = $user_id;
                 $new_consumable_track->operator = auth('admin')->user()->name;
                 $new_consumable_track->save();
                 $consumable_track->delete();
@@ -62,8 +62,8 @@ class ConsumableOutForm extends Form
         $this->currency('number')
             ->symbol('')
             ->required();
-        $this->select('staff_id')
-            ->options(StaffRecord::pluck('name', 'id'))
+        $this->select('user_id')
+            ->options(User::pluck('name', 'id'))
             ->required();
     }
 }

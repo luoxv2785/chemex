@@ -11,6 +11,7 @@ use Dcat\Admin\Admin;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Grid\Tools\Selector;
 use Dcat\Admin\Http\Controllers\AdminController;
+use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Widgets\Alert;
 
 /**
@@ -20,6 +21,21 @@ use Dcat\Admin\Widgets\Alert;
  */
 class MaintenanceRecordController extends AdminController
 {
+    /**
+     * Index interface.
+     *
+     * @param Content $content
+     *
+     * @return Content
+     */
+    public function index(Content $content): Content
+    {
+        return $content
+            ->title($this->title())
+            ->description(admin_trans_label('Description'))
+            ->body($this->grid());
+    }
+
     /**
      * Make a grid builder.
      *

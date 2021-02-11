@@ -3,8 +3,8 @@
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\AdminUser;
 use App\Models\Notification;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 
@@ -16,7 +16,7 @@ class NotificationController extends Controller
      */
     public function readAll(): RedirectResponse
     {
-        $user = AdminUser::where('id', auth('admin')->id())->first();
+        $user = User::where('id', auth('admin')->id())->first();
         if (!empty($user)) {
             foreach ($user->unreadNotifications as $notification) {
                 $notification->markAsRead();

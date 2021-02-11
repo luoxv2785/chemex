@@ -22,11 +22,11 @@ class CheckRecord extends Model
     protected $table = 'check_records';
 
     /**
-     * 盘点记录有一个雇员
+     * 盘点记录有一个用户
      * @return HasOne
      */
     public function user(): HasOne
     {
-        return $this->hasOne(AdminUser::class, 'id', 'user_id');
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 }

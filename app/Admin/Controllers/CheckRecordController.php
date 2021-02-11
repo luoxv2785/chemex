@@ -7,11 +7,11 @@ use App\Admin\Actions\Grid\RowAction\CheckRecordUpdateYesAction;
 use App\Admin\Actions\Grid\RowAction\CheckTrackUpdateAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\CheckRecord;
-use App\Models\AdminUser;
 use App\Models\CheckTrack;
 use App\Models\DeviceRecord;
 use App\Models\PartRecord;
 use App\Models\SoftwareRecord;
+use App\Models\User;
 use App\Services\CheckService;
 use App\Support\Data;
 use App\Support\Support;
@@ -222,7 +222,7 @@ class CheckRecordController extends AdminController
             $form->datetime('end_time')
                 ->required();
             $form->select('user_id', admin_trans_label('User'))
-                ->options(AdminUser::pluck('name', 'id'))
+                ->options(User::pluck('name', 'id'))
                 ->required();
 
             $form->display('created_at');

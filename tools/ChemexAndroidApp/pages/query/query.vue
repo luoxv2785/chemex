@@ -2,8 +2,8 @@
     <view>
         <u-button class="row" type="warning" @click="scan()">扫码查询</u-button>
         <view class="row">资产编号：{{ data.asset_number }}</view>
-        <view class="row">雇员：{{ data.staff.name }}</view>
-        <view class="row">部门：{{ data.staff.department.name }}</view>
+        <view class="row">用户：{{ data.user.name }}</view>
+        <view class="row">部门：{{ data.user.department.name }}</view>
         <view class="row">名称：{{ data.name }}</view>
         <view class="row">描述：{{ data.description }}</view>
         <view class="row">分类：{{ data.category.name }}</view>
@@ -27,7 +27,7 @@ export default {
                 category: {},
                 vendor: {},
                 channel: {},
-                staff: {
+                user: {
                     department: {}
                 }
             }

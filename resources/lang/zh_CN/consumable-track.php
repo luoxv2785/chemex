@@ -10,8 +10,8 @@ return [
             'name' => '耗材'
         ],
         'operator' => '发生人',
-        'staff' => [
-            'name' => '领用人'
+        'user' => [
+            'name' => '用户（领用人）'
         ],
         'number' => '数量',
         'change' => '改变',

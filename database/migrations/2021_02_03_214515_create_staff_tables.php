@@ -13,20 +13,6 @@ class CreateStaffTables extends Migration
      */
     public function up()
     {
-        Schema::create('staff_records', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->integer('department_id');
-            $table->char('gender')->default('无');
-            $table->string('title')->nullable();
-            $table->string('mobile')->nullable();
-            $table->string('email')->nullable();
-            $table->integer('ad_tag')->default(0);
-            $table->string('extended_fields')->nullable();
-            $table->softDeletes();
-            $table->timestamps();
-        });
-
         Schema::create('staff_departments', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -47,7 +33,6 @@ class CreateStaffTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('staff_records');
         Schema::dropIfExists('staff_departments');
     }
 }

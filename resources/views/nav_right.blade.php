@@ -127,14 +127,14 @@
                 <li class="scrollable-container media-list ps ps--active-y">
                     @foreach($notifications as $notification)
                         <a class="media d-flex justify-content-between"
-                           href="{{admin_route('notification.read',$notification['id'])}}">
+                           href="{{admin_route('notification.read',[$notification['id']])}}">
                             <div class="d-flex align-items-start">
                                 <div class="media-left">
                                 </div>
                                 <div class="media-body">
-                                    <h6 class="primary media-heading">{{$notification['data']['title']}}</h6>
+                                    <h6 class="primary media-heading">{{trans('main.'.$notification['data']['title'])}}</h6>
                                     <small class="notification-text">
-                                        {{$notification['data']['content']}}
+                                        {{trans('main.'.$notification['data']['content'])}}
                                     </small>
                                 </div>
                             </div>

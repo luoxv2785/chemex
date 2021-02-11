@@ -9,10 +9,10 @@ use App\Admin\Actions\Grid\RowAction\MaintenanceCreateAction;
 use App\Admin\Actions\Grid\ToolAction\DeviceRecordImportAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\DeviceRecord;
+use App\Models\Department;
 use App\Models\DepreciationRule;
 use App\Models\DeviceCategory;
 use App\Models\PurchasedChannel;
-use App\Models\StaffDepartment;
 use App\Models\VendorRecord;
 use App\Services\DeviceService;
 use App\Services\ExpirationService;
@@ -51,7 +51,7 @@ class DeviceRecordController extends AdminController
      */
     public function show($id, Content $content): Content
     {
-        $name = Support::deviceIdToStaffName($id);
+        $name = Support::deviceIdToUserName($id);
         $history = DeviceService::history($id);
         return $content
             ->title($this->title())
@@ -59,7 +59,7 @@ class DeviceRecordController extends AdminController
             ->body(function (Row $row) use ($id, $name, $history) {
                 $row->column(7, $this->detail($id));
                 $row->column(5, function (Column $column) use ($id, $name, $history) {
-                    $column->row(Card::make()->content(admin_trans_label('Current Staff') . '：' . $name));
+                    $column->row(Card::make()->content(admin_trans_label('Current User') . '：' . $name));
                     $related = Support::makeDeviceRelatedChartData($id);
                     $column->row(new Card(trans('main.related'), view('charts.device_related')->with('related', $related)));
                     $result = self::hasDeviceRelated($id);
@@ -81,7 +81,7 @@ class DeviceRecordController extends AdminController
      */
     protected function detail($id): Show
     {
-        return Show::make($id, new DeviceRecord(['category', 'vendor', 'channel', 'staff', 'staff.department', 'depreciation']), function (Show $show) {
+        return Show::make($id, new DeviceRecord(['category', 'vendor', 'channel', 'user', 'user.department', 'depreciation']), function (Show $show) {
             $show->field('id');
             $show->field('name');
             $show->field('asset_number');
@@ -103,8 +103,8 @@ class DeviceRecordController extends AdminController
             });
             $show->field('purchased');
             $show->field('expired');
-            $show->field('staff.name');
-            $show->field('staff.department.name');
+            $show->field('user.name');
+            $show->field('user.department.name');
             $show->field('security_password');
             $show->field('admin_password');
             $show->field('depreciation.name');
@@ -147,7 +147,7 @@ class DeviceRecordController extends AdminController
      */
     protected function grid(): Grid
     {
-        return Grid::make(new DeviceRecord(['category', 'vendor', 'staff', 'staff.department', 'depreciation']), function (Grid $grid) {
+        return Grid::make(new DeviceRecord(['category', 'vendor', 'user', 'user.department', 'depreciation']), function (Grid $grid) {
 
             $grid->column('id');
             $grid->column('qrcode')->qrcode(function () {
@@ -171,8 +171,8 @@ class DeviceRecordController extends AdminController
             $grid->column('ip');
             $grid->column('price');
             $grid->column('expired');
-            $grid->column('staff.name');
-            $grid->column('staff.department.name');
+            $grid->column('user.name');
+            $grid->column('user.department.name');
             $grid->column('expiration_left_days', admin_trans_label('Expiration Left Days'))->display(function () {
                 return ExpirationService::itemExpirationLeftDaysRender('device', $this->id);
             });
@@ -212,7 +212,7 @@ class DeviceRecordController extends AdminController
                 'depreciation.name',
                 'location',
                 'expiration_left_days',
-                'staff.department.name'
+                'user.department.name'
             ]);
 
             $grid->quickSearch(
@@ -226,8 +226,8 @@ class DeviceRecordController extends AdminController
                 'mac',
                 'ip',
                 'price',
-                'staff.name',
-                'staff.department.name',
+                'user.name',
+                'user.department.name',
                 'location'
             )
                 ->placeholder(trans('main.quick_search'))
@@ -236,7 +236,7 @@ class DeviceRecordController extends AdminController
             $grid->filter(function ($filter) {
                 $filter->equal('category_id')->select(DeviceCategory::pluck('name', 'id'));
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
-                $filter->equal('staff.department_id')->select(StaffDepartment::pluck('name', 'id'));
+                $filter->equal('user.department_id')->select(Department::pluck('name', 'id'));
                 $filter->equal('depreciation_id')->select(DepreciationRule::pluck('name', 'id'));
                 $filter->equal('location');
             });

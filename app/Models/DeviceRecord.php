@@ -113,18 +113,18 @@ class DeviceRecord extends Model
     }
 
     /**
-     * 设备记录在远处有一个使用者（雇员）
+     * 设备记录在远处有一个使用者（用户）
      * @return HasManyThrough
      */
-    public function staff(): HasManyThrough
+    public function user(): HasManyThrough
     {
         return $this->hasOneThrough(
-            StaffRecord::class,  // 远程表
+            User::class,  // 远程表
             DeviceTrack::class,   // 中间表
             'device_id',    // 中间表对主表的关联字段
             'id',   // 远程表对中间表的关联字段
             'id',   // 主表对中间表的关联字段
-            'staff_id'); // 中间表对远程表的关联字段
+            'user_id'); // 中间表对远程表的关联字段
     }
 
     /**

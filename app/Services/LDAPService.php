@@ -5,8 +5,8 @@ namespace App\Services;
 
 
 use Adldap\Laravel\Facades\Adldap;
-use App\Models\StaffDepartment;
-use App\Models\StaffRecord;
+use App\Models\Department;
+use App\Models\User;
 use Exception;
 
 class LDAPService
@@ -16,12 +16,12 @@ class LDAPService
      * @param $mode
      * @return bool|string
      */
-    public static function importStaffDepartments($mode): string
+    public static function importUserDepartments($mode): string
     {
         try {
             // 如果模式是复写，先执行清空表
             if ($mode == 'rewrite') {
-                StaffDepartment::truncate();
+                Department::truncate();
             }
             $ous = Adldap::search()->ous()->get();
             $ous = json_decode($ous, true);
@@ -41,11 +41,11 @@ class LDAPService
                 if (strpos($ou_level_up, 'OU=') !== false) {
                     $parent_ou_name = str_replace('OU=', '', $ou_level_up);
                     if ($ou_name != $parent_ou_name) {
-                        $parent_department = StaffDepartment::where('name', $parent_ou_name)
+                        $parent_department = Department::where('name', $parent_ou_name)
                             ->where('ad_tag', 1)
                             ->first();
                         if (empty($parent_department)) {
-                            $parent_department = new StaffDepartment();
+                            $parent_department = new Department();
                             $parent_department->name = $parent_ou_name;
                             $parent_department->ad_tag = 1;
                             $parent_department->save();
@@ -53,11 +53,11 @@ class LDAPService
                         $parent_department_id = $parent_department->id;
                     }
                 }
-                $department = StaffDepartment::where('name', $ou_name)
+                $department = Department::where('name', $ou_name)
                     ->where('ad_tag', 1)
                     ->first();
                 if (empty($department)) {
-                    $department = new StaffDepartment();
+                    $department = new Department();
                     $department->name = $ou_name;
                     $department->parent_id = $parent_department_id;
                     $department->ad_tag = 1;
@@ -77,13 +77,13 @@ class LDAPService
      * @param $mode
      * @return string
      */
-    public static function importStaffRecords($mode): string
+    public static function importUsers($mode): string
     {
         try {
 
             // 如果模式是复写，先执行清空表
             if ($mode == 'rewrite') {
-                StaffRecord::truncate();
+                User::truncate();
             }
 
             $users = Adldap::search()->users()->get();
@@ -98,19 +98,19 @@ class LDAPService
                 // 如果用户有所属部门
                 if (strpos($user_dn_up, 'OU=') !== false) {
                     $user_dn_department = explode('=', $user_dn_up)[1];
-                    $department = StaffDepartment::where('name', $user_dn_department)->first();
+                    $department = Department::where('name', $user_dn_department)->first();
                     if (!empty($department)) {
                         $department_id = $department->id;
                     }
                 }
-                $staff = StaffRecord::where('name', $user_name)->first();
-                if (empty($staff)) {
-                    $staff = new StaffRecord();
+                $user = User::where('name', $user_name)->first();
+                if (empty($user)) {
+                    $user = new User();
                 }
-                $staff->name = $user_name;
-                $staff->department_id = $department_id;
-                $staff->ad_tag = 1;
-                $staff->save();
+                $user->name = $user_name;
+                $user->department_id = $department_id;
+                $user->ad_tag = 1;
+                $user->save();
             }
         } catch (Exception $exception) {
             return $exception->getMessage();

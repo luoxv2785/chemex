@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'TodoRecord' => '待办',
+        'Description' => '轻量的 TODO 功能',
         'records' => '待办',
         'User Id' => '用户',
         'Update' => '处理待办',

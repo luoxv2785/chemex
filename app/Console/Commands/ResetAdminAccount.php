@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\AdminUser;
+use App\Models\User;
 use Illuminate\Console\Command;
 
 class ResetAdminAccount extends Command
@@ -38,9 +38,9 @@ class ResetAdminAccount extends Command
      */
     public function handle(): int
     {
-        $user = AdminUser::where('username', 'admin')->first();
+        $user = User::where('username', 'admin')->first();
         if (empty($user)) {
-            $user = new AdminUser();
+            $user = new User();
             $user->username = 'admin';
         }
         $user->password = bcrypt('admin');

@@ -27,7 +27,7 @@ class CheckTrack extends Model
      */
     public function checker(): HasOne
     {
-        return $this->hasOne(AdminUser::class, 'id', 'checker');
+        return $this->hasOne(User::class, 'id', 'checker');
     }
 
     /**

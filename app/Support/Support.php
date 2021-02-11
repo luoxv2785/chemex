@@ -19,7 +19,7 @@ use App\Models\ServiceRecord;
 use App\Models\ServiceTrack;
 use App\Models\SoftwareRecord;
 use App\Models\SoftwareTrack;
-use App\Models\StaffRecord;
+use App\Models\User;
 use Dcat\Admin\Admin;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -55,17 +55,17 @@ class Support
      * @param $device_id
      * @return string
      */
-    public static function currentDeviceTrackStaff($device_id)
+    public static function currentDeviceTrackUser($device_id)
     {
         $device_track = DeviceTrack::where('device_id', $device_id)->first();
         if (empty($device_track)) {
             return 0;
         } else {
-            $staff = $device_track->staff;
-            if (empty($staff)) {
+            $user = $device_track->user;
+            if (empty($user)) {
                 return -1;
             } else {
-                return $staff->id;
+                return $user->id;
             }
         }
     }
@@ -130,50 +130,50 @@ class Support
     }
 
     /**
-     * 雇员id换取name
-     * @param $staff_id
+     * 用户id换取name
+     * @param $user_id
      * @return string
      */
-    public static function staffIdToName($staff_id): string
+    public static function userIdToName($user_id): string
     {
-        $staff = StaffRecord::where('id', $staff_id)->first();
-        if (empty($staff)) {
-            return '雇员失踪';
+        $user = User::where('id', $user_id)->first();
+        if (empty($user)) {
+            return '用户失踪';
         }
-        return $staff->name;
+        return $user->name;
     }
 
     /**
-     * 雇员id换取部门name
-     * @param $staff_id
+     * 用户id换取部门name
+     * @param $user_id
      * @return mixed
      */
-    public static function staffIdToDepartmentName($staff_id): string
+    public static function userIdToDepartmentName($user_id): string
     {
-        $staff = StaffRecord::where('id', $staff_id)->first();
-        if (!empty($staff)) {
-            return $staff->department->name;
+        $user = User::where('id', $user_id)->first();
+        if (!empty($user)) {
+            return $user->department->name;
         } else {
             return '无部门';
         }
     }
 
     /**
-     * 设备ID换取雇员名称
+     * 设备ID换取用户名称
      * @param $device_id
      * @return string
      */
-    public static function deviceIdToStaffName($device_id): string
+    public static function deviceIdToUserName($device_id): string
     {
         $device = DeviceRecord::where('id', $device_id)->first();
         if (empty($device)) {
             return '设备状态异常';
         } else {
-            $staff = $device->staff;
-            if (empty($staff)) {
+            $user = $device->user;
+            if (empty($user)) {
                 return '闲置';
             } else {
-                return $staff->name;
+                return $user->name;
             }
         }
     }

@@ -160,7 +160,7 @@ class SoftwareRecordController extends AdminController
                 } else {
                     $row->column(6, $this->detail($id));
                     $row->column(6, function (Column $column) use ($id, $history) {
-                        $grid = Grid::make(new SoftwareTrack(['software', 'device', 'device.staff']), function (Grid $grid) use ($id) {
+                        $grid = Grid::make(new SoftwareTrack(['software', 'device', 'device.user']), function (Grid $grid) use ($id) {
                             $grid->model()->where('software_id', '=', $id);
                             $grid->tableCollapse(false);
                             $grid->withBorder();
@@ -168,10 +168,10 @@ class SoftwareRecordController extends AdminController
                             $grid->column('id');
                             $grid->column('device.name')->link(function () {
                                 if (!empty($this->device)) {
-                                    return admin_route('device.records.show', $this->device['id']);
+                                    return admin_route('device.records.show', [$this->device['id']]);
                                 }
                             });
-                            $grid->column('device.staff.name');
+                            $grid->column('device.user.name');
 
                             $grid->disableToolbar();
                             $grid->disableBatchDelete();
@@ -188,7 +188,7 @@ class SoftwareRecordController extends AdminController
                         });
                         $column->row(new Card(admin_trans_label('Track Card Title'), $grid));
                         $card = new Card(admin_trans_label('History Card Title'), view('history')->with('data', $history));
-                        $column->row($card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.software.history', $id) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>'));
+                        $column->row($card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.software.history', [$id]) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>'));
                     });
                 }
             });

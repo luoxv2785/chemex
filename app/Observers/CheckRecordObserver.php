@@ -2,8 +2,8 @@
 
 namespace App\Observers;
 
-use App\Models\AdminUser;
 use App\Models\CheckRecord;
+use App\Models\User;
 use App\Notifications\NewCheckRecord;
 
 class CheckRecordObserver
@@ -16,7 +16,7 @@ class CheckRecordObserver
      */
     public function created(CheckRecord $checkRecord)
     {
-        $admin_user = AdminUser::where('id', $checkRecord->user_id)->first();
+        $admin_user = User::where('id', $checkRecord->user_id)->first();
         if (!empty($admin_user)) {
             $admin_user->notify(new NewCheckRecord($checkRecord));
         }

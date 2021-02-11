@@ -19,14 +19,14 @@
  *
  */
 
-use App\Models\AdminUser;
+use App\Models\User;
 use App\Services\ConfigService;
 use Dcat\Admin\Layout\Navbar;
 
 ConfigService::init();
 
 // 获取当前用户的通知
-$user = AdminUser::where('id', auth('admin')->id())->first();
+$user = User::where('id', auth('admin')->id())->first();
 $notifications = [];
 if (!empty($user)) {
     $notifications = $user->unreadNotifications;

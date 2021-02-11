@@ -76,13 +76,13 @@ class AdminMenuTableSeeder extends Seeder
                 'id' => 5,
                 'parent_id' => 0,
                 'order' => 10,
-                'title' => 'Staff',
+                'title' => 'Organization',
                 'icon' => 'feather icon-user-check',
-                'uri' => 'staff/records',
+                'uri' => '/organization/users',
                 'extension' => '',
                 'show' => 1,
                 'created_at' => '2020-10-10 15:06:25',
-                'updated_at' => '2021-02-04 08:34:12',
+                'updated_at' => '2021-02-11 21:05:29',
             ),
             5 => 
             array (
@@ -281,45 +281,6 @@ class AdminMenuTableSeeder extends Seeder
             ),
             20 => 
             array (
-                'id' => 22,
-                'parent_id' => 19,
-                'order' => 22,
-                'title' => 'Users',
-                'icon' => NULL,
-                'uri' => 'auth/users',
-                'extension' => '',
-                'show' => 1,
-                'created_at' => '2020-11-03 14:25:13',
-                'updated_at' => '2021-02-04 08:34:12',
-            ),
-            21 => 
-            array (
-                'id' => 23,
-                'parent_id' => 19,
-                'order' => 23,
-                'title' => 'Roles',
-                'icon' => NULL,
-                'uri' => 'auth/roles',
-                'extension' => '',
-                'show' => 1,
-                'created_at' => '2020-11-03 14:25:25',
-                'updated_at' => '2021-02-04 08:34:12',
-            ),
-            22 => 
-            array (
-                'id' => 24,
-                'parent_id' => 19,
-                'order' => 24,
-                'title' => 'Permissions',
-                'icon' => NULL,
-                'uri' => 'auth/permissions',
-                'extension' => '',
-                'show' => 1,
-                'created_at' => '2020-11-03 14:26:37',
-                'updated_at' => '2021-02-04 08:34:12',
-            ),
-            23 => 
-            array (
                 'id' => 25,
                 'parent_id' => 19,
                 'order' => 20,
@@ -331,7 +292,7 @@ class AdminMenuTableSeeder extends Seeder
                 'created_at' => '2020-12-14 19:38:17',
                 'updated_at' => '2021-02-04 08:34:12',
             ),
-            24 => 
+            21 => 
             array (
                 'id' => 27,
                 'parent_id' => 19,

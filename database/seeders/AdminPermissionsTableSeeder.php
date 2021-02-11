@@ -179,13 +179,13 @@ class AdminPermissionsTableSeeder extends Seeder
             array (
                 'id' => 17,
                 'name' => '组织管理',
-                'slug' => 'staff',
+                'slug' => 'organization',
                 'http_method' => '',
                 'http_path' => '',
                 'order' => 37,
                 'parent_id' => 0,
                 'created_at' => '2020-11-19 10:00:31',
-                'updated_at' => '2020-12-29 23:52:18',
+                'updated_at' => '2021-02-11 21:01:11',
             ),
             14 => 
             array (
@@ -407,25 +407,25 @@ class AdminPermissionsTableSeeder extends Seeder
             array (
                 'id' => 36,
                 'name' => '动作',
-                'slug' => 'staff.action',
+                'slug' => 'organization.action',
                 'http_method' => '',
                 'http_path' => '',
                 'order' => 40,
                 'parent_id' => 17,
                 'created_at' => '2020-11-19 10:18:46',
-                'updated_at' => '2020-12-28 16:25:16',
+                'updated_at' => '2021-02-11 21:02:08',
             ),
             33 => 
             array (
                 'id' => 37,
-                'name' => '雇员删除',
-                'slug' => 'staff.record.delete',
+                'name' => '用户删除',
+                'slug' => 'organization.user.delete',
                 'http_method' => '',
                 'http_path' => '',
                 'order' => 41,
                 'parent_id' => 36,
                 'created_at' => '2020-11-19 10:18:57',
-                'updated_at' => '2020-12-28 16:25:16',
+                'updated_at' => '2021-02-11 21:02:42',
             ),
             34 => 
             array (
@@ -647,25 +647,25 @@ class AdminPermissionsTableSeeder extends Seeder
             array (
                 'id' => 57,
                 'name' => '表单基础：只读',
-                'slug' => 'staff.read-only',
+                'slug' => 'organization.read-only',
                 'http_method' => 'GET',
                 'http_path' => 'staff/records*,staff/departments*',
                 'order' => 38,
                 'parent_id' => 17,
                 'created_at' => '2020-11-19 13:40:44',
-                'updated_at' => '2020-12-28 16:25:16',
+                'updated_at' => '2021-02-11 21:01:48',
             ),
             53 => 
             array (
                 'id' => 58,
                 'name' => '表单基础：全部',
-                'slug' => 'staff.all',
+                'slug' => 'organization.all',
                 'http_method' => '',
                 'http_path' => 'staff/records*,staff/departments*',
                 'order' => 39,
                 'parent_id' => 17,
                 'created_at' => '2020-11-19 13:41:10',
-                'updated_at' => '2020-12-28 16:25:16',
+                'updated_at' => '2021-02-11 21:01:56',
             ),
             54 => 
             array (
@@ -934,14 +934,14 @@ class AdminPermissionsTableSeeder extends Seeder
             76 => 
             array (
                 'id' => 82,
-                'name' => '雇员批量删除',
-                'slug' => 'staff.record.batch.delete',
+                'name' => '用户批量删除',
+                'slug' => 'organization.user.batch.delete',
                 'http_method' => '',
                 'http_path' => '',
                 'order' => 42,
                 'parent_id' => 36,
                 'created_at' => '2020-12-29 23:51:57',
-                'updated_at' => '2020-12-29 23:52:05',
+                'updated_at' => '2021-02-11 21:02:48',
             ),
         ));
         

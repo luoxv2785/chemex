@@ -1,6 +1,7 @@
 <?php
 
 use App\Admin\Controllers\CheckRecordController;
+use App\Admin\Controllers\DepartmentController;
 use App\Admin\Controllers\DepreciationRuleController;
 use App\Admin\Controllers\DeviceCategoryController;
 use App\Admin\Controllers\DeviceRecordController;
@@ -13,8 +14,7 @@ use App\Admin\Controllers\ServiceStatisticsController;
 use App\Admin\Controllers\SoftwareCategoryController;
 use App\Admin\Controllers\SoftwareRecordController;
 use App\Admin\Controllers\SoftwareStatisticsController;
-use App\Admin\Controllers\StaffDepartmentController;
-use App\Admin\Controllers\StaffRecordController;
+use App\Admin\Controllers\UserController;
 use App\Admin\Controllers\VendorRecordController;
 use Dcat\Admin\Admin;
 use Illuminate\Routing\Router;
@@ -158,14 +158,18 @@ Route::group([
     /**
      * 组织管理
      */
-    $router->resource('/staff/records', 'StaffRecordController')
-        ->names('staff.records');
-    $router->resource('/staff/departments', 'StaffDepartmentController')
-        ->names('staff.departments');
-    $router->get('/selection/staff/records', [StaffRecordController::class, 'selectList'])
-        ->name('selection.staff.records');
-    $router->get('/selection/staff/departments', [StaffDepartmentController::class, 'selectList'])
-        ->name('selection.staff.departments');
+    $router->resource('/organization/users', 'UserController')
+        ->names('organization.users');
+    $router->resource('/organization/departments', 'DepartmentController')
+        ->names('organization.departments');
+    $router->resource('/organization/roles', 'RoleController')
+        ->names('organization.roles');
+    $router->resource('/organization/permissions', 'PermissionController')
+        ->names('organization.permissions');
+    $router->get('/selection/users', [UserController::class, 'selectList'])
+        ->name('selection.organization.users');
+    $router->get('/selection/departments', [DepartmentController::class, 'selectList'])
+        ->name('selection.organization.departments');
 
     /**
      * 盘点管理

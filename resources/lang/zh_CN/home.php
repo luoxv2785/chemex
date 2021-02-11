@@ -23,7 +23,7 @@ return [
         'Software Counts' => '软件数量',
         'Software Expired Counts' => '已经过保的软件数量',
         'Software Worth' => '软件总价值',
-        'Staff Counts' => '雇员数量',
+        'User Counts' => '用户数量',
         'Normal' => '正常',
         'Stopped' => '未启动',
         'Not Installed' => '未安装',

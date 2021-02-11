@@ -46,8 +46,8 @@ return [
         'left_counts' => '剩余授权数量',
         'device' => [
             'name' => '设备',
-            'staff' => [
-                'name' => '雇员'
+            'user' => [
+                'name' => '用户'
             ]
         ],
         'asset_number' => '资产编号',

@@ -2,8 +2,8 @@
 
 namespace App\Observers;
 
-use App\Models\AdminUser;
 use App\Models\TodoRecord;
+use App\Models\User;
 use App\Notifications\NewTodoRecord;
 
 class TodoRecordObserver
@@ -16,7 +16,7 @@ class TodoRecordObserver
      */
     public function created(TodoRecord $todoRecord)
     {
-        $admin_user = AdminUser::where('id', $todoRecord->user_id)->first();
+        $admin_user = User::where('id', $todoRecord->user_id)->first();
         if (!empty($admin_user)) {
             $admin_user->notify(new NewTodoRecord($todoRecord));
         }

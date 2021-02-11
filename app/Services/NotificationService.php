@@ -4,7 +4,7 @@
 namespace App\Services;
 
 
-use App\Models\AdminUser;
+use App\Models\User;
 
 class NotificationService
 {
@@ -14,7 +14,7 @@ class NotificationService
      */
     public static function deleteNotificationWhenCheckFinishedOrCancelled($check_id)
     {
-        $user = AdminUser::where('id', auth('admin')->id())->first();
+        $user = User::where('id', auth('admin')->id())->first();
         $notifications = $user->notifications;
         foreach ($notifications as $notification) {
             $notification_array = json_decode($notification, true)['data'];

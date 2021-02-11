@@ -20,7 +20,7 @@ use App\Admin\Metrics\SoftwareAboutToExpireCounts;
 use App\Admin\Metrics\SoftwareCounts;
 use App\Admin\Metrics\SoftwareExpiredCounts;
 use App\Admin\Metrics\SoftwareWorth;
-use App\Admin\Metrics\StaffCounts;
+use App\Admin\Metrics\UserCounts;
 use App\Admin\Metrics\WorthTrend;
 use App\Http\Controllers\Controller;
 use Dcat\Admin\Layout\Column;
@@ -67,7 +67,7 @@ class HomeController extends Controller
                                 $row->column(2, new SoftwareCounts());
                                 $row->column(2, new ServiceCounts());
                                 $row->column(2, new ServiceIssueCounts());
-                                $row->column(2, new StaffCounts());
+                                $row->column(2, new UserCounts());
                             });
                         });
                     });

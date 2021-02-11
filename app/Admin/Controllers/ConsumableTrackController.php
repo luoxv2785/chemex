@@ -34,7 +34,7 @@ class ConsumableTrackController extends AdminController
      */
     protected function grid(): Grid
     {
-        return Grid::make(new ConsumableTrack(['consumable', 'staff']), function (Grid $grid) {
+        return Grid::make(new ConsumableTrack(['consumable', 'user']), function (Grid $grid) {
             $grid->model()->withTrashed()->orderBy('created_at', 'DESC');
 
             $grid->column('id');
@@ -42,7 +42,7 @@ class ConsumableTrackController extends AdminController
             $grid->column('operator');
             $grid->column('number');
             $grid->column('change');
-            $grid->column('staff.name');
+            $grid->column('user.name');
             $grid->column('purchased');
             $grid->column('expired');
 
@@ -67,13 +67,13 @@ class ConsumableTrackController extends AdminController
      */
     protected function detail($id): Show
     {
-        return Show::make($id, new ConsumableTrack(['consumable', 'staff']), function (Show $show) {
+        return Show::make($id, new ConsumableTrack(['consumable', 'user']), function (Show $show) {
             $show->field('id');
             $show->field('consumable.name');
             $show->field('operator');
             $show->field('number');
             $show->field('change');
-            $show->field('staff.name');
+            $show->field('user.name');
             $show->field('purchased');
             $show->field('expired');
             $show->field('created_at');

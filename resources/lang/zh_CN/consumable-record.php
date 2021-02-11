@@ -27,7 +27,7 @@ return [
         'price' => '价格',
         'number' => '总数',
         'consumable_id' => '耗材',
-        'staff_id' => '雇员（领用人）',
+        'user_id' => '用户（领用人）',
         'purchased' => '购入日期',
         'expired' => '过保日期',
         'category_id' => '分类',

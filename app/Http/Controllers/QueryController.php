@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Support\Info;
+use App\Support\Support;
 use Illuminate\Http\JsonResponse;
-use Pour\Base\Uni;
 
 class QueryController extends Controller
 {
@@ -23,12 +22,16 @@ class QueryController extends Controller
     {
         $item = explode(':', $string)[0];
         $id = explode(':', $string)[1];
-        $item = Info::getItemRecordByClass($item, $id);
-        optional($item->staff)->department;
+        $item = Support::getItemRecordByClass($item, $id);
+        optional($item->user)->department;
         $item->category;
         $item->vendor;
         $item->channel;
-        $return = Uni::rr(200, '查询成功', $item);
+        $return = [
+            'code' => 200,
+            'message' => '查询成功',
+            'data' => $item
+        ];
         return response()->json($return);
     }
 }
