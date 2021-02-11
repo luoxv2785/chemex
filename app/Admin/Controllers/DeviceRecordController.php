@@ -61,7 +61,7 @@ class DeviceRecordController extends AdminController
                 $row->column(5, function (Column $column) use ($id, $name, $history) {
                     $column->row(Card::make()->content(admin_trans_label('Current Staff') . '：' . $name));
                     $related = Support::makeDeviceRelatedChartData($id);
-                    $column->row(new Card('归属关系', view('charts.device_related')->with('related', $related)));
+                    $column->row(new Card(trans('main.related'), view('charts.device_related')->with('related', $related)));
                     $result = self::hasDeviceRelated($id);
                     $column->row(new Card(trans('main.part'), $result['part']));
                     $column->row(new Card(trans('main.software'), $result['software']));

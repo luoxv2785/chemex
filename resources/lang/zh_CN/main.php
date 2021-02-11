@@ -6,6 +6,7 @@ return [
     'track' => '归属',
     'issue' => '异常',
     'history' => '履历',
+    'related' => '归属关系',
     'statistics' => '统计',
     'check_record' => '任务',
     'check_track' => '明细',
