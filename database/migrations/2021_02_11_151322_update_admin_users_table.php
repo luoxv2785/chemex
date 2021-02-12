@@ -6,6 +6,11 @@ use Illuminate\Support\Facades\Schema;
 
 class UpdateAdminUsersTable extends Migration
 {
+    /**
+     * Get the migration connection name.
+     *
+     * @return string|null
+     */
     public function getConnection()
     {
         return $this->config('database.connection') ?: config('database.default');

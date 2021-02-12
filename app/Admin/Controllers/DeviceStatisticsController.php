@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Metrics\CheckDevicePercentage;
 use App\Admin\Metrics\DeviceAboutToExpireCounts;
+use App\Admin\Metrics\DeviceCounts;
 use App\Admin\Metrics\DeviceExpiredCounts;
 use App\Admin\Metrics\DeviceWorthTrend;
 use App\Http\Controllers\Controller;
@@ -12,6 +13,10 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Tab;
 
+/**
+ * Class DeviceStatisticsController
+ * @package App\Admin\Controllers
+ */
 class DeviceStatisticsController extends Controller
 {
     public function index(Content $content): Content
@@ -29,6 +34,7 @@ class DeviceStatisticsController extends Controller
             })
             ->body(function (Row $row) {
                 $row->column(12, new DeviceWorthTrend());
+                $row->column(3, new DeviceCounts());
                 $row->column(3, new CheckDevicePercentage());
                 $row->column(3, new DeviceAboutToExpireCounts());
                 $row->column(3, new DeviceExpiredCounts());

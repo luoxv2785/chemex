@@ -96,7 +96,13 @@ class SoftwareRecordController extends AdminController
             });
 
             $grid->showColumnSelector();
-            $grid->hideColumns(['description', 'price', 'expired', 'location']);
+            $grid->hideColumns([
+                'description',
+                'price',
+                'expired',
+                'location',
+                'expiration_left_days'
+            ]);
 
             $grid->quickSearch(
                 'id',

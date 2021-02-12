@@ -13,6 +13,10 @@ use Dcat\Admin\Widgets\Card;
 use Exception;
 use Illuminate\Contracts\Support\Renderable;
 
+/**
+ * Class CheckDevicePercentage
+ * @package App\Admin\Metrics
+ */
 class CheckDevicePercentage extends Card
 {
     /**
@@ -32,14 +36,14 @@ class CheckDevicePercentage extends Card
             $check_tracks_counts = CheckTrack::where('check_id', $check_record->id)
                 ->where('status', '!=', 0)
                 ->count();
-            $done_counts = admin_trans_label('Check Process') . $check_tracks_counts . ' / ' . $device_records_all;
+            $done_counts = trans('main.check_process') . $check_tracks_counts . ' / ' . $device_records_all;
             try {
                 $percentage = round($check_tracks_counts / $device_records_all * 100, 2);
             } catch (Exception $exception) {
                 $percentage = 0;
             }
         } else {
-            $done_counts = admin_trans_label('Check None');
+            $done_counts = trans('main.check_none');
             $percentage = 0;
         }
 

@@ -28,7 +28,7 @@ class ServiceWorth extends Card
         if (empty($total)) {
             $total = 0;
         }
-        $service_worth = admin_trans_label('Service Worth');
+        $service_worth = trans('main.service_worth');
         $html = <<<HTML
 <div class="small-box" style="margin-bottom: 0;border-radius: .25rem">
   <div class="inner">

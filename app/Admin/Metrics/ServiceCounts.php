@@ -11,6 +11,10 @@ use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Card;
 use Illuminate\Contracts\Support\Renderable;
 
+/**
+ * Class ServiceCounts
+ * @package App\Admin\Metrics
+ */
 class ServiceCounts extends Card
 {
     /**
@@ -24,12 +28,12 @@ class ServiceCounts extends Card
             $content->simple();
         }
         $counts = ServiceRecord::count();
-        $service_counts = admin_trans_label('Service Counts');
+        $service_counts = trans('main.service_counts');
         $html = <<<HTML
-<div class="small-box" style="margin-bottom: 0;background: rgba(255,109,0,0.7);border-radius: .25rem">
+<div class="small-box" style="margin-bottom: 0;border-radius: .25rem">
   <div class="inner">
-    <h4 class="font-grey">{$counts}</h4>
-    <p class="font-grey">{$service_counts}</p>
+    <h4>{$counts}</h4>
+    <p>{$service_counts}</p>
   </div>
 </div>
 HTML;

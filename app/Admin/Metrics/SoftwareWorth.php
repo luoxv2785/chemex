@@ -28,7 +28,7 @@ class SoftwareWorth extends Card
         if (empty($total)) {
             $total = 0;
         }
-        $software_worth = admin_trans_label('Software Worth');
+        $software_worth = trans('main.software_worth');
         $html = <<<HTML
 <div class="small-box" style="margin-bottom: 0;border-radius: .25rem">
   <div class="inner">

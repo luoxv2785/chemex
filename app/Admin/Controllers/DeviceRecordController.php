@@ -263,7 +263,7 @@ class DeviceRecordController extends AdminController
      */
     public function exportHistory($device_id)
     {
-        return ExportService::DeviceHistory($device_id);
+        return ExportService::deviceHistory($device_id);
     }
 
     /**

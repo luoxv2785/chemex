@@ -11,6 +11,10 @@ use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Card;
 use Dcat\Admin\Widgets\Tab;
 
+/**
+ * Class ServiceStatisticsController
+ * @package App\Admin\Controllers
+ */
 class ServiceStatisticsController extends Controller
 {
     public function index(Content $content): Content
@@ -29,7 +33,7 @@ class ServiceStatisticsController extends Controller
             ->body(function (Row $row) {
                 $row->column(12, new ServiceWorthTrend());
                 $services = Support::getServiceIssueStatus();
-                $row->column(12, new Card(trans('main.service_status_title'), view('services_dashboard')
+                $row->column(12, new Card(trans('main.service_status'), view('services_dashboard')
                     ->with('services', $services)));
             });
     }

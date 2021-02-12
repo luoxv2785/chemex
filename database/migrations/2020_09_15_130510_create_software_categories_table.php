@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVendorRecordsTable extends Migration
+class CreateSoftwareCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateVendorRecordsTable extends Migration
      */
     public function up()
     {
-        Schema::create('vendor_records', function (Blueprint $table) {
+        Schema::create('software_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique(); //厂商名称
+            $table->string('name'); //软件名称
             $table->string('description')->nullable();  //描述
-            $table->string('location')->nullable(); //所在国家、地区
-            $table->longText('contacts')->nullable();
-            $table->string('extended_fields')->nullable();
+            $table->string('creator');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,6 +30,6 @@ class CreateVendorRecordsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vendor_records');
+        Schema::dropIfExists('software_categories');
     }
 }

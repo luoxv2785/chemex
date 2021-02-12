@@ -8,6 +8,7 @@ use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\TodoRecord;
 use App\Models\DeviceRecord;
 use App\Support\Data;
+use Dcat\Admin\Admin;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Column;
@@ -56,14 +57,16 @@ class TodoRecordController extends AdminController
             $grid->column('emoji')->using(Data::emoji());
 
             $grid->actions(function (RowActions $actions) {
-                if (empty($this->end)) {
+                if (empty($this->end) && Admin::user()->can('todo.update')) {
                     $actions->append(new TodoRecordUpdateAction());
                 }
             });
 
-            $grid->tools([
-                new TodoRecordCreateAction()
-            ]);
+            if (Admin::user()->can('todo.create')) {
+                $grid->tools([
+                    new TodoRecordCreateAction()
+                ]);
+            }
 
             $grid->disableCreateButton();
             $grid->disableEditButton();
@@ -89,7 +92,7 @@ class TodoRecordController extends AdminController
             $show->field('description');
             $show->field('start');
             $show->field('end');
-            $show->field('priority');
+            $show->field('priority')->using(Data::priority());
             $show->field('user_id');
             $show->field('tags');
             $show->field('done_description');

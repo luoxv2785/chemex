@@ -11,6 +11,10 @@ use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Card;
 use Illuminate\Contracts\Support\Renderable;
 
+/**
+ * Class DeviceCounts
+ * @package App\Admin\Metrics
+ */
 class DeviceCounts extends Card
 {
     /**
@@ -24,12 +28,12 @@ class DeviceCounts extends Card
             $content->simple();
         }
         $counts = DeviceRecord::count();
-        $device_counts = admin_trans_label('Device Counts');
+        $device_counts = trans('main.device_counts');
         $html = <<<HTML
-<div class="small-box" style="margin-bottom: 0;background: rgba(103,58,183,0.7);border-radius: .25rem">
+<div class="small-box" style="margin-bottom: 0;border-radius: .25rem">
   <div class="inner">
-    <h4 class="font-grey">{$counts}</h4>
-    <p class="font-grey">{$device_counts}</p>
+    <h4>{$counts}</h4>
+    <p>{$device_counts}</p>
   </div>
 </div>
 HTML;

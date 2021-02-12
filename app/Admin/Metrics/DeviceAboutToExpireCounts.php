@@ -27,7 +27,7 @@ class DeviceAboutToExpireCounts extends Card
         $to = date('Y-m-d', time() + (60 * 60 * 24 * 30));
         $counts = DeviceRecord::whereBetween('expired', [$from, $to])->count();
 
-        $device_about_to_expired_counts = admin_trans_label('Device About To Expire Counts');
+        $device_about_to_expired_counts = trans('main.device_about_to_expire_counts');
         $html = <<<HTML
 <div class="info-box" style="background:transparent;margin-bottom: 0;padding: 0;">
 <span class="info-box-icon"><i class="feather icon-monitor" style="color:rgba(255,153,76,1);"></i></span>

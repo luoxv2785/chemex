@@ -10,6 +10,10 @@ use App\Support\Support;
 use Dcat\Admin\Widgets\Metrics\Line;
 use Illuminate\Http\Request;
 
+/**
+ * Class ItemWorthTrend
+ * @package App\Admin\Metrics
+ */
 class ItemWorthTrend extends Line
 {
     /**
@@ -17,7 +21,7 @@ class ItemWorthTrend extends Line
      *
      * @var int
      */
-    protected $chartHeight = 228;
+    protected $chartHeight = 230;
     protected $chartMarginRight = 1;
 
     /**
@@ -192,8 +196,8 @@ HTML
 
         $this->title(trans('main.item_worth_trend'));
         $this->dropdown([
-            'current_year' => admin_trans_label('Current Year'),
-            'pre_year' => admin_trans_label('Last Year')
+            'current_year' => trans('main.current_year'),
+            'pre_year' => trans('main.last_year')
         ]);
     }
 

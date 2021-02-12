@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Metrics\CheckPartPercentage;
 use App\Admin\Metrics\PartAboutToExpireCounts;
+use App\Admin\Metrics\PartCounts;
 use App\Admin\Metrics\PartExpiredCounts;
 use App\Admin\Metrics\PartWorthTrend;
 use App\Http\Controllers\Controller;
@@ -12,6 +13,10 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Tab;
 
+/**
+ * Class PartStatisticsController
+ * @package App\Admin\Controllers
+ */
 class PartStatisticsController extends Controller
 {
     public function index(Content $content): Content
@@ -29,6 +34,7 @@ class PartStatisticsController extends Controller
             })
             ->body(function (Row $row) {
                 $row->column(12, new PartWorthTrend());
+                $row->column(3, new PartCounts());
                 $row->column(3, new CheckPartPercentage());
                 $row->column(3, new PartAboutToExpireCounts());
                 $row->column(3, new PartExpiredCounts());

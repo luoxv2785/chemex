@@ -10,6 +10,10 @@ use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Card;
 use Illuminate\Contracts\Support\Renderable;
 
+/**
+ * Class SoftwareCounts
+ * @package App\Admin\Metrics
+ */
 class SoftwareCounts extends Card
 {
     /**
@@ -20,12 +24,12 @@ class SoftwareCounts extends Card
     public function content($content): SoftwareCounts
     {
         $counts = SoftwareRecord::count();
-        $software_counts = admin_trans_label('Software Counts');
+        $software_counts = trans('main.software_counts');
         $html = <<<HTML
-<div class="small-box" style="margin-bottom: 0;background: rgba(0,150,136,0.7);border-radius: .25rem">
+<div class="small-box" style="margin-bottom: 0;border-radius: .25rem">
   <div class="inner">
-    <h4 class="font-grey">{$counts}</h4>
-    <p class="font-grey">{$software_counts}</p>
+    <h4>{$counts}</h4>
+    <p>{$software_counts}</p>
   </div>
 </div>
 HTML;

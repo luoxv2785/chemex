@@ -20,12 +20,12 @@ class UserCounts extends Card
     public function content($content): UserCounts
     {
         $counts = User::count();
-        $user_counts = admin_trans_label('User Counts');
+        $user_counts = trans('main.user_counts');
         $html = <<<HTML
-<div class="small-box" style="margin-bottom: 0;background: rgba(139,195,74,0.7);border-radius: .25rem">
+<div class="small-box" style="margin-bottom: 0;border-radius: .25rem">
   <div class="inner">
-    <h4 class="font-grey">{$counts}</h4>
-    <p class="font-grey">{$user_counts}</p>
+    <h4>{$counts}</h4>
+    <p>{$user_counts}</p>
   </div>
 </div>
 HTML;

@@ -36,10 +36,10 @@ class ServiceIssueCounts extends Card
         }
         $service_issue_counts = admin_trans_label('Service Issue Counts');
         $html = <<<HTML
-<div class="small-box" style="margin-bottom: 0;background: rgba(239,83,80,0.7);border-radius: .25rem">
+<div class="small-box" style="margin-bottom: 0;border-radius: .25rem">
   <div class="inner">
-    <h4 class="font-grey">{$counts}</h4>
-    <p class="font-grey">{$service_issue_counts}</p>
+    <h4>{$counts}</h4>
+    <p>{$service_issue_counts}</p>
   </div>
 </div>
 HTML;

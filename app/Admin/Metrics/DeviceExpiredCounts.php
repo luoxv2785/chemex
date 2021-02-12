@@ -11,6 +11,10 @@ use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Card;
 use Illuminate\Contracts\Support\Renderable;
 
+/**
+ * Class DeviceExpiredCounts
+ * @package App\Admin\Metrics
+ */
 class DeviceExpiredCounts extends Card
 {
     /**
@@ -26,7 +30,7 @@ class DeviceExpiredCounts extends Card
 
         $counts = DeviceRecord::where('expired', '<', date(now()))->count();
 
-        $device_expired_counts = admin_trans_label('Device Expired Counts');
+        $device_expired_counts = trans('main.device_expired_counts');
         $html = <<<HTML
 <div class="info-box" style="background:transparent;margin-bottom: 0;padding: 0;">
 <span class="info-box-icon"><i class="feather icon-monitor" style="color:rgba(178,68,71,1);"></i></span>

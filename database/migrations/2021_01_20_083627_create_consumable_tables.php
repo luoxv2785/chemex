@@ -21,7 +21,6 @@ class CreateConsumableTables extends Migration
             $table->integer('category_id');
             $table->integer('vendor_id');
             $table->double('price')->nullable();
-            $table->string('extended_fields')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,7 +31,6 @@ class CreateConsumableTables extends Migration
             $table->string('description')->nullable();
             $table->integer('parent_id')->nullable();
             $table->integer('order')->default(0);
-            $table->string('extended_fields')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -40,13 +38,10 @@ class CreateConsumableTables extends Migration
         Schema::create('consumable_tracks', function (Blueprint $table) {
             $table->id();
             $table->integer('consumable_id');
-            $table->string('operator')->default(0);
-            $table->integer('staff_id')->nullable();
+            $table->integer('staff_id')->default(0);
             $table->double('number');
-            $table->double('change');
-            $table->date('purchased')->nullable();
-            $table->date('expired')->nullable();
-            $table->string('extended_fields')->nullable();
+            $table->double('purchased')->nullable();
+            $table->double('expired')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

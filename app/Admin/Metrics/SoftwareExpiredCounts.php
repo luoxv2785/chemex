@@ -11,6 +11,10 @@ use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Card;
 use Illuminate\Contracts\Support\Renderable;
 
+/**
+ * Class SoftwareExpiredCounts
+ * @package App\Admin\Metrics
+ */
 class SoftwareExpiredCounts extends Card
 {
     /**
@@ -25,7 +29,7 @@ class SoftwareExpiredCounts extends Card
         }
 
         $counts = SoftwareRecord::where('expired', '<', date(now()))->count();
-        $software_expired_counts = admin_trans_label('Software Expired Counts');
+        $software_expired_counts = trans('main.software_expired_counts');
         $html = <<<HTML
 <div class="info-box" style="background:transparent;margin-bottom: 0;padding: 0;">
     <span class="info-box-icon"><i class="feather icon-disc" style="color:rgba(178,68,71,1);"></i></span>

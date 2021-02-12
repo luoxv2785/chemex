@@ -113,10 +113,10 @@ HTML
     {
         parent::init();
 
-        $this->title(trans('main.part_worth_trend_title'));
+        $this->title(trans('main.part_worth_trend'));
         $this->dropdown([
-            'current_year' => admin_trans_label('Current Year'),
-            'pre_year' => admin_trans_label('Last Year')
+            'current_year' => trans('main.current_year'),
+            'pre_year' => trans('main.last_year')
         ]);
     }
 

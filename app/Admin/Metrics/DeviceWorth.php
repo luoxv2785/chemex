@@ -28,7 +28,7 @@ class DeviceWorth extends Card
         if (empty($total)) {
             $total = 0;
         }
-        $device_worth = admin_trans_label('Device Worth');
+        $device_worth = trans('main.device_worth');
         $html = <<<HTML
 <div class="small-box" style="margin-bottom: 0;border-radius: .25rem">
     <div class="inner">

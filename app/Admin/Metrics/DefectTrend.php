@@ -8,6 +8,10 @@ use App\Support\Support;
 use Dcat\Admin\Widgets\Metrics\Line;
 use Illuminate\Http\Request;
 
+/**
+ * Class DefectTrend
+ * @package App\Admin\Metrics
+ */
 class DefectTrend extends Line
 {
     /**
@@ -15,7 +19,8 @@ class DefectTrend extends Line
      *
      * @var int
      */
-    protected $chartHeight = 106;
+    protected $chartHeight = 53;
+    protected $height = 53;
     protected $chartMarginRight = 1;
 
     /**
@@ -131,10 +136,10 @@ HTML
     {
         parent::init();
 
-        $this->title(trans('main.defect_trend_title'));
+        $this->title(trans('main.defect_trend'));
         $this->dropdown([
-            'current_year' => admin_trans_label('Current Year'),
-            'pre_year' => admin_trans_label('Last Year')
+            'current_year' => trans('main.current_year'),
+            'pre_year' => trans('main.last_year')
         ]);
     }
 

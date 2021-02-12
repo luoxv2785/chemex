@@ -27,7 +27,7 @@ class PartAboutToExpireCounts extends Card
         $to = date('Y-m-d', time() + (60 * 60 * 24 * 30));
         $counts = PartRecord::whereBetween('expired', [$from, $to])->count();
 
-        $part_about_to_expire_counts = admin_trans_label('Part About To Expire Counts');
+        $part_about_to_expire_counts = trans('main.part_about_to_expire_counts');
         $html = <<<HTML
 <div class="info-box" style="background:transparent;margin-bottom: 0;padding: 0;">
 <span class="info-box-icon"><i class="feather icon-server" style="color:rgba(255,153,76,1);"></i></span>

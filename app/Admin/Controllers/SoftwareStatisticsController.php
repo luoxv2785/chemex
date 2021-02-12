@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Metrics\CheckSoftwarePercentage;
 use App\Admin\Metrics\SoftwareAboutToExpireCounts;
+use App\Admin\Metrics\SoftwareCounts;
 use App\Admin\Metrics\SoftwareExpiredCounts;
 use App\Admin\Metrics\SoftwareWorthTrend;
 use App\Http\Controllers\Controller;
@@ -29,6 +30,7 @@ class SoftwareStatisticsController extends Controller
             })
             ->body(function (Row $row) {
                 $row->column(12, new SoftwareWorthTrend());
+                $row->column(3, new SoftwareCounts());
                 $row->column(3, new CheckSoftwarePercentage());
                 $row->column(3, new SoftwareAboutToExpireCounts());
                 $row->column(3, new SoftwareExpiredCounts());

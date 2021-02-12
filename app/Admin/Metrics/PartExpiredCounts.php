@@ -11,6 +11,10 @@ use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Card;
 use Illuminate\Contracts\Support\Renderable;
 
+/**
+ * Class PartExpiredCounts
+ * @package App\Admin\Metrics
+ */
 class PartExpiredCounts extends Card
 {
     /**
@@ -25,7 +29,7 @@ class PartExpiredCounts extends Card
         }
 
         $counts = PartRecord::where('expired', '<', date(now()))->count();
-        $part_expired_counts = admin_trans_label('Part Expired Counts');
+        $part_expired_counts = trans('main.part_expired_counts');
         $html = <<<HTML
 <div class="info-box" style="background:transparent;margin-bottom: 0;padding: 0;">
     <span class="info-box-icon"><i class="feather icon-server" style="color:rgba(178,68,71,1);"></i></span>
