@@ -16,10 +16,7 @@ use Dcat\Admin\Tree;
 use Dcat\Admin\Widgets\Tab;
 use Illuminate\Http\Request;
 
-/**
- * Class SoftwareCategoryController
- * @package App\Admin\Controllers
- */
+
 class SoftwareCategoryController extends AdminController
 {
     /**

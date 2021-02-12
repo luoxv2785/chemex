@@ -8,10 +8,7 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Tab;
 
-/**
- * Class PermissionController
- * @package App\Admin\Controllers
- */
+
 class PermissionController extends BasePermissionController
 {
     public function index(Content $content): Content

@@ -11,11 +11,7 @@ use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 
-/**
- * 设备记录分配使用者
- * Class DeviceRecordCreateUpdateTrackForm
- * @package App\Admin\Forms
- */
+
 class SoftwareRecordCreateUpdateTrackForm extends Form
 {
     use LazyWidget;

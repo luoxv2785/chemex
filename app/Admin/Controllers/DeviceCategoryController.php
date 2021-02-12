@@ -17,10 +17,7 @@ use Dcat\Admin\Tree;
 use Dcat\Admin\Widgets\Tab;
 use Illuminate\Http\Request;
 
-/**
- * Class DeviceCategoryController
- * @package App\Admin\Controllers
- */
+
 class DeviceCategoryController extends AdminController
 {
 

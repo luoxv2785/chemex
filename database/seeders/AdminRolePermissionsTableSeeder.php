@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use DB;
 use Illuminate\Database\Seeder;
 
 class AdminRolePermissionsTableSeeder extends Seeder
@@ -16,9 +17,9 @@ class AdminRolePermissionsTableSeeder extends Seeder
     {
 
 
-        \DB::table('admin_role_permissions')->delete();
+        DB::table('admin_role_permissions')->delete();
 
-        \DB::table('admin_role_permissions')->insert(array(
+        DB::table('admin_role_permissions')->insert(array(
             0 =>
                 array(
                     'role_id' => 2,

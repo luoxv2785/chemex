@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use DB;
 use Illuminate\Database\Seeder;
 
 class AdminUsersTableSeeder extends Seeder
@@ -14,12 +15,12 @@ class AdminUsersTableSeeder extends Seeder
      */
     public function run()
     {
-        
 
-        \DB::table('admin_users')->delete();
-        
-        \DB::table('admin_users')->insert(array (
-            0 => 
+
+        DB::table('admin_users')->delete();
+
+        DB::table('admin_users')->insert(array (
+            0 =>
             array (
                 'id' => 1,
                 'username' => 'admin',
@@ -38,7 +39,7 @@ class AdminUsersTableSeeder extends Seeder
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
             ),
-            1 => 
+            1 =>
             array (
                 'id' => 2,
                 'username' => 'test',
@@ -58,7 +59,7 @@ class AdminUsersTableSeeder extends Seeder
                 'deleted_at' => NULL,
             ),
         ));
-        
-        
+
+
     }
 }

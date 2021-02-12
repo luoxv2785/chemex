@@ -11,10 +11,7 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Show;
 use Illuminate\Http\Request;
 
-/**
- * Class PurchasedChannelController
- * @package App\Admin\Controllers
- */
+
 class PurchasedChannelController extends AdminController
 {
     /**

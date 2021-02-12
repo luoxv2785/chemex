@@ -24,8 +24,10 @@ use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
 use Dcat\Admin\Widgets\Tab;
 
+
 /**
  * @property int status
+ * @property int id
  * @property int check_id
  */
 class CheckRecordController extends AdminController
@@ -95,7 +97,7 @@ class CheckRecordController extends AdminController
                     }
                 }
                 $report_url = admin_route('export.check.report', ['check_id' => $this->id]);
-                $actions->append("<a href='$report_url' target='_blank'>✨ " . admin_trans_label('Report') . "</a>");
+                $actions->append("<a href='$report_url' target='_blank'>✨ " . admin_trans_label('Report') . '</a>');
             });
 
             $grid->toolsWithOutline(false);
@@ -184,7 +186,7 @@ class CheckRecordController extends AdminController
     {
         return Show::make($id, new CheckRecord(['user']), function (Show $show) {
             $show->field('id');
-            $show->field('check_item')->using(Data::items());;
+            $show->field('check_item')->using(Data::items());
             $show->field('start_time');
             $show->field('end_time');
             $show->field('user.name');

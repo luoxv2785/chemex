@@ -26,7 +26,6 @@ class ServiceRecordCreateIssueAction extends RowAction
             return trans('main.unauthorized');
         }
 
-        // 实例化表单类并传递自定义参数
         $form = ServiceIssueCreateForm::make()->payload(['id' => $this->getKey()]);
 
         return Modal::make()

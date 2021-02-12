@@ -10,10 +10,7 @@ use Dcat\Admin\Widgets\Card;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Facades\DB;
 
-/**
- * Class AllWorth
- * @package App\Admin\Metrics
- */
+
 class AllWorth extends Card
 {
     /**
@@ -48,8 +45,8 @@ class AllWorth extends Card
         $html = <<<HTML
 <div class="small-box" style="margin-bottom: 0;background: rgba(33,150,243,0.7);border-radius: .25rem;">
   <div class="inner">
-    <h4>{$total}</h4>
-    <p>{$all_worth}</p>
+    <h4 class="font-grey">{$total}</h4>
+    <p class="font-grey">{$all_worth}</p>
   </div>
 </div>
 HTML;

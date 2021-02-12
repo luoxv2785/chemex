@@ -3,7 +3,6 @@
 namespace Illuminate\Foundation\Http\Middleware;
 
 use Closure;
-use Mews\Purifier\Facades\Purifier;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 class TransformsRequest
@@ -11,8 +10,8 @@ class TransformsRequest
     /**
      * Handle an incoming request.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -25,7 +24,7 @@ class TransformsRequest
     /**
      * Clean the request's data.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return void
      */
     protected function clean($request)
@@ -42,7 +41,7 @@ class TransformsRequest
     /**
      * Clean the data in the parameter bag.
      *
-     * @param \Symfony\Component\HttpFoundation\ParameterBag $bag
+     * @param  \Symfony\Component\HttpFoundation\ParameterBag  $bag
      * @return void
      */
     protected function cleanParameterBag(ParameterBag $bag)
@@ -53,14 +52,14 @@ class TransformsRequest
     /**
      * Clean the data in the given array.
      *
-     * @param array $data
-     * @param string $keyPrefix
+     * @param  array  $data
+     * @param  string  $keyPrefix
      * @return array
      */
     protected function cleanArray(array $data, $keyPrefix = '')
     {
         foreach ($data as $key => $value) {
-            $data[$key] = $this->cleanValue($keyPrefix . $key, $value);
+            $data[$key] = $this->cleanValue($keyPrefix.$key, $value);
         }
 
         return collect($data)->all();
@@ -69,23 +68,24 @@ class TransformsRequest
     /**
      * Clean the given value.
      *
-     * @param string $key
-     * @param mixed $value
+     * @param  string  $key
+     * @param  mixed  $value
      * @return mixed
      */
     protected function cleanValue($key, $value)
     {
         if (is_array($value)) {
-            return $this->cleanArray($value, $key . '.');
+            return $this->cleanArray($value, $key.'.');
         }
+
         return $this->transform($key, $value);
     }
 
     /**
      * Transform the given value.
      *
-     * @param string $key
-     * @param mixed $value
+     * @param  string  $key
+     * @param  mixed  $value
      * @return mixed
      */
     protected function transform($key, $value)

@@ -11,10 +11,7 @@ use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
 use Dcat\Admin\Widgets\Tab;
 
-/**
- * Class ConsumableTrackController
- * @package App\Admin\Controllers
- */
+
 class ConsumableTrackController extends AdminController
 {
     public function index(Content $content): Content

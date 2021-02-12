@@ -24,10 +24,7 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Card;
 
-/**
- * Class HomeController
- * @package App\Admin\Controllers
- */
+
 class HomeController extends Controller
 {
     public function index(Content $content): Content

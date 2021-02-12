@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use DB;
 use Illuminate\Database\Seeder;
 
 class DeviceCategoriesTableSeeder extends Seeder
@@ -14,12 +15,12 @@ class DeviceCategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        
 
-        \DB::table('device_categories')->delete();
-        
-        \DB::table('device_categories')->insert(array (
-            0 => 
+
+        DB::table('device_categories')->delete();
+
+        DB::table('device_categories')->insert(array (
+            0 =>
             array (
                 'id' => 1,
                 'name' => '台式机',
@@ -31,7 +32,7 @@ class DeviceCategoriesTableSeeder extends Seeder
                 'parent_id' => NULL,
                 'order' => '0',
             ),
-            1 => 
+            1 =>
             array (
                 'id' => 2,
                 'name' => '笔记本',
@@ -43,7 +44,7 @@ class DeviceCategoriesTableSeeder extends Seeder
                 'parent_id' => NULL,
                 'order' => '0',
             ),
-            2 => 
+            2 =>
             array (
                 'id' => 3,
                 'name' => '服务器',
@@ -55,7 +56,7 @@ class DeviceCategoriesTableSeeder extends Seeder
                 'parent_id' => NULL,
                 'order' => '0',
             ),
-            3 => 
+            3 =>
             array (
                 'id' => 4,
                 'name' => '交换机',
@@ -67,7 +68,7 @@ class DeviceCategoriesTableSeeder extends Seeder
                 'parent_id' => NULL,
                 'order' => '0',
             ),
-            4 => 
+            4 =>
             array (
                 'id' => 5,
                 'name' => '显示器',
@@ -79,7 +80,7 @@ class DeviceCategoriesTableSeeder extends Seeder
                 'parent_id' => NULL,
                 'order' => '0',
             ),
-            5 => 
+            5 =>
             array (
                 'id' => 6,
                 'name' => '路由器',
@@ -91,7 +92,7 @@ class DeviceCategoriesTableSeeder extends Seeder
                 'parent_id' => NULL,
                 'order' => '0',
             ),
-            6 => 
+            6 =>
             array (
                 'id' => 7,
                 'name' => '打印机',
@@ -103,7 +104,7 @@ class DeviceCategoriesTableSeeder extends Seeder
                 'parent_id' => NULL,
                 'order' => '0',
             ),
-            7 => 
+            7 =>
             array (
                 'id' => 8,
                 'name' => '扫描仪',
@@ -115,7 +116,7 @@ class DeviceCategoriesTableSeeder extends Seeder
                 'parent_id' => NULL,
                 'order' => '0',
             ),
-            8 => 
+            8 =>
             array (
                 'id' => 9,
                 'name' => '复印机',
@@ -127,7 +128,7 @@ class DeviceCategoriesTableSeeder extends Seeder
                 'parent_id' => NULL,
                 'order' => '0',
             ),
-            9 => 
+            9 =>
             array (
                 'id' => 10,
                 'name' => '平板电脑',
@@ -139,7 +140,7 @@ class DeviceCategoriesTableSeeder extends Seeder
                 'parent_id' => NULL,
                 'order' => '0',
             ),
-            10 => 
+            10 =>
             array (
                 'id' => 11,
                 'name' => 'PDA',
@@ -152,7 +153,7 @@ class DeviceCategoriesTableSeeder extends Seeder
                 'order' => '0',
             ),
         ));
-        
-        
+
+
     }
 }

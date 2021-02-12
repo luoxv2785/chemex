@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use DB;
 use Illuminate\Database\Seeder;
 
 class AdminRoleUsersTableSeeder extends Seeder
@@ -14,12 +15,12 @@ class AdminRoleUsersTableSeeder extends Seeder
      */
     public function run()
     {
-        
 
-        \DB::table('admin_role_users')->delete();
-        
-        \DB::table('admin_role_users')->insert(array (
-            0 => 
+
+        DB::table('admin_role_users')->delete();
+
+        DB::table('admin_role_users')->insert(array (
+            0 =>
             array (
                 'role_id' => 1,
                 'user_id' => 1,
@@ -27,7 +28,7 @@ class AdminRoleUsersTableSeeder extends Seeder
                 'updated_at' => NULL,
             ),
         ));
-        
-        
+
+
     }
 }

@@ -12,10 +12,7 @@ use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Tree;
 use Dcat\Admin\Widgets\Tab;
 
-/**
- * Class ConsumableCategoryController
- * @package App\Admin\Controllers
- */
+
 class ConsumableCategoryController extends AdminController
 {
     public function index(Content $content): Content

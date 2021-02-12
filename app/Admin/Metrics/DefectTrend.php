@@ -8,10 +8,7 @@ use App\Support\Support;
 use Dcat\Admin\Widgets\Metrics\Line;
 use Illuminate\Http\Request;
 
-/**
- * Class DefectTrend
- * @package App\Admin\Metrics
- */
+
 class DefectTrend extends Line
 {
     /**

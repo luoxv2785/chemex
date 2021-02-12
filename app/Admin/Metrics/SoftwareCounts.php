@@ -10,10 +10,7 @@ use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Card;
 use Illuminate\Contracts\Support\Renderable;
 
-/**
- * Class SoftwareCounts
- * @package App\Admin\Metrics
- */
+
 class SoftwareCounts extends Card
 {
     /**

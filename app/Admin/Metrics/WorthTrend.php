@@ -10,10 +10,7 @@ use App\Support\Support;
 use Dcat\Admin\Widgets\Metrics\Line;
 use Illuminate\Http\Request;
 
-/**
- * Class WorthTrend
- * @package App\Admin\Metrics
- */
+
 class WorthTrend extends Line
 {
     /**

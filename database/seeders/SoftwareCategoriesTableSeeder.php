@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use DB;
 use Illuminate\Database\Seeder;
 
 class SoftwareCategoriesTableSeeder extends Seeder
@@ -16,9 +17,9 @@ class SoftwareCategoriesTableSeeder extends Seeder
     {
 
 
-        \DB::table('software_categories')->delete();
+        DB::table('software_categories')->delete();
 
-        \DB::table('software_categories')->insert(array(
+        DB::table('software_categories')->insert(array(
             0 =>
                 array(
                     'id' => 1,

@@ -13,10 +13,7 @@ use Dcat\Admin\Widgets\Card;
 use Exception;
 use Illuminate\Contracts\Support\Renderable;
 
-/**
- * Class CheckDevicePercentage
- * @package App\Admin\Metrics
- */
+
 class CheckDevicePercentage extends Card
 {
     /**

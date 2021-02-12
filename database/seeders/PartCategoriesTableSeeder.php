@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use DB;
 use Illuminate\Database\Seeder;
 
 class PartCategoriesTableSeeder extends Seeder
@@ -16,9 +17,9 @@ class PartCategoriesTableSeeder extends Seeder
     {
 
 
-        \DB::table('part_categories')->delete();
+        DB::table('part_categories')->delete();
 
-        \DB::table('part_categories')->insert(array(
+        DB::table('part_categories')->insert(array(
             0 =>
                 array(
                     'id' => 1,

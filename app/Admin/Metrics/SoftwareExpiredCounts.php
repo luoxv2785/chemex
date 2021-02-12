@@ -11,10 +11,7 @@ use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Card;
 use Illuminate\Contracts\Support\Renderable;
 
-/**
- * Class SoftwareExpiredCounts
- * @package App\Admin\Metrics
- */
+
 class SoftwareExpiredCounts extends Card
 {
     /**

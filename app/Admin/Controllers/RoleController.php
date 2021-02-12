@@ -10,10 +10,7 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Tab;
 
-/**
- * Class RoleController
- * @package App\Admin\Controllers
- */
+
 class RoleController extends BaseRoleController
 {
     public function index(Content $content): Content

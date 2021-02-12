@@ -11,10 +11,7 @@ use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Card;
 use Dcat\Admin\Widgets\Tab;
 
-/**
- * Class ServiceStatisticsController
- * @package App\Admin\Controllers
- */
+
 class ServiceStatisticsController extends Controller
 {
     public function index(Content $content): Content

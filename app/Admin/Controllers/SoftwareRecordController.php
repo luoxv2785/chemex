@@ -91,7 +91,7 @@ class SoftwareRecordController extends AdminController
                 }
                 if (Admin::user()->can('software.track.list')) {
                     $tracks_route = admin_route('software.tracks.index', ['_search_' => $this->id]);
-                    $actions->append("<a href='$tracks_route'>💿 " . admin_trans_label('Manage Track') . "</a>");
+                    $actions->append("<a href='$tracks_route'>💿 " . admin_trans_label('Manage Track') . '</a>');
                 }
             });
 

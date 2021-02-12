@@ -13,6 +13,6 @@ class BaseTest extends TestCase
      */
     public function test()
     {
-        $this->assertTrue(true);
+        static::assertTrue(true);
     }
 }

@@ -25,7 +25,7 @@ class ServiceRecordCreateUpdateTrackAction extends RowAction
         if (!Admin::user()->can('service.track.create_update')) {
             return trans('main.unauthorized');
         }
-        // 实例化表单类并传递自定义参数
+
         $form = ServiceRecordCreateUpdateTrackForm::make()->payload(['id' => $this->getKey()]);
 
         return Modal::make()

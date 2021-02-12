@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use DB;
 use Illuminate\Database\Seeder;
 
 class VendorRecordsTableSeeder extends Seeder
@@ -16,9 +17,9 @@ class VendorRecordsTableSeeder extends Seeder
     {
 
 
-        \DB::table('vendor_records')->delete();
+        DB::table('vendor_records')->delete();
 
-        \DB::table('vendor_records')->insert(array(
+        DB::table('vendor_records')->insert(array(
             0 =>
                 array(
                     'id' => 1,

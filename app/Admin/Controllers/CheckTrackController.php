@@ -16,9 +16,10 @@ use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Alert;
 use Dcat\Admin\Widgets\Tab;
 
+
 /**
- * @property int check_id
  * @property int status
+ * @property int check_id
  */
 class CheckTrackController extends AdminController
 {

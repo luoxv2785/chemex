@@ -13,10 +13,7 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Tab;
 
-/**
- * Class SoftwareStatisticsController
- * @package App\Admin\Controllers
- */
+
 class SoftwareStatisticsController extends Controller
 {
     public function index(Content $content): Content
