@@ -1,7 +1,7 @@
 <?php
 return [
     'labels' => [
-        'ConsumableCategory' => '耗材',
+        'title' => '耗材',
         'description' => '支持多级树形结构',
         'categories' => '耗材分类',
         'Import' => '导入',

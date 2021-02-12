@@ -1,7 +1,7 @@
 <?php
 return [
     'labels' => [
-        'SoftwareTrack' => '软件',
+        'title' => '软件',
         'description' => '与设备的归属关系',
         'tracks' => '软件归属记录',
         'Delete' => '解除归属',

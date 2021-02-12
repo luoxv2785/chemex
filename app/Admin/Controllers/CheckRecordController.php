@@ -31,6 +31,10 @@ use Dcat\Admin\Widgets\Tab;
 class CheckRecordController extends AdminController
 {
 
+    /**
+     * @param $check_id
+     * @return string
+     */
     public function exportReport($check_id)
     {
         return CheckService::report($check_id);
@@ -39,8 +43,8 @@ class CheckRecordController extends AdminController
     public function index(Content $content): Content
     {
         return $content
-            ->title($this->title())
-            ->description(trans('admin.list'))
+            ->title(admin_trans_label('title'))
+            ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
                 $tab->add(Data::icon('record') . trans('main.check_record'), $this->grid(), true);

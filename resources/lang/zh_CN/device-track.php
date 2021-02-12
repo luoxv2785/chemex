@@ -1,7 +1,7 @@
 <?php
 return [
     'labels' => [
-        'DeviceTrack' => '设备',
+        'title' => '设备',
         'description' => '与用户的使用关系',
         'tracks' => '设备归属记录',
         'History Scope' => '查看历史归属记录',

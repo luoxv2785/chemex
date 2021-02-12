@@ -10,13 +10,17 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Tab;
 
+/**
+ * Class RoleController
+ * @package App\Admin\Controllers
+ */
 class RoleController extends BaseRoleController
 {
     public function index(Content $content): Content
     {
         return $content
-            ->title(admin_trans_label('Title'))
-            ->description(trans('admin.list'))
+            ->title(admin_trans_label('title'))
+            ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
                 $tab->addLink(Data::icon('user') . admin_trans_label('User'), admin_route('organization.users.index'));

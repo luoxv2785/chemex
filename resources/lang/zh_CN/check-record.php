@@ -1,7 +1,8 @@
 <?php
 return [
     'labels' => [
-        'CheckRecord' => '盘点',
+        'title' => '盘点',
+        'description' => '一项清查资产的任务',
         'records' => '盘点任务',
         'User' => '负责人',
         'Report' => '生成报告',

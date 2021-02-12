@@ -1,7 +1,7 @@
 <?php
 return [
     'labels' => [
-        'PartCategory' => '配件',
+        'title' => '配件',
         'description' => '支持多级树形结构',
         'categories' => '配件分类',
         'Import' => '导入',

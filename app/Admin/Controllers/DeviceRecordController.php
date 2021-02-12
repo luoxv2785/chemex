@@ -128,7 +128,7 @@ class DeviceRecordController extends AdminController
     public function index(Content $content): Content
     {
         return $content
-            ->header($this->title())
+            ->header(admin_trans_label('title'))
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();

@@ -1,7 +1,8 @@
 <?php
 return [
     'labels' => [
-        'Title' => '组织',
+        'title' => '组织',
+        'description' => '即是账户也是组织成员',
         'User' => '用户',
         'Department' => '部门',
         'Role' => '角色',

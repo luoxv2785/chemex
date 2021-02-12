@@ -1,7 +1,8 @@
 <?php
 return [
     'labels' => [
-        'CheckTrack' => '盘点',
+        'title' => '盘点',
+        'description' => '任务的具体明细',
         'tracks' => '盘点记录',
         'Record None' => '没有此盘点任务',
         'Item None' => '没有此物资',
@@ -18,7 +19,7 @@ return [
         'checker' => [
             'name' => '盘点人员'
         ],
-        'description'=>'描述'
+        'description' => '描述'
     ],
     'options' => [
     ],

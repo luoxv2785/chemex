@@ -1,7 +1,7 @@
 <?php
 return [
     'labels' => [
-        'ServiceRecord' => '服务',
+        'title' => '服务',
         'description' => '主数据列表',
         'records' => '服务',
         'Purchased Channel' => '购入途径',

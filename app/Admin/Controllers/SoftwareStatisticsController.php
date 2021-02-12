@@ -13,12 +13,16 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Tab;
 
+/**
+ * Class SoftwareStatisticsController
+ * @package App\Admin\Controllers
+ */
 class SoftwareStatisticsController extends Controller
 {
     public function index(Content $content): Content
     {
         return $content
-            ->title(admin_trans_label('SoftwareStatistics'))
+            ->title(admin_trans_label('title'))
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();

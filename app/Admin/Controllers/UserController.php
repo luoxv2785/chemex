@@ -29,8 +29,8 @@ class UserController extends BaseUserController
     public function index(Content $content): Content
     {
         return $content
-            ->title(admin_trans_label('Title'))
-            ->description(trans('admin.list'))
+            ->title(admin_trans_label('title'))
+            ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
                 $tab->add(Data::icon('user') . admin_trans_label('User'), $this->grid(), true);

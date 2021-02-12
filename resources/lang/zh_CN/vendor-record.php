@@ -1,7 +1,8 @@
 <?php
 return [
     'labels' => [
-        'VendorRecord' => '厂商',
+        'title' => '厂商',
+        'description' => '记录资产的制造商或销售商',
         'records' => '厂商',
         'Import' => '导入',
         'File Help' => '导入支持xls、xlsx、csv文件，且表格头必须使用【名称，描述，所在地】。'

@@ -22,7 +22,7 @@ class DeviceTrackController extends AdminController
     public function index(Content $content): Content
     {
         return $content
-            ->title($this->title())
+            ->title(admin_trans_label('title'))
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();

@@ -27,8 +27,8 @@ class TodoRecordController extends AdminController
     public function index(Content $content): Content
     {
         return $content
-            ->title($this->title())
-            ->description(admin_trans_label('Description'))
+            ->title(admin_trans_label('title'))
+            ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $row->column(12, function (Column $column) {
                     $column->row(function (Row $row) {

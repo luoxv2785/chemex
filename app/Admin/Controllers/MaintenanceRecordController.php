@@ -31,8 +31,8 @@ class MaintenanceRecordController extends AdminController
     public function index(Content $content): Content
     {
         return $content
-            ->title($this->title())
-            ->description(admin_trans_label('Description'))
+            ->title(admin_trans_label('title'))
+            ->description(admin_trans_label('description'))
             ->body($this->grid());
     }
 

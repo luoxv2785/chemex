@@ -1,7 +1,8 @@
 <?php
 return [
     'labels' => [
-        'Title' => '组织',
+        'title' => '组织',
+        'description' => '区分用户的不同群体',
         'User' => '用户',
         'Department' => '部门',
         'Role' => '角色',

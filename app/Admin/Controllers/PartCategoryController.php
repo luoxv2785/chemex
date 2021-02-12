@@ -16,8 +16,16 @@ use Dcat\Admin\Tree;
 use Dcat\Admin\Widgets\Tab;
 use Illuminate\Http\Request;
 
+/**
+ * Class PartCategoryController
+ * @package App\Admin\Controllers
+ */
 class PartCategoryController extends AdminController
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function selectList(Request $request)
     {
         $q = $request->get('q');
@@ -28,7 +36,7 @@ class PartCategoryController extends AdminController
     public function index(Content $content): Content
     {
         return $content
-            ->title($this->title())
+            ->title(admin_trans_label('title'))
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();

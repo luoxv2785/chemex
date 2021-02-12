@@ -1,7 +1,7 @@
 <?php
 return [
     'labels' => [
-        'SoftwareRecord' => '软件',
+        'title' => '软件',
         'description' => '主数据列表',
         'records' => '软件',
         'Purchased Channel' => '购入途径',

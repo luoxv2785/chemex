@@ -1,7 +1,7 @@
 <?php
 return [
     'labels' => [
-        'PartRecord' => '配件',
+        'title' => '配件',
         'description' => '主数据列表',
         'records' => '配件',
         'Category' => '分类',

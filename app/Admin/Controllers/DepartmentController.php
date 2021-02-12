@@ -16,8 +16,16 @@ use Dcat\Admin\Tree;
 use Dcat\Admin\Widgets\Tab;
 use Illuminate\Http\Request;
 
+/**
+ * Class DepartmentController
+ * @package App\Admin\Controllers
+ */
 class DepartmentController extends AdminController
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function selectList(Request $request)
     {
         $q = $request->get('q');
@@ -29,8 +37,8 @@ class DepartmentController extends AdminController
     public function index(Content $content): Content
     {
         return $content
-            ->title(admin_trans_label('Title'))
-            ->description(trans('admin.list'))
+            ->title(admin_trans_label('title'))
+            ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
                 $tab->addLink(Data::icon('user') . admin_trans_label('User'), admin_route('organization.users.index'));

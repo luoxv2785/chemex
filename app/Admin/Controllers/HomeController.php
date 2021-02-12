@@ -6,7 +6,6 @@ use App\Admin\Metrics\AllWorth;
 use App\Admin\Metrics\DefectTrend;
 use App\Admin\Metrics\DeviceAboutToExpireCounts;
 use App\Admin\Metrics\DeviceExpiredCounts;
-use App\Admin\Metrics\DeviceInfo;
 use App\Admin\Metrics\DeviceWorth;
 use App\Admin\Metrics\ItemWorthTrend;
 use App\Admin\Metrics\PartAboutToExpireCounts;
@@ -30,16 +29,11 @@ use Dcat\Admin\Widgets\Card;
  */
 class HomeController extends Controller
 {
-    public function __construct()
-    {
-
-    }
-
     public function index(Content $content): Content
     {
         return $content
-            ->title(admin_trans_label('Dashboard'))
-            ->description(admin_trans_label('Description'))
+            ->title(admin_trans_label('title'))
+            ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $row->column(3, new Card('我的资产总值', '3000 元'));
                 if (Admin::user()->can('home.dashbaord')) {

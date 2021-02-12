@@ -1,7 +1,7 @@
 <?php
 return [
     'labels' => [
-        'DeviceRecord' => '设备',
+        'title' => '设备',
         'description' => '主数据列表',
         'records' => '设备',
         'Category' => '分类',

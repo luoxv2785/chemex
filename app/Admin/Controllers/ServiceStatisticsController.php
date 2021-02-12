@@ -20,7 +20,7 @@ class ServiceStatisticsController extends Controller
     public function index(Content $content): Content
     {
         return $content
-            ->title(admin_trans_label('ServiceStatistics'))
+            ->title(admin_trans_label('title'))
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();

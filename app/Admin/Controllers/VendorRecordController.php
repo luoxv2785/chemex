@@ -8,17 +8,25 @@ use Dcat\Admin\Form;
 use Dcat\Admin\Form\NestedForm;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
+use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Show;
 use Illuminate\Http\Request;
 
 class VendorRecordController extends AdminController
 {
-    public function selectList(Request $request)
+    /**
+     * Index interface.
+     *
+     * @param Content $content
+     *
+     * @return Content
+     */
+    public function index(Content $content): Content
     {
-        $q = $request->get('q');
-
-        return \App\Models\VendorRecord::where('name', 'like', "%$q%")
-            ->paginate(null, ['id', 'name as text']);
+        return $content
+            ->title(admin_trans_label('title'))
+            ->description(admin_trans_label('description'))
+            ->body($this->grid());
     }
 
     /**
@@ -50,6 +58,18 @@ class VendorRecordController extends AdminController
 
             $grid->export();
         });
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function selectList(Request $request)
+    {
+        $q = $request->get('q');
+
+        return \App\Models\VendorRecord::where('name', 'like', "%$q%")
+            ->paginate(null, ['id', 'name as text']);
     }
 
     /**

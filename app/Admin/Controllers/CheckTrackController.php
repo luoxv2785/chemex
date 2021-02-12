@@ -25,8 +25,8 @@ class CheckTrackController extends AdminController
     public function index(Content $content): Content
     {
         return $content
-            ->title($this->title())
-            ->description(trans('admin.list'))
+            ->title(admin_trans_label('title'))
+            ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
                 $tab->addLink(Data::icon('record') . trans('main.check_record'), admin_route('check.records.index'));

@@ -1,8 +1,8 @@
 <?php
 return [
     'labels' => [
-        'MaintenanceRecord' => '物资故障',
-        'Description' => '报告故障的设备、配件等',
+        'title' => '物资故障',
+        'description' => '报告故障的设备、配件等',
         'records' => '物资故障',
         'Status Waiting' => '等待处理',
         'Status Done' => '完成',

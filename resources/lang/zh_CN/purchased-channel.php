@@ -1,7 +1,8 @@
 <?php
 return [
     'labels' => [
-        'PurchasedChannel' => '购入途径',
+        'title' => '购入途径',
+        'description' => '记录资产购入时的方式',
         'channels' => '购入途径',
         'Import' => '导入'
     ],
