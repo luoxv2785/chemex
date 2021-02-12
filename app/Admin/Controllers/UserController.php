@@ -125,6 +125,10 @@ class UserController extends BaseUserController
         });
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function selectList(Request $request)
     {
         $q = $request->get('q');
@@ -166,7 +170,6 @@ class UserController extends BaseUserController
                     ->required();
             }
             $form->divider();
-            $form->image('avatar', trans('admin.avatar'))->autoUpload();
 
             if ($id) {
                 $form->password('password', trans('admin.password'))
@@ -199,6 +202,8 @@ class UserController extends BaseUserController
                         return array_column($v, 'id');
                     });
             }
+
+            $form->image('avatar', trans('admin.avatar'))->autoUpload();
             $form->text('title');
             $form->mobile('mobile');
             $form->email('email');

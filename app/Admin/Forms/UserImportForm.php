@@ -13,6 +13,10 @@ use Dcat\EasyExcel\Excel;
 use Exception;
 use League\Flysystem\FileNotFoundException;
 
+/**
+ * Class UserImportForm
+ * @package App\Admin\Forms
+ */
 class UserImportForm extends Form
 {
     /**
@@ -29,7 +33,7 @@ class UserImportForm extends Form
                 $rows = Excel::import($file_path)->first()->toArray();
                 foreach ($rows as $row) {
                     try {
-                        if (!empty($row['名称']) && !empty($row['部门']) && !empty($row['性别'])) {
+                        if (!empty($row['用户名']) && !empty($row['名称']) && !empty($row['部门']) && !empty($row['性别']) && !empty($row['密码'])) {
                             $department = Department::where('name', $row['部门'])->first();
                             if (empty($department)) {
                                 $department = new Department();
@@ -37,9 +41,11 @@ class UserImportForm extends Form
                                 $department->save();
                             }
                             $user = new User();
+                            $user->username = $row['用户名'];
                             $user->name = $row['名称'];
                             $user->department_id = $department->id;
                             $user->gender = $row['性别'];
+                            $user->password = $row['密码'];
                             if (!empty($row['职位'])) {
                                 $user->title = $row['职位'];
                             }
@@ -97,8 +103,7 @@ class UserImportForm extends Form
                     ->help(admin_trans_label('File Help'))
                     ->accept('xls,xlsx,csv')
                     ->autoUpload()
-                    ->uniqueName()
-                    ->required();
+                    ->uniqueName();
             })
             ->when('ldap', function (Form $form) {
                 $form->radio('mode')
