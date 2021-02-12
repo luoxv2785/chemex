@@ -536,4 +536,27 @@ class Support
         }
         return json_encode($return);
     }
+
+    /**
+     * @param $user_id
+     * @return int
+     */
+    public static function userIdToAllItemPrice($user_id)
+    {
+        $price = 0;
+        $user = User::find($user_id);
+        foreach ($user->device as $device) {
+            $price += $device->price;
+            foreach ($device->part as $part) {
+                $price += $part->price;
+            }
+            foreach ($device->software as $software) {
+                $price += $software->price;
+            }
+            foreach ($device->service as $service) {
+                $price += $service->price;
+            }
+        }
+        return $price;
+    }
 }

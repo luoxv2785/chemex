@@ -73,4 +73,5 @@ return [
     'device_counts' => '设备数量',
     'part_counts' => '配件数量',
     'software_counts' => '软件数量',
+    'my_all_worth' => '我的资产总价值'
 ];

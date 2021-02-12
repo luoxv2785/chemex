@@ -74,7 +74,7 @@ class User extends Administrator implements JWTSubject
      * 设备记录在远处有一个使用者（用户）
      * @return HasManyThrough
      */
-    public function devices(): HasManyThrough
+    public function device(): HasManyThrough
     {
         return $this->hasManyThrough(
             DeviceRecord::class,  // 远程表
