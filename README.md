@@ -3,6 +3,12 @@
 </p>
 
 <p align="center">
+    <a href="https://chemex.io" target="_blank">官方网站</a> | 
+    <a href="https://chemex.it" target="_blank">官方社区</a> | 
+    <a href="https://chemex.famio.cn" target="_blank">演示地址</a>
+</p>
+
+<p align="center">
     <img src="https://img.shields.io/badge/Latest Release-3.0.0-orange" />
     <img src="https://img.shields.io/badge/PHP-7.3+-green" />
     <img src="https://img.shields.io/badge/MariaDB-10.2+-blueviolet" />
