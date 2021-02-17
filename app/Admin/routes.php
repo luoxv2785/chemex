@@ -186,6 +186,12 @@ Route::group([
         ->names('maintenance.records');
 
     /**
+     * 故障维护
+     */
+    $router->resource('/lend/tracks', 'LendTrackController')
+        ->names('lend.tracks');
+
+    /**
      * 折旧规则
      */
     $router->resource('/depreciation/rules', 'DepreciationRuleController')

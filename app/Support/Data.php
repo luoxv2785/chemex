@@ -252,6 +252,7 @@ class Data
             'role' => '<i class="fa feather icon-users"></i> ',
             'permission' => '<i class="fa feather icon-lock"></i> ',
             'statistics' => '<i class="fa feather icon-bar-chart-2"></i> ',
+            'lend' => '<i class="fa feather icon-arrow-up"></i> '
         ];
         return $array[$string];
     }

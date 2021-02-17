@@ -42,89 +42,6 @@ class DeviceRecordController extends AdminController
 {
     use HasDeviceRelatedGrid;
 
-    /**
-     * 详情页构建器
-     * 为了复写详情页的布局
-     * @param mixed $id
-     * @param Content $content
-     * @return Content
-     */
-    public function show($id, Content $content): Content
-    {
-        $name = Support::deviceIdToUserName($id);
-        $history = DeviceService::history($id);
-        return $content
-            ->title($this->title())
-            ->description($this->description()['index'] ?? trans('admin.show'))
-            ->body(function (Row $row) use ($id, $name, $history) {
-                $row->column(7, $this->detail($id));
-                $row->column(5, function (Column $column) use ($id, $name, $history) {
-                    $column->row(Card::make()->content(admin_trans_label('Current User') . '：' . $name));
-                    $related = Support::makeDeviceRelatedChartData($id);
-                    $column->row(new Card(trans('main.related'), view('charts.device_related')->with('related', $related)));
-                    $result = self::hasDeviceRelated($id);
-                    $column->row(new Card(trans('main.part'), $result['part']));
-                    $column->row(new Card(trans('main.software'), $result['software']));
-                    $column->row(new Card(trans('main.service'), $result['service']));
-                    $card = new Card(trans('main.history'), view('history')->with('data', $history));
-                    $column->row($card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.device.history', ['device_id' => 1]) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>'));
-                });
-            });
-    }
-
-    /**
-     * Make a show builder.
-     *
-     * @param mixed $id
-     *
-     * @return Show
-     */
-    protected function detail($id): Show
-    {
-        return Show::make($id, new DeviceRecord(['category', 'vendor', 'channel', 'user', 'user.department', 'depreciation']), function (Show $show) {
-            $show->field('id');
-            $show->field('name');
-            $show->field('asset_number');
-            $show->field('description');
-            $show->field('category.name');
-            $show->field('vendor.name');
-            $show->field('channel.name');
-            $show->field('sn');
-            $show->field('mac');
-            $show->field('ip');
-            $show->field('photo')->image();
-            $show->field('price');
-            $show->field('expiration_left_days', admin_trans_label('Depreciation Price'))->as(function () {
-                $device_record = \App\Models\DeviceRecord::where('id', $this->id)->first();
-                if (!empty($device_record)) {
-                    $depreciation_rule_id = Support::getDepreciationRuleId($device_record);
-                    return Support::depreciationPrice($this->price, $this->purchased, $depreciation_rule_id);
-                }
-            });
-            $show->field('purchased');
-            $show->field('expired');
-            $show->field('user.name');
-            $show->field('user.department.name');
-            $show->field('security_password');
-            $show->field('admin_password');
-            $show->field('depreciation.name');
-            $show->field('depreciation.termination');
-            $show->field('location');
-            $show->field('extended_fields')->view('extended_fields');
-            $show->field('created_at');
-            $show->field('updated_at');
-
-            $show->disableDeleteButton();
-        });
-    }
-
-    public function selectList(Request $request)
-    {
-        $q = $request->get('q');
-
-        return \App\Models\DeviceRecord::where('name', 'like', "%$q%")->paginate(null, ['id', 'name as text']);
-    }
-
     public function index(Content $content): Content
     {
         return $content
@@ -135,6 +52,7 @@ class DeviceRecordController extends AdminController
                 $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
                 $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('device.categories.index'));
                 $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('device.tracks.index'));
+                $tab->addLink(Data::icon('lend') . trans('main.lend'), admin_route('lend.tracks.index'));
                 $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('device.statistics'));
                 $row->column(12, $tab);
             });
@@ -254,6 +172,89 @@ class DeviceRecordController extends AdminController
             $grid->toolsWithOutline(false);
             $grid->export();
         });
+    }
+
+    /**
+     * 详情页构建器
+     * 为了复写详情页的布局
+     * @param mixed $id
+     * @param Content $content
+     * @return Content
+     */
+    public function show($id, Content $content): Content
+    {
+        $name = Support::deviceIdToUserName($id);
+        $history = DeviceService::history($id);
+        return $content
+            ->title($this->title())
+            ->description($this->description()['index'] ?? trans('admin.show'))
+            ->body(function (Row $row) use ($id, $name, $history) {
+                $row->column(7, $this->detail($id));
+                $row->column(5, function (Column $column) use ($id, $name, $history) {
+                    $column->row(Card::make()->content(admin_trans_label('Current User') . '：' . $name));
+                    $related = Support::makeDeviceRelatedChartData($id);
+                    $column->row(new Card(trans('main.related'), view('charts.device_related')->with('related', $related)));
+                    $result = self::hasDeviceRelated($id);
+                    $column->row(new Card(trans('main.part'), $result['part']));
+                    $column->row(new Card(trans('main.software'), $result['software']));
+                    $column->row(new Card(trans('main.service'), $result['service']));
+                    $card = new Card(trans('main.history'), view('history')->with('data', $history));
+                    $column->row($card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.device.history', ['device_id' => 1]) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>'));
+                });
+            });
+    }
+
+    /**
+     * Make a show builder.
+     *
+     * @param mixed $id
+     *
+     * @return Show
+     */
+    protected function detail($id): Show
+    {
+        return Show::make($id, new DeviceRecord(['category', 'vendor', 'channel', 'user', 'user.department', 'depreciation']), function (Show $show) {
+            $show->field('id');
+            $show->field('name');
+            $show->field('asset_number');
+            $show->field('description');
+            $show->field('category.name');
+            $show->field('vendor.name');
+            $show->field('channel.name');
+            $show->field('sn');
+            $show->field('mac');
+            $show->field('ip');
+            $show->field('photo')->image();
+            $show->field('price');
+            $show->field('expiration_left_days', admin_trans_label('Depreciation Price'))->as(function () {
+                $device_record = \App\Models\DeviceRecord::where('id', $this->id)->first();
+                if (!empty($device_record)) {
+                    $depreciation_rule_id = Support::getDepreciationRuleId($device_record);
+                    return Support::depreciationPrice($this->price, $this->purchased, $depreciation_rule_id);
+                }
+            });
+            $show->field('purchased');
+            $show->field('expired');
+            $show->field('user.name');
+            $show->field('user.department.name');
+            $show->field('security_password');
+            $show->field('admin_password');
+            $show->field('depreciation.name');
+            $show->field('depreciation.termination');
+            $show->field('location');
+            $show->field('extended_fields')->view('extended_fields');
+            $show->field('created_at');
+            $show->field('updated_at');
+
+            $show->disableDeleteButton();
+        });
+    }
+
+    public function selectList(Request $request)
+    {
+        $q = $request->get('q');
+
+        return \App\Models\DeviceRecord::where('name', 'like', "%$q%")->paginate(null, ['id', 'name as text']);
     }
 
     /**

@@ -26,6 +26,7 @@ class DeviceStatisticsController extends Controller
                 $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('device.records.index'));
                 $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('device.categories.index'));
                 $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('device.tracks.index'));
+                $tab->addLink(Data::icon('lend') . trans('main.lend'), admin_route('lend.tracks.index'));
                 $tab->add(Data::icon('statistics') . trans('main.statistics'), null, true);
                 $row->column(12, $tab);
             })
