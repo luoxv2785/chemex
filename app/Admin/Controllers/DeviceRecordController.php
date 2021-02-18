@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Grid\BatchAction\DeviceRecordBatchDeleteAction;
+use App\Admin\Actions\Grid\RowAction\DeviceRecordCreateLendTrackAction;
 use App\Admin\Actions\Grid\RowAction\DeviceRecordCreateUpdateTrackAction;
 use App\Admin\Actions\Grid\RowAction\DeviceRecordDeleteAction;
 use App\Admin\Actions\Grid\RowAction\MaintenanceCreateAction;
@@ -118,6 +119,7 @@ class DeviceRecordController extends AdminController
                 if (Admin::user()->can('device.maintenance.create')) {
                     $actions->append(new MaintenanceCreateAction('device'));
                 }
+                $actions->append(new DeviceRecordCreateLendTrackAction());
             });
 
             $grid->showColumnSelector();
