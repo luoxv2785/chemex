@@ -41,6 +41,8 @@ Route::group([
         ->name('migrate');
     $router->get('/version/clear', 'VersionController@clear')
         ->name('clear');
+    $router->get('/version/upgrade', 'VersionController@upgrade')
+        ->name('upgrade');
 
     /**
      * 配置

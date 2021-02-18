@@ -11,6 +11,7 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Card;
 use Illuminate\Http\JsonResponse;
+use Pour\Base\Uni;
 
 class VersionController extends Controller
 {
@@ -86,5 +87,20 @@ class VersionController extends Controller
     public function getRemoteVersion(): ?string
     {
         return VersionService::getLatestVersionFromGitee();
+    }
+
+    /**
+     * 版本升级
+     * @return JsonResponse
+     */
+    public function upgrade(): JsonResponse
+    {
+        $result = VersionService::upgrade();
+        if ($result == true) {
+            $return = Uni::rr(200, '升级成功！');
+        } else {
+            $return = Uni::rr(500, $result);
+        }
+        return response()->json($return);
     }
 }

@@ -4,6 +4,8 @@
 namespace App\Services;
 
 
+use Exception;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Http;
 
 class VersionService
@@ -51,5 +53,24 @@ class VersionService
             return $res;
         }
         return $res;
+    }
+
+    /**
+     * 版本升级
+     */
+    public static function upgrade()
+    {
+        try {
+            exec('git remote remove origin' . ' 2>&1');
+            exec('git remote add origin https://gitee.com/celaraze/chemex.git' . ' 2>&1');
+            exec('git fetch --all' . ' 2>&1');
+            exec('git reset --hard origin/main' . ' 2>&1');
+            exec('git pull' . ' 2>&1');
+            Artisan::call('chemex:update');
+            Artisan::call('chemex:refresh-user');
+            return true;
+        } catch (Exception $exception) {
+            return $exception->getMessage();
+        }
     }
 }
