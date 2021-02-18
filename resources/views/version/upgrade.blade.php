@@ -5,15 +5,16 @@
      * 升级
      */
     function upgrade() {
-        document.getElementById('upgrade').attr('disabled', "true");
-        document.getElementById('upgrade').innerText = '正在更新';
+        let dom = $('#upgrade');
+        dom.addClass('disabled');
+        dom.innerText = '正在更新';
         $.ajax({
             url: "/version/upgrade",
             success: function (res) {
-                if (res.data.code === 200) {
-                    Dcat.success(res.data.message);
+                if (res.code === 200) {
+                    location.reload();
                 } else {
-                    Dcat.warning(res.data.message);
+                    Dcat.warning(res.message);
                 }
             },
             error: function (res) {
