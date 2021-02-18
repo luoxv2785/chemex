@@ -19,8 +19,8 @@ class ConfigurationPlatformController extends Controller
     public function index(Content $content): Content
     {
         return $content
-            ->title(admin_trans_label('Platform'))
-            ->description(trans('admin.list'))
+            ->title(admin_trans_label('title'))
+            ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
                 $tab->add(admin_trans_label('platform'), new Card(new ConfigurationPlatformForm()), true);

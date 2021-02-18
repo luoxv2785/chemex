@@ -46,6 +46,7 @@ class RefreshUser extends Command
         $this->info('正在对用户数据做更新迁移');
         $staff_records = DB::table('staff_records')->get();
         if (!empty($staff_records)) {
+            $device_tracks = DeviceTrack::all();
             foreach ($staff_records as $staff_record) {
                 $user = new User();
                 $user->username = Uni::trim(Pinyin::sentence($staff_record->name));
@@ -63,10 +64,11 @@ class RefreshUser extends Command
                 $user->ad_tag = $staff_record->ad_tag;
                 $user->save();
 
-                $device_tracks = DeviceTrack::where('user_id', $staff_record->id)->get();
                 foreach ($device_tracks as $device_track) {
-                    $device_track->user_id = $user->id;
-                    $device_track->save();
+                    if ($staff_record->id == $device_track->user_id) {
+                        $device_track->user_id = $user->id;
+                        $device_track->save();
+                    }
                 }
             }
             Schema::rename('staff_records', 'backup_staff_records');

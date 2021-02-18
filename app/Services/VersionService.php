@@ -67,6 +67,7 @@ class VersionService
             exec('git reset --hard origin/main' . ' 2>&1');
             exec('git pull' . ' 2>&1');
             Artisan::call('chemex:update');
+            // 2.0->3.0技术债务
             Artisan::call('chemex:refresh-user');
             return true;
         } catch (Exception $exception) {

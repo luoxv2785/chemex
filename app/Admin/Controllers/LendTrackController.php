@@ -2,13 +2,8 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\Grid\RowAction\CheckTrackUpdateAction;
-use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\CheckTrack;
-use App\Models\CheckRecord;
 use App\Support\Data;
-use App\Support\Support;
-use Dcat\Admin\Admin;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
@@ -55,25 +50,14 @@ class LendTrackController extends AdminController
     {
         return Grid::make(new CheckTrack(['checker']), function (Grid $grid) {
             $grid->column('id');
-            $grid->column('check_id');
-            $grid->column('item_id')->display(function ($item_id) {
-                $check = CheckRecord::where('id', $this->check_id)->first();
-                if (empty($check)) {
-                    return admin_trans_label('Record None');
-                } else {
-                    $check_item = $check->check_item;
-                    $item = Support::getItemRecordByClass($check_item, $item_id);
-                    if (empty($item)) {
-                        return admin_trans_label('Item None');
-                    } else {
-                        return $item->name;
-                    }
-                }
-            });
-            $grid->column('status')->using(Data::checkTrackStatus());
-            $grid->column('checker.name');
-            $grid->column('created_at');
-            $grid->column('updated_at');
+            $grid->column('item_type');
+            $grid->column('item_id');
+            $grid->column('lend_time');
+            $grid->column('lend_description');
+            $grid->column('user_id');
+            $grid->column('plan_return_time');
+            $grid->column('return_time');
+            $grid->column('return_description');
 
             $grid->disableRowSelector();
             $grid->disableBatchActions();
@@ -82,17 +66,17 @@ class LendTrackController extends AdminController
             $grid->disableViewButton();
             $grid->disableDeleteButton();
 
-            $grid->actions(function (RowActions $actions) {
-                if (Admin::user()->can('check.track.update') && $this->status == 0) {
-                    $actions->append(new CheckTrackUpdateAction());
-                }
-            });
-
-            $grid->toolsWithOutline(false);
-
-            $grid->quickSearch('id', 'check_id', 'checker.name')
-                ->placeholder(trans('main.quick_search'))
-                ->auto(false);
+//            $grid->actions(function (RowActions $actions) {
+//                if (Admin::user()->can('check.track.update') && $this->status == 0) {
+//                    $actions->append(new CheckTrackUpdateAction());
+//                }
+//            });
+//
+//            $grid->toolsWithOutline(false);
+//
+//            $grid->quickSearch('id', 'check_id', 'checker.name')
+//                ->placeholder(trans('main.quick_search'))
+//                ->auto(false);
         });
     }
 

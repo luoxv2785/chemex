@@ -138,13 +138,11 @@
 
 ## 更新（通过Git Pull方式）
 
-随时随地保持更新可以在项目根目录中执行 `sudo git checkout main && git reset --hard && git pull --force` 命令，将会同步分支的最新修改内容。
+随时随地保持更新可以在项目根目录中执行 `sudo git fetch --all && git reset --hard origin/main && git pull` 命令，将会同步分支的最新修改内容。
 
 接着，执行 `php artisan chemex:update` 来进行升级。
 
-## 开启更多功能
-
-在左侧菜单的 `扩展` 中，可以启用增强功能，例如 `软件管理` 、`配件管理` 等等。
+> 如果从2.0升级到3.0，需要额外执行 `php artisan chemex:refresh-user`。
 
 ## 截图
 
