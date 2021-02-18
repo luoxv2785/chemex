@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'upgrade' => '升级版本至最新提交',
     'record' => '记录清单',
     'category' => '分类',
     'track' => '归属',

@@ -1,24 +1,24 @@
 <ul class="nav navbar-nav">
     {{--全局按钮--}}
     <li class="dropdown dropdown-notification nav-item mr-1">
-        <a class="nav-link nav-link-label" href="#" data-toggle="dropdown" aria-expanded="true" onclick="checkUpdate()">
+        <a class="nav-link nav-link-label" href="#" data-toggle="dropdown" aria-expanded="true">
             <i class="ficon feather icon-loader"></i>
         </a>
         <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right shadow-200">
-            <li class="scrollable-container media-list ps ps--active-y">
-                <a class="media d-flex justify-content-between" href="#">
-                    <div class="d-flex align-items-start">
-                        <div class="media-left">
-                        </div>
-                        <div class="media-body">
-                            <h6 class="primary media-heading">版本</h6>
-                            <small class="notification-text" id="version_text">
+            {{--            <li class="scrollable-container media-list ps ps--active-y">--}}
+            {{--                <a class="media d-flex justify-content-between" href="#">--}}
+            {{--                    <div class="d-flex align-items-start">--}}
+            {{--                        <div class="media-left">--}}
+            {{--                        </div>--}}
+            {{--                        <div class="media-body">--}}
+            {{--                            <h6 class="primary media-heading">版本</h6>--}}
+            {{--                            <small class="notification-text" id="version_text">--}}
 
-                            </small>
-                        </div>
-                    </div>
-                </a>
-            </li>
+            {{--                            </small>--}}
+            {{--                        </div>--}}
+            {{--                    </div>--}}
+            {{--                </a>--}}
+            {{--            </li>--}}
             <li class="scrollable-container media-list ps ps--active-y">
                 <a class="media d-flex justify-content-between" href="#" onclick="clearCache()">
                     <div class="d-flex align-items-start">
@@ -57,7 +57,7 @@
         </a>
         <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right shadow-200">
             <li class="scrollable-container media-list ps ps--active-y">
-                <a class="media d-flex justify-content-between" href="https://gitee.com/celaraze/Chemex/issues"
+                <a class="media d-flex justify-content-between" href="https://gitee.com/celaraze/chemex/issues"
                    target="_blank">
                     <div class="d-flex align-items-start">
                         <div class="media-left">
@@ -72,7 +72,7 @@
                 </a>
             </li>
             <li class="scrollable-container media-list ps ps--active-y">
-                <a class="media d-flex justify-content-between" href="https://gitee.com/celaraze/Chemex/wikis/pages"
+                <a class="media d-flex justify-content-between" href="https://gitee.com/celaraze/chemex/wikis/pages"
                    target="_blank">
                     <div class="d-flex align-items-start">
                         <div class="media-left">
@@ -158,7 +158,7 @@
             success: function (res) {
                 if (res !== '') {
                     console.log(res);
-                    html.innerHTML = '<a href="https://gitee.com/celaraze/Chemex/tree/' + res + '" target="_blank">版本：' + res + ' 已发布。</a>';
+                    html.innerHTML = '<a href="https://gitee.com/celaraze/chemex/tree/' + res + '" target="_blank">版本：' + res + ' 已发布。</a>';
                 } else {
                     html.innerHTML = '很棒，已经是最新版本了！';
                 }

@@ -14,7 +14,7 @@
 
 4：创建一个数据库，命名任意，但记得之后填写配置时需要对应正确，并且数据库字符集为 `utf8-general-ci`。
 
-5：在你想要的目录中，执行 `git clone https://gitee.com/celaraze/Chemex.git` 完成下载。
+5：在你想要的目录中，执行 `git clone https://gitee.com/celaraze/chemex.git` 完成下载。
 
 6：在项目根目录中，复制 `.env.example` 文件为一份新的，并重命名为 `.env`。
 
