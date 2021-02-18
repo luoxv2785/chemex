@@ -1,6 +1,19 @@
 # Release Notes
 
-## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.13.0...master)
+## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.15.0...master)
+
+## [v1.15.0 (2021-02-16)](https://github.com/enlightn/enlightn/compare/v1.14.0...v1.15.0)
+
+### Added
+- Add WTFPL to license whitelist ([#46](https://github.com/enlightn/enlightn/pull/46))
+
+## [v1.14.0 (2021-02-14)](https://github.com/enlightn/enlightn/compare/v1.13.0...v1.14.0)
+
+### Added
+- Add ability to define preload code ([#43](https://github.com/enlightn/enlightn/pull/43))
+
+### Fixed
+- Fix view caching analyzer condition ([#42](https://github.com/enlightn/enlightn/pull/42))
 
 ## [v1.13.0 (2021-02-10)](https://github.com/enlightn/enlightn/compare/v1.12.0...v1.13.0)
 

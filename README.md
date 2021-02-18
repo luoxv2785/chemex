@@ -90,8 +90,6 @@
 |2.x|耶加雪菲（Yirgacheffe）|✔|
 |3.x|瑰夏（Gesha）|最新滚动版本|
 
-在 `3.x` 中，我们对整体进行了全面的重构解耦，因此该版本不可直接兼容从 `2.x` 升级，仅支持最新部署，升级策略后续会提供一个完善的解决方案。
-
 ## 环境要求
 
 `git`，用于管理版本，部署和升级必要工具。
@@ -140,7 +138,7 @@
 
 ## 更新（通过Git Pull方式）
 
-随时随地保持更新可以在项目根目录中执行 `sudo git reset --hard && git pull --force` 命令，将会同步分支的最新修改内容。
+随时随地保持更新可以在项目根目录中执行 `sudo git checkout main && git reset --hard && git pull --force` 命令，将会同步分支的最新修改内容。
 
 接着，执行 `php artisan chemex:update` 来进行升级。
 

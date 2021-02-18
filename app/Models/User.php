@@ -26,6 +26,8 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property null|string title
  * @property null|string mobile
  * @property null|string email
+ * @property int ad_tag
+ * @property null|string extended_fields
  */
 class User extends Administrator implements JWTSubject
 {
