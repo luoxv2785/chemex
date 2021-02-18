@@ -6,6 +6,7 @@ use App\Models\DeviceTrack;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Overtrue\LaravelPinyin\Facades\Pinyin;
 use Pour\Base\Uni;
 
@@ -44,10 +45,14 @@ class RefreshUser extends Command
     {
         $this->info('正在对用户数据做更新迁移');
         $staff_records = DB::table('staff_records')->get();
-        foreach ($staff_records as $staff_record) {
-//            try {
+        if (!empty($staff_records)) {
+            foreach ($staff_records as $staff_record) {
                 $user = new User();
                 $user->username = Uni::trim(Pinyin::sentence($staff_record->name));
+                $exist = User::where('username', $user->username)->first();
+                if (!empty($exist)) {
+                    $user->username = $user->username . Uni::randomNumberString(4);
+                }
                 $user->password = bcrypt($user->username);
                 $user->name = $staff_record->name;
                 $user->department_id = $staff_record->department_id;
@@ -63,11 +68,11 @@ class RefreshUser extends Command
                     $device_track->user_id = $user->id;
                     $device_track->save();
                 }
-//            } catch (Exception $exception) {
-//
-//            }
-
+            }
+            Schema::rename('staff_records', 'backup_staff_records');
+            $this->info('迁移完成！');
         }
+
         return 0;
     }
 }

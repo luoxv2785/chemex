@@ -1,4 +1,5 @@
-<a id="upgrade" class="btn btn-primary" style="width: 100%;" onclick="upgrade()">{{trans('main.upgrade')}}</a>
+<a id="upgrade" class="btn btn-primary" style="width: 100%;color: white"
+   onclick="upgrade()">{{trans('main.upgrade')}}</a>
 
 <script>
     /**
