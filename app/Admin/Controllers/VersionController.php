@@ -26,10 +26,11 @@ class VersionController extends Controller
         $description = Version::list()['gesha'];
 
         return $content
-            ->header(admin_trans_label('Version'))
-            ->description(admin_trans_label('Description'))
+            ->title(admin_trans_label('title'))
+            ->description(admin_trans_label('description'))
             ->body(function (Row $row) use ($version, $description) {
                 $row->column(3, function (Column $column) use ($version) {
+                    $column->row(new Card(view('version.upgrade')));
                     $column->row(new Card(admin_trans_label('Current Version'), $version));
                 });
                 $row->column(9, function (Column $column) use ($version, $description) {
