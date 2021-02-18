@@ -360,12 +360,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/celaraze/pour.git",
-                "reference": "8a608a266804c8f2defa03d787d061175efa50b9"
+                "reference": "d0a65a5c9fe654256116c2dd8a9926a436094268"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/celaraze/pour/zipball/8a608a266804c8f2defa03d787d061175efa50b9",
-                "reference": "8a608a266804c8f2defa03d787d061175efa50b9",
+                "url": "https://api.github.com/repos/celaraze/pour/zipball/d0a65a5c9fe654256116c2dd8a9926a436094268",
+                "reference": "d0a65a5c9fe654256116c2dd8a9926a436094268",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -381,10 +381,10 @@
                 "ext-openssl": "*",
                 "php": "^7.3|^8"
             },
-            "time": "2021-02-17T09:37:27+00:00",
+            "time": "2021-02-18T05:36:39+00:00",
             "default-branch": true,
             "type": "library",
-            "installation-source": "source",
+            "installation-source": "dist",
             "autoload": {
                 "psr-4": {
                     "Pour\\": "src/"
