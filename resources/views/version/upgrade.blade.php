@@ -18,7 +18,7 @@
                 }
             },
             error: function (res) {
-                Dcat.error('执行错误：' + res);
+                Dcat.error('执行错误：' + res.data);
             }
         });
     }

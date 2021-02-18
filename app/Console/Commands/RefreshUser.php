@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Models\DeviceTrack;
 use App\Models\User;
-use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Overtrue\LaravelPinyin\Facades\Pinyin;
@@ -46,7 +45,7 @@ class RefreshUser extends Command
         $this->info('正在对用户数据做更新迁移');
         $staff_records = DB::table('staff_records')->get();
         foreach ($staff_records as $staff_record) {
-            try {
+//            try {
                 $user = new User();
                 $user->username = Uni::trim(Pinyin::sentence($staff_record->name));
                 $user->password = bcrypt($user->username);
@@ -64,9 +63,9 @@ class RefreshUser extends Command
                     $device_track->user_id = $user->id;
                     $device_track->save();
                 }
-            } catch (Exception $exception) {
-
-            }
+//            } catch (Exception $exception) {
+//
+//            }
 
         }
         return 0;
