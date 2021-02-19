@@ -27,7 +27,7 @@ class DeviceRecordCreateLendTrackAction extends RowAction
         }
 
         // 实例化表单类并传递自定义参数
-        $form = DeviceRecordCreateLendTrackForm::make()->payload(['id' => $this->getKey()]);
+        $form = DeviceRecordCreateLendTrackForm::make()->payload(['id' => $this->getKey(), 'item_type' => 'device']);
 
         return Modal::make()
             ->lg()

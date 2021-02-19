@@ -66,7 +66,7 @@ class PartRecord extends Model
      */
     public function device(): HasManyThrough
     {
-        return $this->hasOneThrough(
+        return $this->hasManyThrough(
             DeviceRecord::class,  // 远程表
             PartTrack::class,   // 中间表
             'part_id',    // 中间表对主表的关联字段

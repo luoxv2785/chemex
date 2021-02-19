@@ -28,6 +28,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property null|string email
  * @property int ad_tag
  * @property null|string extended_fields
+ * @property DeviceRecord device
  */
 class User extends Administrator implements JWTSubject
 {
@@ -85,5 +86,27 @@ class User extends Administrator implements JWTSubject
             'id',   // 远程表对中间表的关联字段
             'id',   // 主表对中间表的关联字段
             'device_id'); // 中间表对远程表的关联字段
+    }
+
+    /**
+     * 用户的资产总价值
+     * @return int
+     */
+    public function itemsPrice(): int
+    {
+        $price = 0;
+        foreach ($this->device as $device) {
+            $price += $device->price;
+            foreach ($device->part as $part) {
+                $price += $part->price;
+            }
+            foreach ($device->software as $software) {
+                $price += $software->price;
+            }
+            foreach ($device->service as $service) {
+                $price += $service->price;
+            }
+        }
+        return $price;
     }
 }

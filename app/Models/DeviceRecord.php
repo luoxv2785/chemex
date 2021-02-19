@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Support\Data;
 use App\Traits\HasExtendedFields;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -16,6 +18,7 @@ use Illuminate\Support\Facades\Crypt;
  * @method static whereBetween(string $string, array $array)
  * @method static count()
  * @method static pluck(string $string, string $string1)
+ * @method static find(mixed $id)
  * @property string name
  * @property string description
  * @property int category_id
@@ -31,6 +34,9 @@ use Illuminate\Support\Facades\Crypt;
  * @property string admin_password
  * @property string asset_number
  * @property int id
+ * @property PartRecord part
+ * @property SoftwareRecord software
+ * @property ServiceRecord service
  */
 class DeviceRecord extends Model
 {
@@ -113,21 +119,6 @@ class DeviceRecord extends Model
     }
 
     /**
-     * 设备记录在远处有一个使用者（用户）
-     * @return HasManyThrough
-     */
-    public function user(): HasManyThrough
-    {
-        return $this->hasOneThrough(
-            User::class,  // 远程表
-            DeviceTrack::class,   // 中间表
-            'device_id',    // 中间表对主表的关联字段
-            'id',   // 远程表对中间表的关联字段
-            'id',   // 主表对中间表的关联字段
-            'user_id'); // 中间表对远程表的关联字段
-    }
-
-    /**
      * 对安全密码字段读取做解密转换
      * @param $security_password
      * @return array|string
@@ -185,4 +176,64 @@ class DeviceRecord extends Model
     {
         return $this->hasOne(DepreciationRule::class, 'id', 'depreciation_rule_id');
     }
+
+    /**
+     * 设备有很多借用记录
+     * @return HasMany
+     */
+    public function lend(): HasMany
+    {
+        return $this->hasMany(LendTrack::class, 'item_id', 'id');
+    }
+
+    public function userName(): string
+    {
+        $user = $this->user()->first();
+        if (empty($user)) {
+            $name = '闲置';
+        } else {
+            $name = $user->name;
+        }
+        return $name;
+    }
+
+    /**
+     * 设备记录在远处有一个使用者（用户）
+     * @return HasManyThrough
+     */
+    public function user(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            User::class,  // 远程表
+            DeviceTrack::class,   // 中间表
+            'device_id',    // 中间表对主表的关联字段
+            'id',   // 远程表对中间表的关联字段
+            'id',   // 主表对中间表的关联字段
+            'user_id'); // 中间表对远程表的关联字段
+    }
+
+//    /**
+//     * 获取设备的软配件内容
+//     * @return array
+//     */
+//    public function related(): array
+//    {
+//        // 获取所有配件
+//        $part = $this->part;
+//        // 获取所有软件
+//        $software = $this->software;
+//        // 获取所有服务程序
+//        $service = $this->service;
+//
+//        // 转换软件授权方式的显示内容
+//        foreach ($software as $item) {
+//            $item->distribution = Data::distribution()[$item->distribution];
+//        }
+//
+//        $data['part'] = $part;
+//        $data['software'] = $software;
+//        $data['service'] = $service;
+//
+//        return $data;
+//    }
 }

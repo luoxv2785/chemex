@@ -33,6 +33,7 @@ use Dcat\Admin\Widgets\Tab;
  * @property  DeviceRecord device
  * @property  int id
  * @property  string deleted_at
+ * @method leftCounts()
  */
 class SoftwareRecordController extends AdminController
 {
@@ -75,7 +76,7 @@ class SoftwareRecordController extends AdminController
             $grid->column('distribution')->using(Data::distribution());
             $grid->column('counts');
             $grid->column('left_counts')->display(function () {
-                return Support::leftSoftwareCounts($this->id);
+                return $this->leftCounts();
             });
             $grid->column('expiration_left_days')->display(function () {
                 return ExpirationService::itemExpirationLeftDaysRender('software', $this->id);

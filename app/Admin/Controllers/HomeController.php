@@ -17,7 +17,7 @@ use App\Admin\Metrics\SoftwareExpiredCounts;
 use App\Admin\Metrics\SoftwareWorth;
 use App\Admin\Metrics\WorthTrend;
 use App\Http\Controllers\Controller;
-use App\Support\Support;
+use App\Models\User;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Layout\Content;
@@ -33,9 +33,9 @@ class HomeController extends Controller
             ->title(admin_trans_label('title'))
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
-                $price = Support::userIdToAllItemPrice(auth('admin')->user()->id);
-                $row->column(3, new Card(trans('main.my_all_worth'), $price));
-                if (Admin::user()->can('home.dashbaord')) {
+                $user = User::find(auth('admin')->user()->id);
+                $row->column(3, new Card(trans('main.my_all_worth'), $user->itemsPrice()));
+                if (Admin::user()->can('home.dashboard')) {
                     $row->column(12, '<hr>');
                     $row->column(12, function (Column $column) {
                         $column->row(function (Row $row) {

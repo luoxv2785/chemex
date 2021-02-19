@@ -8,7 +8,6 @@ use App\Models\DeviceRecord;
 use App\Models\DeviceTrack;
 use App\Models\PartTrack;
 use App\Models\SoftwareTrack;
-use App\Support\Data;
 use App\Support\Support;
 
 /**
@@ -18,35 +17,6 @@ use App\Support\Support;
  */
 class DeviceService
 {
-    /**
-     * 获取设备的软配件内容
-     * @param $id
-     * @return mixed
-     */
-    public static function related($id): array
-    {
-        $device = DeviceRecord::where('id', $id)
-            ->firstOrFail();
-
-        // 获取所有配件
-        $part = $device->part;
-        // 获取所有软件
-        $software = $device->software;
-        // 获取所有服务程序
-        $service = $device->service;
-
-        // 转换软件授权方式的显示内容
-        foreach ($software as $item) {
-            $item->distribution = Data::distribution()[$item->distribution];
-        }
-
-        $data['part'] = $part;
-        $data['software'] = $software;
-        $data['service'] = $service;
-
-        return $data;
-    }
-
     /**
      * 获取设备的履历清单
      * @param $id

@@ -38,6 +38,7 @@ use Illuminate\Http\Request;
  * @property double price
  * @property string purchased
  * @property int depreciation_rule_id
+ * @method lend()
  */
 class DeviceRecordController extends AdminController
 {
@@ -66,7 +67,7 @@ class DeviceRecordController extends AdminController
      */
     protected function grid(): Grid
     {
-        return Grid::make(new DeviceRecord(['category', 'vendor', 'user', 'user.department', 'depreciation']), function (Grid $grid) {
+        return Grid::make(new DeviceRecord(['category', 'vendor', 'user', 'user.department', 'depreciation', 'lend']), function (Grid $grid) {
 
             $grid->column('id');
             $grid->column('qrcode')->qrcode(function () {
@@ -119,7 +120,10 @@ class DeviceRecordController extends AdminController
                 if (Admin::user()->can('device.maintenance.create')) {
                     $actions->append(new MaintenanceCreateAction('device'));
                 }
-                $actions->append(new DeviceRecordCreateLendTrackAction());
+                $lend_track = $this->lend()->first();
+                if (empty($lend_track)) {
+                    $actions->append(new DeviceRecordCreateLendTrackAction());
+                }
             });
 
             $grid->showColumnSelector();
@@ -185,21 +189,25 @@ class DeviceRecordController extends AdminController
      */
     public function show($id, Content $content): Content
     {
-        $name = Support::deviceIdToUserName($id);
-        $history = DeviceService::history($id);
         return $content
             ->title($this->title())
             ->description($this->description()['index'] ?? trans('admin.show'))
-            ->body(function (Row $row) use ($id, $name, $history) {
+            ->body(function (Row $row) use ($id) {
                 $row->column(7, $this->detail($id));
-                $row->column(5, function (Column $column) use ($id, $name, $history) {
-                    $column->row(Card::make()->content(admin_trans_label('Current User') . '：' . $name));
+                $row->column(5, function (Column $column) use ($id) {
+                    // 处理设备使用人
+                    $device = $this->detail($id)->model();
+                    $column->row(Card::make()->content(admin_trans_label('Current User') . '：' . $device->userName()));
+
                     $related = Support::makeDeviceRelatedChartData($id);
                     $column->row(new Card(trans('main.related'), view('charts.device_related')->with('related', $related)));
                     $result = self::hasDeviceRelated($id);
                     $column->row(new Card(trans('main.part'), $result['part']));
                     $column->row(new Card(trans('main.software'), $result['software']));
                     $column->row(new Card(trans('main.service'), $result['service']));
+
+                    // 处理设备履历
+                    $history = DeviceService::history($id);
                     $card = new Card(trans('main.history'), view('history')->with('data', $history));
                     $column->row($card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.device.history', ['device_id' => 1]) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>'));
                 });

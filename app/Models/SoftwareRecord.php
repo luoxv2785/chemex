@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\HasExtendedFields;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -21,6 +22,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string expired
  * @property int purchased_channel_id
  * @property string asset_number
+ * @property int counts
  */
 class SoftwareRecord extends Model
 {
@@ -55,5 +57,27 @@ class SoftwareRecord extends Model
     public function channel(): HasOne
     {
         return $this->hasOne(PurchasedChannel::class, 'id', 'purchased_channel_id');
+    }
+
+    /**
+     * 软件剩余可用授权数量
+     * @return int|string
+     */
+    public function leftCounts()
+    {
+        $used = $this->track()->count();
+        if ($used == -1) {
+            return '不受限';
+        }
+        return $this->counts - $used;
+    }
+
+    /**
+     * 软件记录有很多追踪
+     * @return HasMany
+     */
+    public function track(): HasMany
+    {
+        return $this->hasMany(SoftwareTrack::class, 'id', 'software_id');
     }
 }

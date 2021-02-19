@@ -21,8 +21,8 @@ class CreateLendTracksTable extends Migration
             $table->string('lend_description');
             $table->integer('user_id');
             $table->dateTime('plan_return_time');
-            $table->dateTime('return_time');
-            $table->dateTime('return_description');
+            $table->dateTime('return_time')->nullable();
+            $table->dateTime('return_description')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

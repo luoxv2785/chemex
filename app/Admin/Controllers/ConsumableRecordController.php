@@ -9,7 +9,6 @@ use App\Models\ConsumableCategory;
 use App\Models\DeviceCategory;
 use App\Models\VendorRecord;
 use App\Support\Data;
-use App\Support\Support;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
@@ -19,6 +18,9 @@ use Dcat\Admin\Show;
 use Dcat\Admin\Widgets\Tab;
 
 
+/**
+ * @method allCounts()
+ */
 class ConsumableRecordController extends AdminController
 {
     public function index(Content $content): Content
@@ -51,7 +53,7 @@ class ConsumableRecordController extends AdminController
             $grid->column('vendor.name');
             $grid->column('price');
             $grid->column('number')->display(function () {
-                return Support::consumableAllNumber($this->id);
+                return $this->allCounts();
             });
 
             $grid->toolsWithOutline(false);

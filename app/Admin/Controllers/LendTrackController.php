@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Repositories\CheckTrack;
+use App\Models\LendTrack;
 use App\Support\Data;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
@@ -48,7 +48,7 @@ class LendTrackController extends AdminController
      */
     protected function grid(): Grid
     {
-        return Grid::make(new CheckTrack(['checker']), function (Grid $grid) {
+        return Grid::make(new LendTrack(), function (Grid $grid) {
             $grid->column('id');
             $grid->column('item_type');
             $grid->column('item_id');

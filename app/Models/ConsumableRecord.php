@@ -4,7 +4,9 @@ namespace App\Models;
 
 use App\Traits\HasExtendedFields;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
+use Illuminate\Database\Eloquent\HigherOrderBuilderProxy;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -28,5 +30,24 @@ class ConsumableRecord extends Model
     public function vendor(): HasOne
     {
         return $this->hasOne(VendorRecord::class, 'id', 'vendor_id');
+    }
+
+    /**
+     * 耗材总数
+     * @return HigherOrderBuilderProxy|int|mixed
+     */
+    public function allCounts()
+    {
+        $consumable_track = $this->track()->first();
+        if (empty($consumable_track)) {
+            return 0;
+        } else {
+            return $consumable_track->number;
+        }
+    }
+
+    public function track(): HasMany
+    {
+        return $this->hasMany(ConsumableTrack::class, 'id', 'consumable_id');
     }
 }

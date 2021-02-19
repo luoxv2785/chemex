@@ -6,24 +6,19 @@ namespace App\Support;
 
 use App\Models\CheckRecord;
 use App\Models\CheckTrack;
-use App\Models\ConsumableTrack;
 use App\Models\DepreciationRule;
 use App\Models\DeviceCategory;
 use App\Models\DeviceRecord;
-use App\Models\DeviceTrack;
 use App\Models\PartCategory;
 use App\Models\PartRecord;
-use App\Models\PartTrack;
 use App\Models\ServiceIssue;
 use App\Models\ServiceRecord;
 use App\Models\ServiceTrack;
 use App\Models\SoftwareRecord;
 use App\Models\SoftwareTrack;
-use App\Models\User;
 use Dcat\Admin\Admin;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\File;
 
 class Support
 {
@@ -48,26 +43,6 @@ class Support
             array_push($data, 'software:' . $software_record->id . '&#10;');
         }
         return $data;
-    }
-
-    /**
-     * 获取设备当前最新的使用者
-     * @param $device_id
-     * @return string
-     */
-    public static function currentDeviceTrackUser($device_id)
-    {
-        $device_track = DeviceTrack::where('device_id', $device_id)->first();
-        if (empty($device_track)) {
-            return 0;
-        } else {
-            $user = $device_track->user;
-            if (empty($user)) {
-                return -1;
-            } else {
-                return $user->id;
-            }
-        }
     }
 
     /**
@@ -104,16 +79,19 @@ class Support
         }
 
         switch ($type) {
+            // 盘盈
             case 'Y':
                 $count = CheckTrack::where('check_id', $check_id)
                     ->where('status', 1)
                     ->count();
                 break;
+            // 盘亏
             case 'N':
                 $count = CheckTrack::where('check_id', $check_id)
                     ->where('status', 2)
                     ->count();
                 break;
+            // 剩余
             case 'L':
                 $count = CheckTrack::where('check_id', $check_id)
                     ->where('status', 0)
@@ -127,55 +105,6 @@ class Support
         }
 
         return $count;
-    }
-
-    /**
-     * 用户id换取name
-     * @param $user_id
-     * @return string
-     */
-    public static function userIdToName($user_id): string
-    {
-        $user = User::where('id', $user_id)->first();
-        if (empty($user)) {
-            return '用户失踪';
-        }
-        return $user->name;
-    }
-
-    /**
-     * 用户id换取部门name
-     * @param $user_id
-     * @return mixed
-     */
-    public static function userIdToDepartmentName($user_id): string
-    {
-        $user = User::where('id', $user_id)->first();
-        if (!empty($user)) {
-            return $user->department->name;
-        } else {
-            return '无部门';
-        }
-    }
-
-    /**
-     * 设备ID换取用户名称
-     * @param $device_id
-     * @return string
-     */
-    public static function deviceIdToUserName($device_id): string
-    {
-        $device = DeviceRecord::where('id', $device_id)->first();
-        if (empty($device)) {
-            return '设备状态异常';
-        } else {
-            $user = $device->user;
-            if (empty($user)) {
-                return '闲置';
-            } else {
-                return $user->name;
-            }
-        }
     }
 
     /**
@@ -201,26 +130,6 @@ class Support
         }
 
         return '';
-    }
-
-    /**
-     * 更新ENV文件的键值
-     * @param array $data
-     */
-    public static function setEnv(array $data)
-    {
-        $envPath = base_path() . DIRECTORY_SEPARATOR . '.env';
-        $contentArray = collect(file($envPath, FILE_IGNORE_NEW_LINES));
-        $contentArray->transform(function ($item) use ($data) {
-            foreach ($data as $key => $value) {
-                if (str_contains($item, $key)) {
-                    return $key . '=' . $value;
-                }
-            }
-            return $item;
-        });
-        $content = implode("\n", $contentArray->toArray());
-        File::put($envPath, $content);
     }
 
     /**
@@ -362,41 +271,6 @@ class Support
     }
 
     /**
-     * 某个耗材总数
-     * @param $consumable_id
-     * @return float
-     */
-    public static function consumableAllNumber($consumable_id): float
-    {
-        $consumable_track = ConsumableTrack::where('consumable_id', $consumable_id)->first();
-        if (empty($consumable_track)) {
-            return 0;
-        } else {
-            return $consumable_track->number;
-        }
-    }
-
-    /**
-     * 获取配件当前归属的设备
-     * @param $part_id
-     * @return string
-     */
-    public static function currentPartTrack($part_id): string
-    {
-        $part_track = PartTrack::where('part_id', $part_id)->first();
-        if (empty($part_track)) {
-            return '闲置';
-        } else {
-            $device = $part_track->device;
-            if (empty($device)) {
-                return '设备失踪';
-            } else {
-                return $device->name;
-            }
-        }
-    }
-
-    /**
      * 获取服务异常总览（看板）
      * @return ServiceRecord[]|Collection
      */
@@ -462,26 +336,6 @@ class Support
     }
 
     /**
-     * 获取软件当前剩余授权数量
-     * @param $software_id
-     * @return int|string
-     */
-    public static function leftSoftwareCounts($software_id)
-    {
-        $software = SoftwareRecord::where('id', $software_id)->first();
-        if (empty($software)) {
-            return '软件状态异常';
-        }
-        $software_tracks = SoftwareTrack::where('software_id', $software_id)->get();
-        $used = count($software_tracks);
-        if ($software->counts == -1) {
-            return '不受限';
-        } else {
-            return $software->counts - $used;
-        }
-    }
-
-    /**
      * 返回某一年的开始时间和结束时间
      * @param $year
      * @param string $field
@@ -537,26 +391,4 @@ class Support
         return json_encode($return);
     }
 
-    /**
-     * @param $user_id
-     * @return int
-     */
-    public static function userIdToAllItemPrice($user_id)
-    {
-        $price = 0;
-        $user = User::find($user_id);
-        foreach ($user->device as $device) {
-            $price += $device->price;
-            foreach ($device->part as $part) {
-                $price += $part->price;
-            }
-            foreach ($device->software as $software) {
-                $price += $software->price;
-            }
-            foreach ($device->service as $service) {
-                $price += $service->price;
-            }
-        }
-        return $price;
-    }
 }
