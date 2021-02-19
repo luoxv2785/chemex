@@ -55,7 +55,6 @@ class DeviceRecordController extends AdminController
                 $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
                 $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('device.categories.index'));
                 $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('device.tracks.index'));
-                $tab->addLink(Data::icon('lend') . trans('main.lend'), admin_route('lend.tracks.index'));
                 $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('device.statistics'));
                 $row->column(12, $tab);
             });
@@ -120,9 +119,6 @@ class DeviceRecordController extends AdminController
                 }
                 if (Admin::user()->can('device.maintenance.create')) {
                     $actions->append(new MaintenanceCreateAction('device'));
-                }
-                if (!$this->isLend()) {
-                    $actions->append(new DeviceRecordCreateLendTrackAction());
                 }
             });
 
