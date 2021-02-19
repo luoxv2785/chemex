@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use DB;
 use Illuminate\Database\Seeder;
 
 class AdminExtensionsTableSeeder extends Seeder
@@ -15,12 +14,12 @@ class AdminExtensionsTableSeeder extends Seeder
      */
     public function run()
     {
+        
 
-
-        DB::table('admin_extensions')->delete();
-
-        DB::table('admin_extensions')->insert(array (
-            0 =>
+        \DB::table('admin_extensions')->delete();
+        
+        \DB::table('admin_extensions')->insert(array (
+            0 => 
             array (
                 'id' => 1,
                 'name' => 'celaraze.dcat-extension-plus',
@@ -31,7 +30,7 @@ class AdminExtensionsTableSeeder extends Seeder
                 'updated_at' => '2021-02-09 08:11:19',
             ),
         ));
-
-
+        
+        
     }
 }

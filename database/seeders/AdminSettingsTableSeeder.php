@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use DB;
 use Illuminate\Database\Seeder;
 
 class AdminSettingsTableSeeder extends Seeder
@@ -15,117 +14,117 @@ class AdminSettingsTableSeeder extends Seeder
      */
     public function run()
     {
+        
 
-
-        DB::table('admin_settings')->delete();
-
-        DB::table('admin_settings')->insert(array (
-            0 =>
+        \DB::table('admin_settings')->delete();
+        
+        \DB::table('admin_settings')->insert(array (
+            0 => 
             array (
                 'slug' => 'dcat-admin:operation-log',
                 'value' => '{"except":[],"allowed_methods":[],"secret_fields":[]}',
                 'created_at' => '2020-11-04 15:19:51',
                 'updated_at' => '2020-11-04 15:19:51',
             ),
-            1 =>
+            1 => 
             array (
                 'slug' => 'field_select_create',
                 'value' => '1',
                 'created_at' => '2021-01-28 16:47:28',
                 'updated_at' => '2021-01-28 16:47:28',
             ),
-            2 =>
+            2 => 
             array (
                 'slug' => 'footer_remove',
                 'value' => '1',
                 'created_at' => '2021-01-28 16:47:25',
                 'updated_at' => '2021-01-28 16:47:25',
             ),
-            3 =>
+            3 => 
             array (
                 'slug' => 'grid_row_actions_right',
-                'value' => '1',
+                'value' => '0',
                 'created_at' => '2021-02-09 14:16:58',
-                'updated_at' => '2021-02-09 14:16:58',
+                'updated_at' => '2021-02-17 16:49:13',
             ),
-            4 =>
+            4 => 
             array (
                 'slug' => 'header_blocks',
                 'value' => '1',
                 'created_at' => '2021-01-28 16:47:25',
                 'updated_at' => '2021-01-28 16:47:25',
             ),
-            5 =>
+            5 => 
             array (
                 'slug' => 'sidebar_indentation',
                 'value' => '1',
                 'created_at' => '2021-01-28 16:47:25',
                 'updated_at' => '2021-01-28 16:47:25',
             ),
-            6 =>
+            6 => 
             array (
                 'slug' => 'sidebar_style',
                 'value' => 'default',
                 'created_at' => '2021-01-28 16:47:25',
                 'updated_at' => '2021-01-28 16:47:25',
             ),
-            7 =>
+            7 => 
             array (
                 'slug' => 'site_debug',
                 'value' => '1',
                 'created_at' => '2021-01-28 16:47:03',
                 'updated_at' => '2021-01-28 16:47:17',
             ),
-            8 =>
+            8 => 
             array (
                 'slug' => 'site_lang',
                 'value' => 'zh_CN',
                 'created_at' => '2021-01-28 16:47:03',
                 'updated_at' => '2021-02-08 08:12:47',
             ),
-            9 =>
+            9 => 
             array (
                 'slug' => 'site_logo',
                 'value' => '',
                 'created_at' => '2020-12-20 13:57:11',
                 'updated_at' => '2020-12-20 13:57:11',
             ),
-            10 =>
+            10 => 
             array (
                 'slug' => 'site_logo_mini',
                 'value' => '',
                 'created_at' => '2020-12-20 13:57:11',
                 'updated_at' => '2020-12-20 13:57:11',
             ),
-            11 =>
+            11 => 
             array (
                 'slug' => 'site_logo_text',
                 'value' => '咖啡壶',
                 'created_at' => '2020-12-20 13:57:11',
                 'updated_at' => '2021-01-28 20:34:45',
             ),
-            12 =>
+            12 => 
             array (
                 'slug' => 'site_title',
                 'value' => '咖啡壶',
                 'created_at' => '2020-12-20 13:57:11',
                 'updated_at' => '2021-01-28 20:34:45',
             ),
-            13 =>
+            13 => 
             array (
                 'slug' => 'site_url',
                 'value' => '',
                 'created_at' => '2021-01-28 16:47:03',
                 'updated_at' => '2021-01-28 16:47:03',
             ),
-            14 =>
+            14 => 
             array (
                 'slug' => 'switch_to_select_create',
                 'value' => '0',
                 'created_at' => '2021-01-28 16:47:25',
                 'updated_at' => '2021-02-08 08:48:00',
             ),
-            15 =>
+            15 => 
             array (
                 'slug' => 'theme_color',
                 'value' => 'blue-light',
@@ -133,7 +132,7 @@ class AdminSettingsTableSeeder extends Seeder
                 'updated_at' => '2021-01-28 16:47:25',
             ),
         ));
-
-
+        
+        
     }
 }

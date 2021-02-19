@@ -30,7 +30,6 @@ class ConsumableInForm extends Form
             if (empty($consumable_track)) {
                 $consumable_track = new ConsumableTrack();
                 $consumable_track->consumable_id = $consumable_record_id;
-                $consumable_track->operator = auth('admin')->user()->name;
                 $consumable_track->number = $number;
                 $consumable_track->change = $number;
                 $consumable_track->purchased = $purchased;
@@ -40,7 +39,6 @@ class ConsumableInForm extends Form
                 $new_consumable_track = $consumable_track->replicate();
                 $new_consumable_track->number += $number;
                 $new_consumable_track->change = $number;
-                $new_consumable_track->operator = auth('admin')->user()->name;
                 $new_consumable_track->purchased = $purchased;
                 $new_consumable_track->expired = $expired;
                 $new_consumable_track->save();

@@ -24,7 +24,7 @@ return [
         'Delete Confirm' => '确认删除？',
         'Delete Confirm Description' => '删除的同时将会解除所有与之关联的归属关系',
         'Update SSH' => '编辑SSH连接信息',
-        'Track Create Update' => '分配使用者',
+        'Track Create Update' => '分配用户',
         'Maintenance Create' => '报告故障',
         'Import' => '导入',
         'File Help' => '导入支持xls、xlsx、csv文件，且表格头必须使用【名称，描述，分类，厂商，资产编号，用户，序列号，MAC，IP，价格，购入日期，过保日期，购入途径】。',

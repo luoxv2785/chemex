@@ -39,6 +39,7 @@ use Illuminate\Http\Request;
  * @property string purchased
  * @property int depreciation_rule_id
  * @method lend()
+ * @method isLend()
  */
 class DeviceRecordController extends AdminController
 {
@@ -114,14 +115,13 @@ class DeviceRecordController extends AdminController
                 if (Admin::user()->can('device.record.delete')) {
                     $actions->append(new DeviceRecordDeleteAction());
                 }
-                if (Admin::user()->can('device.track.create_update')) {
+                if (Admin::user()->can('device.track.create_update') && !$this->isLend()) {
                     $actions->append(new DeviceRecordCreateUpdateTrackAction());
                 }
                 if (Admin::user()->can('device.maintenance.create')) {
                     $actions->append(new MaintenanceCreateAction('device'));
                 }
-                $lend_track = $this->lend()->first();
-                if (empty($lend_track)) {
+                if (!$this->isLend()) {
                     $actions->append(new DeviceRecordCreateLendTrackAction());
                 }
             });

@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use App\Support\Data;
 use App\Traits\HasExtendedFields;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Crypt;
 
@@ -178,17 +177,17 @@ class DeviceRecord extends Model
     }
 
     /**
-     * 设备有很多借用记录
-     * @return HasMany
+     * 设备当前使用者
+     * @return string
      */
-    public function lend(): HasMany
-    {
-        return $this->hasMany(LendTrack::class, 'item_id', 'id');
-    }
-
     public function userName(): string
     {
         $user = $this->user()->first();
+
+        if ($this->isLend()) {
+            $user = $this->lend()->first()->user()->first();
+        }
+
         if (empty($user)) {
             $name = '闲置';
         } else {
@@ -199,11 +198,12 @@ class DeviceRecord extends Model
 
     /**
      * 设备记录在远处有一个使用者（用户）
-     * @return HasManyThrough
+     * @return HasOneThrough
      */
-    public function user(): HasManyThrough
+    public function user(): HasOneThrough
     {
-        return $this->hasManyThrough(
+
+        return $this->hasOneThrough(
             User::class,  // 远程表
             DeviceTrack::class,   // 中间表
             'device_id',    // 中间表对主表的关联字段
@@ -211,29 +211,4 @@ class DeviceRecord extends Model
             'id',   // 主表对中间表的关联字段
             'user_id'); // 中间表对远程表的关联字段
     }
-
-//    /**
-//     * 获取设备的软配件内容
-//     * @return array
-//     */
-//    public function related(): array
-//    {
-//        // 获取所有配件
-//        $part = $this->part;
-//        // 获取所有软件
-//        $software = $this->software;
-//        // 获取所有服务程序
-//        $service = $this->service;
-//
-//        // 转换软件授权方式的显示内容
-//        foreach ($software as $item) {
-//            $item->distribution = Data::distribution()[$item->distribution];
-//        }
-//
-//        $data['part'] = $part;
-//        $data['software'] = $software;
-//        $data['service'] = $service;
-//
-//        return $data;
-//    }
 }
