@@ -19,7 +19,7 @@ class ConfigurationPlatformController extends Controller
     public function index(Content $content): Content
     {
         return $content
-            ->title(admin_trans_label('title'))
+            ->title($this->title())
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
@@ -28,5 +28,10 @@ class ConfigurationPlatformController extends Controller
                 $tab->addLink(admin_trans_label('ldap'), admin_route('configurations.ldap.index'));
                 $row->column(12, $tab);
             });
+    }
+
+    public function title()
+    {
+        return admin_trans_label('title');
     }
 }

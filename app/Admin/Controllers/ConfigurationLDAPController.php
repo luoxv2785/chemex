@@ -23,7 +23,7 @@ class ConfigurationLDAPController extends Controller
     public function index(Content $content): Content
     {
         return $content
-            ->title(admin_trans_label('title'))
+            ->title($this->title())
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
@@ -32,6 +32,11 @@ class ConfigurationLDAPController extends Controller
                 $tab->add(admin_trans_label('ldap'), new Card(new ConfigurationLDAPForm()), true);
                 $row->column(12, $tab);
             });
+    }
+
+    public function title()
+    {
+        return admin_trans_label('title');
     }
 
     /**

@@ -29,7 +29,7 @@ class SoftwareAboutToExpireCounts extends Card
         $counts = SoftwareRecord::whereBetween('expired', [$from, $to])->count();
         $software_about_to_expire_counts = trans('main.software_about_to_expire_counts');
         $html = <<<HTML
-<div class="info-box" style="background:transparent;margin-bottom: 0;padding: 0;">
+<div class="info-box" style="background:transparent;margin-bottom: 0;padding: 0;height: 86px;">
 <span class="info-box-icon"><i class="feather icon-disc" style="color:rgba(255,153,76,1);"></i></span>
   <div class="info-box-content">
     <span class="info-box-text mt-1">{$software_about_to_expire_counts}</span>
@@ -40,6 +40,7 @@ HTML;
 
         $this->content = $this->formatRenderable($html);
         $this->noPadding();
+        $this->style('margin-top:-0.1rem');
 
         return $this;
     }

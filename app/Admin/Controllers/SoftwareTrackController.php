@@ -22,7 +22,7 @@ class SoftwareTrackController extends AdminController
     public function index(Content $content): Content
     {
         return $content
-            ->title(admin_trans_label('title'))
+            ->title($this->title())
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
@@ -32,6 +32,11 @@ class SoftwareTrackController extends AdminController
                 $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('software.statistics'));
                 $row->column(12, $tab);
             });
+    }
+
+    public function title()
+    {
+        return admin_trans_label('title');
     }
 
     /**

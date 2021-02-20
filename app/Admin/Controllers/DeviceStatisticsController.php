@@ -16,10 +16,15 @@ use Dcat\Admin\Widgets\Tab;
 
 class DeviceStatisticsController extends Controller
 {
+    public function title()
+    {
+        return admin_trans_label('title');
+    }
+
     public function index(Content $content): Content
     {
         return $content
-            ->title(admin_trans_label('title'))
+            ->title($this->title())
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();

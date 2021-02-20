@@ -24,10 +24,15 @@ use Dcat\Admin\Widgets\Alert;
  */
 class TodoRecordController extends AdminController
 {
+    public function title()
+    {
+        return admin_trans_label('title');
+    }
+
     public function index(Content $content): Content
     {
         return $content
-            ->title(admin_trans_label('title'))
+            ->title($this->title())
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $row->column(12, function (Column $column) {
@@ -86,14 +91,14 @@ class TodoRecordController extends AdminController
      */
     protected function detail($id): Show
     {
-        return Show::make($id, new TodoRecord(), function (Show $show) {
+        return Show::make($id, new TodoRecord(['user']), function (Show $show) {
             $show->field('id');
             $show->field('name');
             $show->field('description');
             $show->field('start');
             $show->field('end');
             $show->field('priority')->using(Data::priority());
-            $show->field('user_id');
+            $show->field('user.name');
             $show->field('tags');
             $show->field('done_description');
             $show->field('emoji');
@@ -101,6 +106,7 @@ class TodoRecordController extends AdminController
             $show->field('updated_at');
 
             $show->disableDeleteButton();
+            $show->disableEditButton();
         });
     }
 

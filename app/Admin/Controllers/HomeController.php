@@ -18,6 +18,7 @@ use App\Admin\Metrics\SoftwareWorth;
 use App\Admin\Metrics\WorthTrend;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Support\Support;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Layout\Content;
@@ -39,13 +40,13 @@ class HomeController extends Controller
                     $row->column(12, '<hr>');
                     $row->column(12, function (Column $column) {
                         $column->row(function (Row $row) {
-                            $row->column(3, function (Column $column) {
+                            $row->column(2, function (Column $column) {
                                 $column->row(new WorthTrend());
                                 $column->row(new DefectTrend());
                             });
-                            $row->column(9, function (Column $column) {
+                            $row->column(10, function (Column $column) {
                                 $column->row(function (Row $row) {
-                                    $row->column(8, new ItemWorthTrend());
+                                    $row->column(4, new ItemWorthTrend());
                                     $row->column(4, function (Column $column) {
                                         $column->row(new AllWorth());
                                         $column->row(function (Row $row) {
@@ -57,16 +58,27 @@ class HomeController extends Controller
                                             $row->column(6, new ServiceWorth());
                                         });
                                     });
+                                    $row->column(4, function (Column $column) {
+                                        $column->row(function (Row $row) {
+                                            $row->column(6, new DeviceAboutToExpireCounts());
+                                            $row->column(6, new PartAboutToExpireCounts());
+                                        });
+                                        $column->row(function (Row $row) {
+                                            $row->column(6, new SoftwareAboutToExpireCounts());
+                                            $row->column(6, new DeviceExpiredCounts());
+                                        });
+                                        $column->row(function (Row $row) {
+                                            $row->column(6, new PartExpiredCounts());
+                                            $row->column(6, new SoftwareExpiredCounts());
+                                        });
+                                    });
                                 });
                             });
                         });
                     });
-                    $row->column(4, new DeviceAboutToExpireCounts());
-                    $row->column(4, new PartAboutToExpireCounts());
-                    $row->column(4, new SoftwareAboutToExpireCounts());
-                    $row->column(4, new DeviceExpiredCounts());
-                    $row->column(4, new PartExpiredCounts());
-                    $row->column(4, new SoftwareExpiredCounts());
+                    $services = Support::getServiceIssueStatus();
+                    $row->column(12, new Card(trans('main.service_status'), view('services_dashboard')
+                        ->with('services', $services)));
                 }
             });
     }

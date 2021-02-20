@@ -14,7 +14,7 @@ class PermissionController extends BasePermissionController
     public function index(Content $content): Content
     {
         return $content
-            ->title(admin_trans_label('title'))
+            ->title($this->title())
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
@@ -24,5 +24,10 @@ class PermissionController extends BasePermissionController
                 $tab->add(Data::icon('permission') . admin_trans_label('Permission'), $this->treeView(), true);
                 $row->column(12, $tab);
             });
+    }
+
+    public function title()
+    {
+        return admin_trans_label('title');
     }
 }

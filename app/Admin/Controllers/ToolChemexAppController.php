@@ -18,12 +18,17 @@ class ToolChemexAppController extends Controller
     public function index(Content $content): Content
     {
         return $content
-            ->header(admin_trans_label('title'))
+            ->header($this->title())
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $row->column(12, function (Column $column) {
                     $column->row(new Card(admin_trans_label('Step One'), view('tool_chemex_app.download')));
                 });
             });
+    }
+
+    public function title()
+    {
+        return admin_trans_label('title');
     }
 }

@@ -26,7 +26,7 @@ class CheckTrackController extends AdminController
     public function index(Content $content): Content
     {
         return $content
-            ->title(admin_trans_label('title'))
+            ->title($this->title())
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
@@ -34,6 +34,11 @@ class CheckTrackController extends AdminController
                 $tab->add(Data::icon('track') . trans('main.check_track'), $this->grid(), true);
                 $row->column(12, $tab);
             });
+    }
+
+    public function title()
+    {
+        return admin_trans_label('title');
     }
 
     /**

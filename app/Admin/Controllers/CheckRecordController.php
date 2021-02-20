@@ -32,7 +32,6 @@ use Dcat\Admin\Widgets\Tab;
  */
 class CheckRecordController extends AdminController
 {
-
     /**
      * @param $check_id
      * @return string
@@ -45,7 +44,7 @@ class CheckRecordController extends AdminController
     public function index(Content $content): Content
     {
         return $content
-            ->title(admin_trans_label('title'))
+            ->title($this->title())
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
@@ -53,6 +52,11 @@ class CheckRecordController extends AdminController
                 $tab->addLink(Data::icon('track') . trans('main.check_track'), admin_route('check.tracks.index'));
                 $row->column(12, $tab);
             });
+    }
+
+    public function title()
+    {
+        return admin_trans_label('title');
     }
 
     /**

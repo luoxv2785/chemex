@@ -36,9 +36,14 @@ class PurchasedChannelController extends AdminController
     public function index(Content $content): Content
     {
         return $content
-            ->title(admin_trans_label('title'))
+            ->title($this->title())
             ->description(admin_trans_label('description'))
             ->body($this->grid());
+    }
+
+    public function title()
+    {
+        return admin_trans_label('title');
     }
 
     /**

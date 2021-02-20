@@ -3,6 +3,7 @@
 namespace App\Admin\Forms;
 
 use App\Models\PurchasedChannel;
+use App\Models\SoftwareCategory;
 use App\Models\SoftwareRecord;
 use App\Models\VendorRecord;
 use Box\Spout\Common\Exception\IOException;
@@ -32,7 +33,7 @@ class SoftwareRecordImportForm extends Form
                         $category = SoftwareRecord::where('name', $row['分类'])->first();
                         $vendor = VendorRecord::where('name', $row['厂商'])->first();
                         if (empty($category)) {
-                            $category = new SoftwareRecord();
+                            $category = new SoftwareCategory();
                             $category->name = $row['分类'];
                             $category->save();
                         }

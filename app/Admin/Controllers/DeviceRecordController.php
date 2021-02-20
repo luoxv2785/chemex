@@ -3,7 +3,6 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Grid\BatchAction\DeviceRecordBatchDeleteAction;
-use App\Admin\Actions\Grid\RowAction\DeviceRecordCreateLendTrackAction;
 use App\Admin\Actions\Grid\RowAction\DeviceRecordCreateUpdateTrackAction;
 use App\Admin\Actions\Grid\RowAction\DeviceRecordDeleteAction;
 use App\Admin\Actions\Grid\RowAction\MaintenanceCreateAction;
@@ -45,10 +44,15 @@ class DeviceRecordController extends AdminController
 {
     use HasDeviceRelatedGrid;
 
+    public function title()
+    {
+        return admin_trans_label('title');
+    }
+
     public function index(Content $content): Content
     {
         return $content
-            ->title(admin_trans_label('title'))
+            ->title($this->title())
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();

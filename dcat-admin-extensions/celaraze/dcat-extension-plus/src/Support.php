@@ -49,6 +49,7 @@ class Support
         /**
          * 处理站点名称
          */
+        $horizontal_menu = false;
         if (empty(admin_setting('site_url'))) {
             $site_url = 'http://localhost';
         } else {
@@ -70,6 +71,9 @@ class Support
             $sidebar_style = 'default';
         } else {
             $sidebar_style = admin_setting('sidebar_style');
+            if ($sidebar_style == 'horizontal_menu') {
+                $horizontal_menu = true;
+            }
         }
 
         /**
@@ -85,7 +89,8 @@ class Support
             'admin.logo' => $logo,
             'admin.logo-mini' => $logo_mini,
             'admin.layout.color' => $theme_color,
-            'admin.layout.body_class' => $sidebar_style
+            'admin.layout.body_class' => $sidebar_style,
+            'admin.layout.horizontal_menu' => $horizontal_menu
         ]);
     }
 
@@ -144,16 +149,14 @@ CSS
         if (admin_setting('header_padding_fix')) {
             Admin::style(
                 <<<CSS
-.navbar-container {
-    padding: 0 35px !important;
-}
-
-.main-horizontal-sidebar > div{
-    padding: 0 35px !important;
+.navbar{
+    margin: 0 35px !important;
 }
 
 .main-horizontal-sidebar{
-/*margin: 0 35px;*/
+    box-sizing: border-box !important;
+    padding: 0 35px !important;
+    background-color: transparent !important;
 }
 
 .nav-link {

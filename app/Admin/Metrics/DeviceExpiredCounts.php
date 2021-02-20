@@ -29,7 +29,7 @@ class DeviceExpiredCounts extends Card
 
         $device_expired_counts = trans('main.device_expired_counts');
         $html = <<<HTML
-<div class="info-box" style="background:transparent;margin-bottom: 0;padding: 0;">
+<div class="info-box" style="background:transparent;margin-bottom: 0;padding: 0;height: 86px;">
 <span class="info-box-icon"><i class="feather icon-monitor" style="color:rgba(178,68,71,1);"></i></span>
   <div class="info-box-content">
     <span class="info-box-text mt-1">{$device_expired_counts}</span>
@@ -40,6 +40,7 @@ HTML;
 
         $this->content = $this->formatRenderable($html);
         $this->noPadding();
+        $this->style('margin-top:-0.1rem');
 
         return $this;
     }

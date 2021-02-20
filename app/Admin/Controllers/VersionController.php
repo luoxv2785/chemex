@@ -26,7 +26,7 @@ class VersionController extends Controller
         $description = Version::list()['gesha'];
 
         return $content
-            ->title(admin_trans_label('title'))
+            ->title($this->title())
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) use ($version, $description) {
                 $row->column(3, function (Column $column) use ($version) {
@@ -37,6 +37,11 @@ class VersionController extends Controller
                     $column->row(new Card($description['name'], $description['description']));
                 });
             });
+    }
+
+    public function title()
+    {
+        return admin_trans_label('title');
     }
 
     /**
