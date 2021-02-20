@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Grid\RowAction\DeviceTrackDeleteAction;
+use App\Admin\Actions\Grid\RowAction\DeviceTrackUpdateDeleteAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\DeviceTrack;
 use App\Support\Data;
@@ -11,6 +12,7 @@ use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
+use Dcat\Admin\Show;
 use Dcat\Admin\Widgets\Alert;
 use Dcat\Admin\Widgets\Tab;
 
@@ -46,19 +48,25 @@ class DeviceTrackController extends AdminController
             $grid->column('id');
             $grid->column('device.name');
             $grid->column('user.name');
+            $grid->column('lend_time');
+            $grid->column('lend_description');
             $grid->column('created_at');
-            $grid->column('updated_at');
 
             $grid->disableCreateButton();
             $grid->disableRowSelector();
             $grid->disableBatchActions();
-            $grid->disableViewButton();
             $grid->disableEditButton();
             $grid->disableDeleteButton();
 
             $grid->actions(function (RowActions $actions) {
-                if (Admin::user()->can('device.track.delete') && $this->deleted_at == null) {
-                    $actions->append(new DeviceTrackDeleteAction());
+                if (empty($this->lend_time)) {
+                    if (Admin::user()->can('device.track.delete') && $this->deleted_at == null) {
+                        $actions->append(new DeviceTrackDeleteAction());
+                    }
+                } else {
+                    if (Admin::user()->can('device.track.update_delete') && $this->deleted_at == null) {
+                        $actions->append(new DeviceTrackUpdateDeleteAction());
+                    }
                 }
             });
 
@@ -78,11 +86,26 @@ class DeviceTrackController extends AdminController
     /**
      * Make a show builder.
      *
-     * @return Alert
+     * @param $id
+     * @return Show
      */
-    protected function detail(): Alert
+    protected function detail($id): Show
     {
-        return Data::unsupportedOperationWarning();
+        return Show::make($id, new DeviceTrack(['device', 'user']), function (Show $show) {
+            $show->field('id');
+            $show->field('device.name');
+            $show->field('user.name');
+            $show->field('lend_time');
+            $show->field('lend_description');
+            $show->field('plan_return_time');
+            $show->field('return_time');
+            $show->field('return_description');
+            $show->field('created_at');
+            $show->field('updated_at');
+
+            $show->disableDeleteButton();
+            $show->disableEditButton();
+        });
     }
 
     /**

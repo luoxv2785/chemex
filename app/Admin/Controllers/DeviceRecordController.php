@@ -67,7 +67,7 @@ class DeviceRecordController extends AdminController
      */
     protected function grid(): Grid
     {
-        return Grid::make(new DeviceRecord(['category', 'vendor', 'user', 'user.department', 'depreciation', 'lend']), function (Grid $grid) {
+        return Grid::make(new DeviceRecord(['category', 'vendor', 'user', 'user.department', 'depreciation']), function (Grid $grid) {
 
             $grid->column('id');
             $grid->column('qrcode')->qrcode(function () {
@@ -91,7 +91,12 @@ class DeviceRecordController extends AdminController
             $grid->column('ip');
             $grid->column('price');
             $grid->column('expired');
-            $grid->column('user.name');
+            $grid->column('user.name')->display(function ($name) {
+                if ($this->isLend()) {
+                    return '<span style="color: rgba(178,68,71,1);font-weight: 600;">[' . trans('main.lend') . '] </span>' . $name;
+                }
+                return $name;
+            });
             $grid->column('user.department.name');
             $grid->column('expiration_left_days', admin_trans_label('Expiration Left Days'))->display(function () {
                 return ExpirationService::itemExpirationLeftDaysRender('device', $this->id);

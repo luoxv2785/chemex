@@ -98,10 +98,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'device.maintenance.create',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 19,
+                'order' => 20,
                 'parent_id' => 7,
                 'created_at' => '2020-11-19 09:23:03',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             7 => 
             array (
@@ -122,10 +122,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'software',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 30,
+                'order' => 31,
                 'parent_id' => 0,
                 'created_at' => '2020-11-19 09:59:31',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             9 => 
             array (
@@ -134,10 +134,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'part',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 20,
+                'order' => 21,
                 'parent_id' => 0,
                 'created_at' => '2020-11-19 09:59:57',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             10 => 
             array (
@@ -146,10 +146,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'organization',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 49,
+                'order' => 50,
                 'parent_id' => 0,
                 'created_at' => '2020-11-19 10:00:31',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             11 => 
             array (
@@ -158,10 +158,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'service',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 40,
+                'order' => 41,
                 'parent_id' => 0,
                 'created_at' => '2020-11-19 10:00:55',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             12 => 
             array (
@@ -170,10 +170,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'check',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 55,
+                'order' => 56,
                 'parent_id' => 0,
                 'created_at' => '2020-11-19 10:01:27',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             13 => 
             array (
@@ -182,10 +182,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'maintenance',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 62,
+                'order' => 63,
                 'parent_id' => 0,
                 'created_at' => '2020-11-19 10:01:59',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             14 => 
             array (
@@ -194,10 +194,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'vendor',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 67,
+                'order' => 68,
                 'parent_id' => 0,
                 'created_at' => '2020-11-19 10:03:42',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             15 => 
             array (
@@ -206,10 +206,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'purchased',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 70,
+                'order' => 71,
                 'parent_id' => 0,
                 'created_at' => '2020-11-19 10:04:11',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             16 => 
             array (
@@ -218,10 +218,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'version',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 73,
+                'order' => 74,
                 'parent_id' => 0,
                 'created_at' => '2020-11-19 10:04:37',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             17 => 
             array (
@@ -230,10 +230,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'software.action',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 33,
+                'order' => 34,
                 'parent_id' => 15,
                 'created_at' => '2020-11-19 10:06:25',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             18 => 
             array (
@@ -242,10 +242,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'software.record.delete',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 34,
+                'order' => 35,
                 'parent_id' => 24,
                 'created_at' => '2020-11-19 10:09:16',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             19 => 
             array (
@@ -254,10 +254,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'software.track.create_update',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 36,
+                'order' => 37,
                 'parent_id' => 24,
                 'created_at' => '2020-11-19 10:09:40',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             20 => 
             array (
@@ -266,10 +266,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'software.track.delete',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 37,
+                'order' => 38,
                 'parent_id' => 24,
                 'created_at' => '2020-11-19 10:10:02',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             21 => 
             array (
@@ -278,10 +278,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'software.history',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 38,
+                'order' => 39,
                 'parent_id' => 24,
                 'created_at' => '2020-11-19 10:10:28',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             22 => 
             array (
@@ -290,10 +290,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'software.track.list',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 39,
+                'order' => 40,
                 'parent_id' => 24,
                 'created_at' => '2020-11-19 10:11:19',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             23 => 
             array (
@@ -302,10 +302,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'part.action',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 23,
+                'order' => 24,
                 'parent_id' => 16,
                 'created_at' => '2020-11-19 10:14:24',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             24 => 
             array (
@@ -314,10 +314,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'part.record.delete',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 24,
+                'order' => 25,
                 'parent_id' => 30,
                 'created_at' => '2020-11-19 10:15:02',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             25 => 
             array (
@@ -326,10 +326,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'part.track.create_update',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 26,
+                'order' => 27,
                 'parent_id' => 30,
                 'created_at' => '2020-11-19 10:15:12',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             26 => 
             array (
@@ -338,10 +338,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'part.history',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 28,
+                'order' => 29,
                 'parent_id' => 30,
                 'created_at' => '2020-11-19 10:15:27',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             27 => 
             array (
@@ -350,10 +350,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'part.maintenance.create',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 29,
+                'order' => 30,
                 'parent_id' => 30,
                 'created_at' => '2020-11-19 10:15:44',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             28 => 
             array (
@@ -362,10 +362,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'part.track.delete',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 27,
+                'order' => 28,
                 'parent_id' => 30,
                 'created_at' => '2020-11-19 10:16:04',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             29 => 
             array (
@@ -374,10 +374,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'organization.action',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 52,
+                'order' => 53,
                 'parent_id' => 17,
                 'created_at' => '2020-11-19 10:18:46',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             30 => 
             array (
@@ -386,10 +386,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'organization.user.delete',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 53,
+                'order' => 54,
                 'parent_id' => 36,
                 'created_at' => '2020-11-19 10:18:57',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             31 => 
             array (
@@ -398,10 +398,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'service.action',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 43,
+                'order' => 44,
                 'parent_id' => 18,
                 'created_at' => '2020-11-19 10:19:54',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             32 => 
             array (
@@ -410,10 +410,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'service.record.delete',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 44,
+                'order' => 45,
                 'parent_id' => 38,
                 'created_at' => '2020-11-19 10:20:16',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             33 => 
             array (
@@ -422,10 +422,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'service.track.create_update',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 45,
+                'order' => 46,
                 'parent_id' => 38,
                 'created_at' => '2020-11-19 10:20:26',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             34 => 
             array (
@@ -434,10 +434,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'service.issue.create',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 46,
+                'order' => 47,
                 'parent_id' => 38,
                 'created_at' => '2020-11-19 10:21:32',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             35 => 
             array (
@@ -446,10 +446,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'service.track.delete',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 47,
+                'order' => 48,
                 'parent_id' => 38,
                 'created_at' => '2020-11-19 10:21:56',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             36 => 
             array (
@@ -458,10 +458,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'service.issue.update',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 48,
+                'order' => 49,
                 'parent_id' => 38,
                 'created_at' => '2020-11-19 10:22:25',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             37 => 
             array (
@@ -470,10 +470,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'check.action',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 58,
+                'order' => 59,
                 'parent_id' => 19,
                 'created_at' => '2020-11-19 10:29:48',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             38 => 
             array (
@@ -482,10 +482,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'check.track.update',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 59,
+                'order' => 60,
                 'parent_id' => 44,
                 'created_at' => '2020-11-19 10:30:28',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             39 => 
             array (
@@ -494,10 +494,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'maintenance.action',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 65,
+                'order' => 66,
                 'parent_id' => 20,
                 'created_at' => '2020-11-19 10:31:18',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             40 => 
             array (
@@ -506,10 +506,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'maintenance.update',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 66,
+                'order' => 67,
                 'parent_id' => 47,
                 'created_at' => '2020-11-19 10:31:43',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             41 => 
             array (
@@ -518,10 +518,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'check.record.update.yes',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 60,
+                'order' => 61,
                 'parent_id' => 44,
                 'created_at' => '2020-11-19 10:35:29',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             42 => 
             array (
@@ -530,10 +530,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'check.record.update.no',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 61,
+                'order' => 62,
                 'parent_id' => 44,
                 'created_at' => '2020-11-19 10:35:38',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             43 => 
             array (
@@ -566,10 +566,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'software.read-only',
                 'http_method' => 'GET',
                 'http_path' => 'software/tracks*,software/records*,software/categories*',
-                'order' => 31,
+                'order' => 32,
                 'parent_id' => 15,
                 'created_at' => '2020-11-19 13:22:53',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             46 => 
             array (
@@ -578,10 +578,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'software.all',
                 'http_method' => '',
                 'http_path' => 'software/tracks*,software/records*,software/categories*',
-                'order' => 32,
+                'order' => 33,
                 'parent_id' => 15,
                 'created_at' => '2020-11-19 13:23:56',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             47 => 
             array (
@@ -590,10 +590,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'hardware.read-only',
                 'http_method' => 'GET',
                 'http_path' => 'part/tracks*,part/records*,part/categories*',
-                'order' => 21,
+                'order' => 22,
                 'parent_id' => 16,
                 'created_at' => '2020-11-19 13:37:36',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             48 => 
             array (
@@ -602,10 +602,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'hardware.all',
                 'http_method' => '',
                 'http_path' => 'part/tracks*,part/records*,part/categories*',
-                'order' => 22,
+                'order' => 23,
                 'parent_id' => 16,
                 'created_at' => '2020-11-19 13:38:18',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             49 => 
             array (
@@ -614,10 +614,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'organization.read-only',
                 'http_method' => 'GET',
                 'http_path' => 'organization/users*,organization/departments*',
-                'order' => 50,
+                'order' => 51,
                 'parent_id' => 17,
                 'created_at' => '2020-11-19 13:40:44',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             50 => 
             array (
@@ -626,10 +626,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'organization.all',
                 'http_method' => '',
                 'http_path' => 'organization/users*,organization/departments*',
-                'order' => 51,
+                'order' => 52,
                 'parent_id' => 17,
                 'created_at' => '2020-11-19 13:41:10',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             51 => 
             array (
@@ -638,10 +638,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'service.read-only',
                 'http_method' => 'GET',
                 'http_path' => 'service/records*,service/tracks*,service/issues*',
-                'order' => 41,
+                'order' => 42,
                 'parent_id' => 18,
                 'created_at' => '2020-11-19 13:44:25',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             52 => 
             array (
@@ -650,10 +650,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'service.all',
                 'http_method' => '',
                 'http_path' => 'service/records*,service/tracks*,service/issues*',
-                'order' => 42,
+                'order' => 43,
                 'parent_id' => 18,
                 'created_at' => '2020-11-19 13:45:00',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             53 => 
             array (
@@ -662,10 +662,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'check.read-only',
                 'http_method' => 'GET',
                 'http_path' => 'check/records*,check/tracks*',
-                'order' => 56,
+                'order' => 57,
                 'parent_id' => 19,
                 'created_at' => '2020-11-19 14:00:10',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             54 => 
             array (
@@ -674,10 +674,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'check.all',
                 'http_method' => '',
                 'http_path' => 'check/records*,check/tracks*',
-                'order' => 57,
+                'order' => 58,
                 'parent_id' => 19,
                 'created_at' => '2020-11-19 14:00:45',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             55 => 
             array (
@@ -686,10 +686,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'maintenance.read-only',
                 'http_method' => 'GET',
                 'http_path' => 'maintenance/records*',
-                'order' => 63,
+                'order' => 64,
                 'parent_id' => 20,
                 'created_at' => '2020-11-19 14:01:46',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             56 => 
             array (
@@ -698,10 +698,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'maintenance.all',
                 'http_method' => '',
                 'http_path' => 'maintenance/records*',
-                'order' => 64,
+                'order' => 65,
                 'parent_id' => 20,
                 'created_at' => '2020-11-19 14:02:10',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             57 => 
             array (
@@ -710,10 +710,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'vendor.read-only',
                 'http_method' => 'GET',
                 'http_path' => 'vendor/records*',
-                'order' => 68,
+                'order' => 69,
                 'parent_id' => 21,
                 'created_at' => '2020-11-19 14:03:07',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             58 => 
             array (
@@ -722,10 +722,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'vendor.all',
                 'http_method' => '',
                 'http_path' => 'vendor/records*',
-                'order' => 69,
+                'order' => 70,
                 'parent_id' => 21,
                 'created_at' => '2020-11-19 14:03:24',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             59 => 
             array (
@@ -734,10 +734,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'puchased.read-only',
                 'http_method' => 'GET',
                 'http_path' => 'purchased/channels*',
-                'order' => 71,
+                'order' => 72,
                 'parent_id' => 22,
                 'created_at' => '2020-11-19 14:04:08',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             60 => 
             array (
@@ -746,10 +746,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'purchased.all',
                 'http_method' => '',
                 'http_path' => 'purchased/channels*',
-                'order' => 72,
+                'order' => 73,
                 'parent_id' => 22,
                 'created_at' => '2020-11-19 14:04:39',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             61 => 
             array (
@@ -758,10 +758,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'version.read-only',
                 'http_method' => 'GET',
                 'http_path' => 'version',
-                'order' => 74,
+                'order' => 75,
                 'parent_id' => 23,
                 'created_at' => '2020-11-19 14:05:14',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             62 => 
             array (
@@ -770,10 +770,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'version.action',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 75,
+                'order' => 76,
                 'parent_id' => 23,
                 'created_at' => '2020-11-19 14:05:40',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             63 => 
             array (
@@ -782,10 +782,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'version.migrate',
                 'http_method' => '',
                 'http_path' => 'version/migrate',
-                'order' => 76,
+                'order' => 77,
                 'parent_id' => 70,
                 'created_at' => '2020-11-19 14:06:39',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             64 => 
             array (
@@ -794,10 +794,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'depreciation_rule',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 77,
+                'order' => 78,
                 'parent_id' => 0,
                 'created_at' => '2020-12-19 01:16:23',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             65 => 
             array (
@@ -806,10 +806,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'depreciation_rule.read-only',
                 'http_method' => 'GET',
                 'http_path' => 'depreciation/rules*',
-                'order' => 78,
+                'order' => 79,
                 'parent_id' => 73,
                 'created_at' => '2020-12-19 01:17:19',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             66 => 
             array (
@@ -818,10 +818,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'depreciation_rule.all',
                 'http_method' => '',
                 'http_path' => 'depreciation/rules*',
-                'order' => 79,
+                'order' => 80,
                 'parent_id' => 73,
                 'created_at' => '2020-12-19 01:18:30',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             67 => 
             array (
@@ -830,10 +830,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'configuration',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 80,
+                'order' => 81,
                 'parent_id' => 0,
                 'created_at' => '2020-12-19 01:18:30',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             68 => 
             array (
@@ -842,10 +842,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'configuration.read-only',
                 'http_method' => 'GET',
                 'http_path' => 'configurations*',
-                'order' => 81,
+                'order' => 82,
                 'parent_id' => 76,
                 'created_at' => '2020-12-19 01:18:30',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             69 => 
             array (
@@ -854,10 +854,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'configuration.all',
                 'http_method' => '',
                 'http_path' => 'configurations*',
-                'order' => 82,
+                'order' => 83,
                 'parent_id' => 76,
                 'created_at' => '2020-12-19 01:18:30',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             70 => 
             array (
@@ -878,10 +878,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'software.record.batch.delete',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 35,
+                'order' => 36,
                 'parent_id' => 24,
                 'created_at' => '2020-12-28 16:24:50',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             72 => 
             array (
@@ -890,10 +890,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'part.record.batch.delete',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 25,
+                'order' => 26,
                 'parent_id' => 30,
                 'created_at' => '2020-12-28 16:25:06',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             73 => 
             array (
@@ -902,10 +902,10 @@ class AdminPermissionsTableSeeder extends Seeder
                 'slug' => 'organization.user.batch.delete',
                 'http_method' => '',
                 'http_path' => '',
-                'order' => 54,
+                'order' => 55,
                 'parent_id' => 36,
                 'created_at' => '2020-12-29 23:51:57',
-                'updated_at' => '2021-02-12 11:38:08',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
             74 => 
             array (
@@ -1002,6 +1002,18 @@ class AdminPermissionsTableSeeder extends Seeder
                 'parent_id' => 89,
                 'created_at' => '2021-02-12 11:38:03',
                 'updated_at' => '2021-02-12 11:38:08',
+            ),
+            82 => 
+            array (
+                'id' => 91,
+                'name' => '设备归还',
+                'slug' => 'device.track.update_delete',
+                'http_method' => '',
+                'http_path' => '',
+                'order' => 19,
+                'parent_id' => 7,
+                'created_at' => '2021-02-20 11:17:21',
+                'updated_at' => '2021-02-20 11:17:28',
             ),
         ));
         

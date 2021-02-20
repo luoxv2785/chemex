@@ -6,6 +6,7 @@ use App\Traits\HasExtendedFields;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
@@ -183,11 +184,6 @@ class DeviceRecord extends Model
     public function userName(): string
     {
         $user = $this->user()->first();
-
-        if ($this->isLend()) {
-            $user = $this->lend()->first()->user()->first();
-        }
-
         if (empty($user)) {
             $name = '闲置';
         } else {
@@ -210,5 +206,27 @@ class DeviceRecord extends Model
             'id',   // 远程表对中间表的关联字段
             'id',   // 主表对中间表的关联字段
             'user_id'); // 中间表对远程表的关联字段
+    }
+
+    /**
+     * 判断设备是否借用状态
+     * @return bool
+     */
+    public function isLend(): bool
+    {
+        $device_track = $this->track()->first();
+        if (empty($device_track) || empty($device_track->lend_time)) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 设备有很多归属记录
+     * @return HasMany
+     */
+    public function track(): HasMany
+    {
+        return $this->hasMany(DeviceTrack::class, 'device_id', 'id');
     }
 }

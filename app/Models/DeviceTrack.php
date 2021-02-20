@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use DateTime;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -11,6 +13,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static where(string $key, string $value)
  * @property int device_id
  * @property int user_id
+ * @property DateTime|null lend_time
+ * @property string|null lend_description
+ * @property DateTime|null plan_return_time
  */
 class DeviceTrack extends Model
 {
@@ -21,11 +26,11 @@ class DeviceTrack extends Model
 
     /**
      * 设备追踪有一个设备记录
-     * @return HasOne
+     * @return BelongsTo
      */
-    public function device(): HasOne
+    public function device(): BelongsTo
     {
-        return $this->hasOne(DeviceRecord::class, 'id', 'device_id');
+        return $this->belongsTo(DeviceRecord::class, 'device_id', 'id');
     }
 
     /**
