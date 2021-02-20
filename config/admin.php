@@ -279,7 +279,7 @@ return [
         // default, blue, blue-light, green
         'color' => 'default',
 
-        'body_class' => '',
+        'body_class' => 'dark-mode',
 
         'sidebar_collapsed' => false,
 

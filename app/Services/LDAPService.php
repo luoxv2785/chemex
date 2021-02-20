@@ -8,8 +8,6 @@ use Adldap\Laravel\Facades\Adldap;
 use App\Models\Department;
 use App\Models\User;
 use Exception;
-use Overtrue\LaravelPinyin\Facades\Pinyin;
-use Pour\Base\Uni;
 
 class LDAPService
 {
@@ -109,7 +107,7 @@ class LDAPService
                 if (empty($user)) {
                     $user = new User();
                 }
-                $user->username = Uni::trim(Pinyin::sentence($user_name) . Uni::randomNumberString(4));
+                $user->username = $user_name;
                 $user->password = bcrypt($user->username);
                 $user->name = $user_name;
                 $user->department_id = $department_id;

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DateTime;
 use Dcat\Admin\Models\Administrator;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -29,6 +30,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property int ad_tag
  * @property null|string extended_fields
  * @property DeviceRecord device
+ * @property DateTime|null deleted_at
  */
 class User extends Administrator implements JWTSubject
 {

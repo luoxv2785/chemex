@@ -45,13 +45,6 @@ class DeviceRecordImportForm extends Form
                             $vendor_record->name = $row['厂商'];
                             $vendor_record->save();
                         }
-                        if (empty($user)) {
-                            $user = new User();
-                            $user->name = $row['用户'];
-                            $user->department_id = 0;
-                            $user->gender = '无';
-                            $user->save();
-                        }
                         $device_record = new DeviceRecord();
                         $device_record->name = $row['名称'];
                         $device_record->category_id = $device_category->id;
@@ -62,7 +55,14 @@ class DeviceRecordImportForm extends Form
                         if (!empty($row['序列号'])) {
                             $device_record->sn = $row['序列号'];
                         }
-                        $device_record->asset_number = $row['资产编号'];
+                        $exist = DeviceRecord::where('asset_number', $row['资产编号'])->withTrashed()->first();
+                        if (!empty($exist) && !empty($exist->asset_number)) {
+                            $exist->asset_number = $exist->asset_number . '_archive';
+                            $exist->save();
+                        }
+                        if (!empty($row['资产编号'])) {
+                            $device_record->asset_number = $row['资产编号'];
+                        }
                         $device_record->mac = $row['MAC'];
                         $device_record->ip = $row['IP'];
                         if (!empty($row['安全密码'])) {
@@ -95,10 +95,13 @@ class DeviceRecordImportForm extends Form
 
                         $device_record->save();
 
-                        $device_track = new DeviceTrack();
-                        $device_track->device_id = $device_record->id;
-                        $device_track->user_id = $user->id;
-                        $device_track->save();
+                        if (!empty($user)) {
+                            $device_track = new DeviceTrack();
+                            $device_track->device_id = $device_record->id;
+                            $device_track->user_id = $user->id;
+                            $device_track->save();
+                        }
+
                     } else {
                         return $this->response()
                             ->error(trans('main.parameter_missing'));

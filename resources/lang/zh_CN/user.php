@@ -16,7 +16,7 @@ return [
         'Delete Confirm Description' => '删除的同时将会解除所有与之关联的归属关系',
         'Import' => '导入',
         'LDAP Import Success' => 'LDAP导入成功！',
-        'File Help' => '导入支持xls、xlsx、csv文件，且表格头必填栏位【名称、部门、性别】，可选栏位【职位、手机、邮箱】。',
+        'File Help' => '导入支持xls、xlsx、csv文件，且表格头必填栏位【用户名、名称、性别】，支持chemex导出的Excel文件直接导入。如果导入的文件中未指定密码，密码等同于用户名。',
         'Rewrite' => '覆盖',
         'Merge' => '合并',
         'File' => '文件',
