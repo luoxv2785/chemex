@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '64d4d7d39eba97a4b179bfdb95b5bc03efdad522',
+    'reference' => '5d13a61fbb13ce3d9aae0bc151595351b9e74cf8',
     'name' => 'celaraze/chemex',
   ),
   'versions' => 
@@ -87,7 +87,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '64d4d7d39eba97a4b179bfdb95b5bc03efdad522',
+      'reference' => '5d13a61fbb13ce3d9aae0bc151595351b9e74cf8',
     ),
     'celaraze/pour' => 
     array (
@@ -178,12 +178,12 @@ private static $installed = array (
     ),
     'dcat/laravel-admin' => 
     array (
-      'pretty_version' => '2.0.17-beta',
-      'version' => '2.0.17.0-beta',
+      'pretty_version' => '2.0.18-beta',
+      'version' => '2.0.18.0-beta',
       'aliases' => 
       array (
       ),
-      'reference' => 'c8226661ee38202cf7b91a93c99a72851144e14b',
+      'reference' => 'f02dc274666450dbef238392459109d84e172df8',
     ),
     'dnoegel/php-xdg-base-dir' => 
     array (
@@ -880,12 +880,12 @@ private static $installed = array (
     ),
     'phpstan/phpstan' => 
     array (
-      'pretty_version' => '0.12.77',
-      'version' => '0.12.77.0',
+      'pretty_version' => '0.12.78',
+      'version' => '0.12.78.0',
       'aliases' => 
       array (
       ),
-      'reference' => '1f10b8c8d118d01e7b492f9707999d456be5812c',
+      'reference' => 'eecce8d2ee3cac6769f37b4cb1998b2715f82984',
     ),
     'phpunit/php-code-coverage' => 
     array (

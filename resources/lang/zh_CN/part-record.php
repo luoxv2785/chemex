@@ -18,7 +18,7 @@ return [
         'Delete Confirm Description' => '删除的同时将会解除所有与之关联的归属关系',
         'Track Create Update' => '归属设备',
         'Import' => '导入',
-        'File Help' => '导入支持xls、xlsx、csv文件，且表格头必须使用【名称，描述，分类，资产编号，厂商，序列号，规格，价格，购入日期，过保日期，购入途径】。',
+        'File Help' => '导入支持xls、xlsx、csv文件，且表格头必填栏位【名称、分类、规格、厂商】，支持咖啡壶导出的Excel文件直接导入。',
         'Device Help' => '选择新设备后，将会自动解除此配件与老设备的归属关系。',
         'Maintenance Create' => '报告故障'
     ],

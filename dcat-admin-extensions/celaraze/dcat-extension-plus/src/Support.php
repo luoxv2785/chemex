@@ -139,14 +139,21 @@ CSS
         }
     }
 
-    public function headerBlocks()
+    public function headerPaddingFix()
     {
-        if (admin_setting('header_blocks')) {
+        if (admin_setting('header_padding_fix')) {
             Admin::style(
                 <<<CSS
-.navbar {
-    margin: 0 35px 0 35px;
-    height: 70px;
+.navbar-container {
+    padding: 0 35px !important;
+}
+
+.main-horizontal-sidebar > div{
+    padding: 0 35px !important;
+}
+
+.main-horizontal-sidebar{
+/*margin: 0 35px;*/
 }
 
 .nav-link {

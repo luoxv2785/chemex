@@ -1,7 +1,7 @@
 <?php
 return [
     'labels' => [
-        'title' => '物资故障',
+        'title' => '资产故障',
         'description' => '报告故障的设备、配件等',
         'records' => '物资故障',
         'Status Waiting' => '等待处理',

@@ -34,7 +34,7 @@ class HomeController extends Controller
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $user = User::find(auth('admin')->user()->id);
-                $row->column(3, new Card(trans('main.my_all_worth'), $user->itemsPrice()));
+                $row->column(2, new Card(trans('main.my_all_worth'), $user->itemsPrice()));
                 if (Admin::user()->can('home.dashboard')) {
                     $row->column(12, '<hr>');
                     $row->column(12, function (Column $column) {

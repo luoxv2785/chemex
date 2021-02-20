@@ -27,7 +27,7 @@ return [
         'Track Create Update' => '分配用户',
         'Maintenance Create' => '报告故障',
         'Import' => '导入',
-        'File Help' => '导入支持xls、xlsx、csv文件，且表格头必须使用【名称，描述，分类，厂商，资产编号，用户，序列号，MAC，IP，价格，购入日期，过保日期，购入途径】。',
+        'File Help' => '导入支持xls、xlsx、csv文件，且表格头必填栏位【名称、分类、厂商】，支持咖啡壶导出的Excel文件直接导入。',
         'Update SSH Success' => 'SSH信息配置成功！',
         'New User Id' => '新使用者',
         'User Id Help' => '选择新使用者后，将会自动解除此设备与老使用者的归属关系。',

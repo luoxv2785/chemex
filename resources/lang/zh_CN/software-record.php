@@ -28,7 +28,7 @@ return [
         'name' => '名称',
         'description' => '描述',
         'category' => [
-            'name' => '软件分类'
+            'name' => '分类'
         ],
         'version' => '版本',
         'vendor' => [
