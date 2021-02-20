@@ -31,6 +31,7 @@ use Dcat\Admin\Widgets\Tab;
  * @property int id
  * @property double price
  * @property string purchased
+ * @method device()
  */
 class PartRecordController extends AdminController
 {
@@ -73,7 +74,7 @@ class PartRecordController extends AdminController
             });
             $grid->column('device.name')->link(function () {
                 if (!empty($this->device)) {
-                    return admin_route('device.records.show', [$this->device['id']]);
+                    return admin_route('device.records.show', [$this->device()->first()->id]);
                 }
             });
             $grid->column('depreciation.name');

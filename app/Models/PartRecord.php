@@ -5,8 +5,8 @@ namespace App\Models;
 use App\Traits\HasExtendedFields;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -62,11 +62,11 @@ class PartRecord extends Model
 
     /**
      * 配件记录在远处有一个设备
-     * @return HasManyThrough
+     * @return HasOneThrough
      */
-    public function device(): HasManyThrough
+    public function device(): HasOneThrough
     {
-        return $this->hasManyThrough(
+        return $this->hasOneThrough(
             DeviceRecord::class,  // 远程表
             PartTrack::class,   // 中间表
             'part_id',    // 中间表对主表的关联字段

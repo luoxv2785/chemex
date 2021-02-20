@@ -1,13 +1,14 @@
 <div class="login-page">
-    <video src="/static/video/zhinenggongchang.mp4" autoplay="" loop="" muted="" class="left"
-           style="object-fit:fill;"></video>
-    <div class="right bg-black">
+    <div class="left background">
+
+    </div>
+    <div class="right bg-white">
         <div class="login-box">
             <div class="login-logo mb-2">
-                {{ admin_setting('site_title') }}
+                {{ config('admin.name') }}
             </div>
             <div class="card">
-                <div class="card-body login-card-body shadow-100 bg-black">
+                <div class="card-body login-card-body shadow-100">
                     <p class="login-box-msg mt-1 mb-1">{{ __('admin.welcome_back') }}</p>
 
                     <form id="login-form" method="POST" action="{{ admin_url('auth/login') }}">
@@ -114,7 +115,8 @@
 
 <style>
     .login-page {
-        position: relative;
+        display: flex;
+        flex-direction: row;
     }
 
     .left {
@@ -131,11 +133,19 @@
     }
 
     .right {
+        flex: 3;
         height: 100vh;
-        position: absolute;
-        z-index: 99;
-        top: 0;
-        right: 0;
+        /*background: #222233;*/
+    }
+
+    .background {
+        width: 100%;
+        height: 100vh;
+        zoom: 1;
+        background-repeat: no-repeat;
+        background-position: center 0;
+        background-size: cover;
+        background-image: url("/static/images/background.jpg");
     }
 
     .login-box {

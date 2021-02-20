@@ -63,11 +63,6 @@ Route::group([
         ->name('chemex_app');
 
     /**
-     * 测试
-     */
-    $router->get('/test', 'HomeController@test');
-
-    /**
      * 设备管理
      */
     $router->resource('/device/records', 'DeviceRecordController')
@@ -210,4 +205,5 @@ Route::group([
         ->name('notification.read.all');
     $router->get('/notifications/read/{id}', [NotificationController::class, 'read'])
         ->name('notification.read');
+
 });

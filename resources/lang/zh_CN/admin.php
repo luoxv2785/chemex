@@ -198,7 +198,7 @@ return [
     'quick_create' => '快速创建',
     'grid_items_selected' => '已选择 {n} 项',
     'nothing_updated' => '没有任何数据被更改',
-    'welcome_back' => '欢迎回来，请登录您的账号。',
+    'welcome_back' => '为企业数字化建设赋能。',
     'documentation' => '文档',
     'demo' => '示例',
     'extensions' => '扩展',
