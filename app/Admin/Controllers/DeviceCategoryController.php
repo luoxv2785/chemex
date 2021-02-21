@@ -31,6 +31,7 @@ class DeviceCategoryController extends AdminController
                 $tab->add(Data::icon('category') . trans('main.category'), $this->treeView(), true);
                 $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('device.tracks.index'));
                 $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('device.statistics'));
+                $tab->addLink(Data::icon('custom_field') . trans('main.custom_field'), admin_route('custom_fields.index', ['type' => 'device']));
                 $row->column(12, $tab);
             });
     }

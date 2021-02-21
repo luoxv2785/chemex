@@ -20,7 +20,6 @@ return [
         'Batch Delete Confirm' => '您确定要删除选中的设备吗？',
         'Batch Delete Success' => '批量删除设备成功！',
         'Delete' => '删除设备',
-        'Delete Success' => '成功删除设备！',
         'Delete Confirm' => '确认删除？',
         'Delete Confirm Description' => '删除的同时将会解除所有与之关联的归属关系',
         'Update SSH' => '编辑SSH连接信息',

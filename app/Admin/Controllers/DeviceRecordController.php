@@ -44,11 +44,6 @@ class DeviceRecordController extends AdminController
 {
     use HasDeviceRelatedGrid;
 
-    public function title()
-    {
-        return admin_trans_label('title');
-    }
-
     public function index(Content $content): Content
     {
         return $content
@@ -60,8 +55,14 @@ class DeviceRecordController extends AdminController
                 $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('device.categories.index'));
                 $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('device.tracks.index'));
                 $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('device.statistics'));
+                $tab->addLink(Data::icon('custom_field') . trans('main.custom_field'), admin_route('custom_fields.index', ['type' => 'device']));
                 $row->column(12, $tab);
             });
+    }
+
+    public function title()
+    {
+        return admin_trans_label('title');
     }
 
     /**

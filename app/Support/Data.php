@@ -252,7 +252,7 @@ class Data
             'role' => '<i class="fa feather icon-users"></i> ',
             'permission' => '<i class="fa feather icon-lock"></i> ',
             'statistics' => '<i class="fa feather icon-bar-chart-2"></i> ',
-            'lend' => '<i class="fa feather icon-arrow-up"></i> '
+            'custom_field' => '<i class="fa feather icon-edit-2"></i> '
         ];
         return $array[$string];
     }
@@ -270,4 +270,20 @@ class Data
         ];
     }
 
+    /**
+     * 返回自定义字段的类型
+     * @return string[]
+     */
+    public static function customFieldTypes(): array
+    {
+        return [
+            'string' => '字符串',
+            'date' => '日期',
+            'dateTime' => '日期时间',
+            'integer' => '整数',
+            'float' => '浮点',
+            'double' => '双精度',
+            'longText' => '长文本'
+        ];
+    }
 }

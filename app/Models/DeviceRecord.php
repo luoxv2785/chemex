@@ -229,4 +229,13 @@ class DeviceRecord extends Model
     {
         return $this->hasMany(DeviceTrack::class, 'device_id', 'id');
     }
+
+    /**
+     * 设备的自定义字段
+     * @return mixed
+     */
+    public function customFields()
+    {
+        return CustomField::where('table_name', $this->table)->get();
+    }
 }

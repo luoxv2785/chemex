@@ -206,4 +206,17 @@ Route::group([
     $router->get('/notifications/read/{id}', [NotificationController::class, 'read'])
         ->name('notification.read');
 
+    $router->resource('/custom_fields', 'CustomFieldController')
+        ->names('custom_fields');
+
+    $router->get('/test', function () {
+        $custom_field = new \App\Models\CustomField();
+        $custom_field->table_name = 'admin_users';
+        $custom_field->name = 'age333';
+        $custom_field->type = 'string';
+        $custom_field->is_nullable = 0;
+        $custom_field->save();
+//        $custom_field = \App\Models\CustomField::find(2);
+//        $custom_field->delete();
+    });
 });
