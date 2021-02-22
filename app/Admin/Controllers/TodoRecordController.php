@@ -24,11 +24,6 @@ use Dcat\Admin\Widgets\Alert;
  */
 class TodoRecordController extends AdminController
 {
-    public function title()
-    {
-        return admin_trans_label('title');
-    }
-
     public function index(Content $content): Content
     {
         return $content
@@ -42,6 +37,11 @@ class TodoRecordController extends AdminController
                 });
                 $row->column(12, $this->grid());
             });
+    }
+
+    public function title()
+    {
+        return admin_trans_label('title');
     }
 
     /**

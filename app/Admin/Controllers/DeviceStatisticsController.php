@@ -16,11 +16,6 @@ use Dcat\Admin\Widgets\Tab;
 
 class DeviceStatisticsController extends Controller
 {
-    public function title()
-    {
-        return admin_trans_label('title');
-    }
-
     public function index(Content $content): Content
     {
         return $content
@@ -32,7 +27,6 @@ class DeviceStatisticsController extends Controller
                 $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('device.categories.index'));
                 $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('device.tracks.index'));
                 $tab->add(Data::icon('statistics') . trans('main.statistics'), null, true);
-                $tab->addLink(Data::icon('custom_field') . trans('main.custom_field'), admin_route('custom_fields.index', ['type' => 'device']));
                 $row->column(12, $tab);
             })
             ->body(function (Row $row) {
@@ -42,5 +36,10 @@ class DeviceStatisticsController extends Controller
                 $row->column(3, new DeviceAboutToExpireCounts());
                 $row->column(3, new DeviceExpiredCounts());
             });
+    }
+
+    public function title()
+    {
+        return admin_trans_label('title');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasStaticGetTableName;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -28,6 +29,7 @@ class PartRecord extends Model
 {
     use HasDateTimeFormatter;
     use SoftDeletes;
+    use HasStaticGetTableName;
 
     protected $table = 'part_records';
 

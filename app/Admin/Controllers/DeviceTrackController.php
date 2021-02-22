@@ -32,7 +32,6 @@ class DeviceTrackController extends AdminController
                 $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('device.categories.index'));
                 $tab->add(Data::icon('track') . trans('main.track'), $this->grid(), true);
                 $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('device.statistics'));
-                $tab->addLink(Data::icon('custom_field') . trans('main.custom_field'), admin_route('custom_fields.index', ['type' => 'device']));
                 $row->column(12, $tab);
             });
     }

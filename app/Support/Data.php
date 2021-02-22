@@ -4,6 +4,11 @@
 namespace App\Support;
 
 
+use App\Models\ConsumableRecord;
+use App\Models\DeviceRecord;
+use App\Models\PartRecord;
+use App\Models\ServiceRecord;
+use App\Models\SoftwareRecord;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Widgets\Alert;
 
@@ -284,6 +289,21 @@ class Data
             'float' => '浮点',
             'double' => '双精度',
             'longText' => '长文本'
+        ];
+    }
+
+    /**
+     * 表名返回资产名
+     * @return string[]
+     */
+    public static function itemNameByTableName(): array
+    {
+        return [
+            DeviceRecord::table() => trans('main.device'),
+            PartRecord::table() => trans('main.part'),
+            SoftwareRecord::table() => trans('main.software'),
+            ConsumableRecord::table() => trans('main.consumable'),
+            ServiceRecord::table() => trans('main.service'),
         ];
     }
 }

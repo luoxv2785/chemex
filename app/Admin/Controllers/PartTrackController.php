@@ -19,11 +19,6 @@ use Dcat\Admin\Widgets\Tab;
  */
 class PartTrackController extends AdminController
 {
-    public function title()
-    {
-        return admin_trans_label('title');
-    }
-
     public function index(Content $content): Content
     {
         return $content
@@ -37,6 +32,11 @@ class PartTrackController extends AdminController
                 $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('part.statistics'));
                 $row->column(12, $tab);
             });
+    }
+
+    public function title()
+    {
+        return admin_trans_label('title');
     }
 
     /**

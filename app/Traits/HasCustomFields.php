@@ -40,7 +40,7 @@ trait HasCustomFields
                 default:
                     $form->text($custom_field->name, $custom_field->nick_name);
             }
-            if (!$custom_field->is_nullable) {
+            if ($custom_field->is_nullable == 0) {
                 $form->field($custom_field->name)->required();
             }
         }

@@ -270,14 +270,14 @@ class AdminMenuTableSeeder extends Seeder
             array (
                 'id' => 21,
                 'parent_id' => 19,
-                'order' => 25,
+                'order' => 22,
                 'title' => 'Version',
                 'icon' => 'feather icon-chevrons-down',
                 'uri' => 'version',
                 'extension' => '',
                 'show' => 1,
                 'created_at' => '2020-10-22 15:05:00',
-                'updated_at' => '2021-02-04 08:34:12',
+                'updated_at' => '2021-02-22 11:59:25',
             ),
             20 => 
             array (
@@ -294,7 +294,7 @@ class AdminMenuTableSeeder extends Seeder
             ),
             21 => 
             array (
-                'id' => 27,
+                'id' => 28,
                 'parent_id' => 19,
                 'order' => 19,
                 'title' => 'Dcat Plus',
@@ -302,8 +302,8 @@ class AdminMenuTableSeeder extends Seeder
                 'uri' => 'dcat-plus/site',
                 'extension' => 'celaraze.dcat-extension-plus',
                 'show' => 1,
-                'created_at' => '2021-02-09 08:11:19',
-                'updated_at' => '2021-02-10 09:58:05',
+                'created_at' => '2021-02-22 11:59:03',
+                'updated_at' => '2021-02-22 11:59:25',
             ),
         ));
         

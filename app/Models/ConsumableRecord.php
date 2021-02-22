@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasStaticGetTableName;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Illuminate\Database\Eloquent\HigherOrderBuilderProxy;
 use Illuminate\Database\Eloquent\Model;
@@ -17,6 +18,7 @@ class ConsumableRecord extends Model
 {
     use HasDateTimeFormatter;
     use SoftDeletes;
+    use HasStaticGetTableName;
 
     protected $table = 'consumable_records';
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasStaticGetTableName;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
@@ -41,6 +42,7 @@ class DeviceRecord extends Model
 {
     use HasDateTimeFormatter;
     use SoftDeletes;
+    use HasStaticGetTableName;
 
     protected $table = 'device_records';
 

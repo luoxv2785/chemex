@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\CustomField;
+use Exception;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -20,10 +21,18 @@ class CustomFieldObserver
         try {
             Schema::table($customField->table_name, function (Blueprint $table) use ($customField) {
                 $type = $customField->type;
-                $table->$type($customField->name)->nullable($customField->is_nullable);
+                if ($customField->is_nullable == 0) {
+                    $nullable = false;
+                } else {
+                    $nullable = true;
+                }
+                if ($type == 'date' || $type == 'dateTime') {
+                    $nullable = true;
+                }
+                $table->$type($customField->name)->nullable($nullable);
             });
-        } catch (\Exception $exception) {
-            DB::rollBack();
+        } catch (Exception $exception) {
+            dd($exception->getMessage());
         }
     }
 
@@ -50,7 +59,7 @@ class CustomFieldObserver
             Schema::table($customField->table_name, function (Blueprint $table) use ($customField) {
                 $table->dropColumn($customField->name);
             });
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             DB::rollBack();
         }
     }
