@@ -132,6 +132,7 @@ class CustomFieldController extends AdminController
                 $custom_fields = new \App\Models\CustomField();
                 $custom_fields->table_name = $form->input('table_name');
                 $custom_fields->name = $form->input('name');
+                $custom_fields->nick_name = $form->input('nick_name');
                 $custom_fields->type = $form->input('type');
                 $custom_fields->is_nullable = $form->input('is_nullable');
                 $custom_fields->save();

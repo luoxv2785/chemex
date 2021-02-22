@@ -45,12 +45,12 @@ class ConsumableInForm extends Form
                 $consumable_track->delete();
             }
             $return = $this->response()
-                ->success(admin_trans_label('In Success'))
+                ->success(trans('main.success'))
                 ->refresh();
         } catch (Exception $e) {
             $return = $this
                 ->response()
-                ->error(admin_trans_label('In Success') . $e->getMessage());
+                ->error(trans('main.fail') . $e->getMessage());
         }
 
         return $return;

@@ -40,12 +40,12 @@ class ConsumableOutForm extends Form
                 $consumable_track->delete();
             }
             $return = $this->response()
-                ->success(admin_trans_label('Out Success'))
+                ->success(trans('main.success'))
                 ->refresh();
         } catch (Exception $e) {
             $return = $this
                 ->response()
-                ->error(admin_trans_label('Out Fail') . $e->getMessage());
+                ->error(trans('main.fail') . $e->getMessage());
         }
 
         return $return;

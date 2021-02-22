@@ -106,7 +106,6 @@ class ConsumableRecordController extends AdminController
             $show->field('category.name');
             $show->field('vendor.name');
             $show->field('price');
-            $show->field('extended_fields')->view('extended_fields');
             $show->field('created_at');
             $show->field('updated_at');
         });

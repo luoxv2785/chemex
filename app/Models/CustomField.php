@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string name
  * @property string type
  * @property int is_nullable
+ * @property string nick_name
  * @method static find(int $int)
  * @method static where(string $key, string $value1, string $value2 = null)
  */

@@ -40,9 +40,9 @@ class ComposerStaticInit2dd84e77f59a75b685ec9f147c50c607
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'dc1275c308c5b416beb314b6317daca2' => __DIR__ . '/..' . '/overtrue/pinyin/src/const.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
+        '044fc72df35e84c745ee0d4120dc15d2' => __DIR__ . '/..' . '/dcat/laravel-admin/src/Support/helpers.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
         'cda2d2f579338909929d3104d0afc501' => __DIR__ . '/..' . '/overtrue/laravel-pinyin/src/helpers.php',
-        '044fc72df35e84c745ee0d4120dc15d2' => __DIR__ . '/..' . '/dcat/laravel-admin/src/Support/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -1078,8 +1078,8 @@ class ComposerStaticInit2dd84e77f59a75b685ec9f147c50c607
         'App\\Support\\LDAP' => __DIR__ . '/../..' . '/app/Support/LDAP.php',
         'App\\Support\\Support' => __DIR__ . '/../..' . '/app/Support/Support.php',
         'App\\Support\\Version' => __DIR__ . '/../..' . '/app/Support/Version.php',
+        'App\\Traits\\HasCustomFields' => __DIR__ . '/../..' . '/app/Traits/HasCustomFields.php',
         'App\\Traits\\HasDeviceRelatedGrid' => __DIR__ . '/../..' . '/app/Traits/HasDeviceRelatedGrid.php',
-        'App\\Traits\\HasExtendedFields' => __DIR__ . '/../..' . '/app/Traits/HasExtendedFields.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/CorsService.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',

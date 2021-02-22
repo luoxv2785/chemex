@@ -46,7 +46,7 @@ final class Versions
   'composer/spdx-licenses' => '1.5.5@de30328a7af8680efdc03e396aad24befd513200',
   'composer/xdebug-handler' => '1.4.5@f28d44c286812c714741478d968104c5e604a1d4',
   'dcat/easy-excel' => '1.0.5@da0565ae0a31b306947222c4e014054a7172e4c4',
-  'dcat/laravel-admin' => '2.0.19-beta@7b58de449a577c8c68a30e1d2e61f09b8e2bff87',
+  'dcat/laravel-admin' => '2.0.17-beta@c8226661ee38202cf7b91a93c99a72851144e14b',
   'dnoegel/php-xdg-base-dir' => 'v0.1.1@8f8a6e48c5ecb0f991c2fdcf5f154a47d85f9ffd',
   'doctrine/cache' => '1.10.2@13e3381b25847283a91948d04640543941309727',
   'doctrine/dbal' => '3.0.0@ee6d1260d5cc20ec506455a585945d7bdb98662c',
@@ -82,7 +82,7 @@ final class Versions
   'overtrue/laravel-pinyin' => '4.0.0@c0b15aa49eac08bff80122010b91a0b3fe0f1e21',
   'overtrue/pinyin' => '4.0.6@9836dae1783bcf5934508a2abe32eca9ea5ee15d',
   'phpoption/phpoption' => '1.7.5@994ecccd8f3283ecf5ac33254543eb0ac946d525',
-  'phpstan/phpstan' => '0.12.78@eecce8d2ee3cac6769f37b4cb1998b2715f82984',
+  'phpstan/phpstan' => '0.12.77@1f10b8c8d118d01e7b492f9707999d456be5812c',
   'psr/container' => '1.0.0@b7ce3b176482dbbc1245ebf52b181af44c2cf55f',
   'psr/event-dispatcher' => '1.0.0@dbefd12671e8a14ec7f180cab83036ed26714bb0',
   'psr/http-client' => '1.0.1@2dfb5f6c5eff0e91e20e913f8c5452ed95b86621',
@@ -174,7 +174,7 @@ final class Versions
   'sebastian/type' => '2.3.1@81cd61ab7bbf2de744aba0ea61fae32f721df3d2',
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'theseer/tokenizer' => '1.2.0@75a63c33a8577608444246075ea0af0d052e452a',
-  'celaraze/chemex' => 'dev-main@1b0684e091417ef3faed173627d4c0f08197f024',
+  'celaraze/chemex' => 'dev-main@d874fd3c8f61a6d8763dcb25da5b01f8156e4e02',
 );
 
     private function __construct()

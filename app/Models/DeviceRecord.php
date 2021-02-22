@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Traits\HasExtendedFields;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
@@ -41,7 +40,6 @@ use Illuminate\Support\Facades\Crypt;
 class DeviceRecord extends Model
 {
     use HasDateTimeFormatter;
-    use HasExtendedFields;
     use SoftDeletes;
 
     protected $table = 'device_records';
@@ -228,14 +226,5 @@ class DeviceRecord extends Model
     public function track(): HasMany
     {
         return $this->hasMany(DeviceTrack::class, 'device_id', 'id');
-    }
-
-    /**
-     * 设备的自定义字段
-     * @return mixed
-     */
-    public function customFields()
-    {
-        return CustomField::where('table_name', $this->table)->get();
     }
 }

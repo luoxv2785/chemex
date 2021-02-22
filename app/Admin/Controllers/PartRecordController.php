@@ -182,7 +182,6 @@ class PartRecordController extends AdminController
             $show->field('depreciation.name');
             $show->field('depreciation.termination');
             $show->field('location');
-            $show->field('extended_fields')->view('extended_fields');
             $show->field('created_at');
             $show->field('updated_at');
 

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Traits\HasExtendedFields;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -28,7 +27,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class PartRecord extends Model
 {
     use HasDateTimeFormatter;
-    use HasExtendedFields;
     use SoftDeletes;
 
     protected $table = 'part_records';

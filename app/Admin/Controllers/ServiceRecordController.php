@@ -115,7 +115,6 @@ class ServiceRecordController extends AdminController
             $show->field('purchased');
             $show->field('expired');
             $show->field('channel.name');
-            $show->field('extended_fields')->view('extended_fields');
             $show->field('created_at');
             $show->field('updated_at');
 
