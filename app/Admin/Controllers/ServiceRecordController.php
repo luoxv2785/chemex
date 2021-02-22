@@ -63,6 +63,9 @@ class ServiceRecordController extends AdminController
                     return admin_route('device.records.show', [$this->device['id']]);
                 }
             });
+
+            HasCustomFields::makeGrid(new \App\Models\ServiceRecord(), $grid);
+
             $grid->actions(function (RowActions $actions) {
                 if (Admin::user()->can('service.record.delete')) {
                     $actions->append(new ServiceRecordDeleteAction());
@@ -124,6 +127,9 @@ class ServiceRecordController extends AdminController
             $show->field('purchased');
             $show->field('expired');
             $show->field('channel.name');
+
+            HasCustomFields::makeDetail(new \App\Models\ServiceRecord(), $show);
+
             $show->field('created_at');
             $show->field('updated_at');
 
@@ -159,6 +165,9 @@ class ServiceRecordController extends AdminController
                 $form->select('purchased_channel_id', admin_trans_label('Purchased Channel'))
                     ->options(PurchasedChannel::pluck('name', 'id'));
             }
+
+            HasCustomFields::makeForm(new \App\Models\ServiceRecord(), $form);
+
             $form->display('created_at');
             $form->display('updated_at');
 

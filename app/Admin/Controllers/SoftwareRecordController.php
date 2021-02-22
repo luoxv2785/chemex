@@ -88,6 +88,8 @@ class SoftwareRecordController extends AdminController
                 return ExpirationService::itemExpirationLeftDaysRender('software', $this->id);
             });
 
+            HasCustomFields::makeGrid(new \App\Models\SoftwareRecord(), $grid);
+
             $grid->actions(function (RowActions $actions) {
                 if (Admin::user()->can('software.record.delete')) {
                     $actions->append(new SoftwareRecordDeleteAction());
@@ -229,6 +231,9 @@ class SoftwareRecordController extends AdminController
             $show->field('expired');
             $show->field('distribution')->using(Data::distribution());
             $show->field('counts');
+
+            HasCustomFields::makeDetail(new \App\Models\SoftwareRecord(), $show);
+
             $show->field('created_at');
             $show->field('updated_at');
 
@@ -307,6 +312,9 @@ class SoftwareRecordController extends AdminController
             $form->currency('price')->default(0);
             $form->date('purchased');
             $form->date('expired');
+
+            HasCustomFields::makeForm(new \App\Models\SoftwareRecord(), $form);
+
             $form->display('created_at');
             $form->display('updated_at');
 

@@ -84,6 +84,8 @@ class PartRecordController extends AdminController
             });
             $grid->column('depreciation.name');
 
+            HasCustomFields::makeGrid(new \App\Models\PartRecord(), $grid);
+
             $grid->actions(function (RowActions $actions) {
                 if (Admin::user()->can('part.record.delete')) {
                     $actions->append(new PartRecordDeleteAction());
@@ -179,6 +181,9 @@ class PartRecordController extends AdminController
             $show->field('expired');
             $show->field('depreciation.name');
             $show->field('depreciation.termination');
+
+            HasCustomFields::makeDetail(new \App\Models\PartRecord(), $show);
+
             $show->field('created_at');
             $show->field('updated_at');
 
@@ -250,6 +255,9 @@ class PartRecordController extends AdminController
                 $form->select('depreciation_rule_id', admin_trans_label('Depreciation Rule'))
                     ->options(DepreciationRule::pluck('name', 'id'));
             }
+
+            HasCustomFields::makeForm(new \App\Models\PartRecord(), $form);
+
             $form->display('created_at');
             $form->display('updated_at');
 
