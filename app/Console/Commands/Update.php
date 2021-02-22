@@ -39,8 +39,6 @@ class Update extends Command
     {
         $this->call('migrate');
         $this->info('数据库迁移完成！');
-        // 填充配置
-        $this->call('db:seed', ['--class' => 'AdminSettingsTableSeeder']);
         // 填充菜单
         $this->call('db:seed', ['--class' => 'AdminMenuTableSeeder']);
         // 填充扩展
