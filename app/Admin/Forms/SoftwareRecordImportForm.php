@@ -2,6 +2,7 @@
 
 namespace App\Admin\Forms;
 
+use App\Models\CustomField;
 use App\Models\PurchasedChannel;
 use App\Models\SoftwareCategory;
 use App\Models\SoftwareRecord;
@@ -71,6 +72,17 @@ class SoftwareRecordImportForm extends Form
                             }
                             $software_record->purchased_channel_id = $purchased_channel->id;
                         }
+
+                        /*
+                         * 处理自定义字段的导入
+                         */
+                        $custom_fields = CustomField::where('table_name', $software_record->getTable())->get();
+                        foreach ($custom_fields as $custom_field) {
+                            $name = $custom_field->name;
+                            $nick_name = $custom_field->nick_name;
+                            $software_record->$name = $row[$nick_name];
+                        }
+
                         $software_record->save();
                     } else {
                         return $this->response()

@@ -1649,6 +1649,7 @@ class ComposerStaticInit2dd84e77f59a75b685ec9f147c50c607
         'Cron\\MinutesField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MinutesField.php',
         'Cron\\MonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
+        'Database\\Seeders\\AdminExtensionHistoriesTableSeeder' => __DIR__ . '/../..' . '/database/seeders/AdminExtensionHistoriesTableSeeder.php',
         'Database\\Seeders\\AdminExtensionsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/AdminExtensionsTableSeeder.php',
         'Database\\Seeders\\AdminMenuTableSeeder' => __DIR__ . '/../..' . '/database/seeders/AdminMenuTableSeeder.php',
         'Database\\Seeders\\AdminPermissionMenuTableSeeder' => __DIR__ . '/../..' . '/database/seeders/AdminPermissionMenuTableSeeder.php',

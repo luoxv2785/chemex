@@ -954,6 +954,7 @@ return array(
     'Cron\\MinutesField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/MinutesField.php',
     'Cron\\MonthField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
     'Database\\Factories\\UserFactory' => $baseDir . '/database/factories/UserFactory.php',
+    'Database\\Seeders\\AdminExtensionHistoriesTableSeeder' => $baseDir . '/database/seeders/AdminExtensionHistoriesTableSeeder.php',
     'Database\\Seeders\\AdminExtensionsTableSeeder' => $baseDir . '/database/seeders/AdminExtensionsTableSeeder.php',
     'Database\\Seeders\\AdminMenuTableSeeder' => $baseDir . '/database/seeders/AdminMenuTableSeeder.php',
     'Database\\Seeders\\AdminPermissionMenuTableSeeder' => $baseDir . '/database/seeders/AdminPermissionMenuTableSeeder.php',

@@ -177,7 +177,7 @@ final class Versions
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'symfony/debug' => 'v4.4.19@af4987aa4a5630e9615be9d9c3ed1b0f24ca449c',
   'theseer/tokenizer' => '1.2.0@75a63c33a8577608444246075ea0af0d052e452a',
-  'celaraze/chemex' => 'dev-main@1ee0f332271b6e5276efe0a19bca187af90c4b3b',
+  'celaraze/chemex' => 'dev-main@72211486e6567a0f38db4636fae2fd593950656b',
 );
 
     private function __construct()
