@@ -136,7 +136,6 @@ final class Versions
   'vlucas/phpdotenv' => 'v5.3.0@b3eac5c7ac896e52deab4a99068e3f4ab12d9e56',
   'voku/portable-ascii' => '1.5.6@80953678b19901e5165c56752d087fc11526017c',
   'webmozart/assert' => '1.9.1@bafc69caeb4d49c39fd0779086c03a3738cbb389',
-  'barryvdh/laravel-debugbar' => 'v3.5.2@cae0a8d1cb89b0f0522f65e60465e16d738e069b',
   'doctrine/instantiator' => '1.4.0@d56bf6102915de5702778fe20f2de3b2fe570b5b',
   'facade/flare-client-php' => '1.4.0@ef0f5bce23b30b32d98fd9bb49c6fa37b40eb546',
   'facade/ignition' => '2.5.13@5e9ef386aaad9985cee2ac23281a27568d083b7e',
@@ -144,7 +143,6 @@ final class Versions
   'filp/whoops' => '2.9.2@df7933820090489623ce0be5e85c7e693638e536',
   'fzaninotto/faker' => 'dev-master@5ffe7db6c80f441f150fc88008d64e64af66634b',
   'laravel/sail' => 'v1.3.1@a18519e96c32894ac3f8775fa8eb6de5750aca5a',
-  'maximebf/debugbar' => 'v1.16.5@6d51ee9e94cff14412783785e79a4e7ef97b9d62',
   'myclabs/deep-copy' => '1.10.2@776f831124e9c62e1a2c601ecc52e776d8bb7220',
   'nunomaduro/collision' => 'v5.3.0@aca63581f380f63a492b1e3114604e411e39133a',
   'phar-io/manifest' => '2.0.1@85265efd3af7ba3ca4b2a2c34dbfc5788dd29133',
@@ -175,9 +173,8 @@ final class Versions
   'sebastian/resource-operations' => '3.0.3@0f4443cb3a1d92ce809899753bc0d5d5a8dd19a8',
   'sebastian/type' => '2.3.1@81cd61ab7bbf2de744aba0ea61fae32f721df3d2',
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
-  'symfony/debug' => 'v4.4.19@af4987aa4a5630e9615be9d9c3ed1b0f24ca449c',
   'theseer/tokenizer' => '1.2.0@75a63c33a8577608444246075ea0af0d052e452a',
-  'celaraze/chemex' => 'dev-main@a07bda32e2e723bcfa041b434edcc07373931f1f',
+  'celaraze/chemex' => 'dev-main@c58549e54c63e3581dc80e608f2bd6eff703d85e',
 );
 
     private function __construct()
