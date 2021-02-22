@@ -51,7 +51,7 @@ class Install extends Command
         // 填充菜单
         $this->call('db:seed', ['--class' => 'AdminMenuTableSeeder']);
         // 填充扩展
-        $this->call('db:seed', ['--class' => 'AdminExtensionTableSeeder']);
+        $this->call('db:seed', ['--class' => 'AdminExtensionsTableSeeder']);
         // 填充扩展历史
         $this->call('db:seed', ['--class' => 'AdminExtensionHistoriesTableSeeder']);
         // 填充配置
