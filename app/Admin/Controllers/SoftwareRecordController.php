@@ -18,6 +18,7 @@ use App\Services\ExpirationService;
 use App\Services\SoftwareService;
 use App\Support\Data;
 use App\Support\Support;
+use App\Traits\HasCustomFields;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
@@ -86,7 +87,6 @@ class SoftwareRecordController extends AdminController
             $grid->column('expiration_left_days')->display(function () {
                 return ExpirationService::itemExpirationLeftDaysRender('software', $this->id);
             });
-            $grid->column('location');
 
             $grid->actions(function (RowActions $actions) {
                 if (Admin::user()->can('software.record.delete')) {
@@ -106,18 +106,18 @@ class SoftwareRecordController extends AdminController
                 'description',
                 'price',
                 'expired',
-                'location',
                 'expiration_left_days'
             ]);
 
             $grid->quickSearch(
-                'id',
-                'name',
-                'asset_number',
-                'category.name',
-                'version',
-                'price',
-                'location'
+                array_merge([
+                    'id',
+                    'name',
+                    'asset_number',
+                    'category.name',
+                    'version',
+                    'price',
+                ], HasCustomFields::makeQuickSearch(new \App\Models\SoftwareRecord()))
             )
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
@@ -125,7 +125,7 @@ class SoftwareRecordController extends AdminController
             $grid->filter(function ($filter) {
                 $filter->equal('category_id')->select(SoftwareCategory::pluck('name', 'id'));
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
-                $filter->equal('location');
+                HasCustomFields::makeFilter(new \App\Models\SoftwareRecord(), $filter);
             });
 
             $grid->enableDialogCreate();
@@ -229,7 +229,6 @@ class SoftwareRecordController extends AdminController
             $show->field('expired');
             $show->field('distribution')->using(Data::distribution());
             $show->field('counts');
-            $show->field('location');
             $show->field('created_at');
             $show->field('updated_at');
 
@@ -292,7 +291,6 @@ class SoftwareRecordController extends AdminController
                 ->required()
                 ->help(admin_trans_label('Counts Help'));
             $form->divider();
-            $form->text('sn');
             $form->text('description');
             $form->text('asset_number');
 
@@ -309,12 +307,6 @@ class SoftwareRecordController extends AdminController
             $form->currency('price')->default(0);
             $form->date('purchased');
             $form->date('expired');
-            $form->text('location')
-                ->help(admin_trans_label('Location Help'));
-            $form->table('extended_fields', function (Form\NestedForm $table) {
-                $table->text('key', trans('main.key'));
-                $table->textarea('value', trans('main.value'));
-            });
             $form->display('created_at');
             $form->display('updated_at');
 

@@ -36,7 +36,6 @@ class AdminUsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'email' => NULL,
                 'ad_tag' => 0,
-                'extended_fields' => NULL,
                 'deleted_at' => NULL,
             ),
             1 =>
@@ -55,7 +54,6 @@ class AdminUsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'email' => NULL,
                 'ad_tag' => 0,
-                'extended_fields' => NULL,
                 'deleted_at' => NULL,
             ),
         ));

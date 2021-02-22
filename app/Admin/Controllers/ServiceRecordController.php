@@ -11,6 +11,7 @@ use App\Models\DeviceRecord;
 use App\Models\PurchasedChannel;
 use App\Support\Data;
 use App\Support\Support;
+use App\Traits\HasCustomFields;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
@@ -81,7 +82,14 @@ class ServiceRecordController extends AdminController
 
             $grid->toolsWithOutline(false);
 
-            $grid->quickSearch('id', 'name', 'description', 'device.name')
+            $grid->quickSearch(
+                array_merge([
+                    'id',
+                    'name',
+                    'description',
+                    'device.name'
+                ], HasCustomFields::makeQuickSearch(new \App\Models\ServiceRecord()))
+            )
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
@@ -91,6 +99,7 @@ class ServiceRecordController extends AdminController
 
             $grid->filter(function ($filter) {
                 $filter->equal('device.name');
+                HasCustomFields::makeFilter(new \App\Models\ServiceRecord(), $filter);
             });
 
             $grid->export();
@@ -150,10 +159,6 @@ class ServiceRecordController extends AdminController
                 $form->select('purchased_channel_id', admin_trans_label('Purchased Channel'))
                     ->options(PurchasedChannel::pluck('name', 'id'));
             }
-            $form->table('extended_fields', function (Form\NestedForm $table) {
-                $table->text('key', trans('main.key'));
-                $table->textarea('value', trans('main.value'));
-            });
             $form->display('created_at');
             $form->display('updated_at');
 

@@ -10,7 +10,6 @@ return [
         'History Card Title' => '履历',
         'Export To Excel' => '导出到 Excel',
         'Counts Help' => '"-1"表示无限制。',
-        'Location Help' => '记录存放位置，例如某个货架、某个抽屉。',
         'Batch Delete' => '批量删除软件',
         'Batch Delete Confirm' => '您确定要删除选中的软件吗？',
         'Batch Delete Success' => '批量删除软件成功！',
@@ -41,7 +40,6 @@ return [
         'purchased' => '购入时间',
         'expired' => '过保时间',
         'distribution' => '发行方式',
-        'sn' => '序列号',
         'counts' => '授权数量',
         'left_counts' => '剩余授权数量',
         'device' => [
@@ -51,12 +49,10 @@ return [
             ]
         ],
         'asset_number' => '资产编号',
-        'location' => '位置',
         'expiration_left_days' => '剩余保固时间',
         'category_id' => '分类',
         'vendor_id' => '厂商',
         'depreciation_id' => '折旧规则',
-        'extended_fields' => '自定义信息',
         'file' => '文件',
         'device_id' => '设备'
     ],

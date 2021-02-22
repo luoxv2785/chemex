@@ -92,7 +92,6 @@ class DeviceRecordController extends AdminController
             $grid->column('description');
             $grid->column('category.name');
             $grid->column('vendor.name');
-            $grid->column('sn');
             $grid->column('mac');
             $grid->column('ip');
             $grid->column('price');
@@ -108,7 +107,6 @@ class DeviceRecordController extends AdminController
                 return ExpirationService::itemExpirationLeftDaysRender('device', $this->id);
             });
             $grid->column('depreciation.name');
-            $grid->column('location');
 
             HasCustomFields::makeGrid(new \App\Models\DeviceRecord(), $grid);
 
@@ -143,7 +141,6 @@ class DeviceRecordController extends AdminController
                 'price',
                 'expired',
                 'depreciation.name',
-                'location',
                 'expiration_left_days',
                 'user.department.name'
             ]);
@@ -156,13 +153,11 @@ class DeviceRecordController extends AdminController
                     'description',
                     'category.name',
                     'vendor.name',
-                    'sn',
                     'mac',
                     'ip',
                     'price',
                     'user.name',
                     'user.department.name',
-                    'location'
                 ], HasCustomFields::makeQuickSearch(new \App\Models\DeviceRecord()))
             )
                 ->placeholder(trans('main.quick_search'))
@@ -173,7 +168,6 @@ class DeviceRecordController extends AdminController
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
                 $filter->equal('user.department_id')->select(Department::pluck('name', 'id'));
                 $filter->equal('depreciation_id')->select(DepreciationRule::pluck('name', 'id'));
-                $filter->equal('location');
                 HasCustomFields::makeFilter(new \App\Models\DeviceRecord(), $filter);
             });
 
@@ -243,7 +237,6 @@ class DeviceRecordController extends AdminController
             $show->field('category.name');
             $show->field('vendor.name');
             $show->field('channel.name');
-            $show->field('sn');
             $show->field('mac');
             $show->field('ip');
             $show->field('photo')->image();
@@ -259,11 +252,8 @@ class DeviceRecordController extends AdminController
             $show->field('expired');
             $show->field('user.name');
             $show->field('user.department.name');
-            $show->field('security_password');
-            $show->field('admin_password');
             $show->field('depreciation.name');
             $show->field('depreciation.termination');
-            $show->field('location');
 
             HasCustomFields::makeDetail(new \App\Models\DeviceRecord(), $show);
 
@@ -336,7 +326,6 @@ class DeviceRecordController extends AdminController
                     ->options(PurchasedChannel::pluck('name', 'id'));
             }
 
-            $form->text('sn');
             $form->text('mac');
             $form->text('ip');
             $form->image('photo')
@@ -347,11 +336,6 @@ class DeviceRecordController extends AdminController
             $form->date('purchased');
             $form->date('expired')
                 ->attribute('autocomplete', 'off');
-            $form->password('security_password')
-                ->attribute('autocomplete', 'new-password')
-                ->help(admin_trans_label('Security Password Help'));
-            $form->password('admin_password')
-                ->help(admin_trans_label('Admin Password Help'));
 
             if (Support::ifSelectCreate()) {
                 $form->selectCreate('depreciation_rule_id', admin_trans_label('Depreciation Rule'))
@@ -364,8 +348,6 @@ class DeviceRecordController extends AdminController
                     ->options(DepreciationRule::pluck('name', 'id'))
                     ->help(admin_trans_label('Depreciation Rule Help'));
             }
-            $form->text('location')
-                ->help(admin_trans_label('Location Help'));
 
             HasCustomFields::makeForm(new \App\Models\DeviceRecord(), $form);
 

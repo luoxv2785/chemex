@@ -31,7 +31,8 @@ trait HasCustomFields
                 case 'integer':
                     $form->number($custom_field->name, $custom_field->nick_name);
                     break;
-                case 'float' || 'double':
+                case 'double':
+                case 'float':
                     $form->currency($custom_field->name, $custom_field->nick_name);
                     break;
                 case 'longText':

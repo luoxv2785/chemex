@@ -32,6 +32,5 @@ return [
         'expired' => '过保日期',
         'category_id' => '分类',
         'vendor_id' => '厂商',
-        'extended_fields' => '自定义信息'
     ]
 ];

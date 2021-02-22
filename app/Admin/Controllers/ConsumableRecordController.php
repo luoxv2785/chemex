@@ -133,10 +133,6 @@ class ConsumableRecordController extends AdminController
             $form->divider();
             $form->text('description');
             $form->text('price');
-            $form->table('extended_fields', function (Form\NestedForm $table) {
-                $table->text('key', trans('main.key'));
-                $table->textarea('value', trans('main.value'));
-            });
             $form->display('created_at');
             $form->display('updated_at');
         });

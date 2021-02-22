@@ -28,7 +28,6 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property null|string mobile
  * @property null|string email
  * @property int ad_tag
- * @property null|string extended_fields
  * @property DeviceRecord device
  * @property DateTime|null deleted_at
  */

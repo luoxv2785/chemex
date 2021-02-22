@@ -28,7 +28,6 @@ return [
         'channel' => [
             'name' => '购入途径'
         ],
-        'extended_fields' => '自定义信息',
         'device_id' => '设备',
         'issue' => '异常',
         'start' => '开始时间'

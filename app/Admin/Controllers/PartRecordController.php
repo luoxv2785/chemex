@@ -17,6 +17,7 @@ use App\Models\VendorRecord;
 use App\Services\ExpirationService;
 use App\Support\Data;
 use App\Support\Support;
+use App\Traits\HasCustomFields;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
@@ -73,7 +74,6 @@ class PartRecordController extends AdminController
             $grid->column('category.name');
             $grid->column('vendor.name');
             $grid->column('specification');
-            $grid->column('sn');
             $grid->column('expiration_left_days')->display(function () {
                 return ExpirationService::itemExpirationLeftDaysRender('part', $this->id);
             });
@@ -83,7 +83,6 @@ class PartRecordController extends AdminController
                 }
             });
             $grid->column('depreciation.name');
-            $grid->column('location');
 
             $grid->actions(function (RowActions $actions) {
                 if (Admin::user()->can('part.record.delete')) {
@@ -98,19 +97,19 @@ class PartRecordController extends AdminController
             });
 
             $grid->showColumnSelector();
-            $grid->hideColumns(['description', 'price', 'expired', 'location']);
+            $grid->hideColumns(['description', 'price', 'expired']);
 
             $grid->quickSearch(
-                'id',
-                'name',
-                'asset_number',
-                'description',
-                'category.name',
-                'vendor.name',
-                'specification',
-                'sn',
-                'device.name',
-                'location'
+                array_merge([
+                    'id',
+                    'name',
+                    'asset_number',
+                    'description',
+                    'category.name',
+                    'vendor.name',
+                    'specification',
+                    'device.name',
+                ], HasCustomFields::makeQuickSearch(new \App\Models\PartRecord()))
             )
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
@@ -120,7 +119,7 @@ class PartRecordController extends AdminController
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
                 $filter->equal('device.name');
                 $filter->equal('depreciation_id')->select(DepreciationRule::pluck('name', 'id'));
-                $filter->equal('location');
+                HasCustomFields::makeFilter(new \App\Models\PartRecord(), $filter);
             });
 
             $grid->enableDialogCreate();
@@ -168,7 +167,6 @@ class PartRecordController extends AdminController
             $show->field('channel.name');
             $show->field('device.name');
             $show->field('specification');
-            $show->field('sn');
             $show->field('price');
             $show->field('expiration_left_days')->as(function () {
                 $part_record = \App\Models\PartRecord::where('id', $this->id)->first();
@@ -181,7 +179,6 @@ class PartRecordController extends AdminController
             $show->field('expired');
             $show->field('depreciation.name');
             $show->field('depreciation.termination');
-            $show->field('location');
             $show->field('created_at');
             $show->field('updated_at');
 
@@ -240,7 +237,6 @@ class PartRecordController extends AdminController
                     ->options(PurchasedChannel::pluck('name', 'id'));
             }
 
-            $form->text('sn');
             $form->currency('price');
             $form->date('purchased');
             $form->date('expired');
@@ -254,12 +250,6 @@ class PartRecordController extends AdminController
                 $form->select('depreciation_rule_id', admin_trans_label('Depreciation Rule'))
                     ->options(DepreciationRule::pluck('name', 'id'));
             }
-            $form->text('location')
-                ->help(admin_trans_label('Location Help'));
-            $form->table('extended_fields', function (Form\NestedForm $table) {
-                $table->text('key', trans('main.key'));
-                $table->textarea('value', trans('main.value'));
-            });
             $form->display('created_at');
             $form->display('updated_at');
 

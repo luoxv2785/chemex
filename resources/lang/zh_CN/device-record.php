@@ -15,7 +15,6 @@ return [
         'Security Password Help' => '安全密码，可以代表BIOS密码等。',
         'Admin Password Help' => '管理员密码，可以代表计算机管理员账户密码以及打印机管理员密码等。',
         'Depreciation Rule Help' => '设备记录的折旧规则将优先于其分类所指定的折旧规则。',
-        'Location Help' => '记录存放位置，例如某个货架、某个抽屉。',
         'Batch Delete' => '批量删除设备',
         'Batch Delete Confirm' => '您确定要删除选中的设备吗？',
         'Batch Delete Success' => '批量删除设备成功！',
@@ -47,7 +46,6 @@ return [
         'channel' => [
             'name' => '购入途径'
         ],
-        'sn' => '序列号',
         'mac' => 'MAC',
         'ip' => 'IP',
         'photo' => '照片',
@@ -61,8 +59,6 @@ return [
         'price' => '价格',
         'purchased' => '购入日期',
         'expired' => '过保日期',
-        'security_password' => '安全密码',
-        'admin_password' => '管理员密码',
         'part' => [
             'category' => [
                 'name' => '分类'
@@ -93,13 +89,11 @@ return [
             'termination' => '报废日期'
         ],
         'asset_number' => '资产编号',
-        'location' => '位置',
         'category_id' => '分类',
         'vendor_id' => '厂商',
         'depreciation_id' => '折旧规则',
         'ng_description' => '故障说明',
         'ng_time' => '故障发生时间',
-        'extended_fields' => '自定义信息',
         'user_same' => '用户已存在',
         'file' => '文件',
         'lend_time' => '借用时间',
