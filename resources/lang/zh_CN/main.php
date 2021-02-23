@@ -76,5 +76,5 @@ return [
     'part_counts' => '配件数量',
     'software_counts' => '软件数量',
     'my_all_worth' => '我的资产总价值',
-    'item_is_lending' => '当前资产未归还，请先归还设备后继续进行分配操作。'
+    'item_is_lending' => '当前资产未归还，请先归还设备后继续进行分配操作。',
 ];

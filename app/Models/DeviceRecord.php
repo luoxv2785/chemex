@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\HasStaticGetTableName;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
+use Dcat\Admin\Traits\ModelTree;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -37,12 +38,16 @@ use Illuminate\Support\Facades\Crypt;
  * @property PartRecord part
  * @property SoftwareRecord software
  * @property ServiceRecord service
+ * @property string title
+ * @property int parent_id
+ * @property int order
  */
 class DeviceRecord extends Model
 {
     use HasDateTimeFormatter;
     use SoftDeletes;
     use HasStaticGetTableName;
+    use ModelTree;
 
     protected $table = 'device_records';
 

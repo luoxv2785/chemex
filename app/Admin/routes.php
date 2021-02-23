@@ -60,6 +60,8 @@ Route::group([
         ->names('device.tracks');
     $router->resource('/device/categories', 'DeviceCategoryController')
         ->names('device.categories');
+    $router->resource('/device/columns', 'DeviceRecordColumnController')
+        ->names('device.columns');
     $router->get('/device/statistics', [DeviceStatisticsController::class, 'index'])
         ->name('device.statistics');
     $router->get('/selection/device/records', [DeviceRecordController::class, 'selectList'])
