@@ -3,7 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Tree\ToolAction\DeviceCategoryImportAction;
-use App\Admin\Repositories\DeviceRecord;
+use App\Admin\Repositories\TodoRecord;
 use App\Models\ColumnSort;
 use Dcat\Admin\Form;
 use Dcat\Admin\Http\Controllers\AdminController;
@@ -12,7 +12,7 @@ use Dcat\Admin\Tree;
 use Illuminate\Support\Facades\Schema;
 
 
-class DeviceRecordColumnController extends AdminController
+class TodoRecordColumnController extends AdminController
 {
     public function index(Content $content): Content
     {
@@ -24,7 +24,7 @@ class DeviceRecordColumnController extends AdminController
 
     protected function treeView(): Tree
     {
-        return new Tree(new DeviceRecord(), function (Tree $tree) {
+        return new Tree(new TodoRecord(), function (Tree $tree) {
             $tree->maxDepth(1);
             $tree->disableCreateButton();
             $tree->disableDeleteButton();
@@ -41,14 +41,13 @@ class DeviceRecordColumnController extends AdminController
      */
     protected function form(): Form
     {
-        return Form::make(new DeviceRecord(), function (Form $form) {
+        return Form::make(new TodoRecord(), function (Form $form) {
             $form->saving(function (Form $form) {
                 // orders的索引代表排序，orders['id']代表现在数据表中的排序
-                $table_name = \App\Models\DeviceRecord::table();
+                $table_name = \App\Models\TodoRecord::table();
                 $db_columns = Schema::getColumnListing($table_name);
                 $orders = request('_order');
                 $orders = json_decode($orders, true);
-//                dd($orders,$db_columns);
                 foreach ($orders as $key => $order) {
                     $field_name = $db_columns[$order['id']];
                     $column_sort = ColumnSort::where('field', $field_name)->first();

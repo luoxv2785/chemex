@@ -154,21 +154,21 @@ class Grid
      * @var array
      */
     protected $options = [
-        'pagination'        => true,
-        'filter'            => true,
-        'actions'           => true,
+        'pagination' => true,
+        'filter' => true,
+        'actions' => true,
         'quick_edit_button' => false,
-        'edit_button'       => true,
-        'view_button'       => true,
-        'delete_button'     => true,
-        'row_selector'      => true,
-        'create_button'     => true,
-        'bordered'          => false,
-        'table_collapse'    => true,
-        'toolbar'           => true,
-        'create_mode'       => self::CREATE_MODE_DEFAULT,
-        'dialog_form_area'  => ['700px', '670px'],
-        'table_class'       => ['table', 'custom-data-table', 'data-table'],
+        'edit_button' => true,
+        'view_button' => true,
+        'delete_button' => true,
+        'row_selector' => true,
+        'create_button' => true,
+        'bordered' => false,
+        'table_collapse' => true,
+        'toolbar' => true,
+        'create_mode' => self::CREATE_MODE_DEFAULT,
+        'dialog_form_area' => ['700px', '670px'],
+        'table_class' => ['table', 'custom-data-table', 'data-table'],
     ];
 
     /**
@@ -187,7 +187,7 @@ class Grid
      * Grid constructor.
      *
      * @param Repository|\Illuminate\Database\Eloquent\Model|Builder|null $repository
-     * @param null|\Closure                                       $builder
+     * @param null|\Closure $builder
      */
     public function __construct($repository = null, ?\Closure $builder = null, $request = null)
     {
@@ -212,50 +212,15 @@ class Grid
     }
 
     /**
-     * Get table ID.
+     * Create a grid instance.
      *
-     * @return string
-     */
-    public function getTableId()
-    {
-        return $this->tableId;
-    }
-
-    /**
-     * Set primary key name.
-     *
-     * @param string|array $name
+     * @param mixed ...$params
      *
      * @return $this
      */
-    public function setKeyName($name)
+    public static function make(...$params)
     {
-        $this->keyName = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get or set primary key name.
-     *
-     * @return string|array
-     */
-    public function getKeyName()
-    {
-        return $this->keyName ?: 'id';
-    }
-
-    /**
-     * Add column to Grid.
-     *
-     * @param string $name
-     * @param string $label
-     *
-     * @return Column
-     */
-    public function column($name, $label = '')
-    {
-        return $this->addColumn($name, $label);
+        return new static(...$params);
     }
 
     /**
@@ -268,44 +233,6 @@ class Grid
     public function number(?string $label = null)
     {
         return $this->addColumn('#', $label ?: '#');
-    }
-
-    /**
-     * Batch add column to grid.
-     *
-     * @example
-     * 1.$grid->columns(['name' => 'Name', 'email' => 'Email' ...]);
-     * 2.$grid->columns('name', 'email' ...)
-     *
-     * @param array $columns
-     *
-     * @return Collection|Column[]|void
-     */
-    public function columns($columns = null)
-    {
-        if ($columns === null) {
-            return $this->columns;
-        }
-
-        if (func_num_args() == 1 && is_array($columns)) {
-            foreach ($columns as $column => $label) {
-                $this->column($column, $label);
-            }
-
-            return;
-        }
-
-        foreach (func_get_args() as $column) {
-            $this->column($column);
-        }
-    }
-
-    /**
-     * @return Collection|Column[]
-     */
-    public function allColumns()
-    {
-        return $this->allColumns;
     }
 
     /**
@@ -332,22 +259,6 @@ class Grid
      *
      * @return Column
      */
-    public function prependColumn($field = '', $label = '')
-    {
-        $column = $this->newColumn($field, $label);
-
-        $this->columns->prepend($column, $field);
-        $this->allColumns->prepend($column, $field);
-
-        return $column;
-    }
-
-    /**
-     * @param string $field
-     * @param string $label
-     *
-     * @return Column
-     */
     public function newColumn($field = '', $label = '')
     {
         $column = new Column($field, $label);
@@ -357,13 +268,54 @@ class Grid
     }
 
     /**
-     * Get Grid model.
+     * Batch add column to grid.
      *
-     * @return Model
+     * @param array $columns
+     *
+     * @return Collection|Column[]|void
+     * @example
+     * 1.$grid->columns(['name' => 'Name', 'email' => 'Email' ...]);
+     * 2.$grid->columns('name', 'email' ...)
+     *
      */
-    public function model()
+    public function columns($columns = null)
     {
-        return $this->model;
+        if ($columns === null) {
+            return $this->columns;
+        }
+
+        if (func_num_args() == 1 && is_array($columns)) {
+            foreach ($columns as $column => $label) {
+                $this->column($column, $label);
+            }
+
+            return;
+        }
+
+        foreach (func_get_args() as $column) {
+            $this->column($column);
+        }
+    }
+
+    /**
+     * Add column to Grid.
+     *
+     * @param string $name
+     * @param string $label
+     *
+     * @return Column
+     */
+    public function column($name, $label = '')
+    {
+        return $this->addColumn($name, $label);
+    }
+
+    /**
+     * @return Collection|Column[]
+     */
+    public function allColumns()
+    {
+        return $this->allColumns;
     }
 
     /**
@@ -374,12 +326,13 @@ class Grid
         return $this->columnNames;
     }
 
-    /**
-     * Apply column filter to grid query.
-     */
-    protected function applyColumnFilter()
+    public function formatTableClass()
     {
-        $this->columns->each->bindFilterQuery($this->model());
+        if ($this->options['bordered']) {
+            $this->addTableClass(['table-bordered', 'complex-headers', 'data-table']);
+        }
+
+        return implode(' ', array_unique((array)$this->options['table_class']));
     }
 
     /**
@@ -389,47 +342,9 @@ class Grid
      */
     public function addTableClass($class)
     {
-        $this->options['table_class'] = array_merge((array) $this->options['table_class'], (array) $class);
+        $this->options['table_class'] = array_merge((array)$this->options['table_class'], (array)$class);
 
         return $this;
-    }
-
-    public function formatTableClass()
-    {
-        if ($this->options['bordered']) {
-            $this->addTableClass(['table-bordered', 'complex-headers', 'data-table']);
-        }
-
-        return implode(' ', array_unique((array) $this->options['table_class']));
-    }
-
-    /**
-     * Build the grid.
-     *
-     * @return void
-     */
-    public function build()
-    {
-        if ($this->built) {
-            return;
-        }
-
-        $collection = clone $this->processFilter();
-
-        $this->prependRowSelectorColumn();
-        $this->appendActionsColumn();
-
-        Column::setOriginalGridModels($collection);
-
-        $this->columns->map(function (Column $column) use (&$collection) {
-            $column->fill($collection);
-
-            $this->columnNames[] = $column->getName();
-        });
-
-        $this->buildRows($collection);
-
-        $this->sortHeaders();
     }
 
     /**
@@ -437,29 +352,11 @@ class Grid
      */
     public function callBuilder()
     {
-        if ($this->builder && ! $this->built) {
+        if ($this->builder && !$this->built) {
             call_user_func($this->builder, $this);
         }
 
         $this->built = true;
-    }
-
-    /**
-     * Build the grid rows.
-     *
-     * @param Collection $data
-     *
-     * @return void
-     */
-    protected function buildRows($data)
-    {
-        $this->rows = $data->map(function ($row) {
-            return new Row($this, $row);
-        });
-
-        foreach ($this->rowsCallbacks as $callback) {
-            $callback($this->rows);
-        }
     }
 
     /**
@@ -494,8 +391,28 @@ class Grid
         return sprintf(
             '%s/create%s',
             $this->resource(),
-            $queryString ? ('?'.$queryString) : ''
+            $queryString ? ('?' . $queryString) : ''
         );
+    }
+
+    /**
+     * Get Grid model.
+     *
+     * @return Model
+     */
+    public function model()
+    {
+        return $this->model;
+    }
+
+    /**
+     * Get or set resource path.
+     *
+     * @return string
+     */
+    public function resource()
+    {
+        return $this->resourcePath;
     }
 
     /**
@@ -513,38 +430,7 @@ class Grid
             $queryString = http_build_query($constraints);
         }
 
-        return $url.($queryString ? ('?'.$queryString) : '');
-    }
-
-    /**
-     * @param \Closure $closure
-     *
-     * @return Grid\Tools\RowSelector
-     */
-    public function rowSelector()
-    {
-        return $this->rowSelector ?: ($this->rowSelector = new Grid\Tools\RowSelector($this));
-    }
-
-    /**
-     * Prepend checkbox column for grid.
-     *
-     * @return void
-     */
-    protected function prependRowSelectorColumn()
-    {
-        if (! $this->options['row_selector']) {
-            return;
-        }
-
-        $rowSelector = $this->rowSelector();
-        $keyName = $this->getKeyName();
-
-        $this->prependColumn(
-            Grid\Column::SELECT_COLUMN_NAME
-        )->setLabel($rowSelector->renderHeader())->display(function () use ($rowSelector, $keyName) {
-            return $rowSelector->renderColumn($this, $this->{$keyName});
-        });
+        return $url . ($queryString ? ('?' . $queryString) : '');
     }
 
     /**
@@ -567,7 +453,7 @@ class Grid
      */
     public function renderCreateButton()
     {
-        if (! $this->options['create_button']) {
+        if (!$this->options['create_button']) {
             return '';
         }
 
@@ -582,18 +468,6 @@ class Grid
     public function withBorder(bool $value = true)
     {
         $this->options['bordered'] = $value;
-
-        return $this;
-    }
-
-    /**
-     * @param bool $value
-     *
-     * @return $this
-     */
-    public function tableCollapse(bool $value = true)
-    {
-        $this->options['table_collapse'] = $value;
 
         return $this;
     }
@@ -619,7 +493,7 @@ class Grid
      */
     public function renderHeader()
     {
-        if (! $this->header) {
+        if (!$this->header) {
             return '';
         }
 
@@ -665,7 +539,7 @@ HTML;
      */
     public function renderFooter()
     {
-        if (! $this->footer) {
+        if (!$this->footer) {
             return '';
         }
 
@@ -675,10 +549,32 @@ HTML;
     }
 
     /**
+     * Show row selector.
+     *
+     * @return $this
+     */
+    public function showRowSelector(bool $val = true)
+    {
+        return $this->disableRowSelector(!$val);
+    }
+
+    /**
+     * Disable row selector.
+     *
+     * @return $this
+     */
+    public function disableRowSelector(bool $disable = true)
+    {
+        $this->tools->disableBatchActions($disable);
+
+        return $this->option('row_selector', !$disable);
+    }
+
+    /**
      * Get or set option for grid.
      *
      * @param string|array $key
-     * @param mixed        $value
+     * @param mixed $value
      *
      * @return $this|mixed
      */
@@ -697,33 +593,14 @@ HTML;
         return $this;
     }
 
-    protected function setUpOptions()
-    {
-        if ($this->options['bordered']) {
-            $this->tableCollapse(false);
-        }
-    }
-
     /**
-     * Disable row selector.
+     * Show create button.
      *
      * @return $this
      */
-    public function disableRowSelector(bool $disable = true)
+    public function showCreateButton(bool $val = true)
     {
-        $this->tools->disableBatchActions($disable);
-
-        return $this->option('row_selector', ! $disable);
-    }
-
-    /**
-     * Show row selector.
-     *
-     * @return $this
-     */
-    public function showRowSelector(bool $val = true)
-    {
-        return $this->disableRowSelector(! $val);
+        return $this->disableCreateButton(!$val);
     }
 
     /**
@@ -733,17 +610,7 @@ HTML;
      */
     public function disableCreateButton(bool $disable = true)
     {
-        return $this->option('create_button', ! $disable);
-    }
-
-    /**
-     * Show create button.
-     *
-     * @return $this
-     */
-    public function showCreateButton(bool $val = true)
-    {
-        return $this->disableCreateButton(! $val);
+        return $this->option('create_button', !$disable);
     }
 
     /**
@@ -757,16 +624,6 @@ HTML;
     }
 
     /**
-     * @param string $mode
-     *
-     * @return $this
-     */
-    public function createMode(string $mode)
-    {
-        return $this->option('create_mode', $mode);
-    }
-
-    /**
      * @return $this
      */
     public function enableDialogCreate()
@@ -775,25 +632,13 @@ HTML;
     }
 
     /**
-     * Get or set resource path.
-     *
-     * @return string
-     */
-    public function resource()
-    {
-        return $this->resourcePath;
-    }
-
-    /**
-     * Create a grid instance.
-     *
-     * @param mixed ...$params
+     * @param string $mode
      *
      * @return $this
      */
-    public static function make(...$params)
+    public function createMode(string $mode)
     {
-        return new static(...$params);
+        return $this->option('create_mode', $mode);
     }
 
     /**
@@ -828,19 +673,6 @@ HTML;
         $this->variables = $variables;
 
         return $this;
-    }
-
-    /**
-     * Get all variables will used in grid view.
-     *
-     * @return array
-     */
-    protected function defaultVariables()
-    {
-        return [
-            'grid'    => $this,
-            'tableId' => $this->getTableId(),
-        ];
     }
 
     /**
@@ -932,17 +764,157 @@ HTML;
     }
 
     /**
+     * Build the grid.
+     *
+     * @return void
+     */
+    public function build()
+    {
+        if ($this->built) {
+            return;
+        }
+
+
+        $collection = clone $this->processFilter();
+
+        $this->prependRowSelectorColumn();
+        $this->appendActionsColumn();
+
+        Column::setOriginalGridModels($collection);
+
+        $this->columns->map(function (Column $column) use (&$collection) {
+            $column->fill($collection);
+
+            $this->columnNames[] = $column->getName();
+        });
+
+
+        $this->buildRows($collection);
+
+        $this->sortHeaders();
+
+    }
+
+    /**
+     * Prepend checkbox column for grid.
+     *
+     * @return void
+     */
+    protected function prependRowSelectorColumn()
+    {
+        if (!$this->options['row_selector']) {
+            return;
+        }
+
+        $rowSelector = $this->rowSelector();
+        $keyName = $this->getKeyName();
+
+        $this->prependColumn(
+            Grid\Column::SELECT_COLUMN_NAME
+        )->setLabel($rowSelector->renderHeader())->display(function () use ($rowSelector, $keyName) {
+            return $rowSelector->renderColumn($this, $this->{$keyName});
+        });
+    }
+
+    /**
+     * @param \Closure $closure
+     *
+     * @return Grid\Tools\RowSelector
+     */
+    public function rowSelector()
+    {
+        return $this->rowSelector ?: ($this->rowSelector = new Grid\Tools\RowSelector($this));
+    }
+
+    /**
+     * Get or set primary key name.
+     *
+     * @return string|array
+     */
+    public function getKeyName()
+    {
+        return $this->keyName ?: 'id';
+    }
+
+    /**
+     * Set primary key name.
+     *
+     * @param string|array $name
+     *
+     * @return $this
+     */
+    public function setKeyName($name)
+    {
+        $this->keyName = $name;
+
+        return $this;
+    }
+
+    /**
+     * @param string $field
+     * @param string $label
+     *
+     * @return Column
+     */
+    public function prependColumn($field = '', $label = '')
+    {
+        $column = $this->newColumn($field, $label);
+
+        $this->columns->prepend($column, $field);
+        $this->allColumns->prepend($column, $field);
+
+        return $column;
+    }
+
+    /**
+     * Build the grid rows.
+     *
+     * @param Collection $data
+     *
+     * @return void
+     */
+    protected function buildRows($data)
+    {
+        $this->rows = $data->map(function ($row) {
+            return new Row($this, $row);
+        });
+
+        foreach ($this->rowsCallbacks as $callback) {
+            $callback($this->rows);
+        }
+    }
+
+    protected function setUpOptions()
+    {
+        if ($this->options['bordered']) {
+            $this->tableCollapse(false);
+        }
+    }
+
+    /**
+     * @param bool $value
+     *
+     * @return $this
+     */
+    public function tableCollapse(bool $value = true)
+    {
+        $this->options['table_collapse'] = $value;
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     protected function doWrap()
     {
-        if (! $this->show) {
+        if (!$this->show) {
             return;
         }
 
         $view = view($this->view, $this->variables());
 
-        if (! $wrapper = $this->wrapper) {
+        if (!$wrapper = $this->wrapper) {
             return $view->render();
         }
 
@@ -976,5 +948,36 @@ HTML;
         }
 
         return $this->addColumn($method, $arguments[0] ?? null);
+    }
+
+    /**
+     * Apply column filter to grid query.
+     */
+    protected function applyColumnFilter()
+    {
+        $this->columns->each->bindFilterQuery($this->model());
+    }
+
+    /**
+     * Get all variables will used in grid view.
+     *
+     * @return array
+     */
+    protected function defaultVariables()
+    {
+        return [
+            'grid' => $this,
+            'tableId' => $this->getTableId(),
+        ];
+    }
+
+    /**
+     * Get table ID.
+     *
+     * @return string
+     */
+    public function getTableId()
+    {
+        return $this->tableId;
     }
 }

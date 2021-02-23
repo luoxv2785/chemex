@@ -41,6 +41,7 @@ use Illuminate\Support\Facades\Crypt;
  * @property string title
  * @property int parent_id
  * @property int order
+ * @property string field
  */
 class DeviceRecord extends Model
 {

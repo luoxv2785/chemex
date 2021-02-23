@@ -6,10 +6,11 @@ use App\Admin\Actions\Grid\RowAction\TodoRecordUpdateAction;
 use App\Admin\Actions\Grid\ToolAction\TodoRecordCreateAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\TodoRecord;
+use App\Grid;
+use App\Models\ColumnSort;
 use App\Models\DeviceRecord;
 use App\Support\Data;
 use Dcat\Admin\Admin;
-use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Layout\Content;
@@ -52,14 +53,19 @@ class TodoRecordController extends AdminController
     protected function grid(): Grid
     {
         return Grid::make(new TodoRecord(['user']), function (Grid $grid) {
-            $grid->column('id');
-            $grid->column('name');
-            $grid->column('start');
-            $grid->column('end');
-            $grid->column('priority')->using(Data::priority());
-            $grid->column('user.name');
-            $grid->column('tags')->explode()->label();
-            $grid->column('emoji')->using(Data::emoji());
+            $column_sort = ColumnSort::where('table_name', TodoRecord::getTable())->get(['field', 'order'])->toArray();
+            $grid->column('id', '', $column_sort);
+            $grid->column('name', '', $column_sort);
+            $grid->column('description', '', $column_sort);
+            $grid->column('start', '', $column_sort);
+            $grid->column('end', '', $column_sort);
+            $grid->column('priority', '', $column_sort)->using(Data::priority());
+            $grid->column('user.name', '', $column_sort);
+            $grid->column('tags', '', $column_sort)->explode()->label();
+            $grid->column('done_description', '', $column_sort);
+            $grid->column('emoji', '', $column_sort)->using(Data::emoji());
+            $grid->column('created_at', '', $column_sort);
+            $grid->column('updated_at', '', $column_sort);
 
             $grid->actions(function (RowActions $actions) {
                 if (empty($this->end) && Admin::user()->can('todo.update')) {
@@ -76,6 +82,7 @@ class TodoRecordController extends AdminController
             $grid->disableCreateButton();
             $grid->disableEditButton();
 
+            $grid->showColumnSelector();
             $grid->toolsWithOutline(false);
 
             $grid->export();
