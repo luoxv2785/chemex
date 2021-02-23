@@ -4,7 +4,7 @@ namespace App\Admin\Forms;
 
 use Dcat\Admin\Widgets\Form;
 
-class ConfigurationLDAPForm extends Form
+class LDAPForm extends Form
 {
     /**
      * Handle the form request.

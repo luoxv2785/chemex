@@ -3,7 +3,7 @@
 return [
     'titles' => [
         'index' => '主页',
-        'settings' => '系统设置',
+        'settings' => '设置',
         'roles' => '角色',
         'permissions' => '权限',
         'menu' => '菜单',
@@ -51,7 +51,7 @@ return [
         'consumable_records' => '耗材清单',
         'consumable_categories' => '耗材分类',
         'consumable_tracks' => '耗材记录',
-        'dcat_plus' => '站点配置',
+        'dcat_plus' => '站点',
         'assets' => '资产',
         'custom_fields' => '自定义字段'
     ],

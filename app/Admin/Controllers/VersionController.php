@@ -23,7 +23,7 @@ class VersionController extends Controller
     public function index(Content $content): Content
     {
         $version = config('admin.chemex_version');
-        $description = Version::list()['gesha'];
+        $description = Version::list()['geisha'];
 
         return $content
             ->title($this->title())

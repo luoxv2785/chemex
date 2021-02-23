@@ -7,7 +7,6 @@ namespace Celaraze\DcatPlus;
 use Celaraze\DcatPlus\Extensions\Form\SelectCreate;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
-use Dcat\Admin\Support\Helper;
 
 class Support
 {
@@ -95,55 +94,30 @@ class Support
     }
 
     /**
-     * 复写菜单栏
+     * 扩展自定义字段
      */
-    public function injectSidebar()
+    public function injectFields()
     {
-        if (admin_setting('sidebar_indentation')) {
-            admin_inject_section(Admin::SECTION['LEFT_SIDEBAR_MENU'], function () {
-                $menuModel = config('admin.database.menu_model');
-
-                $builder = Admin::menu();
-
-                $html = '';
-                foreach (Helper::buildNestedArray((new $menuModel())->allNodes()) as $item) {
-                    $html .= view(self::menu_view(), ['item' => $item, 'builder' => $builder])->render();
-                }
-
-                return $html;
-            });
-        }
+        Form::extend('selectCreate', SelectCreate::class);
     }
 
     /**
-     * 返回菜单视图路径
-     * @return string
+     * 移除底部授权
      */
-    public static function menu_view(): string
-    {
-        return 'celaraze.dcat-extension-plus::menu';
-    }
-
-    public function injectFields()
-    {
-        if (admin_setting('field_select_create')) {
-            Form::extend('selectCreate', SelectCreate::class);
-        }
-    }
-
     public function footerRemove()
     {
-        if (admin_setting('footer_remove')) {
-            Admin::style(
-                <<<CSS
+        Admin::style(
+            <<<CSS
 .main-footer {
     display: none;
 }
 CSS
-            );
-        }
+        );
     }
 
+    /**
+     * 优化顶部菜单边距
+     */
     public function headerPaddingFix()
     {
         if (admin_setting('header_padding_fix')) {
@@ -180,6 +154,9 @@ CSS
         }
     }
 
+    /**
+     * 表格行操作按钮最右
+     */
     public function gridRowActionsRight()
     {
         if (admin_setting('grid_row_actions_right')) {

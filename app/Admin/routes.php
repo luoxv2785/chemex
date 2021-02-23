@@ -6,6 +6,7 @@ use App\Admin\Controllers\DepreciationRuleController;
 use App\Admin\Controllers\DeviceCategoryController;
 use App\Admin\Controllers\DeviceRecordController;
 use App\Admin\Controllers\DeviceStatisticsController;
+use App\Admin\Controllers\LDAPController;
 use App\Admin\Controllers\NotificationController;
 use App\Admin\Controllers\PartCategoryController;
 use App\Admin\Controllers\PartStatisticsController;
@@ -28,31 +29,19 @@ Route::group([
     'middleware' => config('admin.route.middleware'),
 ], function (Router $router) {
     $router->get('/', 'HomeController@index');
-
-    $router->get('/ldap/test', 'ConfigurationLDAPController@test')->name('ldap.test');
+    $router->get('/ldap/test', 'LDAPController@test')
+        ->name('ldap.test');
 
     /**
      * 辅助信息
      */
     $router->get('/version', 'VersionController@index');
-    $router->get('/version/remote', 'VersionController@getRemoteVersion')
-        ->name('remote');
-    $router->get('/version/migrate', 'VersionController@migrate')
+    $router->get('/action/migrate', 'VersionController@migrate')
         ->name('migrate');
-    $router->get('/version/clear', 'VersionController@clear')
+    $router->get('/action/clear', 'VersionController@clear')
         ->name('clear');
-    $router->get('/version/upgrade', 'VersionController@upgrade')
+    $router->get('/action/upgrade', 'VersionController@upgrade')
         ->name('upgrade');
-
-    /**
-     * 配置
-     */
-    $router->get('/configurations/platform', 'ConfigurationPlatformController@index')
-        ->name('configurations.platform.index');
-    $router->resource('/configurations/extensions', 'ConfigurationExtensionController')
-        ->names('configurations.extensions');
-    $router->get('/configurations/ldap', 'ConfigurationLDAPController@index')
-        ->name('configurations.ldap.index');
 
     /**
      * 工具
@@ -192,7 +181,7 @@ Route::group([
 
     /**
      * 导出
-     *///TODO
+     */
     $router->get('/export/device/{device_id}/history', [DeviceRecordController::class, 'exportHistory'])
         ->name('export.device.history');
     $router->get('/export/check/{check_id}/report', [CheckRecordController::class, 'exportReport'])
@@ -206,17 +195,21 @@ Route::group([
     $router->get('/notifications/read/{id}', [NotificationController::class, 'read'])
         ->name('notification.read');
 
+    /**
+     * 自定义字段
+     */
     $router->resource('/custom_fields', 'CustomFieldController')
         ->names('custom_fields');
 
-    $router->get('/test', function () {
-        $custom_field = new \App\Models\CustomField();
-        $custom_field->table_name = 'admin_users';
-        $custom_field->name = 'age333';
-        $custom_field->type = 'string';
-        $custom_field->is_nullable = 0;
-        $custom_field->save();
-//        $custom_field = \App\Models\CustomField::find(2);
-//        $custom_field->delete();
-    });
+    /**
+     * 菜单
+     */
+    $router->resource('/menu', 'MenuController')
+        ->names('menu');
+
+    /**
+     * LDAP
+     */
+    $router->get('/ldap', [LDAPController::class, 'index'])
+        ->name('ldap.index');
 });

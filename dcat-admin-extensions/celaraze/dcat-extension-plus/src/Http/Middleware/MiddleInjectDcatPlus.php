@@ -22,7 +22,6 @@ class MiddleInjectDcatPlus
 
         $support = new Support();
         $support->initConfig();
-        $support->injectSidebar();
         $support->injectFields();
         $support->footerRemove();
         $support->headerPaddingFix();
