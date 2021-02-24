@@ -16,6 +16,12 @@ class DeviceRecord extends EloquentRepository
      */
     protected $eloquentClass = Model::class;
 
+    public static function getTable(): string
+    {
+        $model = new Model();
+        return $model->getTable();
+    }
+
     public function toTree(): array
     {
         $array = [];
@@ -23,6 +29,7 @@ class DeviceRecord extends EloquentRepository
         $table_name = $model->getTable();
         $db_columns = Schema::getColumnListing($table_name);
         $model_columns = ColumnSort::where('table_name', $table_name)->get()->toArray();
+        // 如果column_sorts表内没有该资产的字段排序数据，则全部新建
         if (empty($model_columns)) {
             foreach ($db_columns as $key => $db_column) {
                 $model = new Model();

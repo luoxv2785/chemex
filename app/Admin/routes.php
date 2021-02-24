@@ -32,9 +32,6 @@ Route::group([
     $router->get('/ldap/test', 'LDAPController@test')
         ->name('ldap.test');
 
-    $router->resource('/device/columns', 'TodoRecordColumnController')
-        ->names('device.columns');
-
     /**
      * 辅助信息
      */
@@ -65,6 +62,8 @@ Route::group([
         ->names('device.categories');
     $router->get('/device/statistics', [DeviceStatisticsController::class, 'index'])
         ->name('device.statistics');
+    $router->resource('/device/columns', 'DeviceColumnController')
+        ->names('device.columns');
     $router->get('/selection/device/records', [DeviceRecordController::class, 'selectList'])
         ->name('selection.device.records');
     $router->get('/selection/device/categories', [DeviceCategoryController::class, 'selectList'])

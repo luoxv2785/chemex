@@ -35,7 +35,6 @@ class ConsumableOutForm extends Form
                 $new_consumable_track->number -= $number;
                 $new_consumable_track->change = $number;
                 $new_consumable_track->user_id = $user_id;
-                $new_consumable_track->operator = auth('admin')->user()->name;
                 $new_consumable_track->save();
                 $consumable_track->delete();
             }

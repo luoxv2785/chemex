@@ -48,6 +48,6 @@ class ConsumableRecord extends Model
 
     public function track(): HasMany
     {
-        return $this->hasMany(ConsumableTrack::class, 'id', 'consumable_id');
+        return $this->hasMany(ConsumableTrack::class, 'consumable_id', 'id');
     }
 }

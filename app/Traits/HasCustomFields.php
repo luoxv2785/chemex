@@ -4,9 +4,9 @@
 namespace App\Traits;
 
 
+use App\Grid;
 use App\Models\CustomField;
 use Dcat\Admin\Form;
-use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Illuminate\Database\Eloquent\Model;
 
@@ -76,12 +76,13 @@ trait HasCustomFields
      * 构建自定义字段Grid结构
      * @param Model $model
      * @param Grid $grid
+     * @param $column_sorts
      * @return Grid
      */
-    public static function makeGrid(Model $model, Grid $grid): Grid
+    public static function makeGrid(Model $model, Grid $grid, $column_sorts): Grid
     {
         foreach (self::getCustomFields($model) as $custom_field) {
-            $grid->column($custom_field->name, $custom_field->nick_name);
+            $grid->column($custom_field->name, $custom_field->nick_name, $column_sorts);
         }
         return $grid;
     }

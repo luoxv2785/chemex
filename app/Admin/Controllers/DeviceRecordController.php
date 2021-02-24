@@ -9,6 +9,8 @@ use App\Admin\Actions\Grid\RowAction\MaintenanceCreateAction;
 use App\Admin\Actions\Grid\ToolAction\DeviceRecordImportAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\DeviceRecord;
+use App\Grid;
+use App\Models\ColumnSort;
 use App\Models\Department;
 use App\Models\DepreciationRule;
 use App\Models\DeviceCategory;
@@ -23,7 +25,7 @@ use App\Traits\HasCustomFields;
 use App\Traits\HasDeviceRelatedGrid;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
-use Dcat\Admin\Grid;
+use Dcat\Admin\Grid\Tools\QuickCreate;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Layout\Content;
@@ -57,6 +59,7 @@ class DeviceRecordController extends AdminController
                 $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('device.categories.index'));
                 $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('device.tracks.index'));
                 $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('device.statistics'));
+                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('device.columns.index'));
                 $row->column(12, $tab);
             });
     }
@@ -75,13 +78,16 @@ class DeviceRecordController extends AdminController
     {
         return Grid::make(new DeviceRecord(['category', 'vendor', 'user', 'user.department', 'depreciation']), function (Grid $grid) {
 
-            $grid->column('id');
-            $grid->column('qrcode')->qrcode(function () {
+            $column_sort = ColumnSort::where('table_name', DeviceRecord::getTable())
+                ->get(['field', 'order'])
+                ->toArray();
+            $grid->column('id', '', $column_sort);
+            $grid->column('qrcode', '', $column_sort)->qrcode(function () {
                 return 'device:' . $this->id;
             }, 200, 200);
-            $grid->column('asset_number');
-            $grid->column('photo')->image('', 50, 50);
-            $grid->column('name')->display(function ($name) {
+            $grid->column('asset_number', '', $column_sort);
+            $grid->column('photo', '', $column_sort)->image('', 50, 50);
+            $grid->column('name', '', $column_sort)->display(function ($name) {
                 $tag = Support::getSoftwareIcon($this->id);
                 if (empty($tag)) {
                     return $name;
@@ -89,26 +95,26 @@ class DeviceRecordController extends AdminController
                     return "<img alt='$tag' src='/static/images/icons/$tag.png' style='width: 25px;height: 25px;margin-right: 10px'/>$name";
                 }
             });
-            $grid->column('description');
-            $grid->column('category.name');
-            $grid->column('vendor.name');
-            $grid->column('mac');
-            $grid->column('ip');
-            $grid->column('price');
-            $grid->column('expired');
-            $grid->column('user.name')->display(function ($name) {
+            $grid->column('description', '', $column_sort);
+            $grid->column('category.name', '', $column_sort);
+            $grid->column('vendor.name', '', $column_sort);
+            $grid->column('mac', '', $column_sort);
+            $grid->column('ip', '', $column_sort);
+            $grid->column('price', '', $column_sort);
+            $grid->column('expired', '', $column_sort);
+            $grid->column('user.name', '', $column_sort)->display(function ($name) {
                 if ($this->isLend()) {
                     return '<span style="color: rgba(178,68,71,1);font-weight: 600;">[' . trans('main.lend') . '] </span>' . $name;
                 }
                 return $name;
             });
-            $grid->column('user.department.name');
-            $grid->column('expiration_left_days', admin_trans_label('Expiration Left Days'))->display(function () {
+            $grid->column('user.department.name', '', $column_sort);
+            $grid->column('expiration_left_days', admin_trans_label('Expiration Left Days'), $column_sort)->display(function () {
                 return ExpirationService::itemExpirationLeftDaysRender('device', $this->id);
             });
-            $grid->column('depreciation.name');
+            $grid->column('depreciation.name', '', $column_sort);
 
-            HasCustomFields::makeGrid(new \App\Models\DeviceRecord(), $grid);
+            HasCustomFields::makeGrid(new \App\Models\DeviceRecord(), $grid, $column_sort);
 
             $grid->disableBatchDelete();
             $grid->disableDeleteButton();
@@ -171,7 +177,7 @@ class DeviceRecordController extends AdminController
                 HasCustomFields::makeFilter(new \App\Models\DeviceRecord(), $filter);
             });
 
-            $grid->quickCreate(function (Grid\Tools\QuickCreate $create) {
+            $grid->quickCreate(function (QuickCreate $create) {
                 $create->text('name')->required();
                 $create->select('category_id', admin_trans_label('Category'))
                     ->options(DeviceCategory::pluck('name', 'id'))

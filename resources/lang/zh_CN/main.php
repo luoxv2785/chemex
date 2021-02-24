@@ -8,6 +8,7 @@ return [
     'issue' => '异常',
     'history' => '履历',
     'lend' => '借用',
+    'column' => '字段（开发中，请勿使用）',
     'custom_field' => '自定义字段',
     'related' => '归属关系',
     'statistics' => '统计',

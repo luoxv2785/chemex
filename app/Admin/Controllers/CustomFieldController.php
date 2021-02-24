@@ -113,22 +113,7 @@ class CustomFieldController extends AdminController
              * 因此这里需要自定义保存，来“隐藏”报错
              */
             $form->saving(function (Form $form) {
-                $exist = \App\Models\CustomField::where('table_name', $form->input('table_name'))
-                    ->where('name', $form->input('name'))
-                    ->first();
-                if (!empty($exist)) {
-                    return $form->response()
-                        ->error(trans('main.record_same'));
-                }
-                $custom_fields = new \App\Models\CustomField();
-                $custom_fields->table_name = $form->input('table_name');
-                $custom_fields->name = $form->input('name');
-                $custom_fields->nick_name = $form->input('nick_name');
-                $custom_fields->type = $form->input('type');
-                $custom_fields->is_nullable = $form->input('is_nullable');
-                $custom_fields->save();
-                return $form->response()
-                    ->location(admin_route('custom_fields.index'));
+
             });
 
             $form->disableDeleteButton();

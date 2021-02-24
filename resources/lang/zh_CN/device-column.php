@@ -1,0 +1,37 @@
+<?php
+return [
+    'labels' => [
+        'title' => '设备',
+        'description' => '排序和自定义操作',
+        'columns' => '字段',
+        'Name Help' => '字段名称，为保证兼容性请尽量使用英文。',
+        'Nick Name Help' => '描述这个字段的名称，名称随意。',
+        'Is Nullable Help' => '注意：日期和日期时间类型，将永远可空。',
+        'Delete' => '删除字段',
+        'Delete Confirm' => '确认删除？',
+        'Delete Confirm Description' => '删除的同时将会删除此字段的全部用户数据且无法恢复',
+    ],
+    'fields' => [
+        'nick_name' => '字段别名',
+        'is_nullable' => '可空',
+        'qrcode' => '二维码',
+        'name' => '名称',
+        'description' => '描述',
+        'mac' => 'MAC',
+        'ip' => 'IP',
+        'photo' => '照片',
+        'price' => '价格',
+        'purchased' => '购入日期',
+        'expired' => '过保日期',
+        'depreciation_rule_id' => '折旧规则',
+        'asset_number' => '资产编号',
+        'category_id' => '分类',
+        'vendor_id' => '厂商',
+        'purchased_channel_id' => '购入途径',
+        'ssh_username' => 'SSH用户名',
+        'ssh_password' => 'SSH密码',
+        'ssh_port' => 'SSH端口号',
+    ],
+    'options' => [
+    ],
+];
