@@ -361,7 +361,6 @@ class DeviceRecordController extends AdminController
             $form->display('updated_at');
 
             $form->disableDeleteButton();
-
             $form->disableCreatingCheck();
             $form->disableEditingCheck();
             $form->disableViewCheck();
