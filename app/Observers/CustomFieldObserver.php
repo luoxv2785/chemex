@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\Models\CustomField;
+use App\Models\CustomColumn;
 use Exception;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
@@ -11,12 +11,12 @@ use Illuminate\Support\Facades\Schema;
 class CustomFieldObserver
 {
     /**
-     * Handle the CustomField "created" event.
+     * Handle the CustomColumn "created" event.
      *
-     * @param CustomField $customField
+     * @param CustomColumn $customField
      * @return void
      */
-    public function created(CustomField $customField)
+    public function created(CustomColumn $customField)
     {
         try {
             Schema::table($customField->table_name, function (Blueprint $table) use ($customField) {
@@ -37,23 +37,23 @@ class CustomFieldObserver
     }
 
     /**
-     * Handle the CustomField "updated" event.
+     * Handle the CustomColumn "updated" event.
      *
-     * @param CustomField $customField
+     * @param CustomColumn $customField
      * @return void
      */
-    public function updated(CustomField $customField)
+    public function updated(CustomColumn $customField)
     {
         //
     }
 
     /**
-     * Handle the CustomField "deleted" event.
+     * Handle the CustomColumn "deleted" event.
      *
-     * @param CustomField $customField
+     * @param CustomColumn $customField
      * @return void
      */
-    public function deleted(CustomField $customField)
+    public function deleted(CustomColumn $customField)
     {
         try {
             Schema::table($customField->table_name, function (Blueprint $table) use ($customField) {
@@ -65,23 +65,23 @@ class CustomFieldObserver
     }
 
     /**
-     * Handle the CustomField "restored" event.
+     * Handle the CustomColumn "restored" event.
      *
-     * @param CustomField $customField
+     * @param CustomColumn $customField
      * @return void
      */
-    public function restored(CustomField $customField)
+    public function restored(CustomColumn $customField)
     {
         //
     }
 
     /**
-     * Handle the CustomField "force deleted" event.
+     * Handle the CustomColumn "force deleted" event.
      *
-     * @param CustomField $customField
+     * @param CustomColumn $customField
      * @return void
      */
-    public function forceDeleted(CustomField $customField)
+    public function forceDeleted(CustomColumn $customField)
     {
         //
     }

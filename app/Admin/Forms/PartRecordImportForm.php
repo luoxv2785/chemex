@@ -2,7 +2,7 @@
 
 namespace App\Admin\Forms;
 
-use App\Models\CustomField;
+use App\Models\CustomColumn;
 use App\Models\PartCategory;
 use App\Models\PartRecord;
 use App\Models\PurchasedChannel;
@@ -80,7 +80,7 @@ class PartRecordImportForm extends Form
                         /*
                          * 处理自定义字段的导入
                          */
-                        $custom_fields = CustomField::where('table_name', $part_record->getTable())->get();
+                        $custom_fields = CustomColumn::where('table_name', $part_record->getTable())->get();
                         foreach ($custom_fields as $custom_field) {
                             $name = $custom_field->name;
                             $nick_name = $custom_field->nick_name;

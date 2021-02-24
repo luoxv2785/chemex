@@ -23,14 +23,29 @@ return [
         'price' => '价格',
         'purchased' => '购入日期',
         'expired' => '过保日期',
-        'depreciation_rule_id' => '折旧规则',
         'asset_number' => '资产编号',
-        'category_id' => '分类',
-        'vendor_id' => '厂商',
-        'purchased_channel_id' => '购入途径',
         'ssh_username' => 'SSH用户名',
         'ssh_password' => 'SSH密码',
         'ssh_port' => 'SSH端口号',
+        'category' => [
+            'name' => '分类'
+        ],
+        'vendor' => [
+            'name' => '厂商'
+        ],
+        'channel' => [
+            'name' => '购入途径'
+        ],
+        'user' => [
+            'name' => '用户',
+            'department' => [
+                'name' => '部门'
+            ],
+        ],
+        'expiration_left_days' => '保固剩余时间',
+        'depreciation' => [
+            'name' => '折旧规则',
+        ],
     ],
     'options' => [
     ],

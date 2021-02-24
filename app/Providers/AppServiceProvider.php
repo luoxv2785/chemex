@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Models\CheckRecord;
-use App\Models\CustomField;
+use App\Models\CustomColumn;
 use App\Models\TodoRecord;
 use App\Observers\CheckRecordObserver;
 use App\Observers\CustomFieldObserver;
@@ -37,6 +37,6 @@ class AppServiceProvider extends ServiceProvider
         // 待办的观察者
         TodoRecord::observe(TodoRecordObserver::class);
 
-        CustomField::observe(CustomFieldObserver::class);
+        CustomColumn::observe(CustomFieldObserver::class);
     }
 }

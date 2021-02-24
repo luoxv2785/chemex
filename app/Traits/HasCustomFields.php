@@ -5,7 +5,7 @@ namespace App\Traits;
 
 
 use App\Grid;
-use App\Models\CustomField;
+use App\Models\CustomColumn;
 use Dcat\Admin\Form;
 use Dcat\Admin\Show;
 use Illuminate\Database\Eloquent\Model;
@@ -55,7 +55,7 @@ trait HasCustomFields
      */
     public static function getCustomFields(Model $model)
     {
-        return CustomField::where('table_name', $model->getTable())->get();
+        return CustomColumn::where('table_name', $model->getTable())->get();
     }
 
     /**

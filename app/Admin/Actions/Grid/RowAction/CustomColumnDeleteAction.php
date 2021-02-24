@@ -2,13 +2,13 @@
 
 namespace App\Admin\Actions\Grid\RowAction;
 
-use App\Models\CustomField;
+use App\Models\CustomColumn;
 use Dcat\Admin\Actions\Response;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\RowAction;
 use Exception;
 
-class CustomFieldDeleteAction extends RowAction
+class CustomColumnDeleteAction extends RowAction
 {
     public function __construct($title = null)
     {
@@ -22,14 +22,14 @@ class CustomFieldDeleteAction extends RowAction
      */
     public function handle(): Response
     {
-        if (!Admin::user()->can('device.custom_field.delete')) {
+        if (!Admin::user()->can('device.custom_column.delete')) {
             return $this->response()
                 ->error(trans('main.unauthorized'))
                 ->refresh();
         }
 
         try {
-            $custom_fields = CustomField::find($this->getKey());
+            $custom_fields = CustomColumn::find($this->getKey());
             $custom_fields->delete();
             return $this->response()
                 ->success(trans('main.success'))

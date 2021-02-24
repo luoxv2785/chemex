@@ -16,47 +16,57 @@ class DeviceRecord extends EloquentRepository
      */
     protected $eloquentClass = Model::class;
 
-    public static function getTable(): string
-    {
-        $model = new Model();
-        return $model->getTable();
-    }
-
     public function toTree(): array
     {
         $array = [];
         $model = new Model();
         $table_name = $model->getTable();
-        $db_columns = Schema::getColumnListing($table_name);
-        $model_columns = ColumnSort::where('table_name', $table_name)->get()->toArray();
+        // 数据库实际存在的字段+代码中自定义的字段
+        $needle_columns = $this->sortNeedleColumns();
+        // 排序表实中存在的字段
+        $model_columns_array = ColumnSort::where('table_name', $table_name)
+            ->orderBy('order', 'ASC')
+            ->get(['field', 'order'])
+            ->toArray();
+        $model_columns = [];
+        foreach ($model_columns_array as $model_column) {
+            $model_columns = array_merge($model_columns, [$model_column['order'] => $model_column['field']]);
+        }
+//        dd($db_columns, $model_columns);
         // 如果column_sorts表内没有该资产的字段排序数据，则全部新建
-        if (empty($model_columns)) {
-            foreach ($db_columns as $key => $db_column) {
-                $model = new Model();
-                $model->id = $key;
-                $model->title = admin_trans_field($db_column);
-                $model->parent_id = 0;
-                $model->order = $key;
-                array_push($array, $model);
-            }
-        } else {
-            foreach ($db_columns as $key => $db_column) {
-                foreach ($model_columns as $model_column) {
-                    // 如果表字段在排序表中有了
-                    if ($db_column == $model_column['field']) {
-                        $model = new Model();
-                        $model->id = $key;
-                        $model->title = admin_trans_field($db_column);
-                        $model->parent_id = 0;
-                        $model->order = $model_column['order'];
-                        array_push($array, $model);
-                    }
-                }
-            }
+        if (!empty($model_columns)) {
+            // 排序表中没有，但实际需要排序的字段
+            $not_in_needle_columns = array_diff($needle_columns, $model_columns);
+            $needle_columns = array_merge($model_columns, $not_in_needle_columns);
+        }
+        foreach ($needle_columns as $key => $needle_column) {
+            $model = new Model();
+            $model->id = $key;
+            $model->title = admin_trans_field($needle_column);
+            $model->parent_id = 0;
+            $model->order = $key;
+            array_push($array, $model);
         }
         usort($array, function ($a, $b) {
             return $a->order < $b->order ? -1 : 1;
         });
         return $array;
+    }
+
+    public function sortNeedleColumns(): array
+    {
+        $db_columns = Schema::getColumnListing($this->getTable());
+        $db_columns = array_merge($db_columns, $this->getModel()->sortIncludeColumns);
+        return array_values(array_diff($db_columns, $this->getModel()->sortExceptColumns));
+    }
+
+    public function getTable(): string
+    {
+        return $this->getModel()->getTable();
+    }
+
+    public function getModel(): Model
+    {
+        return new Model();
     }
 }

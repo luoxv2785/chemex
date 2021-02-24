@@ -16,10 +16,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static find(int $int)
  * @method static where(string $key, string $value1, string $value2 = null)
  */
-class CustomField extends Model
+class CustomColumn extends Model
 {
     use HasDateTimeFormatter;
     use SoftDeletes;
 
-    protected $table = 'custom_fields';
+    protected $table = 'custom_columns';
 }

@@ -200,8 +200,8 @@ Route::group([
     /**
      * 自定义字段
      */
-    $router->resource('/custom_fields', 'CustomFieldController')
-        ->names('custom_fields');
+    $router->resource('/custom_columns', 'CustomColumnController')
+        ->names('custom_columns');
 
     /**
      * 菜单

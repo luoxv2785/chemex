@@ -167,7 +167,6 @@ CSS
     text-align: right;
 }
 CSS
-
             );
         }
     }

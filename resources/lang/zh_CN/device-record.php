@@ -7,7 +7,6 @@ return [
         'Category' => '分类',
         'Vendor' => '厂商',
         'Purchased Channel' => '购入途径',
-        'Expiration Left Days' => '保固剩余天数',
         'Depreciation Rule' => '折旧规则',
         'Depreciation Price' => '折旧价格',
         'Current User' => '当前使用者',
@@ -99,7 +98,8 @@ return [
         'lend_time' => '借用时间',
         'lend_description' => '借用说明',
         'user_id' => '用户',
-        'plan_return_time' => '计划归还时间'
+        'plan_return_time' => '计划归还时间',
+        'expiration_left_days' => '保固剩余时间'
     ],
     'options' => [
     ],

@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '9fad7475a10402f4e650d72bdb98239781bafed4',
+    'reference' => '8cb16a4271761b7dd27e56a5374c55505f4523a2',
     'name' => 'celaraze/chemex',
   ),
   'versions' => 
@@ -87,7 +87,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '9fad7475a10402f4e650d72bdb98239781bafed4',
+      'reference' => '8cb16a4271761b7dd27e56a5374c55505f4523a2',
     ),
     'celaraze/pour' => 
     array (
@@ -110,12 +110,12 @@ private static $installed = array (
     ),
     'composer/composer' => 
     array (
-      'pretty_version' => '2.0.10',
-      'version' => '2.0.10.0',
+      'pretty_version' => '2.0.11',
+      'version' => '2.0.11.0',
       'aliases' => 
       array (
       ),
-      'reference' => '890c79ff096818e762b42c9624ca1df800ab789b',
+      'reference' => 'a5a5632da0b1c2d6fa9a3b65f1f4e90d1f04abb9',
     ),
     'composer/package-versions-deprecated' => 
     array (
@@ -277,12 +277,12 @@ private static $installed = array (
     ),
     'enlightn/security-checker' => 
     array (
-      'pretty_version' => 'v1.5.1',
-      'version' => '1.5.1.0',
+      'pretty_version' => 'v1.6.1',
+      'version' => '1.6.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'aa8170ec81d7b65e35efb3821159b198dd10eac3',
+      'reference' => 'a0914d126de022ba0c1afca2e1691f0f14592cde',
     ),
     'facade/flare-client-php' => 
     array (
@@ -691,12 +691,12 @@ private static $installed = array (
     ),
     'mockery/mockery' => 
     array (
-      'pretty_version' => '1.4.2',
-      'version' => '1.4.2.0',
+      'pretty_version' => '1.4.3',
+      'version' => '1.4.3.0',
       'aliases' => 
       array (
       ),
-      'reference' => '20cab678faed06fac225193be281ea0fddb43b93',
+      'reference' => 'd1339f64479af1bee0e82a0413813fe5345a54ea',
     ),
     'monolog/monolog' => 
     array (

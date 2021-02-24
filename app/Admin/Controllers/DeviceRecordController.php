@@ -76,9 +76,8 @@ class DeviceRecordController extends AdminController
      */
     protected function grid(): Grid
     {
-        return Grid::make(new DeviceRecord(['category', 'vendor', 'user', 'user.department', 'depreciation']), function (Grid $grid) {
-
-            $column_sort = ColumnSort::where('table_name', DeviceRecord::getTable())
+        return Grid::make(new DeviceRecord(['category', 'vendor', 'user', 'user.department', 'channel', 'depreciation']), function (Grid $grid) {
+            $column_sort = ColumnSort::where('table_name', (new DeviceRecord())->getTable())
                 ->get(['field', 'order'])
                 ->toArray();
             $grid->column('id', '', $column_sort);
@@ -109,9 +108,10 @@ class DeviceRecordController extends AdminController
                 return $name;
             });
             $grid->column('user.department.name', '', $column_sort);
-            $grid->column('expiration_left_days', admin_trans_label('Expiration Left Days'), $column_sort)->display(function () {
+            $grid->column('expiration_left_days', '', $column_sort)->display(function () {
                 return ExpirationService::itemExpirationLeftDaysRender('device', $this->id);
             });
+            $grid->column('channel.name', '', $column_sort);
             $grid->column('depreciation.name', '', $column_sort);
 
             HasCustomFields::makeGrid(new \App\Models\DeviceRecord(), $grid, $column_sort);
@@ -146,6 +146,7 @@ class DeviceRecordController extends AdminController
                 'description',
                 'price',
                 'expired',
+                'channel.name',
                 'depreciation.name',
                 'expiration_left_days',
                 'user.department.name'
@@ -247,7 +248,7 @@ class DeviceRecordController extends AdminController
             $show->field('ip');
             $show->field('photo')->image();
             $show->field('price');
-            $show->field('expiration_left_days', admin_trans_label('Depreciation Price'))->as(function () {
+            $show->field('expiration_left_days')->as(function () {
                 $device_record = \App\Models\DeviceRecord::where('id', $this->id)->first();
                 if (!empty($device_record)) {
                     $depreciation_rule_id = Support::getDepreciationRuleId($device_record);
@@ -364,6 +365,10 @@ class DeviceRecordController extends AdminController
             $form->disableCreatingCheck();
             $form->disableEditingCheck();
             $form->disableViewCheck();
+
+            $form->deleting(function (Form $form) {
+                dd($form);
+            });
         });
     }
 }

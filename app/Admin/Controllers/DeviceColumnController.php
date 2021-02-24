@@ -4,7 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Repositories\DeviceRecord;
 use App\Models\ColumnSort;
-use App\Models\CustomField;
+use App\Models\CustomColumn;
 use App\Support\Data;
 use Dcat\Admin\Form;
 use Dcat\Admin\Http\Controllers\AdminController;
@@ -12,7 +12,6 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Tree;
 use Dcat\Admin\Widgets\Tab;
-use Illuminate\Support\Facades\Schema;
 use Pour\Plus\LaravelAdmin;
 
 
@@ -71,20 +70,20 @@ class DeviceColumnController extends AdminController
                 ->default(0);
 
             $form->saving(function (Form $form) {
-                $table_name = DeviceRecord::getTable();
+                $table_name = (new DeviceRecord())->getTable();
                 if (request()->has('_order')) {
                     // orders的索引代表排序，orders['id']代表现在数据表中的排序
-                    $db_columns = Schema::getColumnListing($table_name);
+                    $needle_columns = (new DeviceRecord())->sortNeedleColumns();
                     $orders = request('_order');
                     $orders = json_decode($orders, true);
                     foreach ($orders as $key => $order) {
-                        $field_name = $db_columns[$order['id']];
-                        $column_sort = ColumnSort::where('field', $field_name)->first();
+                        $column_name = $needle_columns[$order['id']];
+                        $column_sort = ColumnSort::where('field', $column_name)->first();
                         if (empty($column_sort)) {
                             $column_sort = new ColumnSort();
                         }
                         $column_sort->table_name = $table_name;
-                        $column_sort->field = $field_name;
+                        $column_sort->field = $column_name;
                         $column_sort->order = $key;
                         $column_sort->save();
                     }
@@ -92,22 +91,22 @@ class DeviceColumnController extends AdminController
                         ->success(trans('main.success'))
                         ->refresh();
                 } else {
-                    $exist = CustomField::where('table_name', $table_name)
+                    $exist = CustomColumn::where('table_name', $table_name)
                         ->where('name', $form->input('name'))
                         ->first();
                     if (!empty($exist)) {
                         return $form->response()
                             ->error(trans('main.record_same'));
                     }
-                    $custom_fields = new CustomField();
-                    $custom_fields->table_name = $table_name;
-                    $custom_fields->name = $form->input('name');
-                    $custom_fields->nick_name = $form->input('nick_name');
-                    $custom_fields->type = $form->input('type');
-                    $custom_fields->is_nullable = $form->input('is_nullable');
-                    $custom_fields->save();
+                    $custom_columns = new CustomColumn();
+                    $custom_columns->table_name = $table_name;
+                    $custom_columns->name = $form->input('name');
+                    $custom_columns->nick_name = $form->input('nick_name');
+                    $custom_columns->type = $form->input('type');
+                    $custom_columns->is_nullable = $form->input('is_nullable');
+                    $custom_columns->save();
                     return $form->response()
-                        ->location(admin_route('custom_fields.index'));
+                        ->refresh();
                 }
 
             });

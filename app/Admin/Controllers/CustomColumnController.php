@@ -2,9 +2,9 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\Grid\RowAction\CustomFieldDeleteAction;
+use App\Admin\Actions\Grid\RowAction\CustomColumnDeleteAction;
 use App\Admin\Grid\Displayers\RowActions;
-use App\Admin\Repositories\CustomField;
+use App\Admin\Repositories\CustomColumn;
 use App\Support\Data;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
@@ -14,7 +14,7 @@ use Dcat\Admin\Show;
 use Pour\Plus\LaravelAdmin;
 
 
-class CustomFieldController extends AdminController
+class CustomColumnController extends AdminController
 {
     public function index(Content $content): Content
     {
@@ -36,7 +36,7 @@ class CustomFieldController extends AdminController
      */
     protected function grid(): Grid
     {
-        return Grid::make(new CustomField(), function (Grid $grid) {
+        return Grid::make(new CustomColumn(), function (Grid $grid) {
             $grid->column('id');
             $grid->column('table_name')->using(Data::itemNameByTableName());
             $grid->column('name');
@@ -50,7 +50,7 @@ class CustomFieldController extends AdminController
             $grid->disableDeleteButton();
 
             $grid->actions(function (RowActions $actions) {
-                $actions->append(new CustomFieldDeleteAction());
+                $actions->append(new CustomColumnDeleteAction());
             });
 
             $grid->filter(function ($filter) {
@@ -69,7 +69,7 @@ class CustomFieldController extends AdminController
      */
     protected function detail($id): Show
     {
-        return Show::make($id, new CustomField(), function (Show $show) {
+        return Show::make($id, new CustomColumn(), function (Show $show) {
             $show->field('id');
             $show->field('table_name')->using(Data::itemNameByTableName());
             $show->field('name');
@@ -89,7 +89,7 @@ class CustomFieldController extends AdminController
      */
     protected function form(): Form
     {
-        return Form::make(new CustomField(), function (Form $form) {
+        return Form::make(new CustomColumn(), function (Form $form) {
             $form->display('id');
             $form->select('table_name')
                 ->options(Data::itemNameByTableName())

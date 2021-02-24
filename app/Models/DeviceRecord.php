@@ -48,9 +48,31 @@ class DeviceRecord extends Model
     use HasDateTimeFormatter;
     use SoftDeletes;
     use HasStaticGetTableName;
-    use ModelTree;
+    use ModelTree {
+        ModelTree::delete as traitDelete;
+    }
 
+    public $sortIncludeColumns = [
+        'category.name',
+        'vendor.name',
+        'user.name',
+        'user.department.name',
+        'expiration_left_days',
+        'channel.name',
+        'depreciation.name',
+    ];
+    public $sortExceptColumns = [
+        'category_id',
+        'vendor_id',
+        'purchased_channel_id',
+        'depreciation_rule_id',
+    ];
     protected $table = 'device_records';
+
+    public function delete(): ?bool
+    {
+        return parent::delete();
+    }
 
     /**
      * 设备记录有一个分类
