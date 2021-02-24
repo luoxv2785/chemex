@@ -1,4 +1,58 @@
 <ul class="nav navbar-nav">
+    {{--帮助信息--}}
+    <li class="dropdown dropdown-notification nav-item mr-1">
+        <a class="nav-link nav-link-label" href="#" data-toggle="dropdown" aria-expanded="true">
+            <i class="ficon feather icon-help-circle"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right shadow-200">
+            <li class="scrollable-container media-list ps ps--active-y">
+                <a class="media d-flex justify-content-between" href="https://gitee.com/celaraze/chemex/issues"
+                   target="_blank">
+                    <div class="d-flex align-items-start">
+                        <div class="media-left">
+                        </div>
+                        <div class="media-body">
+                            <h6 class="primary media-heading">上报错误</h6>
+                            <small class="notification-text">
+                                当在使用过程中遇到了一些BUG或是错误问题，请务必告诉我。
+                            </small>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li class="scrollable-container media-list ps ps--active-y">
+                <a class="media d-flex justify-content-between" href="https://gitee.com/celaraze/chemex/wikis/pages"
+                   target="_blank">
+                    <div class="d-flex align-items-start">
+                        <div class="media-left">
+                        </div>
+                        <div class="media-body">
+                            <h6 class="primary media-heading">官方文档</h6>
+                            <small class="notification-text">
+                                在这里你能够找到针对使用过程的一些说明文档。
+                            </small>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li class="scrollable-container media-list ps ps--active-y" style="max-height: none;">
+                <a class="media d-flex justify-content-between" href="https://jq.qq.com/?_wv=1027&k=Ow82UKc0"
+                   target="_blank">
+                    <div class="d-flex align-items-start">
+                        <div class="media-left">
+                        </div>
+                        <div class="media-body">
+                            <h6 class="primary media-heading">加入QQ群</h6>
+                            <small class="notification-text">
+                                与其它咖啡壶用户进行交流。
+                            </small>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </li>
+
     {{--通知--}}
     <li class="dropdown dropdown-notification nav-item mr-1" style="text-align: center">
         <a class="nav-link nav-link-label" href="#" data-toggle="dropdown" aria-expanded="true">

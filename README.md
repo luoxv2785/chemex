@@ -6,6 +6,7 @@
     <a href="https://chemex.io" target="_blank">官方网站</a> | 
     <a href="https://chemex.it" target="_blank">官方社区</a> | 
     <a href="https://chemex.famio.cn" target="_blank">演示地址</a>
+    <a href="https://jq.qq.com/?_wv=1027&k=tnV2HCWU">官方QQ群</a>
 </p>
 
 <p align="center">
