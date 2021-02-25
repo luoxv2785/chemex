@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\Tree\ToolAction\DepartmentImportAction;
+use App\Admin\Actions\Tree\RowAction\ToolAction\DepartmentImportAction;
 use App\Admin\Repositories\Department;
 use App\Support\Data;
 use App\Support\Support;

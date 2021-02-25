@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\Tree\ToolAction\PartCategoryImportAction;
+use App\Admin\Actions\Tree\RowAction\ToolAction\PartCategoryImportAction;
 use App\Admin\Repositories\PartCategory;
 use App\Models\DepreciationRule;
 use App\Support\Data;

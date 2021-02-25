@@ -48,7 +48,7 @@ class DcatPlusUIForm extends Form
         $this->switch('grid_row_actions_right', Support::trans('main.grid_row_actions_right'))
             ->help(Support::trans('main.grid_row_actions_right_help'))
             ->default(admin_setting('grid_row_actions_right'));
-        $this->switch(Support::trans('main.switch_to_select_create'))
+        $this->switch('switch_to_select_create', Support::trans('main.switch_to_select_create'))
             ->default(admin_setting('switch_to_select_create'));
     }
 }

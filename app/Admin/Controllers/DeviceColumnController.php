@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Tree\RowAction\DeviceColumnDeleteAction;
 use App\Admin\Repositories\DeviceRecord;
 use App\Models\ColumnSort;
 use App\Models\CustomColumn;
@@ -42,7 +43,15 @@ class DeviceColumnController extends AdminController
     {
         return new Tree(new DeviceRecord(), function (Tree $tree) {
             $tree->maxDepth(1);
-            $tree->disableCreateButton();
+            $tree->actions(function (Tree\Actions $actions) {
+                $actions->disableQuickEdit();
+                $actions->disableEdit();
+                $actions->disableDelete();
+//                $actions->append(new CustomColumnDeleteAction());
+//                dd($actions->getRow());
+                $actions->append(new DeviceColumnDeleteAction());
+            });
+            $tree->disableQuickCreateButton();
             $tree->disableDeleteButton();
         });
     }
@@ -78,7 +87,9 @@ class DeviceColumnController extends AdminController
                     $orders = json_decode($orders, true);
                     foreach ($orders as $key => $order) {
                         $column_name = $needle_columns[$order['id']];
-                        $column_sort = ColumnSort::where('field', $column_name)->first();
+                        $column_sort = ColumnSort::where('table_name', $table_name)
+                            ->where('field', $column_name)
+                            ->first();
                         if (empty($column_sort)) {
                             $column_sort = new ColumnSort();
                         }

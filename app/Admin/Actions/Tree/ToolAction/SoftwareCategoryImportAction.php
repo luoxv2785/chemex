@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Admin\Actions\Tree\ToolAction;
+namespace App\Admin\Actions\Tree\RowAction\ToolAction;
 
 use App\Admin\Forms\SoftwareCategoryImportForm;
 use Dcat\Admin\Tree\AbstractTool;

@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\Tree\ToolAction\ConsumableCategoryImportAction;
+use App\Admin\Actions\Tree\RowAction\ToolAction\ConsumableCategoryImportAction;
 use App\Admin\Repositories\ConsumableCategory;
 use App\Support\Data;
 use Dcat\Admin\Form;

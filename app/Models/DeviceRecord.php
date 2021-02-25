@@ -60,6 +60,7 @@ class DeviceRecord extends Model
         'expiration_left_days',
         'channel.name',
         'depreciation.name',
+        'qrcode',
     ];
     public $sortExceptColumns = [
         'category_id',

@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\Tree\ToolAction\SoftwareCategoryImportAction;
+use App\Admin\Actions\Tree\RowAction\ToolAction\SoftwareCategoryImportAction;
 use App\Admin\Repositories\SoftwareCategory;
 use App\Support\Data;
 use App\Support\Support;
