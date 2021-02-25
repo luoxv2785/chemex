@@ -1,7 +1,7 @@
 <?php
 return [
     'labels' => [
-        'title' => '设备',
+        'title' => '配件',
         'description' => '排序和自定义操作',
         'columns' => '字段',
         'Name Help' => '字段名称，为保证兼容性请尽量使用英文。',
@@ -15,16 +15,6 @@ return [
         'qrcode' => '二维码',
         'name' => '名称',
         'description' => '描述',
-        'mac' => 'MAC',
-        'ip' => 'IP',
-        'photo' => '照片',
-        'price' => '价格',
-        'purchased' => '购入日期',
-        'expired' => '过保日期',
-        'asset_number' => '资产编号',
-        'ssh_username' => 'SSH用户名',
-        'ssh_password' => 'SSH密码',
-        'ssh_port' => 'SSH端口号',
         'category' => [
             'name' => '分类'
         ],
@@ -34,20 +24,20 @@ return [
         'channel' => [
             'name' => '购入途径'
         ],
-        'user' => [
-            'name' => '用户',
-            'department' => [
-                'name' => '部门'
-            ],
+        'device' => [
+            'name' => '所属设备'
         ],
-        'expiration_left_days' => '保固剩余时间',
+        'specification' => '规格',
+        'price' => '价格',
+        'purchased' => '购入日期',
+        'expired' => '过保日期',
         'depreciation' => [
             'name' => '折旧规则',
         ],
+        'asset_number' => '资产编号',
+        'expiration_left_days' => '剩余保固时间',
         'nick_name' => '字段别名',
         'is_nullable' => '可空',
         'custom_column_id' => '自定义字段'
-    ],
-    'options' => [
-    ],
+    ]
 ];

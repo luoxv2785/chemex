@@ -21,8 +21,8 @@ use App\Services\ExpirationService;
 use App\Services\ExportService;
 use App\Support\Data;
 use App\Support\Support;
-use App\Traits\HasCustomFields;
-use App\Traits\HasDeviceRelatedGrid;
+use App\Traits\ControllerHasCustomColumns;
+use App\Traits\ControllerHasDeviceRelatedGrid;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid\Tools\QuickCreate;
@@ -45,8 +45,8 @@ use Illuminate\Http\Request;
  */
 class DeviceRecordController extends AdminController
 {
-    use HasDeviceRelatedGrid;
-    use HasCustomFields;
+    use ControllerHasDeviceRelatedGrid;
+    use ControllerHasCustomColumns;
 
     public function index(Content $content): Content
     {
@@ -113,8 +113,10 @@ class DeviceRecordController extends AdminController
             });
             $grid->column('channel.name', '', $column_sort);
             $grid->column('depreciation.name', '', $column_sort);
+            $grid->column('created_at', '', $column_sort);
+            $grid->column('updated_at', '', $column_sort);
 
-            HasCustomFields::makeGrid(new \App\Models\DeviceRecord(), $grid, $column_sort);
+            ControllerHasCustomColumns::makeGrid(new \App\Models\DeviceRecord(), $grid, $column_sort);
 
             $grid->disableBatchDelete();
             $grid->disableDeleteButton();
@@ -165,7 +167,7 @@ class DeviceRecordController extends AdminController
                     'price',
                     'user.name',
                     'user.department.name',
-                ], HasCustomFields::makeQuickSearch(new \App\Models\DeviceRecord()))
+                ], ControllerHasCustomColumns::makeQuickSearch(new \App\Models\DeviceRecord()))
             )
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
@@ -175,7 +177,7 @@ class DeviceRecordController extends AdminController
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
                 $filter->equal('user.department_id')->select(Department::pluck('name', 'id'));
                 $filter->equal('depreciation_id')->select(DepreciationRule::pluck('name', 'id'));
-                HasCustomFields::makeFilter(new \App\Models\DeviceRecord(), $filter);
+                ControllerHasCustomColumns::makeFilter(new \App\Models\DeviceRecord(), $filter);
             });
 
             $grid->quickCreate(function (QuickCreate $create) {
@@ -262,7 +264,7 @@ class DeviceRecordController extends AdminController
             $show->field('depreciation.name');
             $show->field('depreciation.termination');
 
-            HasCustomFields::makeDetail(new \App\Models\DeviceRecord(), $show);
+            ControllerHasCustomColumns::makeDetail(new \App\Models\DeviceRecord(), $show);
 
             $show->field('created_at');
             $show->field('updated_at');
@@ -356,7 +358,7 @@ class DeviceRecordController extends AdminController
                     ->help(admin_trans_label('Depreciation Rule Help'));
             }
 
-            HasCustomFields::makeForm(new \App\Models\DeviceRecord(), $form);
+            ControllerHasCustomColumns::makeForm(new \App\Models\DeviceRecord(), $form);
 
             $form->display('created_at');
             $form->display('updated_at');

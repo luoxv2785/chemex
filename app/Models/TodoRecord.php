@@ -2,10 +2,8 @@
 
 namespace App\Models;
 
-use App\Traits\HasStaticGetTableName;
 use DateTime;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
-use Dcat\Admin\Traits\ModelTree;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -31,8 +29,6 @@ class TodoRecord extends Model
 {
     use HasDateTimeFormatter;
     use SoftDeletes;
-    use HasStaticGetTableName;
-    use ModelTree;
 
     protected $table = 'todo_records';
 

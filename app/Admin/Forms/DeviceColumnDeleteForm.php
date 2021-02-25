@@ -22,7 +22,7 @@ class DeviceColumnDeleteForm extends Form
      */
     public function handle(array $input): JsonResponse
     {
-        $id = $input['custom_field_id'] ?? null;
+        $id = $input['custom_column_id'] ?? null;
 
         // 如果没有设备id或者归还时间或者归还描述则返回错误
         if (!$id) {
@@ -62,7 +62,7 @@ class DeviceColumnDeleteForm extends Form
      */
     public function form()
     {
-        $this->select('custom_field_id')
+        $this->select('custom_column_id')
             ->options(CustomColumn::where('table_name', (new DeviceRecord())->getTable())
                 ->pluck('name', 'id'))
             ->required();

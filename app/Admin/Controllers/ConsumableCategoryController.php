@@ -25,6 +25,7 @@ class ConsumableCategoryController extends AdminController
                 $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('consumable.records.index'));
                 $tab->add(Data::icon('category') . trans('main.category'), $this->treeView(), true);
                 $tab->addLink(Data::icon('track') . trans('main.history'), admin_route('consumable.tracks.index'));
+                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('consumable.columns.index'));
                 $row->column(12, $tab);
             });
     }

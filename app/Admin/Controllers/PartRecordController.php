@@ -10,6 +10,7 @@ use App\Admin\Actions\Grid\ToolAction\PartRecordImportAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\PartRecord;
 use App\Grid;
+use App\Models\ColumnSort;
 use App\Models\DepreciationRule;
 use App\Models\DeviceRecord;
 use App\Models\PartCategory;
@@ -18,7 +19,7 @@ use App\Models\VendorRecord;
 use App\Services\ExpirationService;
 use App\Support\Data;
 use App\Support\Support;
-use App\Traits\HasCustomFields;
+use App\Traits\ControllerHasCustomColumns;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid\Tools\QuickCreate;
@@ -48,6 +49,7 @@ class PartRecordController extends AdminController
                 $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('part.categories.index'));
                 $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('part.tracks.index'));
                 $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('part.statistics'));
+                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('part.columns.index'));
                 $row->column(12, $tab);
             });
     }
@@ -65,17 +67,22 @@ class PartRecordController extends AdminController
     protected function grid(): Grid
     {
         return Grid::make(new PartRecord(['category', 'vendor', 'device', 'depreciation']), function (Grid $grid) {
-            $grid->column('id');
-            $grid->column('qrcode')->qrcode(function () {
+            $column_sort = ColumnSort::where('table_name', (new PartRecord())->getTable())
+                ->get(['field', 'order'])
+                ->toArray();
+            $grid->column('id', '', $column_sort);
+            $grid->column('qrcode', '', $column_sort)->qrcode(function () {
                 return 'part:' . $this->id;
             }, 200, 200);
-            $grid->column('asset_number');
-            $grid->column('name');
-            $grid->column('description');
-            $grid->column('category.name');
-            $grid->column('vendor.name');
-            $grid->column('specification');
-            $grid->column('expiration_left_days')->display(function () {
+            $grid->column('price','',$column_sort);
+            $grid->column('purchased','',$column_sort);
+            $grid->column('asset_number', '', $column_sort);
+            $grid->column('name', '', $column_sort);
+            $grid->column('description', '', $column_sort);
+            $grid->column('category.name', '', $column_sort);
+            $grid->column('vendor.name', '', $column_sort);
+            $grid->column('specification', '', $column_sort);
+            $grid->column('expiration_left_days', '', $column_sort)->display(function () {
                 return ExpirationService::itemExpirationLeftDaysRender('part', $this->id);
             });
             $grid->column('device.name')->link(function () {
@@ -83,9 +90,11 @@ class PartRecordController extends AdminController
                     return admin_route('device.records.show', [$this->device()->first()->id]);
                 }
             });
-            $grid->column('depreciation.name');
+            $grid->column('depreciation.name', '', $column_sort);
+            $grid->column('created_at', '', $column_sort);
+            $grid->column('updated_at', '', $column_sort);
 
-            HasCustomFields::makeGrid(new \App\Models\PartRecord(), $grid, []);
+            ControllerHasCustomColumns::makeGrid(new \App\Models\PartRecord(), $grid, $column_sort);
 
             $grid->actions(function (RowActions $actions) {
                 if (Admin::user()->can('part.record.delete')) {
@@ -112,7 +121,7 @@ class PartRecordController extends AdminController
                     'vendor.name',
                     'specification',
                     'device.name',
-                ], HasCustomFields::makeQuickSearch(new \App\Models\PartRecord()))
+                ], ControllerHasCustomColumns::makeQuickSearch(new \App\Models\PartRecord()))
             )
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
@@ -122,7 +131,7 @@ class PartRecordController extends AdminController
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
                 $filter->equal('device.name');
                 $filter->equal('depreciation_id')->select(DepreciationRule::pluck('name', 'id'));
-                HasCustomFields::makeFilter(new \App\Models\PartRecord(), $filter);
+                ControllerHasCustomColumns::makeFilter(new \App\Models\PartRecord(), $filter);
             });
 
             $grid->enableDialogCreate();
@@ -183,7 +192,7 @@ class PartRecordController extends AdminController
             $show->field('depreciation.name');
             $show->field('depreciation.termination');
 
-            HasCustomFields::makeDetail(new \App\Models\PartRecord(), $show);
+            ControllerHasCustomColumns::makeDetail(new \App\Models\PartRecord(), $show);
 
             $show->field('created_at');
             $show->field('updated_at');
@@ -257,7 +266,7 @@ class PartRecordController extends AdminController
                     ->options(DepreciationRule::pluck('name', 'id'));
             }
 
-            HasCustomFields::makeForm(new \App\Models\PartRecord(), $form);
+            ControllerHasCustomColumns::makeForm(new \App\Models\PartRecord(), $form);
 
             $form->display('created_at');
             $form->display('updated_at');

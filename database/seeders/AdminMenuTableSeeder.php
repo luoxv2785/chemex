@@ -268,19 +268,6 @@ class AdminMenuTableSeeder extends Seeder
             ),
             19 => 
             array (
-                'id' => 29,
-                'parent_id' => 19,
-                'order' => 22,
-                'title' => 'Custom Fields',
-                'icon' => NULL,
-                'uri' => 'custom_fields',
-                'extension' => '',
-                'show' => 1,
-                'created_at' => '2021-02-22 14:13:45',
-                'updated_at' => '2021-02-24 08:33:39',
-            ),
-            20 => 
-            array (
                 'id' => 30,
                 'parent_id' => 19,
                 'order' => 21,
@@ -292,7 +279,7 @@ class AdminMenuTableSeeder extends Seeder
                 'created_at' => '2021-02-23 08:15:41',
                 'updated_at' => '2021-02-24 08:33:39',
             ),
-            21 => 
+            20 => 
             array (
                 'id' => 31,
                 'parent_id' => 19,
@@ -305,7 +292,7 @@ class AdminMenuTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => '2021-02-24 08:33:39',
             ),
-            22 => 
+            21 => 
             array (
                 'id' => 35,
                 'parent_id' => 19,

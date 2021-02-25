@@ -3,12 +3,11 @@
 
 namespace App\Support;
 
-
-use App\Models\ConsumableRecord;
-use App\Models\DeviceRecord;
-use App\Models\PartRecord;
-use App\Models\ServiceRecord;
-use App\Models\SoftwareRecord;
+use App\Admin\Repositories\ConsumableRecord;
+use App\Admin\Repositories\DeviceRecord;
+use App\Admin\Repositories\PartRecord;
+use App\Admin\Repositories\ServiceRecord;
+use App\Admin\Repositories\SoftwareRecord;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Widgets\Alert;
 
@@ -299,11 +298,11 @@ class Data
     public static function itemNameByTableName(): array
     {
         return [
-            DeviceRecord::table() => trans('main.device'),
-            PartRecord::table() => trans('main.part'),
-            SoftwareRecord::table() => trans('main.software'),
-            ConsumableRecord::table() => trans('main.consumable'),
-            ServiceRecord::table() => trans('main.service'),
+            (new DeviceRecord())->getTable() => trans('main.device'),
+            (new PartRecord())->getTable() => trans('main.part'),
+            (new SoftwareRecord())->getTable() => trans('main.software'),
+            (new ConsumableRecord())->getTable() => trans('main.consumable'),
+            (new ServiceRecord())->getTable() => trans('main.service'),
         ];
     }
 }

@@ -27,6 +27,7 @@ class SoftwareStatisticsController extends Controller
                 $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('software.categories.index'));
                 $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('software.tracks.index'));
                 $tab->add(Data::icon('statistics') . trans('main.statistics'), null, true);
+                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('software.columns.index'));
                 $row->column(12, $tab);
             })
             ->body(function (Row $row) {

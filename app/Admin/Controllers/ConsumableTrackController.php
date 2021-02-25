@@ -24,6 +24,7 @@ class ConsumableTrackController extends AdminController
                 $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('consumable.records.index'));
                 $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('consumable.categories.index'));
                 $tab->add(Data::icon('track') . trans('main.history'), $this->grid(), true);
+                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('consumable.columns.index'));
                 $row->column(12, $tab);
             });
     }

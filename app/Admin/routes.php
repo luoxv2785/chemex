@@ -80,6 +80,8 @@ Route::group([
         ->names('part.categories');
     $router->get('/part/statistics', [PartStatisticsController::class, 'index'])
         ->name('part.statistics');
+    $router->resource('/part/columns', 'PartColumnController')
+        ->names('part.columns');
     $router->get('/selection/part/categories', [PartCategoryController::class, 'selectList'])
         ->name('selection.part.categories');
 
@@ -94,6 +96,8 @@ Route::group([
         ->names('software.tracks');
     $router->get('/software/statistics', [SoftwareStatisticsController::class, 'index'])
         ->name('software.statistics');
+    $router->resource('/software/columns', 'SoftwareColumnController')
+        ->names('software.columns');
     $router->get('/selection/software/categories', [SoftwareCategoryController::class, 'selectList'])
         ->name('selection.software.categories');
     $router->get('/export/software/{software_id}/history', [SoftwareRecordController::class, 'exportHistory'])
@@ -110,6 +114,8 @@ Route::group([
         ->names('service.tracks');
     $router->get('/service/statistics', [ServiceStatisticsController::class, 'index'])
         ->name('service.statistics');
+    $router->resource('/service/columns', 'ServiceColumnController')
+        ->names('service.columns');
 
     /**
      * 耗材管理
@@ -120,6 +126,8 @@ Route::group([
         ->names('consumable.categories');
     $router->resource('/consumable/tracks', 'ConsumableTrackController')
         ->names('consumable.tracks');
+    $router->resource('/consumable/columns', 'ConsumableColumnController')
+        ->names('consumable.columns');
 
     /**
      * 待办

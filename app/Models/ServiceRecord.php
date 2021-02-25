@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use App\Traits\HasStaticGetTableName;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
+use Dcat\Admin\Traits\ModelTree;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
@@ -18,9 +19,45 @@ class ServiceRecord extends Model
 {
     use HasDateTimeFormatter;
     use SoftDeletes;
-    use HasStaticGetTableName;
+
+    /**
+     * 这里需要给个别名，否则delete方法将会重复
+     * 和下面的delete方法重写打配合调整优先级
+     */
+    use ModelTree {
+        ModelTree::delete as traitDelete;
+    }
+
+    /**
+     * 需要被包括进排序字段的字段，一般来说是虚拟出来的关联字段
+     * @var string[]
+     */
+    public $sortIncludeColumns = [
+        'channel.name',
+    ];
+
+    /**
+     * 需要被排除出排序字段的字段，一般来说是关联字段的原始字段
+     * @var string[]
+     */
+    public $sortExceptColumns = [
+        'purchased_channel_id',
+        'deleted_at',
+    ];
 
     protected $table = 'service_records';
+
+    /**
+     * 复写这个是为了让delete方法的优先级满足：
+     * 子类>trait>父类
+     * 这个是因为字段管理中删除动作的需要
+     * @return bool|null
+     * @throws Exception
+     */
+    public function delete(): ?bool
+    {
+        return parent::delete();
+    }
 
     /**
      * 配件记录有一个购入途径

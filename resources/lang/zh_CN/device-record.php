@@ -30,7 +30,7 @@ return [
         'User Id Help' => '选择新使用者后，将会自动解除此设备与老使用者的归属关系。',
         'Export To Excel' => '导出到Excel',
         'NG Description' => '故障描述',
-        'Lend Track Create' => '借用设备'
+        'Lend Track Create' => '借用设备',
     ],
     'fields' => [
         'qrcode' => '二维码',

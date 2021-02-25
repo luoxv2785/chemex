@@ -30,6 +30,7 @@ class SoftwareTrackController extends AdminController
                 $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('software.categories.index'));
                 $tab->add(Data::icon('track') . trans('main.track'), $this->grid(), true);
                 $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('software.statistics'));
+                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('software.columns.index'));
                 $row->column(12, $tab);
             });
     }

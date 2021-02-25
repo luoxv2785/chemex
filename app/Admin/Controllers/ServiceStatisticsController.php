@@ -25,6 +25,7 @@ class ServiceStatisticsController extends Controller
                 $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('service.tracks.index'));
                 $tab->addLink(Data::icon('issue') . trans('main.issue'), admin_route('service.issues.index'));
                 $tab->add(Data::icon('statistics') . trans('main.statistics'), null, true);
+                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('service.columns.index'));
                 $row->column(12, $tab);
             })
             ->body(function (Row $row) {

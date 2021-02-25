@@ -11,6 +11,7 @@ use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\SoftwareRecord;
 use App\Admin\Repositories\SoftwareTrack;
 use App\Grid;
+use App\Models\ColumnSort;
 use App\Models\DeviceRecord;
 use App\Models\PurchasedChannel;
 use App\Models\SoftwareCategory;
@@ -19,7 +20,7 @@ use App\Services\ExpirationService;
 use App\Services\SoftwareService;
 use App\Support\Data;
 use App\Support\Support;
-use App\Traits\HasCustomFields;
+use App\Traits\ControllerHasCustomColumns;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid\Tools\QuickCreate;
@@ -50,6 +51,7 @@ class SoftwareRecordController extends AdminController
                 $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('software.categories.index'));
                 $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('software.tracks.index'));
                 $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('software.statistics'));
+                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('software.columns.index'));
                 $row->column(12, $tab);
             });
     }
@@ -67,29 +69,34 @@ class SoftwareRecordController extends AdminController
     protected function grid(): Grid
     {
         return Grid::make(new SoftwareRecord(['category', 'vendor']), function (Grid $grid) {
-            $grid->column('id');
-            $grid->column('qrcode')->qrcode(function () {
+            $column_sort = ColumnSort::where('table_name', (new SoftwareRecord())->getTable())
+                ->get(['field', 'order'])
+                ->toArray();
+            $grid->column('id', '', $column_sort);
+            $grid->column('qrcode', '', $column_sort)->qrcode(function () {
                 return 'software:' . $this->id;
             }, 200, 200);
-            $grid->column('name');
-            $grid->column('description');
-            $grid->column('asset_number');
-            $grid->column('category.name');
-            $grid->column('version');
-            $grid->column('vendor.name');
-            $grid->column('price');
-            $grid->column('purchased');
-            $grid->column('expired');
-            $grid->column('distribution')->using(Data::distribution());
-            $grid->column('counts');
-            $grid->column('left_counts')->display(function () {
+            $grid->column('name', '', $column_sort);
+            $grid->column('description', '', $column_sort);
+            $grid->column('asset_number', '', $column_sort);
+            $grid->column('category.name', '', $column_sort);
+            $grid->column('version', '', $column_sort);
+            $grid->column('vendor.name', '', $column_sort);
+            $grid->column('price', '', $column_sort);
+            $grid->column('purchased', '', $column_sort);
+            $grid->column('expired', '', $column_sort);
+            $grid->column('distribution', '', $column_sort)->using(Data::distribution());
+            $grid->column('counts', '', $column_sort);
+            $grid->column('left_counts', '', $column_sort)->display(function () {
                 return $this->leftCounts();
             });
-            $grid->column('expiration_left_days')->display(function () {
+            $grid->column('expiration_left_days', '', $column_sort)->display(function () {
                 return ExpirationService::itemExpirationLeftDaysRender('software', $this->id);
             });
+            $grid->column('created_at', '', $column_sort);
+            $grid->column('updated_at', '', $column_sort);
 
-            HasCustomFields::makeGrid(new \App\Models\SoftwareRecord(), $grid, []);
+            ControllerHasCustomColumns::makeGrid(new \App\Models\SoftwareRecord(), $grid, $column_sort);
 
             $grid->actions(function (RowActions $actions) {
                 if (Admin::user()->can('software.record.delete')) {
@@ -120,7 +127,7 @@ class SoftwareRecordController extends AdminController
                     'category.name',
                     'version',
                     'price',
-                ], HasCustomFields::makeQuickSearch(new \App\Models\SoftwareRecord()))
+                ], ControllerHasCustomColumns::makeQuickSearch(new \App\Models\SoftwareRecord()))
             )
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
@@ -128,7 +135,7 @@ class SoftwareRecordController extends AdminController
             $grid->filter(function ($filter) {
                 $filter->equal('category_id')->select(SoftwareCategory::pluck('name', 'id'));
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
-                HasCustomFields::makeFilter(new \App\Models\SoftwareRecord(), $filter);
+                ControllerHasCustomColumns::makeFilter(new \App\Models\SoftwareRecord(), $filter);
             });
 
             $grid->enableDialogCreate();
@@ -233,7 +240,7 @@ class SoftwareRecordController extends AdminController
             $show->field('distribution')->using(Data::distribution());
             $show->field('counts');
 
-            HasCustomFields::makeDetail(new \App\Models\SoftwareRecord(), $show);
+            ControllerHasCustomColumns::makeDetail(new \App\Models\SoftwareRecord(), $show);
 
             $show->field('created_at');
             $show->field('updated_at');
@@ -314,7 +321,7 @@ class SoftwareRecordController extends AdminController
             $form->date('purchased');
             $form->date('expired');
 
-            HasCustomFields::makeForm(new \App\Models\SoftwareRecord(), $form);
+            ControllerHasCustomColumns::makeForm(new \App\Models\SoftwareRecord(), $form);
 
             $form->display('created_at');
             $form->display('updated_at');

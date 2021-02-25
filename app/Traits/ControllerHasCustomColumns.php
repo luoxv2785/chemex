@@ -10,7 +10,7 @@ use Dcat\Admin\Form;
 use Dcat\Admin\Show;
 use Illuminate\Database\Eloquent\Model;
 
-trait HasCustomFields
+trait ControllerHasCustomColumns
 {
     /**
      * 构建自定义字段Form结构
@@ -20,7 +20,7 @@ trait HasCustomFields
      */
     public static function makeForm(Model $model, Form $form): Form
     {
-        foreach (self::getCustomFields($model) as $custom_field) {
+        foreach (self::getCustomColumns($model) as $custom_field) {
             switch ($custom_field->type) {
                 case 'date':
                     $form->date($custom_field->name, $custom_field->nick_name);
@@ -53,7 +53,7 @@ trait HasCustomFields
      * @param Model $model
      * @return mixed
      */
-    public static function getCustomFields(Model $model)
+    public static function getCustomColumns(Model $model)
     {
         return CustomColumn::where('table_name', $model->getTable())->get();
     }
@@ -66,7 +66,7 @@ trait HasCustomFields
      */
     public static function makeDetail(Model $model, Show $show): Show
     {
-        foreach (self::getCustomFields($model) as $custom_field) {
+        foreach (self::getCustomColumns($model) as $custom_field) {
             $show->field($custom_field->name, $custom_field->nick_name);
         }
         return $show;
@@ -81,7 +81,7 @@ trait HasCustomFields
      */
     public static function makeGrid(Model $model, Grid $grid, $column_sorts): Grid
     {
-        foreach (self::getCustomFields($model) as $custom_field) {
+        foreach (self::getCustomColumns($model) as $custom_field) {
             $grid->column($custom_field->name, $custom_field->nick_name, $column_sorts);
         }
         return $grid;
@@ -95,7 +95,7 @@ trait HasCustomFields
     public static function makeQuickSearch(Model $model): array
     {
         $keys = [];
-        foreach (self::getCustomFields($model) as $custom_field) {
+        foreach (self::getCustomColumns($model) as $custom_field) {
             array_push($keys, $custom_field->name);
         }
         return $keys;
@@ -108,7 +108,7 @@ trait HasCustomFields
      */
     public static function makeFilter(Model $model, $filter)
     {
-        foreach (self::getCustomFields($model) as $custom_field) {
+        foreach (self::getCustomColumns($model) as $custom_field) {
             $filter->equal($custom_field->name, $custom_field->nick_name);
         }
     }

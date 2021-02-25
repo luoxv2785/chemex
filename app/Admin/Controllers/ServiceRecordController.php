@@ -8,11 +8,12 @@ use App\Admin\Actions\Grid\RowAction\ServiceRecordDeleteAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\ServiceRecord;
 use App\Grid;
+use App\Models\ColumnSort;
 use App\Models\DeviceRecord;
 use App\Models\PurchasedChannel;
 use App\Support\Data;
 use App\Support\Support;
-use App\Traits\HasCustomFields;
+use App\Traits\ControllerHasCustomColumns;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid\Tools\QuickCreate;
@@ -38,6 +39,7 @@ class ServiceRecordController extends AdminController
                 $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('service.tracks.index'));
                 $tab->addLink(Data::icon('issue') . trans('main.issue'), admin_route('service.issues.index'));
                 $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('service.statistics'));
+                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('service.columns.index'));
                 $row->column(12, $tab);
             });
     }
@@ -54,18 +56,24 @@ class ServiceRecordController extends AdminController
      */
     protected function grid(): Grid
     {
-        return Grid::make(new ServiceRecord(['device']), function (Grid $grid) {
-            $grid->column('id');
-            $grid->column('name');
-            $grid->column('description');
-            $grid->column('status')->switch('green');
-            $grid->column('device.name')->link(function () {
+        return Grid::make(new ServiceRecord(['device', 'channel']), function (Grid $grid) {
+            $column_sort = ColumnSort::where('table_name', (new ServiceRecord())->getTable())
+                ->get(['field', 'order'])
+                ->toArray();
+            $grid->column('id', '', $column_sort);
+            $grid->column('name', '', $column_sort);
+            $grid->column('description', '', $column_sort);
+            $grid->column('status', '', $column_sort)->switch('green');
+            $grid->column('device.name', '', $column_sort)->link(function () {
                 if (!empty($this->device)) {
                     return admin_route('device.records.show', [$this->device['id']]);
                 }
             });
+            $grid->column('channel.name', '', $column_sort);
+            $grid->column('created_at', '', $column_sort);
+            $grid->column('updated_at', '', $column_sort);
 
-            HasCustomFields::makeGrid(new \App\Models\ServiceRecord(), $grid, []);
+            ControllerHasCustomColumns::makeGrid(new \App\Models\ServiceRecord(), $grid, $column_sort);
 
             $grid->actions(function (RowActions $actions) {
                 if (Admin::user()->can('service.record.delete')) {
@@ -84,6 +92,7 @@ class ServiceRecordController extends AdminController
             $grid->disableDeleteButton();
             $grid->disableBatchActions();
 
+            $grid->showColumnSelector();
             $grid->toolsWithOutline(false);
 
             $grid->quickSearch(
@@ -92,7 +101,7 @@ class ServiceRecordController extends AdminController
                     'name',
                     'description',
                     'device.name'
-                ], HasCustomFields::makeQuickSearch(new \App\Models\ServiceRecord()))
+                ], ControllerHasCustomColumns::makeQuickSearch(new \App\Models\ServiceRecord()))
             )
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
@@ -103,7 +112,7 @@ class ServiceRecordController extends AdminController
 
             $grid->filter(function ($filter) {
                 $filter->equal('device.name');
-                HasCustomFields::makeFilter(new \App\Models\ServiceRecord(), $filter);
+                ControllerHasCustomColumns::makeFilter(new \App\Models\ServiceRecord(), $filter);
             });
 
             $grid->export();
@@ -129,7 +138,7 @@ class ServiceRecordController extends AdminController
             $show->field('expired');
             $show->field('channel.name');
 
-            HasCustomFields::makeDetail(new \App\Models\ServiceRecord(), $show);
+            ControllerHasCustomColumns::makeDetail(new \App\Models\ServiceRecord(), $show);
 
             $show->field('created_at');
             $show->field('updated_at');
@@ -167,7 +176,7 @@ class ServiceRecordController extends AdminController
                     ->options(PurchasedChannel::pluck('name', 'id'));
             }
 
-            HasCustomFields::makeForm(new \App\Models\ServiceRecord(), $form);
+            ControllerHasCustomColumns::makeForm(new \App\Models\ServiceRecord(), $form);
 
             $form->display('created_at');
             $form->display('updated_at');

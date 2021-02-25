@@ -41,6 +41,7 @@ class PartCategoryController extends AdminController
                 $tab->add(Data::icon('category') . trans('main.category'), $this->treeView(), true);
                 $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('part.tracks.index'));
                 $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('part.statistics'));
+                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('part.columns.index'));
                 $row->column(12, $tab);
             });
     }

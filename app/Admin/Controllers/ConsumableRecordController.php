@@ -5,12 +5,16 @@ namespace App\Admin\Controllers;
 use App\Admin\Actions\Grid\ToolAction\ConsumableInAction;
 use App\Admin\Actions\Grid\ToolAction\ConsumableOutAction;
 use App\Admin\Repositories\ConsumableRecord;
+use App\Admin\Repositories\DeviceRecord;
+use App\Grid;
+use App\Models\ColumnSort;
 use App\Models\ConsumableCategory;
 use App\Models\DeviceCategory;
 use App\Models\VendorRecord;
 use App\Support\Data;
+use App\Traits\ControllerHasCustomColumns;
 use Dcat\Admin\Form;
-use Dcat\Admin\Grid;
+use Dcat\Admin\Grid\Tools\QuickCreate;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
@@ -33,6 +37,7 @@ class ConsumableRecordController extends AdminController
                 $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
                 $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('consumable.categories.index'));
                 $tab->addLink(Data::icon('track') . trans('main.history'), admin_route('consumable.tracks.index'));
+                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('consumable.columns.index'));
                 $row->column(12, $tab);
             });
     }
@@ -50,26 +55,50 @@ class ConsumableRecordController extends AdminController
     protected function grid(): Grid
     {
         return Grid::make(new ConsumableRecord(['category', 'vendor']), function (Grid $grid) {
-            $grid->column('id');
-            $grid->column('name');
-            $grid->column('description');
-            $grid->column('specification');
-            $grid->column('category.name');
-            $grid->column('vendor.name');
-            $grid->column('price');
-            $grid->column('number')->display(function () {
+            $column_sort = ColumnSort::where('table_name', (new DeviceRecord())->getTable())
+                ->get(['field', 'order'])
+                ->toArray();
+            $grid->column('id', '', $column_sort);
+            $grid->column('name', '', $column_sort);
+            $grid->column('description', '', $column_sort);
+            $grid->column('specification', '', $column_sort);
+            $grid->column('category.name', '', $column_sort);
+            $grid->column('vendor.name', '', $column_sort);
+            $grid->column('price', '', $column_sort);
+            $grid->column('number', '', $column_sort)->display(function () {
                 return $this->allCounts();
             });
+            $grid->column('created_at', '', $column_sort);
+            $grid->column('updated_at', '', $column_sort);
+
+            ControllerHasCustomColumns::makeGrid(new \App\Models\ConsumableRecord(), $grid, $column_sort);
 
             $grid->toolsWithOutline(false);
+
+            $grid->showColumnSelector();
 
             $grid->tools([
                 new ConsumableInAction(),
                 new ConsumableOutAction()
             ]);
 
+            $grid->quickSearch(
+                array_merge([
+                    'id',
+                    'name',
+                    'description',
+                    'specification',
+                    'category.name',
+                    'vendor.name',
+                    'price',
+                    'number',
+                ], ControllerHasCustomColumns::makeQuickSearch(new \App\Models\ConsumableRecord()))
+            )
+                ->placeholder(trans('main.quick_search'))
+                ->auto(false);
+
             $grid->enableDialogCreate();
-            $grid->quickCreate(function (Grid\Tools\QuickCreate $create) {
+            $grid->quickCreate(function (QuickCreate $create) {
                 $create->text('name')
                     ->required();
                 $create->text('specification')
@@ -85,6 +114,7 @@ class ConsumableRecordController extends AdminController
             $grid->filter(function ($filter) {
                 $filter->equal('category_id')->select(DeviceCategory::pluck('name', 'id'));
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
+                ControllerHasCustomColumns::makeFilter(new \App\Models\ConsumableRecord(), $filter);
             });
         });
     }
@@ -106,6 +136,9 @@ class ConsumableRecordController extends AdminController
             $show->field('category.name');
             $show->field('vendor.name');
             $show->field('price');
+
+            ControllerHasCustomColumns::makeDetail(new \App\Models\ConsumableRecord(), $show);
+
             $show->field('created_at');
             $show->field('updated_at');
         });
@@ -133,6 +166,9 @@ class ConsumableRecordController extends AdminController
             $form->divider();
             $form->text('description');
             $form->text('price');
+
+            ControllerHasCustomColumns::makeForm(new \App\Models\ConsumableRecord(), $form);
+
             $form->display('created_at');
             $form->display('updated_at');
         });
