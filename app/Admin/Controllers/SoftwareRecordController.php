@@ -10,6 +10,7 @@ use App\Admin\Actions\Grid\ToolAction\SoftwareRecordImportAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\SoftwareRecord;
 use App\Admin\Repositories\SoftwareTrack;
+use App\Grid;
 use App\Models\DeviceRecord;
 use App\Models\PurchasedChannel;
 use App\Models\SoftwareCategory;
@@ -21,7 +22,7 @@ use App\Support\Support;
 use App\Traits\HasCustomFields;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
-use Dcat\Admin\Grid;
+use Dcat\Admin\Grid\Tools\QuickCreate;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Layout\Content;
@@ -88,7 +89,7 @@ class SoftwareRecordController extends AdminController
                 return ExpirationService::itemExpirationLeftDaysRender('software', $this->id);
             });
 
-            HasCustomFields::makeGrid(new \App\Models\SoftwareRecord(), $grid);
+            HasCustomFields::makeGrid(new \App\Models\SoftwareRecord(), $grid, []);
 
             $grid->actions(function (RowActions $actions) {
                 if (Admin::user()->can('software.record.delete')) {
@@ -143,7 +144,7 @@ class SoftwareRecordController extends AdminController
             ]);
 
             $grid->toolsWithOutline(false);
-            $grid->quickCreate(function (Grid\Tools\QuickCreate $create) {
+            $grid->quickCreate(function (QuickCreate $create) {
                 $create->text('name')->required();
                 $create->text('version')->required();
                 $create->select('category_id')

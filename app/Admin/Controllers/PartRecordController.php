@@ -9,6 +9,7 @@ use App\Admin\Actions\Grid\RowAction\PartRecordDeleteAction;
 use App\Admin\Actions\Grid\ToolAction\PartRecordImportAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\PartRecord;
+use App\Grid;
 use App\Models\DepreciationRule;
 use App\Models\DeviceRecord;
 use App\Models\PartCategory;
@@ -20,7 +21,7 @@ use App\Support\Support;
 use App\Traits\HasCustomFields;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
-use Dcat\Admin\Grid;
+use Dcat\Admin\Grid\Tools\QuickCreate;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
@@ -84,7 +85,7 @@ class PartRecordController extends AdminController
             });
             $grid->column('depreciation.name');
 
-            HasCustomFields::makeGrid(new \App\Models\PartRecord(), $grid);
+            HasCustomFields::makeGrid(new \App\Models\PartRecord(), $grid, []);
 
             $grid->actions(function (RowActions $actions) {
                 if (Admin::user()->can('part.record.delete')) {
@@ -136,7 +137,7 @@ class PartRecordController extends AdminController
                 new PartRecordImportAction()
             ]);
 
-            $grid->quickCreate(function (Grid\Tools\QuickCreate $create) {
+            $grid->quickCreate(function (QuickCreate $create) {
                 $create->text('name')->required();
                 $create->select('category_id', admin_trans_label('Category'))
                     ->options(PartCategory::selectOptions())

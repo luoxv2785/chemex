@@ -7,6 +7,7 @@ use App\Admin\Actions\Grid\RowAction\ServiceRecordCreateUpdateTrackAction;
 use App\Admin\Actions\Grid\RowAction\ServiceRecordDeleteAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\ServiceRecord;
+use App\Grid;
 use App\Models\DeviceRecord;
 use App\Models\PurchasedChannel;
 use App\Support\Data;
@@ -14,7 +15,7 @@ use App\Support\Support;
 use App\Traits\HasCustomFields;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
-use Dcat\Admin\Grid;
+use Dcat\Admin\Grid\Tools\QuickCreate;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
@@ -64,7 +65,7 @@ class ServiceRecordController extends AdminController
                 }
             });
 
-            HasCustomFields::makeGrid(new \App\Models\ServiceRecord(), $grid);
+            HasCustomFields::makeGrid(new \App\Models\ServiceRecord(), $grid, []);
 
             $grid->actions(function (RowActions $actions) {
                 if (Admin::user()->can('service.record.delete')) {
@@ -96,7 +97,7 @@ class ServiceRecordController extends AdminController
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
-            $grid->quickCreate(function (Grid\Tools\QuickCreate $create) {
+            $grid->quickCreate(function (QuickCreate $create) {
                 $create->text('name')->required();
             });
 

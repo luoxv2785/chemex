@@ -85,11 +85,13 @@ class Grid extends \Dcat\Admin\Grid
 
         $columns = $this->columns->toArray();
         $array = [];
-        $__row_selector__ = $columns['__row_selector__'];
+        if (isset($columns['__row_selector__'])) {
+            $__row_selector__ = $columns['__row_selector__'];
+            unset($columns['__row_selector__']);
+            $array = array_merge($array, ['__row_selector__' => $__row_selector__]);
+        }
         $__actions__ = $columns['__actions__'];
-        unset($columns['__row_selector__']);
         unset($columns['__actions__']);
-        $array = array_merge($array, ['__row_selector__' => $__row_selector__]);
         $keys = array_column($columns, '__order__');
         array_multisort($keys, SORT_ASC, $columns);
         $array = array_merge($array, $columns);
