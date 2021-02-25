@@ -11,7 +11,7 @@
 
 <p align="center">
     <img src="https://img.shields.io/badge/Latest Release-3.0.0-orange" />
-    <img src="https://img.shields.io/badge/PHP-7.3+-green" />
+    <img src="https://img.shields.io/badge/PHP-7.4+-green" />
     <img src="https://img.shields.io/badge/MariaDB-10.2+-blueviolet" />
     <img src="https://img.shields.io/badge/License-GPL3.0-blue" />
 </p>
@@ -81,6 +81,8 @@
 
 简洁优雅的使用体验。
 
+灵活的可配置自定义字段。
+
 ### 版本
 
 咖啡壶（Chemex）将会以咖啡豆品种作为 `major` 版本的命名，例如 `1.x` 版本称为 `肯亚（Kenya）`，旨在为 ICT 运维人员提供管理能力的同时，普及咖啡知识，静下心喝一杯属于当前版本的冲煮咖啡。
@@ -95,7 +97,7 @@
 
 `git`，用于管理版本，部署和升级必要工具。
 
-`PHP 7.3 +` ，已经支持 PHP8 。
+`PHP 7.4 +` ，已经支持 PHP8 。
 
 `MariaDB 10.2 +`，数据库引擎，理论上 `MySQL 5.6+` 兼容支持。
 
