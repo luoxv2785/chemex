@@ -8,6 +8,7 @@ use App\Traits\ControllerHasColumnSort;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
+use Dcat\Admin\Repositories\Repository;
 use Dcat\Admin\Widgets\Tab;
 
 
@@ -15,7 +16,7 @@ class DeviceColumnController extends AdminController
 {
     use ControllerHasColumnSort;
 
-    protected $repository;
+    protected Repository $repository;
 
     public function index(Content $content): Content
     {
@@ -38,8 +39,8 @@ class DeviceColumnController extends AdminController
         return admin_trans_label('title');
     }
 
-    public function repository(): string
+    public function repository(): DeviceRecord
     {
-        return DeviceRecord::class;
+        return new DeviceRecord();
     }
 }

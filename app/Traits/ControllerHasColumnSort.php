@@ -34,7 +34,7 @@ trait ControllerHasColumnSort
      */
     protected function treeView(): Tree
     {
-        $repository = new ($this->repository());
+        $repository = $this->repository();
         return new Tree($repository, function (Tree $tree) {
             $tree->maxDepth(1);
             $tree->actions(function (Tree\Actions $actions) {
@@ -79,7 +79,7 @@ trait ControllerHasColumnSort
      */
     protected function form(): Form
     {
-        $repository = new ($this->repository());
+        $repository = $this->repository();
         return Form::make($repository, function (Form $form) use ($repository) {
             /**
              * 拦截saving回调，是为了实现字段排序，因为默认是对DeviceRecord做数据处理
