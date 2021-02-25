@@ -34,8 +34,8 @@ trait ControllerHasColumnSort
      */
     protected function treeView(): Tree
     {
-
-        return new Tree(new ($this->repository()), function (Tree $tree) {
+        $repository = new ($this->repository());
+        return new Tree($repository, function (Tree $tree) {
             $tree->maxDepth(1);
             $tree->actions(function (Tree\Actions $actions) {
                 $actions->disableQuickEdit();
