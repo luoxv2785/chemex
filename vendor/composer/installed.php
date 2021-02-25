@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '8cb16a4271761b7dd27e56a5374c55505f4523a2',
+    'reference' => '1e414aabded4d54ba91c5c0fd4830f9f5eb930a7',
     'name' => 'celaraze/chemex',
   ),
   'versions' => 
@@ -63,7 +63,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '8cb16a4271761b7dd27e56a5374c55505f4523a2',
+      'reference' => '1e414aabded4d54ba91c5c0fd4830f9f5eb930a7',
     ),
     'celaraze/pour' => 
     array (
@@ -613,12 +613,12 @@
     ),
     'laravel/sail' => 
     array (
-      'pretty_version' => 'v1.4.1',
-      'version' => '1.4.1.0',
+      'pretty_version' => 'v1.4.3',
+      'version' => '1.4.3.0',
       'aliases' => 
       array (
       ),
-      'reference' => '87c63c2956749f66e43467d4a730b917ef7428b7',
+      'reference' => '0200ce6e0f697699bce036c42d91f1daab8039a8',
     ),
     'laravel/tinker' => 
     array (
