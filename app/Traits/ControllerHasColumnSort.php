@@ -4,7 +4,7 @@
 namespace App\Traits;
 
 
-use App\Admin\Actions\Tree\ToolAction\DeviceColumnDeleteAction;
+use App\Admin\Actions\Tree\ToolAction\CustomColumnDeleteAction;
 use App\Models\ColumnSort;
 use App\Models\CustomColumn;
 use App\Support\Data;
@@ -35,7 +35,7 @@ trait ControllerHasColumnSort
     protected function treeView(): Tree
     {
         $repository = $this->repository();
-        return new Tree($repository, function (Tree $tree) {
+        return new Tree($repository, function (Tree $tree) use ($repository) {
             $tree->maxDepth(1);
             $tree->actions(function (Tree\Actions $actions) {
                 $actions->disableQuickEdit();
@@ -44,8 +44,8 @@ trait ControllerHasColumnSort
             });
             $tree->disableCreateButton();
             $tree->disableDeleteButton();
-            $tree->tools(function (Tree\Tools $tools) {
-                $tools->add(new DeviceColumnDeleteAction());
+            $tree->tools(function (Tree\Tools $tools) use ($repository) {
+                $tools->add(new CustomColumnDeleteAction('', $repository->model()));
             });
         });
     }

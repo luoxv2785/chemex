@@ -2,16 +2,20 @@
 
 namespace App\Admin\Actions\Tree\ToolAction;
 
-use App\Admin\Forms\DeviceColumnDeleteForm;
+use App\Admin\Forms\CustomColumnDeleteForm;
 use Dcat\Admin\Tree\RowAction;
 use Dcat\Admin\Widgets\Modal;
+use Illuminate\Database\Eloquent\Model;
 
-class DeviceColumnDeleteAction extends RowAction
+class CustomColumnDeleteAction extends RowAction
 {
-    public function __construct($title = null)
+    protected ?Model $model;
+
+    public function __construct($title = null, Model $model = null)
     {
         parent::__construct($title);
         $this->title = admin_trans_label('Delete');
+        $this->model = $model;
     }
 
     /**
@@ -22,7 +26,7 @@ class DeviceColumnDeleteAction extends RowAction
     {
         return Modal::make()
             ->lg()
-            ->body(new DeviceColumnDeleteForm())
+            ->body(new CustomColumnDeleteForm('', '', $this->model))
             ->button("<a class='btn btn-sm btn-danger' style='color: white;'><i class='feather icon-package'></i>&nbsp;$this->title</a>");
     }
 }

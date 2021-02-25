@@ -2,18 +2,26 @@
 
 namespace App\Admin\Forms;
 
-use App\Admin\Repositories\DeviceRecord;
 use App\Models\ColumnSort;
 use App\Models\CustomColumn;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 use Exception;
+use Illuminate\Database\Eloquent\Model;
 
 
-class DeviceColumnDeleteForm extends Form
+class CustomColumnDeleteForm extends Form
 {
     use LazyWidget;
+
+    protected ?Model $model;
+
+    public function __construct($data = [], $key = null, Model $model = null)
+    {
+        parent::__construct($data, $key);
+        $this->model = $model;
+    }
 
     /**
      * 处理表单提交逻辑
@@ -31,7 +39,7 @@ class DeviceColumnDeleteForm extends Form
         }
 
         try {
-            $table_name = (new DeviceRecord())->getTable();
+            $table_name = $this->model->getTable();
             $custom_column = CustomColumn::find($id);
 
             if (empty($custom_column)) {
@@ -63,7 +71,7 @@ class DeviceColumnDeleteForm extends Form
     public function form()
     {
         $this->select('custom_column_id')
-            ->options(CustomColumn::where('table_name', (new DeviceRecord())->getTable())
+            ->options(CustomColumn::where('table_name', $this->model->getTable())
                 ->pluck('name', 'id'))
             ->required();
     }
