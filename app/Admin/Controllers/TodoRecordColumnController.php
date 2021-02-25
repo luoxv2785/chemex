@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\Tree\RowAction\ToolAction\DeviceCategoryImportAction;
+use App\Admin\Actions\Tree\ToolAction\DeviceCategoryImportAction;
 use App\Admin\Repositories\TodoRecord;
 use App\Models\ColumnSort;
 use Dcat\Admin\Form;

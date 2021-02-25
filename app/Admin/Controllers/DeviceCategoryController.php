@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\Tree\RowAction\ToolAction\DeviceCategoryImportAction;
+use App\Admin\Actions\Tree\ToolAction\DeviceCategoryImportAction;
 use App\Admin\Repositories\DeviceCategory;
 use App\Models\DepreciationRule;
 use App\Support\Data;

@@ -2,16 +2,19 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\Tree\RowAction\DeviceColumnDeleteAction;
+use App\Admin\Actions\Tree\ToolAction\DeviceColumnDeleteAction;
 use App\Admin\Repositories\DeviceRecord;
 use App\Models\ColumnSort;
 use App\Models\CustomColumn;
 use App\Support\Data;
 use Dcat\Admin\Form;
 use Dcat\Admin\Http\Controllers\AdminController;
+use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Tree;
+use Dcat\Admin\Widgets\Box;
+use Dcat\Admin\Widgets\Form as WidgetForm;
 use Dcat\Admin\Widgets\Tab;
 use Pour\Plus\LaravelAdmin;
 
@@ -29,7 +32,7 @@ class DeviceColumnController extends AdminController
                 $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('device.categories.index'));
                 $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('device.tracks.index'));
                 $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('device.statistics'));
-                $tab->add(Data::icon('column') . trans('main.column'), $this->treeView(), true);
+                $tab->add(Data::icon('column') . trans('main.column'), $this->render(), true);
                 $row->column(12, $tab);
             });
     }
@@ -37,6 +40,16 @@ class DeviceColumnController extends AdminController
     public function title()
     {
         return admin_trans_label('title');
+    }
+
+    protected function render(): Row
+    {
+        return new Row(function (Column $column) {
+            $column->row(function (Row $row) {
+                $row->column(7, $this->treeView());
+                $row->column(5, $this->createBox());
+            });
+        });
     }
 
     protected function treeView(): Tree
@@ -47,13 +60,31 @@ class DeviceColumnController extends AdminController
                 $actions->disableQuickEdit();
                 $actions->disableEdit();
                 $actions->disableDelete();
-//                $actions->append(new CustomColumnDeleteAction());
-//                dd($actions->getRow());
-                $actions->append(new DeviceColumnDeleteAction());
             });
-            $tree->disableQuickCreateButton();
+            $tree->disableCreateButton();
             $tree->disableDeleteButton();
+            $tree->tools(function (Tree\Tools $tools) {
+                $tools->add(new DeviceColumnDeleteAction());
+            });
         });
+    }
+
+    protected function createBox(): Box
+    {
+        $form = new WidgetForm();
+        $form->text('name')
+            ->help(admin_trans_label('Name Help'))
+            ->required();
+        $form->text('nick_name')
+            ->help(admin_trans_label('Nick Name Help'))
+            ->required();
+        $form->select('type')->required()
+            ->options(Data::customFieldTypes());
+        $form->radio('is_nullable')
+            ->options(LaravelAdmin::yesOrNo())
+            ->help(admin_trans_label('Is Nullable Help'))
+            ->default(0);
+        return Box::make(trans('admin.new'), $form);
     }
 
     /**
@@ -64,20 +95,6 @@ class DeviceColumnController extends AdminController
     protected function form(): Form
     {
         return Form::make(new DeviceRecord(), function (Form $form) {
-            $form->display('id');
-            $form->text('name')
-                ->help(admin_trans_label('Name Help'))
-                ->required();
-            $form->text('nick_name')
-                ->help(admin_trans_label('Nick Name Help'))
-                ->required();
-            $form->select('type')->required()
-                ->options(Data::customFieldTypes());
-            $form->radio('is_nullable')
-                ->options(LaravelAdmin::yesOrNo())
-                ->help(admin_trans_label('Is Nullable Help'))
-                ->default(0);
-
             $form->saving(function (Form $form) {
                 $table_name = (new DeviceRecord())->getTable();
                 if (request()->has('_order')) {
@@ -109,13 +126,14 @@ class DeviceColumnController extends AdminController
                         return $form->response()
                             ->error(trans('main.record_same'));
                     }
-                    $custom_columns = new CustomColumn();
-                    $custom_columns->table_name = $table_name;
-                    $custom_columns->name = $form->input('name');
-                    $custom_columns->nick_name = $form->input('nick_name');
-                    $custom_columns->type = $form->input('type');
-                    $custom_columns->is_nullable = $form->input('is_nullable');
-                    $custom_columns->save();
+                    $custom_column = new CustomColumn();
+                    $custom_column->table_name = $table_name;
+                    $custom_column->name = $form->input('name');
+                    $custom_column->nick_name = $form->input('nick_name');
+                    $custom_column->type = $form->input('type');
+                    $custom_column->is_nullable = $form->input('is_nullable');
+                    $custom_column->save();
+
                     return $form->response()
                         ->refresh();
                 }
