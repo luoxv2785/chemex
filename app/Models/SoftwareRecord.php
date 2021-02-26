@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int purchased_channel_id
  * @property string asset_number
  * @property int counts
+ * @property int distribution
  */
 class SoftwareRecord extends Model
 {
@@ -110,7 +111,8 @@ class SoftwareRecord extends Model
     public function leftCounts()
     {
         $used = $this->track()->count();
-        if ($used == -1) {
+        $counts = $this->counts;
+        if ($counts <= 0) {
             return '不受限';
         }
         return $this->counts - $used;
@@ -122,6 +124,6 @@ class SoftwareRecord extends Model
      */
     public function track(): HasMany
     {
-        return $this->hasMany(SoftwareTrack::class, 'id', 'software_id');
+        return $this->hasMany(SoftwareTrack::class, 'software_id', 'id');
     }
 }
