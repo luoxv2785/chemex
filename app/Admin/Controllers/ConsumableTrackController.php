@@ -57,6 +57,9 @@ class ConsumableTrackController extends AdminController
             $grid->disableDeleteButton();
             $grid->disableEditButton();
 
+            $grid->disableBatchActions();
+            $grid->disableRowSelector();
+
             $grid->toolsWithOutline(false);
 
             $grid->filter(function (Grid\Filter $filter) {

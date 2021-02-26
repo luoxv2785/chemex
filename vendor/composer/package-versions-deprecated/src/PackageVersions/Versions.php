@@ -82,7 +82,7 @@ final class Versions
   'overtrue/laravel-pinyin' => '4.0.0@c0b15aa49eac08bff80122010b91a0b3fe0f1e21',
   'overtrue/pinyin' => '4.0.6@9836dae1783bcf5934508a2abe32eca9ea5ee15d',
   'phpoption/phpoption' => '1.7.5@994ecccd8f3283ecf5ac33254543eb0ac946d525',
-  'phpstan/phpstan' => '0.12.78@eecce8d2ee3cac6769f37b4cb1998b2715f82984',
+  'phpstan/phpstan' => '0.12.79@dd7769915648b704b9bd12925994457f1c2c8442',
   'psr/container' => '1.0.0@b7ce3b176482dbbc1245ebf52b181af44c2cf55f',
   'psr/event-dispatcher' => '1.0.0@dbefd12671e8a14ec7f180cab83036ed26714bb0',
   'psr/http-client' => '1.0.1@2dfb5f6c5eff0e91e20e913f8c5452ed95b86621',
@@ -142,7 +142,7 @@ final class Versions
   'facade/ignition-contracts' => '1.0.2@3c921a1cdba35b68a7f0ccffc6dffc1995b18267',
   'filp/whoops' => '2.9.2@df7933820090489623ce0be5e85c7e693638e536',
   'fzaninotto/faker' => 'dev-master@5ffe7db6c80f441f150fc88008d64e64af66634b',
-  'laravel/sail' => 'v1.4.1@87c63c2956749f66e43467d4a730b917ef7428b7',
+  'laravel/sail' => 'v1.4.3@0200ce6e0f697699bce036c42d91f1daab8039a8',
   'myclabs/deep-copy' => '1.10.2@776f831124e9c62e1a2c601ecc52e776d8bb7220',
   'nunomaduro/collision' => 'v5.3.0@aca63581f380f63a492b1e3114604e411e39133a',
   'phar-io/manifest' => '2.0.1@85265efd3af7ba3ca4b2a2c34dbfc5788dd29133',
@@ -174,7 +174,7 @@ final class Versions
   'sebastian/type' => '2.3.1@81cd61ab7bbf2de744aba0ea61fae32f721df3d2',
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'theseer/tokenizer' => '1.2.0@75a63c33a8577608444246075ea0af0d052e452a',
-  'celaraze/chemex' => 'dev-main@5bf84db76b9dba404dfcbf6b0fb1c29238440ccd',
+  'celaraze/chemex' => 'dev-main@2f0bbe82e59f2d4168fedcbf9bd81cdd92e9da24',
 );
 
     private function __construct()

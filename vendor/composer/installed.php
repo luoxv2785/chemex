@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '1e414aabded4d54ba91c5c0fd4830f9f5eb930a7',
+    'reference' => '2f0bbe82e59f2d4168fedcbf9bd81cdd92e9da24',
     'name' => 'celaraze/chemex',
   ),
   'versions' => 
@@ -63,7 +63,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '1e414aabded4d54ba91c5c0fd4830f9f5eb930a7',
+      'reference' => '2f0bbe82e59f2d4168fedcbf9bd81cdd92e9da24',
     ),
     'celaraze/pour' => 
     array (
@@ -856,12 +856,12 @@
     ),
     'phpstan/phpstan' => 
     array (
-      'pretty_version' => '0.12.78',
-      'version' => '0.12.78.0',
+      'pretty_version' => '0.12.79',
+      'version' => '0.12.79.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'eecce8d2ee3cac6769f37b4cb1998b2715f82984',
+      'reference' => 'dd7769915648b704b9bd12925994457f1c2c8442',
     ),
     'phpunit/php-code-coverage' => 
     array (
