@@ -46,6 +46,7 @@ return [
         ],
         'nick_name' => '字段别名',
         'is_nullable' => '可空',
+        'table_name'=>'表名',
         'custom_column_id' => '自定义字段'
     ],
     'options' => [

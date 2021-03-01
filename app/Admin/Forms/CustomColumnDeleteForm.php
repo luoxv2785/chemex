@@ -8,19 +8,18 @@ use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 use Exception;
-use Illuminate\Database\Eloquent\Model;
 
 
 class CustomColumnDeleteForm extends Form
 {
     use LazyWidget;
 
-    protected ?Model $model;
+    protected ?string $tableName;
 
-    public function __construct($data = [], $key = null, Model $model = null)
+    public function __construct($data = [], $key = null, $tableName = null)
     {
+        $this->tableName = $tableName;
         parent::__construct($data, $key);
-        $this->model = $model;
     }
 
     /**
@@ -30,6 +29,7 @@ class CustomColumnDeleteForm extends Form
      */
     public function handle(array $input): JsonResponse
     {
+        $table_name = $input['table_name'] ?? null;
         $id = $input['custom_column_id'] ?? null;
 
         // 如果没有设备id或者归还时间或者归还描述则返回错误
@@ -39,7 +39,6 @@ class CustomColumnDeleteForm extends Form
         }
 
         try {
-            $table_name = $this->model->getTable();
             $custom_column = CustomColumn::find($id);
 
             if (empty($custom_column)) {
@@ -70,8 +69,11 @@ class CustomColumnDeleteForm extends Form
      */
     public function form()
     {
+        $this->text('table_name')
+            ->readOnly()
+            ->default($this->tableName);
         $this->select('custom_column_id')
-            ->options(CustomColumn::where('table_name', $this->model->getTable())
+            ->options(CustomColumn::where('table_name', $this->tableName)
                 ->pluck('name', 'id'))
             ->required();
     }
