@@ -10,7 +10,7 @@
         dom.addClass('disabled');
         dom.innerText = '正在更新';
         $.ajax({
-            url: "/version/upgrade",
+            url: "/action/upgrade",
             success: function (res) {
                 if (res.code === 200) {
                     location.reload();
