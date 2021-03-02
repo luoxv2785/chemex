@@ -100,6 +100,7 @@ class DeviceRecordController extends AdminController
             $grid->column('mac', '', $column_sort);
             $grid->column('ip', '', $column_sort);
             $grid->column('price', '', $column_sort);
+            $grid->column('purchased','',$column_sort);
             $grid->column('expired', '', $column_sort);
             $grid->column('user.name', '', $column_sort)->display(function ($name) {
                 if ($this->isLend()) {
