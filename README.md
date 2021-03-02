@@ -113,6 +113,25 @@
 
 ## 部署
 
+### OVF
+
+考虑到部署复杂性，我们也提供了基于 Ubuntu 20.04 Server 制作的 OVF 包。OVF 支持 VMware ESXi 6.5+ 或 VMware Workstation 14.x+ 或 VMware Fusion
+10.x+。
+
+下载地址：[https://pan.baidu.com/s/1V4WIuO4TUvJj4NLjRxPRug](https://pan.baidu.com/s/1V4WIuO4TUvJj4NLjRxPRug)，提取码：`qvzj`。
+
+OVF 中包含以下组件：Nginx MariaDB PHP7.4，网络通过 NAT 实现。
+
+Ubuntu 账密：chemex/chemex
+
+Web 程序主目录：/var/www/html/chemex
+
+MariaDB 账密：chemex/chemex
+
+部署完成后，LNMP 服务会自启，先查看此虚拟机 IP，然后在其它主机直接通过 IP 访问 Web 服务即可。
+
+### 手动
+
 生产环境下为遵守安全策略，非常建议在服务器本地进行部署，暂时不提供相关线上初始化安装的功能。因此，虽然前期部署的步骤较多，但已经为大家自动化处理了很大部分的流程，只需要跟着下面的命令一步步执行，一般是不会有部署问题的。
 
 1：为你的计算机安装 `git`，Windows 环境请安装 [Git for Windows](https://git-scm.com/download/win) ，Linux
