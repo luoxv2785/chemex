@@ -53,9 +53,6 @@ class DeviceRecordImportForm extends Form
                         // 这里导入判断空值，不能使用 ?? null 或者 ?? '' 的方式，写入数据库的时候
                         // 会默认为插入''而不是null，这会导致像price这样的double也是插入''，就会报错
                         // 其实price应该插入null
-                        if (!empty($row['序列号'])) {
-                            $device_record->sn = $row['序列号'];
-                        }
                         $exist = DeviceRecord::where('asset_number', $row['资产编号'])->withTrashed()->first();
                         if (!empty($exist) && !empty($exist->asset_number)) {
                             $exist->asset_number = $exist->asset_number . '_archive';
