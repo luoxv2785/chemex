@@ -25,8 +25,6 @@ use Dcat\Admin\Layout\Navbar;
 
 ConfigService::init();
 
-\Dcat\Admin\Admin::disablePjax();
-
 // 获取当前用户的通知
 $user = User::where('id', auth('admin')->id())->first();
 $notifications = [];
