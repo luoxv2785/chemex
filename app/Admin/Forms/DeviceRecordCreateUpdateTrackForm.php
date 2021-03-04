@@ -128,32 +128,32 @@ class DeviceRecordCreateUpdateTrackForm extends Form implements LazyRenderable
             $this->radio('type')
                 ->when('track', function (Form $form) use ($users) {
                     if (Support::ifSelectCreate()) {
-                        $form->selectCreate('user_id', admin_trans_label('New User Id'))
+                        $form->selectCreate('user_id', trans('main.new_user_id'))
                             ->options(User::class)
                             ->ajax(admin_route('selection.organization.users'))
                             ->url(admin_route('organization.users.create'))
-                            ->help(admin_trans_label('User Id Help'));
+                            ->help(trans('main.user_id_help'));
                     } else {
-                        $form->select('user_id', admin_trans_label('New User Id'))
+                        $form->select('user_id', trans('main.new_user_id'))
                             ->options($users)
-                            ->help(admin_trans_label('User Id Help'));
+                            ->help(trans('main.user_id_help'));
                     }
                 })
                 ->when('lend', function (Form $form) use ($users) {
                     if (Support::ifSelectCreate()) {
-                        $form->selectCreate('lend_user_id', admin_trans_label('New User Id'))
+                        $form->selectCreate('lend_user_id', trans('main.new_user_id'))
                             ->options(User::class)
                             ->ajax(admin_route('selection.organization.users'))
                             ->url(admin_route('organization.users.create'))
-                            ->help(admin_trans_label('User Id Help'));
+                            ->help(trans('main.user_id_help'));
                     } else {
-                        $form->select('lend_user_id', admin_trans_label('New User Id'))
+                        $form->select('lend_user_id', trans('main.new_user_id'))
                             ->options($users)
-                            ->help(admin_trans_label('User Id Help'));
+                            ->help(trans('main.user_id_help'));
                     }
-                    $form->datetime('lend_time');
-                    $form->textarea('lend_description');
-                    $form->datetime('plan_return_time');
+                    $form->datetime('lend_time', trans('main.lend_time'));
+                    $form->textarea('lend_description', trans('main.lend_description'));
+                    $form->datetime('plan_return_time', trans('main.plan_return_time'));
                 })
                 ->options(['track' => trans('main.track'), 'lend' => trans('main.lend')])
                 ->default('track');

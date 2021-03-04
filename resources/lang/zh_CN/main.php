@@ -78,4 +78,9 @@ return [
     'software_counts' => '软件数量',
     'my_all_worth' => '我的资产总价值',
     'item_is_lending' => '当前资产未归还，请先归还设备后继续进行分配操作。',
+    'new_user_id' => '新使用者',
+    'user_id_help' => '选择新使用者后，将会自动解除此设备与老使用者的归属关系。',
+    'lend_time' => '借用时间',
+    'lend_description' => '借用说明',
+    'plan_return_time' => '计划归还时间',
 ];

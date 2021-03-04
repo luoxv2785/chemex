@@ -26,8 +26,6 @@ return [
         'Import' => '导入',
         'File Help' => '导入支持xls、xlsx、csv文件，且表格头必填栏位【名称、分类、厂商】，支持咖啡壶导出的Excel文件直接导入。',
         'Update SSH Success' => 'SSH信息配置成功！',
-        'New User Id' => '新使用者',
-        'User Id Help' => '选择新使用者后，将会自动解除此设备与老使用者的归属关系。',
         'Export To Excel' => '导出到Excel',
         'NG Description' => '故障描述',
         'Lend Track Create' => '借用设备',
@@ -95,10 +93,7 @@ return [
         'ng_time' => '故障发生时间',
         'user_same' => '用户已存在',
         'file' => '文件',
-        'lend_time' => '借用时间',
-        'lend_description' => '借用说明',
         'user_id' => '用户',
-        'plan_return_time' => '计划归还时间',
         'expiration_left_days' => '保固剩余时间'
     ],
     'options' => [
