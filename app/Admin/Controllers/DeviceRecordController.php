@@ -76,7 +76,7 @@ class DeviceRecordController extends AdminController
      */
     protected function grid(): Grid
     {
-        return Grid::make(new DeviceRecord(['category', 'vendor', 'user', 'user.department', 'channel', 'depreciation']), function (Grid $grid) {
+        return Grid::make(DeviceRecord::with(['category', 'vendor', 'user', 'user.department', 'channel', 'depreciation']), function (Grid $grid) {
             $column_sort = ColumnSort::where('table_name', (new DeviceRecord())->getTable())
                 ->get(['field', 'order'])
                 ->toArray();
@@ -100,7 +100,7 @@ class DeviceRecordController extends AdminController
             $grid->column('mac', '', $column_sort);
             $grid->column('ip', '', $column_sort);
             $grid->column('price', '', $column_sort);
-            $grid->column('purchased','',$column_sort);
+            $grid->column('purchased', '', $column_sort);
             $grid->column('expired', '', $column_sort);
             $grid->column('user.name', '', $column_sort)->display(function ($name) {
                 if ($this->isLend()) {
@@ -117,7 +117,7 @@ class DeviceRecordController extends AdminController
             $grid->column('created_at', '', $column_sort);
             $grid->column('updated_at', '', $column_sort);
 
-            ControllerHasCustomColumns::makeGrid(new \App\Models\DeviceRecord(), $grid, $column_sort);
+//            ControllerHasCustomColumns::makeGrid((new DeviceRecord())->getTable(), $grid, $column_sort);
 
             $grid->disableBatchDelete();
             $grid->disableDeleteButton();
@@ -134,8 +134,9 @@ class DeviceRecordController extends AdminController
                 if (Admin::user()->can('device.record.delete')) {
                     $actions->append(new DeviceRecordDeleteAction());
                 }
-                if (Admin::user()->can('device.track.create_update') && !$this->isLend()) {
-                    $actions->append(new DeviceRecordCreateUpdateTrackAction());
+                $is_lend = $this->isLend();
+                if (Admin::user()->can('device.track.create_update') && !$is_lend) {
+                    $actions->append(new DeviceRecordCreateUpdateTrackAction($is_lend));
                 }
                 if (Admin::user()->can('device.maintenance.create')) {
                     $actions->append(new MaintenanceCreateAction('device'));

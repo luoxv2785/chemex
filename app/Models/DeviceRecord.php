@@ -259,12 +259,12 @@ class DeviceRecord extends Model
 
     /**
      * 判断设备是否借用状态
-     * @return bool
+     * @return null|bool
      */
     public function isLend(): bool
     {
-        $device_track = $this->track()->first();
-        if (empty($device_track) || empty($device_track->lend_time)) {
+        $result = $this->track()->value('lend_time');
+        if ($result == null) {
             return false;
         }
         return true;

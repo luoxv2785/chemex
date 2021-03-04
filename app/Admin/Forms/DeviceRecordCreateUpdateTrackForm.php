@@ -6,13 +6,13 @@ use App\Models\DeviceRecord;
 use App\Models\DeviceTrack;
 use App\Models\User;
 use App\Support\Support;
-use Dcat\Admin\Admin;
+use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 
 
-class DeviceRecordCreateUpdateTrackForm extends Form
+class DeviceRecordCreateUpdateTrackForm extends Form implements LazyRenderable
 {
     use LazyWidget;
 
@@ -23,14 +23,9 @@ class DeviceRecordCreateUpdateTrackForm extends Form
      */
     public function handle(array $input): JsonResponse
     {
-        if (!Admin::user()->can('device.track.create_update')) {
-            return $this->response()
-                ->error(trans('main.unauthorized'))
-                ->refresh();
-        }
-
         // 获取设备id
         $device_id = $this->payload['id'] ?? null;
+        $is_lend = $this->payload['is_lend'];
 
         // 获取用户id，来自表单传参
         $user_id = $input['user_id'] ?? null;
@@ -68,7 +63,7 @@ class DeviceRecordCreateUpdateTrackForm extends Form
          * 需要设备归还后可以继续执行
          * 在grid按钮处和弹窗表单虽然也做了卡关，此处是为了防止奇怪的请求绕过
          */
-        if ($device->isLend()) {
+        if ($is_lend) {
             return $this->response()
                 ->error(trans('main.item_is_lending'));
         }
@@ -119,19 +114,19 @@ class DeviceRecordCreateUpdateTrackForm extends Form
      */
     public function form()
     {
-        $device_record = DeviceRecord::find($this->payload['id']);
         /*
          * 设备未归还，则不允许进行分配操作，包括分配归属和借出
          * 需要设备归还后可以继续执行
          * 在grid按钮处虽然也做了卡关，此处是为了防止奇怪的页面渗透
          */
-        if ($device_record->isLend()) {
+        if ($this->payload['is_lend']) {
             $this->html(trans('main.item_is_lending'));
             $this->disableResetButton();
             $this->disableSubmitButton();
         } else {
+            $users = User::pluck('name', 'id');
             $this->radio('type')
-                ->when('track', function (Form $form) {
+                ->when('track', function (Form $form) use ($users) {
                     if (Support::ifSelectCreate()) {
                         $form->selectCreate('user_id', admin_trans_label('New User Id'))
                             ->options(User::class)
@@ -140,11 +135,11 @@ class DeviceRecordCreateUpdateTrackForm extends Form
                             ->help(admin_trans_label('User Id Help'));
                     } else {
                         $form->select('user_id', admin_trans_label('New User Id'))
-                            ->options(User::pluck('name', 'id'))
+                            ->options($users)
                             ->help(admin_trans_label('User Id Help'));
                     }
                 })
-                ->when('lend', function (Form $form) {
+                ->when('lend', function (Form $form) use ($users) {
                     if (Support::ifSelectCreate()) {
                         $form->selectCreate('lend_user_id', admin_trans_label('New User Id'))
                             ->options(User::class)
@@ -153,7 +148,7 @@ class DeviceRecordCreateUpdateTrackForm extends Form
                             ->help(admin_trans_label('User Id Help'));
                     } else {
                         $form->select('lend_user_id', admin_trans_label('New User Id'))
-                            ->options(User::pluck('name', 'id'))
+                            ->options($users)
                             ->help(admin_trans_label('User Id Help'));
                     }
                     $form->datetime('lend_time');

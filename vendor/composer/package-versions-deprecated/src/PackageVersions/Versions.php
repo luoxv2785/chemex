@@ -56,7 +56,7 @@ final class Versions
   'dragonmantank/cron-expression' => 'v3.1.0@7a8c6e56ab3ffcc538d05e8155bb42269abf1a0c',
   'egulias/email-validator' => '2.1.25@0dbf5d78455d4d6a41d186da50adc1122ec066f4',
   'enlightn/enlightn' => 'v1.16.0@ab7d02e3dd7fe48f3425ec21ff5d36911d90291c',
-  'enlightn/security-checker' => 'v1.6.1@a0914d126de022ba0c1afca2e1691f0f14592cde',
+  'enlightn/security-checker' => 'v1.7.0@1ac108ba278ba0c2e71d2ce2ac4fac07ed6e8a29',
   'fideloper/proxy' => '4.4.1@c073b2bd04d1c90e04dc1b787662b558dd65ade0',
   'fruitcake/laravel-cors' => 'v2.0.3@01de0fe5f71c70d1930ee9a80385f9cc28e0f63a',
   'graham-campbell/result-type' => 'v1.0.1@7e279d2cd5d7fbb156ce46daada972355cea27bb',
@@ -65,8 +65,8 @@ final class Versions
   'guzzlehttp/psr7' => '1.7.0@53330f47520498c0ae1f61f7e2c90f55690c06a3',
   'hamcrest/hamcrest-php' => 'v2.0.1@8c3d0a3f6af734494ad8f6fbbee0ba92422859f3',
   'justinrainbow/json-schema' => '5.2.10@2ba9c8c862ecd5510ed16c6340aa9f6eadb4f31b',
-  'laravel/framework' => 'v8.29.0@d2eba352b3b3a3c515b18c5726b373fe5026733e',
-  'laravel/tinker' => 'v2.6.0@daae1c43f1300fe88c05d83db6f3d8f76677ad88',
+  'laravel/framework' => 'v8.30.0@81ef9850cc388f2f92b868fb35ffb76f0c9a0f46',
+  'laravel/tinker' => 'v2.6.1@04ad32c1a3328081097a181875733fa51f402083',
   'lcobucci/jwt' => '3.2.5@82be04b4753f8b7693b62852b7eab30f97524f9b',
   'league/commonmark' => '1.5.7@11df9b36fd4f1d2b727a73bf14931d81373b9a54',
   'league/flysystem' => '1.1.3@9be3b16c877d477357c015cec057548cf9b2a14a',
@@ -142,7 +142,7 @@ final class Versions
   'facade/ignition-contracts' => '1.0.2@3c921a1cdba35b68a7f0ccffc6dffc1995b18267',
   'filp/whoops' => '2.9.2@df7933820090489623ce0be5e85c7e693638e536',
   'fzaninotto/faker' => 'dev-master@5ffe7db6c80f441f150fc88008d64e64af66634b',
-  'laravel/sail' => 'v1.4.3@0200ce6e0f697699bce036c42d91f1daab8039a8',
+  'laravel/sail' => 'v1.4.4@67b76f430f8870f5a2384db5c87ff8321154e077',
   'myclabs/deep-copy' => '1.10.2@776f831124e9c62e1a2c601ecc52e776d8bb7220',
   'nunomaduro/collision' => 'v5.3.0@aca63581f380f63a492b1e3114604e411e39133a',
   'phar-io/manifest' => '2.0.1@85265efd3af7ba3ca4b2a2c34dbfc5788dd29133',
@@ -174,7 +174,7 @@ final class Versions
   'sebastian/type' => '2.3.1@81cd61ab7bbf2de744aba0ea61fae32f721df3d2',
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'theseer/tokenizer' => '1.2.0@75a63c33a8577608444246075ea0af0d052e452a',
-  'celaraze/chemex' => 'dev-main@77c422f8bb1ac4d0a8b6ae7b63c08c2a24ffb4a8',
+  'celaraze/chemex' => 'dev-main@649ac04b5e12e075618db4dc405b970fdd00162a',
 );
 
     private function __construct()

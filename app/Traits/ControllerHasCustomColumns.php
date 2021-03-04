@@ -50,12 +50,12 @@ trait ControllerHasCustomColumns
 
     /**
      * 获取自定义字段
-     * @param Model $model
+     * @param $table_name
      * @return mixed
      */
-    public static function getCustomColumns(Model $model)
+    public static function getCustomColumns($table_name)
     {
-        return CustomColumn::where('table_name', $model->getTable())->get();
+        return CustomColumn::where('table_name', $table_name)->get();
     }
 
     /**
@@ -74,14 +74,14 @@ trait ControllerHasCustomColumns
 
     /**
      * 构建自定义字段Grid结构
-     * @param Model $model
+     * @param $table_name
      * @param Grid $grid
      * @param $column_sorts
      * @return Grid
      */
-    public static function makeGrid(Model $model, Grid $grid, $column_sorts): Grid
+    public static function makeGrid($table_name, Grid $grid, $column_sorts): Grid
     {
-        foreach (self::getCustomColumns($model) as $custom_field) {
+        foreach (self::getCustomColumns($table_name) as $custom_field) {
             $grid->column($custom_field->name, $custom_field->nick_name, $column_sorts);
         }
         return $grid;

@@ -9,7 +9,6 @@ use App\Admin\Repositories\DeviceRecord;
 use App\Grid;
 use App\Models\ColumnSort;
 use App\Models\ConsumableCategory;
-use App\Models\DeviceCategory;
 use App\Models\VendorRecord;
 use App\Support\Data;
 use App\Traits\ControllerHasCustomColumns;
@@ -112,7 +111,7 @@ class ConsumableRecordController extends AdminController
             });
 
             $grid->filter(function ($filter) {
-                $filter->equal('category_id')->select(DeviceCategory::pluck('name', 'id'));
+                $filter->equal('category_id')->select(ConsumableCategory::pluck('name', 'id'));
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
                 ControllerHasCustomColumns::makeFilter(new \App\Models\ConsumableRecord(), $filter);
             });

@@ -9,11 +9,13 @@ use Dcat\Admin\Widgets\Modal;
 
 class DeviceRecordCreateUpdateTrackAction extends RowAction
 {
+    protected bool $is_lend;
 
-    public function __construct($title = null)
+    public function __construct($is_lend)
     {
-        parent::__construct($title);
+        parent::__construct();
         $this->title = '👨‍💼 ' . admin_trans_label('Track Create Update');
+        $this->is_lend = $is_lend;
     }
 
     /**
@@ -22,12 +24,11 @@ class DeviceRecordCreateUpdateTrackAction extends RowAction
      */
     public function render()
     {
-        if (!Admin::user()->can('device.track.create_update')) {
-            return trans('main.unauthorized');
-        }
-
         // 实例化表单类并传递自定义参数
-        $form = DeviceRecordCreateUpdateTrackForm::make()->payload(['id' => $this->getKey()]);
+        $form = DeviceRecordCreateUpdateTrackForm::make()->payload([
+            'id' => $this->getKey(),
+            'is_lend'=>$this->is_lend
+        ]);
 
         return Modal::make()
             ->lg()

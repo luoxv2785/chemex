@@ -8,7 +8,7 @@ use Dcat\Admin\Widgets\Modal;
 
 class MaintenanceCreateAction extends RowAction
 {
-    protected $item = null;
+    protected ?string $item = null;
 
     public function __construct($item)
     {
