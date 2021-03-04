@@ -96,7 +96,7 @@ class SoftwareRecordController extends AdminController
             $grid->column('created_at', '', $column_sort);
             $grid->column('updated_at', '', $column_sort);
 
-            ControllerHasCustomColumns::makeGrid(new \App\Models\SoftwareRecord(), $grid, $column_sort);
+            ControllerHasCustomColumns::makeGrid((new SoftwareRecord())->getTable(), $grid, $column_sort);
 
             $grid->actions(function (RowActions $actions) {
                 if (Admin::user()->can('software.record.delete')) {
@@ -127,7 +127,7 @@ class SoftwareRecordController extends AdminController
                     'category.name',
                     'version',
                     'price',
-                ], ControllerHasCustomColumns::makeQuickSearch(new \App\Models\SoftwareRecord()))
+                ], ControllerHasCustomColumns::makeQuickSearch((new SoftwareRecord())->getTable()))
             )
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
@@ -135,7 +135,7 @@ class SoftwareRecordController extends AdminController
             $grid->filter(function ($filter) {
                 $filter->equal('category_id')->select(SoftwareCategory::pluck('name', 'id'));
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
-                ControllerHasCustomColumns::makeFilter(new \App\Models\SoftwareRecord(), $filter);
+                ControllerHasCustomColumns::makeFilter((new SoftwareRecord())->getTable(), $filter);
             });
 
             $grid->enableDialogCreate();
@@ -240,7 +240,7 @@ class SoftwareRecordController extends AdminController
             $show->field('distribution')->using(Data::distribution());
             $show->field('counts');
 
-            ControllerHasCustomColumns::makeDetail(new \App\Models\SoftwareRecord(), $show);
+            ControllerHasCustomColumns::makeDetail((new SoftwareRecord())->getTable(), $show);
 
             $show->field('created_at');
             $show->field('updated_at');
@@ -321,7 +321,7 @@ class SoftwareRecordController extends AdminController
             $form->date('purchased');
             $form->date('expired');
 
-            ControllerHasCustomColumns::makeForm(new \App\Models\SoftwareRecord(), $form);
+            ControllerHasCustomColumns::makeForm((new SoftwareRecord())->getTable(), $form);
 
             $form->display('created_at');
             $form->display('updated_at');

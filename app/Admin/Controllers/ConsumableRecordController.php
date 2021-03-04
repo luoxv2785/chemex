@@ -70,7 +70,7 @@ class ConsumableRecordController extends AdminController
             $grid->column('created_at', '', $column_sort);
             $grid->column('updated_at', '', $column_sort);
 
-            ControllerHasCustomColumns::makeGrid(new \App\Models\ConsumableRecord(), $grid, $column_sort);
+            ControllerHasCustomColumns::makeGrid((new ConsumableRecord())->getTable(), $grid, $column_sort);
 
             $grid->toolsWithOutline(false);
 
@@ -91,7 +91,7 @@ class ConsumableRecordController extends AdminController
                     'vendor.name',
                     'price',
                     'number',
-                ], ControllerHasCustomColumns::makeQuickSearch(new \App\Models\ConsumableRecord()))
+                ], ControllerHasCustomColumns::makeQuickSearch((new ConsumableRecord())->getTable()))
             )
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
@@ -113,7 +113,7 @@ class ConsumableRecordController extends AdminController
             $grid->filter(function ($filter) {
                 $filter->equal('category_id')->select(ConsumableCategory::pluck('name', 'id'));
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
-                ControllerHasCustomColumns::makeFilter(new \App\Models\ConsumableRecord(), $filter);
+                ControllerHasCustomColumns::makeFilter((new ConsumableRecord())->getTable(), $filter);
             });
         });
     }
@@ -136,7 +136,7 @@ class ConsumableRecordController extends AdminController
             $show->field('vendor.name');
             $show->field('price');
 
-            ControllerHasCustomColumns::makeDetail(new \App\Models\ConsumableRecord(), $show);
+            ControllerHasCustomColumns::makeDetail((new ConsumableRecord())->getTable(), $show);
 
             $show->field('created_at');
             $show->field('updated_at');
@@ -166,7 +166,7 @@ class ConsumableRecordController extends AdminController
             $form->text('description');
             $form->text('price');
 
-            ControllerHasCustomColumns::makeForm(new \App\Models\ConsumableRecord(), $form);
+            ControllerHasCustomColumns::makeForm((new ConsumableRecord())->getTable(), $form);
 
             $form->display('created_at');
             $form->display('updated_at');

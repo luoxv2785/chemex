@@ -117,7 +117,7 @@ class DeviceRecordController extends AdminController
             $grid->column('created_at', '', $column_sort);
             $grid->column('updated_at', '', $column_sort);
 
-//            ControllerHasCustomColumns::makeGrid((new DeviceRecord())->getTable(), $grid, $column_sort);
+            ControllerHasCustomColumns::makeGrid((new DeviceRecord())->getTable(), $grid, $column_sort);
 
             $grid->disableBatchDelete();
             $grid->disableDeleteButton();
@@ -169,7 +169,7 @@ class DeviceRecordController extends AdminController
                     'price',
                     'user.name',
                     'user.department.name',
-                ], ControllerHasCustomColumns::makeQuickSearch(new \App\Models\DeviceRecord()))
+                ], ControllerHasCustomColumns::makeQuickSearch((new DeviceRecord())->getTable()))
             )
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
@@ -179,7 +179,7 @@ class DeviceRecordController extends AdminController
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
                 $filter->equal('user.department_id')->select(Department::pluck('name', 'id'));
                 $filter->equal('depreciation_id')->select(DepreciationRule::pluck('name', 'id'));
-                ControllerHasCustomColumns::makeFilter(new \App\Models\DeviceRecord(), $filter);
+                ControllerHasCustomColumns::makeFilter((new DeviceRecord())->getTable(), $filter);
             });
 
             $grid->quickCreate(function (QuickCreate $create) {
@@ -266,7 +266,7 @@ class DeviceRecordController extends AdminController
             $show->field('depreciation.name');
             $show->field('depreciation.termination');
 
-            ControllerHasCustomColumns::makeDetail(new \App\Models\DeviceRecord(), $show);
+            ControllerHasCustomColumns::makeDetail((new DeviceRecord())->getTable(), $show);
 
             $show->field('created_at');
             $show->field('updated_at');
@@ -360,7 +360,7 @@ class DeviceRecordController extends AdminController
                     ->help(admin_trans_label('Depreciation Rule Help'));
             }
 
-            ControllerHasCustomColumns::makeForm(new \App\Models\DeviceRecord(), $form);
+            ControllerHasCustomColumns::makeForm((new DeviceRecord())->getTable(), $form);
 
             $form->display('created_at');
             $form->display('updated_at');
@@ -369,10 +369,6 @@ class DeviceRecordController extends AdminController
             $form->disableCreatingCheck();
             $form->disableEditingCheck();
             $form->disableViewCheck();
-
-            $form->deleting(function (Form $form) {
-                dd($form);
-            });
         });
     }
 }

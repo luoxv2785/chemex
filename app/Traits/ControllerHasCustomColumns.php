@@ -14,13 +14,13 @@ trait ControllerHasCustomColumns
 {
     /**
      * 构建自定义字段Form结构
-     * @param Model $model
+     * @param $table_name
      * @param Form $form
      * @return Form
      */
-    public static function makeForm(Model $model, Form $form): Form
+    public static function makeForm($table_name, Form $form): Form
     {
-        foreach (self::getCustomColumns($model) as $custom_field) {
+        foreach (self::getCustomColumns($table_name) as $custom_field) {
             switch ($custom_field->type) {
                 case 'date':
                     $form->date($custom_field->name, $custom_field->nick_name);
@@ -60,13 +60,13 @@ trait ControllerHasCustomColumns
 
     /**
      * 构建自定义字段Detail结构
-     * @param Model $model
+     * @param $table_name
      * @param Show $show
      * @return Show
      */
-    public static function makeDetail(Model $model, Show $show): Show
+    public static function makeDetail($table_name, Show $show): Show
     {
-        foreach (self::getCustomColumns($model) as $custom_field) {
+        foreach (self::getCustomColumns($table_name) as $custom_field) {
             $show->field($custom_field->name, $custom_field->nick_name);
         }
         return $show;
@@ -89,13 +89,13 @@ trait ControllerHasCustomColumns
 
     /**
      * 构建自定义字段QuickSearch结构
-     * @param Model $model
+     * @param $table_name
      * @return array
      */
-    public static function makeQuickSearch(Model $model): array
+    public static function makeQuickSearch($table_name): array
     {
         $keys = [];
-        foreach (self::getCustomColumns($model) as $custom_field) {
+        foreach (self::getCustomColumns($table_name) as $custom_field) {
             array_push($keys, $custom_field->name);
         }
         return $keys;
@@ -103,12 +103,12 @@ trait ControllerHasCustomColumns
 
     /**
      * 构建自定义字段Filter结构
-     * @param Model $model
+     * @param $table_name
      * @param $filter
      */
-    public static function makeFilter(Model $model, $filter)
+    public static function makeFilter($table_name, $filter)
     {
-        foreach (self::getCustomColumns($model) as $custom_field) {
+        foreach (self::getCustomColumns($table_name) as $custom_field) {
             $filter->equal($custom_field->name, $custom_field->nick_name);
         }
     }

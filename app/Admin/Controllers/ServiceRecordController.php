@@ -73,7 +73,7 @@ class ServiceRecordController extends AdminController
             $grid->column('created_at', '', $column_sort);
             $grid->column('updated_at', '', $column_sort);
 
-            ControllerHasCustomColumns::makeGrid(new \App\Models\ServiceRecord(), $grid, $column_sort);
+            ControllerHasCustomColumns::makeGrid((new ServiceRecord())->getTable(), $grid, $column_sort);
 
             $grid->actions(function (RowActions $actions) {
                 if (Admin::user()->can('service.record.delete')) {
@@ -101,7 +101,7 @@ class ServiceRecordController extends AdminController
                     'name',
                     'description',
                     'device.name'
-                ], ControllerHasCustomColumns::makeQuickSearch(new \App\Models\ServiceRecord()))
+                ], ControllerHasCustomColumns::makeQuickSearch((new ServiceRecord())->getTable()))
             )
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
@@ -112,7 +112,7 @@ class ServiceRecordController extends AdminController
 
             $grid->filter(function ($filter) {
                 $filter->equal('device.name');
-                ControllerHasCustomColumns::makeFilter(new \App\Models\ServiceRecord(), $filter);
+                ControllerHasCustomColumns::makeFilter((new ServiceRecord())->getTable(), $filter);
             });
 
             $grid->export();
@@ -138,7 +138,7 @@ class ServiceRecordController extends AdminController
             $show->field('expired');
             $show->field('channel.name');
 
-            ControllerHasCustomColumns::makeDetail(new \App\Models\ServiceRecord(), $show);
+            ControllerHasCustomColumns::makeDetail((new ServiceRecord())->getTable(), $show);
 
             $show->field('created_at');
             $show->field('updated_at');
@@ -176,7 +176,7 @@ class ServiceRecordController extends AdminController
                     ->options(PurchasedChannel::pluck('name', 'id'));
             }
 
-            ControllerHasCustomColumns::makeForm(new \App\Models\ServiceRecord(), $form);
+            ControllerHasCustomColumns::makeForm((new ServiceRecord())->getTable(), $form);
 
             $form->display('created_at');
             $form->display('updated_at');
