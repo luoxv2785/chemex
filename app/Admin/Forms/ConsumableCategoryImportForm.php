@@ -5,14 +5,18 @@ namespace App\Admin\Forms;
 use App\Models\ConsumableCategory;
 use Box\Spout\Common\Exception\IOException;
 use Box\Spout\Common\Exception\UnsupportedTypeException;
+use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
+use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 use Dcat\EasyExcel\Excel;
 use Exception;
 use League\Flysystem\FileNotFoundException;
 
-class ConsumableCategoryImportForm extends Form
+class ConsumableCategoryImportForm extends Form implements LazyRenderable
 {
+    use LazyWidget;
+
     /**
      * 处理表单提交逻辑
      * @param array $input

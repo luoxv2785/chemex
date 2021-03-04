@@ -4,11 +4,12 @@ namespace App\Admin\Forms;
 
 use App\Models\ServiceIssue;
 use App\Models\ServiceRecord;
+use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 
-class ServiceIssueCreateForm extends Form
+class ServiceIssueCreateForm extends Form implements LazyRenderable
 {
     use LazyWidget;
 

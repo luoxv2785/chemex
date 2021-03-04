@@ -5,11 +5,12 @@ namespace App\Admin\Forms;
 use App\Models\DeviceRecord;
 use App\Models\MaintenanceRecord;
 use App\Models\PartRecord;
+use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 
-class MaintenanceCreateForm extends Form
+class MaintenanceCreateForm extends Form implements LazyRenderable
 {
     use LazyWidget;
 

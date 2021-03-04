@@ -4,13 +4,14 @@ namespace App\Admin\Forms;
 
 use App\Models\ColumnSort;
 use App\Models\CustomColumn;
+use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 use Exception;
 
 
-class CustomColumnDeleteForm extends Form
+class CustomColumnDeleteForm extends Form implements LazyRenderable
 {
     use LazyWidget;
 

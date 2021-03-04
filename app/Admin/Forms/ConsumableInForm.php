@@ -4,12 +4,16 @@ namespace App\Admin\Forms;
 
 use App\Models\ConsumableRecord;
 use App\Models\ConsumableTrack;
+use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
+use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 use Exception;
 
-class ConsumableInForm extends Form
+class ConsumableInForm extends Form implements LazyRenderable
 {
+    use LazyWidget;
+
     /**
      * 处理表单提交逻辑
      * @param array $input

@@ -4,12 +4,13 @@ namespace App\Admin\Forms;
 
 use App\Models\TodoRecord;
 use App\Support\Data;
+use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 use Exception;
 
-class TodoRecordUpdateForm extends Form
+class TodoRecordUpdateForm extends Form implements LazyRenderable
 {
     use LazyWidget;
 

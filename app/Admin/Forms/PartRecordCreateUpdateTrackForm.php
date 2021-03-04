@@ -6,12 +6,13 @@ use App\Models\DeviceRecord;
 use App\Models\PartRecord;
 use App\Models\PartTrack;
 use App\Support\Support;
+use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 
 
-class PartRecordCreateUpdateTrackForm extends Form
+class PartRecordCreateUpdateTrackForm extends Form implements LazyRenderable
 {
     use LazyWidget;
 
