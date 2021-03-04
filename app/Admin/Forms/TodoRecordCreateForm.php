@@ -5,7 +5,6 @@ namespace App\Admin\Forms;
 use App\Models\TodoRecord;
 use App\Models\User;
 use App\Support\Data;
-use Dcat\Admin\Admin;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Widgets\Form;
 use Exception;
@@ -19,12 +18,6 @@ class TodoRecordCreateForm extends Form
      */
     public function handle(array $input): JsonResponse
     {
-        if (!Admin::user()->can('todo.record.create')) {
-            return $this->response()
-                ->error(trans('main.unauthorized'))
-                ->refresh();
-        }
-
         $name = $input['name'] ?? null;
         $start = $input['start'] ?? null;
 

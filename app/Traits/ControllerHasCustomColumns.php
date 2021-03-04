@@ -8,7 +8,6 @@ use App\Grid;
 use App\Models\CustomColumn;
 use Dcat\Admin\Form;
 use Dcat\Admin\Show;
-use Illuminate\Database\Eloquent\Model;
 
 trait ControllerHasCustomColumns
 {

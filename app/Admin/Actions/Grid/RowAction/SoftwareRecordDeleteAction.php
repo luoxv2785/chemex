@@ -4,15 +4,14 @@ namespace App\Admin\Actions\Grid\RowAction;
 
 use App\Services\SoftwareService;
 use Dcat\Admin\Actions\Response;
-use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\RowAction;
 
 class SoftwareRecordDeleteAction extends RowAction
 {
 
-    public function __construct($title = null)
+    public function __construct()
     {
-        parent::__construct($title);
+        parent::__construct();
         $this->title = '🔨 ' . admin_trans_label('Delete');
     }
 
@@ -22,12 +21,6 @@ class SoftwareRecordDeleteAction extends RowAction
      */
     public function handle(): Response
     {
-        if (!Admin::user()->can('software.record.delete')) {
-            return $this->response()
-                ->error(trans('main.unauthorized'))
-                ->refresh();
-        }
-
         SoftwareService::deleteSoftware($this->getKey());
 
         return $this->response()

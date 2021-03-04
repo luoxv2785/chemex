@@ -3,7 +3,6 @@
 namespace App\Admin\Forms;
 
 use App\Models\MaintenanceRecord;
-use Dcat\Admin\Admin;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
@@ -19,12 +18,6 @@ class MaintenanceUpdateForm extends Form
      */
     public function handle(array $input): JsonResponse
     {
-        if (!Admin::user()->can('maintenance.update')) {
-            return $this->response()
-                ->error(trans('main.unauthorized'))
-                ->refresh();
-        }
-
         // 获取物品id
         $id = $this->payload['id'] ?? null;
 

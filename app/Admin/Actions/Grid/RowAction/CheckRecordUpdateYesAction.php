@@ -6,14 +6,13 @@ use App\Models\CheckRecord;
 use App\Models\CheckTrack;
 use App\Services\NotificationService;
 use Dcat\Admin\Actions\Response;
-use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\RowAction;
 
 class CheckRecordUpdateYesAction extends RowAction
 {
-    public function __construct($title = null)
+    public function __construct()
     {
-        parent::__construct($title);
+        parent::__construct();
         $this->title = '⚡ ' . admin_trans_label('Finish Record');
     }
 
@@ -23,12 +22,6 @@ class CheckRecordUpdateYesAction extends RowAction
      */
     public function handle(): Response
     {
-        if (!Admin::user()->can('check.record.update.yes')) {
-            return $this->response()
-                ->error('main.unauthorized')
-                ->refresh();
-        }
-
         $check_track = CheckTrack::where('status', 0)->where('check_id', $this->getKey())->first();
         if (empty($check_track)) {
             $check_record = CheckRecord::where('id', $this->getKey())->firstOrFail();

@@ -3,16 +3,15 @@
 namespace App\Admin\Actions\Grid\RowAction;
 
 use App\Admin\Forms\ServiceRecordCreateUpdateTrackForm;
-use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\RowAction;
 use Dcat\Admin\Widgets\Modal;
 
 class ServiceRecordCreateUpdateTrackAction extends RowAction
 {
 
-    public function __construct($title = null)
+    public function __construct()
     {
-        parent::__construct($title);
+        parent::__construct();
         $this->title = '💻 ' . admin_trans_label('Track Create Update');
     }
 
@@ -22,10 +21,6 @@ class ServiceRecordCreateUpdateTrackAction extends RowAction
      */
     public function render()
     {
-        if (!Admin::user()->can('service.track.create_update')) {
-            return trans('main.unauthorized');
-        }
-
         $form = ServiceRecordCreateUpdateTrackForm::make()->payload(['id' => $this->getKey()]);
 
         return Modal::make()

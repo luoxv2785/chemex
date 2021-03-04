@@ -3,16 +3,15 @@
 namespace App\Admin\Actions\Grid\RowAction;
 
 use App\Admin\Forms\ServiceIssueUpdateForm;
-use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\RowAction;
 use Dcat\Admin\Widgets\Modal;
 
 class ServiceIssueUpdateAction extends RowAction
 {
 
-    public function __construct($title = null)
+    public function __construct()
     {
-        parent::__construct($title);
+        parent::__construct();
         $this->title = '🔧 ' . admin_trans_label('Update');
     }
 
@@ -22,10 +21,6 @@ class ServiceIssueUpdateAction extends RowAction
      */
     public function render()
     {
-        if (!Admin::user()->can('service.issue.update')) {
-            return trans('main.unauthorized');
-        }
-
         $form = ServiceIssueUpdateForm::make()->payload(['id' => $this->getKey()]);
 
         return Modal::make()

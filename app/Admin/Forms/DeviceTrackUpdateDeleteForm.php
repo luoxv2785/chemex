@@ -3,7 +3,6 @@
 namespace App\Admin\Forms;
 
 use App\Models\DeviceTrack;
-use Dcat\Admin\Admin;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
@@ -20,12 +19,6 @@ class DeviceTrackUpdateDeleteForm extends Form
      */
     public function handle(array $input): JsonResponse
     {
-        if (!Admin::user()->can('device.track.update_delete')) {
-            return $this->response()
-                ->error(trans('main.unauthorized'))
-                ->refresh();
-        }
-
         // 获取设备id
         $id = $this->payload['id'] ?? null;
 

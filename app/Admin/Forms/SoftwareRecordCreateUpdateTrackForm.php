@@ -6,7 +6,6 @@ use App\Models\DeviceRecord;
 use App\Models\SoftwareRecord;
 use App\Models\SoftwareTrack;
 use App\Support\Support;
-use Dcat\Admin\Admin;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
@@ -23,12 +22,6 @@ class SoftwareRecordCreateUpdateTrackForm extends Form
      */
     public function handle(array $input): JsonResponse
     {
-        if (!Admin::user()->can('software.track.create_update')) {
-            return $this->response()
-                ->error(trans('main.unauthorized'))
-                ->refresh();
-        }
-
         // 获取软件id
         $software_id = $this->payload['id'] ?? null;
 

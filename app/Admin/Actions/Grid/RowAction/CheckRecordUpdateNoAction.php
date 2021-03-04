@@ -6,14 +6,13 @@ use App\Models\CheckRecord;
 use App\Models\CheckTrack;
 use App\Services\NotificationService;
 use Dcat\Admin\Actions\Response;
-use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\RowAction;
 
 class CheckRecordUpdateNoAction extends RowAction
 {
-    public function __construct($title = null)
+    public function __construct()
     {
-        parent::__construct($title);
+        parent::__construct();
         $this->title = '❌ ' . admin_trans_label('Cancel Check');
     }
 
@@ -23,12 +22,6 @@ class CheckRecordUpdateNoAction extends RowAction
      */
     public function handle(): Response
     {
-        if (!Admin::user()->can('check.record.update.no')) {
-            return $this->response()
-                ->error(trans('main.unauthorized'))
-                ->refresh();
-        }
-
         $check_tracks = CheckTrack::where('check_id', $this->getKey())->get();
         foreach ($check_tracks as $check_track) {
             $check_track->delete();

@@ -5,15 +5,14 @@ namespace App\Admin\Actions\Grid\RowAction;
 use App\Models\ServiceRecord;
 use App\Models\ServiceTrack;
 use Dcat\Admin\Actions\Response;
-use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\RowAction;
 
 class ServiceRecordDeleteAction extends RowAction
 {
 
-    public function __construct($title = null)
+    public function __construct()
     {
-        parent::__construct($title);
+        parent::__construct();
         $this->title = '🔨 ' . admin_trans_label('Delete');
     }
 
@@ -23,12 +22,6 @@ class ServiceRecordDeleteAction extends RowAction
      */
     public function handle(): Response
     {
-        if (!Admin::user()->can('service.record.delete')) {
-            return $this->response()
-                ->error(trans('main.unauthorized'))
-                ->refresh();
-        }
-
         $service = ServiceRecord::where('id', $this->getKey())->first();
         if (empty($service)) {
             return $this->response()

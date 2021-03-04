@@ -20,12 +20,6 @@ class CheckTrackUpdateForm extends Form implements LazyRenderable
      */
     public function handle(array $input): JsonResponse
     {
-        if (!Admin::user()->can('check.track.update')) {
-            return $this->response()
-                ->error(trans('main.unauthorized'))
-                ->refresh();
-        }
-
         // 获取盘点id
         $track_id = $this->payload['id'] ?? null;
 

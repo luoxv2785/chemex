@@ -8,13 +8,13 @@ use Dcat\Admin\Widgets\Modal;
 
 class CustomColumnDeleteAction extends RowAction
 {
-    protected ?string $tableName;
+    protected ?string $table_name;
 
-    public function __construct($title = null, $tableName = null)
+    public function __construct($table_name = null)
     {
+        parent::__construct();
         $this->title = admin_trans_label('Delete');
-        $this->tableName = $tableName;
-        parent::__construct($title);
+        $this->table_name = $table_name;
     }
 
     /**
@@ -25,7 +25,7 @@ class CustomColumnDeleteAction extends RowAction
     {
         return Modal::make()
             ->lg()
-            ->body(new CustomColumnDeleteForm('', '', $this->tableName))
+            ->body(new CustomColumnDeleteForm('', '', $this->table_name))
             ->button("<a class='btn btn-sm btn-danger' style='color: white;'><i class='feather icon-package'></i>&nbsp;$this->title</a>");
     }
 }

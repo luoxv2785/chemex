@@ -4,15 +4,14 @@ namespace App\Admin\Actions\Grid\RowAction;
 
 use App\Models\DeviceTrack;
 use Dcat\Admin\Actions\Response;
-use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\RowAction;
 
 class DeviceTrackDeleteAction extends RowAction
 {
 
-    public function __construct($title = null)
+    public function __construct()
     {
-        parent::__construct($title);
+        parent::__construct();
         $this->title = '🔗 ' . admin_trans_label('Delete');
     }
 
@@ -22,12 +21,6 @@ class DeviceTrackDeleteAction extends RowAction
      */
     public function handle(): Response
     {
-        if (!Admin::user()->can('device.track.delete')) {
-            return $this->response()
-                ->error(trans('main.unauthorized'))
-                ->refresh();
-        }
-
         $device_track = DeviceTrack::where('id', $this->getKey())->first();
 
         if (empty($device_track)) {

@@ -6,7 +6,6 @@ use App\Models\DeviceRecord;
 use App\Models\PartRecord;
 use App\Models\PartTrack;
 use App\Support\Support;
-use Dcat\Admin\Admin;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
@@ -23,12 +22,6 @@ class PartRecordCreateUpdateTrackForm extends Form
      */
     public function handle(array $input): JsonResponse
     {
-        if (!Admin::user()->can('part.track.create_update')) {
-            return $this->response()
-                ->error(trans('main.unauthorized'))
-                ->refresh();
-        }
-
         // 获取配件id
         $part_id = $this->payload['id'] ?? null;
 

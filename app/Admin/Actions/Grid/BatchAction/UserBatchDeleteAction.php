@@ -4,7 +4,6 @@ namespace App\Admin\Actions\Grid\BatchAction;
 
 use App\Services\UserService;
 use Dcat\Admin\Actions\Response;
-use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\BatchAction;
 
 class UserBatchDeleteAction extends BatchAction
@@ -22,12 +21,6 @@ class UserBatchDeleteAction extends BatchAction
 
     public function handle(): Response
     {
-        if (!Admin::user()->can('organization.user.batch.delete')) {
-            return $this->response()
-                ->error(trans('main.unauthorized'))
-                ->refresh();
-        }
-
         $keys = $this->getKey();
 
         foreach ($keys as $key) {

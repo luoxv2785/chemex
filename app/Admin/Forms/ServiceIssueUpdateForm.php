@@ -20,12 +20,6 @@ class ServiceIssueUpdateForm extends Form implements LazyRenderable
      */
     public function handle(array $input): JsonResponse
     {
-        if (!Admin::user()->can('service.issue.update')) {
-            return $this->response()
-                ->error('你没有权限执行此操作！')
-                ->refresh();
-        }
-
         // 获取异常id
         $issue_id = $this->payload['id'] ?? null;
 

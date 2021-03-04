@@ -3,7 +3,6 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Repositories\ServiceRecord;
-use App\Admin\Repositories\SoftwareRecord;
 use App\Support\Data;
 use App\Traits\ControllerHasColumnSort;
 use Dcat\Admin\Http\Controllers\AdminController;

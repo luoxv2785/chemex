@@ -8,9 +8,9 @@ use Dcat\Admin\Widgets\Modal;
 
 class VendorRecordImportAction extends AbstractTool
 {
-    public function __construct($title = null)
+    public function __construct()
     {
-        parent::__construct($title);
+        parent::__construct();
         $this->title = admin_trans_label('Import');
     }
 

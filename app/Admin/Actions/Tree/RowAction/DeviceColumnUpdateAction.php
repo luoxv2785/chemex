@@ -4,11 +4,8 @@ namespace App\Admin\Actions\Tree\RowAction;
 
 use App\Admin\Forms\CheckTrackUpdateForm;
 use Dcat\Admin\Actions\Response;
-use Dcat\Admin\Traits\HasPermissions;
 use Dcat\Admin\Tree\RowAction;
 use Dcat\Admin\Widgets\Modal;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 class DeviceColumnUpdateAction extends RowAction
@@ -16,7 +13,7 @@ class DeviceColumnUpdateAction extends RowAction
     /**
      * @return string
      */
-	protected $title = 'Title';
+    protected $title = 'Title';
 
     /**
      * Handle the action request.
@@ -27,8 +24,8 @@ class DeviceColumnUpdateAction extends RowAction
      */
     public function handle(Request $request)
     {
-    	//
-    	$key = $this->getKey();
+        //
+        $key = $this->getKey();
 
         return $this->response()
             ->success('Processed successfully.')

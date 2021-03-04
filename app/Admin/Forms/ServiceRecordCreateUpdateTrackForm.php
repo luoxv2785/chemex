@@ -6,7 +6,6 @@ use App\Models\DeviceRecord;
 use App\Models\ServiceRecord;
 use App\Models\ServiceTrack;
 use App\Support\Support;
-use Dcat\Admin\Admin;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
@@ -22,12 +21,6 @@ class ServiceRecordCreateUpdateTrackForm extends Form
      */
     public function handle(array $input): JsonResponse
     {
-        if (!Admin::user()->can('service.track.create_update')) {
-            return $this->response()
-                ->error(trans('main.unauthorized'))
-                ->refresh();
-        }
-
         // 获取服务id
         $service_id = $this->payload['id'] ?? null;
 
