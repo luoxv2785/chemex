@@ -13,7 +13,6 @@ return [
         'Delete Confirm' => '确认删除？',
         'Delete Confirm Description' => '删除的同时将会解除所有与之关联的归属关系',
         'Track Create Update' => '归属到设备',
-        'Device Help' => '选择新设备后，将会自动解除此服务程序与老设备的归属关系。'
     ],
     'fields' => [
         'name' => '名称',

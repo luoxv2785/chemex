@@ -10,8 +10,6 @@ return [
         'Delete Success' => '设备归属解除成功！',
         'Delete Confirm' => '确认解除与此用户的关联？',
         'Update Delete' => '归还设备',
-        'Return Time' => '归还时间',
-        'Return Description' => '归还描述'
     ],
     'fields' => [
         'device' => [

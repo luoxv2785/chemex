@@ -11,7 +11,6 @@ return [
         'Delete Confirm Description' => '删除的同时将会删除此字段的全部用户数据且无法恢复',
     ],
     'fields' => [
-        'table_name' => '资产名称',
         'name' => '字段名',
         'nick_name' => '字段别名',
         'is_nullable' => '可空',

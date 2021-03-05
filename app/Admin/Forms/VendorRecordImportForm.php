@@ -5,18 +5,14 @@ namespace App\Admin\Forms;
 use App\Models\VendorRecord;
 use Box\Spout\Common\Exception\IOException;
 use Box\Spout\Common\Exception\UnsupportedTypeException;
-use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
-use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 use Dcat\EasyExcel\Excel;
 use Exception;
 use League\Flysystem\FileNotFoundException;
 
-class VendorRecordImportForm extends Form implements LazyRenderable
+class VendorRecordImportForm extends Form
 {
-    use LazyWidget;
-
     /**
      * 处理表单提交逻辑
      * @param array $input
@@ -78,7 +74,7 @@ class VendorRecordImportForm extends Form implements LazyRenderable
     public function form()
     {
         $this->file('file')
-            ->accept('xls,xlsx,csv')
+            ->accept('xlsx,csv')
             ->autoUpload()
             ->uniqueName()
             ->required()

@@ -11,7 +11,7 @@ use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 use Exception;
 
-class ConsumableOutForm extends Form implements LazyRenderable
+class ConsumableRecordOutForm extends Form implements LazyRenderable
 {
     use LazyWidget;
 
@@ -33,7 +33,7 @@ class ConsumableOutForm extends Form implements LazyRenderable
             $consumable_track = ConsumableTrack::where('consumable_id', $consumable_record_id)->first();
             if (empty($consumable_track)) {
                 return $this->response()
-                    ->error(admin_trans_label('Track None'));
+                    ->error(trans('main.record_none'));
             } else {
                 $new_consumable_track = $consumable_track->replicate();
                 $new_consumable_track->number -= $number;
@@ -59,13 +59,13 @@ class ConsumableOutForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        $this->select('consumable_id')
+        $this->select('consumable_id', trans('main.consumable_id'))
             ->options(ConsumableRecord::pluck('name', 'id'))
             ->required();
-        $this->currency('number')
+        $this->currency('number', trans('main.consumable_number'))
             ->symbol('')
             ->required();
-        $this->select('user_id')
+        $this->select('user_id', trans('main.user_id'))
             ->options(User::pluck('name', 'id'))
             ->required();
     }

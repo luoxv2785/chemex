@@ -72,7 +72,7 @@ class MaintenanceCreateForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        $this->text('ng_description')->required();
-        $this->datetime('ng_time')->required();
+        $this->text('ng_description', trans('main.ng_description'))->required();
+        $this->datetime('ng_time', trans('main.ng_time'))->required();
     }
 }

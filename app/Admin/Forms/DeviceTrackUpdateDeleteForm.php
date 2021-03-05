@@ -51,9 +51,9 @@ class DeviceTrackUpdateDeleteForm extends Form
      */
     public function form()
     {
-        $this->datetime('return_time', admin_trans_label('Return Time'))
+        $this->datetime('return_time', trans('main.return_time'))
             ->required();
-        $this->textarea('return_description', admin_trans_label('Return Description'))
+        $this->textarea('return_description', trans('main.return_description'))
             ->required();
     }
 }

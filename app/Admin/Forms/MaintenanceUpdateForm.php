@@ -61,11 +61,11 @@ class MaintenanceUpdateForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        $this->text('ok_description')->required();
-        $this->datetime('ok_time')->required();
-        $this->select('status')->options([
-            1 => admin_trans_label('Update Done'),
-            2 => admin_trans_label('Update Cancelled')
+        $this->text('ok_description', trans('main.ok_description'))->required();
+        $this->datetime('ok_time', trans('main.ok_time'))->required();
+        $this->select('status', trans('main.status'))->options([
+            1 => trans('main.maintenance_update_done'),
+            2 => trans('main.maintenance_update_cancelled')
         ])->required();
     }
 }

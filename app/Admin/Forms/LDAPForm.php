@@ -2,14 +2,10 @@
 
 namespace App\Admin\Forms;
 
-use Dcat\Admin\Contracts\LazyRenderable;
-use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 
-class LDAPForm extends Form implements LazyRenderable
+class LDAPForm extends Form
 {
-    use LazyWidget;
-
     /**
      * Handle the form request.
      *

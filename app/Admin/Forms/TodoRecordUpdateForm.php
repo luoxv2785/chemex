@@ -58,9 +58,11 @@ class TodoRecordUpdateForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        $this->datetime('end')->required();
-        $this->textarea('done_description')->required();
-        $this->select('emoji')
+        $this->datetime('end', trans('main.todo_record_end'))
+            ->required();
+        $this->textarea('done_description', trans('main.todo_record_done_description'))
+            ->required();
+        $this->select('emoji', trans('main.todo_record_emoji'))
             ->options(Data::emoji());
     }
 }

@@ -60,9 +60,9 @@ class ServiceIssueCreateForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        $this->text('issue',)
+        $this->text('issue', trans('main.service_issue'))
             ->required();
-        $this->datetime('start')
+        $this->datetime('start', trans('main.service_issue_start'))
             ->required();
     }
 }

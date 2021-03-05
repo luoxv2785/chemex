@@ -4,16 +4,12 @@ namespace App\Admin\Forms;
 
 use App\Models\ConsumableRecord;
 use App\Models\ConsumableTrack;
-use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
-use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 use Exception;
 
-class ConsumableInForm extends Form implements LazyRenderable
+class ConsumableRecordInForm extends Form
 {
-    use LazyWidget;
-
     /**
      * 处理表单提交逻辑
      * @param array $input
@@ -65,13 +61,13 @@ class ConsumableInForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        $this->select('consumable_id')
+        $this->select('consumable_id', trans('main.consumable_id'))
             ->options(ConsumableRecord::pluck('name', 'id'))
             ->required();
-        $this->currency('number')
+        $this->currency('number', trans('main.consumable_number'))
             ->symbol('')
             ->required();
-        $this->date('purchased');
-        $this->date('expired');
+        $this->date('purchased', trans('main.purchased'));
+        $this->date('expired', trans('main.expired'));
     }
 }

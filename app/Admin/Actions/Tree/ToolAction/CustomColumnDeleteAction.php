@@ -23,9 +23,10 @@ class CustomColumnDeleteAction extends RowAction
      */
     public function render()
     {
+        $form = CustomColumnDeleteForm::make()->payload(['table_name' => $this->table_name]);
         return Modal::make()
             ->lg()
-            ->body(new CustomColumnDeleteForm('', '', $this->table_name))
+            ->body($form)
             ->button("<a class='btn btn-sm btn-danger' style='color: white;'><i class='feather icon-package'></i>&nbsp;$this->title</a>");
     }
 }

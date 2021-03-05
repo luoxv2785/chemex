@@ -63,7 +63,7 @@ class SoftwareRecordCreateUpdateTrackForm extends Form implements LazyRenderable
             $diff = $software->counts - $used;
             if ($diff <= 0) {
                 return $this->response()
-                    ->error('软件可用授权数量不足，无法归属');
+                    ->error(trans('main.software_license_not_enough'));
             }
         }
 
@@ -93,16 +93,16 @@ class SoftwareRecordCreateUpdateTrackForm extends Form implements LazyRenderable
     public function form()
     {
         if (Support::ifSelectCreate()) {
-            $this->selectCreate('device_id')
+            $this->selectCreate('device_id', trans('main.device_id'))
                 ->options(DeviceRecord::class)
                 ->ajax(admin_route('selection.device.records'))
                 ->url(admin_route('device.records.create'))
-                ->help(admin_trans_label('Device Help'))
+                ->help(trans('main.software_record_create_update_track_device_id_help'))
                 ->required();
         } else {
-            $this->select('device_id')
+            $this->select('device_id', trans('main.device_id'))
                 ->options(DeviceRecord::pluck('name', 'id'))
-                ->help(admin_trans_label('Device Help'))
+                ->help(trans('main.software_record_create_update_track_device_id_help'))
                 ->required();
         }
     }

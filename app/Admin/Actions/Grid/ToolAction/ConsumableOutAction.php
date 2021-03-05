@@ -2,7 +2,7 @@
 
 namespace App\Admin\Actions\Grid\ToolAction;
 
-use App\Admin\Forms\ConsumableOutForm;
+use App\Admin\Forms\ConsumableRecordOutForm;
 use Dcat\Admin\Grid\Tools\AbstractTool;
 use Dcat\Admin\Widgets\Modal;
 
@@ -23,7 +23,7 @@ class ConsumableOutAction extends AbstractTool
     {
         return Modal::make()
             ->lg()
-            ->body(new ConsumableOutForm())
+            ->body(new ConsumableRecordOutForm())
             ->button("<a class='btn btn-warning' style='color: white;'><i class='feather icon-package'></i>&nbsp;$this->title</a>");
     }
 }

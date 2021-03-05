@@ -38,7 +38,7 @@ class CheckTrackUpdateForm extends Form implements LazyRenderable
         $check_track = CheckTrack::where('id', $track_id)->first();
         if (empty($check_track)) {
             return $this->response()
-                ->error(admin_trans_label('Track None'));
+                ->error(trans('main.check_track_none'));
         } else {
             $check_track->status = $status;
             $check_track->description = $description;
@@ -47,7 +47,7 @@ class CheckTrackUpdateForm extends Form implements LazyRenderable
         }
 
         return $this->response()
-            ->success(admin_trans_label('Track Success'))
+            ->success(trans('main.check_track_success'))
             ->refresh();
     }
 
@@ -56,10 +56,10 @@ class CheckTrackUpdateForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        $this->radio('status')
-            ->options([1 => admin_trans_label('Check Yes'), 2 => admin_trans_label('Check No')])
+        $this->radio('status', trans('main.check_status'))
+            ->options([1 => trans('main.check_yes'), 2 => trans('main.check_no')])
             ->default(1)
             ->required();
-        $this->textarea('description');
+        $this->textarea('description', trans('main.description'));
     }
 }

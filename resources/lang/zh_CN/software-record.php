@@ -19,8 +19,6 @@ return [
         'Delete Confirm Description' => '删除的同时将会解除所有与之关联的归属关系',
         'Track Create Update' => '归属到设备',
         'Import' => '导入',
-        'File Help' => '导入支持xls、xlsx、csv文件，且表格头必填栏位【名称、版本、分类、厂商、发行方式、授权数量】，其中【授权数量】可以适用0或-1代表无限制，支持咖啡壶导出的Excel文件直接导入。',
-        'Device Help' => '选择新设备后，将会自动解除此软件与老设备的归属关系。'
     ],
     'fields' => [
         'qrcode' => '二维码',
@@ -53,8 +51,6 @@ return [
         'category_id' => '分类',
         'vendor_id' => '厂商',
         'depreciation_id' => '折旧规则',
-        'file' => '文件',
-        'device_id' => '设备'
     ],
     'options' => [
     ],

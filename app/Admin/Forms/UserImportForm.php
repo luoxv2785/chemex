@@ -7,9 +7,7 @@ use App\Models\User;
 use App\Services\LDAPService;
 use Box\Spout\Common\Exception\IOException;
 use Box\Spout\Common\Exception\UnsupportedTypeException;
-use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
-use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 use Dcat\EasyExcel\Excel;
 use Exception;
@@ -18,10 +16,8 @@ use Overtrue\LaravelPinyin\Facades\Pinyin;
 use Pour\Base\Uni;
 
 
-class UserImportForm extends Form implements LazyRenderable
+class UserImportForm extends Form
 {
-    use LazyWidget;
-
     /**
      * 处理表单提交逻辑
      * @param array $input
@@ -117,7 +113,7 @@ class UserImportForm extends Form implements LazyRenderable
             ->when('file', function (Form $form) {
                 $form->file('file')
                     ->help(admin_trans_label('File Help'))
-                    ->accept('xls,xlsx,csv')
+                    ->accept('xlsx,csv')
                     ->autoUpload()
                     ->uniqueName();
             })

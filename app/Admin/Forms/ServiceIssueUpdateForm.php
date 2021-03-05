@@ -29,13 +29,13 @@ class ServiceIssueUpdateForm extends Form implements LazyRenderable
         // 如果没有盘点id返回错误
         if (!$issue_id) {
             return $this->response()
-                ->error('参数错误');
+                ->error(trans('main.record_none'));
         }
 
         $service_issue = ServiceIssue::where('id', $issue_id)->first();
         if (empty($service_issue)) {
             return $this->response()
-                ->error('没有找到此服务程序异常');
+                ->error(trans('main.record_none'));
         } else {
             $service_issue->status = 2;
             $service_issue->description = $description;
@@ -44,7 +44,7 @@ class ServiceIssueUpdateForm extends Form implements LazyRenderable
         }
 
         return $this->response()
-            ->success('服务程序异常处理成功')
+            ->success(trans('main.success'))
             ->refresh();
     }
 
@@ -53,6 +53,6 @@ class ServiceIssueUpdateForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        $this->textarea('description', '描述');
+        $this->textarea('description', trans('main.description'));
     }
 }

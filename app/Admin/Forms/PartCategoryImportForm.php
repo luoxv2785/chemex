@@ -74,11 +74,11 @@ class PartCategoryImportForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        $this->file('file')
-            ->accept('xls,xlsx,csv')
+        $this->file('file', trans('main.file'))
+            ->accept('xlsx,csv')
             ->autoUpload()
             ->uniqueName()
             ->required()
-            ->help(admin_trans_label('File Help'));
+            ->help(trans('main.part_category_import_file_help'));
     }
 }

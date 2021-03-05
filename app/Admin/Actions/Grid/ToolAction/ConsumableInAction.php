@@ -2,7 +2,7 @@
 
 namespace App\Admin\Actions\Grid\ToolAction;
 
-use App\Admin\Forms\ConsumableInForm;
+use App\Admin\Forms\ConsumableRecordInForm;
 use Dcat\Admin\Grid\Tools\AbstractTool;
 use Dcat\Admin\Widgets\Modal;
 
@@ -22,7 +22,7 @@ class ConsumableInAction extends AbstractTool
     {
         return Modal::make()
             ->lg()
-            ->body(new ConsumableInForm())
+            ->body(new ConsumableRecordInForm())
             ->button("<a class='btn btn-success' style='color: white;'><i class='feather icon-package'></i>&nbsp;$this->title</a>");
     }
 }

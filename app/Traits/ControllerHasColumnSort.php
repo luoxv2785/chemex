@@ -47,7 +47,7 @@ trait ControllerHasColumnSort
             $tree->disableQuickCreateButton();
             $tree->disableDeleteButton();
             $tree->tools(function (Tree\Tools $tools) use ($repository) {
-                $tools->add(new CustomColumnDeleteAction('', $repository->model()->getTable()));
+                $tools->add(new CustomColumnDeleteAction($repository->getTable()));
             });
         });
     }

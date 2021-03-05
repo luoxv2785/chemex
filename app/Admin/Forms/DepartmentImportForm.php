@@ -75,7 +75,7 @@ class DepartmentImportForm extends Form implements LazyRenderable
             $result = LDAPService::importUserDepartments($input['mode']);
             if ($result) {
                 return $this->response()
-                    ->success(admin_trans_label('LDAP Import Success'))
+                    ->success(trans('main.ldap_import_success'))
                     ->refresh();
             } else {
                 return $this->response()
@@ -91,20 +91,20 @@ class DepartmentImportForm extends Form implements LazyRenderable
     {
         $this->select('type')
             ->when('file', function (Form $form) {
-                $form->file('file')
-                    ->help(admin_trans_label('File Help'))
+                $form->file('file', trans('main.file'))
+                    ->help(trans('main.department_import_file_help'))
                     ->accept('xls,xlsx,csv')
                     ->autoUpload()
                     ->uniqueName()
                     ->required();
             })
             ->when('ldap', function (Form $form) {
-                $form->radio('mode')
-                    ->options(['rewrite' => admin_trans_label('Rewrite'), 'merge' => admin_trans_label('Merge')])
+                $form->radio('mode', trans('main.mode'))
+                    ->options(['rewrite' => trans('main.rewrite'), 'merge' => trans('main.merge')])
                     ->required()
                     ->default('merge');
             })
-            ->options(['file' => admin_trans_label('File'), 'ldap' => admin_trans_label('LDAP')])
+            ->options(['file' => trans('main.file'), 'ldap' => trans('main.ldap')])
             ->required()
             ->default('file');
     }

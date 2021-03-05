@@ -74,11 +74,11 @@ class PurchasedChannelImportForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        $this->file('file', '表格文件')
-            ->accept('xls,xlsx,csv')
+        $this->file('file', trans('main.file'))
+            ->accept('xlsx,csv')
             ->autoUpload()
             ->uniqueName()
             ->required()
-            ->help('导入支持xls、xlsx、csv文件，且表格头必须使用【名称，描述】。');
+            ->help(trans('main.purchased_channel_import_file_help'));
     }
 }

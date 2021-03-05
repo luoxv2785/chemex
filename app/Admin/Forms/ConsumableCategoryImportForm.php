@@ -74,11 +74,11 @@ class ConsumableCategoryImportForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        $this->file('file')
+        $this->file('file', trans('main.file'))
             ->accept('xls,xlsx,csv')
             ->autoUpload()
             ->uniqueName()
             ->required()
-            ->help(admin_trans_label('File Help'));
+            ->help(trans('main.consumable_category_import_file_help'));
     }
 }

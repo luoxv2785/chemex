@@ -15,14 +15,6 @@ class CustomColumnDeleteForm extends Form implements LazyRenderable
 {
     use LazyWidget;
 
-    protected ?string $tableName;
-
-    public function __construct($data = [], $key = null, $tableName = null)
-    {
-        $this->tableName = $tableName;
-        parent::__construct($data, $key);
-    }
-
     /**
      * 处理表单提交逻辑
      * @param array $input
@@ -30,7 +22,7 @@ class CustomColumnDeleteForm extends Form implements LazyRenderable
      */
     public function handle(array $input): JsonResponse
     {
-        $table_name = $input['table_name'] ?? null;
+        $table_name = $this->payload['table_name'];
         $id = $input['custom_column_id'] ?? null;
 
         // 如果没有设备id或者归还时间或者归还描述则返回错误
@@ -70,11 +62,8 @@ class CustomColumnDeleteForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        $this->text('table_name')
-            ->readOnly()
-            ->default($this->tableName);
-        $this->select('custom_column_id')
-            ->options(CustomColumn::where('table_name', $this->tableName)
+        $this->select('custom_column_id', trans('main.custom_column_id'))
+            ->options(CustomColumn::where('table_name', $this->payload['table_name'])
                 ->pluck('name', 'id'))
             ->required();
     }

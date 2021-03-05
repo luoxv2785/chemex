@@ -24,7 +24,6 @@ return [
         'Track Create Update' => '分配用户',
         'Maintenance Create' => '报告故障',
         'Import' => '导入',
-        'File Help' => '导入支持xls、xlsx、csv文件，且表格头必填栏位【名称、分类、厂商】，支持咖啡壶导出的Excel文件直接导入。',
         'Update SSH Success' => 'SSH信息配置成功！',
         'Export To Excel' => '导出到Excel',
         'NG Description' => '故障描述',
@@ -92,7 +91,6 @@ return [
         'ng_description' => '故障说明',
         'ng_time' => '故障发生时间',
         'user_same' => '用户已存在',
-        'file' => '文件',
         'user_id' => '用户',
         'expiration_left_days' => '保固剩余时间'
     ],
