@@ -11,18 +11,14 @@ use App\Models\User;
 use App\Models\VendorRecord;
 use Box\Spout\Common\Exception\IOException;
 use Box\Spout\Common\Exception\UnsupportedTypeException;
-use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
-use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 use Dcat\EasyExcel\Excel;
 use Exception;
 use League\Flysystem\FileNotFoundException;
 
-class DeviceRecordImportForm extends Form implements LazyRenderable
+class DeviceRecordImportForm extends Form
 {
-    use LazyWidget;
-
     /**
      * 处理表单提交逻辑
      * @param array $input
@@ -148,11 +144,11 @@ class DeviceRecordImportForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        $this->file('file',trans('main.file'))
+        $this->file('file')
             ->accept('xlsx,csv')
             ->autoUpload()
             ->uniqueName()
             ->required()
-            ->help(trans('main.device_record_import_file_help'));
+            ->help(admin_trans_label('File Help'));
     }
 }

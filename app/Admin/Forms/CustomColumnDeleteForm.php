@@ -4,14 +4,13 @@ namespace App\Admin\Forms;
 
 use App\Models\ColumnSort;
 use App\Models\CustomColumn;
-use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 use Exception;
 
 
-class CustomColumnDeleteForm extends Form implements LazyRenderable
+class CustomColumnDeleteForm extends Form
 {
     use LazyWidget;
 
@@ -62,7 +61,7 @@ class CustomColumnDeleteForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        $this->select('custom_column_id', trans('main.custom_column_id'))
+        $this->select('custom_column_id')
             ->options(CustomColumn::where('table_name', $this->payload['table_name'])
                 ->pluck('name', 'id'))
             ->required();

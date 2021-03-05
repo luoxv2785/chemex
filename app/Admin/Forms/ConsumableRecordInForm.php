@@ -61,13 +61,13 @@ class ConsumableRecordInForm extends Form
      */
     public function form()
     {
-        $this->select('consumable_id', trans('main.consumable_id'))
+        $this->select('consumable_id')
             ->options(ConsumableRecord::pluck('name', 'id'))
             ->required();
-        $this->currency('number', trans('main.consumable_number'))
+        $this->currency('number')
             ->symbol('')
             ->required();
-        $this->date('purchased', trans('main.purchased'));
-        $this->date('expired', trans('main.expired'));
+        $this->date('purchased');
+        $this->date('expired');
     }
 }

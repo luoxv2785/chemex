@@ -3,12 +3,13 @@
 namespace App\Admin\Forms;
 
 use App\Models\DeviceTrack;
+use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 
 
-class DeviceTrackUpdateDeleteForm extends Form
+class DeviceTrackUpdateDeleteForm extends Form implements LazyRenderable
 {
     use LazyWidget;
 

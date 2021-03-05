@@ -17,7 +17,8 @@ return [
         'Delete Confirm Description' => '删除的同时将会解除所有与之关联的归属关系',
         'Track Create Update' => '归属设备',
         'Import' => '导入',
-        'Maintenance Create' => '报告故障'
+        'Maintenance Create' => '报告故障',
+        'File Help' => '导入支持xlsx、csv文件，且表格头必填栏位【名称、分类、规格、厂商】，支持咖啡壶导出的Excel文件直接导入。',
     ],
     'fields' => [
         'qrcode' => '二维码',
@@ -51,5 +52,6 @@ return [
         'device_id' => '设备',
         'ng_description' => '故障说明',
         'ng_time' => '故障发生时间',
+        'file' => '文件'
     ]
 ];

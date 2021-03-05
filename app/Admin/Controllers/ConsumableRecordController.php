@@ -90,7 +90,6 @@ class ConsumableRecordController extends AdminController
                     'category.name',
                     'vendor.name',
                     'price',
-                    'number',
                 ], ControllerHasCustomColumns::makeQuickSearch((new ConsumableRecord())->getTable()))
             )
                 ->placeholder(trans('main.quick_search'))

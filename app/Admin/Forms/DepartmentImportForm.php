@@ -6,18 +6,14 @@ use App\Models\Department;
 use App\Services\LDAPService;
 use Box\Spout\Common\Exception\IOException;
 use Box\Spout\Common\Exception\UnsupportedTypeException;
-use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
-use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 use Dcat\EasyExcel\Excel;
 use Exception;
 use League\Flysystem\FileNotFoundException;
 
-class DepartmentImportForm extends Form implements LazyRenderable
+class DepartmentImportForm extends Form
 {
-    use LazyWidget;
-
     /**
      * 处理表单提交逻辑
      * @param array $input
@@ -91,20 +87,20 @@ class DepartmentImportForm extends Form implements LazyRenderable
     {
         $this->select('type')
             ->when('file', function (Form $form) {
-                $form->file('file', trans('main.file'))
-                    ->help(trans('main.department_import_file_help'))
-                    ->accept('xls,xlsx,csv')
+                $form->file('file')
+                    ->help(admin_trans_label('File Help'))
+                    ->accept('xlsx,csv')
                     ->autoUpload()
                     ->uniqueName()
                     ->required();
             })
             ->when('ldap', function (Form $form) {
-                $form->radio('mode', trans('main.mode'))
-                    ->options(['rewrite' => trans('main.rewrite'), 'merge' => trans('main.merge')])
+                $form->radio('mode')
+                    ->options(['rewrite' => admin_trans_label('Rewrite'), 'merge' => admin_trans_label('Merge')])
                     ->required()
                     ->default('merge');
             })
-            ->options(['file' => trans('main.file'), 'ldap' => trans('main.ldap')])
+            ->options(['file' => admin_trans_label('File'), 'ldap' => admin_trans_label('LDAP')])
             ->required()
             ->default('file');
     }

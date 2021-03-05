@@ -5,16 +5,12 @@ namespace App\Admin\Forms;
 use App\Models\ConsumableRecord;
 use App\Models\ConsumableTrack;
 use App\Models\User;
-use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
-use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 use Exception;
 
-class ConsumableRecordOutForm extends Form implements LazyRenderable
+class ConsumableRecordOutForm extends Form
 {
-    use LazyWidget;
-
     /**
      * 处理表单提交逻辑
      * @param array $input
@@ -59,10 +55,10 @@ class ConsumableRecordOutForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        $this->select('consumable_id', trans('main.consumable_id'))
+        $this->select('consumable_id')
             ->options(ConsumableRecord::pluck('name', 'id'))
             ->required();
-        $this->currency('number', trans('main.consumable_number'))
+        $this->currency('number')
             ->symbol('')
             ->required();
         $this->select('user_id', trans('main.user_id'))

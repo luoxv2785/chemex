@@ -28,6 +28,7 @@ return [
         'Export To Excel' => '导出到Excel',
         'NG Description' => '故障描述',
         'Lend Track Create' => '借用设备',
+        'File Help' => '导入支持xlsx、csv文件，且表格头必填栏位【名称、分类、厂商】，支持咖啡壶导出的Excel文件直接导入。',
     ],
     'fields' => [
         'qrcode' => '二维码',
@@ -92,7 +93,8 @@ return [
         'ng_time' => '故障发生时间',
         'user_same' => '用户已存在',
         'user_id' => '用户',
-        'expiration_left_days' => '保固剩余时间'
+        'expiration_left_days' => '保固剩余时间',
+        'file' => '文件'
     ],
     'options' => [
     ],
