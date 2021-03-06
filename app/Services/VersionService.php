@@ -65,6 +65,7 @@ class VersionService
             exec('git remote add origin https://gitee.com/celaraze/chemex.git' . ' 2>&1');
             exec('git fetch --all' . ' 2>&1');
             exec('git reset --hard origin/main' . ' 2>&1');
+            exec('chmod -R 755 ./*' . ' 2>&1');
             Artisan::call('chemex:update');
             return true;
         } catch (Exception $exception) {
