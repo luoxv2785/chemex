@@ -151,14 +151,22 @@ MariaDB 账密：chemex/chemex
 
 8：进入项目根目录，执行 `php artisan chemex:install` 进行安装。
 
-9：你可能使用的web服务器为 `nginx` 以及 `apache`，无论怎样，应用的起始路径在 `/public` 目录，请确保指向正确，同时程序的根目录权限应该调整为：拥有者和你的 Web
-服务器运行用户一致，且根目录权限为 `755`。
+9：你可能使用的web服务器为 `nginx` 以及 `apache`，无论怎样，应用的起始路径在 `/public` 目录，请确保指向正确，同时程序的根目录权限应该调整为：拥有者和你的 Web 服务器运行用户一致，例如 www
+用户，且根目录权限为 `755`。`/storage` 目录设置为 `777` 权限。
 
 10：修改web服务器的伪静态规则为：`try_files $uri $uri/ /index.php?$args;`。
 
 11：此时可以通过访问 `http://your_domain` 来使用 咖啡壶。管理员账号密码为：`admin / admin`。
 
-## 更新（通过Git Pull方式）
+12：最后，根据需要对是否使用线上更新继续配置。
+
+## 更新
+
+### 线上
+
+部署完成后需要将 PHP 的 `exec()` 函数从禁用列表中移除，使其生效。之后即可使用线上更新，操作步骤为 设置 - 版本信息 - 升级。
+
+### 手动，通过Git Pull方式
 
 随时随地保持更新可以在项目根目录中执行 `sudo git fetch --all && git reset --hard origin/main && git pull` 命令，将会同步分支的最新修改内容。
 
