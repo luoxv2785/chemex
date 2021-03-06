@@ -65,10 +65,7 @@ class VersionService
             exec('git remote add origin https://gitee.com/celaraze/chemex.git' . ' 2>&1');
             exec('git fetch --all' . ' 2>&1');
             exec('git reset --hard origin/main' . ' 2>&1');
-            exec('git pull' . ' 2>&1');
             Artisan::call('chemex:update');
-            // 2.0->3.0技术债务
-            Artisan::call('chemex:refresh-user');
             return true;
         } catch (Exception $exception) {
             return $exception->getMessage();
