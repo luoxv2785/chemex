@@ -102,11 +102,7 @@ class VersionController extends Controller
     public function upgrade(): JsonResponse
     {
         $result = VersionService::upgrade();
-        if ($result === true) {
-            $return = Uni::rr(200, '升级成功！');
-        } else {
-            $return = Uni::rr(500, $result);
-        }
+        $return = Uni::rr(200, $result);
         return response()->json($return);
     }
 }

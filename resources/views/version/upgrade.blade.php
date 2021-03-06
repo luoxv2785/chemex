@@ -12,11 +12,7 @@
         $.ajax({
             url: "/action/upgrade",
             success: function (res) {
-                if (res.code === 200) {
-                    location.reload();
-                } else {
-                    Dcat.warning(res.message);
-                }
+                Dcat.warning(res.message);
             },
             error: function (res) {
                 Dcat.error('执行错误：' + res.data);
