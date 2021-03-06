@@ -56,7 +56,6 @@ class DepreciationRuleController extends AdminController
             $grid->column('id');
             $grid->column('name');
             $grid->column('description');
-            $grid->column('termination');
 
             $grid->toolsWithOutline(false);
 
@@ -80,7 +79,6 @@ class DepreciationRuleController extends AdminController
             $show->field('name');
             $show->field('description');
             $show->field('rules')->view('depreciation_rules.rules');
-            $show->field('termination');
             $show->field('created_at');
             $show->field('updated_at');
         });
@@ -113,8 +111,6 @@ class DepreciationRuleController extends AdminController
                     ->symbol(admin_trans_label('Rules Symbol'))
                     ->required();
             });
-            $form->date('termination')
-                ->help(admin_trans_label('Termination Help'));
 
             $form->display('created_at');
             $form->display('updated_at');
