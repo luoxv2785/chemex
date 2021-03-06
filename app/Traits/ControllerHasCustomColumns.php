@@ -19,29 +19,37 @@ trait ControllerHasCustomColumns
      */
     public static function makeForm($table_name, Form $form): Form
     {
-        foreach (self::getCustomColumns($table_name) as $custom_field) {
-            switch ($custom_field->type) {
+        foreach (self::getCustomColumns($table_name) as $custom_column) {
+            switch ($custom_column->type) {
                 case 'date':
-                    $form->date($custom_field->name, $custom_field->nick_name);
+                    $form->date($custom_column->name, $custom_column->nick_name);
                     break;
                 case 'dateTime':
-                    $form->datetime($custom_field->name, $custom_field->nick_name);
+                    $form->datetime($custom_column->name, $custom_column->nick_name);
                     break;
                 case 'integer':
-                    $form->number($custom_field->name, $custom_field->nick_name);
+                    $form->number($custom_column->name, $custom_column->nick_name);
                     break;
                 case 'double':
                 case 'float':
-                    $form->currency($custom_field->name, $custom_field->nick_name);
+                    $form->currency($custom_column->name, $custom_column->nick_name);
                     break;
                 case 'longText':
-                    $form->textarea($custom_field->name, $custom_field->nick_name);
+                    $form->textarea($custom_column->name, $custom_column->nick_name);
+                    break;
+                case 'select':
+                    $options = [];
+                    foreach ($custom_column->select_options as $select_option) {
+                        $options[$select_option['item']] = $select_option['item'];
+                    }
+                    $form->select($custom_column->name, $custom_column->nick_name)
+                        ->options($options);
                     break;
                 default:
-                    $form->text($custom_field->name, $custom_field->nick_name);
+                    $form->text($custom_column->name, $custom_column->nick_name);
             }
-            if ($custom_field->is_nullable == 0) {
-                $form->field($custom_field->name)->required();
+            if ($custom_column->is_nullable == 0) {
+                $form->field($custom_column->name)->required();
             }
         }
         return $form;
@@ -65,8 +73,8 @@ trait ControllerHasCustomColumns
      */
     public static function makeDetail($table_name, Show $show): Show
     {
-        foreach (self::getCustomColumns($table_name) as $custom_field) {
-            $show->field($custom_field->name, $custom_field->nick_name);
+        foreach (self::getCustomColumns($table_name) as $custom_column) {
+            $show->field($custom_column->name, $custom_column->nick_name);
         }
         return $show;
     }
@@ -80,8 +88,8 @@ trait ControllerHasCustomColumns
      */
     public static function makeGrid($table_name, Grid $grid, $column_sorts): Grid
     {
-        foreach (self::getCustomColumns($table_name) as $custom_field) {
-            $grid->column($custom_field->name, $custom_field->nick_name, $column_sorts);
+        foreach (self::getCustomColumns($table_name) as $custom_column) {
+            $grid->column($custom_column->name, $custom_column->nick_name, $column_sorts);
         }
         return $grid;
     }
@@ -94,8 +102,8 @@ trait ControllerHasCustomColumns
     public static function makeQuickSearch($table_name): array
     {
         $keys = [];
-        foreach (self::getCustomColumns($table_name) as $custom_field) {
-            array_push($keys, $custom_field->name);
+        foreach (self::getCustomColumns($table_name) as $custom_column) {
+            array_push($keys, $custom_column->name);
         }
         return $keys;
     }
@@ -107,8 +115,8 @@ trait ControllerHasCustomColumns
      */
     public static function makeFilter($table_name, $filter)
     {
-        foreach (self::getCustomColumns($table_name) as $custom_field) {
-            $filter->equal($custom_field->name, $custom_field->nick_name);
+        foreach (self::getCustomColumns($table_name) as $custom_column) {
+            $filter->equal($custom_column->name, $custom_column->nick_name);
         }
     }
 }

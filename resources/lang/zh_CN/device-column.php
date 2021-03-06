@@ -46,8 +46,10 @@ return [
         ],
         'nick_name' => '字段别名',
         'is_nullable' => '可空',
-        'table_name'=>'表名',
-        'custom_column_id' => '自定义字段'
+        'table_name' => '表名',
+        'custom_column_id' => '自定义字段',
+        'select_options' => '选项列表',
+        'item' => '项'
     ],
     'options' => [
     ],

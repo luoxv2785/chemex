@@ -203,7 +203,6 @@ return array(
     'App\\Admin\\Controllers\\ConsumableColumnController' => $baseDir . '/app/Admin/Controllers/ConsumableColumnController.php',
     'App\\Admin\\Controllers\\ConsumableRecordController' => $baseDir . '/app/Admin/Controllers/ConsumableRecordController.php',
     'App\\Admin\\Controllers\\ConsumableTrackController' => $baseDir . '/app/Admin/Controllers/ConsumableTrackController.php',
-    'App\\Admin\\Controllers\\CustomColumnController' => $baseDir . '/app/Admin/Controllers/CustomColumnController.php',
     'App\\Admin\\Controllers\\DepartmentController' => $baseDir . '/app/Admin/Controllers/DepartmentController.php',
     'App\\Admin\\Controllers\\DepreciationRuleController' => $baseDir . '/app/Admin/Controllers/DepreciationRuleController.php',
     'App\\Admin\\Controllers\\DeviceCategoryController' => $baseDir . '/app/Admin/Controllers/DeviceCategoryController.php',

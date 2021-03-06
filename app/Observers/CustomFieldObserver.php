@@ -13,15 +13,15 @@ class CustomFieldObserver
     /**
      * Handle the CustomColumn "created" event.
      *
-     * @param CustomColumn $customField
+     * @param CustomColumn $customColumn
      * @return void
      */
-    public function created(CustomColumn $customField)
+    public function created(CustomColumn $customColumn)
     {
         try {
-            Schema::table($customField->table_name, function (Blueprint $table) use ($customField) {
-                $type = $customField->type;
-                if ($customField->is_nullable == 0) {
+            Schema::table($customColumn->table_name, function (Blueprint $table) use ($customColumn) {
+                $type = $customColumn->type;
+                if ($customColumn->is_nullable == 0) {
                     $nullable = false;
                 } else {
                     $nullable = true;
@@ -29,20 +29,23 @@ class CustomFieldObserver
                 if ($type == 'date' || $type == 'dateTime') {
                     $nullable = true;
                 }
-                $table->$type($customField->name)->nullable($nullable);
+                if ($type == 'select') {
+                    $type = 'string';
+                }
+                $table->$type($customColumn->name)->nullable($nullable);
             });
         } catch (Exception $exception) {
-            dd($exception->getMessage());
+            DB::rollBack();
         }
     }
 
     /**
      * Handle the CustomColumn "updated" event.
      *
-     * @param CustomColumn $customField
+     * @param CustomColumn $customColumn
      * @return void
      */
-    public function updated(CustomColumn $customField)
+    public function updated(CustomColumn $customColumn)
     {
         //
     }
@@ -50,14 +53,14 @@ class CustomFieldObserver
     /**
      * Handle the CustomColumn "deleted" event.
      *
-     * @param CustomColumn $customField
+     * @param CustomColumn $customColumn
      * @return void
      */
-    public function deleted(CustomColumn $customField)
+    public function deleted(CustomColumn $customColumn)
     {
         try {
-            Schema::table($customField->table_name, function (Blueprint $table) use ($customField) {
-                $table->dropColumn($customField->name);
+            Schema::table($customColumn->table_name, function (Blueprint $table) use ($customColumn) {
+                $table->dropColumn($customColumn->name);
             });
         } catch (Exception $exception) {
             DB::rollBack();
@@ -67,10 +70,10 @@ class CustomFieldObserver
     /**
      * Handle the CustomColumn "restored" event.
      *
-     * @param CustomColumn $customField
+     * @param CustomColumn $customColumn
      * @return void
      */
-    public function restored(CustomColumn $customField)
+    public function restored(CustomColumn $customColumn)
     {
         //
     }
@@ -78,10 +81,10 @@ class CustomFieldObserver
     /**
      * Handle the CustomColumn "force deleted" event.
      *
-     * @param CustomColumn $customField
+     * @param CustomColumn $customColumn
      * @return void
      */
-    public function forceDeleted(CustomColumn $customField)
+    public function forceDeleted(CustomColumn $customColumn)
     {
         //
     }

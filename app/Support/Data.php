@@ -278,7 +278,7 @@ class Data
      * 返回自定义字段的类型
      * @return string[]
      */
-    public static function customFieldTypes(): array
+    public static function customColumnTypes(): array
     {
         return [
             'string' => '字符串',
@@ -287,7 +287,8 @@ class Data
             'integer' => '整数',
             'float' => '浮点',
             'double' => '双精度',
-            'longText' => '长文本'
+            'longText' => '长文本',
+            'select' => '选项'
         ];
     }
 

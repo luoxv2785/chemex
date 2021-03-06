@@ -39,7 +39,6 @@ class TodoRecord extends EloquentRepository
                 array_push($array, $model);
             }
         } else {
-//            dd($db_columns, $model_columns);
             foreach ($db_columns as $key => $db_column) {
                 foreach ($model_columns as $model_column) {
                     // 如果表字段在排序表中有了

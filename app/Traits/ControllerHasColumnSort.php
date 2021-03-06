@@ -22,8 +22,8 @@ trait ControllerHasColumnSort
     {
         return new Row(function (Column $column) {
             $column->row(function (Row $row) {
-                $row->column(7, $this->treeView());
-                $row->column(5, $this->createBox());
+                $row->column(6, $this->treeView());
+                $row->column(6, $this->createBox());
             });
         });
     }
@@ -65,8 +65,14 @@ trait ControllerHasColumnSort
         $form->text('nick_name')
             ->help(admin_trans_label('Nick Name Help'))
             ->required();
-        $form->select('type')->required()
-            ->options(Data::customFieldTypes());
+        $form->select('type')
+            ->when('select', function (WidgetForm $form) {
+                $form->table('select_options', function (Form\NestedForm $table) {
+                    $table->text('item');
+                });
+            })
+            ->options(Data::customColumnTypes())
+            ->required();
         $form->radio('is_nullable')
             ->options(LaravelAdmin::yesOrNo())
             ->help(admin_trans_label('Is Nullable Help'))
@@ -133,6 +139,9 @@ trait ControllerHasColumnSort
                     $custom_column->name = $form->input('name');
                     $custom_column->nick_name = $form->input('nick_name');
                     $custom_column->type = $form->input('type');
+                    if ($custom_column->type == 'select') {
+                        $custom_column->select_options = $form->input('select_options');
+                    }
                     $custom_column->is_nullable = $form->input('is_nullable');
                     $custom_column->save();
 
