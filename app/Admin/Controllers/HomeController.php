@@ -40,14 +40,14 @@ class HomeController extends Controller
                     $row->column(12, '<hr>');
                     $row->column(12, function (Column $column) {
                         $column->row(function (Row $row) {
-                            $row->column(2, function (Column $column) {
+                            $row->column(3, function (Column $column) {
                                 $column->row(new WorthTrend());
                                 $column->row(new DefectTrend());
                             });
-                            $row->column(10, function (Column $column) {
+                            $row->column(9, function (Column $column) {
                                 $column->row(function (Row $row) {
-                                    $row->column(4, new ItemWorthTrend());
-                                    $row->column(4, function (Column $column) {
+                                    $row->column(7, new ItemWorthTrend());
+                                    $row->column(5, function (Column $column) {
                                         $column->row(new AllWorth());
                                         $column->row(function (Row $row) {
                                             $row->column(6, new DeviceWorth());
@@ -56,20 +56,6 @@ class HomeController extends Controller
                                         $column->row(function (Row $row) {
                                             $row->column(6, new SoftwareWorth());
                                             $row->column(6, new ServiceWorth());
-                                        });
-                                    });
-                                    $row->column(4, function (Column $column) {
-                                        $column->row(function (Row $row) {
-                                            $row->column(6, new DeviceAboutToExpireCounts());
-                                            $row->column(6, new PartAboutToExpireCounts());
-                                        });
-                                        $column->row(function (Row $row) {
-                                            $row->column(6, new SoftwareAboutToExpireCounts());
-                                            $row->column(6, new DeviceExpiredCounts());
-                                        });
-                                        $column->row(function (Row $row) {
-                                            $row->column(6, new PartExpiredCounts());
-                                            $row->column(6, new SoftwareExpiredCounts());
                                         });
                                     });
                                 });

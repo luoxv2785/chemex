@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Crypt;
 
 /**
  * @method static where(string $key, string $value, string $value = null)
@@ -30,8 +29,6 @@ use Illuminate\Support\Facades\Crypt;
  * @property string purchased
  * @property string expired
  * @property int purchased_channel_id
- * @property string security_password
- * @property string admin_password
  * @property string asset_number
  * @property int id
  * @property PartRecord part
@@ -165,56 +162,6 @@ class DeviceRecord extends Model
             'id',   // 远程表对中间表的关联字段
             'id',   // 主表对中间表的关联字段
             'service_id'); // 中间表对远程表的关联字段
-    }
-
-    /**
-     * 对安全密码字段读取做解密转换
-     * @param $security_password
-     * @return array|string
-     */
-    public function getSecurityPasswordAttribute($security_password)
-    {
-        if (!empty($security_password)) {
-            try {
-                return Crypt::decryptString($security_password);
-            } catch (Exception $exception) {
-                return '密钥已损毁';
-            }
-        }
-    }
-
-    /**
-     * 对安全密码字段写入做加密转换
-     * @param $security_password
-     */
-    public function setSecurityPasswordAttribute($security_password)
-    {
-        $this->attributes['security_password'] = Crypt::encryptString($security_password);
-    }
-
-    /**
-     * 对管理员密码字段读取做解密转换
-     * @param $admin_password
-     * @return array|string
-     */
-    public function getAdminPasswordAttribute($admin_password)
-    {
-        if (!empty($admin_password)) {
-            try {
-                return Crypt::decryptString($admin_password);
-            } catch (Exception $exception) {
-                return '密钥已损毁';
-            }
-        }
-    }
-
-    /**
-     * 对管理员密码字段写入做加密转换
-     * @param $admin_password
-     */
-    public function setAdminPasswordAttribute($admin_password)
-    {
-        $this->attributes['admin_password'] = Crypt::encryptString($admin_password);
     }
 
     /**

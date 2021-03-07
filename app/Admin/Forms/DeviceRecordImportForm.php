@@ -63,12 +63,6 @@ class DeviceRecordImportForm extends Form
                         }
                         $device_record->mac = $row['MAC'];
                         $device_record->ip = $row['IP'];
-                        if (!empty($row['安全密码'])) {
-                            $device_record->security_password = $row['安全密码'];
-                        }
-                        if (!empty($row['管理员密码'])) {
-                            $device_record->admin_password = $row['管理员密码'];
-                        }
                         if (!empty($row['描述'])) {
                             $device_record->description = $row['描述'];
                         }
