@@ -69,7 +69,7 @@ class RoleController extends BaseRoleController
              * 按钮控制
              */
             // @permissions
-            if (!Admin::user()->can('role.update')) {
+            if (Admin::user()->can('role.update')) {
                 $grid->showQuickEditButton();
             }
             // @permissions
@@ -80,14 +80,14 @@ class RoleController extends BaseRoleController
             if (!Admin::user()->can('role.delete')) {
                 $grid->disableDeleteButton();
             }
-            $grid->disableEditButton();
+//            $grid->disableEditButton();
             $grid->enableDialogCreate();
             $grid->disableBatchActions();
             $grid->toolsWithOutline(false);
         });
     }
 
-    protected function detail($id)
+    protected function detail($id): Show
     {
         return Show::make($id, new Role('permissions'), function (Show $show) {
             $show->field('id');

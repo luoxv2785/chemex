@@ -3,7 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Grid\BatchAction\PartRecordBatchDeleteAction;
-use App\Admin\Actions\Grid\RowAction\MaintenanceCreateAction;
+use App\Admin\Actions\Grid\RowAction\MaintenanceRecordCreateAction;
 use App\Admin\Actions\Grid\RowAction\PartRecordCreateUpdateTrackAction;
 use App\Admin\Actions\Grid\RowAction\PartRecordDeleteAction;
 use App\Admin\Actions\Grid\ToolAction\PartRecordImportAction;
@@ -114,7 +114,7 @@ class PartRecordController extends AdminController
                 }
                 // @permissions
                 if (Admin::user()->can('part.maintenance.create')) {
-                    $actions->append(new MaintenanceCreateAction('part'));
+                    $actions->append(new MaintenanceRecordCreateAction('part'));
                 }
             });
 

@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Repositories\DepreciationRule;
+use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Form\NestedForm;
 use Dcat\Admin\Grid;
@@ -57,11 +58,33 @@ class DepreciationRuleController extends AdminController
             $grid->column('name');
             $grid->column('description');
 
-            $grid->toolsWithOutline(false);
-
+            /**
+             * 快速搜索
+             */
             $grid->quickSearch('id', 'name', 'description')
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
+
+            /**
+             * 按钮控制
+             */
+            // @permissions
+            if (!Admin::user()->can('depreciation.rule.create')) {
+                $grid->disableCreateButton();
+            }
+            // @permissions
+            if (!Admin::user()->can('depreciation.rule.update')) {
+                $grid->disableEditButton();
+            }
+            // @permissions
+            if (!Admin::user()->can('depreciation.rule.delete')) {
+                $grid->disableDeleteButton();
+            }
+            // @permissions
+            if (!Admin::user()->can('depreciation.rule.batch.delete')) {
+                $grid->disableBatchDelete();
+            }
+            $grid->toolsWithOutline(false);
         });
     }
 
@@ -81,6 +104,11 @@ class DepreciationRuleController extends AdminController
             $show->field('rules')->view('depreciation_rules.rules');
             $show->field('created_at');
             $show->field('updated_at');
+
+            // @permissions
+            if (!Admin::user()->can('depreciation.rule.update')) {
+                $show->disableEditButton();
+            }
         });
     }
 
@@ -111,7 +139,6 @@ class DepreciationRuleController extends AdminController
                     ->symbol(admin_trans_label('Rules Symbol'))
                     ->required();
             });
-
             $form->display('created_at');
             $form->display('updated_at');
         });

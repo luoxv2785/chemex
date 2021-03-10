@@ -2,11 +2,11 @@
 
 namespace App\Admin\Actions\Grid\RowAction;
 
-use App\Admin\Forms\MaintenanceCreateForm;
+use App\Admin\Forms\MaintenanceRecordCreateForm;
 use Dcat\Admin\Grid\RowAction;
 use Dcat\Admin\Widgets\Modal;
 
-class MaintenanceCreateAction extends RowAction
+class MaintenanceRecordCreateAction extends RowAction
 {
     protected ?string $item = null;
 
@@ -23,7 +23,7 @@ class MaintenanceCreateAction extends RowAction
      */
     public function render()
     {
-        $form = MaintenanceCreateForm::make()->payload([
+        $form = MaintenanceRecordCreateForm::make()->payload([
             'item' => $this->item,
             'item_id' => $this->getKey()
         ]);

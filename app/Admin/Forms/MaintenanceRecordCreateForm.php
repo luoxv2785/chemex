@@ -10,7 +10,7 @@ use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 
-class MaintenanceCreateForm extends Form implements LazyRenderable
+class MaintenanceRecordCreateForm extends Form implements LazyRenderable
 {
     use LazyWidget;
 

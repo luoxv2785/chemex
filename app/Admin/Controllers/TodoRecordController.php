@@ -11,6 +11,7 @@ use App\Models\ColumnSort;
 use App\Models\DeviceRecord;
 use App\Support\Data;
 use Dcat\Admin\Admin;
+use Dcat\Admin\Grid\Tools;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Layout\Content;
@@ -67,27 +68,46 @@ class TodoRecordController extends AdminController
             $grid->column('created_at', '', $column_sort);
             $grid->column('updated_at', '', $column_sort);
 
+            /**
+             * 行操作按钮
+             */
             $grid->actions(function (RowActions $actions) {
                 // @permissions
-                if (empty($this->end) && Admin::user()->can('todo.update')) {
+                if (empty($this->end) && Admin::user()->can('todo.record.update')) {
                     $actions->append(new TodoRecordUpdateAction());
                 }
             });
 
             // @permissions
-            if (Admin::user()->can('todo.create')) {
-                $grid->tools([
-                    new TodoRecordCreateAction()
-                ]);
-            }
+            $grid->tools(function (Tools $tools) {
+                if (Admin::user()->can('todo.record.create')) {
+                    $tools->append(new TodoRecordCreateAction());
+                }
+            });
 
+            /**
+             * 字段过滤
+             */
+            $grid->showColumnSelector();
+
+            /**
+             * 按钮控制
+             */
+            // @permissions
+            if (!Admin::user()->can('todo.record.delete')) {
+                $grid->disableDeleteButton();
+            }
+            // @permissions
+            if (!Admin::user()->can('todo.record.batch.delete')) {
+                $grid->disableBatchDelete();
+            }
             $grid->disableCreateButton();
             $grid->disableEditButton();
-
-            $grid->showColumnSelector();
             $grid->toolsWithOutline(false);
-
-            $grid->export();
+            // @permissions
+            if (Admin::user()->can('todo.record.export')) {
+                $grid->export();
+            }
         });
     }
 
@@ -114,6 +134,9 @@ class TodoRecordController extends AdminController
             $show->field('created_at');
             $show->field('updated_at');
 
+            /**
+             * 按钮控制
+             */
             $show->disableDeleteButton();
             $show->disableEditButton();
         });

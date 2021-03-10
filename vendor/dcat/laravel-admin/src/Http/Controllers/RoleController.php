@@ -18,6 +18,56 @@ class RoleController extends AdminController
         return trans('admin.roles');
     }
 
+    public function form()
+    {
+        return Form::make(Role::with(['permissions']), function (Form $form) {
+            $roleTable = config('admin.database.roles_table');
+            $connection = config('admin.database.connection');
+
+            $id = $form->getKey();
+
+            $form->display('id', 'ID');
+
+            $form->text('slug', trans('admin.slug'))
+                ->required()
+                ->creationRules(['required', "unique:{$connection}.{$roleTable}"])
+                ->updateRules(['required', "unique:{$connection}.{$roleTable},slug,$id"]);
+
+            $form->text('name', trans('admin.name'))->required();
+
+            $form->tree('permissions')
+                ->nodes(function () {
+                    $permissionModel = config('admin.database.permissions_model');
+                    $permissionModel = new $permissionModel();
+
+                    return $permissionModel->allNodes();
+                })
+                ->customFormat(function ($v) {
+                    if (!$v) {
+                        return [];
+                    }
+
+                    return array_column($v, 'id');
+                });
+
+            $form->display('created_at', trans('admin.created_at'));
+            $form->display('updated_at', trans('admin.updated_at'));
+
+            if ($id == RoleModel::ADMINISTRATOR_ID) {
+                $form->disableDeleteButton();
+            }
+        });
+    }
+
+    public function destroy($id)
+    {
+        if (in_array(RoleModel::ADMINISTRATOR_ID, Helper::array($id))) {
+            Permission::error();
+        }
+
+        return parent::destroy($id);
+    }
+
     protected function grid()
     {
         return new Grid(new Role(), function (Grid $grid) {
@@ -71,55 +121,5 @@ class RoleController extends AdminController
                 $show->disableDeleteButton();
             }
         });
-    }
-
-    public function form()
-    {
-        return Form::make(Role::with(['permissions']), function (Form $form) {
-            $roleTable = config('admin.database.roles_table');
-            $connection = config('admin.database.connection');
-
-            $id = $form->getKey();
-
-            $form->display('id', 'ID');
-
-            $form->text('slug', trans('admin.slug'))
-                ->required()
-                ->creationRules(['required', "unique:{$connection}.{$roleTable}"])
-                ->updateRules(['required', "unique:{$connection}.{$roleTable},slug,$id"]);
-
-            $form->text('name', trans('admin.name'))->required();
-
-            $form->tree('permissions')
-                ->nodes(function () {
-                    $permissionModel = config('admin.database.permissions_model');
-                    $permissionModel = new $permissionModel();
-
-                    return $permissionModel->allNodes();
-                })
-                ->customFormat(function ($v) {
-                    if (! $v) {
-                        return [];
-                    }
-
-                    return array_column($v, 'id');
-                });
-
-            $form->display('created_at', trans('admin.created_at'));
-            $form->display('updated_at', trans('admin.updated_at'));
-
-            if ($id == RoleModel::ADMINISTRATOR_ID) {
-                $form->disableDeleteButton();
-            }
-        });
-    }
-
-    public function destroy($id)
-    {
-        if (in_array(RoleModel::ADMINISTRATOR_ID, Helper::array($id))) {
-            Permission::error();
-        }
-
-        return parent::destroy($id);
     }
 }

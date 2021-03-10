@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\Grid\RowAction\MaintenanceUpdateAction;
+use App\Admin\Actions\Grid\RowAction\MaintenanceRecordUpdateAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\MaintenanceRecord;
 use App\Support\Data;
@@ -63,19 +63,13 @@ class MaintenanceRecordController extends AdminController
             $grid->column('ok_time');
             $grid->column('status')->using(Data::maintenanceStatus());
 
-            $grid->disableCreateButton();
-            $grid->disableViewButton();
-            $grid->disableEditButton();
-            $grid->disableDeleteButton();
-            $grid->disableBatchActions();
-            $grid->disableRowSelector();
-
-            $grid->toolsWithOutline(false);
-
+            /**
+             * 行操作按钮
+             */
             $grid->actions(function (RowActions $actions) {
                 // @permissions
-                if ($this->status == 0 && Admin::user()->can('maintenance.update')) {
-                    $actions->append(new MaintenanceUpdateAction());
+                if ($this->status == 0 && Admin::user()->can('maintenance.record.update')) {
+                    $actions->append(new MaintenanceRecordUpdateAction());
                 }
             });
 
@@ -91,7 +85,20 @@ class MaintenanceRecordController extends AdminController
                 ]);
             });
 
-            $grid->export();
+            /**
+             * 按钮控制
+             */
+            $grid->disableCreateButton();
+            $grid->disableViewButton();
+            $grid->disableEditButton();
+            $grid->disableDeleteButton();
+            $grid->disableBatchActions();
+            $grid->disableRowSelector();
+            $grid->toolsWithOutline(false);
+            // @permissions
+            if (Admin::user()->can('maintenance.record.export')) {
+                $grid->export();
+            }
         });
     }
 

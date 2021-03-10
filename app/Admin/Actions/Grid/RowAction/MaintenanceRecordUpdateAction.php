@@ -2,11 +2,11 @@
 
 namespace App\Admin\Actions\Grid\RowAction;
 
-use App\Admin\Forms\MaintenanceUpdateForm;
+use App\Admin\Forms\MaintenanceRecordUpdateForm;
 use Dcat\Admin\Grid\RowAction;
 use Dcat\Admin\Widgets\Modal;
 
-class MaintenanceUpdateAction extends RowAction
+class MaintenanceRecordUpdateAction extends RowAction
 {
 
     public function __construct()
@@ -21,7 +21,7 @@ class MaintenanceUpdateAction extends RowAction
      */
     public function render()
     {
-        $form = MaintenanceUpdateForm::make()->payload(['id' => $this->getKey()]);
+        $form = MaintenanceRecordUpdateForm::make()->payload(['id' => $this->getKey()]);
 
         return Modal::make()
             ->lg()

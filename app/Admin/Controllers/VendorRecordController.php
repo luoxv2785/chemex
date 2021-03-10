@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Grid\ToolAction\VendorRecordImportAction;
 use App\Admin\Repositories\VendorRecord;
+use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Form\NestedForm;
 use Dcat\Admin\Grid;
@@ -47,21 +48,48 @@ class VendorRecordController extends AdminController
             $grid->column('description');
             $grid->column('location');
 
+            /**
+             * 快速搜索
+             */
             $grid->quickSearch('id', 'name', 'description', 'location')
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
-            $grid->disableRowSelector();
-            $grid->disableBatchActions();
+            /**
+             * 工具按钮
+             */
+            $grid->tools(function (Grid\Tools $tools) {
+                // @permissions
+                if (Admin::user()->can('vendor.record.import')) {
+                    $tools->append(new VendorRecordImportAction());
+                }
+            });
+
+            /**
+             * 按钮控制
+             */
+            // @permissions
+            if (!Admin::user()->can('vendor.record.create')) {
+                $grid->disableCreateButton();
+            }
+            // @permissions
+            if (!Admin::user()->can('vendor.record.update')) {
+                $grid->disableEditButton();
+            }
+            // @permissions
+            if (!Admin::user()->can('vendor.record.delete')) {
+                $grid->disableDeleteButton();
+            }
+            // @permissions
+            if (!Admin::user()->can('vendor.record.batch.delete')) {
+                $grid->disableBatchDelete();
+            }
             $grid->enableDialogCreate();
-
             $grid->toolsWithOutline(false);
-
-            $grid->tools([
-                new VendorRecordImportAction()
-            ]);
-
-            $grid->export();
+            // @permissions
+            if (Admin::user()->can('vendor.record.import')) {
+                $grid->export();
+            }
         });
     }
 
@@ -94,6 +122,11 @@ class VendorRecordController extends AdminController
             $show->field('contacts')->view('vendor_records.contacts');
             $show->field('created_at');
             $show->field('updated_at');
+
+            // @permissions
+            if (!Admin::user()->can('vendor.record.update')) {
+                $show->disableEditButton();
+            }
         });
     }
 
@@ -118,6 +151,9 @@ class VendorRecordController extends AdminController
             $form->display('created_at');
             $form->display('updated_at');
 
+            /**
+             * 按钮控制
+             */
             $form->disableCreatingCheck();
             $form->disableEditingCheck();
             $form->disableViewCheck();

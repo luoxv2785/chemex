@@ -5,7 +5,7 @@ namespace App\Admin\Controllers;
 use App\Admin\Actions\Grid\BatchAction\DeviceRecordBatchDeleteAction;
 use App\Admin\Actions\Grid\RowAction\DeviceRecordCreateUpdateTrackAction;
 use App\Admin\Actions\Grid\RowAction\DeviceRecordDeleteAction;
-use App\Admin\Actions\Grid\RowAction\MaintenanceCreateAction;
+use App\Admin\Actions\Grid\RowAction\MaintenanceRecordCreateAction;
 use App\Admin\Actions\Grid\ToolAction\DeviceRecordImportAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\DeviceRecord;
@@ -158,7 +158,7 @@ class DeviceRecordController extends AdminController
                 }
                 // @permissions
                 if (Admin::user()->can('device.maintenance.create')) {
-                    $actions->append(new MaintenanceCreateAction('device'));
+                    $actions->append(new MaintenanceRecordCreateAction('device'));
                 }
             });
 
