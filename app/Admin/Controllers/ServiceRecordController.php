@@ -16,7 +16,6 @@ use App\Support\Support;
 use App\Traits\ControllerHasCustomColumns;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
-use Dcat\Admin\Grid\Tools\QuickCreate;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
@@ -75,26 +74,32 @@ class ServiceRecordController extends AdminController
 
             ControllerHasCustomColumns::makeGrid((new ServiceRecord())->getTable(), $grid, $column_sort);
 
+            /**
+             * 行操作按钮
+             */
             $grid->actions(function (RowActions $actions) {
+                // @permissions
                 if (Admin::user()->can('service.record.delete')) {
                     $actions->append(new ServiceRecordDeleteAction());
                 }
-                if (Admin::user()->can('service.track.create_update')) {
+                // @permissions
+                if (Admin::user()->can('service.record.track.create_update')) {
                     $actions->append(new ServiceRecordCreateUpdateTrackAction());
                 }
-                if (Admin::user()->can('service.issue.create')) {
+                // @permissions
+                if (Admin::user()->can('service.record.issue.create')) {
                     $actions->append(new ServiceRecordCreateIssueAction());
                 }
             });
 
-            $grid->enableDialogCreate();
-            $grid->disableRowSelector();
-            $grid->disableDeleteButton();
-            $grid->disableBatchActions();
-
+            /**
+             * 字段过滤
+             */
             $grid->showColumnSelector();
-            $grid->toolsWithOutline(false);
 
+            /**
+             * 快速搜索
+             */
             $grid->quickSearch(
                 array_merge([
                     'id',
@@ -106,16 +111,37 @@ class ServiceRecordController extends AdminController
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
-            $grid->quickCreate(function (QuickCreate $create) {
-                $create->text('name')->required();
-            });
-
+            /**
+             * 筛选
+             */
             $grid->filter(function ($filter) {
                 $filter->equal('device.name');
+                /**
+                 * 自定义字段
+                 */
                 ControllerHasCustomColumns::makeFilter((new ServiceRecord())->getTable(), $filter);
             });
 
-            $grid->export();
+            /**
+             * 按钮控制
+             */
+            $grid->enableDialogCreate();
+            $grid->disableRowSelector();
+            $grid->disableDeleteButton();
+            $grid->disableBatchActions();
+            $grid->toolsWithOutline(false);
+            // @permissions
+            if (!Admin::user()->can('service.record.create')) {
+                $grid->disableCreateButton();
+            }
+            // @permissions
+            if (!Admin::user()->can('service.record.update')) {
+                $grid->disableEditButton();
+            }
+            // @permissions
+            if (Admin::user()->can('service.record.export')) {
+                $grid->export();
+            }
         });
     }
 
@@ -138,12 +164,22 @@ class ServiceRecordController extends AdminController
             $show->field('expired');
             $show->field('channel.name');
 
+            /**
+             * 自定义字段
+             */
             ControllerHasCustomColumns::makeDetail((new ServiceRecord())->getTable(), $show);
 
             $show->field('created_at');
             $show->field('updated_at');
 
+            /**
+             * 按钮控制
+             */
             $show->disableDeleteButton();
+            // @permissions
+            if (!Admin::user()->can('service.record.update')) {
+                $show->disableEditButton();
+            }
         });
     }
 
@@ -167,22 +203,27 @@ class ServiceRecordController extends AdminController
             $form->date('expired');
 
             if (Support::ifSelectCreate()) {
-                $form->selectCreate('purchased_channel_id', admin_trans_label('Purchased Channel'))
+                $form->selectCreate('purchased_channel_id')
                     ->options(PurchasedChannel::class)->ajax(admin_route('selection.purchased.channels'))
                     ->ajax(admin_route('selection.purchased.channels'))
                     ->url(admin_route('purchased.channels.create'));
             } else {
-                $form->select('purchased_channel_id', admin_trans_label('Purchased Channel'))
+                $form->select('purchased_channel_id')
                     ->options(PurchasedChannel::pluck('name', 'id'));
             }
 
+            /**
+             * 自定义字段
+             */
             ControllerHasCustomColumns::makeForm((new ServiceRecord())->getTable(), $form);
 
             $form->display('created_at');
             $form->display('updated_at');
 
+            /**
+             * 按钮控制
+             */
             $form->disableDeleteButton();
-
             $form->disableCreatingCheck();
             $form->disableEditingCheck();
             $form->disableViewCheck();

@@ -11,9 +11,11 @@ use App\Models\ColumnSort;
 use App\Models\ConsumableCategory;
 use App\Models\VendorRecord;
 use App\Support\Data;
+use App\Support\Support;
 use App\Traits\ControllerHasCustomColumns;
+use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
-use Dcat\Admin\Grid\Tools\QuickCreate;
+use Dcat\Admin\Grid\Tools;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
@@ -70,17 +72,33 @@ class ConsumableRecordController extends AdminController
             $grid->column('created_at', '', $column_sort);
             $grid->column('updated_at', '', $column_sort);
 
+            /**
+             * 自定义字段
+             */
             ControllerHasCustomColumns::makeGrid((new ConsumableRecord())->getTable(), $grid, $column_sort);
 
-            $grid->toolsWithOutline(false);
-
+            /**
+             * 字段过滤
+             */
             $grid->showColumnSelector();
 
-            $grid->tools([
-                new ConsumableInAction(),
-                new ConsumableOutAction()
-            ]);
+            /**
+             * 工具按钮
+             */
+            $grid->tools(function (Tools $tools) {
+                // @permissions
+                if (Admin::user()->can('consumable.record.in')) {
+                    $tools->append(new ConsumableInAction());
+                }
+                // @permissions
+                if (Admin::user()->can('consumable.record.out')) {
+                    $tools->append(new ConsumableOutAction());
+                }
+            });
 
+            /**
+             * 快速搜索
+             */
             $grid->quickSearch(
                 array_merge([
                     'id',
@@ -95,25 +113,35 @@ class ConsumableRecordController extends AdminController
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
-            $grid->enableDialogCreate();
-            $grid->quickCreate(function (QuickCreate $create) {
-                $create->text('name')
-                    ->required();
-                $create->text('specification')
-                    ->required();
-                $create->select('category_id', admin_trans_label('Category'))
-                    ->options(ConsumableCategory::pluck('name', 'id'))
-                    ->required();
-                $create->select('vendor_id', admin_trans_label('Vendor'))
-                    ->options(VendorRecord::pluck('name', 'id'))
-                    ->required();
-            });
-
+            /**
+             * 筛选
+             */
             $grid->filter(function ($filter) {
                 $filter->equal('category_id')->select(ConsumableCategory::pluck('name', 'id'));
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
+                /**
+                 * 自定义字段
+                 */
                 ControllerHasCustomColumns::makeFilter((new ConsumableRecord())->getTable(), $filter);
             });
+
+            //TODO 耗材的删除功能（逻辑和权限）
+            $grid->disableBatchDelete();
+            $grid->disableDeleteButton();
+            $grid->enableDialogCreate();
+            $grid->toolsWithOutline(false);
+            // @permissions
+            if (!Admin::user()->can('consumable.record.create')) {
+                $grid->disableCreateButton();
+            }
+            // @permissions
+            if (!Admin::user()->can('consumable.record.update')) {
+                $grid->disableEditButton();
+            }
+            // @permissions
+            if (Admin::user()->can('consumable.record.export')) {
+                $grid->export();
+            }
         });
     }
 
@@ -135,10 +163,22 @@ class ConsumableRecordController extends AdminController
             $show->field('vendor.name');
             $show->field('price');
 
+            /**
+             * 自定义字段
+             */
             ControllerHasCustomColumns::makeDetail((new ConsumableRecord())->getTable(), $show);
 
             $show->field('created_at');
             $show->field('updated_at');
+
+            /**
+             * 按钮控制
+             */
+            $show->disableDeleteButton();
+            // @permissions
+            if (!Admin::user()->can('consumable.record.update')) {
+                $show->disableEditButton();
+            }
         });
     }
 
@@ -155,16 +195,31 @@ class ConsumableRecordController extends AdminController
                 ->required();
             $form->text('specification')
                 ->required();
-            $form->select('category_id', admin_trans_label('Category'))
+            if (Support::ifSelectCreate()) {
+                $form->selectCreate('category_id')
+                    ->options(ConsumableCategory::class)
+                    ->ajax(admin_route('selection.consumable.categories'))
+                    ->url(admin_route('consumable.categories.create'))
+                    ->required();
+                $form->selectCreate('vendor_id')
+                    ->options(VendorRecord::class)
+                    ->ajax(admin_route('selection.vendor.records'))
+                    ->url(admin_route('vendor.records.create'))
+                    ->required();
+            }
+            $form->select('category_id')
                 ->options(ConsumableCategory::pluck('name', 'id'))
                 ->required();
-            $form->select('vendor_id', admin_trans_label('Vendor'))
+            $form->select('vendor_id')
                 ->options(VendorRecord::pluck('name', 'id'))
                 ->required();
             $form->divider();
             $form->text('description');
             $form->text('price');
 
+            /**
+             * 自定义字段
+             */
             ControllerHasCustomColumns::makeForm((new ConsumableRecord())->getTable(), $form);
 
             $form->display('created_at');

@@ -73,6 +73,7 @@ class MaintenanceRecordController extends AdminController
             $grid->toolsWithOutline(false);
 
             $grid->actions(function (RowActions $actions) {
+                // @permissions
                 if ($this->status == 0 && Admin::user()->can('maintenance.update')) {
                     $actions->append(new MaintenanceUpdateAction());
                 }

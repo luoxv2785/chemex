@@ -91,10 +91,9 @@ class UserController extends BaseUserController
                     ->display('');
             }
 
-            $grid->enableDialogCreate();
-            $grid->disableDeleteButton();
-            $grid->disableBatchDelete();
-
+            /**
+             * 字段过滤
+             */
             $grid->showColumnSelector();
             $grid->hideColumns([
                 'title',
@@ -102,31 +101,69 @@ class UserController extends BaseUserController
                 'email'
             ]);
 
-            $grid->batchActions([
-                new UserBatchDeleteAction()
-            ]);
+            /**
+             * 批量操作
+             */
+            $grid->batchActions(function (Grid\Tools\BatchActions $batchActions) {
+                // @permissions
+                if (Admin::user()->can('user.batch.delete')) {
+                    $batchActions->add(new UserBatchDeleteAction());
+                }
+            });
 
+            /**
+             * 行内操作
+             */
             $grid->actions(function (RowActions $actions) {
-                if (Admin::user()->can('user.record.delete')) {
+                // @permissions
+                if (Admin::user()->can('user.delete')) {
                     $actions->append(new UserDeleteAction());
                 }
             });
 
-            $grid->toolsWithOutline(false);
+            /**
+             * 工具按钮
+             */
+            $grid->tools(function (Grid\Tools $tools) {
+                // @permissions
+                if (Admin::user()->can('user.import')) {
+                    $tools->append(new UserImportAction());
+                }
+            });
 
-            $grid->tools([
-                new UserImportAction()
-            ]);
-
+            /**
+             * 快速搜索
+             */
             $grid->quickSearch('id', 'name', 'department.name', 'gender', 'title', 'mobile', 'email')
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
+            /**
+             * 筛选
+             */
             $grid->filter(function ($filter) {
                 $filter->equal('department.name')->select(Department::pluck('name', 'id'));
             });
 
-            $grid->export();
+            /**
+             * 按钮控制
+             */
+            $grid->enableDialogCreate();
+            $grid->disableDeleteButton();
+            $grid->disableBatchDelete();
+            $grid->toolsWithOutline(false);
+            // @permissions
+            if (!Admin::user()->can('user.create')) {
+                $grid->disableCreateButton();
+            }
+            // @permissions
+            if (!Admin::user()->can('user.update')) {
+                $grid->disableEditButton();
+            }
+            // @permissions
+            if (Admin::user()->can('user.export')) {
+                $grid->export();
+            }
         });
     }
 
@@ -216,8 +253,10 @@ class UserController extends BaseUserController
             $form->display('created_at');
             $form->display('updated_at');
 
+            /**
+             * 按钮控制
+             */
             $form->disableDeleteButton();
-
             $form->disableCreatingCheck();
             $form->disableEditingCheck();
             $form->disableViewCheck();
@@ -302,7 +341,14 @@ class UserController extends BaseUserController
             $show->field('created_at');
             $show->field('updated_at');
 
+            /**
+             * 按钮控制
+             */
             $show->disableDeleteButton();
+            // @permissions
+            if (!Admin::user()->can('user.update')) {
+                $show->disableEditButton();
+            }
         });
     }
 }

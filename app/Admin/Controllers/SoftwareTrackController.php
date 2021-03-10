@@ -54,28 +54,40 @@ class SoftwareTrackController extends AdminController
             $grid->column('created_at');
             $grid->column('updated_at');
 
+            /**
+             * 行操作按钮
+             */
+            $grid->actions(function (RowActions $actions) {
+                // @permissions
+                if (Admin::user()->can('software.track.delete') && $this->deleted_at == null) {
+                    $actions->append(new SoftwareTrackDeleteAction());
+                }
+            });
+
+            /**
+             * 快速搜索
+             */
+            $grid->quickSearch('id', 'software.name', 'device.name')
+                ->placeholder(trans('main.quick_search'))
+                ->auto(false);
+
+            /**
+             * 筛选
+             */
+            $grid->filter(function (Grid\Filter $filter) {
+                $filter->panel();
+                $filter->scope('history', admin_trans_label('History Scope'))->onlyTrashed();
+            });
+
+            /**
+             * 按钮控制
+             */
             $grid->disableCreateButton();
             $grid->disableRowSelector();
             $grid->disableBatchActions();
             $grid->disableViewButton();
             $grid->disableEditButton();
             $grid->disableDeleteButton();
-
-            $grid->actions(function (RowActions $actions) {
-                if (Admin::user()->can('software.track.delete') && $this->deleted_at == null) {
-                    $actions->append(new SoftwareTrackDeleteAction());
-                }
-            });
-
-            $grid->quickSearch('id', 'software.name', 'device.name')
-                ->placeholder(trans('main.quick_search'))
-                ->auto(false);
-
-            $grid->filter(function (Grid\Filter $filter) {
-                $filter->panel();
-                $filter->scope('history', admin_trans_label('History Scope'))->onlyTrashed();
-            });
-
             $grid->toolsWithOutline(false);
         });
     }

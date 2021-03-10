@@ -4,8 +4,6 @@ return [
         'title' => '耗材',
         'description' => '主数据列表',
         'records' => '耗材',
-        'Category' => '分类',
-        'Vendor' => '厂商',
         'In' => '入库',
         'Out' => '领用',
     ],
@@ -26,6 +24,6 @@ return [
         'category_id' => '分类',
         'vendor_id' => '厂商',
         'consumable_id' => '耗材',
-        'number' => '总数'
+        'number' => '总数',
     ]
 ];

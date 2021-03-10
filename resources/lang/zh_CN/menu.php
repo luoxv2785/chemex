@@ -53,6 +53,6 @@ return [
         'consumable_tracks' => '耗材记录',
         'dcat_plus' => '站点',
         'assets' => '资产',
-        'custom_fields' => '自定义字段'
+        'additional_options' => '补充信息',
     ],
 ];

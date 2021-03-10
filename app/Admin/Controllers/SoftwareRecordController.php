@@ -23,7 +23,8 @@ use App\Support\Support;
 use App\Traits\ControllerHasCustomColumns;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
-use Dcat\Admin\Grid\Tools\QuickCreate;
+use Dcat\Admin\Grid\Tools;
+use Dcat\Admin\Grid\Tools\BatchActions;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Layout\Content;
@@ -96,21 +97,33 @@ class SoftwareRecordController extends AdminController
             $grid->column('created_at', '', $column_sort);
             $grid->column('updated_at', '', $column_sort);
 
+            /**
+             * 自定义字段
+             */
             ControllerHasCustomColumns::makeGrid((new SoftwareRecord())->getTable(), $grid, $column_sort);
 
+            /**
+             * 行操作按钮
+             */
             $grid->actions(function (RowActions $actions) {
+                // @permissions
                 if (Admin::user()->can('software.record.delete')) {
                     $actions->append(new SoftwareRecordDeleteAction());
                 }
-                if (Admin::user()->can('software.track.create_update')) {
+                // @permissions
+                if (Admin::user()->can('software.record.track.create_update')) {
                     $actions->append(new SoftwareRecordCreateUpdateTrackAction());
                 }
-                if (Admin::user()->can('software.track.list')) {
+                // @permissions
+                if (Admin::user()->can('software.record.track.list')) {
                     $tracks_route = admin_route('software.tracks.index', ['_search_' => $this->id]);
                     $actions->append("<a href='$tracks_route'>💿 " . admin_trans_label('Manage Track') . '</a>');
                 }
             });
 
+            /**
+             * 字段过滤
+             */
             $grid->showColumnSelector();
             $grid->hideColumns([
                 'description',
@@ -119,6 +132,9 @@ class SoftwareRecordController extends AdminController
                 'expiration_left_days'
             ]);
 
+            /**
+             * 快速搜索
+             */
             $grid->quickSearch(
                 array_merge([
                     'id',
@@ -132,40 +148,57 @@ class SoftwareRecordController extends AdminController
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
+            /**
+             * 筛选
+             */
             $grid->filter(function ($filter) {
                 $filter->equal('category_id')->select(SoftwareCategory::pluck('name', 'id'));
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
+                /**
+                 * 自定义按钮
+                 */
                 ControllerHasCustomColumns::makeFilter((new SoftwareRecord())->getTable(), $filter);
             });
 
+            /**
+             * 批量操作按钮
+             */
+            $grid->batchActions(function (BatchActions $batchActions) {
+                // @permissions
+                if (Admin::user()->can('software.record.batch.delete')) {
+                    $batchActions->add(new SoftwareRecordBatchDeleteAction());
+                }
+            });
+
+            /**
+             * 工具按钮
+             */
+            $grid->tools(function (Tools $tools) {
+                // @permissions
+                if (Admin::user()->can('software.record.import')) {
+                    $tools->append(new SoftwareRecordImportAction());
+                }
+            });
+
+            /**
+             * 按钮控制
+             */
             $grid->enableDialogCreate();
             $grid->disableDeleteButton();
             $grid->disableBatchDelete();
-
-            $grid->batchActions([
-                new SoftwareRecordBatchDeleteAction()
-            ]);
-
-            $grid->tools([
-                new SoftwareRecordImportAction()
-            ]);
-
             $grid->toolsWithOutline(false);
-            $grid->quickCreate(function (QuickCreate $create) {
-                $create->text('name')->required();
-                $create->text('version')->required();
-                $create->select('category_id')
-                    ->options(SoftwareCategory::selectOptions())
-                    ->required();
-                $create->select('vendor_id')
-                    ->options(VendorRecord::pluck('name', 'id'))
-                    ->required();
-                $create->select('distribution')
-                    ->options(Data::distribution())
-                    ->default('u')
-                    ->required();
-            });
-            $grid->export();
+            // @permissions
+            if (!Admin::user()->can('software.record.create')) {
+                $grid->disableCreateButton();
+            }
+            // @permissions
+            if (!Admin::user()->can('software.record.update')) {
+                $grid->disableEditButton();
+            }
+            // @permissions
+            if (Admin::user()->can('software.record.export')) {
+                $grid->export();
+            }
         });
     }
 
@@ -203,14 +236,19 @@ class SoftwareRecordController extends AdminController
                             $grid->disableDeleteButton();
 
                             $grid->actions(function (RowActions $actions) {
-                                if (Admin::user()->can('software.track.disable') && $this->deleted_at == null) {
+                                // @permissions
+                                if (Admin::user()->can('software.record.track.delete') && $this->deleted_at == null) {
                                     $actions->append(new SoftwareTrackDeleteAction());
                                 }
                             });
                         });
-                        $column->row(new Card(admin_trans_label('Track Card Title'), $grid));
-                        $card = new Card(admin_trans_label('History Card Title'), view('history')->with('data', $history));
-                        $column->row($card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.software.history', [$id]) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>'));
+                        $column->row(new Card(trans('main.related'), $grid));
+                        $card = new Card(trans('main.history'), view('history')->with('data', $history));
+                        // @permissions
+                        if (Admin::user()->can('software.record.history.export')) {
+                            $card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.software.history', [$id]) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>');
+                        }
+                        $column->row($card);
                     });
                 }
             });
@@ -240,12 +278,22 @@ class SoftwareRecordController extends AdminController
             $show->field('distribution')->using(Data::distribution());
             $show->field('counts');
 
+            /**
+             * 自定义字段
+             */
             ControllerHasCustomColumns::makeDetail((new SoftwareRecord())->getTable(), $show);
 
             $show->field('created_at');
             $show->field('updated_at');
 
+            /**
+             * 按钮控制
+             */
             $show->disableDeleteButton();
+            // @permissions
+            if (!Admin::user()->can('software.record.update')) {
+                $show->disableEditButton();
+            }
         });
     }
 
@@ -277,22 +325,24 @@ class SoftwareRecordController extends AdminController
                     ->ajax(admin_route('selection.software.categories'))
                     ->url(admin_route('software.categories.create'))
                     ->required();
-            } else {
-                $form->select('category_id')
-                    ->options(SoftwareCategory::selectOptions())
-                    ->required();
-            }
-
-            if (Support::ifSelectCreate()) {
                 $form->selectCreate('vendor_id')
                     ->options(VendorRecord::class)
                     ->ajax(admin_route('selection.vendor.records'))
                     ->url(admin_route('vendor.records.create'))
                     ->required();
+                $form->selectCreate('purchased_channel_id')
+                    ->options(VendorRecord::class)
+                    ->ajax(admin_route('selection.purchased.channels'))
+                    ->url(admin_route('purchased.channels.create'));
             } else {
+                $form->select('category_id')
+                    ->options(SoftwareCategory::selectOptions())
+                    ->required();
                 $form->select('vendor_id')
                     ->options(VendorRecord::pluck('name', 'id'))
                     ->required();
+                $form->select('purchased_channel_id')
+                    ->options(PurchasedChannel::pluck('name', 'id'));
             }
 
             $form->select('distribution')
@@ -303,31 +353,24 @@ class SoftwareRecordController extends AdminController
                 ->default(-1)
                 ->required()
                 ->help(admin_trans_label('Counts Help'));
-            $form->divider();
             $form->text('description');
             $form->text('asset_number');
-
-            if (Support::ifSelectCreate()) {
-                $form->selectCreate('purchased_channel_id', admin_trans_label('Purchased Channel'))
-                    ->options(VendorRecord::class)
-                    ->ajax(admin_route('selection.purchased.channels'))
-                    ->url(admin_route('purchased.channels.create'));
-            } else {
-                $form->select('purchased_channel_id', admin_trans_label('Purchased Channel'))
-                    ->options(PurchasedChannel::pluck('name', 'id'));
-            }
-
             $form->currency('price')->default(0);
             $form->date('purchased');
             $form->date('expired');
 
+            /**
+             * 自定义字段
+             */
             ControllerHasCustomColumns::makeForm((new SoftwareRecord())->getTable(), $form);
 
             $form->display('created_at');
             $form->display('updated_at');
 
+            /**
+             * 按钮控制
+             */
             $form->disableDeleteButton();
-
             $form->disableCreatingCheck();
             $form->disableEditingCheck();
             $form->disableViewCheck();

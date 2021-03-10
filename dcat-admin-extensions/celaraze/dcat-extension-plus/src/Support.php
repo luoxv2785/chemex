@@ -7,6 +7,8 @@ namespace Celaraze\DcatPlus;
 use Celaraze\DcatPlus\Extensions\Form\SelectCreate;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
+use Dcat\Admin\Support\Helper;
+use Illuminate\Support\Facades\Storage;
 
 class Support
 {
@@ -31,7 +33,7 @@ class Support
         if (empty(admin_setting('site_logo'))) {
             $logo = admin_setting('site_logo_text');
         } else {
-            $logo = config('app.url') . '/uploads/' . admin_setting('site_logo');
+            $logo = Storage::disk(config('admin.upload.disk'))->url(admin_setting('site_logo'));
             $logo = "<img src='$logo'>";
         }
 
@@ -41,7 +43,7 @@ class Support
         if (empty(admin_setting('site_logo_mini'))) {
             $logo_mini = admin_setting('site_logo_text');
         } else {
-            $logo_mini = config('app.url') . '/uploads/' . admin_setting('site_logo_mini');
+            $logo_mini = Storage::disk(config('admin.upload.disk'))->url(admin_setting('site_logo_mini'));
             $logo_mini = "<img src='$logo_mini'>";
         }
 
@@ -94,30 +96,55 @@ class Support
     }
 
     /**
-     * 扩展自定义字段
+     * 复写菜单栏
      */
-    public function injectFields()
+    public function injectSidebar()
     {
-        Form::extend('selectCreate', SelectCreate::class);
+        if (admin_setting('sidebar_indentation')) {
+            admin_inject_section(Admin::SECTION['LEFT_SIDEBAR_MENU'], function () {
+                $menuModel = config('admin.database.menu_model');
+
+                $builder = Admin::menu();
+
+                $html = '';
+                foreach (Helper::buildNestedArray((new $menuModel())->allNodes()) as $item) {
+                    $html .= view(self::menu_view(), ['item' => $item, 'builder' => $builder])->render();
+                }
+
+                return $html;
+            });
+        }
     }
 
     /**
-     * 移除底部授权
+     * 返回菜单视图路径
+     * @return string
      */
+    public static function menu_view(): string
+    {
+        return 'celaraze.dcat-extension-plus::menu';
+    }
+
+    public function injectFields()
+    {
+        if (admin_setting('field_select_create')) {
+            Form::extend('selectCreate', SelectCreate::class);
+        }
+    }
+
     public function footerRemove()
     {
-        Admin::style(
-            <<<CSS
+        if (admin_setting('footer_remove')) {
+            Admin::style(
+                <<<CSS
 .main-footer {
     display: none;
 }
 CSS
-        );
+            );
+        }
     }
 
-    /**
-     * 优化顶部菜单边距
-     */
     public function headerPaddingFix()
     {
         if (admin_setting('header_padding_fix')) {
@@ -154,9 +181,6 @@ CSS
         }
     }
 
-    /**
-     * 表格行操作按钮最右
-     */
     public function gridRowActionsRight()
     {
         if (admin_setting('grid_row_actions_right')) {
@@ -167,6 +191,7 @@ CSS
     text-align: right;
 }
 CSS
+
             );
         }
     }

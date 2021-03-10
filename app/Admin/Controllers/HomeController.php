@@ -4,16 +4,10 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Metrics\AllWorth;
 use App\Admin\Metrics\DefectTrend;
-use App\Admin\Metrics\DeviceAboutToExpireCounts;
-use App\Admin\Metrics\DeviceExpiredCounts;
 use App\Admin\Metrics\DeviceWorth;
 use App\Admin\Metrics\ItemWorthTrend;
-use App\Admin\Metrics\PartAboutToExpireCounts;
-use App\Admin\Metrics\PartExpiredCounts;
 use App\Admin\Metrics\PartWorth;
 use App\Admin\Metrics\ServiceWorth;
-use App\Admin\Metrics\SoftwareAboutToExpireCounts;
-use App\Admin\Metrics\SoftwareExpiredCounts;
 use App\Admin\Metrics\SoftwareWorth;
 use App\Admin\Metrics\WorthTrend;
 use App\Http\Controllers\Controller;

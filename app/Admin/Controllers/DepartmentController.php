@@ -6,8 +6,8 @@ use App\Admin\Actions\Tree\ToolAction\DepartmentImportAction;
 use App\Admin\Repositories\Department;
 use App\Support\Data;
 use App\Support\Support;
+use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
-use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
@@ -54,7 +54,9 @@ class DepartmentController extends AdminController
     protected function treeView(): Tree
     {
         return new Tree(new \App\Models\Department(), function (Tree $tree) {
-            $tree->disableCreateButton();
+            /**
+             * 行显示
+             */
             $tree->branch(function ($branch) {
                 $display = "{$branch['name']}";
                 if ($branch['ad_tag'] === 1) {
@@ -62,32 +64,33 @@ class DepartmentController extends AdminController
                 }
                 return $display;
             });
+
+            /**
+             * 工具按钮
+             */
             $tree->tools(function (Tree\Tools $tools) {
-                $tools->add(new DepartmentImportAction());
+                if (Admin::user()->can('department.import')) {
+                    $tools->add(new DepartmentImportAction());
+                }
             });
-        });
-    }
 
-    /**
-     * Make a grid builder.
-     *
-     * @return Grid
-     */
-    protected function grid(): Grid
-    {
-        return Grid::make(new Department(['parent']), function (Grid $grid) {
-            $grid->column('id');
-            $grid->column('name');
-            $grid->column('description');
-            $grid->column('parent.name');
-
-            $grid->enableDialogCreate();
-
-            $grid->toolsWithOutline(false);
-
-            $grid->quickSearch('id', 'name', 'description', 'parent.name')
-                ->placeholder(trans('main.quick_search'))
-                ->auto(false);
+            /**
+             * 按钮控制
+             */
+            // @permissions
+            if (!Admin::user()->can('department.create')) {
+                $tree->disableQuickCreateButton();
+            }
+            // @permissions
+            if (!Admin::user()->can('department.update')) {
+                $tree->disableEditButton();
+                $tree->disableQuickEditButton();
+            }
+            // @permissions
+            if (!Admin::user()->can('department.delete')) {
+                $tree->disableDeleteButton();
+            }
+            $tree->disableCreateButton();
         });
     }
 
@@ -123,13 +126,13 @@ class DepartmentController extends AdminController
             $form->divider();
             $form->text('description');
             if (Support::ifSelectCreate()) {
-                $form->selectCreate('parent_id', admin_trans_label('Parent'))
+                $form->selectCreate('parent_id')
                     ->options(\App\Models\Department::class)
                     ->ajax(admin_route('selection.organization.departments'))
                     ->url(admin_route('organization.departments.create'))
                     ->default(0);
             } else {
-                $form->select('parent_id', admin_trans_label('Parent'))
+                $form->select('parent_id')
                     ->options(\App\Models\Department::pluck('name', 'id'))
                     ->default(0);
             }
@@ -137,6 +140,9 @@ class DepartmentController extends AdminController
             $form->display('created_at');
             $form->display('updated_at');
 
+            /**
+             * 按钮控制
+             */
             $form->disableCreatingCheck();
             $form->disableEditingCheck();
             $form->disableViewCheck();

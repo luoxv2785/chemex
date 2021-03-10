@@ -3,6 +3,7 @@ return [
     'labels' => [
         'title' => '组织',
         'description' => '即是账户也是组织成员',
+        'users' => '用户',
         'User' => '用户',
         'Department' => '部门',
         'Role' => '角色',

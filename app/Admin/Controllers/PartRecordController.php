@@ -22,7 +22,8 @@ use App\Support\Support;
 use App\Traits\ControllerHasCustomColumns;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
-use Dcat\Admin\Grid\Tools\QuickCreate;
+use Dcat\Admin\Grid\Tools;
+use Dcat\Admin\Grid\Tools\BatchActions;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
@@ -94,23 +95,38 @@ class PartRecordController extends AdminController
             $grid->column('created_at', '', $column_sort);
             $grid->column('updated_at', '', $column_sort);
 
+            /**
+             * 自定义字段
+             */
             ControllerHasCustomColumns::makeGrid((new PartRecord())->getTable(), $grid, $column_sort);
 
+            /**
+             * 行操作按钮
+             */
             $grid->actions(function (RowActions $actions) {
+                // @permissions
                 if (Admin::user()->can('part.record.delete')) {
                     $actions->append(new PartRecordDeleteAction());
                 }
-                if (Admin::user()->can('part.track.create_update')) {
+                // @permissions
+                if (Admin::user()->can('part.record.track.create_update')) {
                     $actions->append(new PartRecordCreateUpdateTrackAction());
                 }
+                // @permissions
                 if (Admin::user()->can('part.maintenance.create')) {
                     $actions->append(new MaintenanceCreateAction('part'));
                 }
             });
 
+            /**
+             * 字段过滤
+             */
             $grid->showColumnSelector();
             $grid->hideColumns(['description', 'price', 'expired']);
 
+            /**
+             * 快速搜索
+             */
             $grid->quickSearch(
                 array_merge([
                     'id',
@@ -126,37 +142,60 @@ class PartRecordController extends AdminController
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
+            /**
+             * 筛选
+             */
             $grid->filter(function ($filter) {
                 $filter->equal('category_id')->select(PartCategory::pluck('name', 'id'));
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
                 $filter->equal('device.name');
                 $filter->equal('depreciation_id')->select(DepreciationRule::pluck('name', 'id'));
+                /**
+                 * 自定义字段
+                 */
                 ControllerHasCustomColumns::makeFilter((new PartRecord())->getTable(), $filter);
             });
 
+
+            /**
+             * 批量按钮
+             */
+            $grid->batchActions(function (BatchActions $batchActions) {
+                // @permissions
+                if (Admin::user()->can('part.record.batch.delete')) {
+                    $batchActions->add(new PartRecordBatchDeleteAction());
+                }
+            });
+
+            /**
+             * 工具按钮
+             */
+            $grid->tools(function (Tools $tools) {
+                // @permissions
+                if (Admin::user()->can('part.record.import')) {
+                    $tools->append(new PartRecordImportAction());
+                }
+            });
+
+            /**
+             * 按钮控制
+             */
             $grid->enableDialogCreate();
             $grid->disableDeleteButton();
             $grid->disableBatchDelete();
-
-            $grid->batchActions([
-                new PartRecordBatchDeleteAction()
-            ]);
-
-            $grid->tools([
-                new PartRecordImportAction()
-            ]);
-
-            $grid->quickCreate(function (QuickCreate $create) {
-                $create->text('name')->required();
-                $create->select('category_id', admin_trans_label('Category'))
-                    ->options(PartCategory::selectOptions())
-                    ->required();
-                $create->text('specification')->required();
-                $create->select('vendor_id', admin_trans_label('Vendor'))
-                    ->options(VendorRecord::pluck('name', 'id'));
-            });
             $grid->toolsWithOutline(false);
-            $grid->export();
+            // @permissions
+            if (!Admin::user()->can('part.record.create')) {
+                $grid->disableCreateButton();
+            }
+            // @permissions
+            if (!Admin::user()->can('part.record.update')) {
+                $grid->disableEditButton();
+            }
+            // @permissions
+            if (Admin::user()->can('part.record.export')) {
+                $grid->export();
+            }
         });
     }
 
@@ -192,12 +231,22 @@ class PartRecordController extends AdminController
             $show->field('depreciation.name');
             $show->field('depreciation.termination');
 
+            /**
+             * 自定义字段
+             */
             ControllerHasCustomColumns::makeDetail((new PartRecord())->getTable(), $show);
 
             $show->field('created_at');
             $show->field('updated_at');
 
+            /**
+             * 按钮控制
+             */
             $show->disableDeleteButton();
+            // @permissions
+            if (!Admin::user()->can('part.record.update')) {
+                $show->disableEditButton();
+            }
         });
     }
 
@@ -266,11 +315,17 @@ class PartRecordController extends AdminController
                     ->options(DepreciationRule::pluck('name', 'id'));
             }
 
+            /**
+             * 自定义字段
+             */
             ControllerHasCustomColumns::makeForm((new PartRecord())->getTable(), $form);
 
             $form->display('created_at');
             $form->display('updated_at');
 
+            /**
+             * 按钮控制
+             */
             $form->disableDeleteButton();
             $form->disableCreatingCheck();
             $form->disableEditingCheck();

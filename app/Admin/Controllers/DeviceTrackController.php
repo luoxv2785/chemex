@@ -58,34 +58,47 @@ class DeviceTrackController extends AdminController
             $grid->column('lend_description');
             $grid->column('created_at');
 
-            $grid->disableCreateButton();
-            $grid->disableRowSelector();
-            $grid->disableBatchActions();
-            $grid->disableEditButton();
-            $grid->disableDeleteButton();
-
+            /**
+             * 行操作按钮
+             */
             $grid->actions(function (RowActions $actions) {
                 if (empty($this->lend_time)) {
+                    // @permissions
                     if (Admin::user()->can('device.track.delete') && $this->deleted_at == null) {
                         $actions->append(new DeviceTrackDeleteAction());
                     }
                 } else {
+                    // @permissions
                     if (Admin::user()->can('device.track.update_delete') && $this->deleted_at == null) {
                         $actions->append(new DeviceTrackUpdateDeleteAction());
                     }
                 }
             });
 
+            /**
+             * 字段过滤
+             */
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->panel();
                 $filter->scope('history', admin_trans_label('History Scope'))->onlyTrashed();
             });
 
-            $grid->toolsWithOutline(false);
-
+            /**
+             * 快速搜索
+             */
             $grid->quickSearch('id', 'device.name', 'user.name')
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
+
+            /**
+             * 按钮控制
+             */
+            $grid->disableCreateButton();
+            $grid->disableRowSelector();
+            $grid->disableBatchActions();
+            $grid->disableEditButton();
+            $grid->disableDeleteButton();
+            $grid->toolsWithOutline(false);
         });
     }
 
@@ -109,6 +122,9 @@ class DeviceTrackController extends AdminController
             $show->field('created_at');
             $show->field('updated_at');
 
+            /**
+             * 按钮控制
+             */
             $show->disableDeleteButton();
             $show->disableEditButton();
         });

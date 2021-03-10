@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 use App\Admin\Actions\Tree\ToolAction\ConsumableCategoryImportAction;
 use App\Admin\Repositories\ConsumableCategory;
 use App\Support\Data;
+use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
@@ -38,10 +39,33 @@ class ConsumableCategoryController extends AdminController
     protected function treeView(): Tree
     {
         return new Tree(new \App\Models\ConsumableCategory(), function (Tree $tree) {
-            $tree->disableCreateButton();
+            /**
+             * 工具按钮
+             */
             $tree->tools(function (Tree\Tools $tools) {
-                $tools->add(new ConsumableCategoryImportAction());
+                // @permissions
+                if (Admin::user()->can('consumable.category.import')) {
+                    $tools->add(new ConsumableCategoryImportAction());
+                }
             });
+
+            /**
+             * 按钮控制
+             */
+            // @permissions
+            if (!Admin::user()->can('consumable.category.create')) {
+                $tree->disableQuickCreateButton();
+            }
+            // @permissions
+            if (!Admin::user()->can('consumable.category.update')) {
+                $tree->disableEditButton();
+                $tree->disableQuickEditButton();
+            }
+            // @permissions
+            if (!Admin::user()->can('consumable.category.delete')) {
+                $tree->disableDeleteButton();
+            }
+            $tree->disableCreateButton();
         });
     }
 
@@ -63,6 +87,9 @@ class ConsumableCategoryController extends AdminController
             $form->display('created_at');
             $form->display('updated_at');
 
+            /**
+             * 按钮控制
+             */
             $form->disableCreatingCheck();
             $form->disableEditingCheck();
             $form->disableViewCheck();

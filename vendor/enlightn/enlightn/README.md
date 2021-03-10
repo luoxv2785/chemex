@@ -130,23 +130,21 @@ For more information on establishing a baseline, refer [the docs](https://www.la
 
 Enlightn offers a Github bot that can prepare a report highlighting failed checks and also add review comments for pull requests on the lines of code that introduce new issues.
 
-![Enlightn Github Bot Report](https://cdn.laravel-enlightn.com/images/github_report.png)
+![Enlightn Github Bot Review Comments](https://cdn.laravel-enlightn.com/images/github-bot.png)
 
-![Enlightn Github Bot Review Comments](https://cdn.laravel-enlightn.com/images/github_bot.png)
-
-To integrate with the Enlightn Github bot, refer [the docs](https://www.laravel-enlightn.com/docs/getting-started/github-bot.html#installation-steps).
+To integrate with the Enlightn Github bot, refer [the docs](https://www.laravel-enlightn.com/docs/getting-started/github-bot.html).
 
 ## Failed Checks
 
 All checks that fail will include a description of why they failed along with the associated lines of code (if applicable) and a link to the documentation for the specific check.
 
-![Enlightn Checks](https://www.laravel-enlightn.com/docs/images/queue-timeout.png)
+<img src="https://www.laravel-enlightn.com/docs/images/queue-timeout.png" width="70%" alt="Enlightn Failed Check" />
 
 ## Report Card
 
 Finally, after all the checks have run, the `enlightn` Artisan command will output a report card, which contains information on how many and what percentage of checks passed, failed or were skipped.
 
-![Enlightn Report Card](https://www.laravel-enlightn.com/docs/images/report_card.png)
+<img src="https://www.laravel-enlightn.com/docs/images/report_card.png" width="70%" alt="Enlightn Report Card" />
 
 The checks indicated as "Not Applicable" were not applicable to your specific application and were skipped. For instance, the CSRF analyzer is not applicable for stateless applications.
 
@@ -157,6 +155,10 @@ The checks reported under the "Error" row indicate the analyzers that failed wit
 A good practice would be to run Enlightn every time you are deploying code or pushing a new release. It is recommended to integrate Enlightn with your CI/CD tool so that it is triggered for every push or new release.
 
 Besides the automated CI checks, you might also want to run Enlightn on a regular frequency such as every week. This will allow you to monitor the dynamic analysis checks, which are typically excluded from CI tests.
+
+## Featured On
+
+[<img src="https://laravelnews.imgix.net/laravel-news__logo.png" height="100" alt="Laravel News" />](https://laravel-news.com/enlightn) &nbsp;&nbsp;&nbsp; [<img src="https://owasp.org/www-policy/branding-assets/OWASP-Combination-mark-r.png" height="100" alt="OWASP" />](https://cheatsheetseries.owasp.org/cheatsheets/Laravel_CheatSheet.html) &nbsp;&nbsp;&nbsp; [<img src="https://www.nist.gov/sites/default/files/styles/960_x_960_limit/public/images/2017/09/20/645px-nist_logo-svg_1.png" height="80" alt="NIST" />](https://samate.nist.gov/index.php/Source_Code_Security_Analyzers.html)
 
 ## OS Compatibility
 

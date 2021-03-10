@@ -34,6 +34,7 @@ class ServiceProvider extends BaseServiceProvider
         [
             'title' => 'Dcat Plus',
             'uri' => 'dcat-plus/site',
+            'icon' => 'feather icon-settings'
         ]
     ];
 
@@ -42,6 +43,11 @@ class ServiceProvider extends BaseServiceProvider
         //
     }
 
+    public function settingForm()
+    {
+        return new Setting($this);
+    }
+    
     public function init()
     {
         parent::init();

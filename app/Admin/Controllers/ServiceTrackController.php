@@ -54,29 +54,41 @@ class ServiceTrackController extends AdminController
             $grid->column('created_at');
             $grid->column('updated_at');
 
-            $grid->toolsWithOutline(false);
+            /**
+             * 行操作按钮
+             */
+            $grid->actions(function (RowActions $actions) {
+                // @permissions
+                if (Admin::user()->can('service.track.delete') && $this->deleted_at == null) {
+                    $actions->append(new ServiceTrackDeleteAction());
+                }
+            });
 
+            /**
+             * 筛选
+             */
+            $grid->filter(function (Grid\Filter $filter) {
+                $filter->panel();
+                $filter->scope('history', admin_trans_label('History Scope'))->onlyTrashed();
+            });
+
+            /**
+             * 快速搜索
+             */
+            $grid->quickSearch('id', 'service.name', 'device.name')
+                ->placeholder(trans('main.quick_search'))
+                ->auto(false);
+
+            /**
+             * 按钮控制
+             */
             $grid->disableCreateButton();
             $grid->disableRowSelector();
             $grid->disableBatchActions();
             $grid->disableViewButton();
             $grid->disableEditButton();
             $grid->disableDeleteButton();
-
-            $grid->actions(function (RowActions $actions) {
-                if (Admin::user()->can('service.track.delete') && $this->deleted_at == null) {
-                    $actions->append(new ServiceTrackDeleteAction());
-                }
-            });
-
-            $grid->filter(function (Grid\Filter $filter) {
-                $filter->panel();
-                $filter->scope('history', admin_trans_label('History Scope'))->onlyTrashed();
-            });
-
-            $grid->quickSearch('id', 'service.name', 'device.name')
-                ->placeholder(trans('main.quick_search'))
-                ->auto(false);
+            $grid->toolsWithOutline(false);
         });
     }
 

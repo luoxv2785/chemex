@@ -53,18 +53,22 @@ class ConsumableTrackController extends AdminController
             $grid->column('purchased');
             $grid->column('expired');
 
-            $grid->disableCreateButton();
-            $grid->disableDeleteButton();
-            $grid->disableEditButton();
-
-            $grid->disableBatchActions();
-            $grid->disableRowSelector();
-
-            $grid->toolsWithOutline(false);
-
+            /**
+             * 筛选
+             */
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
             });
+
+            /**
+             * 按钮控制
+             */
+            $grid->disableCreateButton();
+            $grid->disableDeleteButton();
+            $grid->disableEditButton();
+            $grid->disableBatchActions();
+            $grid->disableRowSelector();
+            $grid->toolsWithOutline(false);
         });
     }
 
@@ -89,6 +93,9 @@ class ConsumableTrackController extends AdminController
             $show->field('created_at');
             $show->field('updated_at');
 
+            /**
+             * 按钮控制
+             */
             $show->disableEditButton();
             $show->disableDeleteButton();
             $show->disableQuickEdit();

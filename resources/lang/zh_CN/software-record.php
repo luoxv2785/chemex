@@ -4,10 +4,7 @@ return [
         'title' => '软件',
         'description' => '主数据列表',
         'records' => '软件',
-        'Purchased Channel' => '购入途径',
         'Manage Track' => '管理归属',
-        'Track Card Title' => '授权',
-        'History Card Title' => '履历',
         'Export To Excel' => '导出到 Excel',
         'Counts Help' => '"-1"表示无限制。',
         'Batch Delete' => '批量删除软件',
@@ -52,7 +49,8 @@ return [
         'category_id' => '分类',
         'vendor_id' => '厂商',
         'depreciation_id' => '折旧规则',
-        'file' => '文件'
+        'file' => '文件',
+        'purchased_channel_id' => '购入途径',
     ],
     'options' => [
     ],

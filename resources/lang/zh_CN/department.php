@@ -7,7 +7,6 @@ return [
         'Department' => '部门',
         'Role' => '角色',
         'Permission' => '权限',
-        'Parent' => '父级部门',
         'departments' => '部门',
         'Import' => '导入',
         'File Help' => '导入支持xlsx、csv文件，且表格头必填栏位【名称】，可选栏位【描述、父级部门】。',
@@ -23,7 +22,8 @@ return [
             'name' => '父级部门'
         ],
         'mode' => '模式',
-        'file' => '文件'
+        'file' => '文件',
+        'parent_id' => '父级部门'
     ],
     'options' => [
     ],

@@ -4,10 +4,6 @@ return [
         'title' => '设备',
         'description' => '主数据列表',
         'records' => '设备',
-        'Category' => '分类',
-        'Vendor' => '厂商',
-        'Purchased Channel' => '购入途径',
-        'Depreciation Rule' => '折旧规则',
         'Depreciation Price' => '折旧价格',
         'Current User' => '当前使用者',
         'Photo Help' => '可以选择提供一张设备的照片作为概览。',
@@ -94,7 +90,9 @@ return [
         'user_same' => '用户已存在',
         'user_id' => '用户',
         'expiration_left_days' => '保固剩余时间',
-        'file' => '文件'
+        'file' => '文件',
+        'purchased_channel_id' => '购入途径',
+        'depreciation_rule_id' => '折旧规则',
     ],
     'options' => [
     ],

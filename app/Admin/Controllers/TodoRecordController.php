@@ -68,11 +68,13 @@ class TodoRecordController extends AdminController
             $grid->column('updated_at', '', $column_sort);
 
             $grid->actions(function (RowActions $actions) {
+                // @permissions
                 if (empty($this->end) && Admin::user()->can('todo.update')) {
                     $actions->append(new TodoRecordUpdateAction());
                 }
             });
 
+            // @permissions
             if (Admin::user()->can('todo.create')) {
                 $grid->tools([
                     new TodoRecordCreateAction()

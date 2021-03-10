@@ -60,25 +60,26 @@ class ServiceIssueController extends AdminController
             $grid->column('start');
             $grid->column('end');
 
+            /**
+             * 行操作按钮
+             */
             $grid->actions(function (RowActions $actions) {
+                // @permissions
                 if ($this->status == 1 && Admin::user()->can('service.issue.update')) {
                     $actions->append(new ServiceIssueUpdateAction());
                 }
             });
 
-            $grid->toolsWithOutline(false);
-
-            $grid->disableCreateButton();
-            $grid->disableRowSelector();
-            $grid->disableBatchActions();
-            $grid->disableViewButton();
-            $grid->disableEditButton();
-            $grid->disableDeleteButton();
-
+            /**
+             * 快速搜索
+             */
             $grid->quickSearch('id', 'service.name', 'issue')
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
+            /**
+             * 规格筛选
+             */
             $grid->selector(function (Selector $selector) {
                 $selector->select('status', [
                     1 => admin_trans_label('Status NG'),
@@ -86,6 +87,16 @@ class ServiceIssueController extends AdminController
                 ]);
             });
 
+            /**
+             * 按钮控制
+             */
+            $grid->disableCreateButton();
+            $grid->disableRowSelector();
+            $grid->disableBatchActions();
+            $grid->disableViewButton();
+            $grid->disableEditButton();
+            $grid->disableDeleteButton();
+            $grid->toolsWithOutline(false);
         });
     }
 

@@ -4,7 +4,6 @@ return [
         'title' => '服务',
         'description' => '主数据列表',
         'records' => '服务',
-        'Purchased Channel' => '购入途径',
         'Status Help' => '勾选此项为暂停服务。',
         'Issue Create' => '报告异常',
         'Delete' => '删除服务',
@@ -29,7 +28,8 @@ return [
         ],
         'device_id' => '设备',
         'issue' => '异常',
-        'start' => '开始时间'
+        'start' => '开始时间',
+        'purchased_channel_id' => '购入途径'
     ],
     'options' => [
     ],

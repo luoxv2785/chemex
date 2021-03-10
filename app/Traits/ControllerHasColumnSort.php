@@ -5,9 +5,15 @@ namespace App\Traits;
 
 
 use App\Admin\Actions\Tree\ToolAction\CustomColumnDeleteAction;
+use App\Admin\Repositories\ConsumableRecord;
+use App\Admin\Repositories\DeviceRecord;
+use App\Admin\Repositories\PartRecord;
+use App\Admin\Repositories\ServiceRecord;
+use App\Admin\Repositories\SoftwareRecord;
 use App\Models\ColumnSort;
 use App\Models\CustomColumn;
 use App\Support\Data;
+use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Layout\Row;
@@ -18,14 +24,49 @@ use Pour\Plus\LaravelAdmin;
 
 trait ControllerHasColumnSort
 {
+    /**
+     * 页面渲染
+     * @return Row
+     */
     protected function render(): Row
     {
         return new Row(function (Column $column) {
             $column->row(function (Row $row) {
-                $row->column(6, $this->treeView());
-                $row->column(6, $this->createBox());
+                if ($this->creatable()) {
+                    $row->column(6, $this->treeView());
+                    $row->column(6, $this->createBox());
+                } else {
+                    $row->column(12, $this->treeView());
+                }
             });
         });
+    }
+
+    /**
+     * 判断当前实例和权限，是否有可创建的权限
+     * @return bool
+     */
+    public function creatable(): bool
+    {
+        $repository = $this->repository();
+        $creatable = false;
+        // @permissions
+        if ($repository instanceof DeviceRecord && Admin::user()->can('device.column.create')) {
+            $creatable = true;
+        }
+        if ($repository instanceof PartRecord && Admin::user()->can('part.column.create')) {
+            $creatable = true;
+        }
+        if ($repository instanceof SoftwareRecord && Admin::user()->can('software.column.create')) {
+            $creatable = true;
+        }
+        if ($repository instanceof ConsumableRecord && Admin::user()->can('consumable.column.create')) {
+            $creatable = true;
+        }
+        if ($repository instanceof ServiceRecord && Admin::user()->can('service.column.create')) {
+            $creatable = true;
+        }
+        return $creatable;
     }
 
     /**
@@ -38,18 +79,59 @@ trait ControllerHasColumnSort
         $repository = new $repository;
         return new Tree($repository, function (Tree $tree) use ($repository) {
             $tree->maxDepth(1);
+
+            /**
+             * 工具按钮
+             */
+            $tree->tools(function (Tree\Tools $tools) use ($repository) {
+                if ($this->deletable()) {
+                    $tools->add(new CustomColumnDeleteAction($repository->getTable()));
+                }
+            });
+
+            /**
+             * 行操作按钮
+             */
             $tree->actions(function (Tree\Actions $actions) {
                 $actions->disableQuickEdit();
                 $actions->disableEdit();
                 $actions->disableDelete();
             });
+
+            /**
+             * 按钮控制
+             */
             $tree->disableCreateButton();
             $tree->disableQuickCreateButton();
             $tree->disableDeleteButton();
-            $tree->tools(function (Tree\Tools $tools) use ($repository) {
-                $tools->add(new CustomColumnDeleteAction($repository->getTable()));
-            });
         });
+    }
+
+    /**
+     * 判断当前实例和权限，是否有可创建的权限
+     * @return bool
+     */
+    public function deletable(): bool
+    {
+        $repository = $this->repository();
+        $deletable = false;
+        // @permissions
+        if ($repository instanceof DeviceRecord && Admin::user()->can('device.column.delete')) {
+            $deletable = true;
+        }
+        if ($repository instanceof PartRecord && Admin::user()->can('part.column.delete')) {
+            $deletable = true;
+        }
+        if ($repository instanceof SoftwareRecord && Admin::user()->can('software.column.delete')) {
+            $deletable = true;
+        }
+        if ($repository instanceof ConsumableRecord && Admin::user()->can('consumable.column.delete')) {
+            $deletable = true;
+        }
+        if ($repository instanceof ServiceRecord && Admin::user()->can('service.column.delete')) {
+            $deletable = true;
+        }
+        return $deletable;
     }
 
     /**
