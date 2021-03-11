@@ -8,6 +8,7 @@ use App\Traits\ControllerHasColumnSort;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
+use Dcat\Admin\Repositories\Repository;
 use Dcat\Admin\Widgets\Tab;
 
 
@@ -15,7 +16,7 @@ class SoftwareColumnController extends AdminController
 {
     use ControllerHasColumnSort;
 
-    protected $repository;
+    protected Repository $repository;
 
     public function index(Content $content): Content
     {
@@ -38,8 +39,8 @@ class SoftwareColumnController extends AdminController
         return admin_trans_label('title');
     }
 
-    public function repository(): string
+    public function repository(): SoftwareRecord
     {
-        return SoftwareRecord::class;
+        return new SoftwareRecord();
     }
 }
