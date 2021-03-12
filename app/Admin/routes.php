@@ -1,6 +1,7 @@
 <?php
 
 use App\Admin\Controllers\CheckRecordController;
+use App\Admin\Controllers\ConsumableCategoryController;
 use App\Admin\Controllers\DepartmentController;
 use App\Admin\Controllers\DepreciationRuleController;
 use App\Admin\Controllers\DeviceCategoryController;
@@ -128,6 +129,8 @@ Route::group([
         ->names('consumable.tracks');
     $router->resource('/consumable/columns', 'ConsumableColumnController')
         ->names('consumable.columns');
+    $router->get('/selection/consumable/categories', [ConsumableCategoryController::class, 'selectList'])
+        ->name('selection.consumable.categories');
 
     /**
      * 待办

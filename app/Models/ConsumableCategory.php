@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string name
  * @property string|null description
  * @method static pluck(string $string, string $string1)
+ * @method static where(string $string, string $string1, string $string2)
  */
 class ConsumableCategory extends Model
 {

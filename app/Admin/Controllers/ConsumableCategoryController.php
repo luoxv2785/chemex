@@ -12,10 +12,22 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Tree;
 use Dcat\Admin\Widgets\Tab;
+use Illuminate\Http\Request;
 
 
 class ConsumableCategoryController extends AdminController
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function selectList(Request $request)
+    {
+        $q = $request->get('q');
+        return \App\Models\ConsumableCategory::where('name', 'like', "%$q%")
+            ->paginate(null, ['id', 'name as text']);
+    }
+
     public function index(Content $content): Content
     {
         return $content

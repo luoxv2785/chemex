@@ -28,7 +28,7 @@ class DcatPlusFieldForm extends Form
      */
     public function form()
     {
-        $this->switch('field_select_create', Support::trans('main.select_create'))
-            ->default(admin_setting('field_select_create'));
+        $this->switch('switch_to_select_create', Support::trans('main.switch_to_select_create'))
+            ->default(admin_setting('switch_to_select_create'));
     }
 }

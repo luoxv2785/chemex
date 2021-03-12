@@ -8,6 +8,7 @@ return [
         'Nick Name Help' => '描述这个字段的名称，名称随意。',
         'Is Nullable Help' => '注意：日期和日期时间类型，将永远可空。',
         'Delete' => '删除字段',
+        'Update' => '编辑字段',
         'Delete Confirm' => '确认删除？',
         'Delete Confirm Description' => '删除的同时将会删除此字段的全部用户数据且无法恢复',
     ],

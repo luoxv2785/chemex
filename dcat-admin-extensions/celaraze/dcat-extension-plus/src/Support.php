@@ -127,9 +127,7 @@ class Support
 
     public function injectFields()
     {
-        if (admin_setting('field_select_create')) {
-            Form::extend('selectCreate', SelectCreate::class);
-        }
+        Form::extend('selectCreate', SelectCreate::class);
     }
 
     public function footerRemove()

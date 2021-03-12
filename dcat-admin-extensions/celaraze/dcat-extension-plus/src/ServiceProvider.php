@@ -43,11 +43,11 @@ class ServiceProvider extends BaseServiceProvider
         //
     }
 
-    public function settingForm()
+    public function settingForm(): Setting
     {
         return new Setting($this);
     }
-    
+
     public function init()
     {
         parent::init();
