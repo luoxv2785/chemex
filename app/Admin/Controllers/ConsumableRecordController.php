@@ -206,13 +206,14 @@ class ConsumableRecordController extends AdminController
                     ->ajax(admin_route('selection.vendor.records'))
                     ->url(admin_route('vendor.records.create'))
                     ->required();
+            } else {
+                $form->select('category_id')
+                    ->options(ConsumableCategory::pluck('name', 'id'))
+                    ->required();
+                $form->select('vendor_id')
+                    ->options(VendorRecord::pluck('name', 'id'))
+                    ->required();
             }
-            $form->select('category_id')
-                ->options(ConsumableCategory::pluck('name', 'id'))
-                ->required();
-            $form->select('vendor_id')
-                ->options(VendorRecord::pluck('name', 'id'))
-                ->required();
             $form->divider();
             $form->text('description');
             $form->text('price');
