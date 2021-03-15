@@ -19,6 +19,7 @@ use App\Models\VendorRecord;
 use App\Services\DeviceService;
 use App\Services\ExpirationService;
 use App\Services\ExportService;
+use App\Show;
 use App\Support\Data;
 use App\Support\Support;
 use App\Traits\ControllerHasCustomColumns;
@@ -31,7 +32,6 @@ use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
-use Dcat\Admin\Show;
 use Dcat\Admin\Widgets\Card;
 use Dcat\Admin\Widgets\Tab;
 use Illuminate\Http\Request;
@@ -78,16 +78,14 @@ class DeviceRecordController extends AdminController
     protected function grid(): Grid
     {
         return Grid::make(DeviceRecord::with(['category', 'vendor', 'user', 'user.department', 'channel', 'depreciation']), function (Grid $grid) {
-            $column_sort = ColumnSort::where('table_name', (new DeviceRecord())->getTable())
-                ->get(['field', 'order'])
-                ->toArray();
-            $grid->column('id', '', $column_sort);
-            $grid->column('qrcode', '', $column_sort)->qrcode(function () {
+            $sort_columns = $this->sortColumns();
+            $grid->column('id', '', $sort_columns);
+            $grid->column('qrcode', '', $sort_columns)->qrcode(function () {
                 return 'device:' . $this->id;
             }, 200, 200);
-            $grid->column('asset_number', '', $column_sort);
-            $grid->column('photo', '', $column_sort)->image('', 50, 50);
-            $grid->column('name', '', $column_sort)->display(function ($name) {
+            $grid->column('asset_number', '', $sort_columns);
+            $grid->column('photo', '', $sort_columns)->image('', 50, 50);
+            $grid->column('name', '', $sort_columns)->display(function ($name) {
                 $tag = Support::getSoftwareIcon($this->id);
                 if (empty($tag)) {
                     return $name;
@@ -95,33 +93,33 @@ class DeviceRecordController extends AdminController
                     return "<img alt='$tag' src='/static/images/icons/$tag.png' style='width: 25px;height: 25px;margin-right: 10px'/>$name";
                 }
             });
-            $grid->column('description', '', $column_sort);
-            $grid->column('category.name', '', $column_sort);
-            $grid->column('vendor.name', '', $column_sort);
-            $grid->column('mac', '', $column_sort);
-            $grid->column('ip', '', $column_sort);
-            $grid->column('price', '', $column_sort);
-            $grid->column('purchased', '', $column_sort);
-            $grid->column('expired', '', $column_sort);
-            $grid->column('user.name', '', $column_sort)->display(function ($name) {
+            $grid->column('description', '', $sort_columns);
+            $grid->column('category.name', '', $sort_columns);
+            $grid->column('vendor.name', '', $sort_columns);
+            $grid->column('mac', '', $sort_columns);
+            $grid->column('ip', '', $sort_columns);
+            $grid->column('price', '', $sort_columns);
+            $grid->column('purchased', '', $sort_columns);
+            $grid->column('expired', '', $sort_columns);
+            $grid->column('user.name', '', $sort_columns)->display(function ($name) {
                 if ($this->isLend()) {
                     return '<span style="color: rgba(178,68,71,1);font-weight: 600;">[' . trans('main.lend') . '] </span>' . $name;
                 }
                 return $name;
             });
-            $grid->column('user.department.name', '', $column_sort);
-            $grid->column('expiration_left_days', '', $column_sort)->display(function () {
+            $grid->column('user.department.name', '', $sort_columns);
+            $grid->column('expiration_left_days', '', $sort_columns)->display(function () {
                 return ExpirationService::itemExpirationLeftDaysRender('device', $this->id);
             });
-            $grid->column('channel.name', '', $column_sort);
-            $grid->column('depreciation.name', '', $column_sort);
-            $grid->column('created_at', '', $column_sort);
-            $grid->column('updated_at', '', $column_sort);
+            $grid->column('channel.name', '', $sort_columns);
+            $grid->column('depreciation.name', '', $sort_columns);
+            $grid->column('created_at', '', $sort_columns);
+            $grid->column('updated_at', '', $sort_columns);
 
             /**
              * 自定义字段
              */
-            ControllerHasCustomColumns::makeGrid((new DeviceRecord())->getTable(), $grid, $column_sort);
+            ControllerHasCustomColumns::makeGrid((new DeviceRecord())->getTable(), $grid, $sort_columns);
 
             /**
              * 批量操作
@@ -236,6 +234,17 @@ class DeviceRecordController extends AdminController
     }
 
     /**
+     * 返回字段排序
+     * @return mixed
+     */
+    public function sortColumns()
+    {
+        return ColumnSort::where('table_name', (new DeviceRecord())->getTable())
+            ->get(['field', 'order'])
+            ->toArray();
+    }
+
+    /**
      * 详情页构建器
      * 为了复写详情页的布局
      * @param mixed $id
@@ -266,7 +275,7 @@ class DeviceRecordController extends AdminController
                     $card = new Card(trans('main.history'), view('history')->with('data', $history));
                     // @permissions
                     if (Admin::user()->can('device.record.history.export')) {
-                        $card->tool($card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.device.history', ['device_id' => 1]) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>'));
+                        $card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.device.history', ['device_id' => 1]) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>');
                     }
                     $column->row($card);
                 });
@@ -283,6 +292,7 @@ class DeviceRecordController extends AdminController
     protected function detail($id): Show
     {
         return Show::make($id, new DeviceRecord(['category', 'vendor', 'channel', 'user', 'user.department', 'depreciation']), function (Show $show) {
+            $sort_columns = $this->sortColumns();
             $show->field('id');
             $show->field('name');
             $show->field('asset_number');

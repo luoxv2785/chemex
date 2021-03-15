@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '0e4586efd8bc89e116e52ff4ac06369b61a075f1',
+    'reference' => '32d0657180e6f533dfdad483f8a6c36e33e52e76',
     'name' => 'celaraze/chemex',
   ),
   'versions' => 
@@ -55,12 +55,12 @@ private static $installed = array (
     ),
     'asm89/stack-cors' => 
     array (
-      'pretty_version' => 'v2.0.2',
-      'version' => '2.0.2.0',
+      'pretty_version' => 'v2.0.3',
+      'version' => '2.0.3.0',
       'aliases' => 
       array (
       ),
-      'reference' => '8d8f88b3b3830916be94292c1fbce84433efb1aa',
+      'reference' => '9cb795bf30988e8c96dd3c40623c48a877bc6714',
     ),
     'box/spout' => 
     array (
@@ -87,7 +87,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '0e4586efd8bc89e116e52ff4ac06369b61a075f1',
+      'reference' => '32d0657180e6f533dfdad483f8a6c36e33e52e76',
     ),
     'celaraze/pour' => 
     array (
@@ -392,6 +392,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '8c3d0a3f6af734494ad8f6fbbee0ba92422859f3',
+    ),
+    'hhxsv5/laravel-s' => 
+    array (
+      'pretty_version' => 'v3.7.17',
+      'version' => '3.7.17.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '1a10f6c6b93072fdd767afa29295edd33ce3462d',
     ),
     'illuminate/auth' => 
     array (
@@ -1033,12 +1042,12 @@ private static $installed = array (
     ),
     'psy/psysh' => 
     array (
-      'pretty_version' => 'v0.10.6',
-      'version' => '0.10.6.0',
+      'pretty_version' => 'v0.10.7',
+      'version' => '0.10.7.0',
       'aliases' => 
       array (
       ),
-      'reference' => '6f990c19f91729de8b31e639d6e204ea59f19cf3',
+      'reference' => 'a395af46999a12006213c0c8346c9445eb31640c',
     ),
     'ralouphie/getallheaders' => 
     array (
@@ -1262,6 +1271,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '15f7faf8508e04471f666633addacf54c0ab5933',
+    ),
+    'swoole/ide-helper' => 
+    array (
+      'pretty_version' => '4.6.4',
+      'version' => '4.6.4.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '7e5c51ce7cc8c03ffb836aad31f3f27cd871aa96',
     ),
     'symfony/console' => 
     array (

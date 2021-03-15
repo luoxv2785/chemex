@@ -35,7 +35,7 @@ final class Versions
     const VERSIONS          = array (
   'adldap2/adldap2' => 'v10.3.2@b2203d800c5932f975abc213c659428697e27cd9',
   'adldap2/adldap2-laravel' => 'v6.1.5@082e863d15923cf9b4bff69fa81c8ebd23e4a7c7',
-  'asm89/stack-cors' => 'v2.0.2@8d8f88b3b3830916be94292c1fbce84433efb1aa',
+  'asm89/stack-cors' => 'v2.0.3@9cb795bf30988e8c96dd3c40623c48a877bc6714',
   'box/spout' => 'v3.1.0@7964dadc2128f3a00ffa393395b618ea115c8032',
   'brick/math' => '0.9.2@dff976c2f3487d42c1db75a3b180e2b9f0e72ce0',
   'celaraze/pour' => 'dev-master@d0a65a5c9fe654256116c2dd8a9926a436094268',
@@ -64,6 +64,7 @@ final class Versions
   'guzzlehttp/promises' => '1.4.1@8e7d04f1f6450fef59366c399cfad4b9383aa30d',
   'guzzlehttp/psr7' => '1.7.0@53330f47520498c0ae1f61f7e2c90f55690c06a3',
   'hamcrest/hamcrest-php' => 'v2.0.1@8c3d0a3f6af734494ad8f6fbbee0ba92422859f3',
+  'hhxsv5/laravel-s' => 'v3.7.17@1a10f6c6b93072fdd767afa29295edd33ce3462d',
   'justinrainbow/json-schema' => '5.2.10@2ba9c8c862ecd5510ed16c6340aa9f6eadb4f31b',
   'laravel/framework' => 'v8.32.1@7c37b64f8153c16b6406f5c28cf37828ebbe8846',
   'laravel/tinker' => 'v2.6.1@04ad32c1a3328081097a181875733fa51f402083',
@@ -89,7 +90,7 @@ final class Versions
   'psr/http-message' => '1.0.1@f6561bf28d520154e4b0ec72be95418abe6d9363',
   'psr/log' => '1.1.3@0f73288fd15629204f9d42b7055f72dacbe811fc',
   'psr/simple-cache' => '1.0.1@408d5eafb83c57f6365a3ca330ff23aa4a5fa39b',
-  'psy/psysh' => 'v0.10.6@6f990c19f91729de8b31e639d6e204ea59f19cf3',
+  'psy/psysh' => 'v0.10.7@a395af46999a12006213c0c8346c9445eb31640c',
   'ralouphie/getallheaders' => '3.0.3@120b605dfeb996808c31b6477290a714d356e822',
   'ramsey/collection' => '1.1.3@28a5c4ab2f5111db6a60b2b4ec84057e0f43b9c1',
   'ramsey/uuid' => '4.1.1@cd4032040a750077205918c86049aa0f43d22947',
@@ -98,6 +99,7 @@ final class Versions
   'seld/phar-utils' => '1.1.1@8674b1d84ffb47cc59a101f5d5a3b61e87d23796',
   'spatie/eloquent-sortable' => '3.11.0@b06fa886559f8d40e31c8a69fd32bd45401dc5da',
   'swiftmailer/swiftmailer' => 'v6.2.7@15f7faf8508e04471f666633addacf54c0ab5933',
+  'swoole/ide-helper' => '4.6.4@7e5c51ce7cc8c03ffb836aad31f3f27cd871aa96',
   'symfony/console' => 'v5.2.5@938ebbadae1b0a9c9d1ec313f87f9708609f1b79',
   'symfony/css-selector' => 'v5.2.4@f65f217b3314504a1ec99c2d6ef69016bb13490f',
   'symfony/deprecation-contracts' => 'v2.2.0@5fa56b4074d1ae755beb55617ddafe6f5d78f665',
@@ -174,7 +176,7 @@ final class Versions
   'sebastian/type' => '2.3.1@81cd61ab7bbf2de744aba0ea61fae32f721df3d2',
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'theseer/tokenizer' => '1.2.0@75a63c33a8577608444246075ea0af0d052e452a',
-  'celaraze/chemex' => 'dev-main@904ea2d593572220d13579947f31411eec737f72',
+  'celaraze/chemex' => 'dev-main@32d0657180e6f533dfdad483f8a6c36e33e52e76',
 );
 
     private function __construct()
