@@ -1,15 +1,13 @@
 # .travis.yml
-os: linux
 dist: focal
-
 language: php
 
 php:
   - 7.4
   - 8.0
 
-addons:
-  mariadb: '10.2'
+services:
+  - mysql
 
 cache:
   directories:
