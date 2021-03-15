@@ -21,4 +21,4 @@ before_script:
   - php artisan chemex:install --no-interaction
 
 script:
-  - vendor/bin/phpunit
+  - sudo vendor/bin/phpunit
