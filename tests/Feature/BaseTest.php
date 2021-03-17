@@ -7,7 +7,7 @@ use Tests\TestCase;
 class BaseTest extends TestCase
 {
     /**
-     * A basic feature test example.
+     * A basic unit test example.
      *
      * @return void
      */
