@@ -22,12 +22,12 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'username' => $this->faker->userName,
-            'name' => $this->faker->name,
+            'username'      => $this->faker->userName,
+            'name'          => $this->faker->name,
             'department_id' => 1,
-            'password' => bcrypt('password'),
-            'gender' => '男',
-            'ad_tag' => 0
+            'password'      => bcrypt('password'),
+            'gender'        => '男',
+            'ad_tag'        => 0,
         ];
     }
 }
