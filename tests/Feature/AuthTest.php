@@ -26,7 +26,7 @@ class AuthTest extends TestCase
         $user = User::factory()->create();
         $response = $this->post('/auth/login', [
             'username' => $user->username,
-            'password' => 'password'
+            'password' => 'password',
         ]);
         $response->assertStatus(200);
     }
