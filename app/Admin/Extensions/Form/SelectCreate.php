@@ -18,9 +18,9 @@ class SelectCreate extends Select
     public function render()
     {
         $this->addDefaultConfig([
-            'allowClear' => true,
+            'allowClear'  => true,
             'placeholder' => [
-                'id' => '',
+                'id'   => '',
                 'text' => $this->placeholder(),
             ],
         ]);
@@ -28,11 +28,11 @@ class SelectCreate extends Select
         $this->formatOptions();
 
         $this->addVariables([
-            'options' => $this->options,
-            'groups' => $this->groups,
-            'configs' => $this->config,
+            'options'       => $this->options,
+            'groups'        => $this->groups,
+            'configs'       => $this->config,
             'cascadeScript' => $this->getCascadeScript(),
-            'createDialog' => $this->build(),
+            'createDialog'  => $this->build(),
         ]);
 
         $this->attribute('data-value', implode(',', Helper::array($this->value())));
