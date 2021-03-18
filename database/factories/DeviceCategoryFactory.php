@@ -22,8 +22,8 @@ class DeviceCategoryFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
-            'order' => 0
+            'name'  => $this->faker->name,
+            'order' => 0,
         ];
     }
 }
