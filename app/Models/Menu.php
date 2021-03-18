@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use Dcat\Admin\Models\Menu;
+use Dcat\Admin\Models\Menu as BaseMenu;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class AdminMenu extends Menu
+class Menu extends BaseMenu
 {
     use HasFactory;
     use HasDateTimeFormatter;

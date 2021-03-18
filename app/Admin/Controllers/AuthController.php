@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\AdminRoleUser;
+use App\Models\RoleUser;
 use App\Models\User;
 use App\Support\LDAP;
 use Dcat\Admin\Admin;
@@ -70,11 +70,11 @@ class AuthController extends BaseAuthController
                     } else {
                         $role_id = 2;
                     }
-                    $admin_role_user = AdminRoleUser::where('user_id', $admin_user->id)
+                    $admin_role_user = RoleUser::where('user_id', $admin_user->id)
                         ->where('role_id', $role_id)
                         ->first();
                     if (empty($admin_role_user)) {
-                        $admin_role_user = new AdminRoleUser();
+                        $admin_role_user = new RoleUser();
                     }
                     $admin_role_user->role_id = $role_id;
                     $admin_role_user->user_id = $admin_user->id;

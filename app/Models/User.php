@@ -6,6 +6,7 @@ use DateTime;
 use Dcat\Admin\Models\Administrator;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -75,6 +76,15 @@ class User extends Administrator implements JWTSubject
     public function department(): HasOne
     {
         return $this->hasOne(Department::class, 'id', 'department_id');
+    }
+
+    /**
+     * 用户有很多个角色追踪
+     * @return HasMany
+     */
+    public function roleUser(): HasMany
+    {
+        return $this->hasMany(RoleUser::class, 'user_id', 'id');
     }
 
     /**

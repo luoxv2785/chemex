@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Dcat\Admin\Traits\ModelTree;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -20,6 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class DeviceCategory extends Model
 {
+    use HasFactory;
     use HasDateTimeFormatter;
     use SoftDeletes;
     use ModelTree;

@@ -5,6 +5,7 @@ namespace App\Models;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Dcat\Admin\Traits\ModelTree;
 use Exception;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
@@ -42,8 +43,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class DeviceRecord extends Model
 {
+    use HasFactory;
     use HasDateTimeFormatter;
     use SoftDeletes;
+
     /**
      * 这里需要给个别名，否则delete方法将会重复
      * 和下面的delete方法重写打配合调整优先级.
@@ -87,9 +90,9 @@ class DeviceRecord extends Model
      * 子类>trait>父类
      * 这个是因为字段管理中删除动作的需要
      *
+     * @return bool|null
      * @throws Exception
      *
-     * @return bool|null
      */
     public function delete(): ?bool
     {

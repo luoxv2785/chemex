@@ -251,11 +251,11 @@ return [
 
         // Role table and model.
         'roles_table' => 'admin_roles',
-        'roles_model' => App\Models\AdminRole::class,
+        'roles_model' => App\Models\Role::class,
 
         // Permission table and model.
         'permissions_table' => 'admin_permissions',
-        'permissions_model' => App\Models\AdminPermission::class,
+        'permissions_model' => App\Models\Permission::class,
 
         // Menu table and model.
         'menu_table' => 'admin_menu',

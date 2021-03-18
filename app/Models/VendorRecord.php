@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Dcat\Admin\Traits\HasDateTimeFormatter;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -16,6 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class VendorRecord extends Model
 {
+    use HasFactory;
     use HasDateTimeFormatter;
     use SoftDeletes;
 
