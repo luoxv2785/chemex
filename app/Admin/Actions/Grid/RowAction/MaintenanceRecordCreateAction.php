@@ -13,7 +13,7 @@ class MaintenanceRecordCreateAction extends RowAction
     public function __construct($item)
     {
         parent::__construct();
-        $this->title = '🔧 '.admin_trans_label('Maintenance Create');
+        $this->title = '🔧 ' . admin_trans_label('Maintenance Create');
         $this->item = $item;
     }
 
@@ -25,7 +25,7 @@ class MaintenanceRecordCreateAction extends RowAction
     public function render()
     {
         $form = MaintenanceRecordCreateForm::make()->payload([
-            'item'    => $this->item,
+            'item' => $this->item,
             'item_id' => $this->getKey(),
         ]);
 

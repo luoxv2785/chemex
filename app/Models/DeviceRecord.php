@@ -46,6 +46,7 @@ class DeviceRecord extends Model
     use HasFactory;
     use HasDateTimeFormatter;
     use SoftDeletes;
+
     /**
      * 这里需要给个别名，否则delete方法将会重复
      * 和下面的delete方法重写打配合调整优先级.
@@ -89,9 +90,9 @@ class DeviceRecord extends Model
      * 子类>trait>父类
      * 这个是因为字段管理中删除动作的需要
      *
+     * @return bool|null
      * @throws Exception
      *
-     * @return bool|null
      */
     public function delete(): ?bool
     {

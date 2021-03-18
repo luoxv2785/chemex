@@ -23,6 +23,7 @@ class ConsumableRecordInForm extends Form
         $number = $input['number'] ?? null;
         $purchased = $input['purchased'] ?? null;
         $expired = $input['expired'] ?? null;
+        $description = $input['description'] ?? null;
         if (empty($consumable_record_id) || empty($number)) {
             return $this->response()
                 ->error(trans('main.parameter_missing'));
@@ -35,6 +36,7 @@ class ConsumableRecordInForm extends Form
                 $consumable_track->consumable_id = $consumable_record_id;
                 $consumable_track->number = $number;
                 $consumable_track->change = $number;
+                $consumable_track->description = $description;
                 $consumable_track->purchased = $purchased;
                 $consumable_track->expired = $expired;
                 $consumable_track->save();
@@ -42,6 +44,7 @@ class ConsumableRecordInForm extends Form
                 $new_consumable_track = $consumable_track->replicate();
                 $new_consumable_track->number += $number;
                 $new_consumable_track->change = $number;
+                $new_consumable_track->description = $description;
                 $new_consumable_track->purchased = $purchased;
                 $new_consumable_track->expired = $expired;
                 $new_consumable_track->save();
@@ -53,7 +56,7 @@ class ConsumableRecordInForm extends Form
         } catch (Exception $e) {
             $return = $this
                 ->response()
-                ->error(trans('main.fail').$e->getMessage());
+                ->error(trans('main.fail') . $e->getMessage());
         }
 
         return $return;
@@ -72,5 +75,6 @@ class ConsumableRecordInForm extends Form
             ->required();
         $this->date('purchased');
         $this->date('expired');
+        $this->textarea('description');
     }
 }

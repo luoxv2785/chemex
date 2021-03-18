@@ -29,9 +29,9 @@ class QueryController extends Controller
         $item->vendor;
         $item->channel;
         $return = [
-            'code'    => 200,
+            'code' => 200,
             'message' => '查询成功',
-            'data'    => $item,
+            'data' => $item,
         ];
 
         return response()->json($return);

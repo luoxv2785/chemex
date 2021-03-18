@@ -13,7 +13,7 @@ class DeviceRecordCreateUpdateTrackAction extends RowAction
     public function __construct($is_lend)
     {
         parent::__construct();
-        $this->title = '👨‍💼 '.admin_trans_label('Track Create Update');
+        $this->title = '👨‍💼 ' . admin_trans_label('Track Create Update');
         $this->is_lend = $is_lend;
     }
 
@@ -26,7 +26,7 @@ class DeviceRecordCreateUpdateTrackAction extends RowAction
     {
         // 实例化表单类并传递自定义参数
         $form = DeviceRecordCreateUpdateTrackForm::make()->payload([
-            'id'      => $this->getKey(),
+            'id' => $this->getKey(),
             'is_lend' => $this->is_lend,
         ]);
 

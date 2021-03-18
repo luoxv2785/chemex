@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 WORK_DIR=$1
-if [ ! -n "${WORK_DIR}" ] ;then
+if [ ! -n "${WORK_DIR}" ]; then
     WORK_DIR="."
 fi
 
@@ -9,12 +9,11 @@ echo "Restarting LaravelS..."
 
 echo "Starting fswatch..."
 LOCKING=0
-fswatch -e ".*" -i "\\.php$" -r ${WORK_DIR} | while read file
-do
-    if [[ ! ${file} =~ .php$ ]] ;then
+fswatch -e ".*" -i "\\.php$" -r ${WORK_DIR} | while read file; do
+    if [[ ! ${file} =~ .php$ ]]; then
         continue
     fi
-    if [ ${LOCKING} -eq 1 ] ;then
+    if [ ${LOCKING} -eq 1 ]; then
         echo "Reloading, skipped."
         continue
     fi

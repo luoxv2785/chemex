@@ -24,10 +24,10 @@ class PartService
         $data = [];
 
         $single = [
-            'type'     => '',
-            'name'     => '',
-            'status'   => '',
-            'style'    => '',
+            'type' => '',
+            'name' => '',
+            'status' => '',
+            'style' => '',
             'datetime' => '',
         ];
 

@@ -25,7 +25,7 @@ class DepartmentImportForm extends Form
     {
         if ($input['type'] == 'file') {
             $file = $input['file'];
-            $file_path = public_path('uploads/'.$file);
+            $file_path = public_path('uploads/' . $file);
 
             try {
                 $rows = Excel::import($file_path)->first()->toArray();
@@ -61,13 +61,13 @@ class DepartmentImportForm extends Form
                     ->refresh();
             } catch (IOException $e) {
                 return $this->response()
-                    ->error(trans('main.file_io_error').$e->getMessage());
+                    ->error(trans('main.file_io_error') . $e->getMessage());
             } catch (UnsupportedTypeException $e) {
                 return $this->response()
-                    ->error(trans('main.file_format').$e->getMessage());
+                    ->error(trans('main.file_format') . $e->getMessage());
             } catch (FileNotFoundException $e) {
                 return $this->response()
-                    ->error(trans('main.file_none').$e->getMessage());
+                    ->error(trans('main.file_none') . $e->getMessage());
             }
         }
 

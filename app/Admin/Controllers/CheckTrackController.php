@@ -29,8 +29,8 @@ class CheckTrackController extends AdminController
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(Data::icon('record').trans('main.check_record'), admin_route('check.records.index'));
-                $tab->add(Data::icon('track').trans('main.check_track'), $this->grid(), true);
+                $tab->addLink(Data::icon('record') . trans('main.check_record'), admin_route('check.records.index'));
+                $tab->add(Data::icon('track') . trans('main.check_track'), $this->grid(), true);
                 $row->column(12, $tab);
             });
     }

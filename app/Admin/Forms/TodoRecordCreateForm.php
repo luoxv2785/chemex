@@ -48,7 +48,7 @@ class TodoRecordCreateForm extends Form
         } catch (Exception $e) {
             $return = $this
                 ->response()
-                ->error(trans('main.fail').$e->getMessage());
+                ->error(trans('main.fail') . $e->getMessage());
         }
 
         return $return;

@@ -53,7 +53,7 @@ class CustomColumnUpdateForm extends Form
                 ->refresh();
         } catch (Exception $exception) {
             return $this->response()
-                ->error(trans('main.fail').'：'.$exception->getMessage());
+                ->error(trans('main.fail') . '：' . $exception->getMessage());
         }
     }
 

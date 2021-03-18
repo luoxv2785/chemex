@@ -11,7 +11,7 @@ class ServiceIssueUpdateAction extends RowAction
     public function __construct()
     {
         parent::__construct();
-        $this->title = '🔧 '.admin_trans_label('Update');
+        $this->title = '🔧 ' . admin_trans_label('Update');
     }
 
     /**

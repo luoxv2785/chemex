@@ -50,7 +50,7 @@ class TodoRecordUpdateForm extends Form implements LazyRenderable
         } catch (Exception $e) {
             $return = $this
                 ->response()
-                ->error(trans('main.fail').$e->getMessage());
+                ->error(trans('main.fail') . $e->getMessage());
         }
 
         return $return;

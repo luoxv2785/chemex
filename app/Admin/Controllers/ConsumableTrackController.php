@@ -20,10 +20,10 @@ class ConsumableTrackController extends AdminController
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(Data::icon('record').trans('main.record'), admin_route('consumable.records.index'));
-                $tab->addLink(Data::icon('category').trans('main.category'), admin_route('consumable.categories.index'));
-                $tab->add(Data::icon('track').trans('main.history'), $this->grid(), true);
-                $tab->addLink(Data::icon('column').trans('main.column'), admin_route('consumable.columns.index'));
+                $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('consumable.records.index'));
+                $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('consumable.categories.index'));
+                $tab->add(Data::icon('track') . trans('main.history'), $this->grid(), true);
+                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('consumable.columns.index'));
                 $row->column(12, $tab);
             });
     }
@@ -49,6 +49,7 @@ class ConsumableTrackController extends AdminController
             $grid->column('number');
             $grid->column('change');
             $grid->column('user.name');
+            $grid->column('description');
             $grid->column('purchased');
             $grid->column('expired');
 
@@ -87,6 +88,7 @@ class ConsumableTrackController extends AdminController
             $show->field('number');
             $show->field('change');
             $show->field('user.name');
+            $show->field('description');
             $show->field('purchased');
             $show->field('expired');
             $show->field('created_at');

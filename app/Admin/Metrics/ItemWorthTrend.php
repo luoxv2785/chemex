@@ -31,7 +31,7 @@ class ItemWorthTrend extends Line
     {
         $year = date('Y', time());
         if ($request->get('option') == 'pre_year') {
-            $year = (int) $year - 1;
+            $year = (int)$year - 1;
         }
         $from = Support::makeYearDate($year);
         $to = Support::makeYearDate($year, 'to');
@@ -194,7 +194,7 @@ HTML
         $this->title(trans('main.item_worth_trend'));
         $this->dropdown([
             'current_year' => trans('main.current_year'),
-            'pre_year'     => trans('main.last_year'),
+            'pre_year' => trans('main.last_year'),
         ]);
     }
 }

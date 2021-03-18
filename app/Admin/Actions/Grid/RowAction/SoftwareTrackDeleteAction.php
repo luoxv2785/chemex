@@ -11,7 +11,7 @@ class SoftwareTrackDeleteAction extends RowAction
     public function __construct()
     {
         parent::__construct();
-        $this->title = '🔗 '.admin_trans_label('Delete');
+        $this->title = '🔗 ' . admin_trans_label('Delete');
     }
 
     /**

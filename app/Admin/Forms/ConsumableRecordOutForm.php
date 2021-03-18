@@ -23,6 +23,7 @@ class ConsumableRecordOutForm extends Form
         $consumable_record_id = $input['consumable_id'] ?? null;
         $number = $input['number'] ?? null;
         $user_id = $input['user_id'] ?? null;
+        $description = $input['description'] ?? null;
         if (empty($consumable_record_id) || empty($number) || empty($user_id)) {
             return $this->response()
                 ->error(trans('main.parameter_missing'));
@@ -38,6 +39,7 @@ class ConsumableRecordOutForm extends Form
                 $new_consumable_track->number -= $number;
                 $new_consumable_track->change = $number;
                 $new_consumable_track->user_id = $user_id;
+                $new_consumable_track->description = $description;
                 $new_consumable_track->save();
                 $consumable_track->delete();
             }
@@ -47,7 +49,7 @@ class ConsumableRecordOutForm extends Form
         } catch (Exception $e) {
             $return = $this
                 ->response()
-                ->error(trans('main.fail').$e->getMessage());
+                ->error(trans('main.fail') . $e->getMessage());
         }
 
         return $return;
@@ -67,5 +69,6 @@ class ConsumableRecordOutForm extends Form
         $this->select('user_id', trans('main.user_id'))
             ->options(User::pluck('name', 'id'))
             ->required();
+        $this->textarea('description');
     }
 }

@@ -11,7 +11,7 @@ class SoftwareRecordCreateUpdateTrackAction extends RowAction
     public function __construct()
     {
         parent::__construct();
-        $this->title = '💻 '.admin_trans_label('Track Create Update');
+        $this->title = '💻 ' . admin_trans_label('Track Create Update');
     }
 
     /**

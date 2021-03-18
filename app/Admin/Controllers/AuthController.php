@@ -87,12 +87,12 @@ class AuthController extends BaseAuthController
         }
 
         $credentials = $request->only([$this->username(), 'password']);
-        $remember = (bool) $request->input('remember', false);
+        $remember = (bool)$request->input('remember', false);
 
         /** @var \Illuminate\Validation\Validator $validator */
         $validator = Validator::make($credentials, [
             $this->username() => 'required',
-            'password'        => 'required',
+            'password' => 'required',
         ]);
 
         if ($validator->fails()) {

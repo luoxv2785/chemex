@@ -11,7 +11,7 @@ class CheckTrackUpdateAction extends RowAction
     public function __construct()
     {
         parent::__construct();
-        $this->title = '👨‍💼 '.admin_trans_label('Update Track');
+        $this->title = '👨‍💼 ' . admin_trans_label('Update Track');
     }
 
     /**

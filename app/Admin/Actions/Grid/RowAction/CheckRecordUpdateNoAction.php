@@ -13,7 +13,7 @@ class CheckRecordUpdateNoAction extends RowAction
     public function __construct()
     {
         parent::__construct();
-        $this->title = '❌ '.admin_trans_label('Cancel Check');
+        $this->title = '❌ ' . admin_trans_label('Cancel Check');
     }
 
     /**

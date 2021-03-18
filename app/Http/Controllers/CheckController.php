@@ -31,9 +31,9 @@ class CheckController extends Controller
                 ->first();
             if (empty($check_record)) {
                 $return = [
-                    'code'    => 404,
+                    'code' => 404,
                     'message' => '没有找到相对应的盘点任务',
-                    'data'    => [],
+                    'data' => [],
                 ];
 
                 return response()->json($return);
@@ -41,25 +41,25 @@ class CheckController extends Controller
             $item = Support::getItemRecordByClass($item, $id);
             if (empty($item)) {
                 $return = [
-                    'code'    => 404,
+                    'code' => 404,
                     'message' => '没有找到对应的物品',
-                    'data'    => [],
+                    'data' => [],
                 ];
             } else {
                 $check_track = CheckTrack::where('check_id', $check_record->id)
                     ->where('item_id', $item->id)
                     ->first();
                 $return = [
-                    'code'    => 200,
+                    'code' => 200,
                     'message' => '查询成功',
-                    'data'    => $check_track,
+                    'data' => $check_track,
                 ];
             }
         } else {
             $return = [
-                'code'    => 404,
+                'code' => 404,
                 'message' => '参数不完整',
-                'data'    => [],
+                'data' => [],
             ];
         }
 
@@ -80,25 +80,25 @@ class CheckController extends Controller
             $check_track = CheckTrack::where('id', $track_id)->first();
             if (empty($check_track)) {
                 $return = [
-                    'code'    => 404,
+                    'code' => 404,
                     'message' => '没有找到盘点内容',
-                    'data'    => [],
+                    'data' => [],
                 ];
             } else {
                 $check_track->status = $check_option;
                 $check_track->checker = $user->id;
                 $check_track->save();
                 $return = [
-                    'code'    => 200,
+                    'code' => 200,
                     'message' => '操作成功',
-                    'data'    => [],
+                    'data' => [],
                 ];
             }
         } else {
             $return = [
-                'code'    => 404,
+                'code' => 404,
                 'message' => '参数不完整',
-                'data'    => [],
+                'data' => [],
             ];
         }
 

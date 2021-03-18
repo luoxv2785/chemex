@@ -26,10 +26,10 @@ class DeviceService
         $data = [];
 
         $single = [
-            'type'     => '',
-            'name'     => '',
-            'status'   => '',
-            'style'    => '',
+            'type' => '',
+            'name' => '',
+            'status' => '',
+            'style' => '',
             'datetime' => '',
         ];
 
@@ -52,7 +52,7 @@ class DeviceService
             } else {
                 $department = $department->name;
             }
-            $single['name'] = $username.' - '.$department;
+            $single['name'] = $username . ' - ' . $department;
             $data = Support::itemTrack($single, $device_track, $data);
         }
 
@@ -63,7 +63,7 @@ class DeviceService
         foreach ($part_tracks as $part_track) {
             $single['type'] = trans('main.part');
             $part = $part_track->part()->withTrashed()->first();
-            $single['name'] = $part->name.' - '.$part->specification;
+            $single['name'] = $part->name . ' - ' . $part->specification;
             $data = Support::itemTrack($single, $part_track, $data);
         }
 
@@ -74,7 +74,7 @@ class DeviceService
         foreach ($software_tracks as $software_track) {
             $single['type'] = trans('main.software');
             $software = $software_track->software()->withTrashed()->first();
-            $single['name'] = $software->name.' '.$software->version;
+            $single['name'] = $software->name . ' ' . $software->version;
             $data = Support::itemTrack($single, $software_track, $data);
         }
 

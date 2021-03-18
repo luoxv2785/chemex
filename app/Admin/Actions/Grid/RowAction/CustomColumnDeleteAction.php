@@ -13,7 +13,7 @@ class CustomColumnDeleteAction extends RowAction
     public function __construct()
     {
         parent::__construct();
-        $this->title = '🔨 '.admin_trans_label('Delete');
+        $this->title = '🔨 ' . admin_trans_label('Delete');
     }
 
     /**
@@ -38,7 +38,7 @@ class CustomColumnDeleteAction extends RowAction
                 ->refresh();
         } catch (Exception $exception) {
             return $this->response()
-                ->error(trans('main.fail').'：'.$exception->getMessage());
+                ->error(trans('main.fail') . '：' . $exception->getMessage());
         }
     }
 

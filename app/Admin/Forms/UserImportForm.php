@@ -28,7 +28,7 @@ class UserImportForm extends Form
     {
         if ($input['type'] == 'file') {
             $file = $input['file'];
-            $file_path = public_path('uploads/'.$file);
+            $file_path = public_path('uploads/' . $file);
 
             try {
                 $rows = Excel::import($file_path)->first()->toArray();
@@ -50,7 +50,7 @@ class UserImportForm extends Form
                                 if (!empty($exist->deleted_at)) {
                                     $user->deleted_at = null;
                                 }
-                                $user->username = $row['用户名'].Uni::randomNumberString(4);
+                                $user->username = $row['用户名'] . Uni::randomNumberString(4);
                             }
                             $user->name = $row['名称'];
                             $user->department_id = $department->id;
@@ -84,13 +84,13 @@ class UserImportForm extends Form
                     ->refresh();
             } catch (IOException $e) {
                 return $this->response()
-                    ->error(trans('main.file_io_error').$e->getMessage());
+                    ->error(trans('main.file_io_error') . $e->getMessage());
             } catch (UnsupportedTypeException $e) {
                 return $this->response()
-                    ->error(trans('main.file_format').$e->getMessage());
+                    ->error(trans('main.file_format') . $e->getMessage());
             } catch (FileNotFoundException $e) {
                 return $this->response()
-                    ->error(trans('main.file_none').$e->getMessage());
+                    ->error(trans('main.file_none') . $e->getMessage());
             }
         }
 

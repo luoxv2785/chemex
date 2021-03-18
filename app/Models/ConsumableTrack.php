@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Date;
  * @property float change
  * @property Date|null purchased
  * @property Date|null expired
+ * @property string|null description
  */
 class ConsumableTrack extends Model
 {

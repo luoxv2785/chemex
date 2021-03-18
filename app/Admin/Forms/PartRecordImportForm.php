@@ -27,7 +27,7 @@ class PartRecordImportForm extends Form
     public function handle(array $input): JsonResponse
     {
         $file = $input['file'];
-        $file_path = public_path('uploads/'.$file);
+        $file_path = public_path('uploads/' . $file);
 
         try {
             $rows = Excel::import($file_path)->first()->toArray();
@@ -106,15 +106,15 @@ class PartRecordImportForm extends Form
         } catch (IOException $e) {
             $return = $this
                 ->response()
-                ->error(trans('main.file_io_error').$e->getMessage());
+                ->error(trans('main.file_io_error') . $e->getMessage());
         } catch (UnsupportedTypeException $e) {
             $return = $this
                 ->response()
-                ->error(trans('main.file_format').$e->getMessage());
+                ->error(trans('main.file_format') . $e->getMessage());
         } catch (FileNotFoundException $e) {
             $return = $this
                 ->response()
-                ->error(trans('main.file_none').$e->getMessage());
+                ->error(trans('main.file_none') . $e->getMessage());
         }
 
         return $return;

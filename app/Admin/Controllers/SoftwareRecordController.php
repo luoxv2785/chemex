@@ -49,11 +49,11 @@ class SoftwareRecordController extends AdminController
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add(Data::icon('record').trans('main.record'), $this->grid(), true);
-                $tab->addLink(Data::icon('category').trans('main.category'), admin_route('software.categories.index'));
-                $tab->addLink(Data::icon('track').trans('main.track'), admin_route('software.tracks.index'));
-                $tab->addLink(Data::icon('statistics').trans('main.statistics'), admin_route('software.statistics'));
-                $tab->addLink(Data::icon('column').trans('main.column'), admin_route('software.columns.index'));
+                $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
+                $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('software.categories.index'));
+                $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('software.tracks.index'));
+                $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('software.statistics'));
+                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('software.columns.index'));
                 $row->column(12, $tab);
             });
     }
@@ -76,7 +76,7 @@ class SoftwareRecordController extends AdminController
                 ->toArray();
             $grid->column('id', '', $column_sort);
             $grid->column('qrcode', '', $column_sort)->qrcode(function () {
-                return 'software:'.$this->id;
+                return 'software:' . $this->id;
             }, 200, 200);
             $grid->column('name', '', $column_sort);
             $grid->column('description', '', $column_sort);
@@ -118,7 +118,7 @@ class SoftwareRecordController extends AdminController
                 // @permissions
                 if (Admin::user()->can('software.record.track.list')) {
                     $tracks_route = admin_route('software.tracks.index', ['_search_' => $this->id]);
-                    $actions->append("<a href='$tracks_route'>💿 ".admin_trans_label('Manage Track').'</a>');
+                    $actions->append("<a href='$tracks_route'>💿 " . admin_trans_label('Manage Track') . '</a>');
                 }
             });
 
@@ -248,7 +248,7 @@ class SoftwareRecordController extends AdminController
                         $card = new Card(trans('main.history'), view('history')->with('data', $history));
                         // @permissions
                         if (Admin::user()->can('software.record.history.export')) {
-                            $card->tool('<a class="btn btn-primary btn-xs" href="'.admin_route('export.software.history', [$id]).'" target="_blank">'.admin_trans_label('Export To Excel').'</a>');
+                            $card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.software.history', [$id]) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>');
                         }
                         $column->row($card);
                     });

@@ -47,11 +47,11 @@ class PartRecordController extends AdminController
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add(Data::icon('record').trans('main.record'), $this->grid(), true);
-                $tab->addLink(Data::icon('category').trans('main.category'), admin_route('part.categories.index'));
-                $tab->addLink(Data::icon('track').trans('main.track'), admin_route('part.tracks.index'));
-                $tab->addLink(Data::icon('statistics').trans('main.statistics'), admin_route('part.statistics'));
-                $tab->addLink(Data::icon('column').trans('main.column'), admin_route('part.columns.index'));
+                $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
+                $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('part.categories.index'));
+                $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('part.tracks.index'));
+                $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('part.statistics'));
+                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('part.columns.index'));
                 $row->column(12, $tab);
             });
     }
@@ -74,7 +74,7 @@ class PartRecordController extends AdminController
                 ->toArray();
             $grid->column('id', '', $column_sort);
             $grid->column('qrcode', '', $column_sort)->qrcode(function () {
-                return 'part:'.$this->id;
+                return 'part:' . $this->id;
             }, 200, 200);
             $grid->column('price', '', $column_sort);
             $grid->column('purchased', '', $column_sort);

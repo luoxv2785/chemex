@@ -26,11 +26,11 @@ class PartTrackController extends AdminController
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(Data::icon('record').trans('main.record'), admin_route('part.records.index'));
-                $tab->addLink(Data::icon('category').trans('main.category'), admin_route('part.categories.index'));
-                $tab->add(Data::icon('track').trans('main.track'), $this->grid(), true);
-                $tab->addLink(Data::icon('statistics').trans('main.statistics'), admin_route('part.statistics'));
-                $tab->addLink(Data::icon('column').trans('main.column'), admin_route('part.columns.index'));
+                $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('part.records.index'));
+                $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('part.categories.index'));
+                $tab->add(Data::icon('track') . trans('main.track'), $this->grid(), true);
+                $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('part.statistics'));
+                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('part.columns.index'));
                 $row->column(12, $tab);
             });
     }
@@ -48,9 +48,9 @@ class PartTrackController extends AdminController
     protected function grid(): Grid
     {
         return Grid::make(new PartTrack(['part', 'device']), function (Grid $grid) {
-            $grid->model()->where('device_id', '=', 2);
             $grid->column('id');
             $grid->column('part.name');
+            $grid->column('device.asset_number');
             $grid->column('device.name');
             $grid->column('created_at');
             $grid->column('updated_at');
@@ -76,7 +76,7 @@ class PartTrackController extends AdminController
             /**
              * 快速搜索.
              */
-            $grid->quickSearch('id', 'part.name', 'device.name')
+            $grid->quickSearch('id', 'part.name', 'device.asset_number', 'device.name')
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 

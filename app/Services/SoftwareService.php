@@ -50,7 +50,7 @@ class SoftwareService
         }
         $history = SoftwareService::history($software_id);
 
-        return Excel::export($history)->download($name.'履历清单.xlsx');
+        return Excel::export($history)->download($name . '履历清单.xlsx');
     }
 
     /**
@@ -65,10 +65,10 @@ class SoftwareService
         $data = [];
 
         $single = [
-            'type'     => '',
-            'name'     => '',
-            'status'   => '',
-            'style'    => '',
+            'type' => '',
+            'name' => '',
+            'status' => '',
+            'style' => '',
             'datetime' => '',
         ];
 

@@ -59,11 +59,11 @@ class RowActions extends DropdownActions
         }
 
         $actions = [
-            'view'     => $view,
-            'edit'     => $edit,
-            'default'  => $default,
-            'custom'   => $this->appends,
-            'remove'   => $remove,
+            'view' => $view,
+            'edit' => $edit,
+            'default' => $default,
+            'custom' => $this->appends,
+            'remove' => $remove,
             'selector' => ".{$this->grid->getRowName()}-checkbox",
         ];
 

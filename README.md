@@ -29,6 +29,10 @@
 
 [![Stargazers over time](https://whnb.wang/img/celaraze/chemex)](https://whnb.wang/celaraze/chemex)
 
+## 贡献者
+
+[![Giteye chart](https://chart.giteye.net/gitee/celaraze/chemex/E8FNVV4W.png)](https://giteye.net/chart/E8FNVV4W)
+
 ## 鸣谢
 
 <p align="center">
