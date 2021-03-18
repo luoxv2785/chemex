@@ -51,7 +51,7 @@ return [
         'consumable_records'     => '耗材清单',
         'consumable_categories'  => '耗材分类',
         'consumable_tracks'      => '耗材记录',
-        'setting'              => '站点',
+        'setting'                => '站点',
         'assets'                 => '资产',
         'additional_options'     => '补充信息',
     ],

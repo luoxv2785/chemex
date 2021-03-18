@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Support;
-
 
 use App\Admin\Extensions\Form\SelectCreate;
 use Dcat\Admin\Admin;
@@ -86,14 +84,14 @@ class Site
          * 复写admin站点配置.
          */
         config([
-            'app.url' => $site_url,
-            'app.debug' => $site_debug,
-            'app.locale' => admin_setting('site_lang'),
+            'app.url'             => $site_url,
+            'app.debug'           => $site_debug,
+            'app.locale'          => admin_setting('site_lang'),
             'app.fallback_locale' => admin_setting('site_lang'),
 
-            'admin.title' => admin_setting('site_title'),
-            'admin.logo' => $logo,
-            'admin.logo-mini' => $logo_mini,
+            'admin.title'        => admin_setting('site_title'),
+            'admin.logo'         => $logo,
+            'admin.logo-mini'    => $logo_mini,
             'admin.layout.color' => $theme_color,
 
             'filesystems.disks.admin.url' => config('app.url').'/uploads',
@@ -109,7 +107,7 @@ class Site
     }
 
     /**
-     * 注入字段
+     * 注入字段.
      */
     public function injectFields()
     {
@@ -117,7 +115,7 @@ class Site
     }
 
     /**
-     * 底部授权移除
+     * 底部授权移除.
      */
     public function footerRemove()
     {
@@ -133,7 +131,7 @@ CSS
     }
 
     /**
-     * 头部边距优化
+     * 头部边距优化.
      */
     public function headerPaddingFix()
     {
@@ -172,7 +170,7 @@ CSS
     }
 
     /**
-     * 行操作按钮最右
+     * 行操作按钮最右.
      */
     public function gridRowActionsRight()
     {
