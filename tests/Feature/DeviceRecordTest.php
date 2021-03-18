@@ -24,7 +24,8 @@ class DeviceRecordTest extends TestCase
     }
 
     /**
-     * 为测试用例创建一个管理员权限的用户
+     * 为测试用例创建一个管理员权限的用户.
+     *
      * @return Collection|Model|mixed
      */
     public function factoryAdminUser()

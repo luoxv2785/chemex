@@ -24,9 +24,9 @@ class DeviceRecordFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name,
+            'name'        => $this->faker->name,
             'category_id' => DeviceCategory::factory(),
-            'vendor_id' => VendorRecord::factory()
+            'vendor_id'   => VendorRecord::factory(),
         ];
     }
 }

@@ -79,7 +79,8 @@ class User extends Administrator implements JWTSubject
     }
 
     /**
-     * 用户有很多个角色追踪
+     * 用户有很多个角色追踪.
+     *
      * @return HasMany
      */
     public function roleUser(): HasMany
