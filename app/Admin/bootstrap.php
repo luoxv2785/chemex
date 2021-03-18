@@ -20,10 +20,14 @@
  */
 
 use App\Models\User;
-use App\Services\ConfigService;
+use App\Support\Site;
 use Dcat\Admin\Layout\Navbar;
 
-ConfigService::init();
+$site = new Site();
+$site->initConfig();
+$site->injectFields();
+$site->footerRemove();
+$site->gridRowActionsRight();
 
 // 获取当前用户的通知
 $user = User::where('id', auth('admin')->id())->first();

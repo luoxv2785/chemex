@@ -3,7 +3,6 @@
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Services\ConfigService;
 use App\Services\VersionService;
 use App\Support\Version;
 use Dcat\Admin\Layout\Column;
@@ -44,62 +43,6 @@ class VersionController extends Controller
     public function title()
     {
         return admin_trans_label('title');
-    }
-
-    /**
-     * 更新数据库结构.
-     *
-     * @return JsonResponse
-     */
-    public function migrate(): JsonResponse
-    {
-        $result = ConfigService::migrate();
-        if ($result) {
-            $return = response()->json([
-                'code'    => 200,
-                'message' => trans('main.success'),
-            ]);
-        } else {
-            $return = response()->json([
-                'code'    => 500,
-                'message' => trans('main.fail'),
-            ]);
-        }
-
-        return response()->json($return);
-    }
-
-    /**
-     * 清理全部缓存.
-     *
-     * @return JsonResponse
-     */
-    public function clear(): JsonResponse
-    {
-        $result = ConfigService::clear();
-        if ($result) {
-            $return = response()->json([
-                'code'    => 200,
-                'message' => trans('main.success'),
-            ]);
-        } else {
-            $return = response()->json([
-                'code'    => 500,
-                'message' => trans('main.fail'),
-            ]);
-        }
-
-        return response()->json($return);
-    }
-
-    /**
-     * 获取远程版本号.
-     *
-     * @return string|null
-     */
-    public function getRemoteVersion(): ?string
-    {
-        return VersionService::getLatestVersionFromGitee();
     }
 
     /**

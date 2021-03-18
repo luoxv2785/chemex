@@ -1,15 +1,14 @@
 <?php
 
-namespace Celaraze\DcatPlus\Extensions\Form;
+namespace App\Admin\Extensions\Form;
 
-use Celaraze\DcatPlus\Support;
 use Dcat\Admin\Form;
 use Dcat\Admin\Form\Field\Select;
 use Dcat\Admin\Support\Helper;
 
 class SelectCreate extends Select
 {
-    protected $view = 'celaraze.dcat-extension-plus::select_create';
+    protected $view = 'extensions.select_create';
 
     protected $url = null;
 
@@ -19,9 +18,9 @@ class SelectCreate extends Select
     public function render()
     {
         $this->addDefaultConfig([
-            'allowClear'  => true,
+            'allowClear' => true,
             'placeholder' => [
-                'id'   => '',
+                'id' => '',
                 'text' => $this->placeholder(),
             ],
         ]);
@@ -29,11 +28,11 @@ class SelectCreate extends Select
         $this->formatOptions();
 
         $this->addVariables([
-            'options'       => $this->options,
-            'groups'        => $this->groups,
-            'configs'       => $this->config,
+            'options' => $this->options,
+            'groups' => $this->groups,
+            'configs' => $this->config,
             'cascadeScript' => $this->getCascadeScript(),
-            'createDialog'  => $this->build(),
+            'createDialog' => $this->build(),
         ]);
 
         $this->attribute('data-value', implode(',', Helper::array($this->value())));
@@ -43,13 +42,13 @@ class SelectCreate extends Select
 
     protected function build(): string
     {
-        Form::dialog(Support::trans('main.select_create'))
+        Form::dialog(trans('main.select_create'))
             ->click('.create-form')
             ->url($this->url)
             ->width('1200px')
             ->height('800px');
 
-        $text = Support::trans('main.select_create');
+        $text = trans('main.select_create');
 
         return "<span class='btn btn-primary create-form' data-url='$this->url'> $text </span>";
     }

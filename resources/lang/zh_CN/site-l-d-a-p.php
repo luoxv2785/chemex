@@ -2,11 +2,9 @@
 
 return [
     'labels' => [
-        'title'                    => 'LDAP',
-        'description'              => '将咖啡壶与LDAP连接',
+        'title'                    => '站点',
+        'description'              => '与咖啡壶站点相关的配置',
         'ldap'                     => 'LDAP',
-        'platform'                 => '平台',
-        'extensions'               => '扩展',
         'Configuration Success'    => 'LDAP配置更新成功！',
         'Host Primary Help'        => '域控主机的域名地址或者ip地址。',
         'Host Secondary Help'      => '域控主机的域名地址或者ip地址，这是一个备用地址，如果主域控无法连接，将自动选择备域控。',

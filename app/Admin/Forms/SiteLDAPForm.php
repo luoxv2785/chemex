@@ -4,7 +4,7 @@ namespace App\Admin\Forms;
 
 use Dcat\Admin\Widgets\Form;
 
-class LDAPForm extends Form
+class SiteLDAPForm extends Form
 {
     /**
      * Handle the form request.
@@ -85,7 +85,7 @@ class LDAPForm extends Form
 <script>
 function test(){
     $.ajax({
-            url: '/ldap/test',
+            url: '/site/ldap/test',
             success: function (res) {
                 res *=1;
                 switch (res){

@@ -7,12 +7,14 @@ use App\Admin\Controllers\DepreciationRuleController;
 use App\Admin\Controllers\DeviceCategoryController;
 use App\Admin\Controllers\DeviceRecordController;
 use App\Admin\Controllers\DeviceStatisticsController;
-use App\Admin\Controllers\LDAPController;
 use App\Admin\Controllers\NotificationController;
 use App\Admin\Controllers\PartCategoryController;
 use App\Admin\Controllers\PartStatisticsController;
 use App\Admin\Controllers\PurchasedChannelController;
 use App\Admin\Controllers\ServiceStatisticsController;
+use App\Admin\Controllers\SiteLDAPController;
+use App\Admin\Controllers\SiteSettingController;
+use App\Admin\Controllers\SiteUIController;
 use App\Admin\Controllers\SoftwareCategoryController;
 use App\Admin\Controllers\SoftwareRecordController;
 use App\Admin\Controllers\SoftwareStatisticsController;
@@ -25,23 +27,17 @@ use Illuminate\Support\Facades\Route;
 Admin::routes();
 
 Route::group([
-    'prefix'     => config('admin.route.prefix'),
-    'namespace'  => config('admin.route.namespace'),
+    'prefix' => config('admin.route.prefix'),
+    'namespace' => config('admin.route.namespace'),
     'middleware' => config('admin.route.middleware'),
 ], function (Router $router) {
     $router->get('/', 'HomeController@index')
         ->name('home');
-    $router->get('/ldap/test', 'LDAPController@test')
-        ->name('ldap.test');
 
     /**
      * 辅助信息.
      */
     $router->get('/version', 'VersionController@index');
-    $router->get('/action/migrate', 'VersionController@migrate')
-        ->name('migrate');
-    $router->get('/action/clear', 'VersionController@clear')
-        ->name('clear');
     $router->get('/action/upgrade', 'VersionController@upgrade')
         ->name('upgrade');
 
@@ -221,9 +217,13 @@ Route::group([
     $router->resource('/menu', 'MenuController')
         ->names('menu');
 
-    /**
-     * LDAP.
-     */
-    $router->get('/ldap', [LDAPController::class, 'index'])
-        ->name('ldap.index');
+    $router->get('/site/setting', [SiteSettingController::class, 'index'])
+        ->name('site.setting.index');
+
+    $router->get('/site/ui', [SiteUIController::class, 'index'])
+        ->name('site.ui.index');
+    $router->get('/site/ldap', [SiteLDAPController::class, 'index'])
+        ->name('site.ldap.index');
+    $router->get('/site/ldap/test', [SiteLDAPController::class, 'test'])
+        ->name('site.ldap.test');
 });

@@ -1,27 +1,16 @@
 <?php
 
-namespace Celaraze\DcatPlus;
 
-use Celaraze\DcatPlus\Extensions\Form\SelectCreate;
+namespace App\Support;
+
+
+use App\Admin\Extensions\Form\SelectCreate;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
-use Dcat\Admin\Support\Helper;
 use Illuminate\Support\Facades\Storage;
 
-class Support
+class Site
 {
-    /**
-     * 快速翻译（为了缩短代码量）.
-     *
-     * @param $string
-     *
-     * @return array|string|null
-     */
-    public static function trans($string)
-    {
-        return ServiceProvider::trans($string);
-    }
-
     /**
      * 初始化配置注入.
      */
@@ -68,69 +57,68 @@ class Support
         } else {
             $theme_color = admin_setting('theme_color');
         }
-        if (empty(admin_setting('sidebar_style'))) {
-            $sidebar_style = 'default';
-        } else {
-            $sidebar_style = admin_setting('sidebar_style');
-            if ($sidebar_style == 'horizontal_menu') {
-                $horizontal_menu = true;
-            }
+
+        /**
+         * 处理AD HOSTS到数组.
+         */
+        $ad_hosts = [
+            admin_setting('ad_host_primary'),
+        ];
+        if (!empty(admin_setting('ad_host_secondary'))) {
+            array_push($ad_hosts, admin_setting('ad_host_secondary'));
         }
+
+        /**
+         * 处理AD端口号.
+         */
+        $ad_port = admin_setting('ad_port_primary');
+        $ad_port = (int) $ad_port;
+
+        /**
+         * 处理AD SSL 和 TLS 协议，如果没填这个配置，就为false，否则就是本身设置的值
+         */
+        $ad_use_ssl = admin_setting('ad_use_ssl');
+        $ad_use_ssl = empty($ad_use_ssl) ? false : $ad_use_ssl;
+        $ad_use_tls = admin_setting('ad_use_tls');
+        $ad_use_tls = empty($ad_use_tls) ? false : $ad_use_tls;
 
         /**
          * 复写admin站点配置.
          */
         config([
-            'app.url'             => $site_url,
-            'app.debug'           => $site_debug,
-            'app.locale'          => admin_setting('site_lang'),
+            'app.url' => $site_url,
+            'app.debug' => $site_debug,
+            'app.locale' => admin_setting('site_lang'),
             'app.fallback_locale' => admin_setting('site_lang'),
 
-            'admin.title'                  => admin_setting('site_title'),
-            'admin.logo'                   => $logo,
-            'admin.logo-mini'              => $logo_mini,
-            'admin.layout.color'           => $theme_color,
-            'admin.layout.body_class'      => $sidebar_style,
-            'admin.layout.horizontal_menu' => $horizontal_menu,
+            'admin.title' => admin_setting('site_title'),
+            'admin.logo' => $logo,
+            'admin.logo-mini' => $logo_mini,
+            'admin.layout.color' => $theme_color,
+
+            'filesystems.disks.admin.url' => config('app.url').'/uploads',
+
+            'ldap.connections.default.settings.hosts'    => $ad_hosts,
+            'ldap.connections.default.settings.port'     => $ad_port,
+            'ldap.connections.default.settings.base_dn'  => admin_setting('ad_base_dn'),
+            'ldap.connections.default.settings.username' => admin_setting('ad_username'),
+            'ldap.connections.default.settings.password' => admin_setting('ad_password'),
+            'ldap.connections.default.settings.use_ssl'  => $ad_use_ssl,
+            'ldap.connections.default.settings.use_tls'  => $ad_use_tls,
         ]);
     }
 
     /**
-     * 复写菜单栏.
+     * 注入字段
      */
-    public function injectSidebar()
-    {
-        if (admin_setting('sidebar_indentation')) {
-            admin_inject_section(Admin::SECTION['LEFT_SIDEBAR_MENU'], function () {
-                $menuModel = config('admin.database.menu_model');
-
-                $builder = Admin::menu();
-
-                $html = '';
-                foreach (Helper::buildNestedArray((new $menuModel())->allNodes()) as $item) {
-                    $html .= view(self::menu_view(), ['item' => $item, 'builder' => $builder])->render();
-                }
-
-                return $html;
-            });
-        }
-    }
-
-    /**
-     * 返回菜单视图路径.
-     *
-     * @return string
-     */
-    public static function menu_view(): string
-    {
-        return 'celaraze.dcat-extension-plus::menu';
-    }
-
     public function injectFields()
     {
         Form::extend('selectCreate', SelectCreate::class);
     }
 
+    /**
+     * 底部授权移除
+     */
     public function footerRemove()
     {
         if (admin_setting('footer_remove')) {
@@ -144,6 +132,9 @@ CSS
         }
     }
 
+    /**
+     * 头部边距优化
+     */
     public function headerPaddingFix()
     {
         if (admin_setting('header_padding_fix')) {
@@ -180,6 +171,9 @@ CSS
         }
     }
 
+    /**
+     * 行操作按钮最右
+     */
     public function gridRowActionsRight()
     {
         if (admin_setting('grid_row_actions_right')) {
