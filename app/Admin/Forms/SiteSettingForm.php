@@ -50,7 +50,7 @@ class SiteSettingForm extends Form
         $this->radio('site_lang')
             ->options([
                 'zh_CN' => '中文（简体）',
-                'en' => 'English',
+                'en'    => 'English',
             ])
             ->default(admin_setting('site_lang'));
     }
