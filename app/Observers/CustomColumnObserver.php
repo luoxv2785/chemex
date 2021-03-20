@@ -8,7 +8,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CustomFieldObserver
+class CustomColumnObserver
 {
     /**
      * Handle the CustomColumn "created" event.
@@ -19,6 +19,10 @@ class CustomFieldObserver
      */
     public function created(CustomColumn $customColumn)
     {
+        /**
+         * 自定义字段创建后，同时触发数据库迁移
+         * 对应的模型数据表就创建这个字段
+         */
         try {
             Schema::table($customColumn->table_name, function (Blueprint $table) use ($customColumn) {
                 $type = $customColumn->type;
@@ -61,6 +65,8 @@ class CustomFieldObserver
      */
     public function deleted(CustomColumn $customColumn)
     {
+        // 自定义字段删除后，同时触发数据库迁移
+        // 对应的模型数据表就删除这个字段
         try {
             Schema::table($customColumn->table_name, function (Blueprint $table) use ($customColumn) {
                 $table->dropColumn($customColumn->name);

@@ -48,8 +48,8 @@ class CheckRecordController extends AdminController
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add(Data::icon('record') . trans('main.check_record'), $this->grid(), true);
-                $tab->addLink(Data::icon('track') . trans('main.check_track'), admin_route('check.tracks.index'));
+                $tab->add(Data::icon('record').trans('main.check_record'), $this->grid(), true);
+                $tab->addLink(Data::icon('track').trans('main.check_track'), admin_route('check.tracks.index'));
                 $row->column(12, $tab);
             });
     }
@@ -101,7 +101,7 @@ class CheckRecordController extends AdminController
                     }
                 }
                 $report_url = admin_route('export.check.report', ['check_id' => $this->id]);
-                $actions->append("<a href='$report_url' target='_blank'>✨ " . admin_trans_label('Report') . '</a>');
+                $actions->append("<a href='$report_url' target='_blank'>✨ ".admin_trans_label('Report').'</a>');
             });
 
             $grid->toolsWithOutline(false);
@@ -119,7 +119,7 @@ class CheckRecordController extends AdminController
     /**
      * Show interface.
      *
-     * @param mixed $id
+     * @param mixed   $id
      * @param Content $content
      *
      * @return Content

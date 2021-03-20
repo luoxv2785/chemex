@@ -11,7 +11,7 @@ class Grid extends \Dcat\Admin\Grid
      *
      * @param string $name
      * @param string $label
-     * @param array $sorts
+     * @param array  $sorts
      *
      * @return Column
      */
@@ -28,13 +28,13 @@ class Grid extends \Dcat\Admin\Grid
             }
         }
 
-        return $this->addColumn($name, $label, (int)$order);
+        return $this->addColumn($name, $label, (int) $order);
     }
 
     /**
      * Add column to grid.
      *
-     * @param int $order
+     * @param int    $order
      * @param string $field
      * @param string $label
      *
@@ -51,7 +51,7 @@ class Grid extends \Dcat\Admin\Grid
     }
 
     /**
-     * @param int $order
+     * @param int    $order
      * @param string $field
      * @param string $label
      *

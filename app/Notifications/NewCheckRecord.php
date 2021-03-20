@@ -41,10 +41,10 @@ class NewCheckRecord extends Notification
     {
         return [
             'check_record_id' => $this->checkRecord->id,
-            'title' => trans('new_check_record_title'),
-            'content' => trans('new_check_record_content'),
-            'expired' => $this->checkRecord->end_time,
-            'url' => admin_route('check.records.show', [$this->checkRecord->id]),
+            'title'           => trans('new_check_record_title'),
+            'content'         => trans('new_check_record_content'),
+            'expired'         => $this->checkRecord->end_time,
+            'url'             => admin_route('check.records.show', [$this->checkRecord->id]),
         ];
     }
 }

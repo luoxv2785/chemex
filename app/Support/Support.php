@@ -33,13 +33,13 @@ class Support
         $software_records = SoftwareRecord::all();
 
         foreach ($device_records as $device_record) {
-            array_push($data, 'device:' . $device_record->id . '&#10;');
+            array_push($data, 'device:'.$device_record->id.'&#10;');
         }
         foreach ($part_records as $part_record) {
-            array_push($data, 'part:' . $part_record->id . '&#10;');
+            array_push($data, 'part:'.$part_record->id.'&#10;');
         }
         foreach ($software_records as $software_record) {
-            array_push($data, 'software:' . $software_record->id . '&#10;');
+            array_push($data, 'software:'.$software_record->id.'&#10;');
         }
 
         return $data;
@@ -226,13 +226,13 @@ class Support
             $return = array_filter($data, function ($item) use ($diff) {
                 switch ($item['scale']) {
                     case 'month':
-                        $number = (int)$item['number'] * 24 * 60 * 60 * 30;
+                        $number = (int) $item['number'] * 24 * 60 * 60 * 30;
                         break;
                     case 'year':
-                        $number = (int)$item['number'] * 24 * 60 * 60 * 365;
+                        $number = (int) $item['number'] * 24 * 60 * 60 * 365;
                         break;
                     default:
-                        $number = (int)$item['number'] * 24 * 60 * 60;
+                        $number = (int) $item['number'] * 24 * 60 * 60;
                 }
 
                 return $diff >= $number;
@@ -240,7 +240,7 @@ class Support
 
             if (!empty($return)) {
                 array_multisort(array_column($return, 'number'), SORT_DESC, $return);
-                $price = $price * (float)$return[0]['ratio'];
+                $price = $price * (float) $return[0]['ratio'];
             }
 
             return $price;
@@ -321,13 +321,13 @@ class Support
                 // 如果异常待修复
                 if ($service_issue->status == 1) {
                     $service->status = 1;
-                    $issue = $service_issue->issue . '<br>';
+                    $issue = $service_issue->issue.'<br>';
                     array_push($issues, $issue);
                 }
                 // 如果是修复的
                 if ($service_issue->status == 2) {
                     $service->status = 0;
-                    $issue = '<span class="status-recovery">[已修复最近一个问题]</span> ' . $service_issue->issue . '<br>';
+                    $issue = '<span class="status-recovery">[已修复最近一个问题]</span> '.$service_issue->issue.'<br>';
                     if ((time() - strtotime($service_issue->end)) > (24 * 60 * 60)) {
                         $issue = '';
                         $service->start = '';
@@ -388,18 +388,18 @@ class Support
         $device_record = DeviceRecord::where('id', $device_id)->first();
         if (!empty($device_record)) {
             $return = [
-                'name' => $device_record->name,
+                'name'     => $device_record->name,
                 'children' => [
                     [
-                        'name' => trans('main.part'),
+                        'name'     => trans('main.part'),
                         'children' => [],
                     ],
                     [
-                        'name' => trans('main.software'),
+                        'name'     => trans('main.software'),
                         'children' => [],
                     ],
                     [
-                        'name' => trans('main.service'),
+                        'name'     => trans('main.service'),
                         'children' => [],
                     ],
                 ],

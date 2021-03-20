@@ -15,11 +15,11 @@ class LDAP
      * @param null $username
      * @param null $password
      *
-     * @return bool
+     * @throws BindException
      * @throws PasswordRequiredException
      * @throws UsernameRequiredException
      *
-     * @throws BindException
+     * @return bool
      */
     public static function auth($username = null, $password = null): bool
     {

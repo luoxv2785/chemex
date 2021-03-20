@@ -131,9 +131,9 @@ class DepreciationRuleController extends AdminController
                     ->required();
                 $table->select('scale')
                     ->options([
-                        'day' => '天',
+                        'day'   => '天',
                         'month' => '月',
-                        'year' => '年',
+                        'year'  => '年',
                     ])
                     ->required();
                 $table->currency('ratio')

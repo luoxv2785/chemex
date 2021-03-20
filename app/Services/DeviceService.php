@@ -93,29 +93,6 @@ class DeviceService
     {
         $device_record = DeviceRecord::where('id', $device_id)->first();
         if (!empty($device_record)) {
-            // 软删除设备归属记录
-            $device_tracks = DeviceTrack::where('device_id', $device_id)->get();
-            foreach ($device_tracks as $device_track) {
-                $device_track->delete();
-            }
-
-            // 软删除配件归属记录
-            $part_tracks = PartTrack::where('device_id', $device_id)->get();
-            foreach ($part_tracks as $part_track) {
-                $part_track->delete();
-            }
-
-            // 软删除软件归属记录
-            $software_tracks = SoftwareTrack::where('device_id', $device_id)->get();
-            foreach ($software_tracks as $software_track) {
-                $software_track->delete();
-            }
-
-            // 软删除服务归属记录
-            $service_tracks = SoftwareTrack::where('device_id', $device_id)->get();
-            foreach ($service_tracks as $service_track) {
-                $service_track->delete();
-            }
             $device_record->delete();
         }
     }

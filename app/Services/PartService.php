@@ -24,10 +24,10 @@ class PartService
         $data = [];
 
         $single = [
-            'type' => '',
-            'name' => '',
-            'status' => '',
-            'style' => '',
+            'type'     => '',
+            'name'     => '',
+            'status'   => '',
+            'style'    => '',
             'datetime' => '',
         ];
 
@@ -56,13 +56,6 @@ class PartService
     {
         $part = PartRecord::where('id', $part_id)->first();
         if (!empty($part)) {
-            $part_tracks = PartTrack::where('part_id', $part->id)
-                ->get();
-
-            foreach ($part_tracks as $part_track) {
-                $part_track->delete();
-            }
-
             $part->delete();
         }
     }

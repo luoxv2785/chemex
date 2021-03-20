@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Admin\Actions\Tree\ToolAction\CustomColumnDeleteAction;
+use App\Admin\Actions\Tree\ToolAction\CustomColumnUpdateAction;
 use App\Admin\Repositories\ConsumableRecord;
 use App\Admin\Repositories\DeviceRecord;
 use App\Admin\Repositories\PartRecord;

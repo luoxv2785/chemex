@@ -32,7 +32,7 @@ class CheckSoftwarePercentage extends Card
                 ->where('status', '!=', 0)
                 ->get()
                 ->count();
-            $done_counts = trans('main.check_process') . $check_tracks_counts . ' / ' . $software_records_all;
+            $done_counts = trans('main.check_process').$check_tracks_counts.' / '.$software_records_all;
 
             try {
                 $percentage = round($check_tracks_counts / $software_records_all * 100, 2);

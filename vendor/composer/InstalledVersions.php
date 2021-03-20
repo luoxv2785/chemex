@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '13f78b0bdfbe503dfdd7c8009db4b4ac68e49ad9',
+    'reference' => '0b10eefe495f4359123b988d76ab41fa41b7bc99',
     'name' => 'celaraze/chemex',
   ),
   'versions' => 
@@ -87,7 +87,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '13f78b0bdfbe503dfdd7c8009db4b4ac68e49ad9',
+      'reference' => '0b10eefe495f4359123b988d76ab41fa41b7bc99',
     ),
     'celaraze/pour' => 
     array (
@@ -268,12 +268,12 @@ private static $installed = array (
     ),
     'enlightn/enlightn' => 
     array (
-      'pretty_version' => 'v1.19.0',
-      'version' => '1.19.0.0',
+      'pretty_version' => 'v1.20.0',
+      'version' => '1.20.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'c0d1c773af0a4bf6321e108f23eb0b0c153e80c4',
+      'reference' => '32c94efdae0dc13ac30e00a67e17f8d4370a4d0a',
     ),
     'enlightn/security-checker' => 
     array (
@@ -322,12 +322,12 @@ private static $installed = array (
     ),
     'filp/whoops' => 
     array (
-      'pretty_version' => '2.10.0',
-      'version' => '2.10.0.0',
+      'pretty_version' => '2.11.0',
+      'version' => '2.11.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '6ecda5217bf048088b891f7403b262906be5a957',
+      'reference' => 'f6e14679f948d8a5cfb866fa7065a30c66bd64d3',
     ),
     'fruitcake/laravel-cors' => 
     array (
@@ -395,12 +395,12 @@ private static $installed = array (
     ),
     'hhxsv5/laravel-s' => 
     array (
-      'pretty_version' => 'v3.7.17',
-      'version' => '3.7.17.0',
+      'pretty_version' => 'v3.7.18',
+      'version' => '3.7.18.0',
       'aliases' => 
       array (
       ),
-      'reference' => '1a10f6c6b93072fdd767afa29295edd33ce3462d',
+      'reference' => '57ea5cccdf303fe3177157b1f01e76d58b401f0c',
     ),
     'illuminate/auth' => 
     array (
@@ -774,12 +774,12 @@ private static $installed = array (
     ),
     'nunomaduro/larastan' => 
     array (
-      'pretty_version' => 'v0.7.0',
-      'version' => '0.7.0.0',
+      'pretty_version' => 'v0.7.1',
+      'version' => '0.7.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '179d7565674d4e264e60296d1b5b75413b7461b6',
+      'reference' => 'bbbe09ec16a565e6423878bd17fc4355fa0d0a4c',
     ),
     'ocramius/package-versions' => 
     array (

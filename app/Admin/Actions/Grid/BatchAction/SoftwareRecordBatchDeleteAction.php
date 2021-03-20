@@ -24,7 +24,7 @@ class SoftwareRecordBatchDeleteAction extends BatchAction
         $keys = $this->getKey();
 
         foreach ($keys as $key) {
-            SoftwareService::deleteSoftware($key);
+            SoftwareService::softwareDelete($key);
         }
 
         return $this->response()->success(trans('main.success'))->refresh();

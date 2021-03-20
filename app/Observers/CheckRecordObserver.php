@@ -17,9 +17,10 @@ class CheckRecordObserver
      */
     public function created(CheckRecord $checkRecord)
     {
-        $admin_user = User::where('id', $checkRecord->user_id)->first();
-        if (!empty($admin_user)) {
-            $admin_user->notify(new NewCheckRecord($checkRecord));
+        // 用户创建盘点任务后，同时创建一条通知给负责人
+        $user = User::where('id', $checkRecord->user_id)->first();
+        if (!empty($user)) {
+            $user->notify(new NewCheckRecord($checkRecord));
         }
     }
 

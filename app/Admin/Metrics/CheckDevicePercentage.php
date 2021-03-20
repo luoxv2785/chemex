@@ -31,7 +31,7 @@ class CheckDevicePercentage extends Card
             $check_tracks_counts = CheckTrack::where('check_id', $check_record->id)
                 ->where('status', '!=', 0)
                 ->count();
-            $done_counts = trans('main.check_process') . $check_tracks_counts . ' / ' . $device_records_all;
+            $done_counts = trans('main.check_process').$check_tracks_counts.' / '.$device_records_all;
 
             try {
                 $percentage = round($check_tracks_counts / $device_records_all * 100, 2);

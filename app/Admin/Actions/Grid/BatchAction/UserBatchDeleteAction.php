@@ -24,7 +24,7 @@ class UserBatchDeleteAction extends BatchAction
         $keys = $this->getKey();
 
         foreach ($keys as $key) {
-            UserService::deleteUser($key);
+            UserService::userDelete($key);
         }
 
         return $this->response()->success(trans('main.success'))->refresh();

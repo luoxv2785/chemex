@@ -83,6 +83,6 @@ class ExpirationService
             }
         }
 
-        return (int)$day;
+        return (int) $day;
     }
 }

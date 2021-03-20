@@ -17,9 +17,10 @@ class TodoRecordObserver
      */
     public function created(TodoRecord $todoRecord)
     {
-        $admin_user = User::where('id', $todoRecord->user_id)->first();
-        if (!empty($admin_user)) {
-            $admin_user->notify(new NewTodoRecord($todoRecord));
+        // 用户创建待办后，同时创建一条通知
+        $user = User::where('id', $todoRecord->user_id)->first();
+        if (!empty($user)) {
+            $user->notify(new NewTodoRecord($todoRecord));
         }
     }
 

@@ -41,10 +41,10 @@ class NewTodoRecord extends Notification
     {
         return [
             'todo_record_id' => $this->todoRecord->id,
-            'title' => trans('new_todo_record_title'),
-            'content' => trans('new_todo_record_content'),
-            'expired' => $this->todoRecord->end,
-            'url' => admin_route('todo.records.show', [$this->todoRecord->id]),
+            'title'          => trans('new_todo_record_title'),
+            'content'        => trans('new_todo_record_content'),
+            'expired'        => $this->todoRecord->end,
+            'url'            => admin_route('todo.records.show', [$this->todoRecord->id]),
         ];
     }
 }

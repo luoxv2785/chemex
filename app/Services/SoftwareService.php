@@ -18,17 +18,10 @@ class SoftwareService
      *
      * @param $software_id
      */
-    public static function deleteSoftware($software_id)
+    public static function softwareDelete($software_id)
     {
         $software = SoftwareRecord::where('id', $software_id)->first();
         if (!empty($software)) {
-            $software_tracks = SoftwareTrack::where('software_id', $software->id)
-                ->get();
-
-            foreach ($software_tracks as $software_track) {
-                $software_track->delete();
-            }
-
             $software->delete();
         }
     }

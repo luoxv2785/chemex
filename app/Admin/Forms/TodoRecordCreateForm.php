@@ -41,13 +41,11 @@ class TodoRecordCreateForm extends Form
             $todo_record->user_id = $user_id;
             $todo_record->tags = $tags;
             $todo_record->save();
-            $return = $this
-                ->response()
+            $return = $this->response()
                 ->success(trans('main.success'))
                 ->refresh();
         } catch (Exception $e) {
-            $return = $this
-                ->response()
+            $return = $this->response()
                 ->error(trans('main.fail') . $e->getMessage());
         }
 

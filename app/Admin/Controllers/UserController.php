@@ -33,10 +33,10 @@ class UserController extends BaseUserController
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add(Data::icon('user') . admin_trans_label('User'), $this->grid(), true);
-                $tab->addLink(Data::icon('department') . admin_trans_label('Department'), admin_route('organization.departments.index'));
-                $tab->addLink(Data::icon('role') . admin_trans_label('Role'), admin_route('organization.roles.index'));
-                $tab->addLink(Data::icon('permission') . admin_trans_label('Permission'), admin_route('organization.permissions.index'));
+                $tab->add(Data::icon('user').admin_trans_label('User'), $this->grid(), true);
+                $tab->addLink(Data::icon('department').admin_trans_label('Department'), admin_route('organization.departments.index'));
+                $tab->addLink(Data::icon('role').admin_trans_label('Role'), admin_route('organization.roles.index'));
+                $tab->addLink(Data::icon('permission').admin_trans_label('Permission'), admin_route('organization.permissions.index'));
                 $row->column(12, $tab);
             });
     }

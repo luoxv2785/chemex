@@ -18,7 +18,6 @@ class DcatAdminCleaner extends BaseCleaner
         'admin.menu',
         'admin.context',
         'admin.web-uploader',
-        'admin.setting'
     ];
 
     public function clean()

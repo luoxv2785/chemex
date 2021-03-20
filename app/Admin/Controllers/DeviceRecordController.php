@@ -56,11 +56,11 @@ class DeviceRecordController extends AdminController
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
-                $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('device.categories.index'));
-                $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('device.tracks.index'));
-                $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('device.statistics'));
-                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('device.columns.index'));
+                $tab->add(Data::icon('record').trans('main.record'), $this->grid(), true);
+                $tab->addLink(Data::icon('category').trans('main.category'), admin_route('device.categories.index'));
+                $tab->addLink(Data::icon('track').trans('main.track'), admin_route('device.tracks.index'));
+                $tab->addLink(Data::icon('statistics').trans('main.statistics'), admin_route('device.statistics'));
+                $tab->addLink(Data::icon('column').trans('main.column'), admin_route('device.columns.index'));
                 $row->column(12, $tab);
             });
     }
@@ -81,7 +81,7 @@ class DeviceRecordController extends AdminController
             $sort_columns = $this->sortColumns();
             $grid->column('id', '', $sort_columns);
             $grid->column('qrcode', '', $sort_columns)->qrcode(function () {
-                return 'device:' . $this->id;
+                return 'device:'.$this->id;
             }, 200, 200);
             $grid->column('asset_number', '', $sort_columns);
             $grid->column('photo', '', $sort_columns)->image('', 50, 50);
@@ -103,7 +103,7 @@ class DeviceRecordController extends AdminController
             $grid->column('expired', '', $sort_columns);
             $grid->column('user.name', '', $sort_columns)->display(function ($name) {
                 if ($this->isLend()) {
-                    return '<span style="color: rgba(178,68,71,1);font-weight: 600;">[' . trans('main.lend') . '] </span>' . $name;
+                    return '<span style="color: rgba(178,68,71,1);font-weight: 600;">['.trans('main.lend').'] </span>'.$name;
                 }
 
                 return $name;
@@ -250,7 +250,7 @@ class DeviceRecordController extends AdminController
      * 详情页构建器
      * 为了复写详情页的布局
      *
-     * @param mixed $id
+     * @param mixed   $id
      * @param Content $content
      *
      * @return Content
@@ -265,7 +265,7 @@ class DeviceRecordController extends AdminController
                 $row->column(5, function (Column $column) use ($id) {
                     // 处理设备使用人
                     $device = $this->detail($id)->model();
-                    $column->row(Card::make()->content(admin_trans_label('Current User') . '：' . $device->userName()));
+                    $column->row(Card::make()->content(admin_trans_label('Current User').'：'.$device->userName()));
 
                     $related = Support::makeDeviceRelatedChartData($id);
                     $column->row(new Card(trans('main.related'), view('charts.device_related')->with('related', $related)));
@@ -279,7 +279,7 @@ class DeviceRecordController extends AdminController
                     $card = new Card(trans('main.history'), view('history')->with('data', $history));
                     // @permissions
                     if (Admin::user()->can('device.record.history.export')) {
-                        $card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.device.history', ['device_id' => 1]) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>');
+                        $card->tool('<a class="btn btn-primary btn-xs" href="'.admin_route('export.device.history', ['device_id' => 1]).'" target="_blank">'.admin_trans_label('Export To Excel').'</a>');
                     }
                     $column->row($card);
                 });

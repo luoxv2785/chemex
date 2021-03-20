@@ -84,9 +84,9 @@ Table of Contents
 
 ## Benchmark
 
-- [Which is the fastest ?](https://github.com/the-benchmarker/web-frameworks)
+- [Which is the fastest web framework?](https://github.com/the-benchmarker/web-frameworks)
 
-- [Web Framework Benchmarks](https://www.techempower.com/benchmarks/)
+- [TechEmpower Framework Benchmarks](https://www.techempower.com/benchmarks/)
 
 ## Requirements
 
@@ -1259,94 +1259,103 @@ Resources:
 
 ## Important notices
 
-- `Singleton Issue`
+### Singleton Issue
 
-    - Under FPM mode, singleton instances will be instantiated and recycled in every request, request start=>instantiate instance=>request end=>recycled instance.
+- Under FPM mode, singleton instances will be instantiated and recycled in every request, request start=>instantiate instance=>request end=>recycled instance.
 
-    - Under Swoole Server, All singleton instances will be held in memory, different lifetime from FPM, request start=>instantiate instance=>request end=>do not recycle singleton instance. So need developer to maintain status of singleton instances in every request.
+- Under Swoole Server, All singleton instances will be held in memory, different lifetime from FPM, request start=>instantiate instance=>request end=>do not recycle singleton instance. So need developer to maintain status of singleton instances in every request.
 
-    - Common solutions:
+- Common solutions:
 
-        1. Write a `XxxCleaner` class to clean up the singleton object state. This class implements the interface `Hhxsv5\LaravelS\Illuminate\Cleaners\CleanerInterface` and then registers it in `cleaners` of `laravels.php`.
+    1. Write a `XxxCleaner` class to clean up the singleton object state. This class implements the interface `Hhxsv5\LaravelS\Illuminate\Cleaners\CleanerInterface` and then registers it in `cleaners` of `laravels.php`.
 
-        2. `Reset` status of singleton instances by `Middleware`.
+    2. `Reset` status of singleton instances by `Middleware`.
 
-        1. Re-register `ServiceProvider`, add `XxxServiceProvider` into `register_providers` of file `laravels.php`. So that reinitialize singleton instances in every request [Refer](https://github.com/hhxsv5/laravel-s/blob/master/Settings.md#register_providers).
-    
-    - LaravelS has built in some [cleaners](https://github.com/hhxsv5/laravel-s/blob/master/Settings.md#cleaners).
+    1. Re-register `ServiceProvider`, add `XxxServiceProvider` into `register_providers` of file `laravels.php`. So that reinitialize singleton instances in every request [Refer](https://github.com/hhxsv5/laravel-s/blob/master/Settings.md#register_providers).
 
-- [Known issues](https://github.com/hhxsv5/laravel-s/blob/master/KnownIssues.md): a package of known issues and solutions.
+### Cleaners
+> [Configuration cleaners](https://github.com/hhxsv5/laravel-s/blob/master/Settings.md#cleaners).
 
-- Debugging method: Logging, [Laravel Dump Server](https://github.com/beyondcode/laravel-dump-server)(Laravel 5.7 has been integrated by default).
+### Known issues
+> [Known issues](https://github.com/hhxsv5/laravel-s/blob/master/KnownIssues.md): a package of known issues and solutions.
 
-- Should get all request information from `Illuminate\Http\Request` Object, $_ENV is readable, $_SERVER is partially readable, `CANNOT USE` $_GET/$_POST/$_FILES/$_COOKIE/$_REQUEST/$_SESSION/$GLOBALS.
+### Debugging method
 
-    ```php
-    public function form(\Illuminate\Http\Request $request)
-    {
-        $name = $request->input('name');
-        $all = $request->all();
-        $sessionId = $request->cookie('sessionId');
-        $photo = $request->file('photo');
-        // Call getContent() to get the raw POST body, instead of file_get_contents('php://input')
-        $rawContent = $request->getContent();
-        //...
-    }
-    ```
+- Logging; if you want to output to the console, you can use `stderr`, Log::channel('stderr')->debug('debug message').
 
-- Respond by `Illuminate\Http\Response` Object, compatible with echo/vardump()/print_r()，`CANNOT USE` functions dd()/exit()/die()/header()/setcookie()/http_response_code().
+- [Laravel Dump Server](https://github.com/beyondcode/laravel-dump-server)(Laravel 5.7 has been integrated by default).
 
-    ```php
-    public function json()
-    {
-        return response()->json(['time' => time()])->header('header1', 'value1')->withCookie('c1', 'v1');
-    }
-    ```
+### Read request
+Read request by `Illuminate\Http\Request` Object, $_ENV is readable, $_SERVER is partially readable, `CANNOT USE` $_GET/$_POST/$_FILES/$_COOKIE/$_REQUEST/$_SESSION/$GLOBALS.
 
-- The various `singleton connections` will be `memory resident`, recommend to enable `persistent connection`.
+```php
+public function form(\Illuminate\Http\Request $request)
+{
+    $name = $request->input('name');
+    $all = $request->all();
+    $sessionId = $request->cookie('sessionId');
+    $photo = $request->file('photo');
+    // Call getContent() to get the raw POST body, instead of file_get_contents('php://input')
+    $rawContent = $request->getContent();
+    //...
+}
+```
+
+### Output response
+Respond by `Illuminate\Http\Response` Object, compatible with echo/vardump()/print_r()，`CANNOT USE` functions dd()/exit()/die()/header()/setcookie()/http_response_code().
+
+```php
+public function json()
+{
+    return response()->json(['time' => time()])->header('header1', 'value1')->withCookie('c1', 'v1');
+}
+```
+
+### Persistent connection
+`Singleton connection` will be resident in memory, it is recommended to turn on `persistent connection` for better performance.
 1. Database connection, it `will` reconnect automatically `immediately` after disconnect.
-    ```php
-    // config/database.php
-    //...
-    'connections' => [
-        'my_conn' => [
-            'driver'    => 'mysql',
-            'host'      => env('DB_MY_CONN_HOST', 'localhost'),
-            'port'      => env('DB_MY_CONN_PORT', 3306),
-            'database'  => env('DB_MY_CONN_DATABASE', 'forge'),
-            'username'  => env('DB_MY_CONN_USERNAME', 'forge'),
-            'password'  => env('DB_MY_CONN_PASSWORD', ''),
-            'charset'   => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
-            'prefix'    => '',
-            'strict'    => false,
-            'options'   => [
-                // Enable persistent connection
-                \PDO::ATTR_PERSISTENT => true,
-            ],
+
+```php
+// config/database.php
+'connections' => [
+    'my_conn' => [
+        'driver'    => 'mysql',
+        'host'      => env('DB_MY_CONN_HOST', 'localhost'),
+        'port'      => env('DB_MY_CONN_PORT', 3306),
+        'database'  => env('DB_MY_CONN_DATABASE', 'forge'),
+        'username'  => env('DB_MY_CONN_USERNAME', 'forge'),
+        'password'  => env('DB_MY_CONN_PASSWORD', ''),
+        'charset'   => 'utf8mb4',
+        'collation' => 'utf8mb4_unicode_ci',
+        'prefix'    => '',
+        'strict'    => false,
+        'options'   => [
+            // Enable persistent connection
+            \PDO::ATTR_PERSISTENT => true,
         ],
-        //...
     ],
-    //...
-    ```
+],
+```
 
 2. Redis connection, it `won't` reconnect automatically `immediately` after disconnect, and will throw an exception about lost connection, reconnect next time. You need to make sure that `SELECT DB` correctly before operating Redis every time.
-    ```php
-    // config/database.php
-    'redis' => [
-            'client' => env('REDIS_CLIENT', 'phpredis'), // It is recommended to use phpredis for better performance.
-            'default' => [
-                'host'       => env('REDIS_HOST', 'localhost'),
-                'password'   => env('REDIS_PASSWORD', null),
-                'port'       => env('REDIS_PORT', 6379),
-                'database'   => 0,
-                'persistent' => true, // Enable persistent connection
-            ],
-        ],
-    //...
-    ```
 
-- `global`, `static` variables which you declared are need to destroy(reset) manually.
+```php
+// config/database.php
+'redis' => [
+    'client' => env('REDIS_CLIENT', 'phpredis'), // It is recommended to use phpredis for better performance.
+    'default' => [
+        'host'       => env('REDIS_HOST', 'localhost'),
+        'password'   => env('REDIS_PASSWORD', null),
+        'port'       => env('REDIS_PORT', 6379),
+        'database'   => 0,
+        'persistent' => true, // Enable persistent connection
+    ],
+],
+```
+
+### About memory leaks
+
+- Avoid using global variables. If necessary, please clean or reset them manually.
 
 - Infinitely appending element into `static`/`global` variable will lead to OOM(Out of Memory).
 
@@ -1366,9 +1375,37 @@ Resources:
     }
     ```
 
-- [Linux kernel parameter adjustment](https://wiki.swoole.com/wiki/page/p-server/sysctl.html)
+- Memory leak detection method
 
-- [Pressure test](https://wiki.swoole.com/wiki/page/62.html)
+    1. Modify `config/laravels.php`: `worker_num=1, max_request=1000000`, remember to change it back after test;
+
+    2. Add routing `/debug-memory-leak` without `route middleware` to observe the memory changes of the `Worker` process;
+
+    ```php
+    Route::get('/debug-memory-leak', function () {
+        global $previous;
+        $current = memory_get_usage();
+        $stats = [
+            'prev_mem' => $previous,
+            'curr_mem' => $current,
+            'diff_mem' => $current - $previous,
+        ];
+        $previous = $current;
+        return $stats;
+    });
+    ```
+
+    3. Start `LaravelS` and request `/debug-memory-leak` until `diff_mem` is less than or equal to zero; if `diff_mem` is always greater than zero, it means that there may be a memory leak in `Global Middleware` or `Laravel Framework`;
+    
+    4. After completing `Step 3`, `alternately` request the business route and `/debug-memory-leak` (it is better to use `ab`/`wrk` to request a large number of business route). The initial increase in memory is normal. After a large number of requests for the business route, if `diff_mem` is less than or equal to zero, congratulations, there is no memory leak; if `diff_mem` is always greater than zero, it means that there is a memory leak.
+
+    5. If you still can't solve it, [max_request](https://www.swoole.co.uk/docs/modules/swoole-server/configuration#max_request) is the last guarantee.
+
+### Linux kernel parameter adjustment
+> [Linux kernel parameter adjustment](https://wiki.swoole.com/#/other/sysctl?id=%e5%86%85%e6%a0%b8%e5%8f%82%e6%95%b0%e8%b0%83%e6%95%b4)
+
+### Pressure test
+> [Pressure test](https://wiki.swoole.com/wiki/page/62.html)
 
 ## Alternatives
 

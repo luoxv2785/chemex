@@ -28,6 +28,8 @@ class DeviceRecordBatchDeleteAction extends BatchAction
             DeviceService::deviceDelete($key);
         }
 
-        return $this->response()->success(trans('main.success'))->refresh();
+        return $this->response()
+            ->success(trans('main.success'))
+            ->refresh();
     }
 }
