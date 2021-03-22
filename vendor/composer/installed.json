@@ -2810,17 +2810,17 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.7.0",
-            "version_normalized": "1.7.0.0",
+            "version": "1.8.1",
+            "version_normalized": "1.8.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "53330f47520498c0ae1f61f7e2c90f55690c06a3"
+                "reference": "35ea11d335fd638b5882ff1725228b3d35496ab1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/53330f47520498c0ae1f61f7e2c90f55690c06a3",
-                "reference": "53330f47520498c0ae1f61f7e2c90f55690c06a3",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/35ea11d335fd638b5882ff1725228b3d35496ab1",
+                "reference": "35ea11d335fd638b5882ff1725228b3d35496ab1",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2844,7 +2844,7 @@
             "suggest": {
                 "laminas/laminas-httphandlerrunner": "Emit PSR-7 responses"
             },
-            "time": "2020-09-30T07:37:11+00:00",
+            "time": "2021-03-21T16:25:00+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -2888,7 +2888,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/1.7.0"
+                "source": "https://github.com/guzzle/psr7/tree/1.8.1"
             },
             "install-path": "../guzzlehttp/psr7"
         },
@@ -2954,17 +2954,17 @@
         },
         {
             "name": "hhxsv5/laravel-s",
-            "version": "v3.7.18",
-            "version_normalized": "3.7.18.0",
+            "version": "v3.7.19",
+            "version_normalized": "3.7.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hhxsv5/laravel-s.git",
-                "reference": "57ea5cccdf303fe3177157b1f01e76d58b401f0c"
+                "reference": "6435c55b351a2e804647ae5b39310dfc86a15a2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hhxsv5/laravel-s/zipball/57ea5cccdf303fe3177157b1f01e76d58b401f0c",
-                "reference": "57ea5cccdf303fe3177157b1f01e76d58b401f0c",
+                "url": "https://api.github.com/repos/hhxsv5/laravel-s/zipball/6435c55b351a2e804647ae5b39310dfc86a15a2c",
+                "reference": "6435c55b351a2e804647ae5b39310dfc86a15a2c",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2988,7 +2988,7 @@
                 "ext-inotify": "Inotify, used to real-time reload.",
                 "ext-swoole": "Coroutine-based concurrency library for PHP, require >= 1.7.19."
             },
-            "time": "2021-03-19T11:39:22+00:00",
+            "time": "2021-03-20T17:31:04+00:00",
             "bin": [
                 "bin/fswatch"
             ],

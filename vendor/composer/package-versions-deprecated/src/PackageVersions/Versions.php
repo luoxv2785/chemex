@@ -62,9 +62,9 @@ final class Versions
   'graham-campbell/result-type' => 'v1.0.1@7e279d2cd5d7fbb156ce46daada972355cea27bb',
   'guzzlehttp/guzzle' => '7.2.0@0aa74dfb41ae110835923ef10a9d803a22d50e79',
   'guzzlehttp/promises' => '1.4.1@8e7d04f1f6450fef59366c399cfad4b9383aa30d',
-  'guzzlehttp/psr7' => '1.7.0@53330f47520498c0ae1f61f7e2c90f55690c06a3',
+  'guzzlehttp/psr7' => '1.8.1@35ea11d335fd638b5882ff1725228b3d35496ab1',
   'hamcrest/hamcrest-php' => 'v2.0.1@8c3d0a3f6af734494ad8f6fbbee0ba92422859f3',
-  'hhxsv5/laravel-s' => 'v3.7.18@57ea5cccdf303fe3177157b1f01e76d58b401f0c',
+  'hhxsv5/laravel-s' => 'v3.7.19@6435c55b351a2e804647ae5b39310dfc86a15a2c',
   'justinrainbow/json-schema' => '5.2.10@2ba9c8c862ecd5510ed16c6340aa9f6eadb4f31b',
   'laravel/framework' => 'v8.33.1@354c57b8cb457549114074c500944455a288d6cc',
   'laravel/tinker' => 'v2.6.1@04ad32c1a3328081097a181875733fa51f402083',
@@ -176,7 +176,7 @@ final class Versions
   'sebastian/type' => '2.3.1@81cd61ab7bbf2de744aba0ea61fae32f721df3d2',
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'theseer/tokenizer' => '1.2.0@75a63c33a8577608444246075ea0af0d052e452a',
-  'celaraze/chemex' => 'dev-main@0b10eefe495f4359123b988d76ab41fa41b7bc99',
+  'celaraze/chemex' => 'dev-main@def15ffb573c8860548c44e3025c1f763c2d1dcd',
 );
 
     private function __construct()

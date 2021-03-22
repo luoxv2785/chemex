@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '0b10eefe495f4359123b988d76ab41fa41b7bc99',
+    'reference' => 'def15ffb573c8860548c44e3025c1f763c2d1dcd',
     'name' => 'celaraze/chemex',
   ),
   'versions' => 
@@ -63,7 +63,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '0b10eefe495f4359123b988d76ab41fa41b7bc99',
+      'reference' => 'def15ffb573c8860548c44e3025c1f763c2d1dcd',
     ),
     'celaraze/pour' => 
     array (
@@ -353,12 +353,12 @@
     ),
     'guzzlehttp/psr7' => 
     array (
-      'pretty_version' => '1.7.0',
-      'version' => '1.7.0.0',
+      'pretty_version' => '1.8.1',
+      'version' => '1.8.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '53330f47520498c0ae1f61f7e2c90f55690c06a3',
+      'reference' => '35ea11d335fd638b5882ff1725228b3d35496ab1',
     ),
     'hamcrest/hamcrest-php' => 
     array (
@@ -371,12 +371,12 @@
     ),
     'hhxsv5/laravel-s' => 
     array (
-      'pretty_version' => 'v3.7.18',
-      'version' => '3.7.18.0',
+      'pretty_version' => 'v3.7.19',
+      'version' => '3.7.19.0',
       'aliases' => 
       array (
       ),
-      'reference' => '57ea5cccdf303fe3177157b1f01e76d58b401f0c',
+      'reference' => '6435c55b351a2e804647ae5b39310dfc86a15a2c',
     ),
     'illuminate/auth' => 
     array (
