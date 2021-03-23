@@ -21,7 +21,7 @@ class UserDeleteAction extends RowAction
      */
     public function handle(): Response
     {
-        UserService::deleteUser($this->getKey());
+        UserService::userDelete($this->getKey());
 
         return $this->response()
             ->success(trans('main.success'))

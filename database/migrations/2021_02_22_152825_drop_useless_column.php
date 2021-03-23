@@ -13,20 +13,33 @@ class DropUselessColumn extends Migration
      */
     public function up()
     {
+        // 这么写是为了兼容SQLite
         Schema::table('device_records', function (Blueprint $table) {
             $table->dropColumn('sn');
+        });
+        Schema::table('device_records', function (Blueprint $table) {
             $table->dropColumn('security_password');
+        });
+        Schema::table('device_records', function (Blueprint $table) {
             $table->dropColumn('admin_password');
+        });
+        Schema::table('device_records', function (Blueprint $table) {
             $table->dropColumn('location');
         });
 
+        // 这么写是为了兼容SQLite
         Schema::table('part_records', function (Blueprint $table) {
             $table->dropColumn('sn');
+        });
+        Schema::table('part_records', function (Blueprint $table) {
             $table->dropColumn('location');
         });
 
+        // 这么写是为了兼容SQLite
         Schema::table('software_records', function (Blueprint $table) {
             $table->dropColumn('sn');
+        });
+        Schema::table('software_records', function (Blueprint $table) {
             $table->dropColumn('location');
         });
     }
