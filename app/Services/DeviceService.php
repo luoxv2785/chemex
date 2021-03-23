@@ -39,8 +39,8 @@ class DeviceService
             ->get();
         foreach ($device_tracks as $device_track) {
             $single['type'] = '用户';
-            $device = $device_track->user()->withTrashed()->first();
-            $username = $device->name;
+            $user = $device_track->user()->withTrashed()->first();
+            $username = $user->name;
             $department = $device_track->user()
                 ->withTrashed()
                 ->first()
@@ -63,7 +63,7 @@ class DeviceService
         foreach ($part_tracks as $part_track) {
             $single['type'] = trans('main.part');
             $part = $part_track->part()->withTrashed()->first();
-            $single['name'] = $part->name . ' - ' . $part->specification;
+            $single['name'] = $part->asset_number . ' - ' . $part->specification;
             $data = Support::itemTrack($single, $part_track, $data);
         }
 

@@ -28,7 +28,7 @@ trait ControllerHasDeviceRelatedGrid
 
             $grid->column('id');
             $grid->column('part.category.name');
-            $grid->column('part.name')->link(function () {
+            $grid->column('part.asset_number')->link(function () {
                 if (!empty($this->part)) {
                     return admin_route('part.records.show', [$this->part['id']]);
                 }

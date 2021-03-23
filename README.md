@@ -100,7 +100,7 @@
 
 `git`，用于管理版本，部署和升级必要工具。
 
-`PHP 7.4 +` ，已经支持 PHP8 。
+`PHP 7.4 +` ，已经支持 PHP8 ，建议使用 PHP8。
 
 `MySQL 8 +`，数据库引擎，理论上 `MariaDB 10.2 +` 兼容支持。
 
@@ -179,27 +179,7 @@ MariaDB 账密：chemex/chemex
 
 ## 截图
 
-![](https://chemex.celaraze.com/screenshots/0.png)
 
-![](https://chemex.celaraze.com/screenshots/1.png)
-
-![](https://chemex.celaraze.com/screenshots/2.png)
-
-![](https://chemex.celaraze.com/screenshots/3.png)
-
-![](https://chemex.celaraze.com/screenshots/4.png)
-
-![](https://chemex.celaraze.com/screenshots/5.png)
-
-![](https://chemex.celaraze.com/screenshots/6.png)
-
-![](https://chemex.celaraze.com/screenshots/7.png)
-
-![](https://chemex.celaraze.com/screenshots/8.png)
-
-![](https://chemex.celaraze.com/screenshots/9.png)
-
-![](https://chemex.celaraze.com/screenshots/10.png)
 
 ## 咖啡壶没有满足我的需求，我想要咖啡壶成为我想要的样子
 

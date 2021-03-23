@@ -16,8 +16,7 @@ return [
             'name' => '配件',
         ],
         'device' => [
-            'asset_number' => '资产编号',
-            'name' => '设备',
+            'asset_number' => '设备'
         ],
     ],
     'options' => [

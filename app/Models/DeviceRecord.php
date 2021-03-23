@@ -20,7 +20,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static pluck(string $string, string $string1)
  * @method static find(mixed $id)
  *
- * @property string name
  * @property string description
  * @property int category_id
  * @property int vendor_id

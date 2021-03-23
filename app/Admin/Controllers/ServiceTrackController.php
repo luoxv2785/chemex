@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\Grid\RowAction\ServiceTrackDeleteAction;
+use App\Admin\Actions\Grid\BatchAction\ServiceTrackDeleteAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\ServiceTrack;
 use App\Support\Data;

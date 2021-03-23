@@ -49,11 +49,11 @@ class SoftwareRecordController extends AdminController
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add(Data::icon('record').trans('main.record'), $this->grid(), true);
-                $tab->addLink(Data::icon('category').trans('main.category'), admin_route('software.categories.index'));
-                $tab->addLink(Data::icon('track').trans('main.track'), admin_route('software.tracks.index'));
-                $tab->addLink(Data::icon('statistics').trans('main.statistics'), admin_route('software.statistics'));
-                $tab->addLink(Data::icon('column').trans('main.column'), admin_route('software.columns.index'));
+                $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
+                $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('software.categories.index'));
+                $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('software.tracks.index'));
+                $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('software.statistics'));
+                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('software.columns.index'));
                 $row->column(12, $tab);
             });
     }
@@ -75,12 +75,14 @@ class SoftwareRecordController extends AdminController
                 ->get(['field', 'order'])
                 ->toArray();
             $grid->column('id', '', $column_sort);
-            $grid->column('qrcode', '', $column_sort)->qrcode(function () {
-                return 'software:'.$this->id;
-            }, 200, 200);
+            $grid->column('asset_number', '', $column_sort)->display(function ($asset_number) {
+                return "<span class='badge badge-secondary'>$asset_number</span>";
+            });
+//            $grid->column('qrcode', '', $column_sort)->qrcode(function () {
+//                return 'software:'.$this->id;
+//            }, 200, 200);
             $grid->column('name', '', $column_sort);
             $grid->column('description', '', $column_sort);
-            $grid->column('asset_number', '', $column_sort);
             $grid->column('category.name', '', $column_sort);
             $grid->column('version', '', $column_sort);
             $grid->column('vendor.name', '', $column_sort);
@@ -118,7 +120,7 @@ class SoftwareRecordController extends AdminController
                 // @permissions
                 if (Admin::user()->can('software.record.track.list')) {
                     $tracks_route = admin_route('software.tracks.index', ['_search_' => $this->id]);
-                    $actions->append("<a href='$tracks_route'>💿 ".admin_trans_label('Manage Track').'</a>');
+                    $actions->append("<a href='$tracks_route'>💿 " . admin_trans_label('Manage Track') . '</a>');
                 }
             });
 
@@ -187,14 +189,15 @@ class SoftwareRecordController extends AdminController
             $grid->enableDialogCreate();
             $grid->disableDeleteButton();
             $grid->disableBatchDelete();
+            $grid->disableEditButton();
             $grid->toolsWithOutline(false);
             // @permissions
             if (!Admin::user()->can('software.record.create')) {
                 $grid->disableCreateButton();
             }
             // @permissions
-            if (!Admin::user()->can('software.record.update')) {
-                $grid->disableEditButton();
+            if (Admin::user()->can('software.record.update')) {
+                $grid->showQuickEditButton();
             }
             // @permissions
             if (Admin::user()->can('software.record.export')) {
@@ -248,7 +251,7 @@ class SoftwareRecordController extends AdminController
                         $card = new Card(trans('main.history'), view('history')->with('data', $history));
                         // @permissions
                         if (Admin::user()->can('software.record.history.export')) {
-                            $card->tool('<a class="btn btn-primary btn-xs" href="'.admin_route('export.software.history', [$id]).'" target="_blank">'.admin_trans_label('Export To Excel').'</a>');
+                            $card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.software.history', [$id]) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>');
                         }
                         $column->row($card);
                     });
@@ -320,9 +323,21 @@ class SoftwareRecordController extends AdminController
     {
         return Form::make(new SoftwareRecord(), function (Form $form) {
             $form->display('id');
+            if ($form->isCreating() || empty($form->model()->asset_number)) {
+                $form->text('asset_number')->required();
+            } else {
+                $form->display('asset_number')->required();
+            }
             $form->text('name')->required();
             $form->text('version')->required();
-
+            $form->select('distribution')
+                ->options(Data::distribution())
+                ->default('u')
+                ->required();
+            $form->number('counts')
+                ->default(-1)
+                ->required()
+                ->help(admin_trans_label('Counts Help'));
             if (Support::ifSelectCreate()) {
                 $form->selectCreate('category_id')
                     ->options(SoftwareCategory::class)
@@ -334,10 +349,6 @@ class SoftwareRecordController extends AdminController
                     ->ajax(admin_route('selection.vendor.records'))
                     ->url(admin_route('vendor.records.create'))
                     ->required();
-                $form->selectCreate('purchased_channel_id')
-                    ->options(VendorRecord::class)
-                    ->ajax(admin_route('selection.purchased.channels'))
-                    ->url(admin_route('purchased.channels.create'));
             } else {
                 $form->select('category_id')
                     ->options(SoftwareCategory::selectOptions())
@@ -345,20 +356,20 @@ class SoftwareRecordController extends AdminController
                 $form->select('vendor_id')
                     ->options(VendorRecord::pluck('name', 'id'))
                     ->required();
+            }
+
+            $form->divider();
+
+            if (Support::ifSelectCreate()) {
+                $form->selectCreate('purchased_channel_id')
+                    ->options(VendorRecord::class)
+                    ->ajax(admin_route('selection.purchased.channels'))
+                    ->url(admin_route('purchased.channels.create'));
+            } else {
                 $form->select('purchased_channel_id')
                     ->options(PurchasedChannel::pluck('name', 'id'));
             }
-
-            $form->select('distribution')
-                ->options(Data::distribution())
-                ->default('u')
-                ->required();
-            $form->number('counts')
-                ->default(-1)
-                ->required()
-                ->help(admin_trans_label('Counts Help'));
             $form->text('description');
-            $form->text('asset_number');
             $form->currency('price')->default(0);
             $form->date('purchased');
             $form->date('expired');
@@ -378,6 +389,16 @@ class SoftwareRecordController extends AdminController
             $form->disableCreatingCheck();
             $form->disableEditingCheck();
             $form->disableViewCheck();
+
+            $form->saving(function (Form $form) {
+                if ($form->isCreating() || empty($form->model()->asset_number)) {
+                    $return = Support::ifAssetNumberUsed($form->input('asset_number'));
+                    if ($return) {
+                        return $form->response()
+                            ->error(trans('main.asset_number_exist'));
+                    }
+                }
+            });
         });
     }
 }

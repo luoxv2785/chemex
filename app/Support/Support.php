@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
 class Support
 {
     /**
-     * 获取所有物品的类型和ID，并且以 device:1 形式加入到数组中返回.
+     * 获取所有物品的资产编号，加入到数组中返回.
      *
      * @return array
      */
@@ -33,13 +33,19 @@ class Support
         $software_records = SoftwareRecord::all();
 
         foreach ($device_records as $device_record) {
-            array_push($data, 'device:'.$device_record->id.'&#10;');
+            if (!empty($device_record->asset_number)) {
+                array_push($data, $device_record->asset_number . '&#10;');
+            }
         }
         foreach ($part_records as $part_record) {
-            array_push($data, 'part:'.$part_record->id.'&#10;');
+            if (!empty($part_record->asset_number)) {
+                array_push($data, $part_record->asset_number . '&#10;');
+            }
         }
         foreach ($software_records as $software_record) {
-            array_push($data, 'software:'.$software_record->id.'&#10;');
+            if (!empty($software_record->asset_number)) {
+                array_push($data, $software_record->asset_number . '&#10;');
+            }
         }
 
         return $data;
@@ -162,13 +168,13 @@ class Support
      *
      * @return string
      */
-    public static function itemIdToItemName($item, $item_id): string
+    public static function itemIdToItemAssetNumber($item, $item_id): string
     {
         $item_record = self::getItemRecordByClass($item, $item_id);
         if (empty($item_record)) {
             return '失踪了';
         } else {
-            return $item_record->name;
+            return $item_record->asset_number;
         }
     }
 
@@ -226,13 +232,13 @@ class Support
             $return = array_filter($data, function ($item) use ($diff) {
                 switch ($item['scale']) {
                     case 'month':
-                        $number = (int) $item['number'] * 24 * 60 * 60 * 30;
+                        $number = (int)$item['number'] * 24 * 60 * 60 * 30;
                         break;
                     case 'year':
-                        $number = (int) $item['number'] * 24 * 60 * 60 * 365;
+                        $number = (int)$item['number'] * 24 * 60 * 60 * 365;
                         break;
                     default:
-                        $number = (int) $item['number'] * 24 * 60 * 60;
+                        $number = (int)$item['number'] * 24 * 60 * 60;
                 }
 
                 return $diff >= $number;
@@ -240,7 +246,7 @@ class Support
 
             if (!empty($return)) {
                 array_multisort(array_column($return, 'number'), SORT_DESC, $return);
-                $price = $price * (float) $return[0]['ratio'];
+                $price = $price * (float)$return[0]['ratio'];
             }
 
             return $price;
@@ -306,7 +312,7 @@ class Support
             if (empty($service_track) || empty($service_track->device)) {
                 $service->device_name = '未知';
             } else {
-                $service->device_name = $service_track->device->name;
+                $service->device_name = $service_track->device->asset_number;
             }
             $issues = [];
             $service_issues = ServiceIssue::where('service_id', $service->id)
@@ -321,13 +327,13 @@ class Support
                 // 如果异常待修复
                 if ($service_issue->status == 1) {
                     $service->status = 1;
-                    $issue = $service_issue->issue.'<br>';
+                    $issue = $service_issue->issue . '<br>';
                     array_push($issues, $issue);
                 }
                 // 如果是修复的
                 if ($service_issue->status == 2) {
                     $service->status = 0;
-                    $issue = '<span class="status-recovery">[已修复最近一个问题]</span> '.$service_issue->issue.'<br>';
+                    $issue = '<span class="status-recovery">[已修复最近一个问题]</span> ' . $service_issue->issue . '<br>';
                     if ((time() - strtotime($service_issue->end)) > (24 * 60 * 60)) {
                         $issue = '';
                         $service->start = '';
@@ -388,24 +394,24 @@ class Support
         $device_record = DeviceRecord::where('id', $device_id)->first();
         if (!empty($device_record)) {
             $return = [
-                'name'     => $device_record->name,
+                'name' => $device_record->asset_number,
                 'children' => [
                     [
-                        'name'     => trans('main.part'),
+                        'name' => trans('main.part'),
                         'children' => [],
                     ],
                     [
-                        'name'     => trans('main.software'),
+                        'name' => trans('main.software'),
                         'children' => [],
                     ],
                     [
-                        'name'     => trans('main.service'),
+                        'name' => trans('main.service'),
                         'children' => [],
                     ],
                 ],
             ];
             foreach ($device_record->part as $part) {
-                array_push($return['children'][0]['children'], ['name' => $part->name]);
+                array_push($return['children'][0]['children'], ['name' => $part->asset_number]);
             }
             foreach ($device_record->software as $software) {
                 array_push($return['children'][1]['children'], ['name' => $software->name]);
@@ -416,5 +422,27 @@ class Support
         }
 
         return json_encode($return);
+    }
+
+    /**
+     * 判断当前资产编号是否被用过
+     * @param $asset_number
+     * @return bool
+     */
+    public static function ifAssetNumberUsed($asset_number): bool
+    {
+        $device_record = DeviceRecord::where('asset_number', $asset_number)->withTrashed()->first();
+        if (!empty($device_record)) {
+            return true;
+        }
+        $part_record = PartRecord::where('asset_number', $asset_number)->withTrashed()->first();
+        if (!empty($part_record)) {
+            return true;
+        }
+        $software_record = SoftwareRecord::where('asset_number', $asset_number)->withTrashed()->first();
+        if (!empty($software_record)) {
+            return true;
+        }
+        return false;
     }
 }

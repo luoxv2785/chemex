@@ -24,10 +24,10 @@ class RoleController extends BaseRoleController
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(Data::icon('user').admin_trans_label('User'), admin_route('organization.users.index'));
-                $tab->addLink(Data::icon('department').admin_trans_label('Department'), admin_route('organization.departments.index'));
-                $tab->add(Data::icon('role').admin_trans_label('Role'), $this->grid(), true);
-                $tab->addLink(Data::icon('permission').admin_trans_label('Permission'), admin_route('organization.permissions.index'));
+                $tab->addLink(Data::icon('user') . admin_trans_label('User'), admin_route('organization.users.index'));
+                $tab->addLink(Data::icon('department') . admin_trans_label('Department'), admin_route('organization.departments.index'));
+                $tab->add(Data::icon('role') . admin_trans_label('Role'), $this->grid(), true);
+                $tab->addLink(Data::icon('permission') . admin_trans_label('Permission'), admin_route('organization.permissions.index'));
                 $row->column(12, $tab);
             });
     }
@@ -79,7 +79,7 @@ class RoleController extends BaseRoleController
             if (!Admin::user()->can('role.delete')) {
                 $grid->disableDeleteButton();
             }
-//            $grid->disableEditButton();
+            $grid->disableEditButton();
             $grid->enableDialogCreate();
             $grid->disableBatchActions();
             $grid->toolsWithOutline(false);

@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\Grid\RowAction\SoftwareTrackDeleteAction;
+use App\Admin\Actions\Grid\BatchAction\SoftwareTrackDeleteAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\SoftwareTrack;
 use App\Support\Data;

@@ -47,11 +47,11 @@ class PartRecordController extends AdminController
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add(Data::icon('record').trans('main.record'), $this->grid(), true);
-                $tab->addLink(Data::icon('category').trans('main.category'), admin_route('part.categories.index'));
-                $tab->addLink(Data::icon('track').trans('main.track'), admin_route('part.tracks.index'));
-                $tab->addLink(Data::icon('statistics').trans('main.statistics'), admin_route('part.statistics'));
-                $tab->addLink(Data::icon('column').trans('main.column'), admin_route('part.columns.index'));
+                $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
+                $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('part.categories.index'));
+                $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('part.tracks.index'));
+                $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('part.statistics'));
+                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('part.columns.index'));
                 $row->column(12, $tab);
             });
     }
@@ -73,12 +73,14 @@ class PartRecordController extends AdminController
                 ->get(['field', 'order'])
                 ->toArray();
             $grid->column('id', '', $column_sort);
-            $grid->column('qrcode', '', $column_sort)->qrcode(function () {
-                return 'part:'.$this->id;
-            }, 200, 200);
+            $grid->column('asset_number', '', $column_sort)->display(function ($asset_number) {
+                return "<span class='badge badge-secondary'>$asset_number</span>";
+            });
+//            $grid->column('qrcode', '', $column_sort)->qrcode(function () {
+//                return 'part:'.$this->id;
+//            }, 200, 200);
             $grid->column('price', '', $column_sort);
             $grid->column('purchased', '', $column_sort);
-            $grid->column('asset_number', '', $column_sort);
             $grid->column('name', '', $column_sort);
             $grid->column('description', '', $column_sort);
             $grid->column('category.name', '', $column_sort);
@@ -87,7 +89,7 @@ class PartRecordController extends AdminController
             $grid->column('expiration_left_days', '', $column_sort)->display(function () {
                 return ExpirationService::itemExpirationLeftDaysRender('part', $this->id);
             });
-            $grid->column('device.name')->link(function () {
+            $grid->column('device.asset_number')->link(function () {
                 if (!empty($this->device)) {
                     return admin_route('device.records.show', [$this->device()->first()->id]);
                 }
@@ -131,7 +133,6 @@ class PartRecordController extends AdminController
             $grid->quickSearch(
                 array_merge([
                     'id',
-                    'name',
                     'asset_number',
                     'description',
                     'category.name',
@@ -149,7 +150,7 @@ class PartRecordController extends AdminController
             $grid->filter(function ($filter) {
                 $filter->equal('category_id')->select(PartCategory::pluck('name', 'id'));
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
-                $filter->equal('device.name');
+                $filter->equal('device.asset_number');
                 $filter->equal('depreciation_id')->select(DepreciationRule::pluck('name', 'id'));
                 /**
                  * 自定义字段.
@@ -183,14 +184,15 @@ class PartRecordController extends AdminController
             $grid->enableDialogCreate();
             $grid->disableDeleteButton();
             $grid->disableBatchDelete();
+            $grid->disableEditButton();
             $grid->toolsWithOutline(false);
             // @permissions
             if (!Admin::user()->can('part.record.create')) {
                 $grid->disableCreateButton();
             }
             // @permissions
-            if (!Admin::user()->can('part.record.update')) {
-                $grid->disableEditButton();
+            if (Admin::user()->can('part.record.update')) {
+                $grid->showQuickEditButton();
             }
             // @permissions
             if (Admin::user()->can('part.record.export')) {
@@ -210,7 +212,6 @@ class PartRecordController extends AdminController
     {
         return Show::make($id, new PartRecord(['category', 'vendor', 'channel', 'device', 'depreciation']), function (Show $show) {
             $show->field('id');
-            $show->field('name');
             $show->field('asset_number');
             $show->field('description');
             $show->field('category.name');
@@ -260,8 +261,11 @@ class PartRecordController extends AdminController
     {
         return Form::make(new PartRecord(), function (Form $form) {
             $form->display('id');
-            $form->text('name')->required();
-
+            if ($form->isCreating() || empty($form->model()->asset_number)) {
+                $form->text('asset_number')->required();
+            } else {
+                $form->display('asset_number')->required();
+            }
             if (Support::ifSelectCreate()) {
                 $form->selectCreate('category_id', admin_trans_label('Category'))
                     ->options(PartCategory::class)
@@ -273,9 +277,7 @@ class PartRecordController extends AdminController
                     ->options(PartCategory::selectOptions())
                     ->required();
             }
-
             $form->text('specification')->required();
-
             if (Support::ifSelectCreate()) {
                 $form->selectCreate('vendor_id', admin_trans_label('Vendor'))
                     ->options(VendorRecord::class)->ajax(admin_route('selection.vendor.records'))
@@ -289,7 +291,7 @@ class PartRecordController extends AdminController
             }
 
             $form->divider();
-            $form->text('asset_number');
+
             $form->text('description');
 
             if (Support::ifSelectCreate()) {
@@ -331,6 +333,16 @@ class PartRecordController extends AdminController
             $form->disableCreatingCheck();
             $form->disableEditingCheck();
             $form->disableViewCheck();
+
+            $form->saving(function (Form $form) {
+                if ($form->isCreating() || empty($form->model()->asset_number)) {
+                    $return = Support::ifAssetNumberUsed($form->input('asset_number'));
+                    if ($return) {
+                        return $form->response()
+                            ->error(trans('main.asset_number_exist'));
+                    }
+                }
+            });
         });
     }
 }

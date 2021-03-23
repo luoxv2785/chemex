@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\Grid\RowAction\ServiceIssueUpdateAction;
+use App\Admin\Actions\Grid\BatchAction\ServiceIssueUpdateAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\ServiceIssue;
 use App\Support\Data;

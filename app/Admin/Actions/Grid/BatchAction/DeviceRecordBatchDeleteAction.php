@@ -8,9 +8,9 @@ use Dcat\Admin\Grid\BatchAction;
 
 class DeviceRecordBatchDeleteAction extends BatchAction
 {
-    public function __construct($title = null)
+    public function __construct()
     {
-        parent::__construct($title);
+        parent::__construct();
         $this->title = '🔨 ' . admin_trans_label('Batch Delete');
     }
 
@@ -21,7 +21,6 @@ class DeviceRecordBatchDeleteAction extends BatchAction
 
     public function handle(): Response
     {
-        // 获取选中的ID
         $keys = $this->getKey();
 
         foreach ($keys as $key) {

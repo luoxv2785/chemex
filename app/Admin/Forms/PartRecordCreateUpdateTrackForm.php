@@ -92,7 +92,7 @@ class PartRecordCreateUpdateTrackForm extends Form implements LazyRenderable
                 ->required();
         } else {
             $this->select('device_id', trans('main.device_id'))
-                ->options(DeviceRecord::pluck('name', 'id'))
+                ->options(DeviceRecord::pluck('asset_number', 'id'))
                 ->help(trans('main.part_record_create_update_track_device_id_help'))
                 ->required();
         }

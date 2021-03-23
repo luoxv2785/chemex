@@ -2,8 +2,8 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\Grid\RowAction\DeviceTrackDeleteAction;
-use App\Admin\Actions\Grid\RowAction\DeviceTrackUpdateDeleteAction;
+use App\Admin\Actions\Grid\BatchAction\DeviceTrackDeleteAction;
+use App\Admin\Actions\Grid\BatchAction\DeviceTrackUpdateDeleteAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\DeviceTrack;
 use App\Support\Data;

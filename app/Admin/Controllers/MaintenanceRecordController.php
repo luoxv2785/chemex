@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\Grid\RowAction\MaintenanceRecordUpdateAction;
+use App\Admin\Actions\Grid\BatchAction\MaintenanceRecordUpdateAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\MaintenanceRecord;
 use App\Support\Data;
@@ -54,7 +54,7 @@ class MaintenanceRecordController extends AdminController
             $grid->column('id');
             $grid->column('item')->using(Data::items());
             $grid->column('item_id')->display(function () {
-                return Support::itemIdToItemName($this->item, $this->item_id);
+                return Support::itemIdToItemAssetNumber($this->item, $this->item_id);
             });
             $grid->column('ng_description')->limit(30);
             $grid->column('ok_description')->limit(30);

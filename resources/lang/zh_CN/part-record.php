@@ -35,7 +35,7 @@ return [
             'name' => '购入途径',
         ],
         'device' => [
-            'name' => '所属设备',
+            'asset_number' => '所属设备',
         ],
         'specification' => '规格',
         'price'         => '价格',

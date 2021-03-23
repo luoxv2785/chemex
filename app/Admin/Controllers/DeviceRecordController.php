@@ -56,11 +56,11 @@ class DeviceRecordController extends AdminController
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add(Data::icon('record').trans('main.record'), $this->grid(), true);
-                $tab->addLink(Data::icon('category').trans('main.category'), admin_route('device.categories.index'));
-                $tab->addLink(Data::icon('track').trans('main.track'), admin_route('device.tracks.index'));
-                $tab->addLink(Data::icon('statistics').trans('main.statistics'), admin_route('device.statistics'));
-                $tab->addLink(Data::icon('column').trans('main.column'), admin_route('device.columns.index'));
+                $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
+                $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('device.categories.index'));
+                $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('device.tracks.index'));
+                $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('device.statistics'));
+                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('device.columns.index'));
                 $row->column(12, $tab);
             });
     }
@@ -77,20 +77,20 @@ class DeviceRecordController extends AdminController
      */
     protected function grid(): Grid
     {
-        return Grid::make(DeviceRecord::with(['category', 'vendor', 'user', 'user.department', 'channel', 'depreciation']), function (Grid $grid) {
+        return Grid::make(new DeviceRecord(['category', 'vendor', 'user', 'user.department', 'channel', 'depreciation']), function (Grid $grid) {
             $sort_columns = $this->sortColumns();
             $grid->column('id', '', $sort_columns);
-            $grid->column('qrcode', '', $sort_columns)->qrcode(function () {
-                return 'device:'.$this->id;
-            }, 200, 200);
-            $grid->column('asset_number', '', $sort_columns);
+//            $grid->column('qrcode', '', $sort_columns)->qrcode(function () {
+//                return 'device:'.$this->id;
+//            }, 200, 200);
             $grid->column('photo', '', $sort_columns)->image('', 50, 50);
-            $grid->column('name', '', $sort_columns)->display(function ($name) {
+            $grid->column('asset_number', '', $sort_columns)->display(function ($asset_number) {
+                $asset_number = "<span class='badge badge-secondary'>$asset_number</span>";
                 $tag = Support::getSoftwareIcon($this->id);
                 if (empty($tag)) {
-                    return $name;
+                    return $asset_number;
                 } else {
-                    return "<img alt='$tag' src='/static/images/icons/$tag.png' style='width: 25px;height: 25px;margin-right: 10px'/>$name";
+                    return "<img alt='$tag' src='/static/images/icons/$tag.png' style='width: 25px;height: 25px;margin-right: 10px'/>$asset_number";
                 }
             });
             $grid->column('description', '', $sort_columns);
@@ -103,9 +103,8 @@ class DeviceRecordController extends AdminController
             $grid->column('expired', '', $sort_columns);
             $grid->column('user.name', '', $sort_columns)->display(function ($name) {
                 if ($this->isLend()) {
-                    return '<span style="color: rgba(178,68,71,1);font-weight: 600;">['.trans('main.lend').'] </span>'.$name;
+                    return '<span style="color: rgba(178,68,71,1);font-weight: 600;">[' . trans('main.lend') . '] </span>' . $name;
                 }
-
                 return $name;
             });
             $grid->column('user.department.name', '', $sort_columns);
@@ -126,6 +125,10 @@ class DeviceRecordController extends AdminController
              * 批量操作.
              */
             $grid->batchActions(function (BatchActions $batchActions) {
+                // @permissions
+//                if (Admin::user()->can('device.record.batch.track.creat_update')) {
+//                    $batchActions->add(new DeviceRecordBatchCreateUpdateTrackAction());
+//                }
                 // @permissions
                 if (Admin::user()->can('device.record.batch.delete')) {
                     $batchActions->add(new DeviceRecordBatchDeleteAction());
@@ -183,7 +186,6 @@ class DeviceRecordController extends AdminController
             $grid->quickSearch(
                 array_merge([
                     'id',
-                    'name',
                     'asset_number',
                     'description',
                     'category.name',
@@ -215,17 +217,20 @@ class DeviceRecordController extends AdminController
             /**
              * 按钮控制.
              */
+            // 如果数据库表中没有name,title,username，启用行选择器后需要指定默认值
+            $grid->rowSelector()->titleColumn('asset_number');
             $grid->disableBatchDelete();
             $grid->disableDeleteButton();
             $grid->enableDialogCreate();
+            $grid->disableEditButton();
             $grid->toolsWithOutline(false);
             // @permissions
             if (!Admin::user()->can('device.record.create')) {
                 $grid->disableCreateButton();
             }
             // @permissions
-            if (!Admin::user()->can('device.record.update')) {
-                $grid->disableEditButton();
+            if (Admin::user()->can('device.record.update')) {
+                $grid->showQuickEditButton();
             }
             // @permissions
             if (Admin::user()->can('device.record.export')) {
@@ -250,7 +255,7 @@ class DeviceRecordController extends AdminController
      * 详情页构建器
      * 为了复写详情页的布局
      *
-     * @param mixed   $id
+     * @param mixed $id
      * @param Content $content
      *
      * @return Content
@@ -265,7 +270,7 @@ class DeviceRecordController extends AdminController
                 $row->column(5, function (Column $column) use ($id) {
                     // 处理设备使用人
                     $device = $this->detail($id)->model();
-                    $column->row(Card::make()->content(admin_trans_label('Current User').'：'.$device->userName()));
+                    $column->row(Card::make()->content(admin_trans_label('Current User') . '：' . $device->userName()));
 
                     $related = Support::makeDeviceRelatedChartData($id);
                     $column->row(new Card(trans('main.related'), view('charts.device_related')->with('related', $related)));
@@ -279,7 +284,7 @@ class DeviceRecordController extends AdminController
                     $card = new Card(trans('main.history'), view('history')->with('data', $history));
                     // @permissions
                     if (Admin::user()->can('device.record.history.export')) {
-                        $card->tool('<a class="btn btn-primary btn-xs" href="'.admin_route('export.device.history', ['device_id' => 1]).'" target="_blank">'.admin_trans_label('Export To Excel').'</a>');
+                        $card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.device.history', ['device_id' => 1]) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>');
                     }
                     $column->row($card);
                 });
@@ -298,7 +303,6 @@ class DeviceRecordController extends AdminController
         return Show::make($id, new DeviceRecord(['category', 'vendor', 'channel', 'user', 'user.department', 'depreciation']), function (Show $show) {
             $sort_columns = $this->sortColumns();
             $show->field('id');
-            $show->field('name');
             $show->field('asset_number');
             $show->field('description');
             $show->field('category.name');
@@ -371,8 +375,11 @@ class DeviceRecordController extends AdminController
     {
         return Form::make(new DeviceRecord(), function (Form $form) {
             $form->display('id');
-            $form->text('name')->required();
-
+            if ($form->isCreating() || empty($form->model()->asset_number)) {
+                $form->text('asset_number')->required();
+            } else {
+                $form->display('asset_number')->required();
+            }
             if (Support::ifSelectCreate()) {
                 $form->selectCreate('category_id')
                     ->options(DeviceCategory::class)
@@ -384,6 +391,18 @@ class DeviceRecordController extends AdminController
                     ->ajax(admin_route('selection.vendor.records'))
                     ->url(admin_route('vendor.records.create'))
                     ->required();
+            } else {
+                $form->select('category_id')
+                    ->options(DeviceCategory::pluck('name', 'id'))
+                    ->required();
+                $form->select('vendor_id')
+                    ->options(VendorRecord::pluck('name', 'id'))
+                    ->required();
+            }
+
+            $form->divider();
+
+            if (Support::ifSelectCreate()) {
                 $form->selectCreate('purchased_channel_id')
                     ->options(PurchasedChannel::class)
                     ->ajax(admin_route('selection.purchased.channels'))
@@ -394,21 +413,12 @@ class DeviceRecordController extends AdminController
                     ->url(admin_route('depreciation.rules.create'))
                     ->help(admin_trans_label('Depreciation Rule Help'));
             } else {
-                $form->select('category_id')
-                    ->options(DeviceCategory::pluck('name', 'id'))
-                    ->required();
-                $form->select('vendor_id')
-                    ->options(VendorRecord::pluck('name', 'id'))
-                    ->required();
                 $form->select('purchased_channel_id')
                     ->options(PurchasedChannel::pluck('name', 'id'));
                 $form->select('depreciation_rule_id')
                     ->options(DepreciationRule::pluck('name', 'id'))
                     ->help(admin_trans_label('Depreciation Rule Help'));
             }
-
-            $form->divider();
-            $form->text('asset_number');
             $form->text('description');
             $form->text('mac');
             $form->text('ip');
@@ -436,6 +446,16 @@ class DeviceRecordController extends AdminController
             $form->disableCreatingCheck();
             $form->disableEditingCheck();
             $form->disableViewCheck();
+
+            $form->saving(function (Form $form) {
+                if ($form->isCreating() || empty($form->model()->asset_number)) {
+                    $return = Support::ifAssetNumberUsed($form->input('asset_number'));
+                    if ($return) {
+                        return $form->response()
+                            ->error(trans('main.asset_number_exist'));
+                    }
+                }
+            });
         });
     }
 }

@@ -17,7 +17,7 @@ return [
             'name' => '软件',
         ],
         'device' => [
-            'name' => '设备',
+            'asset_number' => '设备',
         ],
     ],
     'options' => [
