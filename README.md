@@ -3,16 +3,15 @@
 </p>
 
 <p align="center">
-    <a href="https://chemex.io" target="_blank">官方网站</a> | 
-    <a href="https://chemex.it" target="_blank">官方社区</a> | 
-    <a href="https://chemex.famio.cn" target="_blank">演示地址</a>（账密都是：admin） |
+    <a href="https://chemex.it" target="_blank">官方网站</a> |
+    <a href="https://chemex-demo.celaraze.com" target="_blank">演示地址</a>（账密都是：admin） |
     <a href="https://jq.qq.com/?_wv=1027&k=tnV2HCWU">官方QQ群</a>
 </p>
 
 <p align="center">
     <img src="https://img.shields.io/badge/Latest Release-3.0.0-orange" />
     <img src="https://img.shields.io/badge/PHP-7.4+-green" />
-    <img src="https://img.shields.io/badge/MariaDB-10.2+-blueviolet" />
+    <img src="https://img.shields.io/badge/MySQL-8+-blueviolet" />
     <img src="https://img.shields.io/badge/License-GPL3.0-blue" />
 </p>
 
@@ -103,7 +102,7 @@
 
 `PHP 7.4 +` ，已经支持 PHP8 。
 
-`MariaDB 10.2 +`，数据库引擎，理论上 `MySQL 5.6+` 兼容支持。
+`MySQL 8 +`，数据库引擎，理论上 `MariaDB 10.2 +` 兼容支持。
 
 `ext-zip` 扩展，注意和 PHP 版本相同。
 
