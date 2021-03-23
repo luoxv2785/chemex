@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-    <a href="https://chemex.it" target="_blank">官方网站</a> |
+    <a href="https://chemex.celaraze.com" target="_blank">官方网站</a> |
     <a href="https://chemex-demo.celaraze.com" target="_blank">演示地址</a>（账密都是：admin） |
     <a href="https://jq.qq.com/?_wv=1027&k=tnV2HCWU">官方QQ群</a>
 </p>
@@ -178,8 +178,6 @@ MariaDB 账密：chemex/chemex
 > 如果从2.0升级到3.0，需要额外执行 `php artisan chemex:refresh-user`。
 
 ## 截图
-
-
 
 ## 咖啡壶没有满足我的需求，我想要咖啡壶成为我想要的样子
 
