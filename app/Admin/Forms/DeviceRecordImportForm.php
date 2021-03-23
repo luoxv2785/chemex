@@ -35,7 +35,7 @@ class DeviceRecordImportForm extends Form
             $rows = Excel::import($file_path)->first()->toArray();
             foreach ($rows as $row) {
                 try {
-                    if (!empty($row['名称']) && !empty($row['分类']) && !empty($row['厂商'])) {
+                    if (!empty($row['资产编号']) && !empty($row['分类']) && !empty($row['厂商'])) {
                         $device_category = DeviceCategory::where('name', $row['分类'])->first();
                         $vendor_record = VendorRecord::where('name', $row['厂商'])->first();
                         $user = User::where('name', $row['用户'])->first();
@@ -50,7 +50,7 @@ class DeviceRecordImportForm extends Form
                             $vendor_record->save();
                         }
                         $device_record = new DeviceRecord();
-                        $device_record->name = $row['名称'];
+                        $device_record->asset_number = $row['资产编号'];
                         $device_record->category_id = $device_category->id;
                         $device_record->vendor_id = $vendor_record->id;
                         // 这里导入判断空值，不能使用 ?? null 或者 ?? '' 的方式，写入数据库的时候
@@ -60,9 +60,6 @@ class DeviceRecordImportForm extends Form
                         if (!empty($exist) && !empty($exist->asset_number)) {
                             $exist->asset_number = $exist->asset_number . '_archive';
                             $exist->save();
-                        }
-                        if (!empty($row['资产编号'])) {
-                            $device_record->asset_number = $row['资产编号'];
                         }
                         $device_record->mac = $row['MAC'];
                         $device_record->ip = $row['IP'];

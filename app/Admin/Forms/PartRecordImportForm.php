@@ -33,7 +33,7 @@ class PartRecordImportForm extends Form
             $rows = Excel::import($file_path)->first()->toArray();
             foreach ($rows as $row) {
                 try {
-                    if (!empty($row['名称']) && !empty($row['分类']) && !empty($row['厂商'] && !empty($row['规格']))) {
+                    if (!empty($row['资产编号']) && !empty($row['分类']) && !empty($row['厂商'] && !empty($row['规格']))) {
                         $category = PartCategory::where('name', $row['分类'])->first();
                         $vendor = VendorRecord::where('name', $row['厂商'])->first();
                         if (empty($category)) {
@@ -47,7 +47,7 @@ class PartRecordImportForm extends Form
                             $vendor->save();
                         }
                         $part_record = new PartRecord();
-                        $part_record->name = $row['名称'];
+                        $part_record->asset_number = $row['资产编号'];
                         $part_record->category_id = $category->id;
                         $part_record->vendor_id = $vendor->id;
                         // 这里导入判断空值，不能使用 ?? null 或者 ?? '' 的方式，写入数据库的时候

@@ -33,7 +33,7 @@ class SoftwareRecordImportForm extends Form
             $rows = Excel::import($file_path)->first()->toArray();
             foreach ($rows as $row) {
                 try {
-                    if (!empty($row['名称']) && !empty($row['分类']) && !empty($row['厂商'] && !empty($row['版本']))) {
+                    if (!empty($row['资产编号']) && !empty($row['分类']) && !empty($row['厂商'] && !empty($row['版本']))) {
                         $category = SoftwareRecord::where('name', $row['分类'])->first();
                         $vendor = VendorRecord::where('name', $row['厂商'])->first();
                         if (empty($category)) {
@@ -47,13 +47,12 @@ class SoftwareRecordImportForm extends Form
                             $vendor->save();
                         }
                         $software_record = new SoftwareRecord();
-                        $software_record->name = $row['名称'];
+                        $software_record->asset_number = $row['资产编号'];
                         $software_record->category_id = $category->id;
                         $software_record->vendor_id = $vendor->id;
                         // 这里导入判断空值，不能使用 ?? null 或者 ?? '' 的方式，写入数据库的时候
                         // 会默认为插入''而不是null，这会导致像price这样的double也是插入''，就会报错
                         // 其实price应该插入null
-                        $software_record->asset_number = $row['资产编号'];
                         if (!empty($row['版本'])) {
                             $software_record->version = $row['版本'];
                         }
