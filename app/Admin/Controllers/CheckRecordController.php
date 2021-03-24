@@ -2,9 +2,9 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\Grid\BatchAction\CheckRecordUpdateNoAction;
-use App\Admin\Actions\Grid\BatchAction\CheckRecordUpdateYesAction;
-use App\Admin\Actions\Grid\BatchAction\CheckTrackUpdateAction;
+use App\Admin\Actions\Grid\RowAction\CheckRecordUpdateNoAction;
+use App\Admin\Actions\Grid\RowAction\CheckRecordUpdateYesAction;
+use App\Admin\Actions\Grid\RowAction\CheckTrackUpdateAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\CheckRecord;
 use App\Models\CheckTrack;

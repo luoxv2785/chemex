@@ -166,9 +166,9 @@ class Support
      * @param $item
      * @param $item_id
      *
-     * @return string
+     * @return null|string
      */
-    public static function itemIdToItemAssetNumber($item, $item_id): string
+    public static function itemIdToItemAssetNumber($item, $item_id): ?string
     {
         $item_record = self::getItemRecordByClass($item, $item_id);
         if (empty($item_record)) {

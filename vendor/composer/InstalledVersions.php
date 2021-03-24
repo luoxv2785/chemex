@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '4a63ab6c2957b6974034945cd57686aef690736f',
+    'reference' => 'e8e044adb7862ab330986602d387042bbcf2b76e',
     'name' => 'celaraze/chemex',
   ),
   'versions' => 
@@ -87,7 +87,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '4a63ab6c2957b6974034945cd57686aef690736f',
+      'reference' => 'e8e044adb7862ab330986602d387042bbcf2b76e',
     ),
     'celaraze/pour' => 
     array (
@@ -646,12 +646,12 @@ private static $installed = array (
     ),
     'laravel/sail' => 
     array (
-      'pretty_version' => 'v1.4.8',
-      'version' => '1.4.8.0',
+      'pretty_version' => 'v1.4.9',
+      'version' => '1.4.9.0',
       'aliases' => 
       array (
       ),
-      'reference' => '66b26181c3e86266b0b98f45a3398b090f37dee9',
+      'reference' => '935b453bf536b284d6fef7c1b5dd2ea52bca34c0',
     ),
     'laravel/tinker' => 
     array (

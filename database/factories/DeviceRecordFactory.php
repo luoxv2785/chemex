@@ -6,6 +6,7 @@ use App\Models\DeviceCategory;
 use App\Models\DeviceRecord;
 use App\Models\VendorRecord;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class DeviceRecordFactory extends Factory
 {
@@ -24,9 +25,9 @@ class DeviceRecordFactory extends Factory
     public function definition(): array
     {
         return [
-            'asset_number'        => $this->faker->asset_number,
+            'asset_number' => Str::random(10),
             'category_id' => DeviceCategory::factory(),
-            'vendor_id'   => VendorRecord::factory(),
+            'vendor_id' => VendorRecord::factory(),
         ];
     }
 }

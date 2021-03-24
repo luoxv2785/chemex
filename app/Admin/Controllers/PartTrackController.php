@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\Grid\BatchAction\PartTrackDeleteAction;
+use App\Admin\Actions\Grid\RowAction\PartTrackDeleteAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\PartTrack;
 use App\Support\Data;

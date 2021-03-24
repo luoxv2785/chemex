@@ -144,7 +144,7 @@ final class Versions
   'facade/ignition-contracts' => '1.0.2@3c921a1cdba35b68a7f0ccffc6dffc1995b18267',
   'filp/whoops' => '2.11.0@f6e14679f948d8a5cfb866fa7065a30c66bd64d3',
   'fzaninotto/faker' => 'dev-master@5ffe7db6c80f441f150fc88008d64e64af66634b',
-  'laravel/sail' => 'v1.4.8@66b26181c3e86266b0b98f45a3398b090f37dee9',
+  'laravel/sail' => 'v1.4.9@935b453bf536b284d6fef7c1b5dd2ea52bca34c0',
   'myclabs/deep-copy' => '1.10.2@776f831124e9c62e1a2c601ecc52e776d8bb7220',
   'nunomaduro/collision' => 'v5.3.0@aca63581f380f63a492b1e3114604e411e39133a',
   'phar-io/manifest' => '2.0.1@85265efd3af7ba3ca4b2a2c34dbfc5788dd29133',
@@ -176,7 +176,7 @@ final class Versions
   'sebastian/type' => '2.3.1@81cd61ab7bbf2de744aba0ea61fae32f721df3d2',
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'theseer/tokenizer' => '1.2.0@75a63c33a8577608444246075ea0af0d052e452a',
-  'celaraze/chemex' => 'dev-main@4a63ab6c2957b6974034945cd57686aef690736f',
+  'celaraze/chemex' => 'dev-main@e8e044adb7862ab330986602d387042bbcf2b76e',
 );
 
     private function __construct()
