@@ -57,6 +57,9 @@ class ConsumableTrackController extends AdminController
              * 筛选.
              */
             $grid->filter(function (Grid\Filter $filter) {
+                if (admin_setting('switch_to_filter_panel')) {
+                    $filter->panel();
+                }
                 $filter->equal('id');
             });
 

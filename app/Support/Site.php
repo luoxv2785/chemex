@@ -70,7 +70,7 @@ class Site
          * 处理AD端口号.
          */
         $ad_port = admin_setting('ad_port_primary');
-        $ad_port = (int) $ad_port;
+        $ad_port = (int)$ad_port;
 
         /**
          * 处理AD SSL 和 TLS 协议，如果没填这个配置，就为false，否则就是本身设置的值
@@ -84,25 +84,25 @@ class Site
          * 复写admin站点配置.
          */
         config([
-            'app.url'             => $site_url,
-            'app.debug'           => $site_debug,
-            'app.locale'          => admin_setting('site_lang'),
+            'app.url' => $site_url,
+            'app.debug' => $site_debug,
+            'app.locale' => admin_setting('site_lang'),
             'app.fallback_locale' => admin_setting('site_lang'),
 
-            'admin.title'        => admin_setting('site_title'),
-            'admin.logo'         => $logo,
-            'admin.logo-mini'    => $logo_mini,
+            'admin.title' => admin_setting('site_title'),
+            'admin.logo' => $logo,
+            'admin.logo-mini' => $logo_mini,
             'admin.layout.color' => $theme_color,
 
-            'filesystems.disks.admin.url' => config('app.url').'/uploads',
+            'filesystems.disks.admin.url' => config('app.url') . '/uploads',
 
-            'ldap.connections.default.settings.hosts'    => $ad_hosts,
-            'ldap.connections.default.settings.port'     => $ad_port,
-            'ldap.connections.default.settings.base_dn'  => admin_setting('ad_base_dn'),
+            'ldap.connections.default.settings.hosts' => $ad_hosts,
+            'ldap.connections.default.settings.port' => $ad_port,
+            'ldap.connections.default.settings.base_dn' => admin_setting('ad_base_dn'),
             'ldap.connections.default.settings.username' => admin_setting('ad_username'),
             'ldap.connections.default.settings.password' => admin_setting('ad_password'),
-            'ldap.connections.default.settings.use_ssl'  => $ad_use_ssl,
-            'ldap.connections.default.settings.use_tls'  => $ad_use_tls,
+            'ldap.connections.default.settings.use_ssl' => $ad_use_ssl,
+            'ldap.connections.default.settings.use_tls' => $ad_use_tls,
         ]);
     }
 

@@ -23,6 +23,9 @@ class DepartmentImportForm extends Form
      */
     public function handle(array $input): JsonResponse
     {
+        $success = 0;
+        $fail = 0;
+
         if ($input['type'] == 'file') {
             $file = $input['file'];
             $file_path = public_path('uploads/' . $file);
@@ -47,17 +50,18 @@ class DepartmentImportForm extends Form
                                 $department->parent_id = $parent_department->id;
                             }
                             $department->save();
+                            $success++;
                         } else {
-                            return $this->response()
-                                ->error(trans('admin.parameter_missing'));
+                            $fail++;
                         }
                     } catch (Exception $exception) {
-                        return $this->response()->error($exception->getMessage());
+                        $fail++;
+//                        return $this->response()->error($exception->getMessage());
                     }
                 }
 
                 return $this->response()
-                    ->success(trans('main.upload_success'))
+                    ->success(trans('main.success') . ': ' . $success . ' ; ' . trans('main.fail') . ': ' . $fail)
                     ->refresh();
             } catch (IOException $e) {
                 return $this->response()

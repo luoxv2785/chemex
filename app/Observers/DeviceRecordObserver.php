@@ -2,6 +2,8 @@
 
 namespace App\Observers;
 
+use App\Models\CheckRecord;
+use App\Models\CheckTrack;
 use App\Models\DeviceRecord;
 use App\Models\DeviceTrack;
 use App\Models\PartTrack;
@@ -61,6 +63,15 @@ class DeviceRecordObserver
         $service_tracks = SoftwareTrack::where('device_id', $deviceRecord->id)->get();
         foreach ($service_tracks as $service_track) {
             $service_track->delete();
+        }
+
+        // 软删除设备盘点记录
+        $check_records = CheckRecord::where('check_item', 'device')->get();
+        foreach ($check_records as $check_record) {
+            $check_tracks = CheckTrack::where('check_id', $check_record->id)->get();
+            foreach ($check_tracks as $check_track) {
+                $check_track->delete();
+            }
         }
     }
 

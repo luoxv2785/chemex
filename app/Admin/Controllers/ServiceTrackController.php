@@ -26,11 +26,11 @@ class ServiceTrackController extends AdminController
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(Data::icon('record').trans('main.record'), admin_route('service.records.index'));
-                $tab->add(Data::icon('track').trans('main.track'), $this->grid(), true);
-                $tab->addLink(Data::icon('issue').trans('main.issue'), admin_route('service.issues.index'));
-                $tab->addLink(Data::icon('statistics').trans('main.statistics'), admin_route('service.statistics'));
-                $tab->addLink(Data::icon('column').trans('main.column'), admin_route('service.columns.index'));
+                $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('service.records.index'));
+                $tab->add(Data::icon('track') . trans('main.track'), $this->grid(), true);
+                $tab->addLink(Data::icon('issue') . trans('main.issue'), admin_route('service.issues.index'));
+                $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('service.statistics'));
+                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('service.columns.index'));
                 $row->column(12, $tab);
             });
     }
@@ -68,7 +68,9 @@ class ServiceTrackController extends AdminController
              * 筛选.
              */
             $grid->filter(function (Grid\Filter $filter) {
-                $filter->panel();
+                if (admin_setting('switch_to_filter_panel')) {
+                    $filter->panel();
+                }
                 $filter->scope('history', admin_trans_label('History Scope'))->onlyTrashed();
             });
 

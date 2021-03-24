@@ -9,7 +9,6 @@ use Closure;
 use Dcat\Admin\Grid\LazyRenderable as LazyGrid;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Card;
-use Exception;
 use Illuminate\Contracts\Support\Renderable;
 
 class CheckSoftwarePercentage extends Card
@@ -32,13 +31,14 @@ class CheckSoftwarePercentage extends Card
                 ->where('status', '!=', 0)
                 ->get()
                 ->count();
-            $done_counts = trans('main.check_process').$check_tracks_counts.' / '.$software_records_all;
+            $done_counts = trans('main.check_process') . $check_tracks_counts . ' / ' . $software_records_all;
 
-            try {
+            if ($software_records_all != 0) {
                 $percentage = round($check_tracks_counts / $software_records_all * 100, 2);
-            } catch (Exception $exception) {
+            } else {
                 $percentage = 0;
             }
+
         } else {
             $done_counts = trans('main.check_none');
             $percentage = 0;

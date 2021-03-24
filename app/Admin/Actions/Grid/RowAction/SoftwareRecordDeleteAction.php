@@ -21,7 +21,7 @@ class SoftwareRecordDeleteAction extends RowAction
      */
     public function handle(): Response
     {
-        SoftwareService::deleteSoftware($this->getKey());
+        SoftwareService::softwareDelete($this->getKey());
 
         return $this->response()
             ->success(trans('main.success'))

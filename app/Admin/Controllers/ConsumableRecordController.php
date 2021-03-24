@@ -34,10 +34,10 @@ class ConsumableRecordController extends AdminController
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->add(Data::icon('record').trans('main.record'), $this->grid(), true);
-                $tab->addLink(Data::icon('category').trans('main.category'), admin_route('consumable.categories.index'));
-                $tab->addLink(Data::icon('track').trans('main.history'), admin_route('consumable.tracks.index'));
-                $tab->addLink(Data::icon('column').trans('main.column'), admin_route('consumable.columns.index'));
+                $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
+                $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('consumable.categories.index'));
+                $tab->addLink(Data::icon('track') . trans('main.history'), admin_route('consumable.tracks.index'));
+                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('consumable.columns.index'));
                 $row->column(12, $tab);
             });
     }
@@ -116,6 +116,10 @@ class ConsumableRecordController extends AdminController
              * 筛选.
              */
             $grid->filter(function ($filter) {
+                if (admin_setting('switch_to_filter_panel')) {
+                    $filter->panel();
+                }
+                $filter->scope('history', admin_trans_label('Deleted'))->onlyTrashed();
                 $filter->equal('category_id')->select(ConsumableCategory::pluck('name', 'id'));
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
                 /**
@@ -129,13 +133,15 @@ class ConsumableRecordController extends AdminController
             $grid->disableDeleteButton();
             $grid->enableDialogCreate();
             $grid->toolsWithOutline(false);
-            // @permissions
-            if (!Admin::user()->can('consumable.record.create')) {
-                $grid->disableCreateButton();
-            }
-            // @permissions
-            if (!Admin::user()->can('consumable.record.update')) {
-                $grid->disableEditButton();
+            if (!request('_scope_')) {
+                // @permissions
+                if (!Admin::user()->can('consumable.record.create')) {
+                    $grid->disableCreateButton();
+                }
+                // @permissions
+                if (!Admin::user()->can('consumable.record.update')) {
+                    $grid->disableEditButton();
+                }
             }
             // @permissions
             if (Admin::user()->can('consumable.record.export')) {

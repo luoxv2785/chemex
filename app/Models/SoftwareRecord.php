@@ -31,6 +31,7 @@ class SoftwareRecord extends Model
 {
     use HasDateTimeFormatter;
     use SoftDeletes;
+
     /**
      * 这里需要给个别名，否则delete方法将会重复
      * 和下面的delete方法重写打配合调整优先级.
@@ -68,13 +69,25 @@ class SoftwareRecord extends Model
     protected $table = 'software_records';
 
     /**
+     * 模型事件
+     */
+    protected static function booting()
+    {
+        static::saving(function ($model) {
+            if (!empty($model->deleted_at)) {
+                abort(401, 'you can not do that.');
+            }
+        });
+    }
+
+    /**
      * 复写这个是为了让delete方法的优先级满足：
      * 子类>trait>父类
      * 这个是因为字段管理中删除动作的需要
      *
+     * @return bool|null
      * @throws Exception
      *
-     * @return bool|null
      */
     public function delete(): ?bool
     {

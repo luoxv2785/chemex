@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://chemex.celaraze.com/chemex-red.png" width="120" height="120"/>
+    <img src="https://tva1.sinaimg.cn/large/008eGmZEly1gov9jz5uk9j30n10zawfd.jpg" width="120"/>
 </p>
 
 <p align="center">
@@ -34,16 +34,12 @@
 
 ## 鸣谢
 
-<p align="center">
-    <img src="http://chemex-saas.celaraze.com/admin_uploads/images/ea3131e930c4709bb3664705bdf5b415.png"/>
-</p>
-
 没有它们就没有 咖啡壶（Chemex）：
 
 `JetBrains` 提供优秀的IDE。
 
 <a href="https://www.jetbrains.com/?from=Chemex" target="_blank">
-<img src="https://oss.celaraze.com/chemex/jetbrains.svg" />
+<img src="https://tva1.sinaimg.cn/large/008eGmZEly1gov9g3tzrnj30u00wj0tn.jpg" width="150"/>
 </a>
 
 [Laravel](https://laravel.com/) ，优雅的 PHP Web 框架。
@@ -178,6 +174,14 @@ MariaDB 账密：chemex/chemex
 > 如果从2.0升级到3.0，需要额外执行 `php artisan chemex:refresh-user`。
 
 ## 截图
+
+![](https://tva1.sinaimg.cn/large/008eGmZEly1gov9d2pjiaj31lt0u0408.jpg)
+
+![](https://tva1.sinaimg.cn/large/008eGmZEly1gov9csj82yj31lt0u0wgn.jpg)
+
+![](https://tva1.sinaimg.cn/large/008eGmZEly1gov9d07mxfj314d0u0q5e.jpg)
+
+![](https://tva1.sinaimg.cn/large/008eGmZEly1gov9cwrlz4j30ua0u0q63.jpg)
 
 ## 咖啡壶没有满足我的需求，我想要咖啡壶成为我想要的样子
 

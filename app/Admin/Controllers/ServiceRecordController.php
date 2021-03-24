@@ -14,6 +14,7 @@ use App\Models\PurchasedChannel;
 use App\Support\Data;
 use App\Support\Support;
 use App\Traits\ControllerHasCustomColumns;
+use DateTime;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Http\Controllers\AdminController;
@@ -24,6 +25,7 @@ use Dcat\Admin\Widgets\Tab;
 
 /**
  * @property  DeviceRecord device
+ * @property DateTime deleted_at
  */
 class ServiceRecordController extends AdminController
 {
@@ -78,17 +80,19 @@ class ServiceRecordController extends AdminController
              * 行操作按钮.
              */
             $grid->actions(function (RowActions $actions) {
-                // @permissions
-                if (Admin::user()->can('service.record.delete')) {
-                    $actions->append(new ServiceRecordDeleteAction());
-                }
-                // @permissions
-                if (Admin::user()->can('service.record.track.create_update')) {
-                    $actions->append(new ServiceRecordCreateUpdateTrackAction());
-                }
-                // @permissions
-                if (Admin::user()->can('service.record.issue.create')) {
-                    $actions->append(new ServiceRecordCreateIssueAction());
+                if ($this->deleted_at == null) {
+                    // @permissions
+                    if (Admin::user()->can('service.record.delete')) {
+                        $actions->append(new ServiceRecordDeleteAction());
+                    }
+                    // @permissions
+                    if (Admin::user()->can('service.record.track.create_update')) {
+                        $actions->append(new ServiceRecordCreateUpdateTrackAction());
+                    }
+                    // @permissions
+                    if (Admin::user()->can('service.record.issue.create')) {
+                        $actions->append(new ServiceRecordCreateIssueAction());
+                    }
                 }
             });
 
@@ -115,6 +119,10 @@ class ServiceRecordController extends AdminController
              * 筛选.
              */
             $grid->filter(function ($filter) {
+                if (admin_setting('switch_to_filter_panel')) {
+                    $filter->panel();
+                }
+                $filter->scope('history', admin_trans_label('Deleted'))->onlyTrashed();
                 $filter->equal('device.name');
                 /**
                  * 自定义字段.
@@ -130,13 +138,15 @@ class ServiceRecordController extends AdminController
             $grid->disableDeleteButton();
             $grid->disableBatchActions();
             $grid->toolsWithOutline(false);
-            // @permissions
-            if (!Admin::user()->can('service.record.create')) {
-                $grid->disableCreateButton();
-            }
-            // @permissions
-            if (!Admin::user()->can('service.record.update')) {
-                $grid->disableEditButton();
+            if (!request('_scope_')) {
+                // @permissions
+                if (!Admin::user()->can('service.record.create')) {
+                    $grid->disableCreateButton();
+                }
+                // @permissions
+                if (!Admin::user()->can('service.record.update')) {
+                    $grid->disableEditButton();
+                }
             }
             // @permissions
             if (Admin::user()->can('service.record.export')) {

@@ -28,6 +28,6 @@ class ExportService
         }
         $history = DeviceService::history($device_id);
 
-        return Excel::export($history)->download($name.'履历清单.xlsx');
+        return Excel::export($history)->download($name . '履历清单.xlsx');
     }
 }

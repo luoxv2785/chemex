@@ -24,6 +24,7 @@ use App\Support\Data;
 use App\Support\Support;
 use App\Traits\ControllerHasCustomColumns;
 use App\Traits\ControllerHasDeviceRelatedGrid;
+use DateTime;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid\Tools;
@@ -41,6 +42,7 @@ use Illuminate\Http\Request;
  * @property float price
  * @property string purchased
  * @property int depreciation_rule_id
+ * @property DateTime deleted_at
  *
  * @method isLend()
  */
@@ -149,18 +151,20 @@ class DeviceRecordController extends AdminController
              * 行操作按钮.
              */
             $grid->actions(function (RowActions $actions) {
-                // @permissions
-                if (Admin::user()->can('device.record.delete')) {
-                    $actions->append(new DeviceRecordDeleteAction());
-                }
-                $is_lend = $this->isLend();
-                // @permissions
-                if (Admin::user()->can('device.record.track.create_update') && !$is_lend) {
-                    $actions->append(new DeviceRecordCreateUpdateTrackAction($is_lend));
-                }
-                // @permissions
-                if (Admin::user()->can('device.maintenance.create')) {
-                    $actions->append(new MaintenanceRecordCreateAction('device'));
+                if ($this->deleted_at == null) {
+                    // @permissions
+                    if (Admin::user()->can('device.record.delete')) {
+                        $actions->append(new DeviceRecordDeleteAction());
+                    }
+                    $is_lend = $this->isLend();
+                    // @permissions
+                    if (Admin::user()->can('device.record.track.create_update') && !$is_lend) {
+                        $actions->append(new DeviceRecordCreateUpdateTrackAction($is_lend));
+                    }
+                    // @permissions
+                    if (Admin::user()->can('device.maintenance.create')) {
+                        $actions->append(new MaintenanceRecordCreateAction('device'));
+                    }
                 }
             });
 
@@ -204,6 +208,10 @@ class DeviceRecordController extends AdminController
              * 筛选.
              */
             $grid->filter(function ($filter) {
+                if (admin_setting('switch_to_filter_panel')) {
+                    $filter->panel();
+                }
+                $filter->scope('history', admin_trans_label('Deleted'))->onlyTrashed();
                 $filter->equal('category_id')->select(DeviceCategory::pluck('name', 'id'));
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
                 $filter->equal('user.department_id')->select(Department::pluck('name', 'id'));
@@ -224,13 +232,15 @@ class DeviceRecordController extends AdminController
             $grid->enableDialogCreate();
             $grid->disableEditButton();
             $grid->toolsWithOutline(false);
-            // @permissions
-            if (!Admin::user()->can('device.record.create')) {
-                $grid->disableCreateButton();
-            }
-            // @permissions
-            if (Admin::user()->can('device.record.update')) {
-                $grid->showQuickEditButton();
+            if (!request('_scope_')) {
+                // @permissions
+                if (!Admin::user()->can('device.record.create')) {
+                    $grid->disableCreateButton();
+                }
+                // @permissions
+                if (Admin::user()->can('device.record.update')) {
+                    $grid->showQuickEditButton();
+                }
             }
             // @permissions
             if (Admin::user()->can('device.record.export')) {

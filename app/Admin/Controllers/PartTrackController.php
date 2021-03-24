@@ -69,7 +69,9 @@ class PartTrackController extends AdminController
              * 筛选.
              */
             $grid->filter(function (Grid\Filter $filter) {
-                $filter->panel();
+                if (admin_setting('switch_to_filter_panel')) {
+                    $filter->panel();
+                }
                 $filter->scope('history', admin_trans_label('History Scope'))->onlyTrashed();
             });
 

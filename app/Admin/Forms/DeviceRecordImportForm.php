@@ -31,6 +31,9 @@ class DeviceRecordImportForm extends Form
         $file = $input['file'];
         $file_path = public_path('uploads/' . $file);
 
+        $success = 0;
+        $fail = 0;
+
         try {
             $rows = Excel::import($file_path)->first()->toArray();
             foreach ($rows as $row) {
@@ -57,9 +60,9 @@ class DeviceRecordImportForm extends Form
                         // 会默认为插入''而不是null，这会导致像price这样的double也是插入''，就会报错
                         // 其实price应该插入null
                         $exist = DeviceRecord::where('asset_number', $row['资产编号'])->withTrashed()->first();
-                        if (!empty($exist) && !empty($exist->asset_number)) {
-                            $exist->asset_number = $exist->asset_number . '_archive';
-                            $exist->save();
+                        if (!empty($exist)) {
+                            $fail++;
+                            continue;
                         }
                         $device_record->mac = $row['MAC'];
                         $device_record->ip = $row['IP'];
@@ -103,17 +106,18 @@ class DeviceRecordImportForm extends Form
                             $device_track->user_id = $user->id;
                             $device_track->save();
                         }
+
+                        $success++;
                     } else {
-                        return $this->response()
-                            ->error(trans('main.parameter_missing'));
+                        $fail++;
                     }
                 } catch (Exception $exception) {
-                    return $this->response()->error($exception->getMessage());
+                    $fail++;
+//                    return $this->response()->error($exception->getMessage());
                 }
             }
-            $return = $this
-                ->response()
-                ->success(trans('main.upload_success'))
+            $return = $this->response()
+                ->success(trans('main.success') . ': ' . $success . ' ; ' . trans('main.fail') . ': ' . $fail)
                 ->refresh();
         } catch (IOException $e) {
             $return = $this

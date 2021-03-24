@@ -23,6 +23,7 @@ return [
         'Merge' => '合并',
         'File' => '文件',
         'LDAP' => 'LDAP',
+        'Deleted' => '已删除'
     ],
     'fields' => [
         'name' => '姓名',

@@ -26,6 +26,9 @@ class UserImportForm extends Form
      */
     public function handle(array $input): JsonResponse
     {
+        $success = 0;
+        $fail = 0;
+
         if ($input['type'] == 'file') {
             $file = $input['file'];
             $file_path = public_path('uploads/' . $file);
@@ -70,17 +73,18 @@ class UserImportForm extends Form
                                 $user->email = $row['邮箱'];
                             }
                             $user->save();
+                            $success++;
                         } else {
-                            return $this->response()
-                                ->error(trans('main.parameter_missing'));
+                            $fail++;
                         }
                     } catch (Exception $exception) {
-                        return $this->response()->error($exception->getMessage());
+                        $fail++;
+//                        return $this->response()->error($exception->getMessage());
                     }
                 }
 
                 return $this->response()
-                    ->success(trans('main.upload_success'))
+                    ->success(trans('main.success') . ': ' . $success . ' ; ' . trans('main.fail') . ': ' . $fail)
                     ->refresh();
             } catch (IOException $e) {
                 return $this->response()

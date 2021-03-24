@@ -109,18 +109,20 @@ class SoftwareRecordController extends AdminController
              * 行操作按钮.
              */
             $grid->actions(function (RowActions $actions) {
-                // @permissions
-                if (Admin::user()->can('software.record.delete')) {
-                    $actions->append(new SoftwareRecordDeleteAction());
-                }
-                // @permissions
-                if (Admin::user()->can('software.record.track.create_update')) {
-                    $actions->append(new SoftwareRecordCreateUpdateTrackAction());
-                }
-                // @permissions
-                if (Admin::user()->can('software.record.track.list')) {
-                    $tracks_route = admin_route('software.tracks.index', ['_search_' => $this->id]);
-                    $actions->append("<a href='$tracks_route'>💿 " . admin_trans_label('Manage Track') . '</a>');
+                if ($this->deleted_at == null) {
+                    // @permissions
+                    if (Admin::user()->can('software.record.delete')) {
+                        $actions->append(new SoftwareRecordDeleteAction());
+                    }
+                    // @permissions
+                    if (Admin::user()->can('software.record.track.create_update')) {
+                        $actions->append(new SoftwareRecordCreateUpdateTrackAction());
+                    }
+                    // @permissions
+                    if (Admin::user()->can('software.record.track.list')) {
+                        $tracks_route = admin_route('software.tracks.index', ['_search_' => $this->id]);
+                        $actions->append("<a href='$tracks_route'>💿 " . admin_trans_label('Manage Track') . '</a>');
+                    }
                 }
             });
 
@@ -155,6 +157,10 @@ class SoftwareRecordController extends AdminController
              * 筛选.
              */
             $grid->filter(function ($filter) {
+                if (admin_setting('switch_to_filter_panel')) {
+                    $filter->panel();
+                }
+                $filter->scope('history', admin_trans_label('Deleted'))->onlyTrashed();
                 $filter->equal('category_id')->select(SoftwareCategory::pluck('name', 'id'));
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
                 /**
@@ -191,13 +197,15 @@ class SoftwareRecordController extends AdminController
             $grid->disableBatchDelete();
             $grid->disableEditButton();
             $grid->toolsWithOutline(false);
-            // @permissions
-            if (!Admin::user()->can('software.record.create')) {
-                $grid->disableCreateButton();
-            }
-            // @permissions
-            if (Admin::user()->can('software.record.update')) {
-                $grid->showQuickEditButton();
+            if (!request('_scope_')) {
+                // @permissions
+                if (!Admin::user()->can('software.record.create')) {
+                    $grid->disableCreateButton();
+                }
+                // @permissions
+                if (Admin::user()->can('software.record.update')) {
+                    $grid->showQuickEditButton();
+                }
             }
             // @permissions
             if (Admin::user()->can('software.record.export')) {

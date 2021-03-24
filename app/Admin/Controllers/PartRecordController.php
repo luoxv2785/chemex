@@ -20,6 +20,7 @@ use App\Services\ExpirationService;
 use App\Support\Data;
 use App\Support\Support;
 use App\Traits\ControllerHasCustomColumns;
+use DateTime;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid\Tools;
@@ -35,6 +36,7 @@ use Dcat\Admin\Widgets\Tab;
  * @property int id
  * @property float price
  * @property string purchased
+ * @property DateTime deleted_at
  *
  * @method device()
  */
@@ -107,17 +109,19 @@ class PartRecordController extends AdminController
              * 行操作按钮.
              */
             $grid->actions(function (RowActions $actions) {
-                // @permissions
-                if (Admin::user()->can('part.record.delete')) {
-                    $actions->append(new PartRecordDeleteAction());
-                }
-                // @permissions
-                if (Admin::user()->can('part.record.track.create_update')) {
-                    $actions->append(new PartRecordCreateUpdateTrackAction());
-                }
-                // @permissions
-                if (Admin::user()->can('part.maintenance.create')) {
-                    $actions->append(new MaintenanceRecordCreateAction('part'));
+                if ($this->deleted_at == null) {
+                    // @permissions
+                    if (Admin::user()->can('part.record.delete')) {
+                        $actions->append(new PartRecordDeleteAction());
+                    }
+                    // @permissions
+                    if (Admin::user()->can('part.record.track.create_update')) {
+                        $actions->append(new PartRecordCreateUpdateTrackAction());
+                    }
+                    // @permissions
+                    if (Admin::user()->can('part.maintenance.create')) {
+                        $actions->append(new MaintenanceRecordCreateAction('part'));
+                    }
                 }
             });
 
@@ -148,6 +152,10 @@ class PartRecordController extends AdminController
              * 筛选.
              */
             $grid->filter(function ($filter) {
+                if (admin_setting('switch_to_filter_panel')) {
+                    $filter->panel();
+                }
+                $filter->scope('history', admin_trans_label('Deleted'))->onlyTrashed();
                 $filter->equal('category_id')->select(PartCategory::pluck('name', 'id'));
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
                 $filter->equal('device.asset_number');
@@ -186,13 +194,15 @@ class PartRecordController extends AdminController
             $grid->disableBatchDelete();
             $grid->disableEditButton();
             $grid->toolsWithOutline(false);
-            // @permissions
-            if (!Admin::user()->can('part.record.create')) {
-                $grid->disableCreateButton();
-            }
-            // @permissions
-            if (Admin::user()->can('part.record.update')) {
-                $grid->showQuickEditButton();
+            if (!request('_scope_')) {
+                // @permissions
+                if (!Admin::user()->can('part.record.create')) {
+                    $grid->disableCreateButton();
+                }
+                // @permissions
+                if (Admin::user()->can('part.record.update')) {
+                    $grid->showQuickEditButton();
+                }
             }
             // @permissions
             if (Admin::user()->can('part.record.export')) {

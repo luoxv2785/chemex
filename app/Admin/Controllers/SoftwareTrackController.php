@@ -26,11 +26,11 @@ class SoftwareTrackController extends AdminController
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(Data::icon('record').trans('main.record'), admin_route('software.records.index'));
-                $tab->addLink(Data::icon('category').trans('main.category'), admin_route('software.categories.index'));
-                $tab->add(Data::icon('track').trans('main.track'), $this->grid(), true);
-                $tab->addLink(Data::icon('statistics').trans('main.statistics'), admin_route('software.statistics'));
-                $tab->addLink(Data::icon('column').trans('main.column'), admin_route('software.columns.index'));
+                $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('software.records.index'));
+                $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('software.categories.index'));
+                $tab->add(Data::icon('track') . trans('main.track'), $this->grid(), true);
+                $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('software.statistics'));
+                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('software.columns.index'));
                 $row->column(12, $tab);
             });
     }
@@ -75,7 +75,9 @@ class SoftwareTrackController extends AdminController
              * 筛选.
              */
             $grid->filter(function (Grid\Filter $filter) {
-                $filter->panel();
+                if (admin_setting('switch_to_filter_panel')) {
+                    $filter->panel();
+                }
                 $filter->scope('history', admin_trans_label('History Scope'))->onlyTrashed();
             });
 

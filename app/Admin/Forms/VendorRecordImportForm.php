@@ -22,6 +22,9 @@ class VendorRecordImportForm extends Form
      */
     public function handle(array $input): JsonResponse
     {
+        $success = 0;
+        $fail = 0;
+
         $file = $input['file'];
         $file_path = public_path('uploads/' . $file);
 
@@ -42,17 +45,17 @@ class VendorRecordImportForm extends Form
                             $vendor_record->location = $row['所在地'];
                         }
                         $vendor_record->save();
+                        $success++;
                     } else {
-                        return $this->response()
-                            ->error(trans('main.parameter_missing'));
+                        $fail++;
                     }
                 } catch (Exception $exception) {
-                    return $this->response()->error($exception->getMessage());
+                    $fail++;
+//                    return $this->response()->error($exception->getMessage());
                 }
             }
-            $return = $this
-                ->response()
-                ->success(trans('main.upload_success'))
+            $return = $this->response()
+                ->success(trans('main.success') . ': ' . $success . ' ; ' . trans('main.fail') . ': ' . $fail)
                 ->refresh();
         } catch (IOException $e) {
             $return = $this

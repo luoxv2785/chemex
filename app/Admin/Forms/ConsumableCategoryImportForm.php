@@ -26,6 +26,9 @@ class ConsumableCategoryImportForm extends Form implements LazyRenderable
      */
     public function handle(array $input): JsonResponse
     {
+        $success = 0;
+        $fail = 0;
+
         $file = $input['file'];
         $file_path = public_path('uploads/' . $file);
 
@@ -43,29 +46,26 @@ class ConsumableCategoryImportForm extends Form implements LazyRenderable
                             $consumable_category->description = $row['描述'];
                         }
                         $consumable_category->save();
+                        $success++;
                     } else {
-                        return $this->response()
-                            ->error(trans('main.parameter_missing'));
+                        $fail++;
                     }
                 } catch (Exception $exception) {
-                    return $this->response()->error($exception->getMessage());
+                    $fail++;
+//                    return $this->response()->error($exception->getMessage());
                 }
             }
-            $return = $this
-                ->response()
-                ->success(trans('main.upload_success'))
+            $return = $this->response()
+                ->success(trans('main.success') . ': ' . $success . ' ; ' . trans('main.fail') . ': ' . $fail)
                 ->refresh();
         } catch (IOException $e) {
-            $return = $this
-                ->response()
+            $return = $this->response()
                 ->error(trans('main.file_io_error') . $e->getMessage());
         } catch (UnsupportedTypeException $e) {
-            $return = $this
-                ->response()
+            $return = $this->response()
                 ->error(trans('main.file_format') . $e->getMessage());
         } catch (FileNotFoundException $e) {
-            $return = $this
-                ->response()
+            $return = $this->response()
                 ->error(trans('main.file_none') . $e->getMessage());
         }
 

@@ -16,8 +16,6 @@ return [
     'check_track' => '明细',
     'quick_search' => '快速搜索一下',
     'unauthorized' => '你没有权限执行此操作！',
-    'parameter_missing' => '参数缺失',
-    'upload_success' => '上传成功',
     'file_io_error' => '文件读写失败：',
     'file_format' => '不支持的文件类型：',
     'file_none' => '文件不存在：',
@@ -116,5 +114,6 @@ return [
     'site_setting' => '配置',
     'site_ui' => '界面',
     'site_ldap' => 'LDAP',
-    'asset_number_exist' => '资产编号已经存在，请更换后尝试。'
+    'asset_number_exist' => '资产编号已经存在，请更换后尝试。',
+    'select_create' => '快速创建'
 ];

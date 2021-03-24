@@ -26,6 +26,9 @@ class SoftwareRecordImportForm extends Form
      */
     public function handle(array $input): JsonResponse
     {
+        $success = 0;
+        $fail = 0;
+
         $file = $input['file'];
         $file_path = public_path('uploads/' . $file);
 
@@ -48,6 +51,11 @@ class SoftwareRecordImportForm extends Form
                         }
                         $software_record = new SoftwareRecord();
                         $software_record->asset_number = $row['资产编号'];
+                        $exist = SoftwareRecord::where('asset_number', $row['资产编号'])->withTrashed()->first();
+                        if (!empty($exist)) {
+                            $fail++;
+                            continue;
+                        }
                         $software_record->category_id = $category->id;
                         $software_record->vendor_id = $vendor->id;
                         // 这里导入判断空值，不能使用 ?? null 或者 ?? '' 的方式，写入数据库的时候
@@ -86,17 +94,17 @@ class SoftwareRecordImportForm extends Form
                         }
 
                         $software_record->save();
+                        $success++;
                     } else {
-                        return $this->response()
-                            ->error(trans('main.parameter_missing'));
+                        $fail++;
                     }
                 } catch (Exception $exception) {
-                    return $this->response()->error($exception->getMessage());
+                    $fail++;
+//                    return $this->response()->error($exception->getMessage());
                 }
             }
-            $return = $this
-                ->response()
-                ->success(trans('main.upload_success'))
+            $return = $this->response()
+                ->success(trans('main.success') . ': ' . $success . ' ; ' . trans('main.fail') . ': ' . $fail)
                 ->refresh();
         } catch (IOException $e) {
             $return = $this

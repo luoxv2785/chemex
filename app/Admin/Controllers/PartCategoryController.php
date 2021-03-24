@@ -38,11 +38,11 @@ class PartCategoryController extends AdminController
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(Data::icon('record').trans('main.record'), admin_route('part.records.index'));
-                $tab->add(Data::icon('category').trans('main.category'), $this->treeView(), true);
-                $tab->addLink(Data::icon('track').trans('main.track'), admin_route('part.tracks.index'));
-                $tab->addLink(Data::icon('statistics').trans('main.statistics'), admin_route('part.statistics'));
-                $tab->addLink(Data::icon('column').trans('main.column'), admin_route('part.columns.index'));
+                $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('part.records.index'));
+                $tab->add(Data::icon('category') . trans('main.category'), $this->treeView(), true);
+                $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('part.tracks.index'));
+                $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('part.statistics'));
+                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('part.columns.index'));
                 $row->column(12, $tab);
             });
     }

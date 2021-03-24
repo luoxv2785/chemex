@@ -2,6 +2,8 @@
 
 namespace App\Observers;
 
+use App\Models\CheckRecord;
+use App\Models\CheckTrack;
 use App\Models\SoftwareRecord;
 use App\Models\SoftwareTrack;
 
@@ -41,6 +43,15 @@ class SoftwareRecordObserver
         $software_tracks = SoftwareTrack::where('software_id', $softwareRecord->id)->get();
         foreach ($software_tracks as $software_track) {
             $software_track->delete();
+        }
+
+        // 软删除设备盘点记录
+        $check_records = CheckRecord::where('check_item', 'software')->get();
+        foreach ($check_records as $check_record) {
+            $check_tracks = CheckTrack::where('check_id', $check_record->id)->get();
+            foreach ($check_tracks as $check_track) {
+                $check_track->delete();
+            }
         }
     }
 

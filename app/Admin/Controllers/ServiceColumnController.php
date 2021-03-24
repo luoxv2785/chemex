@@ -24,11 +24,11 @@ class ServiceColumnController extends AdminController
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $tab = new Tab();
-                $tab->addLink(Data::icon('record').trans('main.record'), admin_route('service.records.index'));
-                $tab->addLink(Data::icon('track').trans('main.track'), admin_route('service.tracks.index'));
-                $tab->addLink(Data::icon('issue').trans('main.issue'), admin_route('service.issues.index'));
-                $tab->addLink(Data::icon('statistics').trans('main.statistics'), admin_route('service.statistics'));
-                $tab->add(Data::icon('column').trans('main.column'), $this->render(), true);
+                $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('service.records.index'));
+                $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('service.tracks.index'));
+                $tab->addLink(Data::icon('issue') . trans('main.issue'), admin_route('service.issues.index'));
+                $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('service.statistics'));
+                $tab->add(Data::icon('column') . trans('main.column'), $this->render(), true);
                 $row->column(12, $tab);
             });
     }

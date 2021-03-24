@@ -45,11 +45,11 @@ class VersionService
     {
         $old = explode($delimiter, $old);
         $new = explode($delimiter, $new);
-        $res = (int) $old[0] <=> (int) $new[0];
+        $res = (int)$old[0] <=> (int)$new[0];
         if ($res == 0) {
-            $res = (int) $old[1] <=> (int) $new[1];
+            $res = (int)$old[1] <=> (int)$new[1];
             if ($res == 0) {
-                return (int) $old[2] <=> (int) $new[2];
+                return (int)$old[2] <=> (int)$new[2];
             }
 
             return $res;
@@ -64,10 +64,10 @@ class VersionService
     public static function upgrade()
     {
         try {
-            exec('git remote remove origin'.' 2>&1');
-            exec('git remote add origin https://gitee.com/celaraze/chemex.git'.' 2>&1');
-            exec('git fetch --all'.' 2>&1');
-            exec('git reset --hard origin/main'.' 2>&1', $out, $status);
+            exec('git remote remove origin' . ' 2>&1');
+            exec('git remote add origin https://gitee.com/celaraze/chemex.git' . ' 2>&1');
+            exec('git fetch --all' . ' 2>&1');
+            exec('git reset --hard origin/main' . ' 2>&1', $out, $status);
             Artisan::call('chemex:update');
 
             return $out;

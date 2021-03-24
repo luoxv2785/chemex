@@ -49,8 +49,8 @@ class Data
     public static function items(): array
     {
         return [
-            'device'   => '设备',
-            'part'     => '配件',
+            'device' => '设备',
+            'part' => '配件',
             'software' => '软件',
         ];
     }
@@ -196,13 +196,13 @@ class Data
     public static function expiredStatus(): array
     {
         return [
-            'one day'   => '一天内过期',
+            'one day' => '一天内过期',
             'three day' => '三天内过期',
-            'one week'  => '一周内过期',
+            'one week' => '一周内过期',
             'one month' => '一月内过期',
-            'normal'    => '正常',
-            'none'      => '无效的设备',
-            'default'   => '错误',
+            'normal' => '正常',
+            'none' => '无效的设备',
+            'default' => '错误',
         ];
     }
 
@@ -214,13 +214,13 @@ class Data
     public static function expiredStatusColors(): array
     {
         return [
-            'one day'   => 'danger',
+            'one day' => 'danger',
             'three day' => 'danger',
-            'one week'  => 'warning',
+            'one week' => 'warning',
             'one month' => 'warning',
-            'normal'    => 'success',
-            'none'      => 'primary',
-            'default'   => Admin::color()->gray(),
+            'normal' => 'success',
+            'none' => 'primary',
+            'default' => Admin::color()->gray(),
         ];
     }
 
@@ -232,9 +232,9 @@ class Data
     public static function timeScales(): array
     {
         return [
-            'day'   => '天',
+            'day' => '天',
             'month' => '月',
-            'year'  => '年',
+            'year' => '年',
         ];
     }
 
@@ -246,9 +246,9 @@ class Data
     public static function emoji(): array
     {
         return [
-            'happy'  => '😀 愉快',
+            'happy' => '😀 愉快',
             'normal' => '😐 一般',
-            'sad'    => '😟 悲伤',
+            'sad' => '😟 悲伤',
         ];
     }
 
@@ -262,16 +262,16 @@ class Data
     public static function icon($string): string
     {
         $array = [
-            'record'     => '<i class="fa feather icon-list"></i> ',
-            'category'   => '<i class="fa feather icon-pie-chart"></i> ',
-            'track'      => '<i class="fa feather icon-archive"></i> ',
-            'issue'      => '<i class="fa feather icon-alert-triangle"></i> ',
-            'user'       => '<i class="fa feather icon-users"></i> ',
+            'record' => '<i class="fa feather icon-list"></i> ',
+            'category' => '<i class="fa feather icon-pie-chart"></i> ',
+            'track' => '<i class="fa feather icon-archive"></i> ',
+            'issue' => '<i class="fa feather icon-alert-triangle"></i> ',
+            'user' => '<i class="fa feather icon-users"></i> ',
             'department' => '<i class="fa feather icon-copy"></i> ',
-            'role'       => '<i class="fa feather icon-users"></i> ',
+            'role' => '<i class="fa feather icon-users"></i> ',
             'permission' => '<i class="fa feather icon-lock"></i> ',
             'statistics' => '<i class="fa feather icon-bar-chart-2"></i> ',
-            'column'     => '<i class="fa feather icon-edit-2"></i> ',
+            'column' => '<i class="fa feather icon-edit-2"></i> ',
         ];
 
         return $array[$string];
@@ -285,9 +285,9 @@ class Data
     public static function priority(): array
     {
         return [
-            'high'   => '高',
+            'high' => '高',
             'normal' => '普通',
-            'low'    => '低',
+            'low' => '低',
         ];
     }
 
@@ -299,14 +299,14 @@ class Data
     public static function customColumnTypes(): array
     {
         return [
-            'string'   => '字符串',
-            'date'     => '日期',
+            'string' => '字符串',
+            'date' => '日期',
             'dateTime' => '日期时间',
-            'integer'  => '整数',
-            'float'    => '浮点',
-            'double'   => '双精度',
+            'integer' => '整数',
+            'float' => '浮点',
+            'double' => '双精度',
             'longText' => '长文本',
-            'select'   => '选项',
+            'select' => '选项',
         ];
     }
 
@@ -318,11 +318,11 @@ class Data
     public static function itemNameByTableName(): array
     {
         return [
-            (new DeviceRecord())->getTable()     => trans('main.device'),
-            (new PartRecord())->getTable()       => trans('main.part'),
-            (new SoftwareRecord())->getTable()   => trans('main.software'),
+            (new DeviceRecord())->getTable() => trans('main.device'),
+            (new PartRecord())->getTable() => trans('main.part'),
+            (new SoftwareRecord())->getTable() => trans('main.software'),
             (new ConsumableRecord())->getTable() => trans('main.consumable'),
-            (new ServiceRecord())->getTable()    => trans('main.service'),
+            (new ServiceRecord())->getTable() => trans('main.service'),
         ];
     }
 }
