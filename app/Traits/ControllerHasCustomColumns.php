@@ -129,7 +129,15 @@ trait ControllerHasCustomColumns
     public static function makeFilter($table_name, $filter)
     {
         foreach (self::getCustomColumns($table_name) as $custom_column) {
-            $filter->equal($custom_column->name, $custom_column->nick_name);
+            if ($custom_column->type == 'select') {
+                $options = [];
+                foreach ($custom_column->select_options as $select_option) {
+                    $options[$select_option['item']] = $select_option['item'];
+                }
+                $filter->equal($custom_column->name, $custom_column->nick_name)->select($options);
+            } else {
+                $filter->equal($custom_column->name, $custom_column->nick_name);
+            }
         }
     }
 }

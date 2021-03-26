@@ -26,6 +26,7 @@ return [
         'Deleted' => '已删除'
     ],
     'fields' => [
+        'number' => '工号',
         'name' => '姓名',
         'department' => [
             'name' => '部门',

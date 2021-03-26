@@ -55,6 +55,7 @@ class UserController extends BaseUserController
     {
         return Grid::make(User::with(['roles', 'department']), function (Grid $grid) {
             $grid->column('id');
+            $grid->column('number');
             $grid->column('username');
             $grid->column('name')->display(function ($name) {
                 if ($this->ad_tag === 1) {
@@ -198,6 +199,8 @@ class UserController extends BaseUserController
             $id = $form->getKey();
 
             $form->display('id');
+            $form->text('number')
+                ->required();
             $form->text('username', trans('admin.username'))
                 ->required()
                 ->creationRules(['required', "unique:{$connection}.{$userTable}"])
@@ -278,6 +281,21 @@ class UserController extends BaseUserController
             if (!$form->password) {
                 $form->deleteInput('password');
             }
+
+            // 创建用户时通过工号判断是否有相同记录
+            $exist = \App\Models\User::where('number', $form->input('number'))
+                ->withTrashed()
+                ->first();
+            if ($form->isEditing() && !empty($exist) && $form->model()->id != $exist->id) {
+                return $form->response()
+                    ->error(trans('main.record_same'));
+            }
+            if ($form->isCreating()) {
+                if (!empty($exist)) {
+                    return $form->response()
+                        ->error(trans('main.record_same'));
+                }
+            }
         });
     }
 
@@ -292,6 +310,7 @@ class UserController extends BaseUserController
     {
         return Show::make($id, User::with(['roles', 'department']), function (Show $show) {
             $show->field('id');
+            $show->field('number');
             $show->field('name')->unescape()->as(function ($name) {
                 if ($this->ad_tag === 1) {
                     return "<span class='badge badge-primary mr-1'>AD</span>$name";

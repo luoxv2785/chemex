@@ -2,7 +2,8 @@
 
 namespace App\Traits;
 
-use App\Admin\Actions\Tree\ToolAction\CustomColumnDeleteAction;
+use App\Admin\Actions\Tree\RowAction\CustomColumnDeleteAction;
+use App\Admin\Actions\Tree\RowAction\DeviceColumnUpdateAction;
 use App\Admin\Repositories\ConsumableRecord;
 use App\Admin\Repositories\DeviceRecord;
 use App\Admin\Repositories\PartRecord;
@@ -33,7 +34,10 @@ trait ControllerHasColumnSort
             $column->row(function (Row $row) {
                 if ($this->creatable()) {
                     $row->column(6, $this->treeView());
-                    $row->column(6, $this->createBox());
+                    $row->column(6, function (Column $column) {
+                        $column->row($this->createBox());
+                    });
+
                 } else {
                     $row->column(12, $this->treeView());
                 }
@@ -84,19 +88,18 @@ trait ControllerHasColumnSort
             $tree->maxDepth(1);
 
             /**
-             * 工具按钮.
-             */
-            $tree->tools(function (Tree\Tools $tools) use ($repository) {
-                if ($this->deletable()) {
-                    $tools->add(new CustomColumnDeleteAction($repository->getTable()));
-                }
-//                $tools->add(new CustomColumnUpdateAction($repository->getTable()));
-            });
-
-            /**
              * 行操作按钮.
              */
-            $tree->actions(function (Tree\Actions $actions) {
+            $deletable = $this->deletable();
+            $tree->actions(function (Tree\Actions $actions) use ($repository, $deletable) {
+                $custom_column = CustomColumn::where('table_name', $repository->getTable())
+                    ->where('name', $actions->getRow()->title)
+                    ->first();
+                if (!empty($custom_column) && $deletable) {
+                    $actions->append(new DeviceColumnUpdateAction($repository->getTable(), $actions->getRow()->title));
+                    $actions->append('&nbsp;&nbsp;&nbsp;&nbsp;');
+                    $actions->append(new CustomColumnDeleteAction($repository->getTable(), $actions->getRow()->title));
+                }
                 $actions->disableQuickEdit();
                 $actions->disableEdit();
                 $actions->disableDelete();

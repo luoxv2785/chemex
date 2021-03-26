@@ -5,7 +5,6 @@ namespace App\Admin\Controllers;
 use App\Admin\Actions\Grid\ToolAction\ConsumableInAction;
 use App\Admin\Actions\Grid\ToolAction\ConsumableOutAction;
 use App\Admin\Repositories\ConsumableRecord;
-use App\Admin\Repositories\DeviceRecord;
 use App\Grid;
 use App\Models\ColumnSort;
 use App\Models\ConsumableCategory;
@@ -13,6 +12,7 @@ use App\Models\VendorRecord;
 use App\Support\Data;
 use App\Support\Support;
 use App\Traits\ControllerHasCustomColumns;
+use App\Traits\ControllerHasDeviceRelatedGrid;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid\Tools;
@@ -27,6 +27,9 @@ use Dcat\Admin\Widgets\Tab;
  */
 class ConsumableRecordController extends AdminController
 {
+    use ControllerHasDeviceRelatedGrid;
+    use ControllerHasCustomColumns;
+
     public function index(Content $content): Content
     {
         return $content
@@ -54,27 +57,23 @@ class ConsumableRecordController extends AdminController
      */
     protected function grid(): Grid
     {
-        return Grid::make(new ConsumableRecord(['category', 'vendor']), function (Grid $grid) {
-            $column_sort = ColumnSort::where('table_name', (new DeviceRecord())->getTable())
-                ->get(['field', 'order'])
-                ->toArray();
-            $grid->column('id', '', $column_sort);
-            $grid->column('name', '', $column_sort);
-            $grid->column('description', '', $column_sort);
-            $grid->column('specification', '', $column_sort);
-            $grid->column('category.name', '', $column_sort);
-            $grid->column('vendor.name', '', $column_sort);
-            $grid->column('price', '', $column_sort);
-            $grid->column('number', '', $column_sort)->display(function () {
-                return $this->allCounts();
-            });
-            $grid->column('created_at', '', $column_sort);
-            $grid->column('updated_at', '', $column_sort);
+        return Grid::make(new ConsumableRecord(['category', 'vendor', 'track']), function (Grid $grid) {
+            $sort_columns = $this->sortColumns();
+            $grid->column('id', '', $sort_columns);
+            $grid->column('name', '', $sort_columns);
+            $grid->column('description', '', $sort_columns);
+            $grid->column('specification', '', $sort_columns);
+            $grid->column('category.name', '', $sort_columns);
+            $grid->column('vendor.name', '', $sort_columns);
+            $grid->column('price', '', $sort_columns);
+            $grid->column('track.number');
+            $grid->column('created_at', '', $sort_columns);
+            $grid->column('updated_at', '', $sort_columns);
 
             /**
              * 自定义字段.
              */
-            ControllerHasCustomColumns::makeGrid((new ConsumableRecord())->getTable(), $grid, $column_sort);
+            ControllerHasCustomColumns::makeGrid((new ConsumableRecord())->getTable(), $grid, $sort_columns);
 
             /**
              * 字段过滤.
@@ -148,6 +147,18 @@ class ConsumableRecordController extends AdminController
                 $grid->export();
             }
         });
+    }
+
+    /**
+     * 返回字段排序.
+     *
+     * @return mixed
+     */
+    public function sortColumns()
+    {
+        return ColumnSort::where('table_name', (new ConsumableRecord())->getTable())
+            ->get(['field', 'order'])
+            ->toArray();
     }
 
     /**

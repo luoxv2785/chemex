@@ -50,7 +50,7 @@ class ServiceTrackController extends AdminController
         return Grid::make(new ServiceTrack(['service', 'device']), function (Grid $grid) {
             $grid->column('id');
             $grid->column('service.name');
-            $grid->column('device.name');
+            $grid->column('device.asset_number');
             $grid->column('created_at');
             $grid->column('updated_at');
 
@@ -77,7 +77,7 @@ class ServiceTrackController extends AdminController
             /**
              * 快速搜索.
              */
-            $grid->quickSearch('id', 'service.name', 'device.name')
+            $grid->quickSearch('id', 'service.name', 'device.asset_number')
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 

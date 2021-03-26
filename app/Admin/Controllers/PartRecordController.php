@@ -20,6 +20,7 @@ use App\Services\ExpirationService;
 use App\Support\Data;
 use App\Support\Support;
 use App\Traits\ControllerHasCustomColumns;
+use App\Traits\ControllerHasDeviceRelatedGrid;
 use DateTime;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
@@ -42,6 +43,9 @@ use Dcat\Admin\Widgets\Tab;
  */
 class PartRecordController extends AdminController
 {
+    use ControllerHasDeviceRelatedGrid;
+    use ControllerHasCustomColumns;
+
     public function index(Content $content): Content
     {
         return $content
@@ -71,24 +75,22 @@ class PartRecordController extends AdminController
     protected function grid(): Grid
     {
         return Grid::make(new PartRecord(['category', 'vendor', 'device', 'depreciation']), function (Grid $grid) {
-            $column_sort = ColumnSort::where('table_name', (new PartRecord())->getTable())
-                ->get(['field', 'order'])
-                ->toArray();
-            $grid->column('id', '', $column_sort);
-            $grid->column('asset_number', '', $column_sort)->display(function ($asset_number) {
+            $sort_columns = $this->sortColumns();
+            $grid->column('id', '', $sort_columns);
+            $grid->column('asset_number', '', $sort_columns)->display(function ($asset_number) {
                 return "<span class='badge badge-secondary'>$asset_number</span>";
             });
 //            $grid->column('qrcode', '', $column_sort)->qrcode(function () {
 //                return 'part:'.$this->id;
 //            }, 200, 200);
-            $grid->column('price', '', $column_sort);
-            $grid->column('purchased', '', $column_sort);
-            $grid->column('name', '', $column_sort);
-            $grid->column('description', '', $column_sort);
-            $grid->column('category.name', '', $column_sort);
-            $grid->column('vendor.name', '', $column_sort);
-            $grid->column('specification', '', $column_sort);
-            $grid->column('expiration_left_days', '', $column_sort)->display(function () {
+            $grid->column('price', '', $sort_columns);
+            $grid->column('purchased', '', $sort_columns);
+            $grid->column('name', '', $sort_columns);
+            $grid->column('description', '', $sort_columns);
+            $grid->column('category.name', '', $sort_columns);
+            $grid->column('vendor.name', '', $sort_columns);
+            $grid->column('specification', '', $sort_columns);
+            $grid->column('expiration_left_days', '', $sort_columns)->display(function () {
                 return ExpirationService::itemExpirationLeftDaysRender('part', $this->id);
             });
             $grid->column('device.asset_number')->link(function () {
@@ -96,14 +98,14 @@ class PartRecordController extends AdminController
                     return admin_route('device.records.show', [$this->device()->first()->id]);
                 }
             });
-            $grid->column('depreciation.name', '', $column_sort);
-            $grid->column('created_at', '', $column_sort);
-            $grid->column('updated_at', '', $column_sort);
+            $grid->column('depreciation.name', '', $sort_columns);
+            $grid->column('created_at', '', $sort_columns);
+            $grid->column('updated_at', '', $sort_columns);
 
             /**
              * 自定义字段.
              */
-            ControllerHasCustomColumns::makeGrid((new PartRecord())->getTable(), $grid, $column_sort);
+            ControllerHasCustomColumns::makeGrid((new PartRecord())->getTable(), $grid, $sort_columns);
 
             /**
              * 行操作按钮.
@@ -209,6 +211,18 @@ class PartRecordController extends AdminController
                 $grid->export();
             }
         });
+    }
+
+    /**
+     * 返回字段排序.
+     *
+     * @return mixed
+     */
+    public function sortColumns()
+    {
+        return ColumnSort::where('table_name', (new PartRecord())->getTable())
+            ->get(['field', 'order'])
+            ->toArray();
     }
 
     /**

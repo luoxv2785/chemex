@@ -67,7 +67,7 @@ class ConsumableRecordOutForm extends Form
             ->symbol('')
             ->required();
         $this->select('user_id', trans('main.user_id'))
-            ->options(User::pluck('name', 'id'))
+            ->options(User::pluck('number', 'id'))
             ->required();
         $this->textarea('description');
     }

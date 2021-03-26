@@ -125,7 +125,7 @@ class DeviceRecordCreateUpdateTrackForm extends Form implements LazyRenderable
             $this->disableResetButton();
             $this->disableSubmitButton();
         } else {
-            $users = User::pluck('name', 'id');
+            $users = User::pluck('number', 'id');
             $this->radio('type')
                 ->when('track', function (Form $form) use ($users) {
                     if (Support::ifSelectCreate()) {

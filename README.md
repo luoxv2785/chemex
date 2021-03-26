@@ -140,24 +140,22 @@ MariaDB 账密：chemex/chemex
 
 3：为你的计算机安装 `mariaDB`。
 
-4：创建一个数据库，命名任意，但记得之后填写配置时需要对应正确，并且数据库字符集为 `utf8-general-ci`。
+4：在你想要的目录中，执行 `git clone https://gitee.com/celaraze/chemex.git` 完成下载。
 
-5：在你想要的目录中，执行 `git clone https://gitee.com/celaraze/chemex.git` 完成下载。
+5：在项目根目录中，复制 `.env.example` 文件为一份新的，并重命名为 `.env`。
 
-6：在项目根目录中，复制 `.env.example` 文件为一份新的，并重命名为 `.env`。
+6：在 `.env` 中配置数据库信息。
 
-7：在 `.env` 中配置数据库信息。
+7：进入项目根目录，执行 `php artisan chemex:install` 进行安装。
 
-8：进入项目根目录，执行 `php artisan chemex:install` 进行安装。
-
-9：你可能使用的web服务器为 `nginx` 以及 `apache`，无论怎样，应用的起始路径在 `/public` 目录，请确保指向正确，同时程序的根目录权限应该调整为：拥有者和你的 Web 服务器运行用户一致，例如 www
+8：你可能使用的web服务器为 `nginx` 以及 `apache`，无论怎样，应用的起始路径在 `/public` 目录，请确保指向正确，同时程序的根目录权限应该调整为：拥有者和你的 Web 服务器运行用户一致，例如 www
 用户，且根目录权限为 `755`。`/storage` 目录设置为 `777` 权限。
 
-10：修改web服务器的伪静态规则为：`try_files $uri $uri/ /index.php?$args;`。
+9：修改web服务器的伪静态规则为：`try_files $uri $uri/ /index.php?$args;`。
 
-11：此时可以通过访问 `http://your_domain` 来使用 咖啡壶。管理员账号密码为：`admin / admin`。
+10：此时可以通过访问 `http://your_domain` 来使用 咖啡壶。管理员账号密码为：`admin / admin`。
 
-12：最后，根据需要对是否使用线上更新继续配置。
+11：最后，根据需要对是否使用线上更新继续配置。
 
 ## 更新
 

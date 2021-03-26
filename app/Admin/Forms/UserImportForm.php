@@ -12,8 +12,6 @@ use Dcat\Admin\Widgets\Form;
 use Dcat\EasyExcel\Excel;
 use Exception;
 use League\Flysystem\FileNotFoundException;
-use Overtrue\LaravelPinyin\Facades\Pinyin;
-use Pour\Base\Uni;
 
 class UserImportForm extends Form
 {
@@ -37,25 +35,27 @@ class UserImportForm extends Form
                 $rows = Excel::import($file_path)->first()->toArray();
                 foreach ($rows as $row) {
                     try {
-                        if (!empty($row['用户名']) && !empty($row['名称']) && !empty($row['性别'])) {
+                        if (!empty($row['工号']) && !empty($row['用户名']) && !empty($row['姓名']) && !empty($row['性别'])) {
                             $department = Department::where('name', $row['部门'])->first();
                             if (empty($department)) {
                                 $department = new Department();
                                 $department->name = $row['部门'];
                                 $department->save();
                             }
-                            $row['用户名'] = Uni::trim(Pinyin::sentence($row['用户名']));
+//                            $row['用户名'] = Uni::trim(Pinyin::sentence($row['用户名']));
                             $user = new User();
-                            $exist = User::where('username', $row['用户名'])->withTrashed()->first();
-                            if (empty($exist)) {
-                                $user->username = $row['用户名'];
-                            } else {
-                                if (!empty($exist->deleted_at)) {
-                                    $user->deleted_at = null;
-                                }
-                                $user->username = $row['用户名'] . Uni::randomNumberString(4);
-                            }
-                            $user->name = $row['名称'];
+                            $user->number = $row['工号'];
+//                            $exist = User::where('username', $row['用户名'])->withTrashed()->first();
+//                            if (empty($exist)) {
+//                                $user->username = $row['用户名'];
+//                            } else {
+//                                if (!empty($exist->deleted_at)) {
+//                                    $user->deleted_at = null;
+//                                }
+//                                $user->username = $row['用户名'] . Uni::randomNumberString(4);
+//                            }
+                            $user->username = $row['用户名'];
+                            $user->name = $row['姓名'];
                             $user->department_id = $department->id;
                             $user->gender = $row['性别'];
                             if (empty($row['密码'])) {

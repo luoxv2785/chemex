@@ -13,7 +13,7 @@ return [
     ],
     'fields' => [
         'part' => [
-            'name' => '配件',
+            'asset_number' => '配件',
         ],
         'device' => [
             'asset_number' => '设备'

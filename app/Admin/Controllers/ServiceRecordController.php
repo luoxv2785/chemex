@@ -14,6 +14,7 @@ use App\Models\PurchasedChannel;
 use App\Support\Data;
 use App\Support\Support;
 use App\Traits\ControllerHasCustomColumns;
+use App\Traits\ControllerHasDeviceRelatedGrid;
 use DateTime;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
@@ -29,6 +30,9 @@ use Dcat\Admin\Widgets\Tab;
  */
 class ServiceRecordController extends AdminController
 {
+    use ControllerHasDeviceRelatedGrid;
+    use ControllerHasCustomColumns;
+
     public function index(Content $content): Content
     {
         return $content
@@ -58,23 +62,21 @@ class ServiceRecordController extends AdminController
     protected function grid(): Grid
     {
         return Grid::make(new ServiceRecord(['device', 'channel']), function (Grid $grid) {
-            $column_sort = ColumnSort::where('table_name', (new ServiceRecord())->getTable())
-                ->get(['field', 'order'])
-                ->toArray();
-            $grid->column('id', '', $column_sort);
-            $grid->column('name', '', $column_sort);
-            $grid->column('description', '', $column_sort);
-            $grid->column('status', '', $column_sort)->switch('green');
-            $grid->column('device.name', '', $column_sort)->link(function () {
+            $sort_columns = $this->sortColumns();
+            $grid->column('id', '', $sort_columns);
+            $grid->column('name', '', $sort_columns);
+            $grid->column('description', '', $sort_columns);
+            $grid->column('status', '', $sort_columns)->switch('green');
+            $grid->column('device.name', '', $sort_columns)->link(function () {
                 if (!empty($this->device)) {
                     return admin_route('device.records.show', [$this->device['id']]);
                 }
             });
-            $grid->column('channel.name', '', $column_sort);
-            $grid->column('created_at', '', $column_sort);
-            $grid->column('updated_at', '', $column_sort);
+            $grid->column('channel.name', '', $sort_columns);
+            $grid->column('created_at', '', $sort_columns);
+            $grid->column('updated_at', '', $sort_columns);
 
-            ControllerHasCustomColumns::makeGrid((new ServiceRecord())->getTable(), $grid, $column_sort);
+            ControllerHasCustomColumns::makeGrid((new ServiceRecord())->getTable(), $grid, $sort_columns);
 
             /**
              * 行操作按钮.
@@ -153,6 +155,18 @@ class ServiceRecordController extends AdminController
                 $grid->export();
             }
         });
+    }
+
+    /**
+     * 返回字段排序.
+     *
+     * @return mixed
+     */
+    public function sortColumns()
+    {
+        return ColumnSort::where('table_name', (new ServiceRecord())->getTable())
+            ->get(['field', 'order'])
+            ->toArray();
     }
 
     /**
