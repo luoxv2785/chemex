@@ -7,7 +7,7 @@ use App\Admin\Actions\Grid\RowAction\DeviceRecordCreateUpdateTrackAction;
 use App\Admin\Actions\Grid\RowAction\DeviceRecordDeleteAction;
 use App\Admin\Actions\Grid\RowAction\MaintenanceRecordCreateAction;
 use App\Admin\Actions\Grid\ToolAction\DeviceRecordImportAction;
-use App\Admin\Actions\Show\DeviceRecordTrackDeleteAction;
+use App\Admin\Actions\Show\DeviceRecordDeleteTrackAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\DeviceRecord;
 use App\Grid;
@@ -46,6 +46,7 @@ use Illuminate\Http\Request;
  * @property DateTime deleted_at
  *
  * @method isLend()
+ * @method track()
  */
 class DeviceRecordController extends AdminController
 {
@@ -351,8 +352,13 @@ class DeviceRecordController extends AdminController
              */
             $show->tools(function (\Dcat\Admin\Show\Tools $tools) {
                 // @permissions
-                if (Admin::user()->can('device.track.delete')) {
-                    $tools->append(new DeviceRecordTrackDeleteAction());
+                if (Admin::user()->can('device.track.delete') && !empty($this->track()->first())) {
+                    $tools->append(new DeviceRecordDeleteTrackAction());
+                }
+                $is_lend = $this->isLend();
+                // @permissions
+                if (Admin::user()->can('device.record.track.create_update') && empty($this->track()->first()) && !$is_lend) {
+                    $tools->append(new \App\Admin\Actions\Show\DeviceRecordCreateUpdateTrackAction($is_lend));
                 }
                 $tools->append('&nbsp;');
             });

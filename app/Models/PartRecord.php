@@ -151,4 +151,13 @@ class PartRecord extends Model
     {
         return $this->hasOne(DepreciationRule::class, 'id', 'depreciation_rule_id');
     }
+
+    /**
+     * 配件有一个归属
+     * @return HasOne
+     */
+    public function track(): HasOne
+    {
+        return $this->hasOne(PartTrack::class, 'part_id', 'id');
+    }
 }

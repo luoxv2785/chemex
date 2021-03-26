@@ -7,7 +7,7 @@ use App\Admin\Actions\Grid\RowAction\MaintenanceRecordCreateAction;
 use App\Admin\Actions\Grid\RowAction\PartRecordCreateUpdateTrackAction;
 use App\Admin\Actions\Grid\RowAction\PartRecordDeleteAction;
 use App\Admin\Actions\Grid\ToolAction\PartRecordImportAction;
-use App\Admin\Actions\Show\PartRecordTrackDeleteAction;
+use App\Admin\Actions\Show\PartRecordDeleteTrackAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\PartRecord;
 use App\Grid;
@@ -41,6 +41,7 @@ use Dcat\Admin\Widgets\Tab;
  * @property DateTime deleted_at
  *
  * @method device()
+ * @method track()
  */
 class PartRecordController extends AdminController
 {
@@ -271,8 +272,12 @@ class PartRecordController extends AdminController
              */
             $show->tools(function (Show\Tools $tools) {
                 // @permissions
-                if (Admin::user()->can('part.track.delete')) {
-                    $tools->append(new PartRecordTrackDeleteAction());
+                if (Admin::user()->can('part.track.delete') && !empty($this->track()->first())) {
+                    $tools->append(new PartRecordDeleteTrackAction());
+                }
+                // @permissions
+                if (Admin::user()->can('part.record.track.create_update') && empty($this->track()->first())) {
+                    $tools->append(new \App\Admin\Actions\Show\PartRecordCreateUpdateTrackAction());
                 }
                 $tools->append('&nbsp;');
             });

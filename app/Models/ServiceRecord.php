@@ -102,4 +102,13 @@ class ServiceRecord extends Model
             'device_id'
         ); // 中间表对远程表的关联字段
     }
+
+    /**
+     * 服务有一个归属.
+     * @return HasOne
+     */
+    public function track(): HasOne
+    {
+        return $this->hasOne(ServiceTrack::class, 'service_id', 'id');
+    }
 }

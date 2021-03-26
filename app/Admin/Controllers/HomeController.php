@@ -3,15 +3,18 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Metrics\AllWorth;
+use App\Admin\Metrics\AssetsWorthTrend;
+use App\Admin\Metrics\BannerMaintenanceRecordCounts;
+use App\Admin\Metrics\BannerMyAssetsWorth;
+use App\Admin\Metrics\BannerMyTodoCounts;
+use App\Admin\Metrics\BannerServiceIssueCounts;
 use App\Admin\Metrics\DefectTrend;
 use App\Admin\Metrics\DeviceWorth;
-use App\Admin\Metrics\ItemWorthTrend;
 use App\Admin\Metrics\PartWorth;
 use App\Admin\Metrics\ServiceWorth;
 use App\Admin\Metrics\SoftwareWorth;
 use App\Admin\Metrics\WorthTrend;
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use App\Support\Support;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Layout\Column;
@@ -27,8 +30,10 @@ class HomeController extends Controller
             ->title(admin_trans_label('title'))
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
-                $user = User::find(auth('admin')->user()->id);
-                $row->column(2, new Card(trans('main.my_all_worth'), $user->itemsPrice()));
+                $row->column(3, new BannerMyAssetsWorth());
+                $row->column(3, new BannerMyTodoCounts());
+                $row->column(3, new BannerMaintenanceRecordCounts());
+                $row->column(3, new BannerServiceIssueCounts());
                 if (Admin::user()->can('home.dashboard')) {
                     $row->column(12, '<hr>');
                     $row->column(12, function (Column $column) {
@@ -39,7 +44,7 @@ class HomeController extends Controller
                             });
                             $row->column(9, function (Column $column) {
                                 $column->row(function (Row $row) {
-                                    $row->column(7, new ItemWorthTrend());
+                                    $row->column(7, new AssetsWorthTrend());
                                     $row->column(5, function (Column $column) {
                                         $column->row(new AllWorth());
                                         $column->row(function (Row $row) {

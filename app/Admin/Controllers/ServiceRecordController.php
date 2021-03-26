@@ -5,7 +5,7 @@ namespace App\Admin\Controllers;
 use App\Admin\Actions\Grid\RowAction\ServiceRecordCreateIssueAction;
 use App\Admin\Actions\Grid\RowAction\ServiceRecordCreateUpdateTrackAction;
 use App\Admin\Actions\Grid\RowAction\ServiceRecordDeleteAction;
-use App\Admin\Actions\Show\ServiceRecordTrackDeleteAction;
+use App\Admin\Actions\Show\ServiceRecordDeleteTrackAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\ServiceRecord;
 use App\Grid;
@@ -28,6 +28,7 @@ use Dcat\Admin\Widgets\Tab;
 /**
  * @property  DeviceRecord device
  * @property DateTime deleted_at
+ * @method track()
  */
 class ServiceRecordController extends AdminController
 {
@@ -202,8 +203,12 @@ class ServiceRecordController extends AdminController
              */
             $show->tools(function (Show\Tools $tools) {
                 // @permissions
-                if (Admin::user()->can('service.track.delete')) {
-                    $tools->append(new ServiceRecordTrackDeleteAction());
+                if (Admin::user()->can('service.track.delete') && !empty($this->track()->first())) {
+                    $tools->append(new ServiceRecordDeleteTrackAction());
+                }
+                // @permissions
+                if (Admin::user()->can('service.record.track.create_update') && empty($this->track()->first())) {
+                    $tools->append(new \App\Admin\Actions\Show\ServiceRecordCreateUpdateTrackAction());
                 }
                 $tools->append('&nbsp;');
             });
