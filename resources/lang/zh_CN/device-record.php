@@ -27,7 +27,9 @@ return [
         'NG Description' => '故障描述',
         'Lend Track Create' => '借用设备',
         'File Help' => '导入支持xlsx、csv文件，且表格头必填栏位【资产编号、分类、厂商】，支持咖啡壶导出的Excel文件直接导入。',
-        'Deleted' => '已删除'
+        'Deleted' => '已删除',
+        'Track Delete' => '解除归属',
+        'Track Delete Confirm' => '确认解除与此用户的关联？'
     ],
     'fields' => [
         'qrcode' => '二维码',

@@ -7,6 +7,7 @@ use App\Admin\Actions\Grid\RowAction\DeviceRecordCreateUpdateTrackAction;
 use App\Admin\Actions\Grid\RowAction\DeviceRecordDeleteAction;
 use App\Admin\Actions\Grid\RowAction\MaintenanceRecordCreateAction;
 use App\Admin\Actions\Grid\ToolAction\DeviceRecordImportAction;
+use App\Admin\Actions\Show\DeviceRecordTrackDeleteAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\DeviceRecord;
 use App\Grid;
@@ -344,6 +345,17 @@ class DeviceRecordController extends AdminController
 
             $show->field('created_at');
             $show->field('updated_at');
+
+            /**
+             * 自定义按钮.
+             */
+            $show->tools(function (\Dcat\Admin\Show\Tools $tools) {
+                // @permissions
+                if (Admin::user()->can('device.track.delete')) {
+                    $tools->append(new DeviceRecordTrackDeleteAction());
+                }
+                $tools->append('&nbsp;');
+            });
 
             /**
              * 按钮控制.
