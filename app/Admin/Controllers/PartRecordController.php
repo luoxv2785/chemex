@@ -7,6 +7,7 @@ use App\Admin\Actions\Grid\RowAction\MaintenanceRecordCreateAction;
 use App\Admin\Actions\Grid\RowAction\PartRecordCreateUpdateTrackAction;
 use App\Admin\Actions\Grid\RowAction\PartRecordDeleteAction;
 use App\Admin\Actions\Grid\ToolAction\PartRecordImportAction;
+use App\Admin\Actions\Show\PartRecordTrackDeleteAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\PartRecord;
 use App\Grid;
@@ -241,7 +242,7 @@ class PartRecordController extends AdminController
             $show->field('category.name');
             $show->field('vendor.name');
             $show->field('channel.name');
-            $show->field('device.name');
+            $show->field('device.asset_number');
             $show->field('specification');
             $show->field('price');
             $show->field('expiration_left_days')->as(function () {
@@ -264,6 +265,17 @@ class PartRecordController extends AdminController
 
             $show->field('created_at');
             $show->field('updated_at');
+
+            /**
+             * 自定义按钮.
+             */
+            $show->tools(function (Show\Tools $tools) {
+                // @permissions
+                if (Admin::user()->can('part.track.delete')) {
+                    $tools->append(new PartRecordTrackDeleteAction());
+                }
+                $tools->append('&nbsp;');
+            });
 
             /**
              * 按钮控制.

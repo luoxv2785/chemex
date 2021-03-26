@@ -6,7 +6,9 @@ use App\Models\CheckRecord;
 use App\Models\CheckTrack;
 use App\Models\DeviceRecord;
 use App\Models\DeviceTrack;
+use App\Models\MaintenanceRecord;
 use App\Models\PartTrack;
+use App\Models\ServiceTrack;
 use App\Models\SoftwareTrack;
 
 class DeviceRecordObserver
@@ -60,7 +62,7 @@ class DeviceRecordObserver
         }
 
         // 软删除服务归属记录
-        $service_tracks = SoftwareTrack::where('device_id', $deviceRecord->id)->get();
+        $service_tracks = ServiceTrack::where('device_id', $deviceRecord->id)->get();
         foreach ($service_tracks as $service_track) {
             $service_track->delete();
         }
@@ -72,6 +74,14 @@ class DeviceRecordObserver
             foreach ($check_tracks as $check_track) {
                 $check_track->delete();
             }
+        }
+
+        // 软删除设备故障记录
+        $maintenance_records = MaintenanceRecord::where('item', 'device')
+            ->where('item_id', $deviceRecord->id)
+            ->get();
+        foreach ($maintenance_records as $maintenance_record) {
+            $maintenance_record->delete();
         }
     }
 

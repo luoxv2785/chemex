@@ -295,7 +295,7 @@ class DeviceRecordController extends AdminController
                     $card = new Card(trans('main.history'), view('history')->with('data', $history));
                     // @permissions
                     if (Admin::user()->can('device.record.history.export')) {
-                        $card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.device.history', ['device_id' => 1]) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>');
+                        $card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.device.history', ['device_id' => $id]) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>');
                     }
                     $column->row($card);
                 });

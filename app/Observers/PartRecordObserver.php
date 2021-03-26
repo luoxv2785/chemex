@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\CheckRecord;
 use App\Models\CheckTrack;
+use App\Models\MaintenanceRecord;
 use App\Models\PartRecord;
 use App\Models\PartTrack;
 
@@ -52,6 +53,14 @@ class PartRecordObserver
             foreach ($check_tracks as $check_track) {
                 $check_track->delete();
             }
+        }
+
+        // 软删除设备故障记录
+        $maintenance_records = MaintenanceRecord::where('item', 'part')
+            ->where('item_id', $partRecord->id)
+            ->get();
+        foreach ($maintenance_records as $maintenance_record) {
+            $maintenance_record->delete();
         }
     }
 

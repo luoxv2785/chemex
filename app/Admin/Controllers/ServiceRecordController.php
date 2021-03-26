@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 use App\Admin\Actions\Grid\RowAction\ServiceRecordCreateIssueAction;
 use App\Admin\Actions\Grid\RowAction\ServiceRecordCreateUpdateTrackAction;
 use App\Admin\Actions\Grid\RowAction\ServiceRecordDeleteAction;
+use App\Admin\Actions\Show\ServiceRecordTrackDeleteAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\ServiceRecord;
 use App\Grid;
@@ -67,7 +68,7 @@ class ServiceRecordController extends AdminController
             $grid->column('name', '', $sort_columns);
             $grid->column('description', '', $sort_columns);
             $grid->column('status', '', $sort_columns)->switch('green');
-            $grid->column('device.name', '', $sort_columns)->link(function () {
+            $grid->column('device.asset_number', '', $sort_columns)->link(function () {
                 if (!empty($this->device)) {
                     return admin_route('device.records.show', [$this->device['id']]);
                 }
@@ -111,7 +112,7 @@ class ServiceRecordController extends AdminController
                     'id',
                     'name',
                     'description',
-                    'device.name',
+                    'device.asset_number',
                 ], ControllerHasCustomColumns::makeQuickSearch((new ServiceRecord())->getTable()))
             )
                 ->placeholder(trans('main.quick_search'))
@@ -182,7 +183,7 @@ class ServiceRecordController extends AdminController
             $show->field('id');
             $show->field('name');
             $show->field('description');
-            $show->field('device.name');
+            $show->field('device.asset_number');
             $show->field('price');
             $show->field('purchased');
             $show->field('expired');
@@ -195,6 +196,17 @@ class ServiceRecordController extends AdminController
 
             $show->field('created_at');
             $show->field('updated_at');
+
+            /**
+             * 自定义按钮.
+             */
+            $show->tools(function (Show\Tools $tools) {
+                // @permissions
+                if (Admin::user()->can('service.track.delete')) {
+                    $tools->append(new ServiceRecordTrackDeleteAction());
+                }
+                $tools->append('&nbsp;');
+            });
 
             /**
              * 按钮控制.

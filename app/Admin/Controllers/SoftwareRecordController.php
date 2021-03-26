@@ -248,7 +248,7 @@ class SoftwareRecordController extends AdminController
                             $grid->withBorder();
 
                             $grid->column('id');
-                            $grid->column('device.name')->link(function () {
+                            $grid->column('device.asset_number')->link(function () {
                                 if (!empty($this->device)) {
                                     return admin_route('device.records.show', [$this->device['id']]);
                                 }

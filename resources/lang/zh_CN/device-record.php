@@ -60,7 +60,7 @@ return [
             'category' => [
                 'name' => '分类',
             ],
-            'name' => '名称',
+            'asset_number' => '名称',
             'specification' => '规格',
             'sn' => '序列号',
             'vendor' => [

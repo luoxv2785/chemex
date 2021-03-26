@@ -1,4 +1,4 @@
-<script src="https://cdn.jsdelivr.net/npm/echarts@5.0.2/dist/echarts.min.js"></script>
+<script src="/static/js/echarts-5.0.2.min.js"></script>
 <div id="main" style="height: 350px"></div>
 
 <script>
