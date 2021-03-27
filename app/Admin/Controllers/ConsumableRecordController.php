@@ -9,6 +9,7 @@ use App\Grid;
 use App\Models\ColumnSort;
 use App\Models\ConsumableCategory;
 use App\Models\VendorRecord;
+use App\Show;
 use App\Support\Data;
 use App\Support\Support;
 use App\Traits\ControllerHasCustomColumns;
@@ -19,7 +20,6 @@ use Dcat\Admin\Grid\Tools;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
-use Dcat\Admin\Show;
 use Dcat\Admin\Widgets\Tab;
 
 /**
@@ -171,21 +171,22 @@ class ConsumableRecordController extends AdminController
     protected function detail($id): Show
     {
         return Show::make($id, new ConsumableRecord(['category', 'vendor']), function (Show $show) {
-            $show->field('id');
-            $show->field('name');
-            $show->field('description');
-            $show->field('specification');
-            $show->field('category.name');
-            $show->field('vendor.name');
-            $show->field('price');
+            $sort_columns = $this->sortColumns();
+            $show->field('id', '', $sort_columns);
+            $show->field('name', '', $sort_columns);
+            $show->field('description', '', $sort_columns);
+            $show->field('specification', '', $sort_columns);
+            $show->field('category.name', '', $sort_columns);
+            $show->field('vendor.name', '', $sort_columns);
+            $show->field('price', '', $sort_columns);
 
             /**
              * 自定义字段.
              */
-            ControllerHasCustomColumns::makeDetail((new ConsumableRecord())->getTable(), $show);
+            ControllerHasCustomColumns::makeDetail((new ConsumableRecord())->getTable(), $show, $sort_columns);
 
-            $show->field('created_at');
-            $show->field('updated_at');
+            $show->field('created_at', '', $sort_columns);
+            $show->field('updated_at', '', $sort_columns);
 
             /**
              * 按钮控制.

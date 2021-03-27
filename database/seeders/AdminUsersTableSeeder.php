@@ -27,9 +27,7 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => 'Administrator',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2020-11-30 09:58:49',
-                'updated_at' => '2021-03-22 15:23:15',
-                'department_id' => 1,
+                'department_id' => 0,
                 'gender' => '男',
                 'title' => NULL,
                 'mobile' => NULL,
@@ -37,6 +35,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2020-11-30 09:58:49',
+                'updated_at' => '2021-03-25 08:34:47',
             ),
             1 => 
             array (
@@ -46,9 +46,7 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '测试用户',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-02-11 21:18:42',
-                'updated_at' => '2021-02-11 21:18:42',
-                'department_id' => 1,
+                'department_id' => 0,
                 'gender' => '男',
                 'title' => NULL,
                 'mobile' => NULL,
@@ -56,6 +54,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-02-11 21:18:42',
+                'updated_at' => '2021-03-25 08:23:37',
             ),
             2 => 
             array (
@@ -65,8 +65,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '殷彬',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-17 23:57:23',
-                'updated_at' => '2021-03-17 23:57:23',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -75,6 +73,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-17 23:57:23',
+                'updated_at' => '2021-03-17 23:57:23',
             ),
             3 => 
             array (
@@ -84,8 +84,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '邢翼',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-17 23:57:56',
-                'updated_at' => '2021-03-17 23:57:56',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -94,6 +92,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-17 23:57:56',
+                'updated_at' => '2021-03-17 23:57:56',
             ),
             4 => 
             array (
@@ -103,8 +103,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '贺淑华',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-17 23:59:20',
-                'updated_at' => '2021-03-17 23:59:20',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -113,6 +111,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-17 23:59:20',
+                'updated_at' => '2021-03-17 23:59:20',
             ),
             5 => 
             array (
@@ -122,8 +122,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '白玉梅',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 00:01:14',
-                'updated_at' => '2021-03-18 00:01:14',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -132,6 +130,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 00:01:14',
+                'updated_at' => '2021-03-18 00:01:14',
             ),
             6 => 
             array (
@@ -141,8 +141,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '邬珺',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 00:01:24',
-                'updated_at' => '2021-03-18 00:01:24',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -151,6 +149,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 00:01:24',
+                'updated_at' => '2021-03-18 00:01:24',
             ),
             7 => 
             array (
@@ -160,8 +160,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '古秀英',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 00:03:22',
-                'updated_at' => '2021-03-18 00:03:22',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -170,6 +168,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 00:03:22',
+                'updated_at' => '2021-03-18 00:03:22',
             ),
             8 => 
             array (
@@ -179,8 +179,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '佟军',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 00:03:41',
-                'updated_at' => '2021-03-18 00:03:41',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -189,6 +187,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 00:03:41',
+                'updated_at' => '2021-03-18 00:03:41',
             ),
             9 => 
             array (
@@ -198,8 +198,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '窦智渊',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 00:03:59',
-                'updated_at' => '2021-03-18 00:03:59',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -208,6 +206,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 00:03:59',
+                'updated_at' => '2021-03-18 00:03:59',
             ),
             10 => 
             array (
@@ -217,8 +217,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '扬桂芳',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 00:05:32',
-                'updated_at' => '2021-03-18 00:05:32',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -227,6 +225,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 00:05:32',
+                'updated_at' => '2021-03-18 00:05:32',
             ),
             11 => 
             array (
@@ -236,8 +236,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '张明霞',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 00:06:30',
-                'updated_at' => '2021-03-18 00:06:30',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -246,6 +244,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 00:06:30',
+                'updated_at' => '2021-03-18 00:06:30',
             ),
             12 => 
             array (
@@ -255,8 +255,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '荆霞',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 00:06:46',
-                'updated_at' => '2021-03-18 00:06:46',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -265,6 +263,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 00:06:46',
+                'updated_at' => '2021-03-18 00:06:46',
             ),
             13 => 
             array (
@@ -274,8 +274,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '牟楼',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 00:07:27',
-                'updated_at' => '2021-03-18 00:07:27',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -284,6 +282,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 00:07:27',
+                'updated_at' => '2021-03-18 00:07:27',
             ),
             14 => 
             array (
@@ -293,8 +293,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '鲍林',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 00:07:36',
-                'updated_at' => '2021-03-18 00:07:36',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -303,6 +301,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 00:07:36',
+                'updated_at' => '2021-03-18 00:07:36',
             ),
             15 => 
             array (
@@ -312,8 +312,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '原新华',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 00:07:48',
-                'updated_at' => '2021-03-18 00:07:48',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -322,6 +320,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 00:07:48',
+                'updated_at' => '2021-03-18 00:07:48',
             ),
             16 => 
             array (
@@ -331,8 +331,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '房桂英',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 00:08:12',
-                'updated_at' => '2021-03-18 00:08:12',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -341,6 +339,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 00:08:12',
+                'updated_at' => '2021-03-18 00:08:12',
             ),
             17 => 
             array (
@@ -350,8 +350,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '戚艳',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 00:08:42',
-                'updated_at' => '2021-03-18 00:08:42',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -360,6 +358,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 00:08:42',
+                'updated_at' => '2021-03-18 00:08:42',
             ),
             18 => 
             array (
@@ -369,8 +369,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '柳红梅',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 00:08:46',
-                'updated_at' => '2021-03-18 00:08:46',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -379,6 +377,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 00:08:46',
+                'updated_at' => '2021-03-18 00:08:46',
             ),
             19 => 
             array (
@@ -388,8 +388,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '汤智敏',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 00:08:54',
-                'updated_at' => '2021-03-18 00:08:54',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -398,6 +396,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 00:08:54',
+                'updated_at' => '2021-03-18 00:08:54',
             ),
             20 => 
             array (
@@ -407,8 +407,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '裴珺',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 00:09:26',
-                'updated_at' => '2021-03-18 00:09:26',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -417,6 +415,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 00:09:26',
+                'updated_at' => '2021-03-18 00:09:26',
             ),
             21 => 
             array (
@@ -426,8 +426,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '甘楼',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 08:39:02',
-                'updated_at' => '2021-03-18 08:39:02',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -436,6 +434,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 08:39:02',
+                'updated_at' => '2021-03-18 08:39:02',
             ),
             22 => 
             array (
@@ -445,8 +445,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '岑秀华',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 08:39:18',
-                'updated_at' => '2021-03-18 08:39:18',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -455,6 +453,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 08:39:18',
+                'updated_at' => '2021-03-18 08:39:18',
             ),
             23 => 
             array (
@@ -464,8 +464,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '晏瑜',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 08:39:18',
-                'updated_at' => '2021-03-18 08:39:18',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -474,6 +472,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 08:39:18',
+                'updated_at' => '2021-03-18 08:39:18',
             ),
             24 => 
             array (
@@ -483,8 +483,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '闵雪',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 08:41:35',
-                'updated_at' => '2021-03-18 08:41:35',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -493,6 +491,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 08:41:35',
+                'updated_at' => '2021-03-18 08:41:35',
             ),
             25 => 
             array (
@@ -502,8 +502,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '滕建明',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 08:41:35',
-                'updated_at' => '2021-03-18 08:41:35',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -512,6 +510,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 08:41:35',
+                'updated_at' => '2021-03-18 08:41:35',
             ),
             26 => 
             array (
@@ -521,8 +521,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '徐雪',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 08:41:54',
-                'updated_at' => '2021-03-18 08:41:54',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -531,6 +529,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 08:41:54',
+                'updated_at' => '2021-03-18 08:41:54',
             ),
             27 => 
             array (
@@ -540,8 +540,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '邱昱然',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 08:41:54',
-                'updated_at' => '2021-03-18 08:41:54',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -550,6 +548,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 08:41:54',
+                'updated_at' => '2021-03-18 08:41:54',
             ),
             28 => 
             array (
@@ -559,8 +559,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '易娜',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 08:42:04',
-                'updated_at' => '2021-03-18 08:42:04',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -569,6 +567,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 08:42:04',
+                'updated_at' => '2021-03-18 08:42:04',
             ),
             29 => 
             array (
@@ -578,8 +578,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '霍玉',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 08:42:04',
-                'updated_at' => '2021-03-18 08:42:04',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -588,6 +586,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 08:42:04',
+                'updated_at' => '2021-03-18 08:42:04',
             ),
             30 => 
             array (
@@ -597,8 +597,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '凌晨',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 08:43:42',
-                'updated_at' => '2021-03-18 08:43:42',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -607,6 +605,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 08:43:42',
+                'updated_at' => '2021-03-18 08:43:42',
             ),
             31 => 
             array (
@@ -616,8 +616,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '龙欢',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 08:43:42',
-                'updated_at' => '2021-03-18 08:43:42',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -626,6 +624,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 08:43:42',
+                'updated_at' => '2021-03-18 08:43:42',
             ),
             32 => 
             array (
@@ -635,8 +635,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '宇丹丹',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 08:43:42',
-                'updated_at' => '2021-03-18 08:43:42',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -645,6 +643,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 08:43:42',
+                'updated_at' => '2021-03-18 08:43:42',
             ),
             33 => 
             array (
@@ -654,8 +654,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '龚晧',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 08:43:56',
-                'updated_at' => '2021-03-18 08:43:56',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -664,6 +662,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 08:43:56',
+                'updated_at' => '2021-03-18 08:43:56',
             ),
             34 => 
             array (
@@ -673,8 +673,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '韩正平',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 08:43:56',
-                'updated_at' => '2021-03-18 08:43:56',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -683,6 +681,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 08:43:56',
+                'updated_at' => '2021-03-18 08:43:56',
             ),
             35 => 
             array (
@@ -692,8 +692,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '欧阳楠',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 08:43:56',
-                'updated_at' => '2021-03-18 08:43:56',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -702,6 +700,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 08:43:56',
+                'updated_at' => '2021-03-18 08:43:56',
             ),
             36 => 
             array (
@@ -711,8 +711,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '都桂芝',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 08:44:32',
-                'updated_at' => '2021-03-18 08:44:32',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -721,6 +719,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 08:44:32',
+                'updated_at' => '2021-03-18 08:44:32',
             ),
             37 => 
             array (
@@ -730,8 +730,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '韦秀云',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 08:44:32',
-                'updated_at' => '2021-03-18 08:44:32',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -740,6 +738,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 08:44:32',
+                'updated_at' => '2021-03-18 08:44:32',
             ),
             38 => 
             array (
@@ -749,8 +749,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '龙明霞',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 08:44:32',
-                'updated_at' => '2021-03-18 08:44:32',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -759,6 +757,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 08:44:32',
+                'updated_at' => '2021-03-18 08:44:32',
             ),
             39 => 
             array (
@@ -768,8 +768,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '官秀芳',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 08:49:52',
-                'updated_at' => '2021-03-18 08:49:52',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -778,6 +776,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 08:49:52',
+                'updated_at' => '2021-03-18 08:49:52',
             ),
             40 => 
             array (
@@ -787,8 +787,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '项勇',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 08:49:52',
-                'updated_at' => '2021-03-18 08:49:52',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -797,6 +795,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 08:49:52',
+                'updated_at' => '2021-03-18 08:49:52',
             ),
             41 => 
             array (
@@ -806,8 +806,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '盖秀珍',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 08:49:52',
-                'updated_at' => '2021-03-18 08:49:52',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -816,6 +814,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 08:49:52',
+                'updated_at' => '2021-03-18 08:49:52',
             ),
             42 => 
             array (
@@ -825,8 +825,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '庄哲彦',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 09:12:02',
-                'updated_at' => '2021-03-18 09:12:02',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -835,6 +833,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 09:12:02',
+                'updated_at' => '2021-03-18 09:12:02',
             ),
             43 => 
             array (
@@ -844,8 +844,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '栗建军',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 09:12:02',
-                'updated_at' => '2021-03-18 09:12:02',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -854,6 +852,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 09:12:02',
+                'updated_at' => '2021-03-18 09:12:02',
             ),
             44 => 
             array (
@@ -863,8 +863,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '卞静',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 09:12:02',
-                'updated_at' => '2021-03-18 09:12:02',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -873,6 +871,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 09:12:02',
+                'updated_at' => '2021-03-18 09:12:02',
             ),
             45 => 
             array (
@@ -882,8 +882,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '和哲',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 09:12:35',
-                'updated_at' => '2021-03-18 09:12:35',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -892,6 +890,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 09:12:35',
+                'updated_at' => '2021-03-18 09:12:35',
             ),
             46 => 
             array (
@@ -901,8 +901,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '沙瑶',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 09:12:35',
-                'updated_at' => '2021-03-18 09:12:35',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -911,6 +909,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 09:12:35',
+                'updated_at' => '2021-03-18 09:12:35',
             ),
             47 => 
             array (
@@ -920,8 +920,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '包颖',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 09:12:35',
-                'updated_at' => '2021-03-18 09:12:35',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -930,6 +928,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 09:12:35',
+                'updated_at' => '2021-03-18 09:12:35',
             ),
             48 => 
             array (
@@ -939,8 +939,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '胥淑英',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 09:13:39',
-                'updated_at' => '2021-03-18 09:13:39',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -949,6 +947,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 09:13:39',
+                'updated_at' => '2021-03-18 09:13:39',
             ),
             49 => 
             array (
@@ -958,8 +958,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '蒋秀英',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 09:13:39',
-                'updated_at' => '2021-03-18 09:13:39',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -968,6 +966,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 09:13:39',
+                'updated_at' => '2021-03-18 09:13:39',
             ),
             50 => 
             array (
@@ -977,8 +977,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '黎振国',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 09:13:39',
-                'updated_at' => '2021-03-18 09:13:39',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -987,6 +985,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 09:13:39',
+                'updated_at' => '2021-03-18 09:13:39',
             ),
             51 => 
             array (
@@ -996,8 +996,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '井飞',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 09:14:12',
-                'updated_at' => '2021-03-18 09:14:12',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1006,6 +1004,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 09:14:12',
+                'updated_at' => '2021-03-18 09:14:12',
             ),
             52 => 
             array (
@@ -1015,8 +1015,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '曲健',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 09:14:12',
-                'updated_at' => '2021-03-18 09:14:12',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1025,6 +1023,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 09:14:12',
+                'updated_at' => '2021-03-18 09:14:12',
             ),
             53 => 
             array (
@@ -1034,8 +1034,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '黄俊',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 09:14:12',
-                'updated_at' => '2021-03-18 09:14:12',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1044,6 +1042,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 09:14:12',
+                'updated_at' => '2021-03-18 09:14:12',
             ),
             54 => 
             array (
@@ -1053,8 +1053,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '牛鹏',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 09:43:48',
-                'updated_at' => '2021-03-18 09:43:48',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1063,6 +1061,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 09:43:48',
+                'updated_at' => '2021-03-18 09:43:48',
             ),
             55 => 
             array (
@@ -1072,8 +1072,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '都凤英',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 09:43:50',
-                'updated_at' => '2021-03-18 09:43:50',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1082,6 +1080,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 09:43:50',
+                'updated_at' => '2021-03-18 09:43:50',
             ),
             56 => 
             array (
@@ -1091,8 +1091,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '戚丽娟',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 09:44:27',
-                'updated_at' => '2021-03-18 09:44:27',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1101,6 +1099,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 09:44:27',
+                'updated_at' => '2021-03-18 09:44:27',
             ),
             57 => 
             array (
@@ -1110,8 +1110,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '衣晶',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 09:57:33',
-                'updated_at' => '2021-03-18 09:57:33',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1120,6 +1118,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 09:57:33',
+                'updated_at' => '2021-03-18 09:57:33',
             ),
             58 => 
             array (
@@ -1129,8 +1129,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '梁秀云',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 09:58:22',
-                'updated_at' => '2021-03-18 09:58:22',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1139,6 +1137,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 09:58:22',
+                'updated_at' => '2021-03-18 09:58:22',
             ),
             59 => 
             array (
@@ -1148,8 +1148,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '方芬',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:02:06',
-                'updated_at' => '2021-03-18 10:02:06',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1158,6 +1156,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:02:06',
+                'updated_at' => '2021-03-18 10:02:06',
             ),
             60 => 
             array (
@@ -1167,8 +1167,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '徐旭',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:03:13',
-                'updated_at' => '2021-03-18 10:03:13',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1177,6 +1175,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:03:13',
+                'updated_at' => '2021-03-18 10:03:13',
             ),
             61 => 
             array (
@@ -1186,8 +1186,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '史馨予',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:03:19',
-                'updated_at' => '2021-03-18 10:03:19',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1196,6 +1194,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:03:19',
+                'updated_at' => '2021-03-18 10:03:19',
             ),
             62 => 
             array (
@@ -1205,8 +1205,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '柳楠',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:03:25',
-                'updated_at' => '2021-03-18 10:03:25',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1215,6 +1213,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:03:25',
+                'updated_at' => '2021-03-18 10:03:25',
             ),
             63 => 
             array (
@@ -1224,8 +1224,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '台浩',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:03:41',
-                'updated_at' => '2021-03-18 10:03:41',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1234,6 +1232,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:03:41',
+                'updated_at' => '2021-03-18 10:03:41',
             ),
             64 => 
             array (
@@ -1243,8 +1243,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '汪志强',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:03:41',
-                'updated_at' => '2021-03-18 10:03:41',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1253,6 +1251,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:03:41',
+                'updated_at' => '2021-03-18 10:03:41',
             ),
             65 => 
             array (
@@ -1262,8 +1262,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '牛燕',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:03:41',
-                'updated_at' => '2021-03-18 10:03:41',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1272,6 +1270,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:03:41',
+                'updated_at' => '2021-03-18 10:03:41',
             ),
             66 => 
             array (
@@ -1281,8 +1281,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '孟坤',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:15:17',
-                'updated_at' => '2021-03-18 10:15:17',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1291,6 +1289,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:15:17',
+                'updated_at' => '2021-03-18 10:15:17',
             ),
             67 => 
             array (
@@ -1300,8 +1300,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '文桂荣',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:15:17',
-                'updated_at' => '2021-03-18 10:15:17',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1310,6 +1308,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:15:17',
+                'updated_at' => '2021-03-18 10:15:17',
             ),
             68 => 
             array (
@@ -1319,8 +1319,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '苏晨',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:15:17',
-                'updated_at' => '2021-03-18 10:15:17',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1329,6 +1327,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:15:17',
+                'updated_at' => '2021-03-18 10:15:17',
             ),
             69 => 
             array (
@@ -1338,8 +1338,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '费丽丽',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:15:17',
-                'updated_at' => '2021-03-18 10:15:17',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1348,6 +1346,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:15:17',
+                'updated_at' => '2021-03-18 10:15:17',
             ),
             70 => 
             array (
@@ -1357,8 +1357,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '卢雪梅',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:15:29',
-                'updated_at' => '2021-03-18 10:15:29',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1367,6 +1365,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:15:29',
+                'updated_at' => '2021-03-18 10:15:29',
             ),
             71 => 
             array (
@@ -1376,8 +1376,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '杨瑜',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:15:29',
-                'updated_at' => '2021-03-18 10:15:29',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1386,6 +1384,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:15:29',
+                'updated_at' => '2021-03-18 10:15:29',
             ),
             72 => 
             array (
@@ -1395,8 +1395,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '路丽华',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:15:29',
-                'updated_at' => '2021-03-18 10:15:29',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1405,6 +1403,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:15:29',
+                'updated_at' => '2021-03-18 10:15:29',
             ),
             73 => 
             array (
@@ -1414,8 +1414,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '康洋',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:15:29',
-                'updated_at' => '2021-03-18 10:15:29',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1424,6 +1422,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:15:29',
+                'updated_at' => '2021-03-18 10:15:29',
             ),
             74 => 
             array (
@@ -1433,8 +1433,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '屠明霞',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:15:35',
-                'updated_at' => '2021-03-18 10:15:35',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1443,6 +1441,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:15:35',
+                'updated_at' => '2021-03-18 10:15:35',
             ),
             75 => 
             array (
@@ -1452,8 +1452,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '井志诚',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:15:35',
-                'updated_at' => '2021-03-18 10:15:35',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1462,6 +1460,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:15:35',
+                'updated_at' => '2021-03-18 10:15:35',
             ),
             76 => 
             array (
@@ -1471,8 +1471,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '韦嘉',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:15:35',
-                'updated_at' => '2021-03-18 10:15:35',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1481,6 +1479,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:15:35',
+                'updated_at' => '2021-03-18 10:15:35',
             ),
             77 => 
             array (
@@ -1490,8 +1490,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '史秀英',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:15:36',
-                'updated_at' => '2021-03-18 10:15:36',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1500,6 +1498,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:15:36',
+                'updated_at' => '2021-03-18 10:15:36',
             ),
             78 => 
             array (
@@ -1509,8 +1509,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '雷冬梅',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:15:46',
-                'updated_at' => '2021-03-18 10:15:46',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1519,6 +1517,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:15:46',
+                'updated_at' => '2021-03-18 10:15:46',
             ),
             79 => 
             array (
@@ -1528,8 +1528,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '沿秀梅',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:15:46',
-                'updated_at' => '2021-03-18 10:15:46',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1538,6 +1536,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:15:46',
+                'updated_at' => '2021-03-18 10:15:46',
             ),
             80 => 
             array (
@@ -1547,8 +1547,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '翁莉',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:15:46',
-                'updated_at' => '2021-03-18 10:15:46',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1557,6 +1555,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:15:46',
+                'updated_at' => '2021-03-18 10:15:46',
             ),
             81 => 
             array (
@@ -1566,8 +1566,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '仲正豪',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:15:46',
-                'updated_at' => '2021-03-18 10:15:46',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1576,6 +1574,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:15:46',
+                'updated_at' => '2021-03-18 10:15:46',
             ),
             82 => 
             array (
@@ -1585,8 +1585,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '汪嘉',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:15:52',
-                'updated_at' => '2021-03-18 10:15:52',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1595,6 +1593,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:15:52',
+                'updated_at' => '2021-03-18 10:15:52',
             ),
             83 => 
             array (
@@ -1604,8 +1604,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '艾峰',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:15:52',
-                'updated_at' => '2021-03-18 10:15:52',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1614,6 +1612,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:15:52',
+                'updated_at' => '2021-03-18 10:15:52',
             ),
             84 => 
             array (
@@ -1623,8 +1623,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '畅瑞',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:15:52',
-                'updated_at' => '2021-03-18 10:15:52',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1633,6 +1631,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:15:52',
+                'updated_at' => '2021-03-18 10:15:52',
             ),
             85 => 
             array (
@@ -1642,8 +1642,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '冀玉珍',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:15:52',
-                'updated_at' => '2021-03-18 10:15:52',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1652,6 +1650,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:15:52',
+                'updated_at' => '2021-03-18 10:15:52',
             ),
             86 => 
             array (
@@ -1661,8 +1661,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '詹坤',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:55:52',
-                'updated_at' => '2021-03-18 10:55:52',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1671,6 +1669,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:55:52',
+                'updated_at' => '2021-03-18 10:55:52',
             ),
             87 => 
             array (
@@ -1680,8 +1680,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '商玉华',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:55:52',
-                'updated_at' => '2021-03-18 10:55:52',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1690,6 +1688,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:55:52',
+                'updated_at' => '2021-03-18 10:55:52',
             ),
             88 => 
             array (
@@ -1699,8 +1699,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '谈爱华',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:55:52',
-                'updated_at' => '2021-03-18 10:55:52',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1709,6 +1707,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:55:52',
+                'updated_at' => '2021-03-18 10:55:52',
             ),
             89 => 
             array (
@@ -1718,8 +1718,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '祁娟',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:55:52',
-                'updated_at' => '2021-03-18 10:55:52',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1728,6 +1726,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:55:52',
+                'updated_at' => '2021-03-18 10:55:52',
             ),
             90 => 
             array (
@@ -1737,8 +1737,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '雷华',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:56:06',
-                'updated_at' => '2021-03-18 10:56:06',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1747,6 +1745,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:56:06',
+                'updated_at' => '2021-03-18 10:56:06',
             ),
             91 => 
             array (
@@ -1756,8 +1756,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '党敏静',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:56:06',
-                'updated_at' => '2021-03-18 10:56:06',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1766,6 +1764,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:56:06',
+                'updated_at' => '2021-03-18 10:56:06',
             ),
             92 => 
             array (
@@ -1775,8 +1775,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '陈娜',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:56:06',
-                'updated_at' => '2021-03-18 10:56:06',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1785,6 +1783,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:56:06',
+                'updated_at' => '2021-03-18 10:56:06',
             ),
             93 => 
             array (
@@ -1794,8 +1794,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '陆亮',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:56:06',
-                'updated_at' => '2021-03-18 10:56:06',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1804,6 +1802,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:56:06',
+                'updated_at' => '2021-03-18 10:56:06',
             ),
             94 => 
             array (
@@ -1813,8 +1813,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '温秀云',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:58:39',
-                'updated_at' => '2021-03-18 10:58:39',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1823,6 +1821,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:58:39',
+                'updated_at' => '2021-03-18 10:58:39',
             ),
             95 => 
             array (
@@ -1832,8 +1832,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '米学明',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:58:39',
-                'updated_at' => '2021-03-18 10:58:39',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1842,6 +1840,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:58:39',
+                'updated_at' => '2021-03-18 10:58:39',
             ),
             96 => 
             array (
@@ -1851,8 +1851,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '鲍芳',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:58:39',
-                'updated_at' => '2021-03-18 10:58:39',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1861,6 +1859,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:58:39',
+                'updated_at' => '2021-03-18 10:58:39',
             ),
             97 => 
             array (
@@ -1870,8 +1870,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '牟梅',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:58:39',
-                'updated_at' => '2021-03-18 10:58:39',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1880,6 +1878,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:58:39',
+                'updated_at' => '2021-03-18 10:58:39',
             ),
             98 => 
             array (
@@ -1889,8 +1889,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '孟洁',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:58:40',
-                'updated_at' => '2021-03-18 10:58:40',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1899,6 +1897,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:58:40',
+                'updated_at' => '2021-03-18 10:58:40',
             ),
             99 => 
             array (
@@ -1908,8 +1908,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '稽志勇',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:59:08',
-                'updated_at' => '2021-03-18 10:59:08',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1918,6 +1916,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:59:08',
+                'updated_at' => '2021-03-18 10:59:08',
             ),
             100 => 
             array (
@@ -1927,8 +1927,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '沙梅',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:59:08',
-                'updated_at' => '2021-03-18 10:59:08',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1937,6 +1935,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:59:08',
+                'updated_at' => '2021-03-18 10:59:08',
             ),
             101 => 
             array (
@@ -1946,8 +1946,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '谭瑜',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:59:08',
-                'updated_at' => '2021-03-18 10:59:08',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1956,6 +1954,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:59:08',
+                'updated_at' => '2021-03-18 10:59:08',
             ),
             102 => 
             array (
@@ -1965,8 +1965,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '梁新华',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:59:08',
-                'updated_at' => '2021-03-18 10:59:08',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1975,6 +1973,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:59:08',
+                'updated_at' => '2021-03-18 10:59:08',
             ),
             103 => 
             array (
@@ -1984,8 +1984,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '乔桂香',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 10:59:08',
-                'updated_at' => '2021-03-18 10:59:08',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -1994,6 +1992,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 10:59:08',
+                'updated_at' => '2021-03-18 10:59:08',
             ),
             104 => 
             array (
@@ -2003,8 +2003,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '姜玉兰',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:13:22',
-                'updated_at' => '2021-03-18 13:13:22',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2013,6 +2011,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:13:22',
+                'updated_at' => '2021-03-18 13:13:22',
             ),
             105 => 
             array (
@@ -2022,8 +2022,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '薛淑珍',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:13:22',
-                'updated_at' => '2021-03-18 13:13:22',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2032,6 +2030,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:13:22',
+                'updated_at' => '2021-03-18 13:13:22',
             ),
             106 => 
             array (
@@ -2041,8 +2041,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '宗霞',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:13:22',
-                'updated_at' => '2021-03-18 13:13:22',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2051,6 +2049,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:13:22',
+                'updated_at' => '2021-03-18 13:13:22',
             ),
             107 => 
             array (
@@ -2060,8 +2060,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '屈翼',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:13:22',
-                'updated_at' => '2021-03-18 13:13:22',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2070,6 +2068,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:13:22',
+                'updated_at' => '2021-03-18 13:13:22',
             ),
             108 => 
             array (
@@ -2079,8 +2079,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '霍春梅',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:13:22',
-                'updated_at' => '2021-03-18 13:13:22',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2089,6 +2087,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:13:22',
+                'updated_at' => '2021-03-18 13:13:22',
             ),
             109 => 
             array (
@@ -2098,8 +2098,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '乔洋',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:17:14',
-                'updated_at' => '2021-03-18 13:17:14',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2108,6 +2106,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:17:14',
+                'updated_at' => '2021-03-18 13:17:14',
             ),
             110 => 
             array (
@@ -2117,8 +2117,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '严秀华',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:17:14',
-                'updated_at' => '2021-03-18 13:17:14',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2127,6 +2125,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:17:14',
+                'updated_at' => '2021-03-18 13:17:14',
             ),
             111 => 
             array (
@@ -2136,8 +2136,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '邱欢',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:17:14',
-                'updated_at' => '2021-03-18 13:17:14',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2146,6 +2144,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:17:14',
+                'updated_at' => '2021-03-18 13:17:14',
             ),
             112 => 
             array (
@@ -2155,8 +2155,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '保晶',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:17:14',
-                'updated_at' => '2021-03-18 13:17:14',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2165,6 +2163,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:17:14',
+                'updated_at' => '2021-03-18 13:17:14',
             ),
             113 => 
             array (
@@ -2174,8 +2174,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '齐春梅',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:17:14',
-                'updated_at' => '2021-03-18 13:17:14',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2184,6 +2182,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:17:14',
+                'updated_at' => '2021-03-18 13:17:14',
             ),
             114 => 
             array (
@@ -2193,8 +2193,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '钟云',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:19:45',
-                'updated_at' => '2021-03-18 13:19:45',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2203,6 +2201,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:19:45',
+                'updated_at' => '2021-03-18 13:19:45',
             ),
             115 => 
             array (
@@ -2212,8 +2212,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '袁倩',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:19:45',
-                'updated_at' => '2021-03-18 13:19:45',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2222,6 +2220,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:19:45',
+                'updated_at' => '2021-03-18 13:19:45',
             ),
             116 => 
             array (
@@ -2231,8 +2231,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '奚秀兰',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:19:45',
-                'updated_at' => '2021-03-18 13:19:45',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2241,6 +2239,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:19:45',
+                'updated_at' => '2021-03-18 13:19:45',
             ),
             117 => 
             array (
@@ -2250,8 +2250,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '关荣',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:19:59',
-                'updated_at' => '2021-03-18 13:19:59',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2260,6 +2258,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:19:59',
+                'updated_at' => '2021-03-18 13:19:59',
             ),
             118 => 
             array (
@@ -2269,8 +2269,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '丘建明',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:19:59',
-                'updated_at' => '2021-03-18 13:19:59',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2279,6 +2277,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:19:59',
+                'updated_at' => '2021-03-18 13:19:59',
             ),
             119 => 
             array (
@@ -2288,8 +2288,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '沙丹',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:19:59',
-                'updated_at' => '2021-03-18 13:19:59',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2298,6 +2296,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:19:59',
+                'updated_at' => '2021-03-18 13:19:59',
             ),
             120 => 
             array (
@@ -2307,8 +2307,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '牛琴',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:20:03',
-                'updated_at' => '2021-03-18 13:20:03',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2317,6 +2315,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:20:03',
+                'updated_at' => '2021-03-18 13:20:03',
             ),
             121 => 
             array (
@@ -2326,8 +2326,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '席瑜',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:20:03',
-                'updated_at' => '2021-03-18 13:20:03',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2336,6 +2334,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:20:03',
+                'updated_at' => '2021-03-18 13:20:03',
             ),
             122 => 
             array (
@@ -2345,8 +2345,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '柳岩',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:20:03',
-                'updated_at' => '2021-03-18 13:20:03',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2355,6 +2353,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:20:03',
+                'updated_at' => '2021-03-18 13:20:03',
             ),
             123 => 
             array (
@@ -2364,8 +2364,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '宇旭',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:20:03',
-                'updated_at' => '2021-03-18 13:20:03',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2374,6 +2372,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:20:03',
+                'updated_at' => '2021-03-18 13:20:03',
             ),
             124 => 
             array (
@@ -2383,8 +2383,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '任艳',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:20:03',
-                'updated_at' => '2021-03-18 13:20:03',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2393,6 +2391,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:20:03',
+                'updated_at' => '2021-03-18 13:20:03',
             ),
             125 => 
             array (
@@ -2402,8 +2402,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '宗宁',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:20:10',
-                'updated_at' => '2021-03-18 13:20:10',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2412,6 +2410,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:20:10',
+                'updated_at' => '2021-03-18 13:20:10',
             ),
             126 => 
             array (
@@ -2421,8 +2421,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '左淑华',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:20:10',
-                'updated_at' => '2021-03-18 13:20:10',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2431,6 +2429,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:20:10',
+                'updated_at' => '2021-03-18 13:20:10',
             ),
             127 => 
             array (
@@ -2440,8 +2440,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '保丽娟',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:20:10',
-                'updated_at' => '2021-03-18 13:20:10',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2450,6 +2448,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:20:10',
+                'updated_at' => '2021-03-18 13:20:10',
             ),
             128 => 
             array (
@@ -2459,8 +2459,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '兰凤兰',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:20:14',
-                'updated_at' => '2021-03-18 13:20:14',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2469,6 +2467,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:20:14',
+                'updated_at' => '2021-03-18 13:20:14',
             ),
             129 => 
             array (
@@ -2478,8 +2478,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '方嘉',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:20:14',
-                'updated_at' => '2021-03-18 13:20:14',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2488,6 +2486,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:20:14',
+                'updated_at' => '2021-03-18 13:20:14',
             ),
             130 => 
             array (
@@ -2497,8 +2497,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '陆楠',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:20:14',
-                'updated_at' => '2021-03-18 13:20:14',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2507,6 +2505,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:20:14',
+                'updated_at' => '2021-03-18 13:20:14',
             ),
             131 => 
             array (
@@ -2516,8 +2516,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '台瑜',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:20:15',
-                'updated_at' => '2021-03-18 13:20:15',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2526,6 +2524,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:20:15',
+                'updated_at' => '2021-03-18 13:20:15',
             ),
             132 => 
             array (
@@ -2535,8 +2535,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '习阳',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 13:20:15',
-                'updated_at' => '2021-03-18 13:20:15',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2545,6 +2543,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 13:20:15',
+                'updated_at' => '2021-03-18 13:20:15',
             ),
             133 => 
             array (
@@ -2554,8 +2554,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '敖瑜',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 20:50:16',
-                'updated_at' => '2021-03-18 20:50:16',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2564,6 +2562,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 20:50:16',
+                'updated_at' => '2021-03-18 20:50:16',
             ),
             134 => 
             array (
@@ -2573,8 +2573,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '彭桂英',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 20:50:16',
-                'updated_at' => '2021-03-18 20:50:16',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2583,6 +2581,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 20:50:16',
+                'updated_at' => '2021-03-18 20:50:16',
             ),
             135 => 
             array (
@@ -2592,8 +2592,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '房桂芬',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 20:50:16',
-                'updated_at' => '2021-03-18 20:50:16',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2602,6 +2600,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 20:50:16',
+                'updated_at' => '2021-03-18 20:50:16',
             ),
             136 => 
             array (
@@ -2611,8 +2611,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '邬志文',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 21:05:58',
-                'updated_at' => '2021-03-18 21:05:58',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2621,6 +2619,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 21:05:58',
+                'updated_at' => '2021-03-18 21:05:58',
             ),
             137 => 
             array (
@@ -2630,8 +2630,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '柴芬',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 21:05:58',
-                'updated_at' => '2021-03-18 21:05:58',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2640,6 +2638,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 21:05:58',
+                'updated_at' => '2021-03-18 21:05:58',
             ),
             138 => 
             array (
@@ -2649,8 +2649,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '潘秀芳',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 21:05:58',
-                'updated_at' => '2021-03-18 21:05:58',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2659,6 +2657,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 21:05:58',
+                'updated_at' => '2021-03-18 21:05:58',
             ),
             139 => 
             array (
@@ -2668,8 +2668,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '费健',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-18 21:05:58',
-                'updated_at' => '2021-03-18 21:05:58',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2678,6 +2676,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-18 21:05:58',
+                'updated_at' => '2021-03-18 21:05:58',
             ),
             140 => 
             array (
@@ -2687,8 +2687,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '萧飞',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-24 08:16:26',
-                'updated_at' => '2021-03-24 08:16:26',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2697,6 +2695,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-24 08:16:26',
+                'updated_at' => '2021-03-24 08:16:26',
             ),
             141 => 
             array (
@@ -2706,8 +2706,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '丁军',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-24 08:16:26',
-                'updated_at' => '2021-03-24 08:16:26',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2716,6 +2714,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-24 08:16:26',
+                'updated_at' => '2021-03-24 08:16:26',
             ),
             142 => 
             array (
@@ -2725,8 +2725,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '翟梅',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-24 08:16:26',
-                'updated_at' => '2021-03-24 08:16:26',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2735,6 +2733,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-24 08:16:26',
+                'updated_at' => '2021-03-24 08:16:26',
             ),
             143 => 
             array (
@@ -2744,8 +2744,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '孙婷',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-24 08:16:27',
-                'updated_at' => '2021-03-24 08:16:27',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2754,6 +2752,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-24 08:16:27',
+                'updated_at' => '2021-03-24 08:16:27',
             ),
             144 => 
             array (
@@ -2763,8 +2763,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '苑玉兰',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-24 08:16:27',
-                'updated_at' => '2021-03-24 08:16:27',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2773,6 +2771,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-24 08:16:27',
+                'updated_at' => '2021-03-24 08:16:27',
             ),
             145 => 
             array (
@@ -2782,8 +2782,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '任东',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-24 08:16:27',
-                'updated_at' => '2021-03-24 08:16:27',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2792,6 +2790,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-24 08:16:27',
+                'updated_at' => '2021-03-24 08:16:27',
             ),
             146 => 
             array (
@@ -2801,8 +2801,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '杨捷',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-24 08:16:27',
-                'updated_at' => '2021-03-24 08:16:27',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2811,6 +2809,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-24 08:16:27',
+                'updated_at' => '2021-03-24 08:16:27',
             ),
             147 => 
             array (
@@ -2820,8 +2820,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '邱丽丽',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-24 08:18:38',
-                'updated_at' => '2021-03-24 08:18:38',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2830,6 +2828,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-24 08:18:38',
+                'updated_at' => '2021-03-24 08:18:38',
             ),
             148 => 
             array (
@@ -2839,8 +2839,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '计婕',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-24 08:18:38',
-                'updated_at' => '2021-03-24 08:18:38',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2849,6 +2847,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-24 08:18:38',
+                'updated_at' => '2021-03-24 08:18:38',
             ),
             149 => 
             array (
@@ -2858,8 +2858,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '殷莹',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-24 08:18:38',
-                'updated_at' => '2021-03-24 08:18:38',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2868,6 +2866,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-24 08:18:38',
+                'updated_at' => '2021-03-24 08:18:38',
             ),
             150 => 
             array (
@@ -2877,8 +2877,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '丘玉华',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-24 08:18:38',
-                'updated_at' => '2021-03-24 08:18:38',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2887,6 +2885,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-24 08:18:38',
+                'updated_at' => '2021-03-24 08:18:38',
             ),
             151 => 
             array (
@@ -2896,8 +2896,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '陶坤',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-24 08:18:38',
-                'updated_at' => '2021-03-24 08:18:38',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2906,6 +2904,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-24 08:18:38',
+                'updated_at' => '2021-03-24 08:18:38',
             ),
             152 => 
             array (
@@ -2915,8 +2915,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '薄博涛',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-24 08:18:39',
-                'updated_at' => '2021-03-24 08:18:39',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2925,6 +2923,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-24 08:18:39',
+                'updated_at' => '2021-03-24 08:18:39',
             ),
             153 => 
             array (
@@ -2934,8 +2934,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '樊燕',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-24 08:18:39',
-                'updated_at' => '2021-03-24 08:18:39',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2944,6 +2942,8 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-24 08:18:39',
+                'updated_at' => '2021-03-24 08:18:39',
             ),
             154 => 
             array (
@@ -2953,8 +2953,6 @@ class AdminUsersTableSeeder extends Seeder
                 'name' => '安志新',
                 'avatar' => NULL,
                 'remember_token' => NULL,
-                'created_at' => '2021-03-24 08:18:39',
-                'updated_at' => '2021-03-24 08:18:39',
                 'department_id' => 1,
                 'gender' => '男',
                 'title' => NULL,
@@ -2963,6 +2961,122 @@ class AdminUsersTableSeeder extends Seeder
                 'ad_tag' => 0,
                 'extended_fields' => NULL,
                 'deleted_at' => NULL,
+                'created_at' => '2021-03-24 08:18:39',
+                'updated_at' => '2021-03-24 08:18:39',
+            ),
+            155 => 
+            array (
+                'id' => 157,
+                'username' => 'sssss',
+                'password' => '$2y$10$7/HERyDzgHIqbcARhPt0pOa2zlFquMTvWn6ttPDtRB.C5UGCjoc3W',
+                'name' => '殷彬',
+                'avatar' => NULL,
+                'remember_token' => NULL,
+                'department_id' => 1,
+                'gender' => '男',
+                'title' => NULL,
+                'mobile' => NULL,
+                'email' => NULL,
+                'ad_tag' => 0,
+                'extended_fields' => NULL,
+                'deleted_at' => NULL,
+                'created_at' => '2021-03-25 08:56:41',
+                'updated_at' => '2021-03-25 08:56:41',
+            ),
+            156 => 
+            array (
+                'id' => 158,
+                'username' => 'ssssss',
+                'password' => '$2y$10$CIoc.K0ya.pEwghTUk3rLe6VR.DKivkl1Os59cMKvmLY.ORdUx446',
+                'name' => '邢翼',
+                'avatar' => NULL,
+                'remember_token' => NULL,
+                'department_id' => 1,
+                'gender' => '男',
+                'title' => NULL,
+                'mobile' => NULL,
+                'email' => NULL,
+                'ad_tag' => 0,
+                'extended_fields' => NULL,
+                'deleted_at' => NULL,
+                'created_at' => '2021-03-25 08:56:41',
+                'updated_at' => '2021-03-25 08:56:41',
+            ),
+            157 => 
+            array (
+                'id' => 159,
+                'username' => 'sssssss',
+                'password' => '$2y$10$/IdTXNA4feYRhSe9Yh0AWuw288Xt980E03R.m8Oz3XY1YsW73tDKm',
+                'name' => '贺淑华',
+                'avatar' => NULL,
+                'remember_token' => NULL,
+                'department_id' => 1,
+                'gender' => '男',
+                'title' => NULL,
+                'mobile' => NULL,
+                'email' => NULL,
+                'ad_tag' => 0,
+                'extended_fields' => NULL,
+                'deleted_at' => NULL,
+                'created_at' => '2021-03-25 08:56:42',
+                'updated_at' => '2021-03-25 08:56:42',
+            ),
+            158 => 
+            array (
+                'id' => 163,
+                'username' => 'sssssssssss1',
+                'password' => '$2y$10$d.45ta5Mlrw9dnrvQQcJI.g1Z1FANnDj1fnjdU3crg0.Fx0G5FnBi',
+                'name' => '殷彬',
+                'avatar' => NULL,
+                'remember_token' => NULL,
+                'department_id' => 1,
+                'gender' => '男',
+                'title' => NULL,
+                'mobile' => NULL,
+                'email' => NULL,
+                'ad_tag' => 0,
+                'extended_fields' => NULL,
+                'deleted_at' => NULL,
+                'created_at' => '2021-03-25 08:59:06',
+                'updated_at' => '2021-03-25 08:59:06',
+            ),
+            159 => 
+            array (
+                'id' => 164,
+                'username' => 'sssssssssss2',
+                'password' => '$2y$10$RDTx/OGVRviKrQOUjXbzl.tT5W3Gxh5tcFrNDHsKqu2H3MDFNMhW6',
+                'name' => '邢翼',
+                'avatar' => NULL,
+                'remember_token' => NULL,
+                'department_id' => 1,
+                'gender' => '男',
+                'title' => NULL,
+                'mobile' => NULL,
+                'email' => NULL,
+                'ad_tag' => 0,
+                'extended_fields' => NULL,
+                'deleted_at' => NULL,
+                'created_at' => '2021-03-25 08:59:07',
+                'updated_at' => '2021-03-25 08:59:07',
+            ),
+            160 => 
+            array (
+                'id' => 165,
+                'username' => 'ssssssssssss3',
+                'password' => '$2y$10$qoFw31s2Myy3bRYDj7t4HeDbWUcJVCT67VjbD168ewB3h67Ud5/Qe',
+                'name' => '贺淑华',
+                'avatar' => NULL,
+                'remember_token' => NULL,
+                'department_id' => 1,
+                'gender' => '男',
+                'title' => NULL,
+                'mobile' => NULL,
+                'email' => NULL,
+                'ad_tag' => 0,
+                'extended_fields' => NULL,
+                'deleted_at' => NULL,
+                'created_at' => '2021-03-25 08:59:07',
+                'updated_at' => '2021-03-25 08:59:07',
             ),
         ));
         

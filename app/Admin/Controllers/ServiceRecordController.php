@@ -12,6 +12,7 @@ use App\Grid;
 use App\Models\ColumnSort;
 use App\Models\DeviceRecord;
 use App\Models\PurchasedChannel;
+use App\Show;
 use App\Support\Data;
 use App\Support\Support;
 use App\Traits\ControllerHasCustomColumns;
@@ -22,7 +23,7 @@ use Dcat\Admin\Form;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
-use Dcat\Admin\Show;
+use Dcat\Admin\Show\Tools;
 use Dcat\Admin\Widgets\Tab;
 
 /**
@@ -181,27 +182,28 @@ class ServiceRecordController extends AdminController
     protected function detail($id): Show
     {
         return Show::make($id, new ServiceRecord(['channel', 'device']), function (Show $show) {
-            $show->field('id');
-            $show->field('name');
-            $show->field('description');
-            $show->field('device.asset_number');
-            $show->field('price');
-            $show->field('purchased');
-            $show->field('expired');
-            $show->field('channel.name');
+            $sort_columns = $this->sortColumns();
+            $show->field('id', '', $sort_columns);
+            $show->field('name', '', $sort_columns);
+            $show->field('description', '', $sort_columns);
+            $show->field('device.asset_number', '', $sort_columns);
+            $show->field('price', '', $sort_columns);
+            $show->field('purchased', '', $sort_columns);
+            $show->field('expired', '', $sort_columns);
+            $show->field('channel.name', '', $sort_columns);
 
             /**
              * 自定义字段.
              */
-            ControllerHasCustomColumns::makeDetail((new ServiceRecord())->getTable(), $show);
+            ControllerHasCustomColumns::makeDetail((new ServiceRecord())->getTable(), $show, $sort_columns);
 
-            $show->field('created_at');
-            $show->field('updated_at');
+            $show->field('created_at', '', $sort_columns);
+            $show->field('updated_at', '', $sort_columns);
 
             /**
              * 自定义按钮.
              */
-            $show->tools(function (Show\Tools $tools) {
+            $show->tools(function (Tools $tools) {
                 // @permissions
                 if (Admin::user()->can('service.track.delete') && !empty($this->track()->first())) {
                     $tools->append(new ServiceRecordDeleteTrackAction());

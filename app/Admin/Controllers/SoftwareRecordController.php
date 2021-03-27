@@ -18,6 +18,7 @@ use App\Models\SoftwareCategory;
 use App\Models\VendorRecord;
 use App\Services\ExpirationService;
 use App\Services\SoftwareService;
+use App\Show;
 use App\Support\Data;
 use App\Support\Support;
 use App\Traits\ControllerHasCustomColumns;
@@ -30,7 +31,6 @@ use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
-use Dcat\Admin\Show;
 use Dcat\Admin\Widgets\Card;
 use Dcat\Admin\Widgets\Tab;
 
@@ -291,27 +291,28 @@ class SoftwareRecordController extends AdminController
     protected function detail($id): Show
     {
         return Show::make($id, new SoftwareRecord(['category', 'vendor', 'channel']), function (Show $show) {
-            $show->field('id');
-            $show->field('name');
-            $show->field('asset_number');
-            $show->field('description');
-            $show->field('category.name');
-            $show->field('version');
-            $show->field('vendor.name');
-            $show->field('channel.name');
-            $show->field('price');
-            $show->field('purchased');
-            $show->field('expired');
-            $show->field('distribution')->using(Data::distribution());
-            $show->field('counts');
+            $sort_columns = $this->sortColumns();
+            $show->field('id', '', $sort_columns);
+            $show->field('name', '', $sort_columns);
+            $show->field('asset_number', '', $sort_columns);
+            $show->field('description', '', $sort_columns);
+            $show->field('category.name', '', $sort_columns);
+            $show->field('version', '', $sort_columns);
+            $show->field('vendor.name', '', $sort_columns);
+            $show->field('channel.name', '', $sort_columns);
+            $show->field('price', '', $sort_columns);
+            $show->field('purchased', '', $sort_columns);
+            $show->field('expired', '', $sort_columns);
+            $show->field('distribution', '', $sort_columns)->using(Data::distribution());
+            $show->field('counts', '', $sort_columns);
 
             /**
              * 自定义字段.
              */
-            ControllerHasCustomColumns::makeDetail((new SoftwareRecord())->getTable(), $show);
+            ControllerHasCustomColumns::makeDetail((new SoftwareRecord())->getTable(), $show, $sort_columns);
 
-            $show->field('created_at');
-            $show->field('updated_at');
+            $show->field('created_at', '', $sort_columns);
+            $show->field('updated_at', '', $sort_columns);
 
             /**
              * 按钮控制.

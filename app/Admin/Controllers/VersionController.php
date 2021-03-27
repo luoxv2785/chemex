@@ -48,13 +48,11 @@ class VersionController extends Controller
     /**
      * 版本升级.
      *
-     * @return JsonResponse
+     * @return array|JsonResponse
      */
-    public function upgrade(): JsonResponse
+    public function upgrade()
     {
         $result = VersionService::upgrade();
-        $return = Uni::rr(200, $result);
-
-        return response()->json($return);
+        return Uni::returnJson('更新成功！', $result);
     }
 }

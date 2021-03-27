@@ -56,7 +56,6 @@ class DepartmentImportForm extends Form
                         }
                     } catch (Exception $exception) {
                         $fail++;
-//                        return $this->response()->error($exception->getMessage());
                     }
                 }
 
@@ -99,13 +98,11 @@ class DepartmentImportForm extends Form
                     ->help(admin_trans_label('File Help'))
                     ->accept('xlsx,csv')
                     ->autoUpload()
-                    ->uniqueName()
-                    ->required();
+                    ->uniqueName();
             })
             ->when('ldap', function (Form $form) {
                 $form->radio('mode')
                     ->options(['rewrite' => admin_trans_label('Rewrite'), 'merge' => admin_trans_label('Merge')])
-                    ->required()
                     ->default('merge');
             })
             ->options(['file' => admin_trans_label('File'), 'ldap' => admin_trans_label('LDAP')])

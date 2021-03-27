@@ -350,12 +350,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/celaraze/pour.git",
-                "reference": "d0a65a5c9fe654256116c2dd8a9926a436094268"
+                "reference": "a96777478d123fb58f522326c263cf023a4a9074"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/celaraze/pour/zipball/d0a65a5c9fe654256116c2dd8a9926a436094268",
-                "reference": "d0a65a5c9fe654256116c2dd8a9926a436094268",
+                "url": "https://api.github.com/repos/celaraze/pour/zipball/a96777478d123fb58f522326c263cf023a4a9074",
+                "reference": "a96777478d123fb58f522326c263cf023a4a9074",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -393,7 +393,7 @@
                 "issues": "https://github.com/celaraze/pour/issues",
                 "source": "https://github.com/celaraze/pour/tree/master"
             },
-            "time": "2021-02-18T05:36:39+00:00"
+            "time": "2021-03-27T09:03:48+00:00"
         },
         {
             "name": "composer/ca-bundle",

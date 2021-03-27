@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'ee658c8f12a6ba77800a21f389b427b4bb685da9',
+    'reference' => '06c8a0d5ac816c563e7eb694ad878ab4d50fcf36',
     'name' => 'celaraze/chemex',
   ),
   'versions' => 
@@ -87,7 +87,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'ee658c8f12a6ba77800a21f389b427b4bb685da9',
+      'reference' => '06c8a0d5ac816c563e7eb694ad878ab4d50fcf36',
     ),
     'celaraze/pour' => 
     array (
@@ -97,7 +97,7 @@ private static $installed = array (
       array (
         0 => '9999999-dev',
       ),
-      'reference' => 'd0a65a5c9fe654256116c2dd8a9926a436094268',
+      'reference' => 'a96777478d123fb58f522326c263cf023a4a9074',
     ),
     'composer/ca-bundle' => 
     array (
@@ -1027,8 +1027,8 @@ private static $installed = array (
     array (
       'provided' => 
       array (
-        0 => '1.0',
-        1 => '1.0.0',
+        0 => '1.0.0',
+        1 => '1.0',
       ),
     ),
     'psr/simple-cache' => 

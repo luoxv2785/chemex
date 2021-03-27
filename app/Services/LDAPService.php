@@ -110,7 +110,6 @@ class LDAPService
                 if (empty($user)) {
                     $user = new User();
                 }
-                $user->number = $user_name;
                 $user->username = $user_name;
                 $user->password = bcrypt($user->username);
                 $user->name = $user_name;

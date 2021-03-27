@@ -14,6 +14,7 @@ use App\Models\ServiceRecord;
 use App\Models\ServiceTrack;
 use App\Models\SoftwareRecord;
 use App\Models\SoftwareTrack;
+use App\Models\User;
 use Dcat\Admin\Admin;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -444,5 +445,20 @@ class Support
             return true;
         }
         return false;
+    }
+
+    /**
+     * 单选选择用户格式定制.
+     * @param $key
+     * @return array
+     */
+    public static function selectUsers($key): array
+    {
+        $users = User::all();
+        $return = [];
+        foreach ($users as $user) {
+            $return[$user->$key] = $user->name . ' - ' . $user->username;
+        }
+        return $return;
     }
 }

@@ -58,7 +58,6 @@ class AuthController extends BaseAuthController
             });
 
             $form->display('username', trans('admin.username'));
-            $form->display('number');
             $form->text('name', trans('admin.name'))->required();
             $form->image('avatar', trans('admin.avatar'))->autoUpload();
 
@@ -120,28 +119,30 @@ class AuthController extends BaseAuthController
                     $admin_user = User::where('username', $username)->first();
                     if (empty($admin_user)) {
                         $admin_user = new User();
-                    }
-                    $admin_user->username = $username;
-                    $admin_user->password = bcrypt($password);
-                    $admin_user->name = $username;
-                    $admin_user->save();
+                        if ($username == admin_setting('ad_bind_administrator')) {
+                            $role_id = 1;
+                        } else {
+                            $role_id = 2;
+                        }
+                        $admin_user->username = $username;
+                        $admin_user->password = bcrypt($password);
+                        $admin_user->name = $username;
+                        $admin_user->department_id = 0;
+                        $admin_user->save();
 
-                    if ($username == admin_setting('ad_bind_administrator')) {
-                        $role_id = 1;
-                    } else {
-                        $role_id = 2;
+                        $admin_role_user = RoleUser::where('user_id', $admin_user->id)
+                            ->where('role_id', $role_id)
+                            ->first();
+                        if (empty($admin_role_user)) {
+                            $admin_role_user = new RoleUser();
+                        }
+                        $admin_role_user->role_id = $role_id;
+                        $admin_role_user->user_id = $admin_user->id;
+                        $admin_role_user->save();
                     }
-                    $admin_role_user = RoleUser::where('user_id', $admin_user->id)
-                        ->where('role_id', $role_id)
-                        ->first();
-                    if (empty($admin_role_user)) {
-                        $admin_role_user = new RoleUser();
-                    }
-                    $admin_role_user->role_id = $role_id;
-                    $admin_role_user->user_id = $admin_user->id;
-                    $admin_role_user->save();
                 }
             } catch (Exception $exception) {
+                dd($exception->getMessage());
                 // 如果LDAP服务器连接出现异常，这里可以做异常处理的逻辑
                 // 暂时没有任何逻辑，因此只需要抛出异常即可
             }

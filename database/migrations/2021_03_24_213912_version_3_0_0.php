@@ -25,7 +25,6 @@ class Version300 extends Migration
     {
         Schema::create($this->config('database.users_table'), function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('number')->unique()->nullable();
             $table->string('username', 120)->unique();
             $table->string('password', 80);
             $table->string('name');

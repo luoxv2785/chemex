@@ -25,10 +25,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '微软 Microsoft',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => '[{"contact_name":"A","phone":"11111111111","email":null,"title":null}]',
                 'deleted_at' => NULL,
                 'created_at' => '2021-01-19 11:57:11',
-                'updated_at' => '2021-01-19 11:58:03',
-                'contacts' => NULL,
+                'updated_at' => '2021-03-25 20:19:02',
             ),
             1 => 
             array (
@@ -36,10 +36,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '英特尔 Intel',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-01-19 11:57:31',
                 'updated_at' => '2021-01-19 11:58:10',
-                'contacts' => NULL,
             ),
             2 => 
             array (
@@ -47,10 +47,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => 'AMD',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-01-19 11:57:36',
                 'updated_at' => '2021-01-19 11:57:36',
-                'contacts' => NULL,
             ),
             3 => 
             array (
@@ -58,10 +58,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '苹果 Apple',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-01-19 11:57:41',
                 'updated_at' => '2021-01-19 11:58:16',
-                'contacts' => NULL,
             ),
             4 => 
             array (
@@ -69,10 +69,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '英伟达 Nvidia',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-01-19 11:57:50',
                 'updated_at' => '2021-01-19 11:58:23',
-                'contacts' => NULL,
             ),
             5 => 
             array (
@@ -80,10 +80,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '微星 MSI',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-01-19 11:58:32',
                 'updated_at' => '2021-01-19 11:58:32',
-                'contacts' => NULL,
             ),
             6 => 
             array (
@@ -91,10 +91,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '金士顿 Kingston',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-01-19 11:58:40',
                 'updated_at' => '2021-01-19 11:58:40',
-                'contacts' => NULL,
             ),
             7 => 
             array (
@@ -102,10 +102,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '西部数据 WD',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-01-19 11:58:47',
                 'updated_at' => '2021-01-19 11:58:47',
-                'contacts' => NULL,
             ),
             8 => 
             array (
@@ -113,10 +113,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '希捷 Seagate',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-01-19 11:59:18',
                 'updated_at' => '2021-01-19 11:59:18',
-                'contacts' => NULL,
             ),
             9 => 
             array (
@@ -124,10 +124,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '华硕 ASUS',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-01-19 11:59:40',
                 'updated_at' => '2021-01-19 11:59:40',
-                'contacts' => NULL,
             ),
             10 => 
             array (
@@ -135,10 +135,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '联想 Lenovo',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-01-19 11:59:48',
                 'updated_at' => '2021-01-19 11:59:48',
-                'contacts' => NULL,
             ),
             11 => 
             array (
@@ -146,10 +146,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '惠普 HP/HPE',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-01-19 11:59:57',
                 'updated_at' => '2021-01-19 11:59:57',
-                'contacts' => NULL,
             ),
             12 => 
             array (
@@ -157,10 +157,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '华为 Huawei',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-01-19 12:00:18',
                 'updated_at' => '2021-01-19 12:00:18',
-                'contacts' => NULL,
             ),
             13 => 
             array (
@@ -168,10 +168,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '小米 MI',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-01-19 12:00:27',
                 'updated_at' => '2021-01-19 12:00:27',
-                'contacts' => NULL,
             ),
             14 => 
             array (
@@ -179,10 +179,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '荣耀 Honor',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-01-19 17:00:41',
                 'updated_at' => '2021-01-19 17:00:41',
-                'contacts' => NULL,
             ),
             15 => 
             array (
@@ -190,10 +190,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '七彩虹 Colorful',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-01-19 17:01:00',
                 'updated_at' => '2021-01-19 17:01:00',
-                'contacts' => NULL,
             ),
             16 => 
             array (
@@ -201,10 +201,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '影驰 Galaxy',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-01-19 17:01:31',
                 'updated_at' => '2021-01-19 17:01:31',
-                'contacts' => NULL,
             ),
             17 => 
             array (
@@ -212,10 +212,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '仲琳',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-03-18 10:55:52',
                 'updated_at' => '2021-03-18 10:55:52',
-                'contacts' => NULL,
             ),
             18 => 
             array (
@@ -223,10 +223,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '尹莉',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-03-18 10:56:06',
                 'updated_at' => '2021-03-18 10:56:06',
-                'contacts' => NULL,
             ),
             19 => 
             array (
@@ -234,10 +234,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '施振国',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-03-18 10:58:40',
                 'updated_at' => '2021-03-18 10:58:40',
-                'contacts' => NULL,
             ),
             20 => 
             array (
@@ -245,10 +245,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '冯桂芬',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-03-18 10:58:40',
                 'updated_at' => '2021-03-18 10:58:40',
-                'contacts' => NULL,
             ),
             21 => 
             array (
@@ -256,10 +256,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '文凤英',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-03-18 10:59:08',
                 'updated_at' => '2021-03-18 10:59:08',
-                'contacts' => NULL,
             ),
             22 => 
             array (
@@ -267,10 +267,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '鞠杰',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-03-18 10:59:08',
                 'updated_at' => '2021-03-18 10:59:08',
-                'contacts' => NULL,
             ),
             23 => 
             array (
@@ -278,10 +278,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '黎欢',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-03-18 13:13:22',
                 'updated_at' => '2021-03-18 13:13:22',
-                'contacts' => NULL,
             ),
             24 => 
             array (
@@ -289,10 +289,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '卓正诚',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-03-18 13:13:22',
                 'updated_at' => '2021-03-18 13:13:22',
-                'contacts' => NULL,
             ),
             25 => 
             array (
@@ -300,10 +300,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '蔺慧',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-03-18 13:17:14',
                 'updated_at' => '2021-03-18 13:17:14',
-                'contacts' => NULL,
             ),
             26 => 
             array (
@@ -311,10 +311,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '鲁昱然',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-03-18 13:17:14',
                 'updated_at' => '2021-03-18 13:17:14',
-                'contacts' => NULL,
             ),
             27 => 
             array (
@@ -322,10 +322,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '焦燕',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-03-18 13:20:03',
                 'updated_at' => '2021-03-18 13:20:03',
-                'contacts' => NULL,
             ),
             28 => 
             array (
@@ -333,10 +333,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '胡超',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-03-18 13:20:03',
                 'updated_at' => '2021-03-18 13:20:03',
-                'contacts' => NULL,
             ),
             29 => 
             array (
@@ -344,10 +344,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '顾颖',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-03-18 13:20:15',
                 'updated_at' => '2021-03-18 13:20:15',
-                'contacts' => NULL,
             ),
             30 => 
             array (
@@ -355,10 +355,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '涂建国',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-03-18 13:20:15',
                 'updated_at' => '2021-03-18 13:20:15',
-                'contacts' => NULL,
             ),
             31 => 
             array (
@@ -366,10 +366,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '夏亮',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-03-18 21:05:58',
                 'updated_at' => '2021-03-18 21:05:58',
-                'contacts' => NULL,
             ),
             32 => 
             array (
@@ -377,10 +377,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '毛宇',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-03-24 08:18:38',
                 'updated_at' => '2021-03-24 08:18:38',
-                'contacts' => NULL,
             ),
             33 => 
             array (
@@ -388,10 +388,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '丛瑶',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-03-24 08:18:39',
                 'updated_at' => '2021-03-24 08:18:39',
-                'contacts' => NULL,
             ),
             34 => 
             array (
@@ -399,10 +399,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '阮淑兰',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-03-24 08:18:39',
                 'updated_at' => '2021-03-24 08:18:39',
-                'contacts' => NULL,
             ),
             35 => 
             array (
@@ -410,10 +410,10 @@ class VendorRecordsTableSeeder extends Seeder
                 'name' => '赖利',
                 'description' => NULL,
                 'location' => NULL,
+                'contacts' => NULL,
                 'deleted_at' => NULL,
                 'created_at' => '2021-03-24 08:18:39',
                 'updated_at' => '2021-03-24 08:18:39',
-                'contacts' => NULL,
             ),
         ));
         

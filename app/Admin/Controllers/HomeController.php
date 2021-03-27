@@ -31,9 +31,13 @@ class HomeController extends Controller
             ->description(admin_trans_label('description'))
             ->body(function (Row $row) {
                 $row->column(3, new BannerMyAssetsWorth());
-                $row->column(3, new BannerMyTodoCounts());
-                $row->column(3, new BannerMaintenanceRecordCounts());
-                $row->column(3, new BannerServiceIssueCounts());
+                // @permissions
+                if (Admin::user()->can('home.asset.admin')) {
+                    $row->column(3, new BannerMyTodoCounts());
+                    $row->column(3, new BannerMaintenanceRecordCounts());
+                    $row->column(3, new BannerServiceIssueCounts());
+                }
+                // @permissions
                 if (Admin::user()->can('home.dashboard')) {
                     $row->column(12, '<hr>');
                     $row->column(12, function (Column $column) {

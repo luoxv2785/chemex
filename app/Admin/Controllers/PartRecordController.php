@@ -18,6 +18,7 @@ use App\Models\PartCategory;
 use App\Models\PurchasedChannel;
 use App\Models\VendorRecord;
 use App\Services\ExpirationService;
+use App\Show;
 use App\Support\Data;
 use App\Support\Support;
 use App\Traits\ControllerHasCustomColumns;
@@ -30,7 +31,6 @@ use Dcat\Admin\Grid\Tools\BatchActions;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
-use Dcat\Admin\Show;
 use Dcat\Admin\Widgets\Tab;
 
 /**
@@ -237,16 +237,17 @@ class PartRecordController extends AdminController
     protected function detail($id): Show
     {
         return Show::make($id, new PartRecord(['category', 'vendor', 'channel', 'device', 'depreciation']), function (Show $show) {
-            $show->field('id');
-            $show->field('asset_number');
-            $show->field('description');
-            $show->field('category.name');
-            $show->field('vendor.name');
-            $show->field('channel.name');
-            $show->field('device.asset_number');
-            $show->field('specification');
-            $show->field('price');
-            $show->field('expiration_left_days')->as(function () {
+            $sort_columns = $this->sortColumns();
+            $show->field('id', '', $sort_columns);
+            $show->field('asset_number', '', $sort_columns);
+            $show->field('description', '', $sort_columns);
+            $show->field('category.name', '', $sort_columns);
+            $show->field('vendor.name', '', $sort_columns);
+            $show->field('channel.name', '', $sort_columns);
+            $show->field('device.asset_number', '', $sort_columns);
+            $show->field('specification', '', $sort_columns);
+            $show->field('price', '', $sort_columns);
+            $show->field('expiration_left_days', '', $sort_columns)->as(function () {
                 $part_record = \App\Models\PartRecord::where('id', $this->id)->first();
                 if (!empty($part_record)) {
                     $depreciation_rule_id = Support::getDepreciationRuleId($part_record);
@@ -254,23 +255,23 @@ class PartRecordController extends AdminController
                     return Support::depreciationPrice($this->price, $this->purchased, $depreciation_rule_id);
                 }
             });
-            $show->field('purchased');
-            $show->field('expired');
-            $show->field('depreciation.name');
-            $show->field('depreciation.termination');
+            $show->field('purchased', '', $sort_columns);
+            $show->field('expired', '', $sort_columns);
+            $show->field('depreciation.name', '', $sort_columns);
+            $show->field('depreciation.termination', '', $sort_columns);
 
             /**
              * 自定义字段.
              */
-            ControllerHasCustomColumns::makeDetail((new PartRecord())->getTable(), $show);
+            ControllerHasCustomColumns::makeDetail((new PartRecord())->getTable(), $show, $sort_columns);
 
-            $show->field('created_at');
-            $show->field('updated_at');
+            $show->field('created_at', '', $sort_columns);
+            $show->field('updated_at', '', $sort_columns);
 
             /**
              * 自定义按钮.
              */
-            $show->tools(function (Show\Tools $tools) {
+            $show->tools(function (\Dcat\Admin\Show\Tools $tools) {
                 // @permissions
                 if (Admin::user()->can('part.track.delete') && !empty($this->track()->first())) {
                     $tools->append(new PartRecordDeleteTrackAction());

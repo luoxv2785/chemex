@@ -4,6 +4,7 @@ return [
     'labels' => [
         'title' => '站点',
         'description' => '与咖啡壶站点相关的配置',
+        'ui' => '界面',
         'Gird Row Action Right Help' => '启用后表格行操作按钮将永远贴着最右侧。',
     ],
     'fields' => [

@@ -4,8 +4,8 @@ namespace App\Traits;
 
 use App\Grid;
 use App\Models\CustomColumn;
+use App\Show;
 use Dcat\Admin\Form;
-use Dcat\Admin\Show;
 
 trait ControllerHasCustomColumns
 {
@@ -73,13 +73,13 @@ trait ControllerHasCustomColumns
      *
      * @param $table_name
      * @param Show $show
-     *
+     * @param $column_sorts
      * @return Show
      */
-    public static function makeDetail($table_name, Show $show): Show
+    public static function makeDetail($table_name, Show $show, $column_sorts): Show
     {
         foreach (self::getCustomColumns($table_name) as $custom_column) {
-            $show->field($custom_column->name, $custom_column->nick_name);
+            $show->field($custom_column->name, $custom_column->nick_name, $column_sorts);
         }
 
         return $show;

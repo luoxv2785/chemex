@@ -38,7 +38,7 @@ final class Versions
   'asm89/stack-cors' => 'v2.0.3@9cb795bf30988e8c96dd3c40623c48a877bc6714',
   'box/spout' => 'v3.2.0@0f20c99a7f8b8792840ac061c34f3450641a03cc',
   'brick/math' => '0.9.2@dff976c2f3487d42c1db75a3b180e2b9f0e72ce0',
-  'celaraze/pour' => 'dev-master@d0a65a5c9fe654256116c2dd8a9926a436094268',
+  'celaraze/pour' => 'dev-master@a96777478d123fb58f522326c263cf023a4a9074',
   'composer/ca-bundle' => '1.2.9@78a0e288fdcebf92aa2318a8d3656168da6ac1a5',
   'composer/composer' => '2.0.11@a5a5632da0b1c2d6fa9a3b65f1f4e90d1f04abb9',
   'composer/package-versions-deprecated' => '1.11.99.1@7413f0b55a051e89485c5cb9f765fe24bb02a7b6',
@@ -176,7 +176,7 @@ final class Versions
   'sebastian/type' => '2.3.1@81cd61ab7bbf2de744aba0ea61fae32f721df3d2',
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'theseer/tokenizer' => '1.2.0@75a63c33a8577608444246075ea0af0d052e452a',
-  'celaraze/chemex' => 'dev-main@ee658c8f12a6ba77800a21f389b427b4bb685da9',
+  'celaraze/chemex' => 'dev-main@06c8a0d5ac816c563e7eb694ad878ab4d50fcf36',
 );
 
     private function __construct()

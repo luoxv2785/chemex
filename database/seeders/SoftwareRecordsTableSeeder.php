@@ -32,11 +32,11 @@ class SoftwareRecordsTableSeeder extends Seeder
                 'expired' => NULL,
                 'distribution' => 'u',
                 'counts' => -1,
+                'purchased_channel_id' => NULL,
+                'asset_number' => 'BBBB1',
                 'deleted_at' => '2021-03-24 19:59:18',
                 'created_at' => '2021-03-23 20:08:45',
                 'updated_at' => '2021-03-24 19:59:18',
-                'purchased_channel_id' => NULL,
-                'asset_number' => 'BBBB1',
             ),
             1 => 
             array (
@@ -51,11 +51,11 @@ class SoftwareRecordsTableSeeder extends Seeder
                 'expired' => NULL,
                 'distribution' => 'u',
                 'counts' => -1,
+                'purchased_channel_id' => NULL,
+                'asset_number' => 'AAADSAD',
                 'deleted_at' => NULL,
                 'created_at' => '2021-03-24 20:14:40',
                 'updated_at' => '2021-03-24 20:14:53',
-                'purchased_channel_id' => NULL,
-                'asset_number' => 'AAADSAD',
             ),
         ));
         

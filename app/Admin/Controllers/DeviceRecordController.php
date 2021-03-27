@@ -10,6 +10,7 @@ use App\Admin\Actions\Grid\ToolAction\DeviceRecordImportAction;
 use App\Admin\Actions\Show\DeviceRecordDeleteTrackAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\DeviceRecord;
+use App\Form;
 use App\Grid;
 use App\Models\ColumnSort;
 use App\Models\Department;
@@ -27,7 +28,6 @@ use App\Traits\ControllerHasCustomColumns;
 use App\Traits\ControllerHasDeviceRelatedGrid;
 use DateTime;
 use Dcat\Admin\Admin;
-use Dcat\Admin\Form;
 use Dcat\Admin\Grid\Tools;
 use Dcat\Admin\Grid\Tools\BatchActions;
 use Dcat\Admin\Http\Controllers\AdminController;
@@ -216,6 +216,7 @@ class DeviceRecordController extends AdminController
                 $filter->scope('history', admin_trans_label('Deleted'))->onlyTrashed();
                 $filter->equal('category_id')->select(DeviceCategory::pluck('name', 'id'));
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
+                $filter->equal('user.name')->select(Support::selectUsers('name'));
                 $filter->equal('user.department_id')->select(Department::pluck('name', 'id'));
                 $filter->equal('depreciation_id')->select(DepreciationRule::pluck('name', 'id'));
                 /**
@@ -314,17 +315,17 @@ class DeviceRecordController extends AdminController
     {
         return Show::make($id, new DeviceRecord(['category', 'vendor', 'channel', 'user', 'user.department', 'depreciation']), function (Show $show) {
             $sort_columns = $this->sortColumns();
-            $show->field('id');
-            $show->field('asset_number');
-            $show->field('description');
-            $show->field('category.name');
-            $show->field('vendor.name');
-            $show->field('channel.name');
-            $show->field('mac');
-            $show->field('ip');
-            $show->field('photo')->image();
-            $show->field('price');
-            $show->field('expiration_left_days')->as(function () {
+            $show->field('id', '', $sort_columns);
+            $show->field('asset_number', '', $sort_columns);
+            $show->field('description', '', $sort_columns);
+            $show->field('category.name', '', $sort_columns);
+            $show->field('vendor.name', '', $sort_columns);
+            $show->field('channel.name', '', $sort_columns);
+            $show->field('mac', '', $sort_columns);
+            $show->field('ip', '', $sort_columns);
+            $show->field('photo', '', $sort_columns)->image();
+            $show->field('price', '', $sort_columns);
+            $show->field('expiration_left_days', '', $sort_columns)->as(function () {
                 $device_record = \App\Models\DeviceRecord::where('id', $this->id)->first();
                 if (!empty($device_record)) {
                     $depreciation_rule_id = Support::getDepreciationRuleId($device_record);
@@ -332,20 +333,20 @@ class DeviceRecordController extends AdminController
                     return Support::depreciationPrice($this->price, $this->purchased, $depreciation_rule_id);
                 }
             });
-            $show->field('purchased');
-            $show->field('expired');
-            $show->field('user.name');
-            $show->field('user.department.name');
-            $show->field('depreciation.name');
-            $show->field('depreciation.termination');
+            $show->field('purchased', '', $sort_columns);
+            $show->field('expired', '', $sort_columns);
+            $show->field('user.name', '', $sort_columns);
+            $show->field('user.department.name', '', $sort_columns);
+            $show->field('depreciation.name', '', $sort_columns);
+            $show->field('depreciation.termination', '', $sort_columns);
 
             /**
              * 自定义字段.
              */
-            ControllerHasCustomColumns::makeDetail((new DeviceRecord())->getTable(), $show);
+            ControllerHasCustomColumns::makeDetail((new DeviceRecord())->getTable(), $show, $sort_columns);
 
-            $show->field('created_at');
-            $show->field('updated_at');
+            $show->field('created_at', '', $sort_columns);
+            $show->field('updated_at', '', $sort_columns);
 
             /**
              * 自定义按钮.

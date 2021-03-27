@@ -35,31 +35,20 @@ class UserImportForm extends Form
                 $rows = Excel::import($file_path)->first()->toArray();
                 foreach ($rows as $row) {
                     try {
-                        if (!empty($row['工号']) && !empty($row['用户名']) && !empty($row['姓名']) && !empty($row['性别'])) {
+                        if (!empty($row['工号']) && !empty($row['姓名']) && !empty($row['性别'])) {
                             $department = Department::where('name', $row['部门'])->first();
                             if (empty($department)) {
                                 $department = new Department();
                                 $department->name = $row['部门'];
                                 $department->save();
                             }
-//                            $row['用户名'] = Uni::trim(Pinyin::sentence($row['用户名']));
                             $user = new User();
-                            $user->number = $row['工号'];
-//                            $exist = User::where('username', $row['用户名'])->withTrashed()->first();
-//                            if (empty($exist)) {
-//                                $user->username = $row['用户名'];
-//                            } else {
-//                                if (!empty($exist->deleted_at)) {
-//                                    $user->deleted_at = null;
-//                                }
-//                                $user->username = $row['用户名'] . Uni::randomNumberString(4);
-//                            }
-                            $user->username = $row['用户名'];
+                            $user->username = $row['工号'];
                             $user->name = $row['姓名'];
                             $user->department_id = $department->id;
                             $user->gender = $row['性别'];
                             if (empty($row['密码'])) {
-                                $user->password = bcrypt($row['用户名']);
+                                $user->password = bcrypt($row['工号']);
                             } else {
                                 $user->password = bcrypt($row['密码']);
                             }
@@ -79,7 +68,6 @@ class UserImportForm extends Form
                         }
                     } catch (Exception $exception) {
                         $fail++;
-//                        return $this->response()->error($exception->getMessage());
                     }
                 }
 

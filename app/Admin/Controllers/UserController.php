@@ -55,7 +55,6 @@ class UserController extends BaseUserController
     {
         return Grid::make(User::with(['roles', 'department']), function (Grid $grid) {
             $grid->column('id');
-            $grid->column('number');
             $grid->column('username');
             $grid->column('name')->display(function ($name) {
                 if ($this->ad_tag === 1) {
@@ -136,7 +135,7 @@ class UserController extends BaseUserController
             /**
              * 快速搜索.
              */
-            $grid->quickSearch('id', 'name', 'department.name', 'gender', 'title', 'mobile', 'email')
+            $grid->quickSearch('id', 'username', 'name', 'department.name', 'gender', 'title', 'mobile', 'email')
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
@@ -199,8 +198,6 @@ class UserController extends BaseUserController
             $id = $form->getKey();
 
             $form->display('id');
-            $form->text('number')
-                ->required();
             $form->text('username', trans('admin.username'))
                 ->required()
                 ->creationRules(['required', "unique:{$connection}.{$userTable}"])
@@ -310,7 +307,6 @@ class UserController extends BaseUserController
     {
         return Show::make($id, User::with(['roles', 'department']), function (Show $show) {
             $show->field('id');
-            $show->field('number');
             $show->field('name')->unescape()->as(function ($name) {
                 if ($this->ad_tag === 1) {
                     return "<span class='badge badge-primary mr-1'>AD</span>$name";

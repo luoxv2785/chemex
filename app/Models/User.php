@@ -32,7 +32,6 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property int ad_tag
  * @property DeviceRecord device
  * @property DateTime|null deleted_at
- * @property string number
  */
 class User extends Administrator implements JWTSubject
 {
