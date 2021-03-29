@@ -87,7 +87,6 @@ class DatabaseBackup extends Command
             'software_categories',
             'software_records',
             'software_tracks',
-            'staff_records',
             'todo_histories',
             'todo_records',
             'vendor_records',

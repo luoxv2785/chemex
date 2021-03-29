@@ -354,6 +354,7 @@ return array(
     'App\\Console\\Commands\\Update' => $baseDir . '/app/Console/Commands/Update.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Form' => $baseDir . '/app/Form.php',
     'App\\Grid' => $baseDir . '/app/Grid.php',
     'App\\Http\\Controllers\\AuthController' => $baseDir . '/app/Http/Controllers/AuthController.php',
     'App\\Http\\Controllers\\CheckController' => $baseDir . '/app/Http/Controllers/CheckController.php',

@@ -53,6 +53,6 @@ class VersionController extends Controller
     public function upgrade()
     {
         $result = VersionService::upgrade();
-        return Uni::returnJson('更新成功！', $result);
+        return Uni::returnJson(200,'更新成功！', $result);
     }
 }
