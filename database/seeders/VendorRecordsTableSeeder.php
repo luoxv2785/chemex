@@ -415,6 +415,50 @@ class VendorRecordsTableSeeder extends Seeder
                 'created_at' => '2021-03-24 08:18:39',
                 'updated_at' => '2021-03-24 08:18:39',
             ),
+            36 => 
+            array (
+                'id' => 37,
+                'name' => '井洋',
+                'description' => NULL,
+                'location' => NULL,
+                'contacts' => NULL,
+                'deleted_at' => NULL,
+                'created_at' => '2021-03-29 13:54:04',
+                'updated_at' => '2021-03-29 13:54:04',
+            ),
+            37 => 
+            array (
+                'id' => 38,
+                'name' => '段智敏',
+                'description' => NULL,
+                'location' => NULL,
+                'contacts' => NULL,
+                'deleted_at' => NULL,
+                'created_at' => '2021-03-29 13:54:04',
+                'updated_at' => '2021-03-29 13:54:04',
+            ),
+            38 => 
+            array (
+                'id' => 39,
+                'name' => '关瑞',
+                'description' => NULL,
+                'location' => NULL,
+                'contacts' => NULL,
+                'deleted_at' => NULL,
+                'created_at' => '2021-03-29 13:54:04',
+                'updated_at' => '2021-03-29 13:54:04',
+            ),
+            39 => 
+            array (
+                'id' => 40,
+                'name' => '尤伦',
+                'description' => NULL,
+                'location' => NULL,
+                'contacts' => NULL,
+                'deleted_at' => NULL,
+                'created_at' => '2021-03-29 13:54:04',
+                'updated_at' => '2021-03-29 13:54:04',
+            ),
         ));
         
         

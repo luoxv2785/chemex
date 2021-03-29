@@ -43,6 +43,7 @@ class ResetAdminAccount extends Command
             $user = new User();
             $user->username = 'admin';
         }
+        $user->department_id = 0;
         $user->password = bcrypt('admin');
         $user->name = 'Administrator';
         $user->save();

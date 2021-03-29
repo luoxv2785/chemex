@@ -22,14 +22,14 @@ class DepartmentsTableSeeder extends Seeder
             0 => 
             array (
                 'id' => 1,
-                'name' => '',
+                'name' => 'Domain Controllers',
                 'description' => NULL,
-                'parent_id' => NULL,
+                'parent_id' => 0,
                 'order' => 0,
-                'ad_tag' => 0,
+                'ad_tag' => 1,
                 'deleted_at' => NULL,
-                'created_at' => '2021-03-25 08:56:41',
-                'updated_at' => '2021-03-25 08:56:41',
+                'created_at' => '2021-03-27 21:26:23',
+                'updated_at' => '2021-03-27 21:26:23',
             ),
         ));
         
