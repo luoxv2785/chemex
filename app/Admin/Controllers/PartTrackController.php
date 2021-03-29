@@ -49,9 +49,8 @@ class PartTrackController extends AdminController
     {
         return Grid::make(new PartTrack(['part', 'device']), function (Grid $grid) {
             $grid->column('id');
-            $grid->column('part.name');
+            $grid->column('part.asset_number');
             $grid->column('device.asset_number');
-            $grid->column('device.name');
             $grid->column('created_at');
             $grid->column('updated_at');
 
@@ -78,7 +77,7 @@ class PartTrackController extends AdminController
             /**
              * 快速搜索.
              */
-            $grid->quickSearch('id', 'part.name', 'device.asset_number', 'device.name')
+            $grid->quickSearch('id', 'part.asset_number', 'device.asset_number')
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 

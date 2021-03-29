@@ -41,7 +41,7 @@ return [
         'counts' => '授权数量',
         'left_counts' => '剩余授权数量',
         'device' => [
-            'name' => '设备',
+            'asset_number' => '所属设备',
             'user' => [
                 'name' => '用户',
             ],

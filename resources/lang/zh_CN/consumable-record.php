@@ -26,6 +26,9 @@ return [
         'category_id' => '分类',
         'vendor_id' => '厂商',
         'consumable_id' => '耗材',
-        'number' => '总数',
+        'track' => [
+            'number' => '总数',
+        ],
+        'number' => '数量'
     ],
 ];

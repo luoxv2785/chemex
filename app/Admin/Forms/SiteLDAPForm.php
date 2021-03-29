@@ -54,6 +54,7 @@ class SiteLDAPForm extends Form
         $this->text('ad_username')
             ->attribute('autocomplete', 'off')
             ->required()
+            ->help(admin_trans_label('AD Username Help'))
             ->default(admin_setting('ad_username'));
         $this->password('ad_password')
             ->attribute('autocomplete', 'new-password')

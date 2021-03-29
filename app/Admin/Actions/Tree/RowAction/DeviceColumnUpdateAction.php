@@ -2,44 +2,34 @@
 
 namespace App\Admin\Actions\Tree\RowAction;
 
-use App\Admin\Forms\CheckTrackUpdateForm;
-use Dcat\Admin\Actions\Response;
+use App\Admin\Forms\CustomColumnUpdateForm;
 use Dcat\Admin\Tree\RowAction;
 use Dcat\Admin\Widgets\Modal;
-use Illuminate\Http\Request;
 
 class DeviceColumnUpdateAction extends RowAction
 {
-    /**
-     * @return string
-     */
-    protected $title = 'Title';
+    protected ?string $table_name;
+    protected ?string $custom_column_name;
 
-    /**
-     * Handle the action request.
-     *
-     * @param Request $request
-     *
-     * @return Response
-     */
-    public function handle(Request $request)
+    public function __construct(string $table_name = null, string $custom_column_name = null)
     {
-        //
-        $key = $this->getKey();
-
-        return $this->response()
-            ->success('Processed successfully.')
-            ->redirect('/');
+        parent::__construct();
+        $this->title = '📒 ' . admin_trans_label('Update');
+        $this->table_name = $table_name;
+        $this->custom_column_name = $custom_column_name;
     }
 
     public function render()
     {
         // 实例化表单类并传递自定义参数
-        $form = CheckTrackUpdateForm::make()->payload(['id' => $this->getKey()]);
+        $form = CustomColumnUpdateForm::make()->payload([
+            'table_name' => $this->table_name,
+            'name' => $this->custom_column_name
+        ]);
 
         return Modal::make()
             ->lg()
-            ->title(admin_trans_label('Update Track'))
+            ->title(admin_trans_label('Update Column'))
             ->body($form)
             ->button($this->title);
     }

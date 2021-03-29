@@ -13,14 +13,15 @@ return [
         'Delete Confirm' => '确认删除？',
         'Delete Confirm Description' => '删除的同时将会解除所有与之关联的归属关系',
         'Track Create Update' => '归属到设备',
-        'Deleted' => '已删除'
-    ],
+        'Deleted' => '已删除',
+        'Track Delete' => '解除归属',
+        'Track Delete Confirm' => '确认解除与此用户的关联？'],
     'fields' => [
         'name' => '名称',
         'description' => '描述',
         'status' => '状态',
         'device' => [
-            'name' => '设备名称',
+            'asset_number' => '所属设备',
         ],
         'price' => '价格',
         'purchased' => '购入日期',

@@ -3,8 +3,8 @@
 namespace App\Admin\Forms;
 
 use App\Models\TodoRecord;
-use App\Models\User;
 use App\Support\Data;
+use App\Support\Support;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Widgets\Form;
 use Exception;
@@ -66,7 +66,7 @@ class TodoRecordCreateForm extends Form
         $this->textarea('description');
 
         $this->select('user_id', admin_trans_label('User Id'))
-            ->options(User::pluck('name', 'id'));
+            ->options(Support::selectUsers('id'));
         $this->tags('tags')
             ->help(admin_trans_label('Tag Help'));
     }

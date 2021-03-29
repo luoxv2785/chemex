@@ -4,7 +4,7 @@ return [
     'fields' => [
         'id'                    => 'ID',
         'name'                  => '名称',
-        'username'              => '用户名',
+        'username'              => '工号',
         'email'                 => '邮箱',
         'http_path'             => 'HTTP路径',
         'password'              => '密码',

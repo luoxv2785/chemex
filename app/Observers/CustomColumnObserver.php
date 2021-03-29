@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Models\ColumnSort;
 use App\Models\CustomColumn;
 use Exception;
 use Illuminate\Database\Schema\Blueprint;
@@ -53,7 +54,26 @@ class CustomColumnObserver
      */
     public function updated(CustomColumn $customColumn)
     {
-        //
+        $name = request('name');
+        $new_name = request('new_name');
+        // 自定义字段更新后，同时触发数据库迁移
+        // 对应的模型数据表就更新这个字段
+        try {
+            Schema::table($customColumn->table_name, function (Blueprint $table) use ($customColumn, $name, $new_name) {
+                $table->renameColumn($name, $new_name);
+            });
+        } catch (Exception $exception) {
+            DB::rollBack();
+        }
+
+        // 排序表跟随
+        $column_sort = ColumnSort::where('table_name', $customColumn->table_name)
+            ->where('field', $name)
+            ->first();
+        if (!empty($column_sort)) {
+            $column_sort->name = $new_name;
+            $column_sort->save();
+        }
     }
 
     /**
@@ -73,6 +93,14 @@ class CustomColumnObserver
             });
         } catch (Exception $exception) {
             DB::rollBack();
+        }
+
+        // 排序表跟随
+        $column_sort = ColumnSort::where('table_name', $customColumn->table_name)
+            ->where('field', $customColumn->name)
+            ->first();
+        if (!empty($column_sort)) {
+            $column_sort->delete();
         }
     }
 

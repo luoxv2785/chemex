@@ -9,7 +9,9 @@ use App\Admin\Repositories\TodoRecord;
 use App\Grid;
 use App\Models\ColumnSort;
 use App\Models\DeviceRecord;
+use App\Models\User;
 use App\Support\Data;
+use App\Support\Support;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\Tools;
 use Dcat\Admin\Http\Controllers\AdminController;
@@ -77,8 +79,11 @@ class TodoRecordController extends AdminController
                 }
             });
 
-            // @permissions
+            /**
+             * 工具按钮.
+             */
             $grid->tools(function (Tools $tools) {
+                // @permissions
                 if (Admin::user()->can('todo.record.create')) {
                     $tools->append(new TodoRecordCreateAction());
                 }
@@ -88,6 +93,16 @@ class TodoRecordController extends AdminController
              * 字段过滤.
              */
             $grid->showColumnSelector();
+
+            /**
+             * 筛选.
+             */
+            $grid->filter(function ($filter) {
+                if (admin_setting('switch_to_filter_panel')) {
+                    $filter->panel();
+                }
+                $filter->equal('user_id')->select(Support::selectUsers('id'));
+            });
 
             /**
              * 按钮控制.

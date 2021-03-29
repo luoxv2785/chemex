@@ -41,7 +41,7 @@ class AllWorth extends Card
         $total = $device + $part + $software;
         $all_worth = trans('main.all_worth');
         $html = <<<HTML
-<div class="small-box" style="margin-bottom: 0;background: rgba(33,150,243,0.7);border-radius: .25rem;">
+<div class="small-box" style="margin-bottom: 0;border-radius: .25rem;">
   <div class="inner">
     <h4 class="font-grey">{$total}</h4>
     <p class="font-grey">{$all_worth}</p>

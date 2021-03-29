@@ -135,7 +135,7 @@ class UserController extends BaseUserController
             /**
              * 快速搜索.
              */
-            $grid->quickSearch('id', 'name', 'department.name', 'gender', 'title', 'mobile', 'email')
+            $grid->quickSearch('id', 'username', 'name', 'department.name', 'gender', 'title', 'mobile', 'email')
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
@@ -277,6 +277,21 @@ class UserController extends BaseUserController
 
             if (!$form->password) {
                 $form->deleteInput('password');
+            }
+
+            // 创建用户时通过工号判断是否有相同记录
+            $exist = \App\Models\User::where('number', $form->input('number'))
+                ->withTrashed()
+                ->first();
+            if ($form->isEditing() && !empty($exist) && $form->model()->id != $exist->id) {
+                return $form->response()
+                    ->error(trans('main.record_same'));
+            }
+            if ($form->isCreating()) {
+                if (!empty($exist)) {
+                    return $form->response()
+                        ->error(trans('main.record_same'));
+                }
             }
         });
     }

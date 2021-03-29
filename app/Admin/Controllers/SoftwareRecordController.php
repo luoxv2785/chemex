@@ -18,9 +18,11 @@ use App\Models\SoftwareCategory;
 use App\Models\VendorRecord;
 use App\Services\ExpirationService;
 use App\Services\SoftwareService;
+use App\Show;
 use App\Support\Data;
 use App\Support\Support;
 use App\Traits\ControllerHasCustomColumns;
+use App\Traits\ControllerHasDeviceRelatedGrid;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid\Tools;
@@ -29,7 +31,6 @@ use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
-use Dcat\Admin\Show;
 use Dcat\Admin\Widgets\Card;
 use Dcat\Admin\Widgets\Tab;
 
@@ -42,6 +43,9 @@ use Dcat\Admin\Widgets\Tab;
  */
 class SoftwareRecordController extends AdminController
 {
+    use ControllerHasDeviceRelatedGrid;
+    use ControllerHasCustomColumns;
+
     public function index(Content $content): Content
     {
         return $content
@@ -71,39 +75,37 @@ class SoftwareRecordController extends AdminController
     protected function grid(): Grid
     {
         return Grid::make(new SoftwareRecord(['category', 'vendor']), function (Grid $grid) {
-            $column_sort = ColumnSort::where('table_name', (new SoftwareRecord())->getTable())
-                ->get(['field', 'order'])
-                ->toArray();
-            $grid->column('id', '', $column_sort);
-            $grid->column('asset_number', '', $column_sort)->display(function ($asset_number) {
+            $sort_columns = $this->sortColumns();
+            $grid->column('id', '', $sort_columns);
+            $grid->column('asset_number', '', $sort_columns)->display(function ($asset_number) {
                 return "<span class='badge badge-secondary'>$asset_number</span>";
             });
 //            $grid->column('qrcode', '', $column_sort)->qrcode(function () {
 //                return 'software:'.$this->id;
 //            }, 200, 200);
-            $grid->column('name', '', $column_sort);
-            $grid->column('description', '', $column_sort);
-            $grid->column('category.name', '', $column_sort);
-            $grid->column('version', '', $column_sort);
-            $grid->column('vendor.name', '', $column_sort);
-            $grid->column('price', '', $column_sort);
-            $grid->column('purchased', '', $column_sort);
-            $grid->column('expired', '', $column_sort);
-            $grid->column('distribution', '', $column_sort)->using(Data::distribution());
-            $grid->column('counts', '', $column_sort);
-            $grid->column('left_counts', '', $column_sort)->display(function () {
+            $grid->column('name', '', $sort_columns);
+            $grid->column('description', '', $sort_columns);
+            $grid->column('category.name', '', $sort_columns);
+            $grid->column('version', '', $sort_columns);
+            $grid->column('vendor.name', '', $sort_columns);
+            $grid->column('price', '', $sort_columns);
+            $grid->column('purchased', '', $sort_columns);
+            $grid->column('expired', '', $sort_columns);
+            $grid->column('distribution', '', $sort_columns)->using(Data::distribution());
+            $grid->column('counts', '', $sort_columns);
+            $grid->column('left_counts', '', $sort_columns)->display(function () {
                 return $this->leftCounts();
             });
-            $grid->column('expiration_left_days', '', $column_sort)->display(function () {
+            $grid->column('expiration_left_days', '', $sort_columns)->display(function () {
                 return ExpirationService::itemExpirationLeftDaysRender('software', $this->id);
             });
-            $grid->column('created_at', '', $column_sort);
-            $grid->column('updated_at', '', $column_sort);
+            $grid->column('created_at', '', $sort_columns);
+            $grid->column('updated_at', '', $sort_columns);
 
             /**
              * 自定义字段.
              */
-            ControllerHasCustomColumns::makeGrid((new SoftwareRecord())->getTable(), $grid, $column_sort);
+            ControllerHasCustomColumns::makeGrid((new SoftwareRecord())->getTable(), $grid, $sort_columns);
 
             /**
              * 行操作按钮.
@@ -214,6 +216,18 @@ class SoftwareRecordController extends AdminController
         });
     }
 
+    /**
+     * 返回字段排序.
+     *
+     * @return mixed
+     */
+    public function sortColumns()
+    {
+        return ColumnSort::where('table_name', (new SoftwareRecord())->getTable())
+            ->get(['field', 'order'])
+            ->toArray();
+    }
+
     public function show($id, Content $content): Content
     {
         $history = SoftwareService::history($id);
@@ -234,7 +248,7 @@ class SoftwareRecordController extends AdminController
                             $grid->withBorder();
 
                             $grid->column('id');
-                            $grid->column('device.name')->link(function () {
+                            $grid->column('device.asset_number')->link(function () {
                                 if (!empty($this->device)) {
                                     return admin_route('device.records.show', [$this->device['id']]);
                                 }
@@ -277,27 +291,28 @@ class SoftwareRecordController extends AdminController
     protected function detail($id): Show
     {
         return Show::make($id, new SoftwareRecord(['category', 'vendor', 'channel']), function (Show $show) {
-            $show->field('id');
-            $show->field('name');
-            $show->field('asset_number');
-            $show->field('description');
-            $show->field('category.name');
-            $show->field('version');
-            $show->field('vendor.name');
-            $show->field('channel.name');
-            $show->field('price');
-            $show->field('purchased');
-            $show->field('expired');
-            $show->field('distribution')->using(Data::distribution());
-            $show->field('counts');
+            $sort_columns = $this->sortColumns();
+            $show->field('id', '', $sort_columns);
+            $show->field('name', '', $sort_columns);
+            $show->field('asset_number', '', $sort_columns);
+            $show->field('description', '', $sort_columns);
+            $show->field('category.name', '', $sort_columns);
+            $show->field('version', '', $sort_columns);
+            $show->field('vendor.name', '', $sort_columns);
+            $show->field('channel.name', '', $sort_columns);
+            $show->field('price', '', $sort_columns);
+            $show->field('purchased', '', $sort_columns);
+            $show->field('expired', '', $sort_columns);
+            $show->field('distribution', '', $sort_columns)->using(Data::distribution());
+            $show->field('counts', '', $sort_columns);
 
             /**
              * 自定义字段.
              */
-            ControllerHasCustomColumns::makeDetail((new SoftwareRecord())->getTable(), $show);
+            ControllerHasCustomColumns::makeDetail((new SoftwareRecord())->getTable(), $show, $sort_columns);
 
-            $show->field('created_at');
-            $show->field('updated_at');
+            $show->field('created_at', '', $sort_columns);
+            $show->field('updated_at', '', $sort_columns);
 
             /**
              * 按钮控制.

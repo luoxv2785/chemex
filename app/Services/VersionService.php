@@ -61,7 +61,7 @@ class VersionService
     /**
      * 版本升级.
      */
-    public static function upgrade()
+    public static function upgrade(): string
     {
         try {
             exec('git remote remove origin' . ' 2>&1');
@@ -69,10 +69,9 @@ class VersionService
             exec('git fetch --all' . ' 2>&1');
             exec('git reset --hard origin/main' . ' 2>&1', $out, $status);
             Artisan::call('chemex:update');
-
             return $out;
         } catch (Exception $exception) {
-            return $exception->getMessage();
+            return $exception;
         }
     }
 }

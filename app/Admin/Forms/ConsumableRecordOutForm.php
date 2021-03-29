@@ -4,7 +4,7 @@ namespace App\Admin\Forms;
 
 use App\Models\ConsumableRecord;
 use App\Models\ConsumableTrack;
-use App\Models\User;
+use App\Support\Support;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Widgets\Form;
 use Exception;
@@ -67,7 +67,7 @@ class ConsumableRecordOutForm extends Form
             ->symbol('')
             ->required();
         $this->select('user_id', trans('main.user_id'))
-            ->options(User::pluck('name', 'id'))
+            ->options(Support::selectUsers('id'))
             ->required();
         $this->textarea('description');
     }

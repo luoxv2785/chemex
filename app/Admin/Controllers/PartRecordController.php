@@ -7,6 +7,7 @@ use App\Admin\Actions\Grid\RowAction\MaintenanceRecordCreateAction;
 use App\Admin\Actions\Grid\RowAction\PartRecordCreateUpdateTrackAction;
 use App\Admin\Actions\Grid\RowAction\PartRecordDeleteAction;
 use App\Admin\Actions\Grid\ToolAction\PartRecordImportAction;
+use App\Admin\Actions\Show\PartRecordDeleteTrackAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\PartRecord;
 use App\Grid;
@@ -17,9 +18,11 @@ use App\Models\PartCategory;
 use App\Models\PurchasedChannel;
 use App\Models\VendorRecord;
 use App\Services\ExpirationService;
+use App\Show;
 use App\Support\Data;
 use App\Support\Support;
 use App\Traits\ControllerHasCustomColumns;
+use App\Traits\ControllerHasDeviceRelatedGrid;
 use DateTime;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
@@ -28,7 +31,6 @@ use Dcat\Admin\Grid\Tools\BatchActions;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
-use Dcat\Admin\Show;
 use Dcat\Admin\Widgets\Tab;
 
 /**
@@ -39,9 +41,13 @@ use Dcat\Admin\Widgets\Tab;
  * @property DateTime deleted_at
  *
  * @method device()
+ * @method track()
  */
 class PartRecordController extends AdminController
 {
+    use ControllerHasDeviceRelatedGrid;
+    use ControllerHasCustomColumns;
+
     public function index(Content $content): Content
     {
         return $content
@@ -71,24 +77,22 @@ class PartRecordController extends AdminController
     protected function grid(): Grid
     {
         return Grid::make(new PartRecord(['category', 'vendor', 'device', 'depreciation']), function (Grid $grid) {
-            $column_sort = ColumnSort::where('table_name', (new PartRecord())->getTable())
-                ->get(['field', 'order'])
-                ->toArray();
-            $grid->column('id', '', $column_sort);
-            $grid->column('asset_number', '', $column_sort)->display(function ($asset_number) {
+            $sort_columns = $this->sortColumns();
+            $grid->column('id', '', $sort_columns);
+            $grid->column('asset_number', '', $sort_columns)->display(function ($asset_number) {
                 return "<span class='badge badge-secondary'>$asset_number</span>";
             });
 //            $grid->column('qrcode', '', $column_sort)->qrcode(function () {
 //                return 'part:'.$this->id;
 //            }, 200, 200);
-            $grid->column('price', '', $column_sort);
-            $grid->column('purchased', '', $column_sort);
-            $grid->column('name', '', $column_sort);
-            $grid->column('description', '', $column_sort);
-            $grid->column('category.name', '', $column_sort);
-            $grid->column('vendor.name', '', $column_sort);
-            $grid->column('specification', '', $column_sort);
-            $grid->column('expiration_left_days', '', $column_sort)->display(function () {
+            $grid->column('price', '', $sort_columns);
+            $grid->column('purchased', '', $sort_columns);
+            $grid->column('name', '', $sort_columns);
+            $grid->column('description', '', $sort_columns);
+            $grid->column('category.name', '', $sort_columns);
+            $grid->column('vendor.name', '', $sort_columns);
+            $grid->column('specification', '', $sort_columns);
+            $grid->column('expiration_left_days', '', $sort_columns)->display(function () {
                 return ExpirationService::itemExpirationLeftDaysRender('part', $this->id);
             });
             $grid->column('device.asset_number')->link(function () {
@@ -96,14 +100,14 @@ class PartRecordController extends AdminController
                     return admin_route('device.records.show', [$this->device()->first()->id]);
                 }
             });
-            $grid->column('depreciation.name', '', $column_sort);
-            $grid->column('created_at', '', $column_sort);
-            $grid->column('updated_at', '', $column_sort);
+            $grid->column('depreciation.name', '', $sort_columns);
+            $grid->column('created_at', '', $sort_columns);
+            $grid->column('updated_at', '', $sort_columns);
 
             /**
              * 自定义字段.
              */
-            ControllerHasCustomColumns::makeGrid((new PartRecord())->getTable(), $grid, $column_sort);
+            ControllerHasCustomColumns::makeGrid((new PartRecord())->getTable(), $grid, $sort_columns);
 
             /**
              * 行操作按钮.
@@ -212,6 +216,18 @@ class PartRecordController extends AdminController
     }
 
     /**
+     * 返回字段排序.
+     *
+     * @return mixed
+     */
+    public function sortColumns()
+    {
+        return ColumnSort::where('table_name', (new PartRecord())->getTable())
+            ->get(['field', 'order'])
+            ->toArray();
+    }
+
+    /**
      * Make a show builder.
      *
      * @param mixed $id
@@ -221,16 +237,17 @@ class PartRecordController extends AdminController
     protected function detail($id): Show
     {
         return Show::make($id, new PartRecord(['category', 'vendor', 'channel', 'device', 'depreciation']), function (Show $show) {
-            $show->field('id');
-            $show->field('asset_number');
-            $show->field('description');
-            $show->field('category.name');
-            $show->field('vendor.name');
-            $show->field('channel.name');
-            $show->field('device.name');
-            $show->field('specification');
-            $show->field('price');
-            $show->field('expiration_left_days')->as(function () {
+            $sort_columns = $this->sortColumns();
+            $show->field('id', '', $sort_columns);
+            $show->field('asset_number', '', $sort_columns);
+            $show->field('description', '', $sort_columns);
+            $show->field('category.name', '', $sort_columns);
+            $show->field('vendor.name', '', $sort_columns);
+            $show->field('channel.name', '', $sort_columns);
+            $show->field('device.asset_number', '', $sort_columns);
+            $show->field('specification', '', $sort_columns);
+            $show->field('price', '', $sort_columns);
+            $show->field('expiration_left_days', '', $sort_columns)->as(function () {
                 $part_record = \App\Models\PartRecord::where('id', $this->id)->first();
                 if (!empty($part_record)) {
                     $depreciation_rule_id = Support::getDepreciationRuleId($part_record);
@@ -238,18 +255,33 @@ class PartRecordController extends AdminController
                     return Support::depreciationPrice($this->price, $this->purchased, $depreciation_rule_id);
                 }
             });
-            $show->field('purchased');
-            $show->field('expired');
-            $show->field('depreciation.name');
-            $show->field('depreciation.termination');
+            $show->field('purchased', '', $sort_columns);
+            $show->field('expired', '', $sort_columns);
+            $show->field('depreciation.name', '', $sort_columns);
+            $show->field('depreciation.termination', '', $sort_columns);
 
             /**
              * 自定义字段.
              */
-            ControllerHasCustomColumns::makeDetail((new PartRecord())->getTable(), $show);
+            ControllerHasCustomColumns::makeDetail((new PartRecord())->getTable(), $show, $sort_columns);
 
-            $show->field('created_at');
-            $show->field('updated_at');
+            $show->field('created_at', '', $sort_columns);
+            $show->field('updated_at', '', $sort_columns);
+
+            /**
+             * 自定义按钮.
+             */
+            $show->tools(function (\Dcat\Admin\Show\Tools $tools) {
+                // @permissions
+                if (Admin::user()->can('part.track.delete') && !empty($this->track()->first())) {
+                    $tools->append(new PartRecordDeleteTrackAction());
+                }
+                // @permissions
+                if (Admin::user()->can('part.record.track.create_update') && empty($this->track()->first())) {
+                    $tools->append(new \App\Admin\Actions\Show\PartRecordCreateUpdateTrackAction());
+                }
+                $tools->append('&nbsp;');
+            });
 
             /**
              * 按钮控制.

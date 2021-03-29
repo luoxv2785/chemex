@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class Install extends Command
 {
@@ -37,6 +38,8 @@ class Install extends Command
      */
     public function handle(): int
     {
+        $db_name = config('database.connections.mysql.database');
+        DB::select('create database ' . $db_name);
         $this->info('正在优化配置！');
         $this->call('optimize:clear');
         $this->info('正在设置存储系统！');

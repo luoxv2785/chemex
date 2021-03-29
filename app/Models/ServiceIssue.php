@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @method static where(string $key, string $value)
  * @method static whereBetween(string $string, array $array)
+ * @method static count()
  *
  * @property int service_id
  * @property string issue

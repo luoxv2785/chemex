@@ -88,7 +88,7 @@ class DeviceTrackController extends AdminController
             /**
              * 快速搜索.
              */
-            $grid->quickSearch('id', 'device.name', 'user.name')
+            $grid->quickSearch('id', 'device.asset_number', 'user.name')
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 

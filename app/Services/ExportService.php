@@ -20,11 +20,11 @@ class ExportService
      */
     public static function deviceHistory($device_id)
     {
-        $device = DeviceRecord::where('id', $device_id)->first();
-        if (empty($device)) {
+        $device_record = DeviceRecord::where('id', $device_id)->first();
+        if (empty($device_record)) {
             $name = '未知';
         } else {
-            $name = $device->name;
+            $name = $device_record->asset_number;
         }
         $history = DeviceService::history($device_id);
 

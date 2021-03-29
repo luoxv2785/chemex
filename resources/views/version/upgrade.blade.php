@@ -15,7 +15,7 @@
                 Dcat.warning(res.message);
             },
             error: function (res) {
-                Dcat.error('执行错误：' + res.data);
+                Dcat.error('fail：' + res.data);
             }
         });
     }

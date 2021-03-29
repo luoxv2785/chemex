@@ -48,7 +48,7 @@ return [
     'logout'                => '登出',
     'setting'               => '设置',
     'name'                  => '名称',
-    'username'              => '用户名',
+    'username'              => '工号',
     'old_password'          => '旧密码',
     'password'              => '密码',
     'password_confirmation' => '确认密码',

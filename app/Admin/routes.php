@@ -39,7 +39,9 @@ Route::group([
      */
     $router->get('/version', 'VersionController@index');
     $router->get('/action/upgrade', 'VersionController@upgrade')
-        ->name('upgrade');
+        ->name('action.upgrade');
+    $router->get('/action/database_backup', 'ToolDatabaseBackupController@backup')
+        ->name('action.database_backup');
 
     /**
      * 工具.
@@ -48,6 +50,8 @@ Route::group([
         ->name('qrcode_generator');
     $router->get('/tools/chemex_app', 'ToolChemexAppController@index')
         ->name('chemex_app');
+    $router->get('/tools/database_backup', 'ToolDatabaseBackupController@index')
+        ->name('database_backup');
 
     /**
      * 设备管理.

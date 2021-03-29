@@ -9,6 +9,7 @@ return [
         'Nick Name Help' => '描述这个字段的名称，名称随意。',
         'Is Nullable Help' => '注意：日期和日期时间类型，将永远可空。',
         'Delete' => '删除字段',
+        'Update' => '编辑字段',
         'Delete Confirm' => '确认删除？',
         'Delete Confirm Description' => '删除的同时将会删除此字段的全部用户数据且无法恢复',
     ],
@@ -30,5 +31,7 @@ return [
         'is_nullable' => '可空',
         'table_name' => '表名',
         'custom_column_id' => '自定义字段',
+        'new_name' => '新名称',
+        'new_nick_name' => '新别名'
     ],
 ];

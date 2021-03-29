@@ -2767,6 +2767,18 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2021-03-10 19:24:40',
                 'updated_at' => '2021-03-10 19:26:28',
             ),
+            229 => 
+            array (
+                'id' => 260,
+                'name' => '管理资产入口',
+                'slug' => 'home.asset.admin',
+                'http_method' => '',
+                'http_path' => '',
+                'order' => 230,
+                'parent_id' => 89,
+                'created_at' => '2021-03-27 14:54:44',
+                'updated_at' => '2021-03-27 14:54:44',
+            ),
         ));
         
         

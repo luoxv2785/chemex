@@ -56,7 +56,6 @@ class DepartmentImportForm extends Form
                         }
                     } catch (Exception $exception) {
                         $fail++;
-//                        return $this->response()->error($exception->getMessage());
                     }
                 }
 
@@ -77,14 +76,9 @@ class DepartmentImportForm extends Form
 
         if ($input['type'] == 'ldap') {
             $result = LDAPService::importUserDepartments($input['mode']);
-            if ($result) {
-                return $this->response()
-                    ->success(trans('main.ldap_import_success'))
-                    ->refresh();
-            } else {
-                return $this->response()
-                    ->error($result);
-            }
+            return $this->response()
+                ->success(trans('main.success') . ': ' . $result[0] . ' ; ' . trans('main.fail') . ': ' . $result[1])
+                ->refresh();
         }
     }
 
@@ -99,13 +93,11 @@ class DepartmentImportForm extends Form
                     ->help(admin_trans_label('File Help'))
                     ->accept('xlsx,csv')
                     ->autoUpload()
-                    ->uniqueName()
-                    ->required();
+                    ->uniqueName();
             })
             ->when('ldap', function (Form $form) {
                 $form->radio('mode')
                     ->options(['rewrite' => admin_trans_label('Rewrite'), 'merge' => admin_trans_label('Merge')])
-                    ->required()
                     ->default('merge');
             })
             ->options(['file' => admin_trans_label('File'), 'ldap' => admin_trans_label('LDAP')])

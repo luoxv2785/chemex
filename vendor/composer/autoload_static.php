@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitd7a95443c66f2951e44f84a61324457d
+class ComposerStaticInit2d50b638e964615aba8571aed1b7742c
 {
     public static $files = array (
         '9b38cf48e83f5d8f60375221cd213eee' => __DIR__ . '/..' . '/phpstan/phpstan/bootstrap.php',
@@ -847,7 +847,6 @@ class ComposerStaticInitd7a95443c66f2951e44f84a61324457d
         'App\\Admin\\Actions\\Grid\\RowAction\\CheckRecordUpdateNoAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Grid/RowAction/CheckRecordUpdateNoAction.php',
         'App\\Admin\\Actions\\Grid\\RowAction\\CheckRecordUpdateYesAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Grid/RowAction/CheckRecordUpdateYesAction.php',
         'App\\Admin\\Actions\\Grid\\RowAction\\CheckTrackUpdateAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Grid/RowAction/CheckTrackUpdateAction.php',
-        'App\\Admin\\Actions\\Grid\\RowAction\\CustomColumnDeleteAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Grid/RowAction/CustomColumnDeleteAction.php',
         'App\\Admin\\Actions\\Grid\\RowAction\\DeviceRecordCreateUpdateTrackAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Grid/RowAction/DeviceRecordCreateUpdateTrackAction.php',
         'App\\Admin\\Actions\\Grid\\RowAction\\DeviceRecordDeleteAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Grid/RowAction/DeviceRecordDeleteAction.php',
         'App\\Admin\\Actions\\Grid\\RowAction\\DeviceRecordUpdateSSHAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Grid/RowAction/DeviceRecordUpdateSSHAction.php',
@@ -877,10 +876,15 @@ class ComposerStaticInitd7a95443c66f2951e44f84a61324457d
         'App\\Admin\\Actions\\Grid\\ToolAction\\TodoRecordCreateAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Grid/ToolAction/TodoRecordCreateAction.php',
         'App\\Admin\\Actions\\Grid\\ToolAction\\UserImportAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Grid/ToolAction/UserImportAction.php',
         'App\\Admin\\Actions\\Grid\\ToolAction\\VendorRecordImportAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Grid/ToolAction/VendorRecordImportAction.php',
+        'App\\Admin\\Actions\\Show\\DeviceRecordCreateUpdateTrackAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Show/DeviceRecordCreateUpdateTrackAction.php',
+        'App\\Admin\\Actions\\Show\\DeviceRecordDeleteTrackAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Show/DeviceRecordDeleteTrackAction.php',
+        'App\\Admin\\Actions\\Show\\PartRecordCreateUpdateTrackAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Show/PartRecordCreateUpdateTrackAction.php',
+        'App\\Admin\\Actions\\Show\\PartRecordDeleteTrackAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Show/PartRecordDeleteTrackAction.php',
+        'App\\Admin\\Actions\\Show\\ServiceRecordCreateUpdateTrackAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Show/ServiceRecordCreateUpdateTrackAction.php',
+        'App\\Admin\\Actions\\Show\\ServiceRecordDeleteTrackAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Show/ServiceRecordDeleteTrackAction.php',
+        'App\\Admin\\Actions\\Tree\\RowAction\\CustomColumnDeleteAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Tree/RowAction/CustomColumnDeleteAction.php',
         'App\\Admin\\Actions\\Tree\\RowAction\\DeviceColumnUpdateAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Tree/RowAction/DeviceColumnUpdateAction.php',
         'App\\Admin\\Actions\\Tree\\ToolAction\\ConsumableCategoryImportAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Tree/ToolAction/ConsumableCategoryImportAction.php',
-        'App\\Admin\\Actions\\Tree\\ToolAction\\CustomColumnDeleteAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Tree/ToolAction/CustomColumnDeleteAction.php',
-        'App\\Admin\\Actions\\Tree\\ToolAction\\CustomColumnUpdateAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Tree/ToolAction/CustomColumnUpdateAction.php',
         'App\\Admin\\Actions\\Tree\\ToolAction\\DepartmentImportAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Tree/ToolAction/DepartmentImportAction.php',
         'App\\Admin\\Actions\\Tree\\ToolAction\\DeviceCategoryImportAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Tree/ToolAction/DeviceCategoryImportAction.php',
         'App\\Admin\\Actions\\Tree\\ToolAction\\PartCategoryImportAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Tree/ToolAction/PartCategoryImportAction.php',
@@ -926,6 +930,7 @@ class ComposerStaticInitd7a95443c66f2951e44f84a61324457d
         'App\\Admin\\Controllers\\SoftwareTrackController' => __DIR__ . '/../..' . '/app/Admin/Controllers/SoftwareTrackController.php',
         'App\\Admin\\Controllers\\TodoRecordController' => __DIR__ . '/../..' . '/app/Admin/Controllers/TodoRecordController.php',
         'App\\Admin\\Controllers\\ToolChemexAppController' => __DIR__ . '/../..' . '/app/Admin/Controllers/ToolChemexAppController.php',
+        'App\\Admin\\Controllers\\ToolDatabaseBackupController' => __DIR__ . '/../..' . '/app/Admin/Controllers/ToolDatabaseBackupController.php',
         'App\\Admin\\Controllers\\ToolQRCodeGeneratorController' => __DIR__ . '/../..' . '/app/Admin/Controllers/ToolQRCodeGeneratorController.php',
         'App\\Admin\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Admin/Controllers/UserController.php',
         'App\\Admin\\Controllers\\VendorRecordController' => __DIR__ . '/../..' . '/app/Admin/Controllers/VendorRecordController.php',
@@ -965,6 +970,11 @@ class ComposerStaticInitd7a95443c66f2951e44f84a61324457d
         'App\\Admin\\Forms\\VendorRecordImportForm' => __DIR__ . '/../..' . '/app/Admin/Forms/VendorRecordImportForm.php',
         'App\\Admin\\Grid\\Displayers\\RowActions' => __DIR__ . '/../..' . '/app/Admin/Grid/Displayers/RowActions.php',
         'App\\Admin\\Metrics\\AllWorth' => __DIR__ . '/../..' . '/app/Admin/Metrics/AllWorth.php',
+        'App\\Admin\\Metrics\\AssetsWorthTrend' => __DIR__ . '/../..' . '/app/Admin/Metrics/AssetsWorthTrend.php',
+        'App\\Admin\\Metrics\\BannerMaintenanceRecordCounts' => __DIR__ . '/../..' . '/app/Admin/Metrics/BannerMaintenanceRecordCounts.php',
+        'App\\Admin\\Metrics\\BannerMyAssetsWorth' => __DIR__ . '/../..' . '/app/Admin/Metrics/BannerMyAssetsWorth.php',
+        'App\\Admin\\Metrics\\BannerMyTodoCounts' => __DIR__ . '/../..' . '/app/Admin/Metrics/BannerMyTodoCounts.php',
+        'App\\Admin\\Metrics\\BannerServiceIssueCounts' => __DIR__ . '/../..' . '/app/Admin/Metrics/BannerServiceIssueCounts.php',
         'App\\Admin\\Metrics\\CheckDevicePercentage' => __DIR__ . '/../..' . '/app/Admin/Metrics/CheckDevicePercentage.php',
         'App\\Admin\\Metrics\\CheckPartPercentage' => __DIR__ . '/../..' . '/app/Admin/Metrics/CheckPartPercentage.php',
         'App\\Admin\\Metrics\\CheckSoftwarePercentage' => __DIR__ . '/../..' . '/app/Admin/Metrics/CheckSoftwarePercentage.php',
@@ -975,7 +985,6 @@ class ComposerStaticInitd7a95443c66f2951e44f84a61324457d
         'App\\Admin\\Metrics\\DeviceWorth' => __DIR__ . '/../..' . '/app/Admin/Metrics/DeviceWorth.php',
         'App\\Admin\\Metrics\\DeviceWorthTrend' => __DIR__ . '/../..' . '/app/Admin/Metrics/DeviceWorthTrend.php',
         'App\\Admin\\Metrics\\IssueTrend' => __DIR__ . '/../..' . '/app/Admin/Metrics/IssueTrend.php',
-        'App\\Admin\\Metrics\\ItemWorthTrend' => __DIR__ . '/../..' . '/app/Admin/Metrics/ItemWorthTrend.php',
         'App\\Admin\\Metrics\\MaintenanceTrend' => __DIR__ . '/../..' . '/app/Admin/Metrics/MaintenanceTrend.php',
         'App\\Admin\\Metrics\\PartAboutToExpireCounts' => __DIR__ . '/../..' . '/app/Admin/Metrics/PartAboutToExpireCounts.php',
         'App\\Admin\\Metrics\\PartCounts' => __DIR__ . '/../..' . '/app/Admin/Metrics/PartCounts.php',
@@ -1023,6 +1032,8 @@ class ComposerStaticInitd7a95443c66f2951e44f84a61324457d
         'App\\Admin\\Repositories\\TodoRecord' => __DIR__ . '/../..' . '/app/Admin/Repositories/TodoRecord.php',
         'App\\Admin\\Repositories\\User' => __DIR__ . '/../..' . '/app/Admin/Repositories/User.php',
         'App\\Admin\\Repositories\\VendorRecord' => __DIR__ . '/../..' . '/app/Admin/Repositories/VendorRecord.php',
+        'App\\Console\\Commands\\DatabaseBackup' => __DIR__ . '/../..' . '/app/Console/Commands/DatabaseBackup.php',
+        'App\\Console\\Commands\\DatabaseReset' => __DIR__ . '/../..' . '/app/Console/Commands/DatabaseReset.php',
         'App\\Console\\Commands\\Fill' => __DIR__ . '/../..' . '/app/Console/Commands/Fill.php',
         'App\\Console\\Commands\\Install' => __DIR__ . '/../..' . '/app/Console/Commands/Install.php',
         'App\\Console\\Commands\\RefreshUser' => __DIR__ . '/../..' . '/app/Console/Commands/RefreshUser.php',
@@ -1082,6 +1093,7 @@ class ComposerStaticInitd7a95443c66f2951e44f84a61324457d
         'App\\Observers\\CustomColumnObserver' => __DIR__ . '/../..' . '/app/Observers/CustomColumnObserver.php',
         'App\\Observers\\DeviceRecordObserver' => __DIR__ . '/../..' . '/app/Observers/DeviceRecordObserver.php',
         'App\\Observers\\PartRecordObserver' => __DIR__ . '/../..' . '/app/Observers/PartRecordObserver.php',
+        'App\\Observers\\ServiceRecordObserver' => __DIR__ . '/../..' . '/app/Observers/ServiceRecordObserver.php',
         'App\\Observers\\SoftwareRecordObserver' => __DIR__ . '/../..' . '/app/Observers/SoftwareRecordObserver.php',
         'App\\Observers\\TodoRecordObserver' => __DIR__ . '/../..' . '/app/Observers/TodoRecordObserver.php',
         'App\\Observers\\UserObserver' => __DIR__ . '/../..' . '/app/Observers/UserObserver.php',
@@ -1638,10 +1650,37 @@ class ComposerStaticInitd7a95443c66f2951e44f84a61324457d
         'Database\\Seeders\\AdminRolesTableSeeder' => __DIR__ . '/../..' . '/database/seeders/AdminRolesTableSeeder.php',
         'Database\\Seeders\\AdminSettingsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/AdminSettingsTableSeeder.php',
         'Database\\Seeders\\AdminUsersTableSeeder' => __DIR__ . '/../..' . '/database/seeders/AdminUsersTableSeeder.php',
+        'Database\\Seeders\\ChartRecordsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/ChartRecordsTableSeeder.php',
+        'Database\\Seeders\\CheckRecordsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/CheckRecordsTableSeeder.php',
+        'Database\\Seeders\\CheckTracksTableSeeder' => __DIR__ . '/../..' . '/database/seeders/CheckTracksTableSeeder.php',
+        'Database\\Seeders\\ColumnSortsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/ColumnSortsTableSeeder.php',
+        'Database\\Seeders\\ConsumableCategoriesTableSeeder' => __DIR__ . '/../..' . '/database/seeders/ConsumableCategoriesTableSeeder.php',
+        'Database\\Seeders\\ConsumableRecordsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/ConsumableRecordsTableSeeder.php',
+        'Database\\Seeders\\ConsumableTracksTableSeeder' => __DIR__ . '/../..' . '/database/seeders/ConsumableTracksTableSeeder.php',
+        'Database\\Seeders\\CustomColumnsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/CustomColumnsTableSeeder.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
+        'Database\\Seeders\\DepartmentsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/DepartmentsTableSeeder.php',
+        'Database\\Seeders\\DepreciationRulesTableSeeder' => __DIR__ . '/../..' . '/database/seeders/DepreciationRulesTableSeeder.php',
         'Database\\Seeders\\DeviceCategoriesTableSeeder' => __DIR__ . '/../..' . '/database/seeders/DeviceCategoriesTableSeeder.php',
+        'Database\\Seeders\\DeviceRecordsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/DeviceRecordsTableSeeder.php',
+        'Database\\Seeders\\DeviceTracksTableSeeder' => __DIR__ . '/../..' . '/database/seeders/DeviceTracksTableSeeder.php',
+        'Database\\Seeders\\FailedJobsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/FailedJobsTableSeeder.php',
+        'Database\\Seeders\\JobsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/JobsTableSeeder.php',
+        'Database\\Seeders\\MaintenanceRecordsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/MaintenanceRecordsTableSeeder.php',
+        'Database\\Seeders\\NotificationsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/NotificationsTableSeeder.php',
         'Database\\Seeders\\PartCategoriesTableSeeder' => __DIR__ . '/../..' . '/database/seeders/PartCategoriesTableSeeder.php',
+        'Database\\Seeders\\PartRecordsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/PartRecordsTableSeeder.php',
+        'Database\\Seeders\\PartTracksTableSeeder' => __DIR__ . '/../..' . '/database/seeders/PartTracksTableSeeder.php',
+        'Database\\Seeders\\PurchasedChannelsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/PurchasedChannelsTableSeeder.php',
+        'Database\\Seeders\\ServiceIssuesTableSeeder' => __DIR__ . '/../..' . '/database/seeders/ServiceIssuesTableSeeder.php',
+        'Database\\Seeders\\ServiceRecordsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/ServiceRecordsTableSeeder.php',
+        'Database\\Seeders\\ServiceTracksTableSeeder' => __DIR__ . '/../..' . '/database/seeders/ServiceTracksTableSeeder.php',
         'Database\\Seeders\\SoftwareCategoriesTableSeeder' => __DIR__ . '/../..' . '/database/seeders/SoftwareCategoriesTableSeeder.php',
+        'Database\\Seeders\\SoftwareRecordsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/SoftwareRecordsTableSeeder.php',
+        'Database\\Seeders\\SoftwareTracksTableSeeder' => __DIR__ . '/../..' . '/database/seeders/SoftwareTracksTableSeeder.php',
+        'Database\\Seeders\\StaffRecordsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/StaffRecordsTableSeeder.php',
+        'Database\\Seeders\\TodoHistoriesTableSeeder' => __DIR__ . '/../..' . '/database/seeders/TodoHistoriesTableSeeder.php',
+        'Database\\Seeders\\TodoRecordsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/TodoRecordsTableSeeder.php',
         'Database\\Seeders\\VendorRecordsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/VendorRecordsTableSeeder.php',
         'Datamatrix' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/barcodes/datamatrix.php',
         'Dcat\\Admin\\Actions\\Action' => __DIR__ . '/..' . '/dcat/laravel-admin/src/Actions/Action.php',
@@ -1674,7 +1713,6 @@ class ComposerStaticInitd7a95443c66f2951e44f84a61324457d
         'Dcat\\Admin\\Console\\PublishCommand' => __DIR__ . '/..' . '/dcat/laravel-admin/src/Console/PublishCommand.php',
         'Dcat\\Admin\\Console\\ResetPasswordCommand' => __DIR__ . '/..' . '/dcat/laravel-admin/src/Console/ResetPasswordCommand.php',
         'Dcat\\Admin\\Console\\UninstallCommand' => __DIR__ . '/..' . '/dcat/laravel-admin/src/Console/UninstallCommand.php',
-        'Dcat\\Admin\\Console\\UpdateCommand' => __DIR__ . '/..' . '/dcat/laravel-admin/src/Console/UpdateCommand.php',
         'Dcat\\Admin\\Contracts\\ExceptionHandler' => __DIR__ . '/..' . '/dcat/laravel-admin/src/Contracts/ExceptionHandler.php',
         'Dcat\\Admin\\Contracts\\LazyRenderable' => __DIR__ . '/..' . '/dcat/laravel-admin/src/Contracts/LazyRenderable.php',
         'Dcat\\Admin\\Contracts\\Repository' => __DIR__ . '/..' . '/dcat/laravel-admin/src/Contracts/Repository.php',
@@ -2601,6 +2639,7 @@ class ComposerStaticInitd7a95443c66f2951e44f84a61324457d
         'Enlightn\\Enlightn\\Analyzers\\Reliability\\CachePrefixAnalyzer' => __DIR__ . '/..' . '/enlightn/enlightn/src/Analyzers/Reliability/CachePrefixAnalyzer.php',
         'Enlightn\\Enlightn\\Analyzers\\Reliability\\CacheStatusAnalyzer' => __DIR__ . '/..' . '/enlightn/enlightn/src/Analyzers/Reliability/CacheStatusAnalyzer.php',
         'Enlightn\\Enlightn\\Analyzers\\Reliability\\ComposerValidationAnalyzer' => __DIR__ . '/..' . '/enlightn/enlightn/src/Analyzers/Reliability/ComposerValidationAnalyzer.php',
+        'Enlightn\\Enlightn\\Analyzers\\Reliability\\CustomErrorPageAnalyzer' => __DIR__ . '/..' . '/enlightn/enlightn/src/Analyzers/Reliability/CustomErrorPageAnalyzer.php',
         'Enlightn\\Enlightn\\Analyzers\\Reliability\\DatabaseStatusAnalyzer' => __DIR__ . '/..' . '/enlightn/enlightn/src/Analyzers/Reliability/DatabaseStatusAnalyzer.php',
         'Enlightn\\Enlightn\\Analyzers\\Reliability\\DeadCodeAnalyzer' => __DIR__ . '/..' . '/enlightn/enlightn/src/Analyzers/Reliability/DeadCodeAnalyzer.php',
         'Enlightn\\Enlightn\\Analyzers\\Reliability\\DirectoryWritePermissionsAnalyzer' => __DIR__ . '/..' . '/enlightn/enlightn/src/Analyzers/Reliability/DirectoryWritePermissionsAnalyzer.php',
@@ -3305,6 +3344,7 @@ class ComposerStaticInitd7a95443c66f2951e44f84a61324457d
         'GuzzleHttp\\Handler\\CurlHandler' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/CurlHandler.php',
         'GuzzleHttp\\Handler\\CurlMultiHandler' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/CurlMultiHandler.php',
         'GuzzleHttp\\Handler\\EasyHandle' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/EasyHandle.php',
+        'GuzzleHttp\\Handler\\HeaderProcessor' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/HeaderProcessor.php',
         'GuzzleHttp\\Handler\\MockHandler' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/MockHandler.php',
         'GuzzleHttp\\Handler\\Proxy' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/Proxy.php',
         'GuzzleHttp\\Handler\\StreamHandler' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/StreamHandler.php',
@@ -7471,10 +7511,10 @@ class ComposerStaticInitd7a95443c66f2951e44f84a61324457d
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitd7a95443c66f2951e44f84a61324457d::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitd7a95443c66f2951e44f84a61324457d::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitd7a95443c66f2951e44f84a61324457d::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitd7a95443c66f2951e44f84a61324457d::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit2d50b638e964615aba8571aed1b7742c::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit2d50b638e964615aba8571aed1b7742c::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit2d50b638e964615aba8571aed1b7742c::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit2d50b638e964615aba8571aed1b7742c::$classMap;
 
         }, null, ClassLoader::class);
     }

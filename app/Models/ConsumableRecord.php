@@ -7,7 +7,6 @@ use Dcat\Admin\Traits\ModelTree;
 use Exception;
 use Illuminate\Database\Eloquent\HigherOrderBuilderProxy;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -100,8 +99,12 @@ class ConsumableRecord extends Model
         }
     }
 
-    public function track(): HasMany
+    /**
+     * 耗材记录有很多耗材履历.
+     * @return HasOne
+     */
+    public function track(): HasOne
     {
-        return $this->hasMany(ConsumableTrack::class, 'consumable_id', 'id');
+        return $this->hasOne(ConsumableTrack::class, 'consumable_id', 'id');
     }
 }

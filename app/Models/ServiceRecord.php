@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static where(string $key, string $value)
  * @method static whereBetween(string $string, array $array)
  * @method static count()
+ * @property int id
  */
 class ServiceRecord extends Model
 {
@@ -100,5 +101,14 @@ class ServiceRecord extends Model
             'id',   // 主表对中间表的关联字段
             'device_id'
         ); // 中间表对远程表的关联字段
+    }
+
+    /**
+     * 服务有一个归属.
+     * @return HasOne
+     */
+    public function track(): HasOne
+    {
+        return $this->hasOne(ServiceTrack::class, 'service_id', 'id');
     }
 }

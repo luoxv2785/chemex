@@ -50,7 +50,7 @@ class SoftwareTrackController extends AdminController
         return Grid::make(new SoftwareTrack(['software', 'device']), function (Grid $grid) {
             $grid->column('id');
             $grid->column('software.name');
-            $grid->column('device.name');
+            $grid->column('device.asset_number');
             $grid->column('created_at');
             $grid->column('updated_at');
 
@@ -67,7 +67,7 @@ class SoftwareTrackController extends AdminController
             /**
              * 快速搜索.
              */
-            $grid->quickSearch('id', 'software.name', 'device.name')
+            $grid->quickSearch('id', 'software.name', 'device.asset_number')
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
