@@ -379,6 +379,54 @@ class DeviceCategoriesTableSeeder extends Seeder
                 'created_at' => '2021-03-24 08:18:39',
                 'updated_at' => '2021-03-24 08:18:39',
             ),
+            30 => 
+            array (
+                'id' => 31,
+                'name' => '倪桂珍',
+                'description' => NULL,
+                'depreciation_rule_id' => NULL,
+                'parent_id' => NULL,
+                'order' => 0,
+                'deleted_at' => NULL,
+                'created_at' => '2021-03-29 13:54:04',
+                'updated_at' => '2021-03-29 13:54:04',
+            ),
+            31 => 
+            array (
+                'id' => 32,
+                'name' => '明正平',
+                'description' => NULL,
+                'depreciation_rule_id' => NULL,
+                'parent_id' => NULL,
+                'order' => 0,
+                'deleted_at' => NULL,
+                'created_at' => '2021-03-29 13:54:04',
+                'updated_at' => '2021-03-29 13:54:04',
+            ),
+            32 => 
+            array (
+                'id' => 33,
+                'name' => '滕雪',
+                'description' => NULL,
+                'depreciation_rule_id' => NULL,
+                'parent_id' => NULL,
+                'order' => 0,
+                'deleted_at' => NULL,
+                'created_at' => '2021-03-29 13:54:04',
+                'updated_at' => '2021-03-29 13:54:04',
+            ),
+            33 => 
+            array (
+                'id' => 34,
+                'name' => '郎颖',
+                'description' => NULL,
+                'depreciation_rule_id' => NULL,
+                'parent_id' => NULL,
+                'order' => 0,
+                'deleted_at' => NULL,
+                'created_at' => '2021-03-29 13:54:04',
+                'updated_at' => '2021-03-29 13:54:04',
+            ),
         ));
         
         
