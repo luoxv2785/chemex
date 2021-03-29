@@ -14,11 +14,10 @@ class DepreciationRulesTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('depreciation_rules')->delete();
-        
-        
-        
+
+
     }
 }

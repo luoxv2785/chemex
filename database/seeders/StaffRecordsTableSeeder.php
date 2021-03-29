@@ -14,11 +14,10 @@ class StaffRecordsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('staff_records')->delete();
-        
-        
-        
+
+
     }
 }

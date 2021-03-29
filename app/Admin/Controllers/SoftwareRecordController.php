@@ -68,6 +68,83 @@ class SoftwareRecordController extends AdminController
     }
 
     /**
+     * 返回字段排序.
+     *
+     * @return mixed
+     */
+    public function sortColumns()
+    {
+        return ColumnSort::where('table_name', (new SoftwareRecord())->getTable())
+            ->get(['field', 'order'])
+            ->toArray();
+    }
+
+    public function show($id, Content $content): Content
+    {
+        $history = SoftwareService::history($id);
+
+        return $content
+            ->title($this->title())
+            ->description($this->description()['index'] ?? trans('admin.show'))
+            ->body(function (Row $row) use ($id, $history) {
+                // 判断权限
+                if (!Admin::user()->can('software.track.list')) {
+                    $row->column(12, $this->detail($id));
+                } else {
+                    $row->column(6, $this->detail($id));
+                    $row->column(6, function (Column $column) use ($id, $history) {
+                        $grid = Grid::make(new SoftwareTrack(['software', 'device', 'device.user']), function (Grid $grid) use ($id) {
+                            $grid->model()->where('software_id', '=', $id);
+                            $grid->tableCollapse(false);
+                            $grid->withBorder();
+
+                            $grid->column('id');
+                            $grid->column('device.asset_number')->link(function () {
+                                if (!empty($this->device)) {
+                                    return admin_route('device.records.show', [$this->device['id']]);
+                                }
+                            });
+                            $grid->column('device.user.name');
+
+                            $grid->disableToolbar();
+                            $grid->disableBatchDelete();
+                            $grid->disableRowSelector();
+                            $grid->disableViewButton();
+                            $grid->disableEditButton();
+                            $grid->disableDeleteButton();
+
+                            $grid->actions(function (RowActions $actions) {
+                                // @permissions
+                                if (Admin::user()->can('software.record.track.delete') && $this->deleted_at == null) {
+                                    $actions->append(new SoftwareTrackDeleteAction());
+                                }
+                            });
+                        });
+                        $column->row(new Card(trans('main.related'), $grid));
+                        $card = new Card(trans('main.history'), view('history')->with('data', $history));
+                        // @permissions
+                        if (Admin::user()->can('software.record.history.export')) {
+                            $card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.software.history', [$id]) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>');
+                        }
+                        $column->row($card);
+                    });
+                }
+            });
+    }
+
+    /**
+     * 履历导出.
+     *
+     * @param $software_id
+     *
+     * @return mixed
+     */
+    public function exportHistory($software_id)
+    {
+        return SoftwareService::exportHistory($software_id);
+    }
+
+    /**
      * Make a grid builder.
      *
      * @return Grid
@@ -217,71 +294,6 @@ class SoftwareRecordController extends AdminController
     }
 
     /**
-     * 返回字段排序.
-     *
-     * @return mixed
-     */
-    public function sortColumns()
-    {
-        return ColumnSort::where('table_name', (new SoftwareRecord())->getTable())
-            ->get(['field', 'order'])
-            ->toArray();
-    }
-
-    public function show($id, Content $content): Content
-    {
-        $history = SoftwareService::history($id);
-
-        return $content
-            ->title($this->title())
-            ->description($this->description()['index'] ?? trans('admin.show'))
-            ->body(function (Row $row) use ($id, $history) {
-                // 判断权限
-                if (!Admin::user()->can('software.track.list')) {
-                    $row->column(12, $this->detail($id));
-                } else {
-                    $row->column(6, $this->detail($id));
-                    $row->column(6, function (Column $column) use ($id, $history) {
-                        $grid = Grid::make(new SoftwareTrack(['software', 'device', 'device.user']), function (Grid $grid) use ($id) {
-                            $grid->model()->where('software_id', '=', $id);
-                            $grid->tableCollapse(false);
-                            $grid->withBorder();
-
-                            $grid->column('id');
-                            $grid->column('device.asset_number')->link(function () {
-                                if (!empty($this->device)) {
-                                    return admin_route('device.records.show', [$this->device['id']]);
-                                }
-                            });
-                            $grid->column('device.user.name');
-
-                            $grid->disableToolbar();
-                            $grid->disableBatchDelete();
-                            $grid->disableRowSelector();
-                            $grid->disableViewButton();
-                            $grid->disableEditButton();
-                            $grid->disableDeleteButton();
-
-                            $grid->actions(function (RowActions $actions) {
-                                // @permissions
-                                if (Admin::user()->can('software.record.track.delete') && $this->deleted_at == null) {
-                                    $actions->append(new SoftwareTrackDeleteAction());
-                                }
-                            });
-                        });
-                        $column->row(new Card(trans('main.related'), $grid));
-                        $card = new Card(trans('main.history'), view('history')->with('data', $history));
-                        // @permissions
-                        if (Admin::user()->can('software.record.history.export')) {
-                            $card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.software.history', [$id]) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>');
-                        }
-                        $column->row($card);
-                    });
-                }
-            });
-    }
-
-    /**
      * Make a show builder.
      *
      * @param mixed $id
@@ -323,18 +335,6 @@ class SoftwareRecordController extends AdminController
                 $show->disableEditButton();
             }
         });
-    }
-
-    /**
-     * 履历导出.
-     *
-     * @param $software_id
-     *
-     * @return mixed
-     */
-    public function exportHistory($software_id)
-    {
-        return SoftwareService::exportHistory($software_id);
     }
 
     /**

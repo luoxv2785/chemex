@@ -14,11 +14,10 @@ class TodoHistoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('todo_histories')->delete();
-        
-        
-        
+
+
     }
 }

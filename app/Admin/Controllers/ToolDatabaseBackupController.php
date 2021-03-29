@@ -52,6 +52,6 @@ class ToolDatabaseBackupController extends Controller
         } catch (Exception $exception) {
             $data = $exception;
         }
-        return Uni::returnJson(200,'备份成功', $data);
+        return Uni::returnJson(200, '备份成功', $data);
     }
 }

@@ -14,11 +14,10 @@ class ChartRecordsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('chart_records')->delete();
-        
-        
-        
+
+
     }
 }

@@ -51,6 +51,18 @@ class ConsumableRecordController extends AdminController
     }
 
     /**
+     * 返回字段排序.
+     *
+     * @return mixed
+     */
+    public function sortColumns()
+    {
+        return ColumnSort::where('table_name', (new ConsumableRecord())->getTable())
+            ->get(['field', 'order'])
+            ->toArray();
+    }
+
+    /**
      * Make a grid builder.
      *
      * @return Grid
@@ -147,18 +159,6 @@ class ConsumableRecordController extends AdminController
                 $grid->export();
             }
         });
-    }
-
-    /**
-     * 返回字段排序.
-     *
-     * @return mixed
-     */
-    public function sortColumns()
-    {
-        return ColumnSort::where('table_name', (new ConsumableRecord())->getTable())
-            ->get(['field', 'order'])
-            ->toArray();
     }
 
     /**

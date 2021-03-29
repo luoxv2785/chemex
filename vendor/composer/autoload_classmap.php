@@ -352,6 +352,7 @@ return array(
     'App\\Console\\Commands\\RefreshUser' => $baseDir . '/app/Console/Commands/RefreshUser.php',
     'App\\Console\\Commands\\ResetAdminAccount' => $baseDir . '/app/Console/Commands/ResetAdminAccount.php',
     'App\\Console\\Commands\\Update' => $baseDir . '/app/Console/Commands/Update.php',
+    'App\\Console\\Commands\\Version' => $baseDir . '/app/Console/Commands/Version.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Form' => $baseDir . '/app/Form.php',

@@ -40,6 +40,13 @@ class SelectCreate extends Select
         return parent::render();
     }
 
+    public function url($url): SelectCreate
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
     protected function build(): string
     {
         Form::dialog(trans('main.select_create'))
@@ -51,12 +58,5 @@ class SelectCreate extends Select
         $text = trans('main.select_create');
 
         return "<span class='btn btn-primary create-form' data-url='$this->url'> $text </span>";
-    }
-
-    public function url($url): SelectCreate
-    {
-        $this->url = $url;
-
-        return $this;
     }
 }

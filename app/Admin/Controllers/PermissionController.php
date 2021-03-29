@@ -35,6 +35,44 @@ class PermissionController extends BasePermissionController
         return admin_trans_label('title');
     }
 
+    public function form()
+    {
+        return Form::make(new Permission(), function (Form $form) {
+            $permissionTable = config('admin.database.permissions_table');
+            $connection = config('admin.database.connection');
+            $permissionModel = config('admin.database.permissions_model');
+
+            $id = $form->getKey();
+
+            $form->display('id', 'ID');
+
+            $form->select('parent_id', trans('admin.parent_id'))
+                ->options($permissionModel::selectOptions())
+                ->saving(function ($v) {
+                    return (int)$v;
+                });
+
+            $form->text('slug', trans('admin.slug'))
+                ->required()
+                ->creationRules(['required', "unique:{$connection}.{$permissionTable}"])
+                ->updateRules(['required', "unique:{$connection}.{$permissionTable},slug,$id"]);
+            $form->text('name', trans('admin.name'))->required();
+
+            $form->multipleSelect('http_method', trans('admin.http.method'))
+                ->options($this->getHttpMethodsOptions())
+                ->help(trans('admin.all_methods_if_empty'));
+
+            $form->tags('http_path', trans('admin.http.path'))
+                ->options($this->getRoutes());
+
+            $form->display('created_at', trans('admin.created_at'));
+            $form->display('updated_at', trans('admin.updated_at'));
+
+            $form->disableViewButton();
+            $form->disableViewCheck();
+        });
+    }
+
     protected function treeView()
     {
         $model = config('admin.database.permissions_model');
@@ -98,44 +136,6 @@ class PermissionController extends BasePermissionController
             if (!Admin::user()->can('permission.delete')) {
                 $tree->disableDeleteButton();
             }
-        });
-    }
-
-    public function form()
-    {
-        return Form::make(new Permission(), function (Form $form) {
-            $permissionTable = config('admin.database.permissions_table');
-            $connection = config('admin.database.connection');
-            $permissionModel = config('admin.database.permissions_model');
-
-            $id = $form->getKey();
-
-            $form->display('id', 'ID');
-
-            $form->select('parent_id', trans('admin.parent_id'))
-                ->options($permissionModel::selectOptions())
-                ->saving(function ($v) {
-                    return (int)$v;
-                });
-
-            $form->text('slug', trans('admin.slug'))
-                ->required()
-                ->creationRules(['required', "unique:{$connection}.{$permissionTable}"])
-                ->updateRules(['required', "unique:{$connection}.{$permissionTable},slug,$id"]);
-            $form->text('name', trans('admin.name'))->required();
-
-            $form->multipleSelect('http_method', trans('admin.http.method'))
-                ->options($this->getHttpMethodsOptions())
-                ->help(trans('admin.all_methods_if_empty'));
-
-            $form->tags('http_path', trans('admin.http.path'))
-                ->options($this->getRoutes());
-
-            $form->display('created_at', trans('admin.created_at'));
-            $form->display('updated_at', trans('admin.updated_at'));
-
-            $form->disableViewButton();
-            $form->disableViewCheck();
         });
     }
 }

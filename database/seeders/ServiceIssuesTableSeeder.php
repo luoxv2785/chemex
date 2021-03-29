@@ -14,11 +14,10 @@ class ServiceIssuesTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('service_issues')->delete();
-        
-        
-        
+
+
     }
 }

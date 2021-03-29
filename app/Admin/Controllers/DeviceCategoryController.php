@@ -40,6 +40,19 @@ class DeviceCategoryController extends AdminController
     }
 
     /**
+     * @param Request $request
+     *
+     * @return mixed
+     */
+    public function selectList(Request $request)
+    {
+        $q = $request->get('q');
+
+        return \App\Models\DeviceCategory::where('name', 'like', "%$q%")
+            ->paginate(null, ['id', 'name as text']);
+    }
+
+    /**
      * 模型树构建.
      *
      * @return Tree
@@ -77,19 +90,6 @@ class DeviceCategoryController extends AdminController
             }
             $tree->disableCreateButton();
         });
-    }
-
-    /**
-     * @param Request $request
-     *
-     * @return mixed
-     */
-    public function selectList(Request $request)
-    {
-        $q = $request->get('q');
-
-        return \App\Models\DeviceCategory::where('name', 'like', "%$q%")
-            ->paginate(null, ['id', 'name as text']);
     }
 
     /**

@@ -59,63 +59,6 @@ class CheckRecordController extends AdminController
     }
 
     /**
-     * Make a grid builder.
-     *
-     * @return Grid
-     */
-    protected function grid(): Grid
-    {
-        return Grid::make(new CheckRecord(['user']), function (Grid $grid) {
-            $grid->column('id');
-            $grid->column('check_item')->using(Data::items());
-            $grid->column('start_time');
-            $grid->column('end_time');
-            $grid->column('user.name');
-            $grid->column('status')->using(Data::checkRecordStatus());
-            $grid->column('check_all_counts')->display(function () {
-                return Support::checkTrackCounts($this->id);
-            });
-            $grid->column('check_yes_counts')->display(function () {
-                return Support::checkTrackCounts($this->id, 'Y');
-            });
-            $grid->column('check_no_counts')->display(function () {
-                return Support::checkTrackCounts($this->id, 'N');
-            });
-            $grid->column('check_left_counts')->display(function () {
-                return Support::checkTrackCounts($this->id, 'L');
-            });
-
-            $grid->disableRowSelector();
-            $grid->disableBatchActions();
-            $grid->disableEditButton();
-            $grid->disableDeleteButton();
-
-            $grid->actions(function (RowActions $actions) {
-                if ($this->status == 0) {
-                    if (Admin::user()->can('check.record.update.yes')) {
-                        $actions->append(new CheckRecordUpdateYesAction());
-                    }
-                    if (Admin::user()->can('check.record.update.no')) {
-                        $actions->append(new CheckRecordUpdateNoAction());
-                    }
-                }
-                $report_url = admin_route('export.check.report', ['check_id' => $this->id]);
-                $actions->append("<a href='$report_url' target='_blank'>✨ " . admin_trans_label('Report') . '</a>');
-            });
-
-            $grid->toolsWithOutline(false);
-
-            $grid->enableDialogCreate();
-
-            $grid->quickSearch('id', 'user.name')
-                ->placeholder(trans('main.quick_search'))
-                ->auto(false);
-
-            $grid->export();
-        });
-    }
-
-    /**
      * Show interface.
      *
      * @param mixed $id
@@ -176,6 +119,63 @@ class CheckRecordController extends AdminController
                 $row->column(12, '<div class="mt-2"></div>');
                 $row->column(12, $grid);
             });
+    }
+
+    /**
+     * Make a grid builder.
+     *
+     * @return Grid
+     */
+    protected function grid(): Grid
+    {
+        return Grid::make(new CheckRecord(['user']), function (Grid $grid) {
+            $grid->column('id');
+            $grid->column('check_item')->using(Data::items());
+            $grid->column('start_time');
+            $grid->column('end_time');
+            $grid->column('user.name');
+            $grid->column('status')->using(Data::checkRecordStatus());
+            $grid->column('check_all_counts')->display(function () {
+                return Support::checkTrackCounts($this->id);
+            });
+            $grid->column('check_yes_counts')->display(function () {
+                return Support::checkTrackCounts($this->id, 'Y');
+            });
+            $grid->column('check_no_counts')->display(function () {
+                return Support::checkTrackCounts($this->id, 'N');
+            });
+            $grid->column('check_left_counts')->display(function () {
+                return Support::checkTrackCounts($this->id, 'L');
+            });
+
+            $grid->disableRowSelector();
+            $grid->disableBatchActions();
+            $grid->disableEditButton();
+            $grid->disableDeleteButton();
+
+            $grid->actions(function (RowActions $actions) {
+                if ($this->status == 0) {
+                    if (Admin::user()->can('check.record.update.yes')) {
+                        $actions->append(new CheckRecordUpdateYesAction());
+                    }
+                    if (Admin::user()->can('check.record.update.no')) {
+                        $actions->append(new CheckRecordUpdateNoAction());
+                    }
+                }
+                $report_url = admin_route('export.check.report', ['check_id' => $this->id]);
+                $actions->append("<a href='$report_url' target='_blank'>✨ " . admin_trans_label('Report') . '</a>');
+            });
+
+            $grid->toolsWithOutline(false);
+
+            $grid->enableDialogCreate();
+
+            $grid->quickSearch('id', 'user.name')
+                ->placeholder(trans('main.quick_search'))
+                ->auto(false);
+
+            $grid->export();
+        });
     }
 
     /**

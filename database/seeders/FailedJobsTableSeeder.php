@@ -14,11 +14,10 @@ class FailedJobsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('failed_jobs')->delete();
-        
-        
-        
+
+
     }
 }

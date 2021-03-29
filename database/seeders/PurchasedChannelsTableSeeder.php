@@ -14,11 +14,10 @@ class PurchasedChannelsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('purchased_channels')->delete();
-        
-        
-        
+
+
     }
 }
