@@ -76,14 +76,9 @@ class DepartmentImportForm extends Form
 
         if ($input['type'] == 'ldap') {
             $result = LDAPService::importUserDepartments($input['mode']);
-            if ($result) {
-                return $this->response()
-                    ->success(trans('main.ldap_import_success'))
-                    ->refresh();
-            } else {
-                return $this->response()
-                    ->error($result);
-            }
+            return $this->response()
+                ->success(trans('main.success') . ': ' . $result[0] . ' ; ' . trans('main.fail') . ': ' . $result[1])
+                ->refresh();
         }
     }
 

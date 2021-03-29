@@ -78,12 +78,14 @@ class LDAPService
      *
      * @param $mode
      *
-     * @return string
+     * @return int[]|string
      */
-    public static function importUsers($mode): string
+    public static function importUsers($mode)
     {
-        try {
+        $success = 0;
+        $fail = 0;
 
+        try {
             // 如果模式是复写，先执行清空表
             if ($mode == 'rewrite') {
                 User::truncate();
@@ -109,16 +111,19 @@ class LDAPService
                 $user = User::where('name', $user_name)->first();
                 if (empty($user)) {
                     $user = new User();
+                    $user->username = $user_name;
+                    $user->password = bcrypt($user->username);
+                    $user->name = $user_name;
+                    $user->department_id = $department_id;
+                    $user->ad_tag = 1;
+                    $user->save();
+                    $success++;
                 }
-                $user->username = $user_name;
-                $user->password = bcrypt($user->username);
-                $user->name = $user_name;
-                $user->department_id = $department_id;
-                $user->ad_tag = 1;
-                $user->save();
             }
         } catch (Exception $exception) {
-            return $exception->getMessage();
+            $fail++;
         }
+
+        return [$success, $fail];
     }
 }
