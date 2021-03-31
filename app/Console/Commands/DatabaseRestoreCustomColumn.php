@@ -2,13 +2,14 @@
 
 namespace App\Console\Commands;
 
+use App\Models\CustomColumn;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CustomColumn extends Command
+class DatabaseRestoreCustomColumn extends Command
 {
     /**
      * The name and signature of the console command.
@@ -41,7 +42,7 @@ class CustomColumn extends Command
      */
     public function handle(): int
     {
-        $custom_columns = \App\Models\CustomColumn::all();
+        $custom_columns = CustomColumn::all();
         foreach ($custom_columns as $custom_column) {
             try {
                 Schema::table($custom_column->table_name, function (Blueprint $table) use ($custom_column) {
