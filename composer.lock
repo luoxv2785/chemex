@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "22e5752b19672dc09ab512a67083c315",
+    "content-hash": "f9c78b8309e5c473df73d69a78f17ca5",
     "packages": [
         {
             "name": "adldap2/adldap2",
@@ -968,16 +968,16 @@
         },
         {
             "name": "dcat/laravel-admin",
-            "version": "2.0.20-beta",
+            "version": "2.0.21-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jqhph/dcat-admin.git",
-                "reference": "1f2a7eb420527e38e133cbf7b3c5889e097a133b"
+                "reference": "346fd577d87423d52dea5da18ee306239e663b8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jqhph/dcat-admin/zipball/1f2a7eb420527e38e133cbf7b3c5889e097a133b",
-                "reference": "1f2a7eb420527e38e133cbf7b3c5889e097a133b",
+                "url": "https://api.github.com/repos/jqhph/dcat-admin/zipball/346fd577d87423d52dea5da18ee306239e663b8c",
+                "reference": "346fd577d87423d52dea5da18ee306239e663b8c",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1037,9 +1037,9 @@
             ],
             "support": {
                 "issues": "https://github.com/jqhph/dcat-admin/issues",
-                "source": "https://github.com/jqhph/dcat-admin/tree/2.0.20-beta"
+                "source": "https://github.com/jqhph/dcat-admin/tree/2.0.21-beta"
             },
-            "time": "2021-03-08T15:18:07+00:00"
+            "time": "2021-03-31T03:46:04+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -7876,16 +7876,16 @@
         },
         {
             "name": "tightenco/collect",
-            "version": "v8.19.0",
+            "version": "v8.34.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tighten/collect.git",
-                "reference": "0c0243a0dc0b66f54d0ec409f36cd9889665b132"
+                "reference": "b069783ab0c547bb894ebcf8e7f6024bb401f9d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tighten/collect/zipball/0c0243a0dc0b66f54d0ec409f36cd9889665b132",
-                "reference": "0c0243a0dc0b66f54d0ec409f36cd9889665b132",
+                "url": "https://api.github.com/repos/tighten/collect/zipball/b069783ab0c547bb894ebcf8e7f6024bb401f9d2",
+                "reference": "b069783ab0c547bb894ebcf8e7f6024bb401f9d2",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -7930,9 +7930,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tighten/collect/issues",
-                "source": "https://github.com/tighten/collect/tree/v8.19.0"
+                "source": "https://github.com/tighten/collect/tree/v8.34.0"
             },
-            "time": "2020-12-19T00:06:29+00:00"
+            "time": "2021-03-29T21:29:00+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -8607,16 +8607,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.11.0",
+            "version": "2.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "f6e14679f948d8a5cfb866fa7065a30c66bd64d3"
+                "reference": "d501fd2658d55491a2295ff600ae5978eaad7403"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/f6e14679f948d8a5cfb866fa7065a30c66bd64d3",
-                "reference": "f6e14679f948d8a5cfb866fa7065a30c66bd64d3",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/d501fd2658d55491a2295ff600ae5978eaad7403",
+                "reference": "d501fd2658d55491a2295ff600ae5978eaad7403",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -8672,7 +8672,7 @@
             ],
             "support": {
                 "issues": "https://github.com/filp/whoops/issues",
-                "source": "https://github.com/filp/whoops/tree/2.11.0"
+                "source": "https://github.com/filp/whoops/tree/2.12.0"
             },
             "funding": [
                 {
@@ -8680,7 +8680,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-03-19T12:00:00+00:00"
+            "time": "2021-03-30T12:00:00+00:00"
         },
         {
             "name": "fzaninotto/faker",

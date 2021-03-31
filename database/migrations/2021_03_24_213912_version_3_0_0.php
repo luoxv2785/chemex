@@ -30,7 +30,7 @@ class Version300 extends Migration
             $table->string('name');
             $table->string('avatar')->nullable();
             $table->string('remember_token', 100)->nullable();
-            $table->integer('department_id');
+            $table->integer('department_id')->default(0);
             $table->char('gender')->default('无');
             $table->string('title')->nullable();
             $table->string('mobile')->nullable();

@@ -47,130 +47,6 @@ class UserController extends BaseUserController
     }
 
     /**
-     * @param Request $request
-     *
-     * @return mixed
-     */
-    public function selectList(Request $request)
-    {
-        $q = $request->get('q');
-
-        return \App\Models\User::where('name', 'like', "%$q%")
-            ->paginate(null, ['id', 'name as text']);
-    }
-
-    /**
-     * Make a form builder.
-     *
-     * @return Form
-     */
-    public function form(): Form
-    {
-        return Form::make(User::with(['roles']), function (Form $form) {
-            $userTable = config('admin.database.users_table');
-            $connection = config('admin.database.connection');
-            $id = $form->getKey();
-
-            $form->display('id');
-            $form->text('username', trans('admin.username'))
-                ->required()
-                ->creationRules(['required', "unique:{$connection}.{$userTable}"])
-                ->updateRules(['required', "unique:{$connection}.{$userTable},username,$id"]);
-            $form->text('name', trans('admin.name'))->required();
-            $form->select('gender')
-                ->options(Data::genders())
-                ->required();
-            if (Support::ifSelectCreate()) {
-                $form->selectCreate('department_id', admin_trans_label('Department'))
-                    ->options(Department::class)
-                    ->ajax(admin_route('selection.organization.departments'))
-                    ->url(admin_route('organization.departments.create'))
-                    ->default(0);
-            } else {
-                $form->select('department_id', admin_trans_label('Department'))
-                    ->options(Department::selectOptions())
-                    ->required();
-            }
-            $form->divider();
-
-            if ($id) {
-                $form->password('password', trans('admin.password'))
-                    ->minLength(5)
-                    ->maxLength(20)
-                    ->customFormat(function () {
-                        return '';
-                    })
-                    ->attribute('autocomplete', 'new-password');
-            } else {
-                $form->password('password', trans('admin.password'))
-                    ->required()
-                    ->minLength(5)
-                    ->maxLength(20)
-                    ->attribute('autocomplete', 'new-password');
-            }
-
-            $form->password('password_confirmation', trans('admin.password_confirmation'))->same('password');
-
-            $form->ignore(['password_confirmation']);
-
-            if (config('admin.permission.enable')) {
-                $form->multipleSelect('roles', trans('admin.roles'))
-                    ->options(function () {
-                        $roleModel = config('admin.database.roles_model');
-
-                        return $roleModel::pluck('name', 'id');
-                    })
-                    ->customFormat(function ($v) {
-                        return array_column($v, 'id');
-                    });
-            }
-
-            $form->image('avatar', trans('admin.avatar'))->autoUpload();
-            $form->text('title');
-            $form->mobile('mobile');
-            $form->email('email');
-
-            $form->display('created_at');
-            $form->display('updated_at');
-
-            /**
-             * 按钮控制.
-             */
-            $form->disableDeleteButton();
-            $form->disableCreatingCheck();
-            $form->disableEditingCheck();
-            $form->disableViewCheck();
-
-            if ($id == \App\Models\User::DEFAULT_ID) {
-                $form->disableDeleteButton();
-            }
-        })->saving(function (Form $form) {
-            if ($form->password && $form->model()->get('password') != $form->password) {
-                $form->password = bcrypt($form->password);
-            }
-
-            if (!$form->password) {
-                $form->deleteInput('password');
-            }
-
-            // 创建用户时通过工号判断是否有相同记录
-            $exist = \App\Models\User::where('number', $form->input('number'))
-                ->withTrashed()
-                ->first();
-            if ($form->isEditing() && !empty($exist) && $form->model()->id != $exist->id) {
-                return $form->response()
-                    ->error(trans('main.record_same'));
-            }
-            if ($form->isCreating()) {
-                if (!empty($exist)) {
-                    return $form->response()
-                        ->error(trans('main.record_same'));
-                }
-            }
-        });
-    }
-
-    /**
      * Make a grid builder.
      *
      * @return Grid
@@ -292,6 +168,130 @@ class UserController extends BaseUserController
             // @permissions
             if (Admin::user()->can('user.export')) {
                 $grid->export();
+            }
+        });
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return mixed
+     */
+    public function selectList(Request $request)
+    {
+        $q = $request->get('q');
+
+        return \App\Models\User::where('name', 'like', "%$q%")
+            ->paginate(null, ['id', 'name as text']);
+    }
+
+    /**
+     * Make a form builder.
+     *
+     * @return Form
+     */
+    public function form(): Form
+    {
+        return Form::make(User::with(['roles']), function (Form $form) {
+            $userTable = config('admin.database.users_table');
+            $connection = config('admin.database.connection');
+            $id = $form->getKey();
+
+            $form->display('id');
+            $form->text('username', trans('admin.username'))
+                ->required()
+                ->creationRules(['required', "unique:{$connection}.{$userTable}"])
+                ->updateRules(['required', "unique:{$connection}.{$userTable},username,$id"]);
+            $form->text('name', trans('admin.name'))->required();
+            $form->select('gender')
+                ->options(Data::genders())
+                ->required();
+            if (Support::ifSelectCreate()) {
+                $form->selectCreate('department_id', admin_trans_label('Department'))
+                    ->options(Department::class)
+                    ->ajax(admin_route('selection.organization.departments'))
+                    ->url(admin_route('organization.departments.create'))
+                    ->default(0);
+            } else {
+                $form->select('department_id', admin_trans_label('Department'))
+                    ->options(Department::selectOptions())
+                    ->required();
+            }
+            $form->divider();
+
+            if ($id) {
+                $form->password('password', trans('admin.password'))
+                    ->minLength(5)
+                    ->maxLength(20)
+                    ->customFormat(function () {
+                        return '';
+                    })
+                    ->attribute('autocomplete', 'new-password');
+            } else {
+                $form->password('password', trans('admin.password'))
+                    ->required()
+                    ->minLength(5)
+                    ->maxLength(20)
+                    ->attribute('autocomplete', 'new-password');
+            }
+
+            $form->password('password_confirmation', trans('admin.password_confirmation'))->same('password');
+
+            $form->ignore(['password_confirmation']);
+
+            if (config('admin.permission.enable')) {
+                $form->multipleSelect('roles', trans('admin.roles'))
+                    ->options(function () {
+                        $roleModel = config('admin.database.roles_model');
+
+                        return $roleModel::pluck('name', 'id');
+                    })
+                    ->customFormat(function ($v) {
+                        return array_column($v, 'id');
+                    });
+            }
+
+            $form->image('avatar', trans('admin.avatar'))->autoUpload();
+            $form->text('title');
+            $form->mobile('mobile');
+            $form->email('email');
+
+            $form->display('created_at');
+            $form->display('updated_at');
+
+            /**
+             * 按钮控制.
+             */
+            $form->disableDeleteButton();
+            $form->disableCreatingCheck();
+            $form->disableEditingCheck();
+            $form->disableViewCheck();
+
+            if ($id == \App\Models\User::DEFAULT_ID) {
+                $form->disableDeleteButton();
+            }
+        })->saving(function (Form $form) {
+            if ($form->password && $form->model()->get('password') != $form->password) {
+                $form->password = bcrypt($form->password);
+            }
+
+            if (!$form->password) {
+                $form->deleteInput('password');
+            }
+
+            // 创建用户时通过工号判断是否有相同记录
+            $exist = \App\Models\User::where('number', $form->input('number'))
+                ->withTrashed()
+                ->first();
+            if ($form->isEditing() && !empty($exist) && $form->model()->id != $exist->id) {
+                return $form->response()
+                    ->error(trans('main.record_same'));
+            }
+            if ($form->isCreating()) {
+                if (!empty($exist)) {
+                    return $form->response()
+                        ->error(trans('main.record_same'));
+                }
             }
         });
     }

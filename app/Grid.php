@@ -32,6 +32,25 @@ class Grid extends \Dcat\Admin\Grid
     }
 
     /**
+     * Add column to grid.
+     *
+     * @param int $order
+     * @param string $field
+     * @param string $label
+     *
+     * @return Column
+     */
+    protected function addColumn($field = '', $label = '', $order = 99): Column
+    {
+        $column = $this->newColumn($field, $label, $order);
+
+        $this->columns->put($field, $column);
+        $this->allColumns->put($field, $column);
+
+        return $column;
+    }
+
+    /**
      * @param int $order
      * @param string $field
      * @param string $label
@@ -91,24 +110,5 @@ class Grid extends \Dcat\Admin\Grid
         $this->buildRows($collection);
 
         $this->sortHeaders();
-    }
-
-    /**
-     * Add column to grid.
-     *
-     * @param int $order
-     * @param string $field
-     * @param string $label
-     *
-     * @return Column
-     */
-    protected function addColumn($field = '', $label = '', $order = 99): Column
-    {
-        $column = $this->newColumn($field, $label, $order);
-
-        $this->columns->put($field, $column);
-        $this->allColumns->put($field, $column);
-
-        return $column;
     }
 }

@@ -35,6 +35,29 @@ class Show extends \Dcat\Admin\Show
     }
 
     /**
+     * Add a model field to show.
+     *
+     * @param $name
+     * @param string $label
+     * @param int $order
+     * @return Field
+     */
+    protected function addField($name, $label = '', $order = 99): Field
+    {
+        $field = new Field($name, $label);
+
+        $field->__order__ = $order;
+
+        $field->setParent($this);
+
+        $this->overwriteExistingField($name);
+
+        $this->fields->push($field);
+
+        return $field;
+    }
+
+    /**
      * Render the show panels.
      *
      * @return string
@@ -73,28 +96,5 @@ class Show extends \Dcat\Admin\Show
         ];
 
         return view($this->view, $data)->render();
-    }
-
-    /**
-     * Add a model field to show.
-     *
-     * @param $name
-     * @param string $label
-     * @param int $order
-     * @return Field
-     */
-    protected function addField($name, $label = '', $order = 99): Field
-    {
-        $field = new Field($name, $label);
-
-        $field->__order__ = $order;
-
-        $field->setParent($this);
-
-        $this->overwriteExistingField($name);
-
-        $this->fields->push($field);
-
-        return $field;
     }
 }

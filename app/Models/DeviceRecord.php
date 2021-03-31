@@ -45,14 +45,7 @@ class DeviceRecord extends Model
     use HasFactory;
     use HasDateTimeFormatter;
     use SoftDeletes;
-
-    /**
-     * 这里需要给个别名，否则delete方法将会重复
-     * 和下面的delete方法重写打配合调整优先级.
-     */
-    use ModelTree {
-        ModelTree::delete as traitDelete;
-    }
+    use ModelTree;
 
     /**
      * 需要被包括进排序字段的字段，一般来说是虚拟出来的关联字段.
@@ -94,20 +87,6 @@ class DeviceRecord extends Model
                 abort(401, 'you can not do that.');
             }
         });
-    }
-
-    /**
-     * 复写这个是为了让delete方法的优先级满足：
-     * 子类>trait>父类
-     * 这个是因为字段管理中删除动作的需要
-     *
-     * @return bool|null
-     * @throws Exception
-     *
-     */
-    public function delete(): ?bool
-    {
-        return parent::delete();
     }
 
     /**
@@ -223,7 +202,7 @@ class DeviceRecord extends Model
      *
      * @return HasOneThrough
      */
-    public function user(): HasOneThrough
+    public function adminUser(): HasOneThrough
     {
         return $this->hasOneThrough(
             User::class,  // 远程表

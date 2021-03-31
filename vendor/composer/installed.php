@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '5d814097f570b9a166571814749fc6f51f89cda6',
+    'reference' => 'c91635c8f0086fb1fae11335a738d3c2484b2ab0',
     'name' => 'celaraze/chemex',
   ),
   'versions' => 
@@ -63,7 +63,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '5d814097f570b9a166571814749fc6f51f89cda6',
+      'reference' => 'c91635c8f0086fb1fae11335a738d3c2484b2ab0',
     ),
     'celaraze/pour' => 
     array (
@@ -154,12 +154,12 @@
     ),
     'dcat/laravel-admin' => 
     array (
-      'pretty_version' => '2.0.20-beta',
-      'version' => '2.0.20.0-beta',
+      'pretty_version' => '2.0.21-beta',
+      'version' => '2.0.21.0-beta',
       'aliases' => 
       array (
       ),
-      'reference' => '1f2a7eb420527e38e133cbf7b3c5889e097a133b',
+      'reference' => '346fd577d87423d52dea5da18ee306239e663b8c',
     ),
     'dnoegel/php-xdg-base-dir' => 
     array (
@@ -298,12 +298,12 @@
     ),
     'filp/whoops' => 
     array (
-      'pretty_version' => '2.11.0',
-      'version' => '2.11.0.0',
+      'pretty_version' => '2.12.0',
+      'version' => '2.12.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'f6e14679f948d8a5cfb866fa7065a30c66bd64d3',
+      'reference' => 'd501fd2658d55491a2295ff600ae5978eaad7403',
     ),
     'fruitcake/laravel-cors' => 
     array (
@@ -1003,8 +1003,8 @@
     array (
       'provided' => 
       array (
-        0 => '1.0',
-        1 => '1.0.0',
+        0 => '1.0.0',
+        1 => '1.0',
       ),
     ),
     'psr/simple-cache' => 
@@ -1570,12 +1570,12 @@
     ),
     'tightenco/collect' => 
     array (
-      'pretty_version' => 'v8.19.0',
-      'version' => '8.19.0.0',
+      'pretty_version' => 'v8.34.0',
+      'version' => '8.34.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '0c0243a0dc0b66f54d0ec409f36cd9889665b132',
+      'reference' => 'b069783ab0c547bb894ebcf8e7f6024bb401f9d2',
     ),
     'tijsverkoyen/css-to-inline-styles' => 
     array (
