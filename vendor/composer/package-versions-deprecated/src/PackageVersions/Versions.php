@@ -66,7 +66,7 @@ final class Versions
   'hamcrest/hamcrest-php' => 'v2.0.1@8c3d0a3f6af734494ad8f6fbbee0ba92422859f3',
   'hhxsv5/laravel-s' => 'v3.7.19@6435c55b351a2e804647ae5b39310dfc86a15a2c',
   'justinrainbow/json-schema' => '5.2.10@2ba9c8c862ecd5510ed16c6340aa9f6eadb4f31b',
-  'laravel/framework' => 'v8.34.0@81892ca110795a9c46c7e198cba7763bfd2af0bf',
+  'laravel/framework' => 'v8.35.1@d118c0df39e7524131176aaf76493eae63a8a602',
   'laravel/tinker' => 'v2.6.1@04ad32c1a3328081097a181875733fa51f402083',
   'lcobucci/jwt' => '3.2.5@82be04b4753f8b7693b62852b7eab30f97524f9b',
   'league/commonmark' => '1.5.8@08fa59b8e4e34ea8a773d55139ae9ac0e0aecbaf',
@@ -139,12 +139,12 @@ final class Versions
   'voku/portable-ascii' => '1.5.6@80953678b19901e5165c56752d087fc11526017c',
   'webmozart/assert' => '1.10.0@6964c76c7804814a842473e0c8fd15bab0f18e25',
   'doctrine/instantiator' => '1.4.0@d56bf6102915de5702778fe20f2de3b2fe570b5b',
-  'facade/flare-client-php' => '1.4.0@ef0f5bce23b30b32d98fd9bb49c6fa37b40eb546',
-  'facade/ignition' => '2.6.0@4be10a998815f77952b9eb983fb0b64c8a4defbb',
+  'facade/flare-client-php' => '1.5.0@9dd6f2b56486d939c4467b3f35475d44af57cf17',
+  'facade/ignition' => '2.7.0@bdc8b0b32c888f6edc838ca641358322b3d9506d',
   'facade/ignition-contracts' => '1.0.2@3c921a1cdba35b68a7f0ccffc6dffc1995b18267',
   'filp/whoops' => '2.12.0@d501fd2658d55491a2295ff600ae5978eaad7403',
   'fzaninotto/faker' => 'dev-master@5ffe7db6c80f441f150fc88008d64e64af66634b',
-  'laravel/sail' => 'v1.4.9@935b453bf536b284d6fef7c1b5dd2ea52bca34c0',
+  'laravel/sail' => 'v1.4.10@4f0b2bac128ee60a11d9758651f103f78157474a',
   'myclabs/deep-copy' => '1.10.2@776f831124e9c62e1a2c601ecc52e776d8bb7220',
   'nunomaduro/collision' => 'v5.3.0@aca63581f380f63a492b1e3114604e411e39133a',
   'phar-io/manifest' => '2.0.1@85265efd3af7ba3ca4b2a2c34dbfc5788dd29133',
@@ -176,7 +176,7 @@ final class Versions
   'sebastian/type' => '2.3.1@81cd61ab7bbf2de744aba0ea61fae32f721df3d2',
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'theseer/tokenizer' => '1.2.0@75a63c33a8577608444246075ea0af0d052e452a',
-  'celaraze/chemex' => 'dev-main@c91635c8f0086fb1fae11335a738d3c2484b2ab0',
+  'celaraze/chemex' => 'dev-main@963b4639450e1ab5b125fa29b7a1db7944edfe6f',
 );
 
     private function __construct()

@@ -7,9 +7,9 @@ NC='\033[0m'
 
 # Verify operating system is supported...
 case "${UNAMEOUT}" in
-Linux*) MACHINE=linux ;;
-Darwin*) MACHINE=mac ;;
-*) MACHINE="UNKNOWN" ;;
+    Linux*)             MACHINE=linux;;
+    Darwin*)            MACHINE=mac;;
+    *)                  MACHINE="UNKNOWN"
 esac
 
 if [ "$MACHINE" == "UNKNOWN" ]; then
@@ -32,7 +32,7 @@ elif [ "$MACHINE" == "mac" ]; then
 fi
 
 # Ensure that Docker is running...
-if ! docker info >/dev/null 2>&1; then
+if ! docker info > /dev/null 2>&1; then
     echo -e "${WHITE}Docker is not running.${NC}" >&2
 
     exit 1
@@ -44,7 +44,7 @@ PSRESULT="$(docker-compose ps -q)"
 if docker-compose ps | grep 'Exit'; then
     echo -e "${WHITE}Shutting down old Sail processes...${NC}" >&2
 
-    docker-compose down >/dev/null 2>&1
+    docker-compose down > /dev/null 2>&1
 
     EXEC="no"
 elif [ -n "$PSRESULT" ]; then
@@ -54,7 +54,7 @@ else
 fi
 
 # Function that outputs Sail is not running...
-function sail_is_not_running() {
+function sail_is_not_running {
     echo -e "${WHITE}Sail is not running.${NC}" >&2
     echo "" >&2
     echo -e "${WHITE}You may Sail using the following commands:${NC} './vendor/bin/sail up' or './vendor/bin/sail up -d'" >&2
@@ -151,7 +151,7 @@ if [ $# -gt 0 ]; then
         fi
 
     # Initiate a Laravel Tinker session within the application container...
-    elif [ "$1" == "tinker" ]; then
+    elif [ "$1" == "tinker" ] ; then
         shift 1
 
         if [ "$EXEC" == "yes" ]; then
@@ -233,8 +233,8 @@ if [ $# -gt 0 ]; then
 
         if [ "$EXEC" == "yes" ]; then
             docker-compose exec \
-                pgsql \
-                bash -c 'PGPASSWORD=${PGPASSWORD} psql -U ${POSTGRES_USER} ${POSTGRES_DB}'
+                 pgsql \
+                 bash -c 'PGPASSWORD=${PGPASSWORD} psql -U ${POSTGRES_USER} ${POSTGRES_DB}'
         else
             sail_is_not_running
         fi
@@ -253,7 +253,7 @@ if [ $# -gt 0 ]; then
         fi
 
     # Initiate a root user Bash shell within the application container...
-    elif [ "$1" == "root-shell" ]; then
+    elif [ "$1" == "root-shell" ] ; then
         shift 1
 
         if [ "$EXEC" == "yes" ]; then
@@ -270,9 +270,9 @@ if [ $# -gt 0 ]; then
 
         if [ "$EXEC" == "yes" ]; then
             docker run --init beyondcodegmbh/expose-server:latest share http://host.docker.internal:"$APP_PORT" \
-                --server-host=laravel-sail.site \
-                --server-port=8080 \
-                "$@"
+            --server-host=laravel-sail.site \
+            --server-port=8080 \
+            "$@"
         else
             sail_is_not_running
         fi

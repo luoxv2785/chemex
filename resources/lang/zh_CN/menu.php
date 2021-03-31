@@ -55,5 +55,6 @@ return [
         'setting' => '配置',
         'assets' => '资产',
         'additional_options' => '补充信息',
+        'database_backup' => '数据备份'
     ],
 ];
