@@ -60,7 +60,6 @@ class DatabaseBackup extends Command
             'admin_roles',
             'admin_settings',
             'admin_users',
-            'chart_records',
             'check_records',
             'check_tracks',
             'column_sorts',

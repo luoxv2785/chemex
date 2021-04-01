@@ -44,7 +44,7 @@ class DatabaseRestore extends Command
         $this->call('chemex:db-restore-custom-column');
 
         // 恢复数据
-        $this->call('chemex:db-restore');
+        $this->call('db:seed');
 
         return 0;
     }

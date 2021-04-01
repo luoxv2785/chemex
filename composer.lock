@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f9c78b8309e5c473df73d69a78f17ca5",
+    "content-hash": "780ae875e221a97bea8e14556775f19d",
     "packages": [
         {
             "name": "adldap2/adldap2",
@@ -968,16 +968,16 @@
         },
         {
             "name": "dcat/laravel-admin",
-            "version": "2.0.21-beta",
+            "version": "2.0.22-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jqhph/dcat-admin.git",
-                "reference": "346fd577d87423d52dea5da18ee306239e663b8c"
+                "reference": "863668b21cfc07f2e4f34cb3851a1b4d0a565df3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jqhph/dcat-admin/zipball/346fd577d87423d52dea5da18ee306239e663b8c",
-                "reference": "346fd577d87423d52dea5da18ee306239e663b8c",
+                "url": "https://api.github.com/repos/jqhph/dcat-admin/zipball/863668b21cfc07f2e4f34cb3851a1b4d0a565df3",
+                "reference": "863668b21cfc07f2e4f34cb3851a1b4d0a565df3",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1037,9 +1037,9 @@
             ],
             "support": {
                 "issues": "https://github.com/jqhph/dcat-admin/issues",
-                "source": "https://github.com/jqhph/dcat-admin/tree/2.0.21-beta"
+                "source": "https://github.com/jqhph/dcat-admin/tree/2.0.22-beta"
             },
-            "time": "2021-03-31T03:46:04+00:00"
+            "time": "2021-04-01T12:25:13+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",

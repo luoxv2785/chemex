@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '40f818e6d3d1379457130d291a2ca9b69eedccc1',
+    'reference' => 'a1f74bc421bdda0dca0777f8bd7d11fe16661ced',
     'name' => 'celaraze/chemex',
   ),
   'versions' => 
@@ -63,7 +63,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '40f818e6d3d1379457130d291a2ca9b69eedccc1',
+      'reference' => 'a1f74bc421bdda0dca0777f8bd7d11fe16661ced',
     ),
     'celaraze/pour' => 
     array (
@@ -154,12 +154,12 @@
     ),
     'dcat/laravel-admin' => 
     array (
-      'pretty_version' => '2.0.21-beta',
-      'version' => '2.0.21.0-beta',
+      'pretty_version' => '2.0.22-beta',
+      'version' => '2.0.22.0-beta',
       'aliases' => 
       array (
       ),
-      'reference' => '346fd577d87423d52dea5da18ee306239e663b8c',
+      'reference' => '863668b21cfc07f2e4f34cb3851a1b4d0a565df3',
     ),
     'dnoegel/php-xdg-base-dir' => 
     array (

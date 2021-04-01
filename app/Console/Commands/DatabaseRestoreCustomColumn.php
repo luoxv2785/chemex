@@ -16,7 +16,7 @@ class DatabaseRestoreCustomColumn extends Command
      *
      * @var string
      */
-    protected $signature = 'chemex:custom-column';
+    protected $signature = 'chemex:db-restore-custom-column';
 
     /**
      * The console command description.
@@ -42,6 +42,8 @@ class DatabaseRestoreCustomColumn extends Command
      */
     public function handle(): int
     {
+        $this->call('db:seed', ['--class' => 'CustomColumnsTableSeeder']);
+
         $custom_columns = CustomColumn::all();
         foreach ($custom_columns as $custom_column) {
             try {

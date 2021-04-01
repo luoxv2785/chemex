@@ -11,7 +11,7 @@ class DatabaseFill extends Command
      *
      * @var string
      */
-    protected $signature = 'chemex:database-fill';
+    protected $signature = 'chemex:db-fill';
 
     /**
      * The console command description.

@@ -70,7 +70,7 @@ class Install extends Command
         $this->call('db:seed', ['--class' => 'AdminRolePermissionsTableSeeder']);
         // 填充用户-角色
         $this->call('db:seed', ['--class' => 'AdminRoleUsersTableSeeder']);
-        $this->call('chemex:database-fill');
+        $this->call('chemex:db-fill');
         $this->call('chemex:admin-reset');
         $this->info('安装完成！');
         $this->warn('用户名密码都为：admin');

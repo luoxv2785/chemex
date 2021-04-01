@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Dcat\Admin\Traits\ModelTree;
-use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -187,7 +186,7 @@ class DeviceRecord extends Model
      */
     public function userName(): string
     {
-        $user = $this->user()->first();
+        $user = $this->adminUser()->first();
         if (empty($user)) {
             $name = '闲置';
         } else {
