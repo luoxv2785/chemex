@@ -37,6 +37,7 @@ class DatabaseBackup extends Command
      */
     public function handle(): int
     {
+        $this->call('chemex:db-backup-custom-column');
         $this->info('开始导出数据：');
         foreach ($this->tables() as $table) {
             $this->call('iseed', ['tables' => $table, '--force' => true, '--clean' => true]);
@@ -66,7 +67,6 @@ class DatabaseBackup extends Command
             'consumable_categories',
             'consumable_records',
             'consumable_tracks',
-            'custom_columns',
             'departments',
             'depreciation_rules',
             'device_categories',
