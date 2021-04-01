@@ -82,32 +82,42 @@
 
 `MySQL 8 +`，数据库引擎，理论上 `MariaDB 10.2 +` 兼容支持。
 
-`ext-zip` 扩展，注意和 PHP 版本相同。
+`ext-zip` 扩展。
 
-`ext-json` 扩展，注意和 PHP 版本相同。
+`ext-json` 扩展。
 
-`ext-fileinfo` 扩展，注意和 PHP 版本相同。
+`ext-fileinfo` 扩展。
 
-`ext-ldap` 扩展，注意和 PHP 版本相同。
+`ext-ldap` 扩展。
 
-`ext-bcmath` 扩展，注意和 PHP 版本相同。
+`ext-bcmath` 扩展。
+
+`ext-mysqli` 扩展。
+
+`ext-xml` 扩展。
+
+`ext-xmlrpc` 扩展。
+
+以上扩展安装过程注意版本必须与 PHP 版本一致。
 
 ## 部署
 
 ### OVF
 
+已同步更新只最新版本 `3.0.0` 。
+
 考虑到部署复杂性，我们也提供了基于 Ubuntu 20.04 Server 制作的 OVF 包。OVF 支持 VMware ESXi 6.5+ 或 VMware Workstation 14.x+ 或 VMware Fusion
 10.x+。
 
-下载地址：[https://pan.baidu.com/s/1V4WIuO4TUvJj4NLjRxPRug](https://pan.baidu.com/s/1V4WIuO4TUvJj4NLjRxPRug)，提取码：`qvzj`。
+下载地址：[https://pan.baidu.com/s/1w88CN49JOBD2zRLKmLvA2Q](https://pan.baidu.com/s/1w88CN49JOBD2zRLKmLvA2Q)，提取码：`mp1p`。
 
-OVF 中包含以下组件：Nginx MariaDB PHP7.4，网络通过 NAT 实现。
+OVF 中包含以下组件：Nginx MySQL PHP7.4，网络通过 NAT 实现。
 
 Ubuntu 账密：chemex/chemex
 
-Web 程序主目录：/var/www/html/chemex
+Web 程序主目录：/var/www/html
 
-MariaDB 账密：chemex/chemex
+MySQL 账密：chemex/chemex
 
 部署完成后，LNMP 服务会自启，先查看此虚拟机 IP，然后在其它主机直接通过 IP 访问 Web 服务即可。
 
