@@ -17,12 +17,10 @@ return [
         'Delete' => '删除设备',
         'Delete Confirm' => '确认删除？',
         'Delete Confirm Description' => '删除的同时将会解除所有与之关联的归属关系',
-        'Update SSH' => '编辑SSH连接信息',
         'Track Create Update' => '分配用户',
         'Batch Track Create Update' => '批量分配用户',
         'Maintenance Create' => '报告故障',
         'Import' => '导入',
-        'Update SSH Success' => 'SSH信息配置成功！',
         'Export To Excel' => '导出到Excel',
         'NG Description' => '故障描述',
         'Lend Track Create' => '借用设备',
@@ -46,7 +44,7 @@ return [
         'mac' => 'MAC',
         'ip' => 'IP',
         'photo' => '照片',
-        'user' => [
+        'adminUser' => [
             'name' => '用户',
             'department' => [
                 'name' => '部门',
