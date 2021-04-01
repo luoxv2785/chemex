@@ -75,85 +75,13 @@ class DeviceRecordController extends AdminController
     }
 
     /**
-     * 返回字段排序.
-     *
-     * @return mixed
-     */
-    public function sortColumns()
-    {
-        return ColumnSort::where('table_name', (new DeviceRecord())->getTable())
-            ->get(['field', 'order'])
-            ->toArray();
-    }
-
-    /**
-     * 详情页构建器
-     * 为了复写详情页的布局
-     *
-     * @param mixed $id
-     * @param Content $content
-     *
-     * @return Content
-     */
-    public function show($id, Content $content): Content
-    {
-        return $content
-            ->title($this->title())
-            ->description($this->description()['index'] ?? trans('admin.show'))
-            ->body(function (Row $row) use ($id) {
-                $row->column(7, $this->detail($id));
-                $row->column(5, function (Column $column) use ($id) {
-                    // 处理设备使用人
-                    $device = $this->detail($id)->model();
-                    $column->row(Card::make()->content(admin_trans_label('Current User') . '：' . $device->userName()));
-
-                    $related = Support::makeDeviceRelatedChartData($id);
-                    $column->row(new Card(trans('main.related'), view('charts.device_related')->with('related', $related)));
-                    $result = self::hasDeviceRelated($id);
-                    $column->row(new Card(trans('main.part'), $result['part']));
-                    $column->row(new Card(trans('main.software'), $result['software']));
-                    $column->row(new Card(trans('main.service'), $result['service']));
-
-                    // 处理设备履历
-                    $history = DeviceService::history($id);
-                    $card = new Card(trans('main.history'), view('history')->with('data', $history));
-                    // @permissions
-                    if (Admin::user()->can('device.record.history.export')) {
-                        $card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.device.history', ['device_id' => $id]) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>');
-                    }
-                    $column->row($card);
-                });
-            });
-    }
-
-    public function selectList(Request $request)
-    {
-        $q = $request->get('q');
-
-        return \App\Models\DeviceRecord::where('name', 'like', "%$q%")
-            ->paginate(null, ['id', 'name as text']);
-    }
-
-    /**
-     * 履历导出.
-     *
-     * @param $device_id
-     *
-     * @return mixed
-     */
-    public function exportHistory($device_id)
-    {
-        return ExportService::deviceHistory($device_id);
-    }
-
-    /**
      * Make a grid builder.
      *
      * @return Grid
      */
     protected function grid(): Grid
     {
-        return Grid::make(new DeviceRecord(['category', 'vendor', 'user', 'user.department', 'channel', 'depreciation']), function (Grid $grid) {
+        return Grid::make(new DeviceRecord(['category', 'vendor', 'adminUser', 'adminUser.department', 'channel', 'depreciation']), function (Grid $grid) {
             $sort_columns = $this->sortColumns();
             $grid->column('id', '', $sort_columns);
 //            $grid->column('qrcode', '', $sort_columns)->qrcode(function () {
@@ -177,13 +105,13 @@ class DeviceRecordController extends AdminController
             $grid->column('price', '', $sort_columns);
             $grid->column('purchased', '', $sort_columns);
             $grid->column('expired', '', $sort_columns);
-            $grid->column('user.name', '', $sort_columns)->display(function ($name) {
+            $grid->column('adminUser.name', '', $sort_columns)->display(function ($name) {
                 if ($this->isLend()) {
                     return '<span style="color: rgba(178,68,71,1);font-weight: 600;">[' . trans('main.lend') . '] </span>' . $name;
                 }
                 return $name;
             });
-            $grid->column('user.department.name', '', $sort_columns);
+            $grid->column('adminUser.department.name', '', $sort_columns);
             $grid->column('expiration_left_days', '', $sort_columns)->display(function () {
                 return ExpirationService::itemExpirationLeftDaysRender('device', $this->id);
             });
@@ -255,7 +183,7 @@ class DeviceRecordController extends AdminController
                 'channel.name',
                 'depreciation.name',
                 'expiration_left_days',
-                'user.department.name',
+                'adminUser.department.name',
             ]);
 
             /**
@@ -271,8 +199,8 @@ class DeviceRecordController extends AdminController
                     'mac',
                     'ip',
                     'price',
-                    'user.name',
-                    'user.department.name',
+                    'adminUser.name',
+                    'adminUser.department.name',
                 ], ControllerHasCustomColumns::makeQuickSearch((new DeviceRecord())->getTable()))
             )
                 ->placeholder(trans('main.quick_search'))
@@ -288,8 +216,8 @@ class DeviceRecordController extends AdminController
                 $filter->scope('history', admin_trans_label('Deleted'))->onlyTrashed();
                 $filter->equal('category_id')->select(DeviceCategory::pluck('name', 'id'));
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
-                $filter->equal('user.name')->select(Support::selectUsers('name'));
-                $filter->equal('user.department_id')->select(Department::pluck('name', 'id'));
+                $filter->equal('adminUser.name')->select(Support::selectUsers('name'));
+                $filter->equal('adminUser.department_id')->select(Department::pluck('name', 'id'));
                 $filter->equal('depreciation_id')->select(DepreciationRule::pluck('name', 'id'));
                 /**
                  * 自定义字段.
@@ -325,6 +253,58 @@ class DeviceRecordController extends AdminController
     }
 
     /**
+     * 返回字段排序.
+     *
+     * @return mixed
+     */
+    public function sortColumns()
+    {
+        return ColumnSort::where('table_name', (new DeviceRecord())->getTable())
+            ->get(['field', 'order'])
+            ->toArray();
+    }
+
+    /**
+     * 详情页构建器
+     * 为了复写详情页的布局
+     *
+     * @param mixed $id
+     * @param Content $content
+     *
+     * @return Content
+     */
+    public function show($id, Content $content): Content
+    {
+        return $content
+            ->title($this->title())
+            ->description($this->description()['index'] ?? trans('admin.show'))
+            ->body(function (Row $row) use ($id) {
+                $row->column(7, $this->detail($id));
+                $row->column(5, function (Column $column) use ($id) {
+                    // 处理设备使用人
+                    $device = $this->detail($id)->model();
+                    $column->row(Card::make()->content(admin_trans_label('Current User') . '：' . $device->userName()));
+
+                    $related = Support::makeDeviceRelatedChartData($id);
+                    $column->row(new Card(trans('main.related'), view('charts.device_related')->with('related', $related)));
+                    $result = self::hasDeviceRelated($id);
+                    $column->row(new Card(trans('main.part'), $result['part']));
+                    $column->row(new Card(trans('main.software'), $result['software']));
+                    $column->row(new Card(trans('main.service'), $result['service']));
+
+                    // 处理设备履历
+                    $history = DeviceService::history($id);
+                    $card = new Card(trans('main.history'), view('history')->with('data', $history));
+                    // @permissions
+                    if (Admin::user()->can('device.record.history.export')) {
+                        $card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.device.history', ['device_id' => $id]) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>');
+                    }
+                    $column->row($card);
+                });
+            });
+    }
+
+    /**
      * Make a show builder.
      *
      * @param mixed $id
@@ -333,7 +313,7 @@ class DeviceRecordController extends AdminController
      */
     protected function detail($id): Show
     {
-        return Show::make($id, new DeviceRecord(['category', 'vendor', 'channel', 'user', 'user.department', 'depreciation']), function (Show $show) {
+        return Show::make($id, new DeviceRecord(['category', 'vendor', 'channel', 'adminUser', 'adminUser.department', 'depreciation']), function (Show $show) {
             $sort_columns = $this->sortColumns();
             $show->field('id', '', $sort_columns);
             $show->field('asset_number', '', $sort_columns);
@@ -355,8 +335,8 @@ class DeviceRecordController extends AdminController
             });
             $show->field('purchased', '', $sort_columns);
             $show->field('expired', '', $sort_columns);
-            $show->field('user.name', '', $sort_columns);
-            $show->field('user.department.name', '', $sort_columns);
+            $show->field('adminUser.name', '', $sort_columns);
+            $show->field('adminUser.department.name', '', $sort_columns);
             $show->field('depreciation.name', '', $sort_columns);
             $show->field('depreciation.termination', '', $sort_columns);
 
@@ -393,6 +373,26 @@ class DeviceRecordController extends AdminController
                 $show->disableEditButton();
             }
         });
+    }
+
+    public function selectList(Request $request)
+    {
+        $q = $request->get('q');
+
+        return \App\Models\DeviceRecord::where('name', 'like', "%$q%")
+            ->paginate(null, ['id', 'name as text']);
+    }
+
+    /**
+     * 履历导出.
+     *
+     * @param $device_id
+     *
+     * @return mixed
+     */
+    public function exportHistory($device_id)
+    {
+        return ExportService::deviceHistory($device_id);
     }
 
     /**

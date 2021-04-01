@@ -14,10 +14,11 @@ class AdminRoleMenuTableSeeder extends Seeder
      */
     public function run()
     {
-
+        
 
         \DB::table('admin_role_menu')->delete();
-
-
+        
+        
+        
     }
 }

@@ -36,19 +36,6 @@ class VendorRecordController extends AdminController
     }
 
     /**
-     * @param Request $request
-     *
-     * @return mixed
-     */
-    public function selectList(Request $request)
-    {
-        $q = $request->get('q');
-
-        return \App\Models\VendorRecord::where('name', 'like', "%$q%")
-            ->paginate(null, ['id', 'name as text']);
-    }
-
-    /**
      * Make a grid builder.
      *
      * @return Grid
@@ -104,6 +91,19 @@ class VendorRecordController extends AdminController
                 $grid->export();
             }
         });
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return mixed
+     */
+    public function selectList(Request $request)
+    {
+        $q = $request->get('q');
+
+        return \App\Models\VendorRecord::where('name', 'like', "%$q%")
+            ->paginate(null, ['id', 'name as text']);
     }
 
     /**

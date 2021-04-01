@@ -4,14 +4,14 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class Fill extends Command
+class DatabaseFill extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'chemex:fill';
+    protected $signature = 'chemex:db-fill';
 
     /**
      * The console command description.

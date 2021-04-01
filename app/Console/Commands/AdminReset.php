@@ -5,14 +5,14 @@ namespace App\Console\Commands;
 use App\Models\User;
 use Illuminate\Console\Command;
 
-class ResetAdminAccount extends Command
+class AdminReset extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'chemex:reset';
+    protected $signature = 'chemex:admin-reset';
 
     /**
      * The console command description.
@@ -43,7 +43,6 @@ class ResetAdminAccount extends Command
             $user = new User();
             $user->username = 'admin';
         }
-        $user->department_id = 0;
         $user->password = bcrypt('admin');
         $user->name = 'Administrator';
         $user->save();

@@ -3,23 +3,22 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 
-class DatabaseReset extends Command
+class DatabaseBackupCustomColumn extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'chemex:db-reset';
+    protected $signature = 'chemex:db-backup-custom-column';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = '重置数据库';
+    protected $description = '备份自定义字段数据';
 
     /**
      * Create a new command instance.
@@ -38,11 +37,9 @@ class DatabaseReset extends Command
      */
     public function handle(): int
     {
-        $this->info('正在重置数据库：');
-        $db_name = config('database.connections.mysql.database');
-        DB::select('drop database ' . $db_name);
-        DB::select('create database ' . $db_name);
-        $this->info('重置完成！');
+        $this->info('开始导出数据（自定义字段）：');
+        $this->call('iseed', ['tables' => 'custom_columns', '--force' => true, '--clean' => true]);
+        $this->info('导出完成。');
 
         return 0;
     }

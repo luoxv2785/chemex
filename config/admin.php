@@ -159,6 +159,12 @@ return [
         |--------------------------------------------------------------------------
         */
         'grid_action_class' => RowActions::class,
+        'column_selector' => [
+            'store' => Dcat\Admin\Grid\ColumnSelector\CacheStore::class,
+            'store_params' => [
+                'driver' => 'file',
+            ],
+        ],
     ],
 
     /*
@@ -316,12 +322,7 @@ return [
     | Extension
     |--------------------------------------------------------------------------
     */
-    'extension' => [
-        // When you use command `php artisan admin:ext-make` to generate extensions,
-        // the extension files will be generated in this directory.
-        'dir' => base_path('dcat-admin-extensions'),
-    ],
 
     'demo' => env('ADMIN_DEMO', false),
-    'chemex_version' => '3.0.0-rc',
+    'chemex_version' => '3.0.0',
 ];

@@ -1001,17 +1001,17 @@
         },
         {
             "name": "dcat/laravel-admin",
-            "version": "2.0.20-beta",
-            "version_normalized": "2.0.20.0-beta",
+            "version": "2.0.22-beta",
+            "version_normalized": "2.0.22.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jqhph/dcat-admin.git",
-                "reference": "1f2a7eb420527e38e133cbf7b3c5889e097a133b"
+                "reference": "863668b21cfc07f2e4f34cb3851a1b4d0a565df3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jqhph/dcat-admin/zipball/1f2a7eb420527e38e133cbf7b3c5889e097a133b",
-                "reference": "1f2a7eb420527e38e133cbf7b3c5889e097a133b",
+                "url": "https://api.github.com/repos/jqhph/dcat-admin/zipball/863668b21cfc07f2e4f34cb3851a1b4d0a565df3",
+                "reference": "863668b21cfc07f2e4f34cb3851a1b4d0a565df3",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1033,7 +1033,7 @@
                 "phpstan/phpstan": "^0.12.0",
                 "phpunit/phpunit": "^7.5"
             },
-            "time": "2021-03-08T15:18:07+00:00",
+            "time": "2021-04-01T12:25:13+00:00",
             "type": "library",
             "extra": {
                 "laravel": {
@@ -1073,7 +1073,7 @@
             ],
             "support": {
                 "issues": "https://github.com/jqhph/dcat-admin/issues",
-                "source": "https://github.com/jqhph/dcat-admin/tree/2.0.20-beta"
+                "source": "https://github.com/jqhph/dcat-admin/tree/2.0.22-beta"
             },
             "install-path": "../dcat/laravel-admin"
         },
@@ -2041,17 +2041,17 @@
         },
         {
             "name": "facade/flare-client-php",
-            "version": "1.4.0",
-            "version_normalized": "1.4.0.0",
+            "version": "1.5.0",
+            "version_normalized": "1.5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/flare-client-php.git",
-                "reference": "ef0f5bce23b30b32d98fd9bb49c6fa37b40eb546"
+                "reference": "9dd6f2b56486d939c4467b3f35475d44af57cf17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/ef0f5bce23b30b32d98fd9bb49c6fa37b40eb546",
-                "reference": "ef0f5bce23b30b32d98fd9bb49c6fa37b40eb546",
+                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/9dd6f2b56486d939c4467b3f35475d44af57cf17",
+                "reference": "9dd6f2b56486d939c4467b3f35475d44af57cf17",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2073,7 +2073,7 @@
                 "phpunit/phpunit": "^7.5.16",
                 "spatie/phpunit-snapshot-assertions": "^2.0"
             },
-            "time": "2021-02-16T12:42:06+00:00",
+            "time": "2021-03-31T07:32:54+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -2103,7 +2103,7 @@
             ],
             "support": {
                 "issues": "https://github.com/facade/flare-client-php/issues",
-                "source": "https://github.com/facade/flare-client-php/tree/1.4.0"
+                "source": "https://github.com/facade/flare-client-php/tree/1.5.0"
             },
             "funding": [
                 {
@@ -2115,17 +2115,17 @@
         },
         {
             "name": "facade/ignition",
-            "version": "2.6.0",
-            "version_normalized": "2.6.0.0",
+            "version": "2.7.0",
+            "version_normalized": "2.7.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "4be10a998815f77952b9eb983fb0b64c8a4defbb"
+                "reference": "bdc8b0b32c888f6edc838ca641358322b3d9506d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/4be10a998815f77952b9eb983fb0b64c8a4defbb",
-                "reference": "4be10a998815f77952b9eb983fb0b64c8a4defbb",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/bdc8b0b32c888f6edc838ca641358322b3d9506d",
+                "reference": "bdc8b0b32c888f6edc838ca641358322b3d9506d",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2155,7 +2155,7 @@
             "suggest": {
                 "laravel/telescope": "^3.1"
             },
-            "time": "2021-03-24T18:58:31+00:00",
+            "time": "2021-03-30T15:55:38+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -2330,17 +2330,17 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.11.0",
-            "version_normalized": "2.11.0.0",
+            "version": "2.12.0",
+            "version_normalized": "2.12.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "f6e14679f948d8a5cfb866fa7065a30c66bd64d3"
+                "reference": "d501fd2658d55491a2295ff600ae5978eaad7403"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/f6e14679f948d8a5cfb866fa7065a30c66bd64d3",
-                "reference": "f6e14679f948d8a5cfb866fa7065a30c66bd64d3",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/d501fd2658d55491a2295ff600ae5978eaad7403",
+                "reference": "d501fd2658d55491a2295ff600ae5978eaad7403",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2362,7 +2362,7 @@
                 "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
                 "whoops/soap": "Formats errors as SOAP responses"
             },
-            "time": "2021-03-19T12:00:00+00:00",
+            "time": "2021-03-30T12:00:00+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -2398,7 +2398,7 @@
             ],
             "support": {
                 "issues": "https://github.com/filp/whoops/issues",
-                "source": "https://github.com/filp/whoops/tree/2.11.0"
+                "source": "https://github.com/filp/whoops/tree/2.12.0"
             },
             "funding": [
                 {
@@ -3140,17 +3140,17 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.34.0",
-            "version_normalized": "8.34.0.0",
+            "version": "v8.35.1",
+            "version_normalized": "8.35.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "81892ca110795a9c46c7e198cba7763bfd2af0bf"
+                "reference": "d118c0df39e7524131176aaf76493eae63a8a602"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/81892ca110795a9c46c7e198cba7763bfd2af0bf",
-                "reference": "81892ca110795a9c46c7e198cba7763bfd2af0bf",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/d118c0df39e7524131176aaf76493eae63a8a602",
+                "reference": "d118c0df39e7524131176aaf76493eae63a8a602",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -3270,7 +3270,7 @@
                 "symfony/psr-http-message-bridge": "Required to use PSR-7 bridging features (^2.0).",
                 "wildbit/swiftmailer-postmark": "Required to use Postmark mail driver (^3.0)."
             },
-            "time": "2021-03-23T15:12:51+00:00",
+            "time": "2021-03-30T21:34:17+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -3317,17 +3317,17 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.4.9",
-            "version_normalized": "1.4.9.0",
+            "version": "v1.4.10",
+            "version_normalized": "1.4.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "935b453bf536b284d6fef7c1b5dd2ea52bca34c0"
+                "reference": "4f0b2bac128ee60a11d9758651f103f78157474a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/935b453bf536b284d6fef7c1b5dd2ea52bca34c0",
-                "reference": "935b453bf536b284d6fef7c1b5dd2ea52bca34c0",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/4f0b2bac128ee60a11d9758651f103f78157474a",
+                "reference": "4f0b2bac128ee60a11d9758651f103f78157474a",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -3342,7 +3342,7 @@
                 "illuminate/support": "^8.0|^9.0",
                 "php": "^7.3|^8.0"
             },
-            "time": "2021-03-23T17:29:26+00:00",
+            "time": "2021-03-30T21:26:44+00:00",
             "bin": [
                 "bin/sail"
             ],
@@ -10876,17 +10876,17 @@
         },
         {
             "name": "tightenco/collect",
-            "version": "v8.19.0",
-            "version_normalized": "8.19.0.0",
+            "version": "v8.34.0",
+            "version_normalized": "8.34.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tighten/collect.git",
-                "reference": "0c0243a0dc0b66f54d0ec409f36cd9889665b132"
+                "reference": "b069783ab0c547bb894ebcf8e7f6024bb401f9d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tighten/collect/zipball/0c0243a0dc0b66f54d0ec409f36cd9889665b132",
-                "reference": "0c0243a0dc0b66f54d0ec409f36cd9889665b132",
+                "url": "https://api.github.com/repos/tighten/collect/zipball/b069783ab0c547bb894ebcf8e7f6024bb401f9d2",
+                "reference": "b069783ab0c547bb894ebcf8e7f6024bb401f9d2",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -10904,7 +10904,7 @@
                 "nesbot/carbon": "^2.23.0",
                 "phpunit/phpunit": "^8.3"
             },
-            "time": "2020-12-19T00:06:29+00:00",
+            "time": "2021-03-29T21:29:00+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -10933,7 +10933,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tighten/collect/issues",
-                "source": "https://github.com/tighten/collect/tree/v8.19.0"
+                "source": "https://github.com/tighten/collect/tree/v8.34.0"
             },
             "install-path": "../tightenco/collect"
         },

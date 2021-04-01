@@ -24,6 +24,28 @@ use Pour\Plus\LaravelAdmin;
 trait ControllerHasColumnSort
 {
     /**
+     * 页面渲染.
+     *
+     * @return Row
+     */
+    protected function render(): Row
+    {
+        return new Row(function (Column $column) {
+            $column->row(function (Row $row) {
+                if ($this->creatable()) {
+                    $row->column(6, $this->treeView());
+                    $row->column(6, function (Column $column) {
+                        $column->row($this->createBox());
+                    });
+
+                } else {
+                    $row->column(12, $this->treeView());
+                }
+            });
+        });
+    }
+
+    /**
      * 判断当前实例和权限，是否有可创建的权限.
      *
      * @return bool
@@ -50,57 +72,6 @@ trait ControllerHasColumnSort
         }
 
         return $creatable;
-    }
-
-    /**
-     * 判断当前实例和权限，是否有可创建的权限.
-     *
-     * @return bool
-     */
-    public function deletable(): bool
-    {
-        $repository = $this->repository();
-        $deletable = false;
-        // @permissions
-        if ($repository instanceof DeviceRecord && Admin::user()->can('device.column.delete')) {
-            $deletable = true;
-        }
-        if ($repository instanceof PartRecord && Admin::user()->can('part.column.delete')) {
-            $deletable = true;
-        }
-        if ($repository instanceof SoftwareRecord && Admin::user()->can('software.column.delete')) {
-            $deletable = true;
-        }
-        if ($repository instanceof ConsumableRecord && Admin::user()->can('consumable.column.delete')) {
-            $deletable = true;
-        }
-        if ($repository instanceof ServiceRecord && Admin::user()->can('service.column.delete')) {
-            $deletable = true;
-        }
-
-        return $deletable;
-    }
-
-    /**
-     * 页面渲染.
-     *
-     * @return Row
-     */
-    protected function render(): Row
-    {
-        return new Row(function (Column $column) {
-            $column->row(function (Row $row) {
-                if ($this->creatable()) {
-                    $row->column(6, $this->treeView());
-                    $row->column(6, function (Column $column) {
-                        $column->row($this->createBox());
-                    });
-
-                } else {
-                    $row->column(12, $this->treeView());
-                }
-            });
-        });
     }
 
     /**
@@ -141,6 +112,35 @@ trait ControllerHasColumnSort
             $tree->disableQuickCreateButton();
             $tree->disableDeleteButton();
         });
+    }
+
+    /**
+     * 判断当前实例和权限，是否有可创建的权限.
+     *
+     * @return bool
+     */
+    public function deletable(): bool
+    {
+        $repository = $this->repository();
+        $deletable = false;
+        // @permissions
+        if ($repository instanceof DeviceRecord && Admin::user()->can('device.column.delete')) {
+            $deletable = true;
+        }
+        if ($repository instanceof PartRecord && Admin::user()->can('part.column.delete')) {
+            $deletable = true;
+        }
+        if ($repository instanceof SoftwareRecord && Admin::user()->can('software.column.delete')) {
+            $deletable = true;
+        }
+        if ($repository instanceof ConsumableRecord && Admin::user()->can('consumable.column.delete')) {
+            $deletable = true;
+        }
+        if ($repository instanceof ServiceRecord && Admin::user()->can('service.column.delete')) {
+            $deletable = true;
+        }
+
+        return $deletable;
     }
 
     /**
