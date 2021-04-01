@@ -199,9 +199,6 @@ class Version300 extends Migration
             $table->string('mac')->nullable();
             $table->string('ip')->nullable();
             $table->string('photo')->nullable();
-            $table->string('ssh_username')->nullable();
-            $table->string('ssh_password')->nullable();
-            $table->string('ssh_port')->nullable();
             $table->double('price')->nullable();
             $table->date('purchased')->nullable();
             $table->date('expired')->nullable();

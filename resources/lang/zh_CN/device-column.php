@@ -24,9 +24,6 @@ return [
         'purchased' => '购入日期',
         'expired' => '过保日期',
         'asset_number' => '资产编号',
-        'ssh_username' => 'SSH用户名',
-        'ssh_password' => 'SSH密码',
-        'ssh_port' => 'SSH端口号',
         'category' => [
             'name' => '分类',
         ],
