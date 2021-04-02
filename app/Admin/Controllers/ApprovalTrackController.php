@@ -3,7 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Grid\Displayers\RowActions;
-use App\Admin\Repositories\ApprovalRecord;
+use App\Admin\Repositories\ApprovalTrack;
 use App\Support\Data;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
@@ -19,7 +19,7 @@ use Dcat\Admin\Widgets\Tab;
  * @property string item
  * @property int status
  */
-class ApprovalRecordController extends AdminController
+class ApprovalTrackController extends AdminController
 {
     /**
      * Index interface.
@@ -52,10 +52,11 @@ class ApprovalRecordController extends AdminController
      */
     protected function grid(): Grid
     {
-        return Grid::make(new ApprovalRecord(), function (Grid $grid) {
+        return Grid::make(new ApprovalTrack(), function (Grid $grid) {
             $grid->column('id');
-            $grid->column('name');
-            $grid->column('description');
+            $grid->column('approval_id');
+            $grid->column('checkers');
+            $grid->column('order');
             $grid->column('created_at');
             $grid->column('updated_at');
 
@@ -69,7 +70,7 @@ class ApprovalRecordController extends AdminController
             /**
              * 快速搜索
              */
-            $grid->quickSearch('id', 'name', 'description')
+            $grid->quickSearch('id')
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
@@ -92,10 +93,11 @@ class ApprovalRecordController extends AdminController
 
     protected function detail($id): Show
     {
-        return Show::make($id, new ApprovalRecord(), function (Show $show) {
+        return Show::make($id, new ApprovalTrack(), function (Show $show) {
             $show->field('id');
-            $show->field('name');
-            $show->field('description');
+            $show->field('approval_id');
+            $show->field('checkers');
+            $show->field('order');
             $show->field('created_at');
             $show->field('updated_at');
         });
@@ -103,10 +105,11 @@ class ApprovalRecordController extends AdminController
 
     protected function form(): Form
     {
-        return Form::make(new ApprovalRecord(), function (Form $form) {
+        return Form::make(new ApprovalTrack(), function (Form $form) {
             $form->display('id');
-            $form->text('name')->required();
-            $form->textarea('description');
+            $form->text('approval_id')->required();
+            $form->text('checkers');
+            $form->text('order');
 
             $form->display('created_at');
             $form->display('updated_at');

@@ -2,9 +2,9 @@
 
 return [
     'labels' => [
-        'title' => '审批',
+        'title' => '流程审批',
         'description' => '流程引擎定义',
-        'approval_record' => '审批',
+        'records' => '流程审批',
     ],
     'fields' => [
         'name' => '名称',

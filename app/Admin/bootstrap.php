@@ -28,6 +28,7 @@ $site->initConfig();
 $site->injectFields();
 $site->footerRemove();
 $site->gridRowActionsRight();
+$site->customCSS();
 
 // 获取当前用户的通知
 $user = User::where('id', auth('admin')->id())->first();

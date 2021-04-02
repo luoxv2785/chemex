@@ -180,6 +180,12 @@ Route::group([
         ->names('check.tracks');
 
     /**
+     * 流程审批
+     */
+    $router->resource('/approval/records', 'ApprovalRecordController')
+        ->names('approval.records');
+
+    /**
      * 故障维护.
      */
     $router->resource('/maintenance/records', 'MaintenanceRecordController')

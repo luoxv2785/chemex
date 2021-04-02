@@ -184,4 +184,12 @@ CSS
             );
         }
     }
+
+    /**
+     * 引入自定义CSS
+     */
+    public function customCSS()
+    {
+        Admin::css('static/css/main.css');
+    }
 }

@@ -19,7 +19,7 @@ class ApprovalTrack extends Model
 
     protected $table = 'approval_tracks';
 
-    public function record(): BelongsTo
+    public function approval(): BelongsTo
     {
         return $this->belongsTo(ApprovalRecord::class, 'approval_id', 'id');
     }
