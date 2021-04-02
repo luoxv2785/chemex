@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'a1f74bc421bdda0dca0777f8bd7d11fe16661ced',
+    'reference' => '9cef97fd8b224f0747fda932bebd07b2a9dbb2b1',
     'name' => 'celaraze/chemex',
   ),
   'versions' => 
@@ -87,7 +87,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'a1f74bc421bdda0dca0777f8bd7d11fe16661ced',
+      'reference' => '9cef97fd8b224f0747fda932bebd07b2a9dbb2b1',
     ),
     'celaraze/pour' => 
     array (
@@ -110,12 +110,12 @@ private static $installed = array (
     ),
     'composer/composer' => 
     array (
-      'pretty_version' => '2.0.11',
-      'version' => '2.0.11.0',
+      'pretty_version' => '2.0.12',
+      'version' => '2.0.12.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'a5a5632da0b1c2d6fa9a3b65f1f4e90d1f04abb9',
+      'reference' => '6c12ce263da71641903e399c3ce8ecb08fd375fb',
     ),
     'composer/package-versions-deprecated' => 
     array (

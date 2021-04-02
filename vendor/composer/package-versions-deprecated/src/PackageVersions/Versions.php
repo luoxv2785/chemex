@@ -40,7 +40,7 @@ final class Versions
   'brick/math' => '0.9.2@dff976c2f3487d42c1db75a3b180e2b9f0e72ce0',
   'celaraze/pour' => 'dev-master@9e967f623497955e02ff4589fabdd53e8b508a0d',
   'composer/ca-bundle' => '1.2.9@78a0e288fdcebf92aa2318a8d3656168da6ac1a5',
-  'composer/composer' => '2.0.11@a5a5632da0b1c2d6fa9a3b65f1f4e90d1f04abb9',
+  'composer/composer' => '2.0.12@6c12ce263da71641903e399c3ce8ecb08fd375fb',
   'composer/package-versions-deprecated' => '1.11.99.1@7413f0b55a051e89485c5cb9f765fe24bb02a7b6',
   'composer/semver' => '3.2.4@a02fdf930a3c1c3ed3a49b5f63859c0c20e10464',
   'composer/spdx-licenses' => '1.5.5@de30328a7af8680efdc03e396aad24befd513200',
@@ -176,7 +176,7 @@ final class Versions
   'sebastian/type' => '2.3.1@81cd61ab7bbf2de744aba0ea61fae32f721df3d2',
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'theseer/tokenizer' => '1.2.0@75a63c33a8577608444246075ea0af0d052e452a',
-  'celaraze/chemex' => 'dev-main@adddf8aa171b7896b7b231d46e5ac154731b03bc',
+  'celaraze/chemex' => 'dev-main@9cef97fd8b224f0747fda932bebd07b2a9dbb2b1',
 );
 
     private function __construct()

@@ -280,7 +280,7 @@ class UserController extends BaseUserController
             }
 
             // 创建用户时通过工号判断是否有相同记录
-            $exist = \App\Models\User::where('number', $form->input('number'))
+            $exist = \App\Models\User::where('username', $form->input('username'))
                 ->withTrashed()
                 ->first();
             if ($form->isEditing() && !empty($exist) && $form->model()->id != $exist->id) {
