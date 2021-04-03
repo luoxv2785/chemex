@@ -203,6 +203,7 @@ return array(
     'App\\Admin\\Actions\\Tree\\ToolAction\\PartCategoryImportAction' => $baseDir . '/app/Admin/Actions/Tree/ToolAction/PartCategoryImportAction.php',
     'App\\Admin\\Actions\\Tree\\ToolAction\\SoftwareCategoryImportAction' => $baseDir . '/app/Admin/Actions/Tree/ToolAction/SoftwareCategoryImportAction.php',
     'App\\Admin\\Controllers\\ApprovalRecordController' => $baseDir . '/app/Admin/Controllers/ApprovalRecordController.php',
+    'App\\Admin\\Controllers\\ApprovalTrackController' => $baseDir . '/app/Admin/Controllers/ApprovalTrackController.php',
     'App\\Admin\\Controllers\\AuthController' => $baseDir . '/app/Admin/Controllers/AuthController.php',
     'App\\Admin\\Controllers\\CheckRecordController' => $baseDir . '/app/Admin/Controllers/CheckRecordController.php',
     'App\\Admin\\Controllers\\CheckTrackController' => $baseDir . '/app/Admin/Controllers/CheckTrackController.php',

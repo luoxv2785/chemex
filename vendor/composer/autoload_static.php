@@ -890,6 +890,7 @@ class ComposerStaticInit7777a1b39f577ef6879d8874226ca9c1
         'App\\Admin\\Actions\\Tree\\ToolAction\\PartCategoryImportAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Tree/ToolAction/PartCategoryImportAction.php',
         'App\\Admin\\Actions\\Tree\\ToolAction\\SoftwareCategoryImportAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Tree/ToolAction/SoftwareCategoryImportAction.php',
         'App\\Admin\\Controllers\\ApprovalRecordController' => __DIR__ . '/../..' . '/app/Admin/Controllers/ApprovalRecordController.php',
+        'App\\Admin\\Controllers\\ApprovalTrackController' => __DIR__ . '/../..' . '/app/Admin/Controllers/ApprovalTrackController.php',
         'App\\Admin\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Admin/Controllers/AuthController.php',
         'App\\Admin\\Controllers\\CheckRecordController' => __DIR__ . '/../..' . '/app/Admin/Controllers/CheckRecordController.php',
         'App\\Admin\\Controllers\\CheckTrackController' => __DIR__ . '/../..' . '/app/Admin/Controllers/CheckTrackController.php',

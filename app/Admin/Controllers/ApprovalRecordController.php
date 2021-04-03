@@ -2,9 +2,10 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Tree\ToolAction\ApprovalRecordCreateTrackAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\ApprovalRecord;
-use App\Support\Data;
+use App\Admin\Repositories\ApprovalTrack;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Grid\Tools\Selector;
@@ -12,7 +13,7 @@ use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
-use Dcat\Admin\Widgets\Tab;
+use Dcat\Admin\Tree;
 
 /**
  * @property int item_id
@@ -33,11 +34,7 @@ class ApprovalRecordController extends AdminController
         return $content
             ->title($this->title())
             ->description(admin_trans_label('description'))
-            ->body(function (Row $row) {
-                $tab = new Tab();
-                $tab->add(Data::icon('record') . trans('main.approval_record'), $this->grid(), true);
-                $row->column(12, $tab);
-            });
+            ->body($this->grid());
     }
 
     public function title()
@@ -90,14 +87,47 @@ class ApprovalRecordController extends AdminController
         });
     }
 
+    /**
+     * Show interface.
+     *
+     * @param mixed $id
+     * @param Content $content
+     *
+     * @return Content
+     */
+    public function show($id, Content $content): Content
+    {
+        return $content
+            ->title($this->title())
+            ->description($this->description()['show'] ?? trans('admin.show'))
+            ->body(function (Row $row) use ($id) {
+                $row->column(12, $this->detail($id));
+                $row->column(12, $this->treeView($id));
+            });
+    }
+
+    public function treeView($id): Tree
+    {
+        return Tree::make(new ApprovalTrack(), function (Tree $tree) use ($id) {
+            $tree->maxDepth(1);
+
+            $tree->tools(function (Tree\Tools $tools) use ($id) {
+                $tools->add(new ApprovalRecordCreateTrackAction($id));
+            });
+            $tree->disableCreateButton();
+            $tree->disableQuickCreateButton();
+            $tree->disableDeleteButton();
+            $tree->disableEditButton();
+            $tree->disableQuickEditButton();
+        });
+    }
+
     protected function detail($id): Show
     {
         return Show::make($id, new ApprovalRecord(), function (Show $show) {
             $show->field('id');
             $show->field('name');
             $show->field('description');
-            $show->field('created_at');
-            $show->field('updated_at');
         });
     }
 
@@ -106,7 +136,7 @@ class ApprovalRecordController extends AdminController
         return Form::make(new ApprovalRecord(), function (Form $form) {
             $form->display('id');
             $form->text('name')->required();
-            $form->textarea('description');
+            $form->text('description');
 
             $form->display('created_at');
             $form->display('updated_at');

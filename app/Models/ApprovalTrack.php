@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Dcat\Admin\Traits\HasDateTimeFormatter;
+use Dcat\Admin\Traits\ModelTree;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -16,6 +17,7 @@ class ApprovalTrack extends Model
 {
     use HasDateTimeFormatter;
     use SoftDeletes;
+    use ModelTree;
 
     protected $table = 'approval_tracks';
 
