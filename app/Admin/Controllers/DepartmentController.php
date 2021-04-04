@@ -4,12 +4,12 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Tree\ToolAction\DepartmentImportAction;
 use App\Admin\Repositories\Department;
+use App\Form;
 use App\Support\Data;
 use App\Support\Support;
+use App\Traits\ControllerHasTab;
 use Dcat\Admin\Admin;
-use App\Form;
 use Dcat\Admin\Http\Controllers\AdminController;
-use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
 use Dcat\Admin\Tree;
@@ -18,9 +18,11 @@ use Illuminate\Http\Request;
 
 class DepartmentController extends AdminController
 {
+    use ControllerHasTab;
+
     /**
+     * ajax联动选择.
      * @param Request $request
-     *
      * @return mixed
      */
     public function selectList(Request $request)
@@ -31,26 +33,35 @@ class DepartmentController extends AdminController
             ->paginate(null, ['id', 'name as text']);
     }
 
-    public function index(Content $content): Content
+    /**
+     * 标签布局.
+     * @return Row
+     */
+    public function tab(): Row
     {
-        return $content
-            ->title($this->title())
-            ->description(admin_trans_label('description'))
-            ->body(function (Row $row) {
-                $tab = new Tab();
-                $tab->addLink(Data::icon('user') . admin_trans_label('User'), admin_route('organization.users.index'));
-                $tab->add(Data::icon('department') . admin_trans_label('Department'), $this->treeView(), true);
-                $tab->addLink(Data::icon('role') . admin_trans_label('Role'), admin_route('organization.roles.index'));
-                $tab->addLink(Data::icon('permission') . admin_trans_label('Permission'), admin_route('organization.permissions.index'));
-                $row->column(12, $tab);
-            });
+        $row = new Row();
+        $tab = new Tab();
+        $tab->addLink(Data::icon('user') . admin_trans_label('User'), admin_route('organization.users.index'));
+        $tab->add(Data::icon('department') . admin_trans_label('Department'), $this->renderGrid(), true);
+        $tab->addLink(Data::icon('role') . admin_trans_label('Role'), admin_route('organization.roles.index'));
+        $tab->addLink(Data::icon('permission') . admin_trans_label('Permission'), admin_route('organization.permissions.index'));
+        $row->column(12, $tab);
+        return $row;
     }
 
-    public function title()
+    /**
+     * 重写渲染为tree.
+     * @return Tree
+     */
+    public function renderGrid(): Tree
     {
-        return admin_trans_label('title');
+        return $this->treeView();
     }
 
+    /**
+     * 模型树构建.
+     * @return Tree
+     */
     protected function treeView(): Tree
     {
         return new Tree(new \App\Models\Department(), function (Tree $tree) {

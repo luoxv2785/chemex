@@ -8,6 +8,7 @@ use App\Admin\Actions\Grid\RowAction\ServiceRecordDeleteAction;
 use App\Admin\Actions\Show\ServiceRecordDeleteTrackAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\ServiceRecord;
+use App\Form;
 use App\Grid;
 use App\Models\ColumnSort;
 use App\Models\DeviceRecord;
@@ -17,11 +18,10 @@ use App\Support\Data;
 use App\Support\Support;
 use App\Traits\ControllerHasCustomColumns;
 use App\Traits\ControllerHasDeviceRelatedGrid;
+use App\Traits\ControllerHasTab;
 use DateTime;
 use Dcat\Admin\Admin;
-use App\Form;
 use Dcat\Admin\Http\Controllers\AdminController;
-use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show\Tools;
 use Dcat\Admin\Widgets\Tab;
@@ -35,26 +35,23 @@ class ServiceRecordController extends AdminController
 {
     use ControllerHasDeviceRelatedGrid;
     use ControllerHasCustomColumns;
+    use ControllerHasTab;
 
-    public function index(Content $content): Content
+    /**
+     * 标签布局.
+     * @return Row
+     */
+    public function tab(): Row
     {
-        return $content
-            ->title($this->title())
-            ->description(admin_trans_label('description'))
-            ->body(function (Row $row) {
-                $tab = new Tab();
-                $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
-                $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('service.tracks.index'));
-                $tab->addLink(Data::icon('issue') . trans('main.issue'), admin_route('service.issues.index'));
-                $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('service.statistics'));
-                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('service.columns.index'));
-                $row->column(12, $tab);
-            });
-    }
-
-    public function title()
-    {
-        return admin_trans_label('title');
+        $row = new Row();
+        $tab = new Tab();
+        $tab->add(Data::icon('record') . trans('main.record'), $this->renderGrid(), true);
+        $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('service.tracks.index'));
+        $tab->addLink(Data::icon('issue') . trans('main.issue'), admin_route('service.issues.index'));
+        $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('service.statistics'));
+        $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('service.columns.index'));
+        $row->column(12, $tab);
+        return $row;
     }
 
     /**

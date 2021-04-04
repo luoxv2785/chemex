@@ -2,12 +2,12 @@
 
 namespace App\Admin\Controllers;
 
-use App\Support\Data;
-use Dcat\Admin\Admin;
 use App\Form;
+use App\Support\Data;
+use App\Traits\ControllerHasTab;
+use Dcat\Admin\Admin;
 use Dcat\Admin\Http\Controllers\PermissionController as BasePermissionController;
 use Dcat\Admin\Http\Repositories\Permission;
-use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Tree;
 use Dcat\Admin\Widgets\Tab;
@@ -15,27 +15,38 @@ use Illuminate\Support\Str;
 
 class PermissionController extends BasePermissionController
 {
-    public function index(Content $content): Content
+    use ControllerHasTab;
+
+    /**
+     * 标签布局.
+     * @return Row
+     */
+    public function tab(): Row
     {
-        return $content
-            ->title($this->title())
-            ->description(admin_trans_label('description'))
-            ->body(function (Row $row) {
-                $tab = new Tab();
-                $tab->addLink(Data::icon('user') . admin_trans_label('User'), admin_route('organization.users.index'));
-                $tab->addLink(Data::icon('department') . admin_trans_label('Department'), admin_route('organization.departments.index'));
-                $tab->addLink(Data::icon('role') . admin_trans_label('Role'), admin_route('organization.roles.index'));
-                $tab->add(Data::icon('permission') . admin_trans_label('Permission'), $this->treeView(), true);
-                $row->column(12, $tab);
-            });
+        $row = new Row();
+        $tab = new Tab();
+        $tab->addLink(Data::icon('user') . admin_trans_label('User'), admin_route('organization.users.index'));
+        $tab->addLink(Data::icon('department') . admin_trans_label('Department'), admin_route('organization.departments.index'));
+        $tab->addLink(Data::icon('role') . admin_trans_label('Role'), admin_route('organization.roles.index'));
+        $tab->add(Data::icon('permission') . admin_trans_label('Permission'), $this->renderGrid(), true);
+        $row->column(12, $tab);
+        return $row;
     }
 
-    public function title()
+    /**
+     * 重写渲染为tree.
+     * @return Tree
+     */
+    public function renderGrid(): Tree
     {
-        return admin_trans_label('title');
+        return $this->treeView();
     }
 
-    protected function treeView()
+    /**
+     * 模型树构建.
+     * @return Tree
+     */
+    protected function treeView(): Tree
     {
         $model = config('admin.database.permissions_model');
 
@@ -101,6 +112,10 @@ class PermissionController extends BasePermissionController
         });
     }
 
+    /**
+     * 表单页.
+     * @return Form|\Dcat\Admin\Form
+     */
     public function form()
     {
         return Form::make(new Permission(), function (Form $form) {

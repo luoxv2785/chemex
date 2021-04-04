@@ -8,10 +8,10 @@ use App\Admin\Repositories\CheckTrack;
 use App\Models\CheckRecord;
 use App\Support\Data;
 use App\Support\Support;
+use App\Traits\ControllerHasTab;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
-use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Alert;
 use Dcat\Admin\Widgets\Tab;
@@ -22,22 +22,20 @@ use Dcat\Admin\Widgets\Tab;
  */
 class CheckTrackController extends AdminController
 {
-    public function index(Content $content): Content
-    {
-        return $content
-            ->title($this->title())
-            ->description(admin_trans_label('description'))
-            ->body(function (Row $row) {
-                $tab = new Tab();
-                $tab->addLink(Data::icon('record') . trans('main.check_record'), admin_route('check.records.index'));
-                $tab->add(Data::icon('track') . trans('main.check_track'), $this->grid(), true);
-                $row->column(12, $tab);
-            });
-    }
+    use ControllerHasTab;
 
-    public function title()
+    /**
+     * 标签布局.
+     * @return Row
+     */
+    public function tab(): Row
     {
-        return admin_trans_label('title');
+        $row = new Row();
+        $tab = new Tab();
+        $tab->addLink(Data::icon('record') . trans('main.check_record'), admin_route('check.records.index'));
+        $tab->add(Data::icon('track') . trans('main.check_track'), $this->renderGrid(), true);
+        $row->column(12, $tab);
+        return $row;
     }
 
     /**

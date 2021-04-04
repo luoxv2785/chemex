@@ -6,11 +6,11 @@ use App\Admin\Actions\Grid\RowAction\ServiceIssueUpdateAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\ServiceIssue;
 use App\Support\Data;
+use App\Traits\ControllerHasTab;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Grid\Tools\Selector;
 use Dcat\Admin\Http\Controllers\AdminController;
-use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
 use Dcat\Admin\Widgets\Alert;
@@ -21,25 +21,23 @@ use Dcat\Admin\Widgets\Tab;
  */
 class ServiceIssueController extends AdminController
 {
-    public function index(Content $content): Content
-    {
-        return $content
-            ->title($this->title())
-            ->description(admin_trans_label('description'))
-            ->body(function (Row $row) {
-                $tab = new Tab();
-                $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('service.records.index'));
-                $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('service.tracks.index'));
-                $tab->add(Data::icon('issue') . trans('main.issue'), $this->grid(), true);
-                $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('service.statistics'));
-                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('service.columns.index'));
-                $row->column(12, $tab);
-            });
-    }
+    use ControllerHasTab;
 
-    public function title()
+    /**
+     * 标签布局.
+     * @return Row
+     */
+    public function tab(): Row
     {
-        return admin_trans_label('title');
+        $row = new Row();
+        $tab = new Tab();
+        $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('service.records.index'));
+        $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('service.tracks.index'));
+        $tab->add(Data::icon('issue') . trans('main.issue'), $this->renderGrid(), true);
+        $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('service.statistics'));
+        $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('service.columns.index'));
+        $row->column(12, $tab);
+        return $row;
     }
 
     /**

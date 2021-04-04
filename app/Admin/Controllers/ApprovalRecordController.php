@@ -4,9 +4,9 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\ApprovalRecord;
+use App\Form;
 use App\Support\Data;
 use App\Traits\ControllerHasTab;
-use App\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Grid\Tools\Selector;
 use Dcat\Admin\Http\Controllers\AdminController;
@@ -24,15 +24,14 @@ class ApprovalRecordController extends AdminController
     use ControllerHasTab;
 
     /**
-     * 渲染tab.
-     * @param $render
+     * 标签布局.
      * @return Row
      */
-    public function tab($render): Row
+    public function tab(): Row
     {
         $row = new Row();
         $tab = new Tab();
-        $tab->add(Data::icon('record') . trans('main.approval_record'), $render, true);
+        $tab->add(Data::icon('record') . trans('main.approval_record'), $this->renderGrid(), true);
         $tab->addLink(Data::icon('track') . trans('main.approval_track'), admin_route('approval.tracks.index'));
         $row->column(12, $tab);
         return $row;

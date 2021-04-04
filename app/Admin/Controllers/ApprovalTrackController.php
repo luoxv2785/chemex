@@ -3,13 +3,13 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Repositories\ApprovalTrack;
+use App\Form;
 use App\Models\ApprovalRecord;
 use App\Models\Role;
 use App\Support\Data;
-use App\Form;
+use App\Traits\ControllerHasTab;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
-use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
 use Dcat\Admin\Widgets\Tab;
@@ -21,31 +21,26 @@ use Dcat\Admin\Widgets\Tab;
  */
 class ApprovalTrackController extends AdminController
 {
+    use ControllerHasTab;
+
     /**
-     * Index interface.
-     *
-     * @param Content $content
-     *
-     * @return Content
+     * 标签布局.
+     * @return Row
      */
-    public function index(Content $content): Content
+    public function tab(): Row
     {
-        return $content
-            ->title($this->title())
-            ->description(admin_trans_label('description'))
-            ->body(function (Row $row) {
-                $tab = new Tab();
-                $tab->addLink(Data::icon('record') . trans('main.approval_record'), admin_route('approval.records.index'));
-                $tab->add(Data::icon('track') . trans('main.approval_track'), $this->grid(), true);
-                $row->column(12, $tab);
-            });
+        $row = new Row();
+        $tab = new Tab();
+        $tab->addLink(Data::icon('record') . trans('main.approval_record'), admin_route('approval.records.index'));
+        $tab->add(Data::icon('track') . trans('main.approval_track'), $this->renderGrid(), true);
+        $row->column(12, $tab);
+        return $row;
     }
 
-    public function title()
-    {
-        return admin_trans_label('title');
-    }
-
+    /**
+     * 列表页.
+     * @return Grid
+     */
     public function grid(): Grid
     {
         return Grid::make(new ApprovalTrack(['role']), function (Grid $grid) {
@@ -68,6 +63,11 @@ class ApprovalTrackController extends AdminController
         });
     }
 
+    /**
+     * 详情页.
+     * @param $id
+     * @return Show
+     */
     public function detail($id): Show
     {
         return Show::make($id, new ApprovalTrack(['role']), function (Show $show) {
@@ -82,7 +82,7 @@ class ApprovalTrackController extends AdminController
     }
 
     /**
-     * 表单.
+     * 表单页.
      * @return Form
      */
     protected function form(): Form

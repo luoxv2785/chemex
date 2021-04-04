@@ -5,8 +5,8 @@ namespace App\Admin\Controllers;
 use App\Admin\Repositories\ConsumableRecord;
 use App\Support\Data;
 use App\Traits\ControllerHasColumnSort;
+use App\Traits\ControllerHasTab;
 use Dcat\Admin\Http\Controllers\AdminController;
-use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Repositories\Repository;
 use Dcat\Admin\Widgets\Tab;
@@ -14,29 +14,39 @@ use Dcat\Admin\Widgets\Tab;
 class ConsumableColumnController extends AdminController
 {
     use ControllerHasColumnSort;
+    use ControllerHasTab;
 
     protected Repository $repository;
 
-    public function index(Content $content): Content
+    /**
+     * 标签布局.
+     * @return Row
+     */
+    public function tab(): Row
     {
-        return $content
-            ->title($this->title())
-            ->description(admin_trans_label('description'))
-            ->body(function (Row $row) {
-                $tab = new Tab();
-                $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('consumable.records.index'));
-                $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('consumable.categories.index'));
-                $tab->addLink(Data::icon('track') . trans('main.history'), admin_route('consumable.tracks.index'));
-                $tab->add(Data::icon('column') . trans('main.column'), $this->render(), true);
-                $row->column(12, $tab);
-            });
+        $row = new Row();
+        $tab = new Tab();
+        $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('consumable.records.index'));
+        $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('consumable.categories.index'));
+        $tab->addLink(Data::icon('track') . trans('main.history'), admin_route('consumable.tracks.index'));
+        $tab->add(Data::icon('column') . trans('main.column'), $this->renderGrid(), true);
+        $row->column(12, $tab);
+        return $row;
     }
 
-    public function title()
+    /**
+     * 重写渲染为自定义.
+     * @return Row
+     */
+    public function renderGrid(): Row
     {
-        return admin_trans_label('title');
+        return $this->render();
     }
 
+    /**
+     * 指定数据仓库.
+     * @return ConsumableRecord
+     */
     public function repository(): ConsumableRecord
     {
         return new ConsumableRecord();

@@ -3,11 +3,11 @@
 namespace App\Admin\Controllers;
 
 use App\Support\Data;
+use App\Traits\ControllerHasTab;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\RoleController as BaseRoleController;
 use Dcat\Admin\Http\Repositories\Role;
-use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Models\Role as RoleModel;
 use Dcat\Admin\Show;
@@ -17,26 +17,28 @@ use Dcat\Admin\Widgets\Tree;
 
 class RoleController extends BaseRoleController
 {
-    public function index(Content $content): Content
+    use ControllerHasTab;
+
+    /**
+     * 标签布局.
+     * @return Row
+     */
+    public function tab(): Row
     {
-        return $content
-            ->title($this->title())
-            ->description(admin_trans_label('description'))
-            ->body(function (Row $row) {
-                $tab = new Tab();
-                $tab->addLink(Data::icon('user') . admin_trans_label('User'), admin_route('organization.users.index'));
-                $tab->addLink(Data::icon('department') . admin_trans_label('Department'), admin_route('organization.departments.index'));
-                $tab->add(Data::icon('role') . admin_trans_label('Role'), $this->grid(), true);
-                $tab->addLink(Data::icon('permission') . admin_trans_label('Permission'), admin_route('organization.permissions.index'));
-                $row->column(12, $tab);
-            });
+        $row = new Row();
+        $tab = new Tab();
+        $tab->addLink(Data::icon('user') . admin_trans_label('User'), admin_route('organization.users.index'));
+        $tab->addLink(Data::icon('department') . admin_trans_label('Department'), admin_route('organization.departments.index'));
+        $tab->add(Data::icon('role') . admin_trans_label('Role'), $this->renderGrid(), true);
+        $tab->addLink(Data::icon('permission') . admin_trans_label('Permission'), admin_route('organization.permissions.index'));
+        $row->column(12, $tab);
+        return $row;
     }
 
-    public function title()
-    {
-        return admin_trans_label('title');
-    }
-
+    /**
+     * 列表页.
+     * @return Grid
+     */
     protected function grid(): Grid
     {
         return new Grid(new Role(), function (Grid $grid) {
@@ -86,6 +88,11 @@ class RoleController extends BaseRoleController
         });
     }
 
+    /**
+     * 详情页.
+     * @param $id
+     * @return Show
+     */
     protected function detail($id): Show
     {
         return Show::make($id, new Role('permissions'), function (Show $show) {
