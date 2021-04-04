@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Grid\RowAction\ApprovalRecordDeleteAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\ApprovalRecord;
 use App\Form;
@@ -11,7 +12,6 @@ use Dcat\Admin\Grid;
 use Dcat\Admin\Grid\Tools\Selector;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Row;
-use Dcat\Admin\Show;
 use Dcat\Admin\Widgets\Tab;
 
 /**
@@ -55,7 +55,8 @@ class ApprovalRecordController extends AdminController
              * 行操作按钮.
              */
             $grid->actions(function (RowActions $actions) {
-
+                // @permissions
+                $actions->append(new ApprovalRecordDeleteAction());
             });
 
             /**
@@ -77,25 +78,12 @@ class ApprovalRecordController extends AdminController
              */
             $grid->disableBatchActions();
             $grid->disableRowSelector();
+            $grid->disableViewButton();
+            $grid->disableEditButton();
+            $grid->disableDeleteButton();
+            $grid->showQuickEditButton();
             $grid->toolsWithOutline(false);
 
-        });
-    }
-
-    /**
-     * 详情页.
-     * @param $id
-     * @return Show
-     */
-    protected function detail($id): Show
-    {
-        return Show::make($id, new ApprovalRecord(), function (Show $show) {
-            $show->field('id');
-            $show->field('name');
-            $show->field('description');
-
-            $show->field('created_at');
-            $show->field('updated_at');
         });
     }
 

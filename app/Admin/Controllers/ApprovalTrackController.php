@@ -11,7 +11,6 @@ use App\Traits\ControllerHasTab;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Row;
-use Dcat\Admin\Show;
 use Dcat\Admin\Widgets\Tab;
 
 /**
@@ -44,40 +43,30 @@ class ApprovalTrackController extends AdminController
     public function grid(): Grid
     {
         return Grid::make(new ApprovalTrack(['role']), function (Grid $grid) {
-            $grid->model()->orderBy('order', 'ASC');
+            $grid->model()
+                ->where('approval_id', request('approval_id'))
+                ->orderBy('order', 'ASC');
 
             $grid->column('id');
             $grid->column('order')->orderable();
             $grid->column('name');
             $grid->column('role.name')->label();
 
+            $grid->column('created_at');
+            $grid->column('updated_at');
+
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->panel();
+                $filter->expand();
                 $filter->equal('approval_id')
                     ->select(ApprovalRecord::pluck('name', 'id'));
             });
 
             $grid->toolsWithOutline(false);
+            $grid->disableViewButton();
             $grid->disableEditButton();
+            $grid->enableDialogCreate();
             $grid->showQuickEditButton();
-        });
-    }
-
-    /**
-     * 详情页.
-     * @param $id
-     * @return Show
-     */
-    public function detail($id): Show
-    {
-        return Show::make($id, new ApprovalTrack(['role']), function (Show $show) {
-            $show->field('id');
-            $show->field('name');
-            $show->field('order');
-            $show->field('role.name');
-
-            $show->field('created_at');
-            $show->field('updated_at');
         });
     }
 

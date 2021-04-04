@@ -12,7 +12,7 @@ return [
         'role' => [
             'name' => '审核角色'
         ],
-        'approval_id' => '流程',
+        'approval_id' => '审批',
         'role_id' => '审核角色'
     ],
 ];

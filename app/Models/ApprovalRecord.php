@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static whereBetween(string $string, array $array)
  * @method static count()
  * @method static pluck(string $string, string $string1)
+ * @property int id
  */
 class ApprovalRecord extends Model
 {
