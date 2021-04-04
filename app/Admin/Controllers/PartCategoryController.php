@@ -7,51 +7,48 @@ use App\Admin\Repositories\PartCategory;
 use App\Models\DepreciationRule;
 use App\Support\Data;
 use App\Support\Support;
+use App\Traits\ControllerHasTab;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Http\Controllers\AdminController;
-use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Tree;
 use Dcat\Admin\Widgets\Tab;
-use Illuminate\Http\Request;
 
 class PartCategoryController extends AdminController
 {
+    use ControllerHasTab;
+
     /**
-     * @param Request $request
-     *
-     * @return mixed
+     * 标签布局.
+     * @return Row
      */
-    public function selectList(Request $request)
+    public function tab(): Row
     {
-        $q = $request->get('q');
-
-        return \App\Models\PartCategory::where('name', 'like', "%$q%")
-            ->paginate(null, ['id', 'name as text']);
+        $row = new Row();
+        $tab = new Tab();
+        $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('part.records.index'));
+        $tab->add(Data::icon('category') . trans('main.category'), $this->renderGrid(), true);
+        $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('part.tracks.index'));
+        $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('part.statistics'));
+        $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('part.columns.index'));
+        $row->column(12, $tab);
+        return $row;
     }
 
-    public function index(Content $content): Content
+    /**
+     * 重写渲染为tree.
+     * @return Tree
+     */
+    public function renderGrid(): Tree
     {
-        return $content
-            ->title($this->title())
-            ->description(admin_trans_label('description'))
-            ->body(function (Row $row) {
-                $tab = new Tab();
-                $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('part.records.index'));
-                $tab->add(Data::icon('category') . trans('main.category'), $this->treeView(), true);
-                $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('part.tracks.index'));
-                $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('part.statistics'));
-                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('part.columns.index'));
-                $row->column(12, $tab);
-            });
+        return $this->treeView();
     }
 
-    public function title()
-    {
-        return admin_trans_label('title');
-    }
-
+    /**
+     * 树形结构.
+     * @return Tree
+     */
     protected function treeView(): Tree
     {
         return new Tree(new \App\Models\PartCategory(), function (Tree $tree) {

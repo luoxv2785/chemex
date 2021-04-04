@@ -8,6 +8,11 @@ return [
     ],
     'fields' => [
         'name' => '名称',
-        'description' => '描述'
+        'description' => '描述',
+        'role' => [
+            'name' => '审核角色'
+        ],
+        'approval_id' => '流程',
+        'role_id' => '审核角色'
     ],
 ];

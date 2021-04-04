@@ -184,6 +184,8 @@ Route::group([
      */
     $router->resource('/approval/records', 'ApprovalRecordController')
         ->names('approval.records');
+    $router->resource('/approval/tracks', 'ApprovalTrackController')
+        ->names('approval.tracks');
 
     /**
      * 故障维护.

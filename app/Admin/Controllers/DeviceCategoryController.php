@@ -7,10 +7,10 @@ use App\Admin\Repositories\DeviceCategory;
 use App\Models\DepreciationRule;
 use App\Support\Data;
 use App\Support\Support;
+use App\Traits\ControllerHasTab;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Http\Controllers\AdminController;
-use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Tree;
 use Dcat\Admin\Widgets\Tab;
@@ -18,25 +18,32 @@ use Illuminate\Http\Request;
 
 class DeviceCategoryController extends AdminController
 {
-    public function index(Content $content): Content
+    use ControllerHasTab;
+
+    /**
+     * 标签布局.
+     * @return Row
+     */
+    public function tab(): Row
     {
-        return $content
-            ->title($this->title())
-            ->description(admin_trans_label('description'))
-            ->body(function (Row $row) {
-                $tab = new Tab();
-                $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('device.records.index'));
-                $tab->add(Data::icon('category') . trans('main.category'), $this->treeView(), true);
-                $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('device.tracks.index'));
-                $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('device.statistics'));
-                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('device.columns.index'));
-                $row->column(12, $tab);
-            });
+        $row = new Row();
+        $tab = new Tab();
+        $tab->addLink(Data::icon('record') . trans('main.record'), admin_route('device.records.index'));
+        $tab->add(Data::icon('category') . trans('main.category'), $this->renderGrid(), true);
+        $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('device.tracks.index'));
+        $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('device.statistics'));
+        $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('device.columns.index'));
+        $row->column(12, $tab);
+        return $row;
     }
 
-    public function title()
+    /**
+     * 重写渲染为tree.
+     * @return Tree
+     */
+    public function renderGrid(): Tree
     {
-        return admin_trans_label('title');
+        return $this->treeView();
     }
 
     /**

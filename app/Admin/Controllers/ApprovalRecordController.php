@@ -2,18 +2,17 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\Tree\ToolAction\ApprovalRecordCreateTrackAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\ApprovalRecord;
-use App\Admin\Repositories\ApprovalTrack;
+use App\Support\Data;
+use App\Traits\ControllerHasTab;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Grid\Tools\Selector;
 use Dcat\Admin\Http\Controllers\AdminController;
-use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
-use Dcat\Admin\Tree;
+use Dcat\Admin\Widgets\Tab;
 
 /**
  * @property int item_id
@@ -22,24 +21,21 @@ use Dcat\Admin\Tree;
  */
 class ApprovalRecordController extends AdminController
 {
-    /**
-     * Index interface.
-     *
-     * @param Content $content
-     *
-     * @return Content
-     */
-    public function index(Content $content): Content
-    {
-        return $content
-            ->title($this->title())
-            ->description(admin_trans_label('description'))
-            ->body($this->grid());
-    }
+    use ControllerHasTab;
 
-    public function title()
+    /**
+     * 渲染tab.
+     * @param $render
+     * @return Row
+     */
+    public function tab($render): Row
     {
-        return admin_trans_label('title');
+        $row = new Row();
+        $tab = new Tab();
+        $tab->add(Data::icon('record') . trans('main.approval_record'), $render, true);
+        $tab->addLink(Data::icon('track') . trans('main.approval_track'), admin_route('approval.tracks.index'));
+        $row->column(12, $tab);
+        return $row;
     }
 
     /**
@@ -88,49 +84,26 @@ class ApprovalRecordController extends AdminController
     }
 
     /**
-     * Show interface.
-     *
-     * @param mixed $id
-     * @param Content $content
-     *
-     * @return Content
+     * 详情页.
+     * @param $id
+     * @return Show
      */
-    public function show($id, Content $content): Content
-    {
-        return $content
-            ->title($this->title())
-            ->description($this->description()['show'] ?? trans('admin.show'))
-            ->body(function (Row $row) use ($id) {
-                $row->column(12, $this->detail($id));
-                $row->column(12, $this->treeView($id));
-            });
-    }
-
-    public function treeView($id): Tree
-    {
-        return Tree::make(new ApprovalTrack(), function (Tree $tree) use ($id) {
-            $tree->maxDepth(1);
-
-            $tree->tools(function (Tree\Tools $tools) use ($id) {
-                $tools->add(new ApprovalRecordCreateTrackAction($id));
-            });
-            $tree->disableCreateButton();
-            $tree->disableQuickCreateButton();
-            $tree->disableDeleteButton();
-            $tree->disableEditButton();
-            $tree->disableQuickEditButton();
-        });
-    }
-
     protected function detail($id): Show
     {
         return Show::make($id, new ApprovalRecord(), function (Show $show) {
             $show->field('id');
             $show->field('name');
             $show->field('description');
+
+            $show->field('created_at');
+            $show->field('updated_at');
         });
     }
 
+    /**
+     * 表单.
+     * @return Form
+     */
     protected function form(): Form
     {
         return Form::make(new ApprovalRecord(), function (Form $form) {

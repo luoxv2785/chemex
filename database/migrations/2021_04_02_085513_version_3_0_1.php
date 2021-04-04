@@ -23,9 +23,11 @@ class Version301 extends Migration
 
         Schema::create('approval_tracks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('approval_id');
-            $table->string('role');
-            $table->integer('order');
+            $table->string('name');
+            $table->integer('approval_id');
+            $table->integer('role_id');
+            $table->integer('parent_id')->default(0);
+            $table->integer('order')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

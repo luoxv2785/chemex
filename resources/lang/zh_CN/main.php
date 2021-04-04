@@ -119,5 +119,6 @@ return [
     'asset_number_exist' => '资产编号已经存在，请更换后尝试。',
     'select_create' => '快速创建',
     'approval_record' => '流程',
+    'approval_track' => '流程逻辑',
     'parameter_missing' => '缺失必要的字段'
 ];
