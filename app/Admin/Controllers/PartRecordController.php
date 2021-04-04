@@ -26,7 +26,7 @@ use App\Traits\ControllerHasDeviceRelatedGrid;
 use App\Traits\ControllerHasTab;
 use DateTime;
 use Dcat\Admin\Admin;
-use Dcat\Admin\Form;
+use App\Form;
 use Dcat\Admin\Grid\Tools;
 use Dcat\Admin\Grid\Tools\BatchActions;
 use Dcat\Admin\Http\Controllers\AdminController;

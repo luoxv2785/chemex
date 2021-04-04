@@ -44,7 +44,7 @@ use Illuminate\Http\Request;
  * @property float price
  * @property string purchased
  * @property int depreciation_rule_id
- * @property DateTime deleted_at
+ * @property string deleted_at
  *
  * @method isLend()
  * @method track()

@@ -6,7 +6,7 @@ use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\ApprovalRecord;
 use App\Support\Data;
 use App\Traits\ControllerHasTab;
-use Dcat\Admin\Form;
+use App\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Grid\Tools\Selector;
 use Dcat\Admin\Http\Controllers\AdminController;

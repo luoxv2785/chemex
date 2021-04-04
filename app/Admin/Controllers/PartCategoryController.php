@@ -9,15 +9,29 @@ use App\Support\Data;
 use App\Support\Support;
 use App\Traits\ControllerHasTab;
 use Dcat\Admin\Admin;
-use Dcat\Admin\Form;
+use App\Form;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Tree;
 use Dcat\Admin\Widgets\Tab;
+use Illuminate\Http\Request;
 
 class PartCategoryController extends AdminController
 {
     use ControllerHasTab;
+
+    /**
+     * ajax联动选择.
+     * @param Request $request
+     * @return mixed
+     */
+    public function selectList(Request $request)
+    {
+        $q = $request->get('q');
+
+        return \App\Models\PartCategory::where('name', 'like', "%$q%")
+            ->paginate(null, ['id', 'name as text']);
+    }
 
     /**
      * 标签布局.
@@ -46,7 +60,7 @@ class PartCategoryController extends AdminController
     }
 
     /**
-     * 树形结构.
+     * 模型树构建.
      * @return Tree
      */
     protected function treeView(): Tree

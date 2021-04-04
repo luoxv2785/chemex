@@ -2,7 +2,7 @@
 
 namespace App\Admin\Extensions\Form;
 
-use Dcat\Admin\Form;
+use App\Form;
 use Dcat\Admin\Form\Field\Select;
 use Dcat\Admin\Support\Helper;
 

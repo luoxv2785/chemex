@@ -15,7 +15,7 @@ use App\Support\Support;
 use App\Traits\ControllerHasCustomColumns;
 use App\Traits\ControllerHasDeviceRelatedGrid;
 use Dcat\Admin\Admin;
-use Dcat\Admin\Form;
+use App\Form;
 use Dcat\Admin\Grid\Tools;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;

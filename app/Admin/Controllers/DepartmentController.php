@@ -7,7 +7,7 @@ use App\Admin\Repositories\Department;
 use App\Support\Data;
 use App\Support\Support;
 use Dcat\Admin\Admin;
-use Dcat\Admin\Form;
+use App\Form;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;

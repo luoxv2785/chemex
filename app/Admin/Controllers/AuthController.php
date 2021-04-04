@@ -6,7 +6,7 @@ use App\Models\RoleUser;
 use App\Models\User;
 use App\Support\LDAP;
 use Dcat\Admin\Admin;
-use Dcat\Admin\Form;
+use App\Form;
 use Dcat\Admin\Http\Controllers\AuthController as BaseAuthController;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Http\Repositories\Administrator;
@@ -15,6 +15,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @property string password
+ */
 class AuthController extends BaseAuthController
 {
     protected $view = 'login';

@@ -9,7 +9,7 @@ use App\Support\Data;
 use App\Support\Support;
 use App\Traits\ControllerHasTab;
 use Dcat\Admin\Admin;
-use Dcat\Admin\Form;
+use App\Form;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Tree;
@@ -87,8 +87,8 @@ class DeviceCategoryController extends AdminController
     }
 
     /**
+     * ajax联动选择.
      * @param Request $request
-     *
      * @return mixed
      */
     public function selectList(Request $request)

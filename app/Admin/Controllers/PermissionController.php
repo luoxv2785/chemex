@@ -4,7 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Support\Data;
 use Dcat\Admin\Admin;
-use Dcat\Admin\Form;
+use App\Form;
 use Dcat\Admin\Http\Controllers\PermissionController as BasePermissionController;
 use Dcat\Admin\Http\Repositories\Permission;
 use Dcat\Admin\Layout\Content;

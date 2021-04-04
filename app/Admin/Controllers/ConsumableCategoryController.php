@@ -6,7 +6,7 @@ use App\Admin\Actions\Tree\ToolAction\ConsumableCategoryImportAction;
 use App\Admin\Repositories\ConsumableCategory;
 use App\Support\Data;
 use Dcat\Admin\Admin;
-use Dcat\Admin\Form;
+use App\Form;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;

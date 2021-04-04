@@ -6,7 +6,7 @@ use App\Admin\Repositories\ApprovalTrack;
 use App\Models\ApprovalRecord;
 use App\Models\Role;
 use App\Support\Data;
-use Dcat\Admin\Form;
+use App\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
@@ -50,7 +50,7 @@ class ApprovalTrackController extends AdminController
     {
         return Grid::make(new ApprovalTrack(['role']), function (Grid $grid) {
             $grid->model()->orderBy('order', 'ASC');
-            
+
             $grid->column('id');
             $grid->column('order')->orderable();
             $grid->column('name');
