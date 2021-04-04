@@ -41,6 +41,12 @@ class Version301 extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
+
+        Schema::table('departments', function (Blueprint $table) {
+            $table->integer('role_id')
+                ->after('ad_tag')
+                ->nullable();
+        });
     }
 
     /**
@@ -53,5 +59,8 @@ class Version301 extends Migration
         Schema::dropIfExists('approval_records');
         Schema::dropIfExists('approval_tracks');
         Schema::dropIfExists('approval_histories');
+        Schema::table('departments', function (Blueprint $table) {
+            $table->dropColumn('role_id');
+        });
     }
 }

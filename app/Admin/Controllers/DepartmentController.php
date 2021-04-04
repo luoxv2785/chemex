@@ -5,6 +5,8 @@ namespace App\Admin\Controllers;
 use App\Admin\Actions\Tree\ToolAction\DepartmentImportAction;
 use App\Admin\Repositories\Department;
 use App\Form;
+use App\Models\Role;
+use App\Models\RoleUser;
 use App\Support\Data;
 use App\Support\Support;
 use App\Traits\ControllerHasTab;
@@ -70,6 +72,17 @@ class DepartmentController extends AdminController
              */
             $tree->branch(function ($branch) {
                 $display = "{$branch['name']}";
+                if (!empty($branch['role_id'])) {
+                    $role = Role::where('id', $branch['role_id'])->value('name');
+                    $users = RoleUser::where('role_id', $branch['role_id'])->get(['user_id']);
+                    $users_array = [];
+                    foreach ($users as $user) {
+                        $user_name = \App\Models\User::where('id', $user->user_id)->value('name');
+                        array_push($users_array, $user_name);
+                    }
+                    $users = implode('，', $users_array);
+                    $display = $display . ' - ' . $role . ' : ' . $users;
+                }
                 if ($branch['ad_tag'] === 1) {
                     $display = "<span class='badge badge-primary mr-1'>AD</span>" . $display;
                 }
@@ -143,11 +156,18 @@ class DepartmentController extends AdminController
                     ->ajax(admin_route('selection.organization.departments'))
                     ->url(admin_route('organization.departments.create'))
                     ->default(0);
+                $form->selectCreate('role_id')
+                    ->options(Role::class)
+                    ->ajax(admin_route('selection.organization.roles'))
+                    ->url(admin_route('organization.roles.create'));
             } else {
                 $form->select('parent_id')
                     ->options(\App\Models\Department::pluck('name', 'id'))
                     ->default(0);
+                $form->select('role_id')
+                    ->options(Role::pluck('name', 'id'));
             }
+
 
             $form->display('created_at');
             $form->display('updated_at');

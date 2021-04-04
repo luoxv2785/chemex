@@ -7,6 +7,7 @@ use App\Form;
 use App\Models\ApprovalRecord;
 use App\Models\Role;
 use App\Support\Data;
+use App\Support\Support;
 use App\Traits\ControllerHasTab;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
@@ -82,9 +83,16 @@ class ApprovalTrackController extends AdminController
                 ->options(ApprovalRecord::pluck('name', 'id'))
                 ->required();
             $form->text('name')->required();
-            $form->select('role_id')
-                ->options(Role::pluck('name', 'id'))
-                ->required();
+            if (Support::ifSelectCreate()) {
+                $form->selectCreate('role_id')
+                    ->options(Role::class)
+                    ->ajax(admin_route('selection.organization.roles'))
+                    ->url(admin_route('organization.roles.create'));
+            } else {
+                $form->select('role_id')
+                    ->options(Role::pluck('name', 'id'))
+                    ->required();
+            }
         });
     }
 }

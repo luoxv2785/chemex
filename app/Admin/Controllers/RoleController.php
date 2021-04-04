@@ -14,6 +14,7 @@ use Dcat\Admin\Show;
 use Dcat\Admin\Support\Helper;
 use Dcat\Admin\Widgets\Tab;
 use Dcat\Admin\Widgets\Tree;
+use Illuminate\Http\Request;
 
 class RoleController extends BaseRoleController
 {
@@ -33,6 +34,19 @@ class RoleController extends BaseRoleController
         $tab->addLink(Data::icon('permission') . admin_trans_label('Permission'), admin_route('organization.permissions.index'));
         $row->column(12, $tab);
         return $row;
+    }
+
+    /**
+     * ajax联动选择.
+     * @param Request $request
+     * @return mixed
+     */
+    public function selectList(Request $request)
+    {
+        $q = $request->get('q');
+
+        return \App\Models\Role::where('name', 'like', "%$q%")
+            ->paginate(null, ['id', 'name as text']);
     }
 
     /**
