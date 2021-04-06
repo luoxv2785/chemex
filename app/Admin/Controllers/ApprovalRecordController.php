@@ -33,6 +33,7 @@ class ApprovalRecordController extends AdminController
         $tab = new Tab();
         $tab->add(Data::icon('record') . trans('main.approval_record'), $this->renderGrid(), true);
         $tab->addLink(Data::icon('track') . trans('main.approval_track'), admin_route('approval.tracks.index'));
+        $tab->addLink(Data::icon('history') . trans('main.approval_history'), admin_route('approval.histories.index'));
         $row->column(12, $tab);
         return $row;
     }

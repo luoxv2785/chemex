@@ -272,6 +272,7 @@ class Data
             'permission' => '<i class="fa feather icon-lock"></i> ',
             'statistics' => '<i class="fa feather icon-bar-chart-2"></i> ',
             'column' => '<i class="fa feather icon-edit-2"></i> ',
+            'history' => '<i class="fa feather icon-clock"></i> ',
         ];
 
         return $array[$string];

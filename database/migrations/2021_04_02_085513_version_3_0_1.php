@@ -38,6 +38,7 @@ class Version301 extends Migration
             $table->integer('item_id');
             $table->integer('approval_id');
             $table->integer('order_id');
+            $table->mediumText('description')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

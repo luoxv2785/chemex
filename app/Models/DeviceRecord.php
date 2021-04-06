@@ -237,4 +237,24 @@ class DeviceRecord extends Model
     {
         return $this->hasMany(DeviceTrack::class, 'device_id', 'id');
     }
+
+    /**
+     * 设备有审批历史.
+     * @return HasOne
+     */
+    public function approvalHistory(): HasOne
+    {
+        return $this->hasOne(ApprovalHistory::class, 'item_id', 'id')
+            ->where('item', get_class($this));
+    }
+
+    public function isInApproval()
+    {
+        $approval_history = $this->approvalHistory();
+        if (empty($approval_history)) {
+
+        }
+        $approval_history->approval()->first();
+        return;
+    }
 }

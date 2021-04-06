@@ -27,7 +27,6 @@ use App\Support\Support;
 use App\Traits\ControllerHasCustomColumns;
 use App\Traits\ControllerHasDeviceRelatedGrid;
 use App\Traits\ControllerHasTab;
-use DateTime;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\Tools;
 use Dcat\Admin\Grid\Tools\BatchActions;
@@ -79,9 +78,10 @@ class DeviceRecordController extends AdminController
      */
     protected function grid(): Grid
     {
-        return Grid::make(new DeviceRecord(['category', 'vendor', 'adminUser', 'adminUser.department', 'channel', 'depreciation']), function (Grid $grid) {
+        return Grid::make(new DeviceRecord(['category', 'vendor', 'adminUser', 'adminUser.department', 'channel', 'depreciation', 'approvalHistory']), function (Grid $grid) {
             $sort_columns = $this->sortColumns();
             $grid->column('id', '', $sort_columns);
+            $grid->column('approvalHistory.item');
 //            $grid->column('qrcode', '', $sort_columns)->qrcode(function () {
 //                return 'device:'.$this->id;
 //            }, 200, 200);

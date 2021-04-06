@@ -120,5 +120,6 @@ return [
     'select_create' => '快速创建',
     'approval_record' => '审批',
     'approval_track' => '流程',
+    'approval_history' => '历史',
     'parameter_missing' => '缺失必要的字段'
 ];
