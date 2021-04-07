@@ -255,6 +255,5 @@ class DeviceRecord extends Model
 
         }
         $approval_history->approval()->first();
-        return;
     }
 }
