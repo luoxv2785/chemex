@@ -2,7 +2,11 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Grid\RowAction\ApprovalHistoryUpdateAction;
+use App\Admin\Actions\Grid\RowAction\ApprovalRecordDeleteAction;
+use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\ApprovalHistory;
+use App\Models\ApprovalTrack;
 use App\Support\Data;
 use App\Traits\ControllerHasTab;
 use Dcat\Admin\Grid;
@@ -14,6 +18,7 @@ use Dcat\Admin\Widgets\Tab;
  * @property int item_id
  * @property string item
  * @property int status
+ * @property int approval_id
  */
 class ApprovalHistoryController extends AdminController
 {
@@ -42,17 +47,29 @@ class ApprovalHistoryController extends AdminController
     {
         return Grid::make(new ApprovalHistory(['approval']), function (Grid $grid) {
             $grid->column('id');
-            $grid->column('item');
-            $grid->column('item_id');
             $grid->column('approval.name');
-            $grid->column('order_id');
+            $grid->column('order_id')->display(function ($order_id) {
+                return ApprovalTrack::where('approval_id', $this->approval_id)
+                    ->where('order', $order_id)
+                    ->value('name');
+            });
+            $grid->column('item')->using(Data::itemNameByModel());
+            $grid->column('item_id');
             $grid->column('description');
+
+            /**
+             * 行操作按钮.
+             */
+            $grid->actions(function (RowActions $actions) {
+                // @permissions
+                $actions->append(new ApprovalHistoryUpdateAction());
+            });
 
             $grid->toolsWithOutline(false);
             $grid->disableViewButton();
+            $grid->disableCreateButton();
             $grid->disableEditButton();
-            $grid->enableDialogCreate();
-            $grid->showQuickEditButton();
+            $grid->disableDeleteButton();
         });
     }
 }

@@ -326,4 +326,20 @@ class Data
             (new ServiceRecord())->getTable() => trans('main.service'),
         ];
     }
+
+    /**
+     * 模型返回资产名.
+     *
+     * @return array
+     */
+    public static function itemNameByModel(): array
+    {
+        return [
+            get_class(new \App\Models\DeviceRecord()) => trans('main.device'),
+            get_class(new \App\Models\PartRecord()) => trans('main.part'),
+            get_class(new \App\Models\SoftwareRecord()) => trans('main.software'),
+            get_class(new \App\Models\ConsumableRecord()) => trans('main.consumable'),
+            get_class(new \App\Models\ServiceRecord()) => trans('main.service'),
+        ];
+    }
 }

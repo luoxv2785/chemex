@@ -68,13 +68,13 @@ class ApprovalService
     /**
      * 流程执行.
      */
-    public function start()
+    public function go()
     {
         $approval_record = $this->getApprovalRecord();
         $approval_history = ApprovalHistory::where('item', $this->getItem())
             ->where('item_id', $this->model->id)
             ->first();
-        $order_id = $approval_record->track()->orderBy('order', 'ASC')->value('order');
+        $order_id = $approval_record->track()->orderBy('order', 'ASC')->first();
         // 如果没有历史，说明这个审批是个新的
         if (empty($approval_history)) {
             $approval_history = new ApprovalHistory();

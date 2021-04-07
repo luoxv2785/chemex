@@ -35,7 +35,7 @@ class DeviceRecordDeleteForm extends Form implements LazyRenderable
         if ($description) {
             $approval_service->setDescription($description);
         }
-        $approval_service->start();
+        $approval_service->go();
 
         return $this->response()
             ->success(trans('main.success'))

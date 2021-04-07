@@ -81,19 +81,18 @@ class DeviceRecordController extends AdminController
         return Grid::make(new DeviceRecord(['category', 'vendor', 'adminUser', 'adminUser.department', 'channel', 'depreciation', 'approvalHistory']), function (Grid $grid) {
             $sort_columns = $this->sortColumns();
             $grid->column('id', '', $sort_columns);
-            $grid->column('approvalHistory.item');
-//            $grid->column('qrcode', '', $sort_columns)->qrcode(function () {
-//                return 'device:'.$this->id;
-//            }, 200, 200);
             $grid->column('photo', '', $sort_columns)->image('', 50, 50);
             $grid->column('asset_number', '', $sort_columns)->display(function ($asset_number) {
                 $asset_number = "<span class='badge badge-secondary'>$asset_number</span>";
                 $tag = Support::getSoftwareIcon($this->id);
-                if (empty($tag)) {
-                    return $asset_number;
-                } else {
-                    return "<img alt='$tag' src='/static/images/icons/$tag.png' style='width: 25px;height: 25px;margin-right: 10px'/>$asset_number";
+                if (!empty($tag)) {
+                    $asset_number = "<img alt='$tag' src='/static/images/icons/$tag.png' style='width: 25px;height: 25px;margin-right: 10px'/>$asset_number";
                 }
+                $approval_name = $this->isInApproval();
+                if ($approval_name) {
+                    $asset_number .= " <span class='badge badge-warning'>$approval_name" . '中' . "</span>";
+                }
+                return $asset_number;
             });
             $grid->column('description', '', $sort_columns);
             $grid->column('category.name', '', $sort_columns);
