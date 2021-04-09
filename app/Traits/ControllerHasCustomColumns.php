@@ -5,7 +5,7 @@ namespace App\Traits;
 use App\Grid;
 use App\Models\CustomColumn;
 use App\Show;
-use Dcat\Admin\Form;
+use App\Form;
 
 trait ControllerHasCustomColumns
 {

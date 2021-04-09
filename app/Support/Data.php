@@ -272,6 +272,7 @@ class Data
             'permission' => '<i class="fa feather icon-lock"></i> ',
             'statistics' => '<i class="fa feather icon-bar-chart-2"></i> ',
             'column' => '<i class="fa feather icon-edit-2"></i> ',
+            'history' => '<i class="fa feather icon-clock"></i> ',
         ];
 
         return $array[$string];
@@ -323,6 +324,22 @@ class Data
             (new SoftwareRecord())->getTable() => trans('main.software'),
             (new ConsumableRecord())->getTable() => trans('main.consumable'),
             (new ServiceRecord())->getTable() => trans('main.service'),
+        ];
+    }
+
+    /**
+     * 模型返回资产名.
+     *
+     * @return array
+     */
+    public static function itemNameByModel(): array
+    {
+        return [
+            get_class(new \App\Models\DeviceRecord()) => trans('main.device'),
+            get_class(new \App\Models\PartRecord()) => trans('main.part'),
+            get_class(new \App\Models\SoftwareRecord()) => trans('main.software'),
+            get_class(new \App\Models\ConsumableRecord()) => trans('main.consumable'),
+            get_class(new \App\Models\ServiceRecord()) => trans('main.service'),
         ];
     }
 }

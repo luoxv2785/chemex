@@ -45,6 +45,8 @@ return [
         'is_nullable' => '可空',
         'table_name' => '表名',
         'custom_column_id' => '自定义字段',
+        'select_options' => '选项列表',
+        'item' => '项',
         'new_name' => '新名称',
         'new_nick_name' => '新别名'
     ],

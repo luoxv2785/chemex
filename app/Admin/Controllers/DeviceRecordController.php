@@ -26,7 +26,7 @@ use App\Support\Data;
 use App\Support\Support;
 use App\Traits\ControllerHasCustomColumns;
 use App\Traits\ControllerHasDeviceRelatedGrid;
-use DateTime;
+use App\Traits\ControllerHasTab;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\Tools;
 use Dcat\Admin\Grid\Tools\BatchActions;
@@ -43,7 +43,7 @@ use Illuminate\Http\Request;
  * @property float price
  * @property string purchased
  * @property int depreciation_rule_id
- * @property DateTime deleted_at
+ * @property string deleted_at
  *
  * @method isLend()
  * @method track()
@@ -52,26 +52,23 @@ class DeviceRecordController extends AdminController
 {
     use ControllerHasDeviceRelatedGrid;
     use ControllerHasCustomColumns;
+    use ControllerHasTab;
 
-    public function index(Content $content): Content
+    /**
+     * 标签布局.
+     * @return Row
+     */
+    public function tab(): Row
     {
-        return $content
-            ->title($this->title())
-            ->description(admin_trans_label('description'))
-            ->body(function (Row $row) {
-                $tab = new Tab();
-                $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
-                $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('device.categories.index'));
-                $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('device.tracks.index'));
-                $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('device.statistics'));
-                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('device.columns.index'));
-                $row->column(12, $tab);
-            });
-    }
-
-    public function title()
-    {
-        return admin_trans_label('title');
+        $row = new Row();
+        $tab = new Tab();
+        $tab->add(Data::icon('record') . trans('main.record'), $this->renderGrid(), true);
+        $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('device.categories.index'));
+        $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('device.tracks.index'));
+        $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('device.statistics'));
+        $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('device.columns.index'));
+        $row->column(12, $tab);
+        return $row;
     }
 
     /**
@@ -81,21 +78,21 @@ class DeviceRecordController extends AdminController
      */
     protected function grid(): Grid
     {
-        return Grid::make(new DeviceRecord(['category', 'vendor', 'adminUser', 'adminUser.department', 'channel', 'depreciation']), function (Grid $grid) {
+        return Grid::make(new DeviceRecord(['category', 'vendor', 'adminUser', 'adminUser.department', 'channel', 'depreciation', 'approvalHistory']), function (Grid $grid) {
             $sort_columns = $this->sortColumns();
             $grid->column('id', '', $sort_columns);
-//            $grid->column('qrcode', '', $sort_columns)->qrcode(function () {
-//                return 'device:'.$this->id;
-//            }, 200, 200);
             $grid->column('photo', '', $sort_columns)->image('', 50, 50);
             $grid->column('asset_number', '', $sort_columns)->display(function ($asset_number) {
                 $asset_number = "<span class='badge badge-secondary'>$asset_number</span>";
                 $tag = Support::getSoftwareIcon($this->id);
-                if (empty($tag)) {
-                    return $asset_number;
-                } else {
-                    return "<img alt='$tag' src='/static/images/icons/$tag.png' style='width: 25px;height: 25px;margin-right: 10px'/>$asset_number";
+                if (!empty($tag)) {
+                    $asset_number = "<img alt='$tag' src='/static/images/icons/$tag.png' style='width: 25px;height: 25px;margin-right: 10px'/>$asset_number";
                 }
+                $approval_name = $this->isInApproval();
+                if ($approval_name) {
+                    $asset_number .= " <span class='badge badge-warning'>$approval_name" . '中' . "</span>";
+                }
+                return $asset_number;
             });
             $grid->column('description', '', $sort_columns);
             $grid->column('category.name', '', $sort_columns);

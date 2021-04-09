@@ -13,3 +13,4 @@ npm-debug.log
 yarn-error.log
 /tools/ChemexTool/unpackage
 /packages
+database.db

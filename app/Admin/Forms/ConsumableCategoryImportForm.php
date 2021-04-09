@@ -52,7 +52,6 @@ class ConsumableCategoryImportForm extends Form implements LazyRenderable
                     }
                 } catch (Exception $exception) {
                     $fail++;
-//                    return $this->response()->error($exception->getMessage());
                 }
             }
             $return = $this->response()

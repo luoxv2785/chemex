@@ -23,13 +23,13 @@ use App\Support\Data;
 use App\Support\Support;
 use App\Traits\ControllerHasCustomColumns;
 use App\Traits\ControllerHasDeviceRelatedGrid;
+use App\Traits\ControllerHasTab;
 use DateTime;
 use Dcat\Admin\Admin;
-use Dcat\Admin\Form;
+use App\Form;
 use Dcat\Admin\Grid\Tools;
 use Dcat\Admin\Grid\Tools\BatchActions;
 use Dcat\Admin\Http\Controllers\AdminController;
-use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Tab;
 
@@ -47,26 +47,23 @@ class PartRecordController extends AdminController
 {
     use ControllerHasDeviceRelatedGrid;
     use ControllerHasCustomColumns;
+    use ControllerHasTab;
 
-    public function index(Content $content): Content
+    /**
+     * 标签布局.
+     * @return Row
+     */
+    public function tab(): Row
     {
-        return $content
-            ->title($this->title())
-            ->description(admin_trans_label('description'))
-            ->body(function (Row $row) {
-                $tab = new Tab();
-                $tab->add(Data::icon('record') . trans('main.record'), $this->grid(), true);
-                $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('part.categories.index'));
-                $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('part.tracks.index'));
-                $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('part.statistics'));
-                $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('part.columns.index'));
-                $row->column(12, $tab);
-            });
-    }
-
-    public function title()
-    {
-        return admin_trans_label('title');
+        $row = new Row();
+        $tab = new Tab();
+        $tab->add(Data::icon('record') . trans('main.record'), $this->renderGrid(), true);
+        $tab->addLink(Data::icon('category') . trans('main.category'), admin_route('part.categories.index'));
+        $tab->addLink(Data::icon('track') . trans('main.track'), admin_route('part.tracks.index'));
+        $tab->addLink(Data::icon('statistics') . trans('main.statistics'), admin_route('part.statistics'));
+        $tab->addLink(Data::icon('column') . trans('main.column'), admin_route('part.columns.index'));
+        $row->column(12, $tab);
+        return $row;
     }
 
     /**

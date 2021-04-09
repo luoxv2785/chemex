@@ -7,6 +7,7 @@ use App\Admin\Actions\Grid\RowAction\CheckRecordUpdateYesAction;
 use App\Admin\Actions\Grid\RowAction\CheckTrackUpdateAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\CheckRecord;
+use App\Form;
 use App\Models\CheckTrack;
 use App\Models\DeviceRecord;
 use App\Models\PartRecord;
@@ -14,8 +15,8 @@ use App\Models\SoftwareRecord;
 use App\Services\CheckService;
 use App\Support\Data;
 use App\Support\Support;
+use App\Traits\ControllerHasTab;
 use Dcat\Admin\Admin;
-use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
@@ -30,6 +31,8 @@ use Dcat\Admin\Widgets\Tab;
  */
 class CheckRecordController extends AdminController
 {
+    use ControllerHasTab;
+
     /**
      * @param $check_id
      *
@@ -40,22 +43,18 @@ class CheckRecordController extends AdminController
         return CheckService::report($check_id);
     }
 
-    public function index(Content $content): Content
+    /**
+     * 标签布局.
+     * @return Row
+     */
+    public function tab(): Row
     {
-        return $content
-            ->title($this->title())
-            ->description(admin_trans_label('description'))
-            ->body(function (Row $row) {
-                $tab = new Tab();
-                $tab->add(Data::icon('record') . trans('main.check_record'), $this->grid(), true);
-                $tab->addLink(Data::icon('track') . trans('main.check_track'), admin_route('check.tracks.index'));
-                $row->column(12, $tab);
-            });
-    }
-
-    public function title()
-    {
-        return admin_trans_label('title');
+        $row = new Row();
+        $tab = new Tab();
+        $tab->add(Data::icon('record') . trans('main.check_record'), $this->renderGrid(), true);
+        $tab->addLink(Data::icon('track') . trans('main.check_track'), admin_route('check.tracks.index'));
+        $row->column(12, $tab);
+        return $row;
     }
 
     /**

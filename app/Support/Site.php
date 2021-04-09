@@ -4,7 +4,7 @@ namespace App\Support;
 
 use App\Admin\Extensions\Form\SelectCreate;
 use Dcat\Admin\Admin;
-use Dcat\Admin\Form;
+use App\Form;
 use Illuminate\Support\Facades\Storage;
 
 class Site
@@ -183,5 +183,13 @@ CSS
 CSS
             );
         }
+    }
+
+    /**
+     * 引入自定义CSS
+     */
+    public function customCSS()
+    {
+        Admin::css('static/css/main.css');
     }
 }

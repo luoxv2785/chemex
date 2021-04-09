@@ -51,7 +51,7 @@ class DeviceRecord extends Model
      *
      * @var string[]
      */
-    public $sortIncludeColumns = [
+    public array $sortIncludeColumns = [
         'category.name',
         'vendor.name',
         'user.name',
@@ -67,7 +67,7 @@ class DeviceRecord extends Model
      *
      * @var string[]
      */
-    public $sortExceptColumns = [
+    public array $sortExceptColumns = [
         'category_id',
         'vendor_id',
         'purchased_channel_id',
@@ -236,5 +236,30 @@ class DeviceRecord extends Model
     public function track(): HasMany
     {
         return $this->hasMany(DeviceTrack::class, 'device_id', 'id');
+    }
+
+    /**
+     * 设备有审批历史.
+     * @return HasOne
+     */
+    public function approvalHistory(): HasOne
+    {
+        return $this->hasOne(ApprovalHistory::class, 'item_id', 'id')
+            ->where('item', get_class($this));
+    }
+
+    /**
+     * 返回流程名称.
+     * @return null
+     */
+    public function isInApproval()
+    {
+        $approval_history = $this->approvalHistory()->first();
+        if (empty($approval_history)) {
+            return null;
+        }
+//        dd($this->approvalHistory()->first());
+        $approval_record = $approval_history->approval()->first();
+        return $approval_record->name;
     }
 }

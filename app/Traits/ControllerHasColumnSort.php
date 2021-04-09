@@ -9,11 +9,12 @@ use App\Admin\Repositories\DeviceRecord;
 use App\Admin\Repositories\PartRecord;
 use App\Admin\Repositories\ServiceRecord;
 use App\Admin\Repositories\SoftwareRecord;
+use App\Form;
 use App\Models\ColumnSort;
 use App\Models\CustomColumn;
 use App\Support\Data;
 use Dcat\Admin\Admin;
-use Dcat\Admin\Form;
+use Dcat\Admin\Form\NestedForm;
 use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Tree;
@@ -159,7 +160,7 @@ trait ControllerHasColumnSort
             ->required();
         $form->select('type')
             ->when('select', function (WidgetForm $form) {
-                $form->table('select_options', function (Form\NestedForm $table) {
+                $form->table('select_options', function (NestedForm $table) {
                     $table->text('item');
                 });
             })

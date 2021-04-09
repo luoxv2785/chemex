@@ -25,6 +25,7 @@ return [
         'mode' => '模式',
         'file' => '文件',
         'parent_id' => '父级部门',
+        'role_id' => '部门主管'
     ],
     'options' => [
     ],

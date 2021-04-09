@@ -173,7 +173,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'helpers' => [
-        'enable' => false,
+        'enable' => true,
     ],
 
     /*
@@ -324,5 +324,5 @@ return [
     */
 
     'demo' => env('ADMIN_DEMO', false),
-    'chemex_version' => '3.0.0',
+    'chemex_version' => '3.0.1',
 ];

@@ -117,5 +117,9 @@ return [
     'site_ui' => '界面',
     'site_ldap' => 'LDAP',
     'asset_number_exist' => '资产编号已经存在，请更换后尝试。',
-    'select_create' => '快速创建'
+    'select_create' => '快速创建',
+    'approval_record' => '审批',
+    'approval_track' => '流程',
+    'approval_history' => '历史',
+    'parameter_missing' => '缺失必要的字段'
 ];

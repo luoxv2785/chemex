@@ -11,6 +11,7 @@ use App\Admin\Controllers\NotificationController;
 use App\Admin\Controllers\PartCategoryController;
 use App\Admin\Controllers\PartStatisticsController;
 use App\Admin\Controllers\PurchasedChannelController;
+use App\Admin\Controllers\RoleController;
 use App\Admin\Controllers\ServiceStatisticsController;
 use App\Admin\Controllers\SiteLDAPController;
 use App\Admin\Controllers\SiteSettingController;
@@ -168,6 +169,8 @@ Route::group([
         ->names('organization.permissions');
     $router->get('/selection/users', [UserController::class, 'selectList'])
         ->name('selection.organization.users');
+    $router->get('/selection/roles', [RoleController::class, 'selectList'])
+        ->name('selection.organization.roles');
     $router->get('/selection/departments', [DepartmentController::class, 'selectList'])
         ->name('selection.organization.departments');
 
@@ -178,6 +181,16 @@ Route::group([
         ->names('check.records');
     $router->resource('/check/tracks', 'CheckTrackController')
         ->names('check.tracks');
+
+    /**
+     * 流程审批
+     */
+    $router->resource('/approval/records', 'ApprovalRecordController')
+        ->names('approval.records');
+    $router->resource('/approval/tracks', 'ApprovalTrackController')
+        ->names('approval.tracks');
+    $router->resource('/approval/histories', 'ApprovalHistoryController')
+        ->names('approval.histories');
 
     /**
      * 故障维护.

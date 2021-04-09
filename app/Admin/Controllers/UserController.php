@@ -7,14 +7,14 @@ use App\Admin\Actions\Grid\RowAction\UserDeleteAction;
 use App\Admin\Actions\Grid\ToolAction\UserImportAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\User;
+use App\Form;
 use App\Models\Department;
 use App\Support\Data;
 use App\Support\Support;
+use App\Traits\ControllerHasTab;
 use Dcat\Admin\Admin;
-use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\UserController as BaseUserController;
-use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
 use Dcat\Admin\Widgets\Tab;
@@ -26,24 +26,22 @@ use Illuminate\Http\Request;
  */
 class UserController extends BaseUserController
 {
-    public function index(Content $content): Content
-    {
-        return $content
-            ->title($this->title())
-            ->description(admin_trans_label('description'))
-            ->body(function (Row $row) {
-                $tab = new Tab();
-                $tab->add(Data::icon('user') . admin_trans_label('User'), $this->grid(), true);
-                $tab->addLink(Data::icon('department') . admin_trans_label('Department'), admin_route('organization.departments.index'));
-                $tab->addLink(Data::icon('role') . admin_trans_label('Role'), admin_route('organization.roles.index'));
-                $tab->addLink(Data::icon('permission') . admin_trans_label('Permission'), admin_route('organization.permissions.index'));
-                $row->column(12, $tab);
-            });
-    }
+    use ControllerHasTab;
 
-    public function title()
+    /**
+     * 标签布局.
+     * @return Row
+     */
+    public function tab(): Row
     {
-        return admin_trans_label('title');
+        $row = new Row();
+        $tab = new Tab();
+        $tab->add(Data::icon('user') . admin_trans_label('User'), $this->renderGrid(), true);
+        $tab->addLink(Data::icon('department') . admin_trans_label('Department'), admin_route('organization.departments.index'));
+        $tab->addLink(Data::icon('role') . admin_trans_label('Role'), admin_route('organization.roles.index'));
+        $tab->addLink(Data::icon('permission') . admin_trans_label('Permission'), admin_route('organization.permissions.index'));
+        $row->column(12, $tab);
+        return $row;
     }
 
     /**
@@ -173,8 +171,8 @@ class UserController extends BaseUserController
     }
 
     /**
+     * ajax联动选择.
      * @param Request $request
-     *
      * @return mixed
      */
     public function selectList(Request $request)
@@ -280,7 +278,7 @@ class UserController extends BaseUserController
             }
 
             // 创建用户时通过工号判断是否有相同记录
-            $exist = \App\Models\User::where('number', $form->input('number'))
+            $exist = \App\Models\User::where('username', $form->input('username'))
                 ->withTrashed()
                 ->first();
             if ($form->isEditing() && !empty($exist) && $form->model()->id != $exist->id) {
