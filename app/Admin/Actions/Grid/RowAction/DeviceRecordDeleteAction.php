@@ -2,9 +2,9 @@
 
 namespace App\Admin\Actions\Grid\RowAction;
 
-use App\Admin\Forms\DeviceRecordDeleteForm;
+use App\Services\DeviceService;
+use Dcat\Admin\Actions\Response;
 use Dcat\Admin\Grid\RowAction;
-use Dcat\Admin\Widgets\Modal;
 
 class DeviceRecordDeleteAction extends RowAction
 {
@@ -14,17 +14,27 @@ class DeviceRecordDeleteAction extends RowAction
         $this->title = '🔨 ' . admin_trans_label('Delete');
     }
 
-    public function render()
+    /**
+     * 处理动作逻辑.
+     *
+     * @return Response
+     */
+    public function handle(): Response
     {
-        // 实例化表单类并传递自定义参数
-        $form = DeviceRecordDeleteForm::make()->payload([
-            'id' => $this->getKey(),
-        ]);
+        DeviceService::deviceDelete($this->getKey());
 
-        return Modal::make()
-            ->lg()
-            ->title(admin_trans_label('Record Delete'))
-            ->body($form)
-            ->button($this->title);
+        return $this->response()
+            ->success(trans('main.success'))
+            ->refresh();
+    }
+
+    /**
+     * 对话框.
+     *
+     * @return string[]
+     */
+    public function confirm(): array
+    {
+        return [admin_trans_label('Delete Confirm'), admin_trans_label('Delete Confirm Description')];
     }
 }
