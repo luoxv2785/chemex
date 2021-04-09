@@ -104,12 +104,13 @@
 
 ### OVF
 
-已同步更新只最新版本 `3.0.0` 。
+已同步更新只最新版本 `3.0.1` 。
 
 考虑到部署复杂性，我们也提供了基于 Ubuntu 20.04 Server 制作的 OVF 包。OVF 支持 VMware ESXi 6.5+ 或 VMware Workstation 14.x+ 或 VMware Fusion
 10.x+。
 
-下载地址：[https://pan.baidu.com/s/1w88CN49JOBD2zRLKmLvA2Q](https://pan.baidu.com/s/1w88CN49JOBD2zRLKmLvA2Q)，提取码：`mp1p`。
+
+下载地址：[https://pan.baidu.com/s/1AuTv5UMxzzMkTdP9Ca5J_A](https://pan.baidu.com/s/1AuTv5UMxzzMkTdP9Ca5J_A)，提取码：`8mok`。
 
 OVF 中包含以下组件：Nginx MySQL PHP7.4，网络通过 NAT 实现。
 
