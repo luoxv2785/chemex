@@ -242,24 +242,24 @@ class DeviceRecord extends Model
      * 设备有审批历史.
      * @return HasOne
      */
-    public function approvalHistory(): HasOne
-    {
-        return $this->hasOne(ApprovalHistory::class, 'item_id', 'id')
-            ->where('item', get_class($this));
-    }
+//    public function approvalHistory(): HasOne
+//    {
+//        return $this->hasOne(ApprovalHistory::class, 'item_id', 'id')
+//            ->where('item', get_class($this));
+//    }
 
     /**
      * 返回流程名称.
      * @return null
      */
-    public function isInApproval()
-    {
-        $approval_history = $this->approvalHistory()->first();
-        if (empty($approval_history)) {
-            return null;
-        }
-//        dd($this->approvalHistory()->first());
-        $approval_record = $approval_history->approval()->first();
-        return $approval_record->name;
-    }
+//    public function isInApproval()
+//    {
+//        $approval_history = $this->approvalHistory()->first();
+//        if (empty($approval_history)) {
+//            return null;
+//        }
+////        dd($this->approvalHistory()->first());
+//        $approval_record = $approval_history->approval()->first();
+//        return $approval_record->name;
+//    }
 }
