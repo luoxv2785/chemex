@@ -78,7 +78,7 @@ class DeviceRecordController extends AdminController
      */
     protected function grid(): Grid
     {
-        return Grid::make(new DeviceRecord(['category', 'vendor', 'adminUser', 'adminUser.department', 'channel', 'depreciation', 'approvalHistory']), function (Grid $grid) {
+        return Grid::make(new DeviceRecord(['category', 'vendor', 'adminUser', 'adminUser.department', 'channel', 'depreciation']), function (Grid $grid) {
             $sort_columns = $this->sortColumns();
             $grid->column('id', '', $sort_columns);
             $grid->column('photo', '', $sort_columns)->image('', 50, 50);
@@ -88,10 +88,10 @@ class DeviceRecordController extends AdminController
                 if (!empty($tag)) {
                     $asset_number = "<img alt='$tag' src='/static/images/icons/$tag.png' style='width: 25px;height: 25px;margin-right: 10px'/>$asset_number";
                 }
-                $approval_name = $this->isInApproval();
-                if ($approval_name) {
-                    $asset_number .= " <span class='badge badge-warning'>$approval_name" . '中' . "</span>";
-                }
+//                $approval_name = $this->isInApproval();
+//                if ($approval_name) {
+//                    $asset_number .= " <span class='badge badge-warning'>$approval_name" . '中' . "</span>";
+//                }
                 return $asset_number;
             });
             $grid->column('description', '', $sort_columns);
