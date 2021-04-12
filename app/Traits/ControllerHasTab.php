@@ -11,15 +11,6 @@ use Illuminate\Contracts\Translation\Translator;
 trait ControllerHasTab
 {
     /**
-     * 标题.
-     * @return array|Translator|string|null
-     */
-    public function title()
-    {
-        return admin_trans_label('title');
-    }
-
-    /**
      * 列表页面布局.
      * @param Content $content
      * @return Content
@@ -30,6 +21,15 @@ trait ControllerHasTab
             ->title($this->title())
             ->description(admin_trans_label('description'))
             ->body($this->tab($this->renderGrid()));
+    }
+
+    /**
+     * 标题.
+     * @return array|Translator|string|null
+     */
+    public function title()
+    {
+        return admin_trans_label('title');
     }
 
     /**

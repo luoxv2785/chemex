@@ -1078,52 +1078,6 @@
             "install-path": "../dcat/laravel-admin"
         },
         {
-            "name": "dnoegel/php-xdg-base-dir",
-            "version": "v0.1.1",
-            "version_normalized": "0.1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dnoegel/php-xdg-base-dir.git",
-                "reference": "8f8a6e48c5ecb0f991c2fdcf5f154a47d85f9ffd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dnoegel/php-xdg-base-dir/zipball/8f8a6e48c5ecb0f991c2fdcf5f154a47d85f9ffd",
-                "reference": "8f8a6e48c5ecb0f991c2fdcf5f154a47d85f9ffd",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~7.0|~6.0|~5.0|~4.8.35"
-            },
-            "time": "2019-12-04T15:06:13+00:00",
-            "type": "library",
-            "installation-source": "dist",
-            "autoload": {
-                "psr-4": {
-                    "XdgBaseDir\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "implementation of xdg base directory specification for php",
-            "support": {
-                "issues": "https://github.com/dnoegel/php-xdg-base-dir/issues",
-                "source": "https://github.com/dnoegel/php-xdg-base-dir/tree/v0.1.1"
-            },
-            "install-path": "../dnoegel/php-xdg-base-dir"
-        },
-        {
             "name": "doctrine/cache",
             "version": "1.10.2",
             "version_normalized": "1.10.2.0",
@@ -2115,17 +2069,17 @@
         },
         {
             "name": "facade/ignition",
-            "version": "2.8.2",
-            "version_normalized": "2.8.2.0",
+            "version": "2.8.3",
+            "version_normalized": "2.8.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "cb7f790e6306caeb4a9ffe21e59942b7128cc630"
+                "reference": "a8201d51aae83addceaef9344592a3b068b5d64d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/cb7f790e6306caeb4a9ffe21e59942b7128cc630",
-                "reference": "cb7f790e6306caeb4a9ffe21e59942b7128cc630",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/a8201d51aae83addceaef9344592a3b068b5d64d",
+                "reference": "a8201d51aae83addceaef9344592a3b068b5d64d",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2155,7 +2109,7 @@
             "suggest": {
                 "laravel/telescope": "^3.1"
             },
-            "time": "2021-04-08T10:42:53+00:00",
+            "time": "2021-04-09T20:45:59+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -4309,17 +4263,17 @@
         },
         {
             "name": "nunomaduro/collision",
-            "version": "v5.3.0",
-            "version_normalized": "5.3.0.0",
+            "version": "v5.4.0",
+            "version_normalized": "5.4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/collision.git",
-                "reference": "aca63581f380f63a492b1e3114604e411e39133a"
+                "reference": "41b7e9999133d5082700d31a1d0977161df8322a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/aca63581f380f63a492b1e3114604e411e39133a",
-                "reference": "aca63581f380f63a492b1e3114604e411e39133a",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/41b7e9999133d5082700d31a1d0977161df8322a",
+                "reference": "41b7e9999133d5082700d31a1d0977161df8322a",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4346,7 +4300,7 @@
                 "phpstan/phpstan": "^0.12.64",
                 "phpunit/phpunit": "^9.5.0"
             },
-            "time": "2021-01-25T15:34:13+00:00",
+            "time": "2021-04-09T13:38:32+00:00",
             "type": "library",
             "extra": {
                 "laravel": {
@@ -4512,17 +4466,17 @@
         },
         {
             "name": "opis/closure",
-            "version": "3.6.1",
-            "version_normalized": "3.6.1.0",
+            "version": "3.6.2",
+            "version_normalized": "3.6.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opis/closure.git",
-                "reference": "943b5d70cc5ae7483f6aff6ff43d7e34592ca0f5"
+                "reference": "06e2ebd25f2869e54a306dda991f7db58066f7f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opis/closure/zipball/943b5d70cc5ae7483f6aff6ff43d7e34592ca0f5",
-                "reference": "943b5d70cc5ae7483f6aff6ff43d7e34592ca0f5",
+                "url": "https://api.github.com/repos/opis/closure/zipball/06e2ebd25f2869e54a306dda991f7db58066f7f6",
+                "reference": "06e2ebd25f2869e54a306dda991f7db58066f7f6",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4538,7 +4492,7 @@
                 "jeremeamia/superclosure": "^2.0",
                 "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0 || ^8.0 || ^9.0"
             },
-            "time": "2020-11-07T02:01:34+00:00",
+            "time": "2021-04-09T13:42:10+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -4580,7 +4534,7 @@
             ],
             "support": {
                 "issues": "https://github.com/opis/closure/issues",
-                "source": "https://github.com/opis/closure/tree/3.6.1"
+                "source": "https://github.com/opis/closure/tree/3.6.2"
             },
             "install-path": "../opis/closure"
         },
@@ -6178,17 +6132,17 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.10.7",
-            "version_normalized": "0.10.7.0",
+            "version": "v0.10.8",
+            "version_normalized": "0.10.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "a395af46999a12006213c0c8346c9445eb31640c"
+                "reference": "e4573f47750dd6c92dca5aee543fa77513cbd8d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/a395af46999a12006213c0c8346c9445eb31640c",
-                "reference": "a395af46999a12006213c0c8346c9445eb31640c",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/e4573f47750dd6c92dca5aee543fa77513cbd8d3",
+                "reference": "e4573f47750dd6c92dca5aee543fa77513cbd8d3",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -6198,7 +6152,6 @@
                 ]
             },
             "require": {
-                "dnoegel/php-xdg-base-dir": "0.1.*",
                 "ext-json": "*",
                 "ext-tokenizer": "*",
                 "nikic/php-parser": "~4.0|~3.0|~2.0|~1.3",
@@ -6217,7 +6170,7 @@
                 "ext-readline": "Enables support for arrow-key history navigation, and showing and manipulating command history.",
                 "hoa/console": "A pure PHP readline implementation. You'll want this if your PHP install doesn't already support readline or libedit."
             },
-            "time": "2021-03-14T02:14:56+00:00",
+            "time": "2021-04-10T16:23:39+00:00",
             "bin": [
                 "bin/psysh"
             ],
@@ -6257,7 +6210,7 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.10.7"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.10.8"
             },
             "install-path": "../psy/psysh"
         },
@@ -7960,17 +7913,17 @@
         },
         {
             "name": "swoole/ide-helper",
-            "version": "4.6.4",
-            "version_normalized": "4.6.4.0",
+            "version": "4.6.5",
+            "version_normalized": "4.6.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swoole/ide-helper.git",
-                "reference": "7e5c51ce7cc8c03ffb836aad31f3f27cd871aa96"
+                "reference": "11bc5af94512ed3bfaa31a97302f78d4074dae22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swoole/ide-helper/zipball/7e5c51ce7cc8c03ffb836aad31f3f27cd871aa96",
-                "reference": "7e5c51ce7cc8c03ffb836aad31f3f27cd871aa96",
+                "url": "https://api.github.com/repos/swoole/ide-helper/zipball/11bc5af94512ed3bfaa31a97302f78d4074dae22",
+                "reference": "11bc5af94512ed3bfaa31a97302f78d4074dae22",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -7985,7 +7938,7 @@
                 "squizlabs/php_codesniffer": "~3.5.0",
                 "symfony/filesystem": "~4.0"
             },
-            "time": "2021-03-11T19:44:34+00:00",
+            "time": "2021-04-09T15:40:39+00:00",
             "type": "library",
             "installation-source": "dist",
             "notification-url": "https://packagist.org/downloads/",
@@ -8001,7 +7954,7 @@
             "description": "IDE help files for Swoole.",
             "support": {
                 "issues": "https://github.com/swoole/ide-helper/issues",
-                "source": "https://github.com/swoole/ide-helper/tree/4.6.4"
+                "source": "https://github.com/swoole/ide-helper/tree/4.6.5"
             },
             "install-path": "../swoole/ide-helper"
         },

@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Models\ApprovalRecord;
 use App\Models\CheckRecord;
-use App\Models\CustomColumn;
 use App\Models\DeviceRecord;
 use App\Models\PartRecord;
 use App\Models\ServiceRecord;
@@ -58,8 +57,6 @@ class AppServiceProvider extends ServiceProvider
         User::observe(UserObserver::class);
         // 待办的观察者
         TodoRecord::observe(TodoRecordObserver::class);
-        // 自定义字段的观察者
-        CustomColumn::observe(CustomColumnObserver::class);
         // 审批流程的观察者
         ApprovalRecord::observe(ApprovalRecordObserver::class);
     }

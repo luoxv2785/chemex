@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Admin\Actions\Tree\RowAction\CustomColumnDeleteAction;
+use App\Admin\Actions\Tree\RowAction\CustomColumnUpdateAction;
 use App\Admin\Actions\Tree\RowAction\DeviceColumnUpdateAction;
 use App\Admin\Repositories\ConsumableRecord;
 use App\Admin\Repositories\DeviceRecord;
@@ -20,6 +21,10 @@ use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Tree;
 use Dcat\Admin\Widgets\Box;
 use Dcat\Admin\Widgets\Form as WidgetForm;
+use Exception;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Pour\Plus\LaravelAdmin;
 
 trait ControllerHasColumnSort
@@ -97,7 +102,7 @@ trait ControllerHasColumnSort
                     ->where('name', $actions->getRow()->title)
                     ->first();
                 if (!empty($custom_column) && $deletable) {
-                    $actions->append(new DeviceColumnUpdateAction($repository->getTable(), $actions->getRow()->title));
+                    $actions->append(new CustomColumnUpdateAction($repository->getTable(), $actions->getRow()->title));
                     $actions->append('&nbsp;&nbsp;&nbsp;&nbsp;');
                     $actions->append(new CustomColumnDeleteAction($repository->getTable(), $actions->getRow()->title));
                 }
@@ -204,13 +209,13 @@ trait ControllerHasColumnSort
                     foreach ($orders as $key => $order) {
                         $column_name = $needle_columns[$order['id']];
                         $column_sort = ColumnSort::where('table_name', $table_name)
-                            ->where('field', $column_name)
+                            ->where('name', $column_name)
                             ->first();
                         if (empty($column_sort)) {
                             $column_sort = new ColumnSort();
                         }
                         $column_sort->table_name = $table_name;
-                        $column_sort->field = $column_name;
+                        $column_sort->name = $column_name;
                         $column_sort->order = $key;
                         $column_sort->save();
                     }
@@ -239,10 +244,35 @@ trait ControllerHasColumnSort
                         $custom_column->select_options = $form->input('select_options');
                     }
                     $custom_column->is_nullable = $form->input('is_nullable');
-                    $custom_column->save();
 
-                    return $form->response()
-                        ->refresh();
+                    /**
+                     * 创建自定义字段的数据库迁移动作.
+                     */
+                    if ($custom_column->save()) {
+                        try {
+                            DB::beginTransaction();
+                            Schema::table($table_name, function (Blueprint $table) use ($custom_column) {
+                                $type = $custom_column->type;
+                                if ($type == 'select') {
+                                    $type = 'string';
+                                }
+                                if ($custom_column->is_nullable == 1 && ($type == 'date' || $type == 'dateTime')) {
+                                    $table->$type($custom_column->name)->nullable();
+                                } else {
+                                    $table->$type($custom_column->name)->default(0);
+                                }
+                            });
+                            DB::commit();
+                            return $form->response()
+                                ->refresh();
+                        } catch (Exception $exception) {
+                            return $form->response()
+                                ->error(trans('main.fail') . '：' . $exception->getMessage());
+                        }
+                    } else {
+                        return $form->response()
+                            ->error(trans('main.fail'));
+                    }
                 }
             });
         });

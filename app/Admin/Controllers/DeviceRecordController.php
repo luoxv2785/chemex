@@ -72,6 +72,137 @@ class DeviceRecordController extends AdminController
     }
 
     /**
+     * 详情页构建器
+     * 为了复写详情页的布局
+     *
+     * @param mixed $id
+     * @param Content $content
+     *
+     * @return Content
+     */
+    public function show($id, Content $content): Content
+    {
+        return $content
+            ->title($this->title())
+            ->description($this->description()['index'] ?? trans('admin.show'))
+            ->body(function (Row $row) use ($id) {
+                $row->column(7, $this->detail($id));
+                $row->column(5, function (Column $column) use ($id) {
+                    // 处理设备使用人
+                    $device = $this->detail($id)->model();
+                    $column->row(Card::make()->content(admin_trans_label('Current User') . '：' . $device->userName()));
+
+                    $related = Support::makeDeviceRelatedChartData($id);
+                    $column->row(new Card(trans('main.related'), view('charts.device_related')->with('related', $related)));
+                    $result = self::hasDeviceRelated($id);
+                    $column->row(new Card(trans('main.part'), $result['part']));
+                    $column->row(new Card(trans('main.software'), $result['software']));
+                    $column->row(new Card(trans('main.service'), $result['service']));
+
+                    // 处理设备履历
+                    $history = DeviceService::history($id);
+                    $card = new Card(trans('main.history'), view('history')->with('data', $history));
+                    // @permissions
+                    if (Admin::user()->can('device.record.history.export')) {
+                        $card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.device.history', ['device_id' => $id]) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>');
+                    }
+                    $column->row($card);
+                });
+            });
+    }
+
+    /**
+     * Make a show builder.
+     *
+     * @param mixed $id
+     *
+     * @return Show
+     */
+    protected function detail($id): Show
+    {
+        return Show::make($id, new DeviceRecord(['category', 'vendor', 'channel', 'adminUser', 'adminUser.department', 'depreciation']), function (Show $show) {
+            $sort_columns = $this->sortColumns();
+            $show->field('id', '', $sort_columns);
+            $show->field('asset_number', '', $sort_columns);
+            $show->field('description', '', $sort_columns);
+            $show->field('category.name', '', $sort_columns);
+            $show->field('vendor.name', '', $sort_columns);
+            $show->field('channel.name', '', $sort_columns);
+            $show->field('mac', '', $sort_columns);
+            $show->field('ip', '', $sort_columns);
+            $show->field('photo', '', $sort_columns)->image();
+            $show->field('price', '', $sort_columns);
+            $show->field('expiration_left_days', '', $sort_columns)->as(function () {
+                $device_record = \App\Models\DeviceRecord::where('id', $this->id)->first();
+                if (!empty($device_record)) {
+                    $depreciation_rule_id = Support::getDepreciationRuleId($device_record);
+
+                    return Support::depreciationPrice($this->price, $this->purchased, $depreciation_rule_id);
+                }
+            });
+            $show->field('purchased', '', $sort_columns);
+            $show->field('expired', '', $sort_columns);
+            $show->field('adminUser.name', '', $sort_columns);
+            $show->field('adminUser.department.name', '', $sort_columns);
+            $show->field('depreciation.name', '', $sort_columns);
+            $show->field('depreciation.termination', '', $sort_columns);
+
+            /**
+             * 自定义字段.
+             */
+            ControllerHasCustomColumns::makeDetail((new DeviceRecord())->getTable(), $show, $sort_columns);
+
+            $show->field('created_at', '', $sort_columns);
+            $show->field('updated_at', '', $sort_columns);
+
+            /**
+             * 自定义按钮.
+             */
+            $show->tools(function (\Dcat\Admin\Show\Tools $tools) {
+                // @permissions
+                if (Admin::user()->can('device.track.delete') && !empty($this->track()->first())) {
+                    $tools->append(new DeviceRecordDeleteTrackAction());
+                }
+                $is_lend = $this->isLend();
+                // @permissions
+                if (Admin::user()->can('device.record.track.create_update') && empty($this->track()->first()) && !$is_lend) {
+                    $tools->append(new \App\Admin\Actions\Show\DeviceRecordCreateUpdateTrackAction($is_lend));
+                }
+                $tools->append('&nbsp;');
+            });
+
+            /**
+             * 按钮控制.
+             */
+            $show->disableDeleteButton();
+            // @permissions
+            if (!Admin::user()->can('device.record.update')) {
+                $show->disableEditButton();
+            }
+        });
+    }
+
+    public function selectList(Request $request)
+    {
+        $q = $request->get('q');
+
+        return \App\Models\DeviceRecord::where('name', 'like', "%$q%")
+            ->paginate(null, ['id', 'name as text']);
+    }
+
+    /**
+     * 履历导出.
+     *
+     * @param $device_id
+     *
+     * @return mixed
+     */
+    public function exportHistory($device_id)
+    {
+        return ExportService::deviceHistory($device_id);
+    }
+
+    /**
      * Make a grid builder.
      *
      * @return Grid
@@ -259,137 +390,6 @@ class DeviceRecordController extends AdminController
         return ColumnSort::where('table_name', (new DeviceRecord())->getTable())
             ->get(['field', 'order'])
             ->toArray();
-    }
-
-    /**
-     * 详情页构建器
-     * 为了复写详情页的布局
-     *
-     * @param mixed $id
-     * @param Content $content
-     *
-     * @return Content
-     */
-    public function show($id, Content $content): Content
-    {
-        return $content
-            ->title($this->title())
-            ->description($this->description()['index'] ?? trans('admin.show'))
-            ->body(function (Row $row) use ($id) {
-                $row->column(7, $this->detail($id));
-                $row->column(5, function (Column $column) use ($id) {
-                    // 处理设备使用人
-                    $device = $this->detail($id)->model();
-                    $column->row(Card::make()->content(admin_trans_label('Current User') . '：' . $device->userName()));
-
-                    $related = Support::makeDeviceRelatedChartData($id);
-                    $column->row(new Card(trans('main.related'), view('charts.device_related')->with('related', $related)));
-                    $result = self::hasDeviceRelated($id);
-                    $column->row(new Card(trans('main.part'), $result['part']));
-                    $column->row(new Card(trans('main.software'), $result['software']));
-                    $column->row(new Card(trans('main.service'), $result['service']));
-
-                    // 处理设备履历
-                    $history = DeviceService::history($id);
-                    $card = new Card(trans('main.history'), view('history')->with('data', $history));
-                    // @permissions
-                    if (Admin::user()->can('device.record.history.export')) {
-                        $card->tool('<a class="btn btn-primary btn-xs" href="' . admin_route('export.device.history', ['device_id' => $id]) . '" target="_blank">' . admin_trans_label('Export To Excel') . '</a>');
-                    }
-                    $column->row($card);
-                });
-            });
-    }
-
-    /**
-     * Make a show builder.
-     *
-     * @param mixed $id
-     *
-     * @return Show
-     */
-    protected function detail($id): Show
-    {
-        return Show::make($id, new DeviceRecord(['category', 'vendor', 'channel', 'adminUser', 'adminUser.department', 'depreciation']), function (Show $show) {
-            $sort_columns = $this->sortColumns();
-            $show->field('id', '', $sort_columns);
-            $show->field('asset_number', '', $sort_columns);
-            $show->field('description', '', $sort_columns);
-            $show->field('category.name', '', $sort_columns);
-            $show->field('vendor.name', '', $sort_columns);
-            $show->field('channel.name', '', $sort_columns);
-            $show->field('mac', '', $sort_columns);
-            $show->field('ip', '', $sort_columns);
-            $show->field('photo', '', $sort_columns)->image();
-            $show->field('price', '', $sort_columns);
-            $show->field('expiration_left_days', '', $sort_columns)->as(function () {
-                $device_record = \App\Models\DeviceRecord::where('id', $this->id)->first();
-                if (!empty($device_record)) {
-                    $depreciation_rule_id = Support::getDepreciationRuleId($device_record);
-
-                    return Support::depreciationPrice($this->price, $this->purchased, $depreciation_rule_id);
-                }
-            });
-            $show->field('purchased', '', $sort_columns);
-            $show->field('expired', '', $sort_columns);
-            $show->field('adminUser.name', '', $sort_columns);
-            $show->field('adminUser.department.name', '', $sort_columns);
-            $show->field('depreciation.name', '', $sort_columns);
-            $show->field('depreciation.termination', '', $sort_columns);
-
-            /**
-             * 自定义字段.
-             */
-            ControllerHasCustomColumns::makeDetail((new DeviceRecord())->getTable(), $show, $sort_columns);
-
-            $show->field('created_at', '', $sort_columns);
-            $show->field('updated_at', '', $sort_columns);
-
-            /**
-             * 自定义按钮.
-             */
-            $show->tools(function (\Dcat\Admin\Show\Tools $tools) {
-                // @permissions
-                if (Admin::user()->can('device.track.delete') && !empty($this->track()->first())) {
-                    $tools->append(new DeviceRecordDeleteTrackAction());
-                }
-                $is_lend = $this->isLend();
-                // @permissions
-                if (Admin::user()->can('device.record.track.create_update') && empty($this->track()->first()) && !$is_lend) {
-                    $tools->append(new \App\Admin\Actions\Show\DeviceRecordCreateUpdateTrackAction($is_lend));
-                }
-                $tools->append('&nbsp;');
-            });
-
-            /**
-             * 按钮控制.
-             */
-            $show->disableDeleteButton();
-            // @permissions
-            if (!Admin::user()->can('device.record.update')) {
-                $show->disableEditButton();
-            }
-        });
-    }
-
-    public function selectList(Request $request)
-    {
-        $q = $request->get('q');
-
-        return \App\Models\DeviceRecord::where('name', 'like', "%$q%")
-            ->paginate(null, ['id', 'name as text']);
-    }
-
-    /**
-     * 履历导出.
-     *
-     * @param $device_id
-     *
-     * @return mixed
-     */
-    public function exportHistory($device_id)
-    {
-        return ExportService::deviceHistory($device_id);
     }
 
     /**

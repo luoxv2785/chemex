@@ -4,8 +4,8 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Grid\ToolAction\PurchasedChannelImportAction;
 use App\Admin\Repositories\PurchasedChannel;
-use Dcat\Admin\Admin;
 use App\Form;
+use Dcat\Admin\Admin;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;

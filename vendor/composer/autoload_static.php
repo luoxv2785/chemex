@@ -27,8 +27,8 @@ class ComposerStaticInit7777a1b39f577ef6879d8874226ca9c1
         'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
-        '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
         'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
+        '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
         '265b4faa2b3a9766332744949e83bf97' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Collections/helpers.php',
         'c7a3c339e7e14b60e06a2d7fcce9476b' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Events/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
@@ -41,8 +41,8 @@ class ComposerStaticInit7777a1b39f577ef6879d8874226ca9c1
         'dc1275c308c5b416beb314b6317daca2' => __DIR__ . '/..' . '/overtrue/pinyin/src/const.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '044fc72df35e84c745ee0d4120dc15d2' => __DIR__ . '/..' . '/dcat/laravel-admin/src/Support/helpers.php',
-        'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
         'cda2d2f579338909929d3104d0afc501' => __DIR__ . '/..' . '/overtrue/laravel-pinyin/src/helpers.php',
+        'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -53,10 +53,6 @@ class ComposerStaticInit7777a1b39f577ef6879d8874226ca9c1
         'p' => 
         array (
             'phpDocumentor\\Reflection\\' => 25,
-        ),
-        'X' => 
-        array (
-            'XdgBaseDir\\' => 11,
         ),
         'W' => 
         array (
@@ -235,10 +231,6 @@ class ComposerStaticInit7777a1b39f577ef6879d8874226ca9c1
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-        ),
-        'XdgBaseDir\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src',
         ),
         'Whoops\\' => 
         array (
@@ -6090,6 +6082,7 @@ class ComposerStaticInit7777a1b39f577ef6879d8874226ca9c1
         'Psy\\ConsoleColorFactory' => __DIR__ . '/..' . '/psy/psysh/src/ConsoleColorFactory.php',
         'Psy\\Context' => __DIR__ . '/..' . '/psy/psysh/src/Context.php',
         'Psy\\ContextAware' => __DIR__ . '/..' . '/psy/psysh/src/ContextAware.php',
+        'Psy\\EnvInterface' => __DIR__ . '/..' . '/psy/psysh/src/EnvInterface.php',
         'Psy\\Exception\\BreakException' => __DIR__ . '/..' . '/psy/psysh/src/Exception/BreakException.php',
         'Psy\\Exception\\DeprecatedException' => __DIR__ . '/..' . '/psy/psysh/src/Exception/DeprecatedException.php',
         'Psy\\Exception\\ErrorException' => __DIR__ . '/..' . '/psy/psysh/src/Exception/ErrorException.php',
@@ -6135,6 +6128,7 @@ class ComposerStaticInit7777a1b39f577ef6879d8874226ca9c1
         'Psy\\Shell' => __DIR__ . '/..' . '/psy/psysh/src/Shell.php',
         'Psy\\Sudo' => __DIR__ . '/..' . '/psy/psysh/src/Sudo.php',
         'Psy\\Sudo\\SudoVisitor' => __DIR__ . '/..' . '/psy/psysh/src/Sudo/SudoVisitor.php',
+        'Psy\\SuperglobalsEnv' => __DIR__ . '/..' . '/psy/psysh/src/SuperglobalsEnv.php',
         'Psy\\TabCompletion\\AutoCompleter' => __DIR__ . '/..' . '/psy/psysh/src/TabCompletion/AutoCompleter.php',
         'Psy\\TabCompletion\\Matcher\\AbstractContextAwareMatcher' => __DIR__ . '/..' . '/psy/psysh/src/TabCompletion/Matcher/AbstractContextAwareMatcher.php',
         'Psy\\TabCompletion\\Matcher\\AbstractDefaultParametersMatcher' => __DIR__ . '/..' . '/psy/psysh/src/TabCompletion/Matcher/AbstractDefaultParametersMatcher.php',
@@ -7427,7 +7421,6 @@ class ComposerStaticInit7777a1b39f577ef6879d8874226ca9c1
         'Whoops\\Util\\Misc' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/Misc.php',
         'Whoops\\Util\\SystemFacade' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/SystemFacade.php',
         'Whoops\\Util\\TemplateHelper' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/TemplateHelper.php',
-        'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
         'phpDocumentor\\Reflection\\DocBlockFactory' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
         'phpDocumentor\\Reflection\\DocBlockFactoryInterface' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactoryInterface.php',

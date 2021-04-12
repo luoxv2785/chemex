@@ -2,10 +2,10 @@
 
 namespace App\Traits;
 
+use App\Form;
 use App\Grid;
 use App\Models\CustomColumn;
 use App\Show;
-use App\Form;
 
 trait ControllerHasCustomColumns
 {
