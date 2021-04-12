@@ -54,7 +54,7 @@ class TodoRecordController extends AdminController
     protected function grid(): Grid
     {
         return Grid::make(new TodoRecord(['user']), function (Grid $grid) {
-            $column_sort = ColumnSort::where('table_name', TodoRecord::getTable())->get(['field', 'order'])->toArray();
+            $column_sort = ColumnSort::where('table_name', TodoRecord::getTable())->get(['name', 'order'])->toArray();
             $grid->column('id', '', $column_sort);
             $grid->column('name', '', $column_sort);
             $grid->column('description', '', $column_sort);

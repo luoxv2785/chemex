@@ -220,7 +220,7 @@ class PartRecordController extends AdminController
     public function sortColumns()
     {
         return ColumnSort::where('table_name', (new PartRecord())->getTable())
-            ->get(['field', 'order'])
+            ->get(['name', 'order'])
             ->toArray();
     }
 

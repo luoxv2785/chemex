@@ -154,7 +154,7 @@ class ConsumableRecordController extends AdminController
     public function sortColumns()
     {
         return ColumnSort::where('table_name', (new ConsumableRecord())->getTable())
-            ->get(['field', 'order'])
+            ->get(['name', 'order'])
             ->toArray();
     }
 

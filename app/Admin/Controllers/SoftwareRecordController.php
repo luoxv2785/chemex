@@ -331,7 +331,7 @@ class SoftwareRecordController extends AdminController
     public function sortColumns()
     {
         return ColumnSort::where('table_name', (new SoftwareRecord())->getTable())
-            ->get(['field', 'order'])
+            ->get(['name', 'order'])
             ->toArray();
     }
 
