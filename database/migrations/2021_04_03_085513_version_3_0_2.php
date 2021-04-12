@@ -14,7 +14,9 @@ class Version302 extends Migration
     public function up()
     {
         Schema::table('column_sorts', function (Blueprint $table) {
-            $table->renameColumn('field', 'name');
+            if (Schema::hasColumn('column_sort', 'field')) {
+                $table->renameColumn('field', 'name');
+            }
         });
     }
 
@@ -26,7 +28,9 @@ class Version302 extends Migration
     public function down()
     {
         Schema::table('column_sorts', function (Blueprint $table) {
-            $table->renameColumn('name', 'field');
+            if (Schema::hasColumn('column_sort', 'name')) {
+                $table->renameColumn('name', 'field');
+            }
         });
     }
 }
