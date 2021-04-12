@@ -69,7 +69,7 @@ class VersionService
             exec('git fetch --all' . ' 2>&1');
             exec('git reset --hard origin/main' . ' 2>&1', $out, $status);
             Artisan::call('chemex:update');
-            return $out;
+            return $out[0];
         } catch (Exception $exception) {
             return $exception->getMessage();
         }
