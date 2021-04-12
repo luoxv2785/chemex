@@ -71,7 +71,7 @@ class VersionService
             Artisan::call('chemex:update');
             return $out;
         } catch (Exception $exception) {
-            return $exception;
+            return $exception->getMessage();
         }
     }
 }
