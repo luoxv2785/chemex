@@ -2,11 +2,11 @@
 
 namespace App\Admin\Controllers;
 
+use App\Form;
 use App\Models\RoleUser;
 use App\Models\User;
 use App\Support\LDAP;
 use Dcat\Admin\Admin;
-use App\Form;
 use Dcat\Admin\Http\Controllers\AuthController as BaseAuthController;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Http\Repositories\Administrator;

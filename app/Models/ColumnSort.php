@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static where(string $key, string $value1, string $value2 = null)
  *
  * @property string table_name
- * @property string field
+ * @property string name
  * @property int order
  */
 class ColumnSort extends Model

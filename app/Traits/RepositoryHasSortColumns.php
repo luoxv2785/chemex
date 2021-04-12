@@ -20,12 +20,12 @@ trait RepositoryHasSortColumns
         // 排序表实中存在的字段
         $model_columns_array = ColumnSort::where('table_name', $table_name)
             ->orderBy('order', 'ASC')
-            ->get(['field', 'order'])
+            ->get(['name', 'order'])
             ->toArray();
         $model_columns = [];
 
         foreach ($model_columns_array as $model_column) {
-            $model_columns = array_merge($model_columns, [$model_column['order'] => $model_column['field']]);
+            $model_columns = array_merge($model_columns, [$model_column['order'] => $model_column['name']]);
         }
         // 如果column_sorts表内没有该资产的字段排序数据，则全部新建
         // 数据库实际存在的字段+代码中自定义的字段
@@ -76,12 +76,12 @@ trait RepositoryHasSortColumns
         $return = [];
         foreach ($needle_columns as $key => $needle_column) {
             $column_sort = ColumnSort::where('table_name', $table_name)
-                ->where('field', $needle_column)
+                ->where('name', $needle_column)
                 ->first();
             // 如果排序表中已经有这个字段了
             if (!empty($column_sort)) {
                 // 往全部需要排序的字段中，指定位置，插入，排序的字段
-                array_push($array, ['field' => $column_sort->field, 'order' => $column_sort->order]);
+                array_push($array, ['field' => $column_sort->name, 'order' => $column_sort->order]);
             } else {
                 array_push($array, ['field' => $needle_column, 'order' => $key + 100]);
             }
@@ -91,8 +91,6 @@ trait RepositoryHasSortColumns
         foreach ($array as $item) {
             $return[$item['order']] = $item['field'];
         }
-        $return = array_values($return);
-
-        return $return;
+        return array_values($return);
     }
 }

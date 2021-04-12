@@ -15,18 +15,6 @@ class ApprovalService
     protected Model $model;
 
     /**
-     * 删除流程.
-     * @param $approval_id
-     */
-    public static function approvalDelete($approval_id)
-    {
-        $approval_record = ApprovalRecord::where('id', $approval_id)->first();
-        if (!empty($approval_record)) {
-            $approval_record->delete();
-        }
-    }
-
-    /**
      * 构造函数.
      * ApprovalService constructor.
      * @param $approval_id
@@ -39,30 +27,24 @@ class ApprovalService
     }
 
     /**
+     * 删除流程.
+     * @param $approval_id
+     */
+    public static function approvalDelete($approval_id)
+    {
+        $approval_record = ApprovalRecord::where('id', $approval_id)->first();
+        if (!empty($approval_record)) {
+            $approval_record->delete();
+        }
+    }
+
+    /**
      * 写入审批原因.
      * @param $description
      */
     public function setDescription($description)
     {
         $this->description = $description;
-    }
-
-    /**
-     * 获取审批.
-     * @return mixed
-     */
-    public function getApprovalRecord()
-    {
-        return ApprovalRecord::find($this->approval_id);
-    }
-
-    /**
-     * 获取模型类名.
-     * @return false|string
-     */
-    public function getItem()
-    {
-        return get_class($this->model);
     }
 
     /**
@@ -99,5 +81,23 @@ class ApprovalService
                 $approval_history->delete();
             }
         }
+    }
+
+    /**
+     * 获取审批.
+     * @return mixed
+     */
+    public function getApprovalRecord()
+    {
+        return ApprovalRecord::find($this->approval_id);
+    }
+
+    /**
+     * 获取模型类名.
+     * @return false|string
+     */
+    public function getItem()
+    {
+        return get_class($this->model);
     }
 }

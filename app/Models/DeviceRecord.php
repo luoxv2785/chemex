@@ -74,6 +74,7 @@ class DeviceRecord extends Model
         'depreciation_rule_id',
         'deleted_at',
     ];
+
     protected $table = 'device_records';
 
     /**

@@ -6,7 +6,7 @@ use App\Admin\Forms\CustomColumnUpdateForm;
 use Dcat\Admin\Tree\RowAction;
 use Dcat\Admin\Widgets\Modal;
 
-class DeviceColumnUpdateAction extends RowAction
+class CustomColumnUpdateAction extends RowAction
 {
     protected ?string $table_name;
     protected ?string $custom_column_name;

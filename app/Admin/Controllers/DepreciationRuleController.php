@@ -3,8 +3,8 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Repositories\DepreciationRule;
-use Dcat\Admin\Admin;
 use App\Form;
+use Dcat\Admin\Admin;
 use Dcat\Admin\Form\NestedForm;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
