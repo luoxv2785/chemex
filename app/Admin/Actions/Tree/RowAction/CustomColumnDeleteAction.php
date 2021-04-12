@@ -33,8 +33,8 @@ class CustomColumnDeleteAction extends RowAction
      */
     public function handle(Request $request): Response
     {
+        DB::beginTransaction();
         try {
-            DB::beginTransaction();
             $table_name = $request->table_name;
             $name = $request->name;
             $custom_column = CustomColumn::where('table_name', $table_name)

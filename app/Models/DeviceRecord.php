@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @method static where(string $key, string $value, string $value = null)
@@ -76,6 +77,11 @@ class DeviceRecord extends Model
     ];
 
     protected $table = 'device_records';
+
+    public function getParentColumn(): string
+    {
+        return 'id';
+    }
 
     /**
      * 模型事件
@@ -263,4 +269,11 @@ class DeviceRecord extends Model
 //        $approval_record = $approval_history->approval()->first();
 //        return $approval_record->name;
 //    }
+
+//    public function delete()
+//    {
+//        $this->where($this->primaryKey, $this->getKey())->delete();
+//        return parent::delete();
+//    }
+
 }
