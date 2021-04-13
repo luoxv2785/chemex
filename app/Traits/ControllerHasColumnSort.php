@@ -4,7 +4,6 @@ namespace App\Traits;
 
 use App\Admin\Actions\Tree\RowAction\CustomColumnDeleteAction;
 use App\Admin\Actions\Tree\RowAction\CustomColumnUpdateAction;
-use App\Admin\Actions\Tree\RowAction\DeviceColumnUpdateAction;
 use App\Admin\Repositories\ConsumableRecord;
 use App\Admin\Repositories\DeviceRecord;
 use App\Admin\Repositories\PartRecord;
@@ -23,7 +22,6 @@ use Dcat\Admin\Widgets\Box;
 use Dcat\Admin\Widgets\Form as WidgetForm;
 use Exception;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Pour\Plus\LaravelAdmin;
 
@@ -249,23 +247,25 @@ trait ControllerHasColumnSort
                      * 创建自定义字段的数据库迁移动作.
                      */
                     if ($custom_column->save()) {
+//                        DB::beginTransaction();
                         try {
-                            DB::beginTransaction();
                             Schema::table($table_name, function (Blueprint $table) use ($custom_column) {
                                 $type = $custom_column->type;
                                 if ($type == 'select') {
                                     $type = 'string';
                                 }
-                                if ($custom_column->is_nullable == 1 && ($type == 'date' || $type == 'dateTime')) {
+                                if ($custom_column->is_nullable == 1 || ($type == 'date' || $type == 'dateTime')) {
                                     $table->$type($custom_column->name)->nullable();
                                 } else {
                                     $table->$type($custom_column->name)->default(0);
                                 }
                             });
-                            DB::commit();
+//                            DB::commit();
                             return $form->response()
+                                ->success(trans('main.success'))
                                 ->refresh();
                         } catch (Exception $exception) {
+//                            DB::rollBack();
                             return $form->response()
                                 ->error(trans('main.fail') . '：' . $exception->getMessage());
                         }

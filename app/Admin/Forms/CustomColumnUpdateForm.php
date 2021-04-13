@@ -11,7 +11,6 @@ use Dcat\Admin\Widgets\Form;
 use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CustomColumnUpdateForm extends Form implements Renderable
@@ -89,7 +88,7 @@ class CustomColumnUpdateForm extends Form implements Renderable
                     $column_sort->name = $new_name;
                 }
                 $column_sort->save();
-                DB::commit();
+//                DB::commit();
                 return $this->response()
                     ->success(trans('main.success'))
                     ->refresh();
@@ -98,7 +97,7 @@ class CustomColumnUpdateForm extends Form implements Renderable
                     ->error(trans('main.fail'));
             }
         } catch (Exception $exception) {
-            DB::rollBack();
+//            DB::rollBack();
             return $this->response()
                 ->error(trans('main.fail') . '：' . $exception->getMessage());
         }
