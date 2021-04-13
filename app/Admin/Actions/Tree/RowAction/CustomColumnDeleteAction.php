@@ -9,7 +9,6 @@ use Dcat\Admin\Tree\RowAction;
 use Exception;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CustomColumnDeleteAction extends RowAction
@@ -33,7 +32,7 @@ class CustomColumnDeleteAction extends RowAction
      */
     public function handle(Request $request): Response
     {
-        DB::beginTransaction();
+//        DB::beginTransaction();
         try {
             $table_name = $request->table_name;
             $name = $request->name;
@@ -57,12 +56,12 @@ class CustomColumnDeleteAction extends RowAction
                 $column_sort->delete();
             }
             $custom_column->delete();
-            DB::commit();
+//            DB::commit();
             return $this->response()
                 ->success(trans('main.success'))
                 ->refresh();
         } catch (Exception $exception) {
-            DB::rollBack();
+//            DB::rollBack();
             return $this->response()
                 ->error(trans('main.fail') . '：' . $exception->getMessage());
         }
