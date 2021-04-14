@@ -27,8 +27,8 @@ class ComposerStaticInit7777a1b39f577ef6879d8874226ca9c1
         'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
-        'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
         '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
+        'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
         '265b4faa2b3a9766332744949e83bf97' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Collections/helpers.php',
         'c7a3c339e7e14b60e06a2d7fcce9476b' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Events/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
@@ -41,8 +41,8 @@ class ComposerStaticInit7777a1b39f577ef6879d8874226ca9c1
         'dc1275c308c5b416beb314b6317daca2' => __DIR__ . '/..' . '/overtrue/pinyin/src/const.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '044fc72df35e84c745ee0d4120dc15d2' => __DIR__ . '/..' . '/dcat/laravel-admin/src/Support/helpers.php',
-        'cda2d2f579338909929d3104d0afc501' => __DIR__ . '/..' . '/overtrue/laravel-pinyin/src/helpers.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
+        'cda2d2f579338909929d3104d0afc501' => __DIR__ . '/..' . '/overtrue/laravel-pinyin/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -205,6 +205,7 @@ class ComposerStaticInit7777a1b39f577ef6879d8874226ca9c1
             'Composer\\Semver\\' => 16,
             'Composer\\CaBundle\\' => 18,
             'Composer\\' => 9,
+            'Celaraze\\' => 9,
             'Carbon\\' => 7,
         ),
         'B' => 
@@ -637,6 +638,10 @@ class ComposerStaticInit7777a1b39f577ef6879d8874226ca9c1
         array (
             0 => __DIR__ . '/..' . '/composer/composer/src/Composer',
         ),
+        'Celaraze\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/celaraze/laravel-response/src',
+        ),
         'Carbon\\' => 
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
@@ -878,7 +883,7 @@ class ComposerStaticInit7777a1b39f577ef6879d8874226ca9c1
         'App\\Admin\\Actions\\Show\\ServiceRecordCreateUpdateTrackAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Show/ServiceRecordCreateUpdateTrackAction.php',
         'App\\Admin\\Actions\\Show\\ServiceRecordDeleteTrackAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Show/ServiceRecordDeleteTrackAction.php',
         'App\\Admin\\Actions\\Tree\\RowAction\\CustomColumnDeleteAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Tree/RowAction/CustomColumnDeleteAction.php',
-        'App\\Admin\\Actions\\Tree\\RowAction\\DeviceColumnUpdateAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Tree/RowAction/DeviceColumnUpdateAction.php',
+        'App\\Admin\\Actions\\Tree\\RowAction\\CustomColumnUpdateAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Tree/RowAction/CustomColumnUpdateAction.php',
         'App\\Admin\\Actions\\Tree\\ToolAction\\ApprovalRecordCreateTrackAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Tree/ToolAction/ApprovalRecordCreateTrackAction.php',
         'App\\Admin\\Actions\\Tree\\ToolAction\\ConsumableCategoryImportAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Tree/ToolAction/ConsumableCategoryImportAction.php',
         'App\\Admin\\Actions\\Tree\\ToolAction\\DepartmentImportAction' => __DIR__ . '/../..' . '/app/Admin/Actions/Tree/ToolAction/DepartmentImportAction.php',
@@ -1102,7 +1107,6 @@ class ComposerStaticInit7777a1b39f577ef6879d8874226ca9c1
         'App\\Notifications\\NewTodoRecord' => __DIR__ . '/../..' . '/app/Notifications/NewTodoRecord.php',
         'App\\Observers\\ApprovalRecordObserver' => __DIR__ . '/../..' . '/app/Observers/ApprovalRecordObserver.php',
         'App\\Observers\\CheckRecordObserver' => __DIR__ . '/../..' . '/app/Observers/CheckRecordObserver.php',
-        'App\\Observers\\CustomColumnObserver' => __DIR__ . '/../..' . '/app/Observers/CustomColumnObserver.php',
         'App\\Observers\\DeviceRecordObserver' => __DIR__ . '/../..' . '/app/Observers/DeviceRecordObserver.php',
         'App\\Observers\\PartRecordObserver' => __DIR__ . '/../..' . '/app/Observers/PartRecordObserver.php',
         'App\\Observers\\ServiceRecordObserver' => __DIR__ . '/../..' . '/app/Observers/ServiceRecordObserver.php',
@@ -1367,6 +1371,7 @@ class ComposerStaticInit7777a1b39f577ef6879d8874226ca9c1
         'Carbon\\Traits\\Units' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Units.php',
         'Carbon\\Traits\\Week' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Week.php',
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
+        'Celaraze\\Response' => __DIR__ . '/..' . '/celaraze/laravel-response/src/Response.php',
         'Composer\\Autoload\\AutoloadGenerator' => __DIR__ . '/..' . '/composer/composer/src/Composer/Autoload/AutoloadGenerator.php',
         'Composer\\Autoload\\ClassLoader' => __DIR__ . '/..' . '/composer/composer/src/Composer/Autoload/ClassLoader.php',
         'Composer\\Autoload\\ClassMapGenerator' => __DIR__ . '/..' . '/composer/composer/src/Composer/Autoload/ClassMapGenerator.php',
@@ -4100,6 +4105,7 @@ class ComposerStaticInit7777a1b39f577ef6879d8874226ca9c1
         'Illuminate\\Http\\Client\\Factory' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Client/Factory.php',
         'Illuminate\\Http\\Client\\HttpClientException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Client/HttpClientException.php',
         'Illuminate\\Http\\Client\\PendingRequest' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Client/PendingRequest.php',
+        'Illuminate\\Http\\Client\\Pool' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Client/Pool.php',
         'Illuminate\\Http\\Client\\Request' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Client/Request.php',
         'Illuminate\\Http\\Client\\RequestException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Client/RequestException.php',
         'Illuminate\\Http\\Client\\Response' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Client/Response.php',
@@ -5185,6 +5191,7 @@ class ComposerStaticInit7777a1b39f577ef6879d8874226ca9c1
         'NunoMaduro\\Larastan\\Rules\\ModelProperties\\ModelPropertyRule' => __DIR__ . '/..' . '/nunomaduro/larastan/src/Rules/ModelProperties/ModelPropertyRule.php',
         'NunoMaduro\\Larastan\\Rules\\ModelProperties\\ModelPropertyStaticCallRule' => __DIR__ . '/..' . '/nunomaduro/larastan/src/Rules/ModelProperties/ModelPropertyStaticCallRule.php',
         'NunoMaduro\\Larastan\\Rules\\NoUnnecessaryCollectionCallRule' => __DIR__ . '/..' . '/nunomaduro/larastan/src/Rules/NoUnnecessaryCollectionCallRule.php',
+        'NunoMaduro\\Larastan\\Rules\\OctaneCompatibilityRule' => __DIR__ . '/..' . '/nunomaduro/larastan/src/Rules/OctaneCompatibilityRule.php',
         'NunoMaduro\\Larastan\\Support\\HigherOrderCollectionProxyHelper' => __DIR__ . '/..' . '/nunomaduro/larastan/src/Support/HigherOrderCollectionProxyHelper.php',
         'NunoMaduro\\Larastan\\Types\\AbortIfFunctionTypeSpecifyingExtension' => __DIR__ . '/..' . '/nunomaduro/larastan/src/Types/AbortIfFunctionTypeSpecifyingExtension.php',
         'NunoMaduro\\Larastan\\Types\\GenericEloquentBuilderTypeNodeResolverExtension' => __DIR__ . '/..' . '/nunomaduro/larastan/src/Types/GenericEloquentBuilderTypeNodeResolverExtension.php',

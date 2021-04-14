@@ -24,11 +24,22 @@ class CustomColumn extends Model
 
     protected $table = 'custom_columns';
 
+    /**
+     * 自定义字段如果是选项类型的值获取转换.
+     *
+     * @param $select_options
+     * @return array
+     */
     public function getSelectOptionsAttribute($select_options): array
     {
         return array_values(json_decode($select_options, true) ?: []);
     }
 
+    /**
+     * 自定义字段如果是选项类型的值写入转换.
+     *
+     * @param $select_options
+     */
     public function setSelectOptionsAttribute($select_options)
     {
         $this->attributes['select_options'] = json_encode(array_values($select_options));

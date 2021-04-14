@@ -247,7 +247,6 @@ trait ControllerHasColumnSort
                      * 创建自定义字段的数据库迁移动作.
                      */
                     if ($custom_column->save()) {
-//                        DB::beginTransaction();
                         try {
                             Schema::table($table_name, function (Blueprint $table) use ($custom_column) {
                                 $type = $custom_column->type;
@@ -260,12 +259,10 @@ trait ControllerHasColumnSort
                                     $table->$type($custom_column->name)->default(0);
                                 }
                             });
-//                            DB::commit();
                             return $form->response()
                                 ->success(trans('main.success'))
                                 ->refresh();
                         } catch (Exception $exception) {
-//                            DB::rollBack();
                             return $form->response()
                                 ->error(trans('main.fail') . '：' . $exception->getMessage());
                         }

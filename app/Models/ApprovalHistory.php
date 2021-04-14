@@ -24,6 +24,11 @@ class ApprovalHistory extends Model
 
     protected $table = 'approval_histories';
 
+    /**
+     * 历史有一个审核.
+     *
+     * @return HasOne
+     */
     public function approval(): HasOne
     {
         return $this->hasOne(ApprovalRecord::class, 'id', 'approval_id');

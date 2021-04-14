@@ -40,16 +40,6 @@ class User extends Administrator implements JWTSubject
     use Notifiable;
     use SoftDeletes;
 
-    protected static function booted()
-    {
-//         保存回调，demo模式下不允许修改管理员信息
-//        static::saving(function () {
-//            if (config('admin.demo')) {
-//                abort(401, '演示模式下不允许修改');
-//            }
-//        });
-    }
-
     /**
      * 获取JWT验证器.
      */

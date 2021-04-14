@@ -10,7 +10,7 @@
     ],
     "license": "GPL-3.0-or-later",
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^8.0",
         "ext-bcmath": "*",
         "ext-json": "*",
         "ext-ldap": "*",
@@ -19,6 +19,7 @@
         "ext-pdo_mysql": "*",
         "ext-zip": "*",
         "adldap2/adldap2-laravel": "^6.1",
+        "celaraze/laravel-response": "dev-master",
         "celaraze/pour": "dev-master",
         "dcat/easy-excel": "^1.0",
         "dcat/laravel-admin": "2.0.22-beta",

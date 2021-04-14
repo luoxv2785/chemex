@@ -33,7 +33,7 @@ class CheckTrack extends Model
     }
 
     /**
-     * 盘点追踪有一个盘点任务
+     * 盘点追踪有一个盘点任务.
      *
      * @return HasOne
      */

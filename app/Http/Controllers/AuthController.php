@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Celaraze\Response;
 use Illuminate\Http\JsonResponse;
+use JetBrains\PhpStorm\ArrayShape;
 
 class AuthController extends Controller
 {
@@ -16,12 +18,13 @@ class AuthController extends Controller
      *
      * @return JsonResponse
      */
+    #[ArrayShape(['code' => "int", 'message' => "string", "data" => "mixed"])]
     public function login(): JsonResponse
     {
         $credentials = request(['username', 'password']);
 
         if (!$token = auth('api')->attempt($credentials)) {
-            return response()->json(['error' => '未授权的操作'], 401);
+            return Response::make(401, '未授权的操作');
         }
 
         return $this->respondWithToken($token);
@@ -34,12 +37,14 @@ class AuthController extends Controller
      *
      * @return JsonResponse
      */
+    #[ArrayShape(['code' => "int", 'message' => "string", "data" => "mixed"])]
     protected function respondWithToken(string $token): JsonResponse
     {
-        return response()->json([
+        $token = [
             'access_token' => $token,
             'token_type' => 'bearer',
-        ]);
+        ];
+        return Response::make(200, 'successfully', $token);
     }
 
     /**
@@ -57,11 +62,12 @@ class AuthController extends Controller
      *
      * @return JsonResponse
      */
+    #[ArrayShape(['code' => "int", 'message' => "string", "data" => "mixed"])]
     public function logout(): JsonResponse
     {
         auth('api')->logout();
 
-        return response()->json(['message' => '成功登出']);
+        return Response::make(200, '成功登出');
     }
 
     /**
@@ -70,6 +76,7 @@ class AuthController extends Controller
      *
      * @return JsonResponse
      */
+    #[ArrayShape(['code' => "int", 'message' => "string", "data" => "mixed"])]
     public function refresh(): JsonResponse
     {
         return $this->respondWithToken(auth('api')->refresh());

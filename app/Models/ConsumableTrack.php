@@ -26,11 +26,21 @@ class ConsumableTrack extends Model
 
     protected $table = 'consumable_tracks';
 
+    /**
+     * 耗材追踪有一个耗材记录.
+     *
+     * @return HasOne
+     */
     public function consumable(): HasOne
     {
         return $this->hasOne(ConsumableRecord::class, 'id', 'consumable_id');
     }
 
+    /**
+     * 耗材追踪有一个用户.
+     *
+     * @return HasOne
+     */
     public function user(): HasOne
     {
         return $this->hasOne(User::class, 'id', 'user_id');
