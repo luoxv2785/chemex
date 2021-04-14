@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '5f17c8721e11c119ed29f519aa85aed23c45bf25',
+    'reference' => '91a5fe6f485f94af1305c8bb71a81f0186d2a488',
     'name' => 'celaraze/chemex',
   ),
   'versions' => 
@@ -63,7 +63,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '5f17c8721e11c119ed29f519aa85aed23c45bf25',
+      'reference' => '91a5fe6f485f94af1305c8bb71a81f0186d2a488',
     ),
     'celaraze/laravel-response' => 
     array (

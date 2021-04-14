@@ -12,7 +12,7 @@ class SSHService
      *
      * @param $url
      *
-     * @return int|mixed
+     * @return int
      */
     public static function checkWebSSHServiceStatus($url): int
     {

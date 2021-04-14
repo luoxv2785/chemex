@@ -2,8 +2,11 @@
 
 namespace App\Support;
 
+use JetBrains\PhpStorm\ArrayShape;
+
 class Version
 {
+    #[ArrayShape(['kenya' => "string[]", 'yirgacheffe' => "string[]", 'geisha' => "string[]"])]
     public static function list(): array
     {
         return [

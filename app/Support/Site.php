@@ -75,9 +75,9 @@ class Site
          * 处理AD SSL 和 TLS 协议，如果没填这个配置，就为false，否则就是本身设置的值
          */
         $ad_use_ssl = admin_setting('ad_use_ssl');
-        $ad_use_ssl = empty($ad_use_ssl) ? false : true;
+        $ad_use_ssl = !empty($ad_use_ssl);
         $ad_use_tls = admin_setting('ad_use_tls');
-        $ad_use_tls = empty($ad_use_tls) ? false : true;
+        $ad_use_tls = !empty($ad_use_tls);
 
         /**
          * 复写admin站点配置.

@@ -85,9 +85,9 @@ class ApprovalService
 
     /**
      * 获取审批.
-     * @return mixed
+     * @return ApprovalRecord
      */
-    public function getApprovalRecord()
+    public function getApprovalRecord(): ApprovalRecord
     {
         return ApprovalRecord::find($this->approval_id);
     }
@@ -96,7 +96,7 @@ class ApprovalService
      * 获取模型类名.
      * @return false|string
      */
-    public function getItem()
+    public function getItem(): bool|string
     {
         return get_class($this->model);
     }

@@ -213,7 +213,7 @@ class Support
      *
      * @return float|int
      */
-    public static function depreciationPrice($price, $date, $depreciation_rule_id)
+    public static function depreciationPrice($price, $date, $depreciation_rule_id): float|int
     {
         $depreciation = DepreciationRule::where('id', $depreciation_rule_id)->first();
         if (empty($depreciation)) {
@@ -259,9 +259,9 @@ class Support
      *
      * @param Model $model
      *
-     * @return mixed|null
+     * @return int|null
      */
-    public static function getDepreciationRuleId(Model $model)
+    public static function getDepreciationRuleId(Model $model): ?int
     {
         $depreciation_rule_id = null;
         if (empty($model->depreciation_rule_id)) {
@@ -301,7 +301,7 @@ class Support
      *
      * @return ServiceRecord[]|Collection
      */
-    public static function getServiceIssueStatus()
+    public static function getServiceIssueStatus(): Collection|array
     {
         $services = ServiceRecord::all();
         foreach ($services as $service) {
@@ -369,9 +369,9 @@ class Support
      * @param $year
      * @param string $field
      *
-     * @return false|string
+     * @return string
      */
-    public static function makeYearDate($year, $field = 'from')
+    public static function makeYearDate($year, $field = 'from'): string
     {
         $from = date('Y-m-d', mktime(0, 0, 0, 1, 1, $year));
         $to = date('Y-m-d', mktime(23, 59, 59, 12, 31, $year));
@@ -389,7 +389,7 @@ class Support
      *
      * @return array|false|string
      */
-    public static function makeDeviceRelatedChartData($device_id)
+    public static function makeDeviceRelatedChartData($device_id): bool|array|string
     {
         $return = [];
         $device_record = DeviceRecord::where('id', $device_id)->first();

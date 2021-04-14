@@ -10,6 +10,11 @@ use TCPDF;
 
 class CheckService
 {
+    /**
+     * 报告报告.
+     * @param $check_id
+     * @return string
+     */
     public static function report($check_id): string
     {
         $check_record = CheckRecord::where('id', $check_id)->first();
