@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '8b1abb3ff110d8b303b8bb1a2d0b739b1bc057e4',
+    'reference' => 'bea8957c948305689a30ad1918c3ec592264aa37',
     'name' => 'celaraze/chemex',
   ),
   'versions' => 
@@ -63,7 +63,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '8b1abb3ff110d8b303b8bb1a2d0b739b1bc057e4',
+      'reference' => 'bea8957c948305689a30ad1918c3ec592264aa37',
     ),
     'celaraze/laravel-response' => 
     array (
@@ -1003,8 +1003,8 @@
     array (
       'provided' => 
       array (
-        0 => '1.0',
-        1 => '1.0.0',
+        0 => '1.0.0',
+        1 => '1.0',
       ),
     ),
     'psr/simple-cache' => 

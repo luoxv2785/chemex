@@ -211,14 +211,12 @@ class Support
      * @param $date
      * @param $depreciation_rule_id
      *
-     * @return float|int
+     * @return float|int|null
      */
-    public static function depreciationPrice($price, $date, $depreciation_rule_id): float|int
+    public static function depreciationPrice($price, $date, $depreciation_rule_id): float|int|null
     {
         $depreciation = DepreciationRule::where('id', $depreciation_rule_id)->first();
-        if (empty($depreciation)) {
-            return $price;
-        } else {
+        if (!empty($depreciation)) {
             $purchased_timestamp = strtotime($date);
             $now_timestamp = time();
 
@@ -231,16 +229,11 @@ class Support
 
             // 数组过滤器
             $return = array_filter($data, function ($item) use ($diff) {
-                switch ($item['scale']) {
-                    case 'month':
-                        $number = (int)$item['number'] * 24 * 60 * 60 * 30;
-                        break;
-                    case 'year':
-                        $number = (int)$item['number'] * 24 * 60 * 60 * 365;
-                        break;
-                    default:
-                        $number = (int)$item['number'] * 24 * 60 * 60;
-                }
+                $number = match ($item['scale']) {
+                    'month' => (int)$item['number'] * 24 * 60 * 60 * 30,
+                    'year' => (int)$item['number'] * 24 * 60 * 60 * 365,
+                    default => (int)$item['number'] * 24 * 60 * 60,
+                };
 
                 return $diff >= $number;
             });
@@ -250,8 +243,8 @@ class Support
                 $price = $price * (float)$return[0]['ratio'];
             }
 
-            return $price;
         }
+        return $price;
     }
 
     /**

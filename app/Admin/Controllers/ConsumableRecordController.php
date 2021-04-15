@@ -149,9 +149,9 @@ class ConsumableRecordController extends AdminController
     /**
      * 返回字段排序.
      *
-     * @return mixed
+     * @return array
      */
-    public function sortColumns()
+    public function sortColumns(): array
     {
         return ColumnSort::where('table_name', (new ConsumableRecord())->getTable())
             ->get(['name', 'order'])
@@ -161,11 +161,11 @@ class ConsumableRecordController extends AdminController
     /**
      * Make a show builder.
      *
-     * @param mixed $id
+     * @param int $id
      *
      * @return Show
      */
-    protected function detail($id): Show
+    protected function detail(int $id): Show
     {
         return Show::make($id, new ConsumableRecord(['category', 'vendor']), function (Show $show) {
             $sort_columns = $this->sortColumns();
