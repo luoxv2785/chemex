@@ -142,8 +142,8 @@ final class Versions
   'facade/flare-client-php' => '1.7.0@6bf380035890cb0a09b9628c491ae3866b858522',
   'facade/ignition' => '2.8.3@a8201d51aae83addceaef9344592a3b068b5d64d',
   'facade/ignition-contracts' => '1.0.2@3c921a1cdba35b68a7f0ccffc6dffc1995b18267',
+  'fakerphp/faker' => 'v1.14.1@ed22aee8d17c7b396f74a58b1e7fefa4f90d5ef1',
   'filp/whoops' => '2.12.0@d501fd2658d55491a2295ff600ae5978eaad7403',
-  'fzaninotto/faker' => 'dev-master@5ffe7db6c80f441f150fc88008d64e64af66634b',
   'laravel/sail' => 'v1.4.12@d1a91b03885c9c29bc2d88d61a4b10bd1f678156',
   'myclabs/deep-copy' => '1.10.2@776f831124e9c62e1a2c601ecc52e776d8bb7220',
   'nunomaduro/collision' => 'v5.4.0@41b7e9999133d5082700d31a1d0977161df8322a',
@@ -176,7 +176,7 @@ final class Versions
   'sebastian/type' => '2.3.1@81cd61ab7bbf2de744aba0ea61fae32f721df3d2',
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'theseer/tokenizer' => '1.2.0@75a63c33a8577608444246075ea0af0d052e452a',
-  'celaraze/chemex' => 'dev-main@91a5fe6f485f94af1305c8bb71a81f0186d2a488',
+  'celaraze/chemex' => 'dev-main@8b1abb3ff110d8b303b8bb1a2d0b739b1bc057e4',
 );
 
     private function __construct()
