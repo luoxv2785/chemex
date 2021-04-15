@@ -22,6 +22,11 @@ class ApprovalRecord extends Model
 
     protected $table = 'approval_records';
 
+    /**
+     * 审核有很多的流程.
+     *
+     * @return HasMany
+     */
     public function track(): HasMany
     {
         return $this->hasMany(ApprovalTrack::class, 'approval_id', 'id');

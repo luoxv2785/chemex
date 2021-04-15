@@ -211,14 +211,12 @@ class Support
      * @param $date
      * @param $depreciation_rule_id
      *
-     * @return float|int
+     * @return float|int|null
      */
-    public static function depreciationPrice($price, $date, $depreciation_rule_id)
+    public static function depreciationPrice($price, $date, $depreciation_rule_id): float|int|null
     {
         $depreciation = DepreciationRule::where('id', $depreciation_rule_id)->first();
-        if (empty($depreciation)) {
-            return $price;
-        } else {
+        if (!empty($depreciation)) {
             $purchased_timestamp = strtotime($date);
             $now_timestamp = time();
 
@@ -231,16 +229,11 @@ class Support
 
             // 数组过滤器
             $return = array_filter($data, function ($item) use ($diff) {
-                switch ($item['scale']) {
-                    case 'month':
-                        $number = (int)$item['number'] * 24 * 60 * 60 * 30;
-                        break;
-                    case 'year':
-                        $number = (int)$item['number'] * 24 * 60 * 60 * 365;
-                        break;
-                    default:
-                        $number = (int)$item['number'] * 24 * 60 * 60;
-                }
+                $number = match ($item['scale']) {
+                    'month' => (int)$item['number'] * 24 * 60 * 60 * 30,
+                    'year' => (int)$item['number'] * 24 * 60 * 60 * 365,
+                    default => (int)$item['number'] * 24 * 60 * 60,
+                };
 
                 return $diff >= $number;
             });
@@ -250,8 +243,8 @@ class Support
                 $price = $price * (float)$return[0]['ratio'];
             }
 
-            return $price;
         }
+        return $price;
     }
 
     /**
@@ -259,9 +252,9 @@ class Support
      *
      * @param Model $model
      *
-     * @return mixed|null
+     * @return int|null
      */
-    public static function getDepreciationRuleId(Model $model)
+    public static function getDepreciationRuleId(Model $model): ?int
     {
         $depreciation_rule_id = null;
         if (empty($model->depreciation_rule_id)) {
@@ -301,7 +294,7 @@ class Support
      *
      * @return ServiceRecord[]|Collection
      */
-    public static function getServiceIssueStatus()
+    public static function getServiceIssueStatus(): Collection|array
     {
         $services = ServiceRecord::all();
         foreach ($services as $service) {
@@ -369,9 +362,9 @@ class Support
      * @param $year
      * @param string $field
      *
-     * @return false|string
+     * @return string
      */
-    public static function makeYearDate($year, $field = 'from')
+    public static function makeYearDate($year, $field = 'from'): string
     {
         $from = date('Y-m-d', mktime(0, 0, 0, 1, 1, $year));
         $to = date('Y-m-d', mktime(23, 59, 59, 12, 31, $year));
@@ -389,7 +382,7 @@ class Support
      *
      * @return array|false|string
      */
-    public static function makeDeviceRelatedChartData($device_id)
+    public static function makeDeviceRelatedChartData($device_id): bool|array|string
     {
         $return = [];
         $device_record = DeviceRecord::where('id', $device_id)->first();

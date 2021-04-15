@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Support\Support;
+use App\Models\DeviceRecord;
+use App\Models\PartRecord;
+use App\Models\SoftwareRecord;
+use Celaraze\Response;
 use Illuminate\Http\JsonResponse;
+use JetBrains\PhpStorm\ArrayShape;
 
 class QueryController extends Controller
 {
@@ -13,27 +17,22 @@ class QueryController extends Controller
     }
 
     /**
-     * 移动端扫码查看设备配件软件详情.
+     * 查询资产.
      *
-     * @param $string
-     *
-     * @return JsonResponse
+     * @param $asset_number
+     * @return JsonResponse|array
      */
-    public function query($string): JsonResponse
+    #[ArrayShape(['code' => "int", 'message' => "string", "data" => "mixed"])]
+    public function handle($asset_number): JsonResponse|array
     {
-        $item = explode(':', $string)[0];
-        $id = explode(':', $string)[1];
-        $item = Support::getItemRecordByClass($item, $id);
-        optional($item->user)->department;
-        $item->category;
-        $item->vendor;
-        $item->channel;
-        $return = [
-            'code' => 200,
-            'message' => '查询成功',
-            'data' => $item,
-        ];
+        $asset = DeviceRecord::where('asset_number', $asset_number)->first();
+        if (empty($asset)) {
+            $asset = PartRecord::where('asset_number', $asset_number)->first();
+            if (empty($asset)) {
+                $asset = SoftwareRecord::where('asset_number', $asset_number)->first();
+            }
+        }
 
-        return response()->json($return);
+        return Response::make(200, '查询成功', $asset);
     }
 }

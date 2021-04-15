@@ -121,11 +121,11 @@ class SoftwareRecordController extends AdminController
     /**
      * Make a show builder.
      *
-     * @param mixed $id
+     * @param int $id
      *
      * @return Show
      */
-    protected function detail($id): Show
+    protected function detail(int $id): Show
     {
         return Show::make($id, new SoftwareRecord(['category', 'vendor', 'channel']), function (Show $show) {
             $sort_columns = $this->sortColumns();
@@ -169,7 +169,7 @@ class SoftwareRecordController extends AdminController
      *
      * @return mixed
      */
-    public function exportHistory($software_id)
+    public function exportHistory($software_id): mixed
     {
         return SoftwareService::exportHistory($software_id);
     }
@@ -326,9 +326,9 @@ class SoftwareRecordController extends AdminController
     /**
      * 返回字段排序.
      *
-     * @return mixed
+     * @return array
      */
-    public function sortColumns()
+    public function sortColumns(): array
     {
         return ColumnSort::where('table_name', (new SoftwareRecord())->getTable())
             ->get(['name', 'order'])

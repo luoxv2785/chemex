@@ -18,7 +18,7 @@ class ExportService
      *
      * @return mixed
      */
-    public static function deviceHistory($device_id)
+    public static function deviceHistory($device_id): mixed
     {
         $device_record = DeviceRecord::where('id', $device_id)->first();
         if (empty($device_record)) {

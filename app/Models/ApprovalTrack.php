@@ -23,11 +23,21 @@ class ApprovalTrack extends Model implements Sortable
 
     protected $table = 'approval_tracks';
 
+    /**
+     * 流程属于一个审核.
+     *
+     * @return BelongsTo
+     */
     public function approval(): BelongsTo
     {
         return $this->belongsTo(ApprovalRecord::class, 'approval_id', 'id');
     }
 
+    /**
+     * 流程有一个角色.
+     *
+     * @return HasOne
+     */
     public function role(): HasOne
     {
         return $this->hasOne(Role::class, 'id', 'role_id');

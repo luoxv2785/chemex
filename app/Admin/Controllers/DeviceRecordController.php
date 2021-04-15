@@ -44,6 +44,7 @@ use Illuminate\Http\Request;
  * @property string purchased
  * @property int depreciation_rule_id
  * @property string deleted_at
+ * @property  string asset_number
  *
  * @method isLend()
  * @method track()
@@ -114,11 +115,11 @@ class DeviceRecordController extends AdminController
     /**
      * Make a show builder.
      *
-     * @param mixed $id
+     * @param int $id
      *
      * @return Show
      */
-    protected function detail($id): Show
+    protected function detail(int $id): Show
     {
         return Show::make($id, new DeviceRecord(['category', 'vendor', 'channel', 'adminUser', 'adminUser.department', 'depreciation']), function (Show $show) {
             $sort_columns = $this->sortColumns();
@@ -182,7 +183,13 @@ class DeviceRecordController extends AdminController
         });
     }
 
-    public function selectList(Request $request)
+    /**
+     * 提供selectCreate的ajax请求.
+     *
+     * @param Request $request
+     * @return mixed
+     */
+    public function selectList(Request $request): mixed
     {
         $q = $request->get('q');
 
@@ -197,7 +204,7 @@ class DeviceRecordController extends AdminController
      *
      * @return mixed
      */
-    public function exportHistory($device_id)
+    public function exportHistory($device_id): mixed
     {
         return ExportService::deviceHistory($device_id);
     }
@@ -213,6 +220,9 @@ class DeviceRecordController extends AdminController
             $sort_columns = $this->sortColumns();
             $grid->column('id', '', $sort_columns);
             $grid->column('photo', '', $sort_columns)->image('', 50, 50);
+            $grid->column('asset_number_qrcode', '', $sort_columns)->qrcode(function () {
+                return $this->asset_number;
+            });
             $grid->column('asset_number', '', $sort_columns)->display(function ($asset_number) {
                 $asset_number = "<span class='badge badge-secondary'>$asset_number</span>";
                 $tag = Support::getSoftwareIcon($this->id);

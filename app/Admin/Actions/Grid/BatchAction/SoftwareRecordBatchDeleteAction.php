@@ -14,11 +14,21 @@ class SoftwareRecordBatchDeleteAction extends BatchAction
         $this->title = '🔨 ' . admin_trans_label('Batch Delete');
     }
 
+    /**
+     * 确认弹窗.
+     *
+     * @return string
+     */
     public function confirm(): string
     {
         return admin_trans_label('Batch Delete Confirm');
     }
 
+    /**
+     * 处理逻辑.
+     *
+     * @return \Dcat\Admin\Actions\Response
+     */
     public function handle(): Response
     {
         $keys = $this->getKey();

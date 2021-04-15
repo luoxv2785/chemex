@@ -33,7 +33,7 @@ class SoftwareService
      *
      * @return mixed
      */
-    public static function exportHistory($software_id)
+    public static function exportHistory($software_id): mixed
     {
         $software = SoftwareRecord::where('id', $software_id)->first();
         if (empty($software)) {

@@ -26,7 +26,7 @@ class DeviceTrack extends Model
     protected $table = 'device_tracks';
 
     /**
-     * 设备追踪有一个设备记录.
+     * 设备追踪有属于一个设备记录.
      *
      * @return BelongsTo
      */

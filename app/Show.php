@@ -20,16 +20,12 @@ class Show extends \Dcat\Admin\Show
         if (!empty($sorts)) {
             $field = array_column($sorts, 'field');
             $key = array_search($name, $field);
-//            if($name == 'mac'){
-//                dd($order);
-//            }
             if ($key !== false) {
                 if (isset($sorts[$key])) {
                     $order = $sorts[$key]['order'];
                 }
             }
         }
-//        dd($order);
 
         return $this->addField($name, $label, (int)$order);
     }

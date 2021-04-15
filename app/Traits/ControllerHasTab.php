@@ -27,7 +27,7 @@ trait ControllerHasTab
      * 标题.
      * @return array|Translator|string|null
      */
-    public function title()
+    public function title(): array|string|Translator|null
     {
         return admin_trans_label('title');
     }
@@ -36,7 +36,7 @@ trait ControllerHasTab
      * 默认渲染grid.
      * @return \App\Grid|Grid
      */
-    public function renderGrid()
+    public function renderGrid(): Grid|\App\Grid
     {
         return $this->grid();
     }

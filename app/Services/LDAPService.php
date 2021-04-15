@@ -14,7 +14,7 @@ class LDAPService
      *
      * @param $mode
      *
-     * @return bool|string
+     * @return string
      */
     public static function importUserDepartments($mode): string
     {
@@ -80,7 +80,7 @@ class LDAPService
      *
      * @return int[]|string
      */
-    public static function importUsers($mode)
+    public static function importUsers($mode): array|string
     {
         $success = 0;
         $fail = 0;

@@ -9,6 +9,7 @@ use App\Admin\Repositories\ServiceRecord;
 use App\Admin\Repositories\SoftwareRecord;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Widgets\Alert;
+use JetBrains\PhpStorm\ArrayShape;
 
 class Data
 {
@@ -17,6 +18,7 @@ class Data
      *
      * @return string[]
      */
+    #[ArrayShape(['u' => "string", 'o' => "string", 'f' => "string", 'b' => "string"])]
     public static function distribution(): array
     {
         return [
@@ -32,6 +34,7 @@ class Data
      *
      * @return string[]
      */
+    #[ArrayShape(['无' => "string", '男' => "string", '女' => "string"])]
     public static function genders(): array
     {
         return [
@@ -46,6 +49,7 @@ class Data
      *
      * @return string[]
      */
+    #[ArrayShape(['device' => "string", 'part' => "string", 'software' => "string"])]
     public static function items(): array
     {
         return [
@@ -117,6 +121,7 @@ class Data
      *
      * @return array
      */
+    #[ArrayShape(['windows' => "string[]", 'macos' => "string[]", 'linux' => "string[]", 'android' => "string[]", 'ios' => "string[]"])]
     public static function softwareTags(): array
     {
         return [
@@ -193,6 +198,7 @@ class Data
      *
      * @return string[]
      */
+    #[ArrayShape(['one day' => "string", 'three day' => "string", 'one week' => "string", 'one month' => "string", 'normal' => "string", 'none' => "string", 'default' => "string"])]
     public static function expiredStatus(): array
     {
         return [
@@ -211,6 +217,7 @@ class Data
      *
      * @return array
      */
+    #[ArrayShape(['one day' => "string", 'three day' => "string", 'one week' => "string", 'one month' => "string", 'normal' => "string", 'none' => "string", 'default' => "string"])]
     public static function expiredStatusColors(): array
     {
         return [
@@ -229,6 +236,7 @@ class Data
      *
      * @return string[]
      */
+    #[ArrayShape(['day' => "string", 'month' => "string", 'year' => "string"])]
     public static function timeScales(): array
     {
         return [
@@ -243,6 +251,7 @@ class Data
      *
      * @return string[]
      */
+    #[ArrayShape(['happy' => "string", 'normal' => "string", 'sad' => "string"])]
     public static function emoji(): array
     {
         return [
@@ -283,6 +292,7 @@ class Data
      *
      * @return string[]
      */
+    #[ArrayShape(['high' => "string", 'normal' => "string", 'low' => "string"])]
     public static function priority(): array
     {
         return [
@@ -297,6 +307,7 @@ class Data
      *
      * @return string[]
      */
+    #[ArrayShape(['string' => "string", 'date' => "string", 'dateTime' => "string", 'integer' => "string", 'float' => "string", 'double' => "string", 'longText' => "string", 'select' => "string"])]
     public static function customColumnTypes(): array
     {
         return [
