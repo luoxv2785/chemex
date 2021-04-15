@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '91a5fe6f485f94af1305c8bb71a81f0186d2a488',
+    'reference' => '8b1abb3ff110d8b303b8bb1a2d0b739b1bc057e4',
     'name' => 'celaraze/chemex',
   ),
   'versions' => 
@@ -87,7 +87,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '91a5fe6f485f94af1305c8bb71a81f0186d2a488',
+      'reference' => '8b1abb3ff110d8b303b8bb1a2d0b739b1bc057e4',
     ),
     'celaraze/laravel-response' => 
     array (
@@ -312,6 +312,15 @@ private static $installed = array (
       ),
       'reference' => '3c921a1cdba35b68a7f0ccffc6dffc1995b18267',
     ),
+    'fakerphp/faker' => 
+    array (
+      'pretty_version' => 'v1.14.1',
+      'version' => '1.14.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'ed22aee8d17c7b396f74a58b1e7fefa4f90d5ef1',
+    ),
     'fideloper/proxy' => 
     array (
       'pretty_version' => '4.4.1',
@@ -338,16 +347,6 @@ private static $installed = array (
       array (
       ),
       'reference' => '01de0fe5f71c70d1930ee9a80385f9cc28e0f63a',
-    ),
-    'fzaninotto/faker' => 
-    array (
-      'pretty_version' => 'dev-master',
-      'version' => 'dev-master',
-      'aliases' => 
-      array (
-        0 => '1.9.x-dev',
-      ),
-      'reference' => '5ffe7db6c80f441f150fc88008d64e64af66634b',
     ),
     'graham-campbell/result-type' => 
     array (
@@ -1028,8 +1027,8 @@ private static $installed = array (
     array (
       'provided' => 
       array (
-        0 => '1.0.0',
-        1 => '1.0',
+        0 => '1.0',
+        1 => '1.0.0',
       ),
     ),
     'psr/simple-cache' => 
