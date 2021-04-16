@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'bea8957c948305689a30ad1918c3ec592264aa37',
+    'reference' => 'f6f1ef4a275963ce893a808141342bff6c882402',
     'name' => 'celaraze/chemex',
   ),
   'versions' => 
@@ -87,7 +87,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'bea8957c948305689a30ad1918c3ec592264aa37',
+      'reference' => 'f6f1ef4a275963ce893a808141342bff6c882402',
     ),
     'celaraze/laravel-response' => 
     array (
@@ -98,6 +98,15 @@ private static $installed = array (
         0 => '9999999-dev',
       ),
       'reference' => 'ab23d35489f7e3a06ae088e0ee9fab5d45d89028',
+    ),
+    'celaraze/mellita' => 
+    array (
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '3f2e1a6254f0ca2ffac34fcb72c45a313f6fdd02',
     ),
     'celaraze/pour' => 
     array (
@@ -269,12 +278,12 @@ private static $installed = array (
     ),
     'enlightn/enlightn' => 
     array (
-      'pretty_version' => 'v1.21.0',
-      'version' => '1.21.0.0',
+      'pretty_version' => 'v1.22.0',
+      'version' => '1.22.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '959c9dc6d4dc95c6182569e96fc6e3c48ac538fc',
+      'reference' => '0958011684210838bb50646bedd6a33f73994e7c',
     ),
     'enlightn/security-checker' => 
     array (
@@ -406,217 +415,217 @@ private static $installed = array (
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/broadcasting' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/bus' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/cache' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/collections' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/config' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/console' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/container' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/contracts' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/cookie' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/database' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/encryption' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/events' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/filesystem' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/hashing' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/http' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/log' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/macroable' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/mail' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/notifications' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/pagination' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/pipeline' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/queue' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/redis' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/routing' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/session' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/support' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/testing' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/translation' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/validation' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'illuminate/view' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.37.0',
+        0 => '8.x-dev',
       ),
     ),
     'justinrainbow/json-schema' => 
@@ -637,12 +646,12 @@ private static $installed = array (
     ),
     'laravel/framework' => 
     array (
-      'pretty_version' => 'v8.37.0',
-      'version' => '8.37.0.0',
+      'pretty_version' => '8.x-dev',
+      'version' => '8.9999999.9999999.9999999-dev',
       'aliases' => 
       array (
       ),
-      'reference' => 'cf4082973abc796ec285190f0603380021f6d26f',
+      'reference' => '37ba32dc5f52d261b482815d194fba1476b725a2',
     ),
     'laravel/sail' => 
     array (
@@ -774,12 +783,12 @@ private static $installed = array (
     ),
     'nunomaduro/larastan' => 
     array (
-      'pretty_version' => 'v0.7.3',
-      'version' => '0.7.3.0',
+      'pretty_version' => 'v0.7.4',
+      'version' => '0.7.4.0',
       'aliases' => 
       array (
       ),
-      'reference' => '9c515d46851dca5a99fc82c0a69392c362b7affd',
+      'reference' => '0ceef2a39b45be9d7f7dd96192a1721ba5112278',
     ),
     'ocramius/package-versions' => 
     array (
@@ -817,12 +826,12 @@ private static $installed = array (
     ),
     'overtrue/pinyin' => 
     array (
-      'pretty_version' => '4.0.6',
-      'version' => '4.0.6.0',
+      'pretty_version' => '4.0.7',
+      'version' => '4.0.7.0',
       'aliases' => 
       array (
       ),
-      'reference' => '9836dae1783bcf5934508a2abe32eca9ea5ee15d',
+      'reference' => '083de406907d42df2e0feaaeb83f1a3c2e0095eb',
     ),
     'phar-io/manifest' => 
     array (
@@ -1027,8 +1036,8 @@ private static $installed = array (
     array (
       'provided' => 
       array (
-        0 => '1.0.0',
-        1 => '1.0',
+        0 => '1.0',
+        1 => '1.0.0',
       ),
     ),
     'psr/simple-cache' => 
@@ -1262,6 +1271,33 @@ private static $installed = array (
       array (
       ),
       'reference' => 'b06fa886559f8d40e31c8a69fd32bd45401dc5da',
+    ),
+    'stancl/jobpipeline' => 
+    array (
+      'pretty_version' => 'v1.5.0',
+      'version' => '1.5.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '906caa0872dc1b377b449832961598c09a42adb2',
+    ),
+    'stancl/tenancy' => 
+    array (
+      'pretty_version' => 'v3.4.2',
+      'version' => '3.4.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '27e9fb4a692a15ca2fd320799d97fc657cb14b68',
+    ),
+    'stancl/virtualcolumn' => 
+    array (
+      'pretty_version' => 'v1.1.0',
+      'version' => '1.1.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'cdec7c6ade3cb3a599e69e407b876d73d115b737',
     ),
     'swiftmailer/swiftmailer' => 
     array (
