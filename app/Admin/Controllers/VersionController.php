@@ -5,12 +5,14 @@ namespace App\Admin\Controllers;
 use App\Http\Controllers\Controller;
 use App\Services\VersionService;
 use App\Support\Version;
+use Celaraze\Response;
 use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Card;
+use Illuminate\Contracts\Translation\Translator;
 use Illuminate\Http\JsonResponse;
-use Pour\Base\Uni;
+use JetBrains\PhpStorm\ArrayShape;
 
 class VersionController extends Controller
 {
@@ -40,7 +42,7 @@ class VersionController extends Controller
             });
     }
 
-    public function title()
+    public function title(): array|string|Translator|null
     {
         return admin_trans_label('title');
     }
@@ -50,9 +52,10 @@ class VersionController extends Controller
      *
      * @return array|JsonResponse
      */
-    public function upgrade()
+    #[ArrayShape(['code' => "int", 'message' => "string", "data" => "mixed"])]
+    public function upgrade(): JsonResponse|array
     {
         $result = VersionService::upgrade();
-        return Uni::returnJson(200, '更新成功！', $result);
+        return Response::make(200, '更新成功！', [$result]);
     }
 }

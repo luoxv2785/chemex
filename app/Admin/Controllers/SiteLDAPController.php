@@ -11,6 +11,7 @@ use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Tab;
+use Illuminate\Contracts\Translation\Translator;
 
 class SiteLDAPController extends AdminController
 {
@@ -35,7 +36,7 @@ class SiteLDAPController extends AdminController
             });
     }
 
-    public function title()
+    public function title(): array|string|Translator|null
     {
         return admin_trans_label('title');
     }
@@ -43,9 +44,9 @@ class SiteLDAPController extends AdminController
     /**
      * AD登录验证
      *
-     * @return bool|string
+     * @return bool|int|string
      */
-    public function test()
+    public function test(): bool|int|string
     {
         try {
             if (!admin_setting('ad_enabled')) {
@@ -55,9 +56,9 @@ class SiteLDAPController extends AdminController
             return LDAP::auth();
         } catch (BindException $e) {
             return $e->getMessage();
-        } catch (PasswordRequiredException $e) {
+        } catch (PasswordRequiredException) {
             return -1;
-        } catch (UsernameRequiredException $e) {
+        } catch (UsernameRequiredException) {
             return -2;
         }
     }

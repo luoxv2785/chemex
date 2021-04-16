@@ -10,6 +10,7 @@ use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Show;
+use Illuminate\Contracts\Translation\Translator;
 use Illuminate\Http\Request;
 
 class PurchasedChannelController extends AdminController
@@ -19,7 +20,7 @@ class PurchasedChannelController extends AdminController
      *
      * @return mixed
      */
-    public function selectList(Request $request)
+    public function selectList(Request $request): mixed
     {
         $q = $request->get('q');
 
@@ -42,7 +43,7 @@ class PurchasedChannelController extends AdminController
             ->body($this->grid());
     }
 
-    public function title()
+    public function title(): array|string|Translator|null
     {
         return admin_trans_label('title');
     }
@@ -108,11 +109,11 @@ class PurchasedChannelController extends AdminController
     /**
      * Make a show builder.
      *
-     * @param mixed $id
+     * @param int $id
      *
      * @return Show
      */
-    protected function detail($id): Show
+    protected function detail(int $id): Show
     {
         return Show::make($id, new PurchasedChannel(), function (Show $show) {
             $show->field('id');

@@ -84,10 +84,6 @@
     "repositories": [
         {
             "type": "path",
-            "url": "./packages/laravel/framework"
-        },
-        {
-            "type": "path",
             "url": "./packages/celaraze/mellita"
         }
     ]

@@ -5,17 +5,19 @@ namespace App\Admin\Extensions\Form;
 use App\Form;
 use Dcat\Admin\Form\Field\Select;
 use Dcat\Admin\Support\Helper;
+use Illuminate\Contracts\Validation\Factory;
+use Illuminate\View\View;
 
 class SelectCreate extends Select
 {
     protected $view = 'extensions.select_create';
 
-    protected $url = null;
+    protected ?string $url = null;
 
     /**
      * {@inheritdoc}
      */
-    public function render()
+    public function render(): Factory|string|View
     {
         $this->addDefaultConfig([
             'allowClear' => true,

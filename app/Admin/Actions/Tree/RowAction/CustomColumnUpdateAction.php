@@ -19,7 +19,7 @@ class CustomColumnUpdateAction extends RowAction
         $this->custom_column_name = $custom_column_name;
     }
 
-    public function render()
+    public function render(): Modal
     {
         // 实例化表单类并传递自定义参数
         $form = CustomColumnUpdateForm::make()->payload([

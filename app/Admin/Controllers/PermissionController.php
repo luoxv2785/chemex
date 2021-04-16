@@ -83,13 +83,13 @@ class PermissionController extends BasePermissionController
 
                     $color = Admin::color()->primaryDarker();
 
-                    return "<code style='color:{$color}'>$path</code>";
+                    return "<code style='color:$color'>$path</code>";
                 })->implode('&nbsp;&nbsp;');
 
                 $method = collect($method ?: ['ANY'])->unique()->map(function ($name) {
                         return strtoupper($name);
                     })->map(function ($name) {
-                        return "<span class='label bg-primary'>{$name}</span>";
+                        return "<span class='label bg-primary'>$name</span>";
                     })->implode('&nbsp;') . '&nbsp;';
 
                 $payload .= "</div>&nbsp; $method<a class=\"dd-nodrag\">$path</a>";
@@ -116,7 +116,7 @@ class PermissionController extends BasePermissionController
      * 表单页.
      * @return Form|\Dcat\Admin\Form
      */
-    public function form()
+    public function form(): \Dcat\Admin\Form|Form
     {
         return Form::make(new Permission(), function (Form $form) {
             $permissionTable = config('admin.database.permissions_table');
@@ -135,8 +135,8 @@ class PermissionController extends BasePermissionController
 
             $form->text('slug', trans('admin.slug'))
                 ->required()
-                ->creationRules(['required', "unique:{$connection}.{$permissionTable}"])
-                ->updateRules(['required', "unique:{$connection}.{$permissionTable},slug,$id"]);
+                ->creationRules(['required', "unique:$connection.$permissionTable"])
+                ->updateRules(['required', "unique:$connection.$permissionTable,slug,$id"]);
             $form->text('name', trans('admin.name'))->required();
 
             $form->multipleSelect('http_method', trans('admin.http.method'))

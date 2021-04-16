@@ -105,11 +105,11 @@ class DeviceTrackController extends AdminController
     /**
      * Make a show builder.
      *
-     * @param $id
+     * @param int $id
      *
      * @return Show
      */
-    protected function detail($id): Show
+    protected function detail(int $id): Show
     {
         return Show::make($id, new DeviceTrack(['device', 'user']), function (Show $show) {
             $show->field('id');

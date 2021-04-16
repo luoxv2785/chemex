@@ -49,7 +49,7 @@ class UserController extends BaseUserController
      * @param Request $request
      * @return mixed
      */
-    public function selectList(Request $request)
+    public function selectList(Request $request): mixed
     {
         $q = $request->get('q');
 
@@ -72,8 +72,8 @@ class UserController extends BaseUserController
             $form->display('id');
             $form->text('username', trans('admin.username'))
                 ->required()
-                ->creationRules(['required', "unique:{$connection}.{$userTable}"])
-                ->updateRules(['required', "unique:{$connection}.{$userTable},username,$id"]);
+                ->creationRules(['required', "unique:$connection.$userTable"])
+                ->updateRules(['required', "unique:$connection.$userTable,username,$id"]);
             $form->text('name', trans('admin.name'))->required();
             $form->select('gender')
                 ->options(Data::genders())

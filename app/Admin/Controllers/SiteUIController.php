@@ -6,6 +6,7 @@ use App\Admin\Forms\SiteUIForm;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Tab;
+use Illuminate\Contracts\Translation\Translator;
 use Illuminate\Routing\Controller;
 
 class SiteUIController extends Controller
@@ -24,7 +25,7 @@ class SiteUIController extends Controller
             });
     }
 
-    public function title()
+    public function title(): array|string|Translator|null
     {
         return admin_trans_label('title');
     }

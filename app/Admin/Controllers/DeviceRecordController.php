@@ -393,9 +393,9 @@ class DeviceRecordController extends AdminController
     /**
      * 返回字段排序.
      *
-     * @return mixed
+     * @return array
      */
-    public function sortColumns()
+    public function sortColumns(): array
     {
         return ColumnSort::where('table_name', (new DeviceRecord())->getTable())
             ->get(['name', 'order'])

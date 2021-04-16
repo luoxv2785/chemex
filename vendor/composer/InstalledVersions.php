@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'f6f1ef4a275963ce893a808141342bff6c882402',
+    'reference' => 'e25b1a0de034fae581bfc53f4ac55b4a5e23b930',
     'name' => 'celaraze/chemex',
   ),
   'versions' => 
@@ -87,7 +87,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'f6f1ef4a275963ce893a808141342bff6c882402',
+      'reference' => 'e25b1a0de034fae581bfc53f4ac55b4a5e23b930',
     ),
     'celaraze/laravel-response' => 
     array (
@@ -106,7 +106,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '3f2e1a6254f0ca2ffac34fcb72c45a313f6fdd02',
+      'reference' => '4d3750248510f1efe3d09ac9f8712ac90d479304',
     ),
     'celaraze/pour' => 
     array (
@@ -415,217 +415,217 @@ private static $installed = array (
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/broadcasting' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/bus' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/cache' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/collections' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/config' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/console' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/container' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/contracts' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/cookie' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/database' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/encryption' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/events' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/filesystem' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/hashing' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/http' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/log' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/macroable' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/mail' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/notifications' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/pagination' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/pipeline' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/queue' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/redis' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/routing' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/session' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/support' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/testing' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/translation' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/validation' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'illuminate/view' => 
     array (
       'replaced' => 
       array (
-        0 => '8.x-dev',
+        0 => 'v8.37.0',
       ),
     ),
     'justinrainbow/json-schema' => 
@@ -646,12 +646,12 @@ private static $installed = array (
     ),
     'laravel/framework' => 
     array (
-      'pretty_version' => '8.x-dev',
-      'version' => '8.9999999.9999999.9999999-dev',
+      'pretty_version' => 'v8.37.0',
+      'version' => '8.37.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '37ba32dc5f52d261b482815d194fba1476b725a2',
+      'reference' => 'cf4082973abc796ec285190f0603380021f6d26f',
     ),
     'laravel/sail' => 
     array (
@@ -1036,8 +1036,8 @@ private static $installed = array (
     array (
       'provided' => 
       array (
-        0 => '1.0',
-        1 => '1.0.0',
+        0 => '1.0.0',
+        1 => '1.0',
       ),
     ),
     'psr/simple-cache' => 

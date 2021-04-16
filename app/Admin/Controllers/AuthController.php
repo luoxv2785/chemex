@@ -7,10 +7,12 @@ use App\Models\RoleUser;
 use App\Models\User;
 use App\Support\LDAP;
 use Dcat\Admin\Admin;
+use Dcat\Admin\Form\Tools;
 use Dcat\Admin\Http\Controllers\AuthController as BaseAuthController;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Http\Repositories\Administrator;
 use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,7 +29,7 @@ class AuthController extends BaseAuthController
      *
      * @return JsonResponse|Response
      */
-    public function putSetting()
+    public function putSetting(): JsonResponse|Response
     {
         if (config('admin.demo')) {
             abort(401, '演示模式下不允许修改');
@@ -55,7 +57,7 @@ class AuthController extends BaseAuthController
             $form->disableEditingCheck();
             $form->disableViewCheck();
 
-            $form->tools(function (Form\Tools $tools) {
+            $form->tools(function (Tools $tools) {
                 $tools->disableView();
                 $tools->disableDelete();
             });
@@ -104,12 +106,12 @@ class AuthController extends BaseAuthController
      *
      * @param Request $request
      *
-     * @return mixed
+     * @return RedirectResponse|JsonResponse|Response
      */
-    public function postLogin(Request $request)
+    public function postLogin(Request $request): RedirectResponse|JsonResponse|Response
     {
-        $username = $request->username;
-        $password = $request->password;
+        $username = request('username');
+        $password = request('password');
 
         /**
          * LDAP验证处理.

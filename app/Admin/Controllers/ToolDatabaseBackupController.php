@@ -3,14 +3,15 @@
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
+use Celaraze\Response;
 use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Card;
 use Exception;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Contracts\Translation\Translator;
 use Illuminate\Support\Facades\Artisan;
-use Pour\Base\Uni;
+use JetBrains\PhpStorm\ArrayShape;
 
 class ToolDatabaseBackupController extends Controller
 {
@@ -35,16 +36,17 @@ class ToolDatabaseBackupController extends Controller
             });
     }
 
-    public function title()
+    public function title(): array|string|Translator|null
     {
         return admin_trans_label('title');
     }
 
     /**
      * 备份数据
-     * @return array|JsonResponse
+     * @return array
      */
-    public function backup()
+    #[ArrayShape(['code' => "int", 'message' => "string", "data" => "mixed"])]
+    public function backup(): array
     {
         $data = [];
         try {
@@ -52,6 +54,6 @@ class ToolDatabaseBackupController extends Controller
         } catch (Exception $exception) {
             $data = $exception;
         }
-        return Uni::returnJson(200, '备份成功', $data);
+        return Response::make(200, '备份成功', $data);
     }
 }

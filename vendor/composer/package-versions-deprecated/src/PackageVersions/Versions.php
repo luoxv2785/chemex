@@ -39,7 +39,7 @@ final class Versions
   'box/spout' => 'v3.2.0@0f20c99a7f8b8792840ac061c34f3450641a03cc',
   'brick/math' => '0.9.2@dff976c2f3487d42c1db75a3b180e2b9f0e72ce0',
   'celaraze/laravel-response' => 'dev-master@ab23d35489f7e3a06ae088e0ee9fab5d45d89028',
-  'celaraze/mellita' => 'dev-main@3f2e1a6254f0ca2ffac34fcb72c45a313f6fdd02',
+  'celaraze/mellita' => 'dev-main@4d3750248510f1efe3d09ac9f8712ac90d479304',
   'celaraze/pour' => 'dev-master@9e967f623497955e02ff4589fabdd53e8b508a0d',
   'composer/ca-bundle' => '1.2.9@78a0e288fdcebf92aa2318a8d3656168da6ac1a5',
   'composer/composer' => '2.0.12@6c12ce263da71641903e399c3ce8ecb08fd375fb',
@@ -68,7 +68,7 @@ final class Versions
   'hamcrest/hamcrest-php' => 'v2.0.1@8c3d0a3f6af734494ad8f6fbbee0ba92422859f3',
   'hhxsv5/laravel-s' => 'v3.7.19@6435c55b351a2e804647ae5b39310dfc86a15a2c',
   'justinrainbow/json-schema' => '5.2.10@2ba9c8c862ecd5510ed16c6340aa9f6eadb4f31b',
-  'laravel/framework' => '8.x-dev@37ba32dc5f52d261b482815d194fba1476b725a2',
+  'laravel/framework' => 'v8.37.0@cf4082973abc796ec285190f0603380021f6d26f',
   'laravel/tinker' => 'v2.6.1@04ad32c1a3328081097a181875733fa51f402083',
   'lcobucci/jwt' => '3.2.5@82be04b4753f8b7693b62852b7eab30f97524f9b',
   'league/commonmark' => '1.5.8@08fa59b8e4e34ea8a773d55139ae9ac0e0aecbaf',
@@ -180,7 +180,7 @@ final class Versions
   'sebastian/type' => '2.3.1@81cd61ab7bbf2de744aba0ea61fae32f721df3d2',
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'theseer/tokenizer' => '1.2.0@75a63c33a8577608444246075ea0af0d052e452a',
-  'celaraze/chemex' => 'dev-main@f6f1ef4a275963ce893a808141342bff6c882402',
+  'celaraze/chemex' => 'dev-main@e25b1a0de034fae581bfc53f4ac55b4a5e23b930',
 );
 
     private function __construct()

@@ -25,7 +25,7 @@ class PartCategoryController extends AdminController
      * @param Request $request
      * @return mixed
      */
-    public function selectList(Request $request)
+    public function selectList(Request $request): mixed
     {
         $q = $request->get('q');
 

@@ -92,11 +92,11 @@ class DepreciationRuleController extends AdminController
     /**
      * Make a show builder.
      *
-     * @param mixed $id
+     * @param int $id
      *
      * @return Show
      */
-    protected function detail($id): Show
+    protected function detail(int $id): Show
     {
         return Show::make($id, new DepreciationRule(), function (Show $show) {
             $show->field('id');
