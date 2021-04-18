@@ -21,9 +21,8 @@
         "adldap2/adldap2-laravel": "^6.1",
         "celaraze/laravel-response": "dev-master",
         "celaraze/pour": "dev-master",
-        "celaraze/mellita": "dev-main",
         "dcat/easy-excel": "^1.0",
-        "dcat/laravel-admin": "2.0.22-beta",
+        "dcat/laravel-admin": "2.0.23-beta",
         "doctrine/dbal": "^3.0",
         "enlightn/enlightn": "^1.7",
         "fideloper/proxy": "^4.2",
@@ -80,11 +79,5 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ]
-    },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "./packages/celaraze/mellita"
-        }
-    ]
+    }
 }

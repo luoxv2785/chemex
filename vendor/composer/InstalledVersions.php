@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'e25b1a0de034fae581bfc53f4ac55b4a5e23b930',
+    'reference' => '8a67ed6420dfaa5eba88c53085bb253710beca8f',
     'name' => 'celaraze/chemex',
   ),
   'versions' => 
@@ -87,7 +87,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'e25b1a0de034fae581bfc53f4ac55b4a5e23b930',
+      'reference' => '8a67ed6420dfaa5eba88c53085bb253710beca8f',
     ),
     'celaraze/laravel-response' => 
     array (
@@ -98,15 +98,6 @@ private static $installed = array (
         0 => '9999999-dev',
       ),
       'reference' => 'ab23d35489f7e3a06ae088e0ee9fab5d45d89028',
-    ),
-    'celaraze/mellita' => 
-    array (
-      'pretty_version' => 'dev-main',
-      'version' => 'dev-main',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '4d3750248510f1efe3d09ac9f8712ac90d479304',
     ),
     'celaraze/pour' => 
     array (
@@ -197,12 +188,12 @@ private static $installed = array (
     ),
     'dcat/laravel-admin' => 
     array (
-      'pretty_version' => '2.0.22-beta',
-      'version' => '2.0.22.0-beta',
+      'pretty_version' => '2.0.23-beta',
+      'version' => '2.0.23.0-beta',
       'aliases' => 
       array (
       ),
-      'reference' => '863668b21cfc07f2e4f34cb3851a1b4d0a565df3',
+      'reference' => 'bf484c3b6d8947a7015f8ab213a9a3da34638eec',
     ),
     'doctrine/cache' => 
     array (
@@ -1265,39 +1256,21 @@ private static $installed = array (
     ),
     'spatie/eloquent-sortable' => 
     array (
-      'pretty_version' => '3.11.0',
-      'version' => '3.11.0.0',
+      'pretty_version' => '4.0.0',
+      'version' => '4.0.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'b06fa886559f8d40e31c8a69fd32bd45401dc5da',
+      'reference' => '6b4ca608144153a69b6a9f457e15bd7eafbe97a9',
     ),
-    'stancl/jobpipeline' => 
+    'spatie/laravel-package-tools' => 
     array (
-      'pretty_version' => 'v1.5.0',
-      'version' => '1.5.0.0',
+      'pretty_version' => '1.6.2',
+      'version' => '1.6.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => '906caa0872dc1b377b449832961598c09a42adb2',
-    ),
-    'stancl/tenancy' => 
-    array (
-      'pretty_version' => 'v3.4.2',
-      'version' => '3.4.2.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '27e9fb4a692a15ca2fd320799d97fc657cb14b68',
-    ),
-    'stancl/virtualcolumn' => 
-    array (
-      'pretty_version' => 'v1.1.0',
-      'version' => '1.1.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'cdec7c6ade3cb3a599e69e407b876d73d115b737',
+      'reference' => '4bb554dc9870127606c34d906a602989b8b376ff',
     ),
     'swiftmailer/swiftmailer' => 
     array (
