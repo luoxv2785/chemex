@@ -188,7 +188,7 @@ class DeviceRecord extends Model
      */
     public function userName(): string
     {
-        $user = $this->adminUser()->first();
+        $user = $this->admin_user()->first();
         if (empty($user)) {
             $name = '闲置';
         } else {
@@ -203,7 +203,7 @@ class DeviceRecord extends Model
      *
      * @return HasOneThrough
      */
-    public function adminUser(): HasOneThrough
+    public function admin_user(): HasOneThrough
     {
         return $this->hasOneThrough(
             User::class,  // 远程表
