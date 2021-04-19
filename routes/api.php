@@ -25,6 +25,6 @@ Route::group([
     Route::post('me', [AuthController::class, 'me']);
 });
 
-Route::get('query/{item_id}', [QueryController::class, 'query']);
+Route::get('query/{asset_number}', [QueryController::class, 'handle']);
 Route::get('check/{string}', [CheckController::class, 'check']);
 Route::post('check/do', [CheckController::class, 'checkDo']);
