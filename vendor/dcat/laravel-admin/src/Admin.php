@@ -30,7 +30,7 @@ class Admin
     use HasAssets;
     use HasHtml;
 
-    const VERSION = '2.0.22-beta';
+    const VERSION = '2.0.23-beta';
 
     const SECTION = [
         // 往 <head> 标签内输入内容
@@ -124,6 +124,16 @@ class Admin
         }
 
         static::context()->favicon = $favicon;
+    }
+
+    /**
+     * 设置翻译文件路径.
+     *
+     * @param string|null $path
+     */
+    public static function translation(?string $path)
+    {
+        static::context()->translation = $path;
     }
 
     /**
@@ -328,11 +338,23 @@ class Admin
     }
 
     /**
+     * 上下文管理.
+     *
      * @return \Dcat\Admin\Support\Context
      */
     public static function context()
     {
         return app('admin.context');
+    }
+
+    /**
+     * 翻译器.
+     *
+     * @return \Dcat\Admin\Support\Translator
+     */
+    public static function translator()
+    {
+        return app('admin.translator');
     }
 
     /**

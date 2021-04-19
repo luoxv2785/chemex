@@ -46,7 +46,7 @@ class Helper
      */
     public static function array($value, bool $filter = true): array
     {
-        if (! $value) {
+        if ($value === null || $value === '' || $value === []) {
             return [];
         }
 
@@ -844,6 +844,9 @@ class Helper
      */
     public static function htmlEntityEncode($item)
     {
+        if (is_object($item)) {
+            return $item;
+        }
         if (is_array($item)) {
             array_walk_recursive($item, function (&$value) {
                 $value = htmlentities($value);

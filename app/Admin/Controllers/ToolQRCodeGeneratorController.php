@@ -8,6 +8,7 @@ use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Card;
+use Illuminate\Contracts\Translation\Translator;
 
 class ToolQRCodeGeneratorController extends Controller
 {
@@ -33,7 +34,7 @@ class ToolQRCodeGeneratorController extends Controller
             });
     }
 
-    public function title()
+    public function title(): array|string|Translator|null
     {
         return admin_trans_label('title');
     }

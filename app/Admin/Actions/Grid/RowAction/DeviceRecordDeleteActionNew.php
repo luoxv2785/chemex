@@ -14,7 +14,7 @@ class DeviceRecordDeleteActionNew extends RowAction
         $this->title = '🔨 ' . admin_trans_label('Delete');
     }
 
-    public function render()
+    public function render(): Modal
     {
         // 实例化表单类并传递自定义参数
         $form = DeviceRecordDeleteForm::make()->payload([

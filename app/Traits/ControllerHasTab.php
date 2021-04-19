@@ -34,7 +34,7 @@ trait ControllerHasTab
 
     /**
      * 默认渲染grid.
-     * @return \App\Grid|Grid
+     * @return \Dcat\Admin\Grid|\App\Grid
      */
     public function renderGrid(): Grid|\App\Grid
     {

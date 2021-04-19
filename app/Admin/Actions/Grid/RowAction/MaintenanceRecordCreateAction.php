@@ -20,9 +20,9 @@ class MaintenanceRecordCreateAction extends RowAction
     /**
      * 渲染模态框.
      *
-     * @return Modal|string
+     * @return Modal
      */
-    public function render()
+    public function render(): Modal
     {
         $form = MaintenanceRecordCreateForm::make()->payload([
             'item' => $this->item,

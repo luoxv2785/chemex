@@ -13,6 +13,7 @@ use Dcat\Admin\Grid\Tools\Selector;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Widgets\Alert;
+use Illuminate\Contracts\Translation\Translator;
 
 /**
  * @property int item_id
@@ -36,7 +37,7 @@ class MaintenanceRecordController extends AdminController
             ->body($this->grid());
     }
 
-    public function title()
+    public function title(): array|string|Translator|null
     {
         return admin_trans_label('title');
     }

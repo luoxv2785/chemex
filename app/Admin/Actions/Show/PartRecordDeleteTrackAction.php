@@ -5,7 +5,6 @@ namespace App\Admin\Actions\Show;
 use App\Models\PartTrack;
 use Dcat\Admin\Actions\Response;
 use Dcat\Admin\Show\AbstractTool;
-use Illuminate\Http\Request;
 
 class PartRecordDeleteTrackAction extends AbstractTool
 {
@@ -18,11 +17,9 @@ class PartRecordDeleteTrackAction extends AbstractTool
     /**
      * Handle the action request.
      *
-     * @param Request $request
-     *
      * @return Response
      */
-    public function handle(Request $request): Response
+    public function handle(): Response
     {
         $part_track = PartTrack::where('part_id', $this->getKey())->first();
 
@@ -39,9 +36,9 @@ class PartRecordDeleteTrackAction extends AbstractTool
     }
 
     /**
-     * @return string|array|void
+     * @return array
      */
-    public function confirm()
+    public function confirm(): array
     {
         return [admin_trans_label('Track Delete Confirm')];
     }

@@ -76,11 +76,11 @@ class ConsumableTrackController extends AdminController
     /**
      * Make a show builder.
      *
-     * @param mixed $id
+     * @param int $id
      *
      * @return Show
      */
-    protected function detail($id): Show
+    protected function detail(int $id): Show
     {
         return Show::make($id, new ConsumableTrack(['consumable', 'user']), function (Show $show) {
             $show->field('id');

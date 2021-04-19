@@ -38,7 +38,7 @@ class CheckRecordController extends AdminController
      *
      * @return string
      */
-    public function exportReport($check_id)
+    public function exportReport($check_id): string
     {
         return CheckService::report($check_id);
     }
@@ -123,11 +123,11 @@ class CheckRecordController extends AdminController
     /**
      * Make a show builder.
      *
-     * @param mixed $id
+     * @param int $id
      *
      * @return Show
      */
-    protected function detail($id): Show
+    protected function detail(int $id): Show
     {
         return Show::make($id, new CheckRecord(['user']), function (Show $show) {
             $show->field('id');
@@ -250,17 +250,11 @@ class CheckRecordController extends AdminController
 
             // 保存回调，创建盘点任务的同时，自动生成与之相关的全部盘点追踪记录
             $form->saved(function (Form $form) {
-                $items = [];
-                switch ($form->check_item) {
-                    case 'part':
-                        $items = PartRecord::all();
-                        break;
-                    case 'software':
-                        $items = SoftwareRecord::all();
-                        break;
-                    default:
-                        $items = DeviceRecord::all();
-                }
+                $items = match ($form->check_item) {
+                    'part' => PartRecord::all(),
+                    'software' => SoftwareRecord::all(),
+                    default => DeviceRecord::all(),
+                };
                 foreach ($items as $item) {
                     $check_track = new CheckTrack();
                     $check_track->check_id = $form->getKey();

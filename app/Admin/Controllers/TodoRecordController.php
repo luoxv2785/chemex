@@ -19,6 +19,7 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
 use Dcat\Admin\Widgets\Alert;
+use Illuminate\Contracts\Translation\Translator;
 
 /**
  * @property  DeviceRecord device
@@ -41,7 +42,7 @@ class TodoRecordController extends AdminController
             });
     }
 
-    public function title()
+    public function title(): array|string|Translator|null
     {
         return admin_trans_label('title');
     }
@@ -127,11 +128,11 @@ class TodoRecordController extends AdminController
     /**
      * Make a show builder.
      *
-     * @param mixed $id
+     * @param int $id
      *
      * @return Show
      */
-    protected function detail($id): Show
+    protected function detail(int $id): Show
     {
         return Show::make($id, new TodoRecord(['user']), function (Show $show) {
             $show->field('id');

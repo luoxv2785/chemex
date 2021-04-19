@@ -5,7 +5,6 @@ namespace App\Admin\Actions\Show;
 use App\Models\ServiceTrack;
 use Dcat\Admin\Actions\Response;
 use Dcat\Admin\Show\AbstractTool;
-use Illuminate\Http\Request;
 
 class ServiceRecordDeleteTrackAction extends AbstractTool
 {
@@ -18,11 +17,9 @@ class ServiceRecordDeleteTrackAction extends AbstractTool
     /**
      * Handle the action request.
      *
-     * @param Request $request
-     *
      * @return Response
      */
-    public function handle(Request $request): Response
+    public function handle(): Response
     {
         $service_track = ServiceTrack::where('service_id', $this->getKey())->first();
 
@@ -39,9 +36,9 @@ class ServiceRecordDeleteTrackAction extends AbstractTool
     }
 
     /**
-     * @return string|array|void
+     * @return array
      */
-    public function confirm()
+    public function confirm(): array
     {
         return [admin_trans_label('Track Delete Confirm')];
     }

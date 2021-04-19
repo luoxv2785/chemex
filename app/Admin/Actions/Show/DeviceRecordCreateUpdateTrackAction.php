@@ -20,9 +20,9 @@ class DeviceRecordCreateUpdateTrackAction extends AbstractTool
     /**
      * 渲染模态框.
      *
-     * @return Modal|string
+     * @return Modal
      */
-    public function render()
+    public function render(): Modal
     {
         // 实例化表单类并传递自定义参数
         $form = DeviceRecordCreateUpdateTrackForm::make()->payload([

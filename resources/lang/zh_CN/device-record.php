@@ -45,7 +45,7 @@ return [
         'mac' => 'MAC',
         'ip' => 'IP',
         'photo' => '照片',
-        'adminUser' => [
+        'admin_user' => [
             'name' => '用户',
             'department' => [
                 'name' => '部门',

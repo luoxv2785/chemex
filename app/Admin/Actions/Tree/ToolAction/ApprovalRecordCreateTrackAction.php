@@ -8,7 +8,7 @@ use Dcat\Admin\Widgets\Modal;
 
 class ApprovalRecordCreateTrackAction extends AbstractTool
 {
-    protected $id;
+    protected int $id;
 
     public function __construct($id)
     {
@@ -20,9 +20,9 @@ class ApprovalRecordCreateTrackAction extends AbstractTool
     /**
      * 渲染模态框.
      *
-     * @return Modal|string
+     * @return Modal
      */
-    public function render()
+    public function render(): Modal
     {
         $form = ApprovalRecordCreateTrackForm::make()->payload(['id' => $this->id]);
         return Modal::make()

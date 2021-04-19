@@ -7,6 +7,7 @@ use App\Admin\Repositories\Department;
 use App\Form;
 use App\Models\Role;
 use App\Models\RoleUser;
+use App\Models\User;
 use App\Support\Data;
 use App\Support\Support;
 use App\Traits\ControllerHasTab;
@@ -27,7 +28,7 @@ class DepartmentController extends AdminController
      * @param Request $request
      * @return mixed
      */
-    public function selectList(Request $request)
+    public function selectList(Request $request): mixed
     {
         $q = $request->get('q');
 
@@ -77,7 +78,7 @@ class DepartmentController extends AdminController
                     $users = RoleUser::where('role_id', $branch['role_id'])->get(['user_id']);
                     $users_array = [];
                     foreach ($users as $user) {
-                        $user_name = \App\Models\User::where('id', $user->user_id)->value('name');
+                        $user_name = User::where('id', $user->user_id)->value('name');
                         array_push($users_array, $user_name);
                     }
                     $users = implode('，', $users_array);
@@ -122,11 +123,11 @@ class DepartmentController extends AdminController
     /**
      * Make a show builder.
      *
-     * @param mixed $id
+     * @param int $id
      *
      * @return Show
      */
-    protected function detail($id): Show
+    protected function detail(int $id): Show
     {
         return Show::make($id, new Department(['parent']), function (Show $show) {
             $show->field('id');

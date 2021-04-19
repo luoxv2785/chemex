@@ -121,7 +121,7 @@ class DeviceRecordController extends AdminController
      */
     protected function detail(int $id): Show
     {
-        return Show::make($id, new DeviceRecord(['category', 'vendor', 'channel', 'adminUser', 'adminUser.department', 'depreciation']), function (Show $show) {
+        return Show::make($id, new DeviceRecord(['category', 'vendor', 'channel', 'admin_user', 'admin_user.department', 'depreciation']), function (Show $show) {
             $sort_columns = $this->sortColumns();
             $show->field('id', '', $sort_columns);
             $show->field('asset_number', '', $sort_columns);
@@ -143,8 +143,8 @@ class DeviceRecordController extends AdminController
             });
             $show->field('purchased', '', $sort_columns);
             $show->field('expired', '', $sort_columns);
-            $show->field('adminUser.name', '', $sort_columns);
-            $show->field('adminUser.department.name', '', $sort_columns);
+            $show->field('admin_user.name', '', $sort_columns);
+            $show->field('admin_user.department.name', '', $sort_columns);
             $show->field('depreciation.name', '', $sort_columns);
             $show->field('depreciation.termination', '', $sort_columns);
 
@@ -216,13 +216,13 @@ class DeviceRecordController extends AdminController
      */
     protected function grid(): Grid
     {
-        return Grid::make(new DeviceRecord(['category', 'vendor', 'adminUser', 'adminUser.department', 'channel', 'depreciation']), function (Grid $grid) {
+        return Grid::make(new DeviceRecord(['category', 'vendor', 'admin_user', 'admin_user.department', 'channel', 'depreciation']), function (Grid $grid) {
             $sort_columns = $this->sortColumns();
             $grid->column('id', '', $sort_columns);
             $grid->column('photo', '', $sort_columns)->image('', 50, 50);
-            $grid->column('asset_number_qrcode', '', $sort_columns)->qrcode(function () {
-                return $this->asset_number;
-            });
+//            $grid->column('asset_number_qrcode', '', $sort_columns)->qrcode(function () {
+//                return $this->asset_number;
+//            });
             $grid->column('asset_number', '', $sort_columns)->display(function ($asset_number) {
                 $asset_number = "<span class='badge badge-secondary'>$asset_number</span>";
                 $tag = Support::getSoftwareIcon($this->id);
@@ -243,13 +243,13 @@ class DeviceRecordController extends AdminController
             $grid->column('price', '', $sort_columns);
             $grid->column('purchased', '', $sort_columns);
             $grid->column('expired', '', $sort_columns);
-            $grid->column('adminUser.name', '', $sort_columns)->display(function ($name) {
+            $grid->column('admin_user.name', '', $sort_columns)->display(function ($name) {
                 if ($this->isLend()) {
                     return '<span style="color: rgba(178,68,71,1);font-weight: 600;">[' . trans('main.lend') . '] </span>' . $name;
                 }
                 return $name;
             });
-            $grid->column('adminUser.department.name', '', $sort_columns);
+            $grid->column('admin_user.department.name', '', $sort_columns);
             $grid->column('expiration_left_days', '', $sort_columns)->display(function () {
                 return ExpirationService::itemExpirationLeftDaysRender('device', $this->id);
             });
@@ -321,7 +321,7 @@ class DeviceRecordController extends AdminController
                 'channel.name',
                 'depreciation.name',
                 'expiration_left_days',
-                'adminUser.department.name',
+                'admin_user.department.name',
             ]);
 
             /**
@@ -337,8 +337,8 @@ class DeviceRecordController extends AdminController
                     'mac',
                     'ip',
                     'price',
-                    'adminUser.name',
-                    'adminUser.department.name',
+                    'admin_user.name',
+                    'admin_user.department.name',
                 ], ControllerHasCustomColumns::makeQuickSearch((new DeviceRecord())->getTable()))
             )
                 ->placeholder(trans('main.quick_search'))
@@ -354,8 +354,8 @@ class DeviceRecordController extends AdminController
                 $filter->scope('history', admin_trans_label('Deleted'))->onlyTrashed();
                 $filter->equal('category_id')->select(DeviceCategory::pluck('name', 'id'));
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
-                $filter->equal('adminUser.name')->select(Support::selectUsers('name'));
-                $filter->equal('adminUser.department_id')->select(Department::pluck('name', 'id'));
+                $filter->equal('admin_user.name')->select(Support::selectUsers('name'));
+                $filter->equal('admin_user.department_id')->select(Department::pluck('name', 'id'));
                 $filter->equal('depreciation_id')->select(DepreciationRule::pluck('name', 'id'));
                 /**
                  * 自定义字段.
@@ -393,9 +393,9 @@ class DeviceRecordController extends AdminController
     /**
      * 返回字段排序.
      *
-     * @return mixed
+     * @return array
      */
-    public function sortColumns()
+    public function sortColumns(): array
     {
         return ColumnSort::where('table_name', (new DeviceRecord())->getTable())
             ->get(['name', 'order'])
