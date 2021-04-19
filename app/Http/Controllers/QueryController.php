@@ -30,6 +30,12 @@ class QueryController extends Controller
             $asset->type = 'device';
             $asset->user = $asset->admin_user()->value('name');
             $asset->department = $asset->admin_user()->first()?->department()->value('name');
+            if (empty($asset->user)) {
+                $asset->user = '闲置';
+            }
+            if (empty($asset->department)) {
+                $asset->department = '无所属部门';
+            }
             $asset->category = $asset->category()->value('name');
             $asset->vendor = $asset->vendor()->value('name');
             return Response::make(200, '查询成功', [$asset]);
@@ -39,6 +45,9 @@ class QueryController extends Controller
         if (!empty($asset)) {
             $asset->type = 'part';
             $asset->device = $asset->device()->value('name');
+            if (empty($asset->device)) {
+                $asset->device = '闲置';
+            }
             $asset->category = $asset->category()->value('name');
             $asset->vendor = $asset->vendor()->value('name');
             return Response::make(200, '查询成功', [$asset]);
@@ -48,6 +57,9 @@ class QueryController extends Controller
         if (!empty($asset)) {
             $asset->type = 'software';
             $asset->device = $asset->device()->value('name');
+            if (empty($asset->device)) {
+                $asset->device = '闲置';
+            }
             $asset->category = $asset->category()->value('name');
             $asset->vendor = $asset->vendor()->value('name');
             return Response::make(200, '查询成功', [$asset]);
