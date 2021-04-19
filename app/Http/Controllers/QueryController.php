@@ -30,10 +30,16 @@ class QueryController extends Controller
             $asset = PartRecord::where('asset_number', $asset_number)->first();
             if (empty($asset)) {
                 $asset = SoftwareRecord::where('asset_number', $asset_number)->first();
+                if (empty($asset)) {
+                    return Response::make(404, '没有查询到对应资产');
+                } else {
+                    return Response::make(200, '查询成功', [$asset]);
+                }
+            } else {
                 return Response::make(200, '查询成功', [$asset]);
             }
+        } else {
+            return Response::make(200, '查询成功', [$asset]);
         }
-
-        return Response::make(404, '没有查询到对应资产');
     }
 }
