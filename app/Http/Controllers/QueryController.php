@@ -26,13 +26,45 @@ class QueryController extends Controller
     public function handle($asset_number): JsonResponse|array
     {
         $asset = DeviceRecord::where('asset_number', $asset_number)->first();
-        if (empty($asset)) {
-            $asset = PartRecord::where('asset_number', $asset_number)->first();
-            if (empty($asset)) {
-                $asset = SoftwareRecord::where('asset_number', $asset_number)->first();
+        if (!empty($asset)) {
+            $asset->type = 'device';
+            $asset->user = $asset->admin_user()->value('name');
+            $asset->department = $asset->admin_user()->first()?->department()->value('name');
+            if (empty($asset->user)) {
+                $asset->user = '闲置';
             }
+            if (empty($asset->department)) {
+                $asset->department = '无所属部门';
+            }
+            $asset->category = $asset->category()->value('name');
+            $asset->vendor = $asset->vendor()->value('name');
+            return Response::make(200, '查询成功', [$asset]);
         }
 
-        return Response::make(200, '查询成功', $asset);
+        $asset = PartRecord::where('asset_number', $asset_number)->first();
+        if (!empty($asset)) {
+            $asset->type = 'part';
+            $asset->device = $asset->device()->value('name');
+            if (empty($asset->device)) {
+                $asset->device = '闲置';
+            }
+            $asset->category = $asset->category()->value('name');
+            $asset->vendor = $asset->vendor()->value('name');
+            return Response::make(200, '查询成功', [$asset]);
+        }
+
+        $asset = SoftwareRecord::where('asset_number', $asset_number)->first();
+        if (!empty($asset)) {
+            $asset->type = 'software';
+            $asset->device = $asset->device()->value('name');
+            if (empty($asset->device)) {
+                $asset->device = '闲置';
+            }
+            $asset->category = $asset->category()->value('name');
+            $asset->vendor = $asset->vendor()->value('name');
+            return Response::make(200, '查询成功', [$asset]);
+        }
+
+        return Response::make(404, '没有查询到对应资产');
     }
 }
