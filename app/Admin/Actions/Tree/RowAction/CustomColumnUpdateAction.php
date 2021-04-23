@@ -14,7 +14,7 @@ class CustomColumnUpdateAction extends RowAction
     public function __construct(string $table_name = null, string $custom_column_name = null)
     {
         parent::__construct();
-        $this->title = '📒 ' . admin_trans_label('Update');
+        $this->title = '<i class="fa fa-fw feather icon-edit-1"></i> ' . admin_trans_label('Update');
         $this->table_name = $table_name;
         $this->custom_column_name = $custom_column_name;
     }

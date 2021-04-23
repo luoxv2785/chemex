@@ -13,7 +13,7 @@ class CheckRecordUpdateYesAction extends RowAction
     public function __construct()
     {
         parent::__construct();
-        $this->title = '⚡ ' . admin_trans_label('Finish Record');
+        $this->title = '<i class="fa fa-fw feather icon-check"></i> ' . admin_trans_label('Finish Record');
     }
 
     /**

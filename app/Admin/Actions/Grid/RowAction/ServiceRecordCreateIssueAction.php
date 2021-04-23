@@ -11,7 +11,7 @@ class ServiceRecordCreateIssueAction extends RowAction
     public function __construct()
     {
         parent::__construct();
-        $this->title = '📢 ' . admin_trans_label('Issue Create');
+        $this->title = '<i class="fa fa-fw feather icon-cloud-off"></i> ' . admin_trans_label('Issue Create');
     }
 
     /**

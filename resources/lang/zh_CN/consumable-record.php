@@ -7,7 +7,14 @@ return [
         'records' => '耗材',
         'In' => '入库',
         'Out' => '领用',
-        'Deleted' => '已删除'
+        'Deleted' => '已删除',
+        'Batch Delete' => '批量删除耗材',
+        'Batch Delete Confirm' => '您确定要删除选中的耗材吗？',
+        'Batch Force Delete' => '批量强制删除耗材（不可恢复）',
+        'Batch Force Delete Confirm' => '您确定要强制删除选中的耗材吗？（此操作不可逆）',
+        'Delete' => '删除耗材',
+        'Delete Confirm' => '确认删除？',
+        'Delete Confirm Description' => '删除的同时将会删除所有与之关联的历史记录',
     ],
     'fields' => [
         'name' => '名称',

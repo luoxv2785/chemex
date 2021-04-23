@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Grid\BatchAction\DeviceRecordBatchDeleteAction;
+use App\Admin\Actions\Grid\BatchAction\DeviceRecordBatchForceDeleteAction;
 use App\Admin\Actions\Grid\RowAction\DeviceRecordCreateUpdateTrackAction;
 use App\Admin\Actions\Grid\RowAction\DeviceRecordDeleteAction;
 use App\Admin\Actions\Grid\RowAction\MaintenanceRecordCreateAction;
@@ -48,6 +49,7 @@ use Illuminate\Http\Request;
  *
  * @method isLend()
  * @method track()
+ * @method status()
  */
 class DeviceRecordController extends AdminController
 {
@@ -73,8 +75,8 @@ class DeviceRecordController extends AdminController
     }
 
     /**
-     * 详情页构建器
-     * 为了复写详情页的布局
+     * 详情页构建器.
+     * 为了复写详情页的布局.
      *
      * @param mixed $id
      * @param Content $content
@@ -229,11 +231,10 @@ class DeviceRecordController extends AdminController
                 if (!empty($tag)) {
                     $asset_number = "<img alt='$tag' src='/static/images/icons/$tag.png' style='width: 25px;height: 25px;margin-right: 10px'/>$asset_number";
                 }
-//                $approval_name = $this->isInApproval();
-//                if ($approval_name) {
-//                    $asset_number .= " <span class='badge badge-warning'>$approval_name" . '中' . "</span>";
-//                }
                 return $asset_number;
+            });
+            $grid->column('device_status', '', $sort_columns)->display(function () {
+                return $this->status();
             });
             $grid->column('description', '', $sort_columns);
             $grid->column('category.name', '', $sort_columns);
@@ -274,6 +275,10 @@ class DeviceRecordController extends AdminController
                 // @permissions
                 if (Admin::user()->can('device.record.batch.delete')) {
                     $batchActions->add(new DeviceRecordBatchDeleteAction());
+                }
+                // @permissions
+                if (Admin::user()->can('device.record.batch.force.delete')) {
+                    $batchActions->add(new DeviceRecordBatchForceDeleteAction());
                 }
             });
 

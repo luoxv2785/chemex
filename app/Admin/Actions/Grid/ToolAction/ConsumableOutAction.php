@@ -24,6 +24,6 @@ class ConsumableOutAction extends AbstractTool
         return Modal::make()
             ->lg()
             ->body(new ConsumableRecordOutForm())
-            ->button("<a class='btn btn-warning' style='color: white;'><i class='feather icon-package'></i>&nbsp;$this->title</a>");
+            ->button("<a class='btn btn-warning' style='color: white;'><i class='feather icon-minus'></i>&nbsp;$this->title</a>");
     }
 }

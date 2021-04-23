@@ -13,7 +13,7 @@ class DeviceRecordCreateUpdateTrackAction extends AbstractTool
     public function __construct($is_lend)
     {
         parent::__construct();
-        $this->title = '👨‍💼 ' . admin_trans_label('Track Create Update');
+        $this->title = '<i class="fa fa-fw feather icon-user-plus"></i> ' . admin_trans_label('Track Create Update');
         $this->is_lend = $is_lend;
     }
 

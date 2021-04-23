@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Grid\BatchAction\SoftwareRecordBatchDeleteAction;
+use App\Admin\Actions\Grid\BatchAction\SoftwareRecordBatchForceDeleteAction;
 use App\Admin\Actions\Grid\RowAction\SoftwareRecordCreateUpdateTrackAction;
 use App\Admin\Actions\Grid\RowAction\SoftwareRecordDeleteAction;
 use App\Admin\Actions\Grid\RowAction\SoftwareTrackDeleteAction;
@@ -39,6 +40,7 @@ use Dcat\Admin\Widgets\Tab;
  * @property  DeviceRecord device
  * @property  int id
  * @property  string deleted_at
+ * @property  string asset_number
  *
  * @method leftCounts()
  */
@@ -187,9 +189,9 @@ class SoftwareRecordController extends AdminController
             $grid->column('asset_number', '', $sort_columns)->display(function ($asset_number) {
                 return "<span class='badge badge-secondary'>$asset_number</span>";
             });
-//            $grid->column('qrcode', '', $column_sort)->qrcode(function () {
-//                return 'software:'.$this->id;
-//            }, 200, 200);
+            $grid->column('asset_number_qrcode', '', $sort_columns)->qrcode(function () {
+                return $this->asset_number;
+            });
             $grid->column('name', '', $sort_columns);
             $grid->column('description', '', $sort_columns);
             $grid->column('category.name', '', $sort_columns);
@@ -285,6 +287,10 @@ class SoftwareRecordController extends AdminController
                 // @permissions
                 if (Admin::user()->can('software.record.batch.delete')) {
                     $batchActions->add(new SoftwareRecordBatchDeleteAction());
+                }
+                // @permissions
+                if (Admin::user()->can('software.record.batch.force.delete')) {
+                    $batchActions->add(new SoftwareRecordBatchForceDeleteAction());
                 }
             });
 

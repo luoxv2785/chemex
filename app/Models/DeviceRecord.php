@@ -5,6 +5,7 @@ namespace App\Models;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Dcat\Admin\Traits\ModelTree;
 use Exception;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Translation\Translator;
 
 /**
  * @method static where(string $key, string $value, string $value = null)
@@ -231,6 +233,29 @@ class DeviceRecord extends Model
     }
 
     /**
+     * 返回设备状态.
+     *
+     * @return array|string|\Illuminate\Translation\Translator|\Illuminate\Contracts\Foundation\Application|null
+     */
+    public function status(): array|string|Translator|Application|null
+    {
+        if ($this->isLend()) {
+            return "<span class='badge badge-primary'>" . trans('main.lend') . "</span>";
+        }
+
+        $user = $this->admin_user()->first();
+        if (!empty($user)) {
+            return "<span class='badge badge-success'>" . trans('main.using') . "</span>";
+        }
+
+        if (empty($user) && !empty($this->expired) && (time() > strtotime($this->expired))) {
+            return "<span class='badge badge-danger'>" . trans('main.dead') . "</span>";
+        }
+
+        return "<span class='badge badge-info'>" . trans('main.idle') . "</span>";
+    }
+
+    /**
      * 设备有很多归属记录.
      *
      * @return HasMany
@@ -240,20 +265,20 @@ class DeviceRecord extends Model
         return $this->hasMany(DeviceTrack::class, 'device_id', 'id');
     }
 
-    /**
-     * 设备有审批历史.
-     * @return HasOne
-     */
+//    /**
+//     * 设备有审批历史.
+//     * @return HasOne
+//     */
 //    public function approvalHistory(): HasOne
 //    {
 //        return $this->hasOne(ApprovalHistory::class, 'item_id', 'id')
 //            ->where('item', get_class($this));
 //    }
 
-    /**
-     * 返回流程名称.
-     * @return null
-     */
+//    /**
+//     * 返回流程名称.
+//     * @return null
+//     */
 //    public function isInApproval()
 //    {
 //        $approval_history = $this->approvalHistory()->first();
@@ -265,12 +290,6 @@ class DeviceRecord extends Model
 //        return $approval_record->name;
 //    }
 
-//    public function delete()
-//    {
-//        $this->where($this->primaryKey, $this->getKey())->delete();
-//        return parent::delete();
-//    }
-
     /**
      * 删除方法.
      * 这是里为了兼容数据删除和字段删除.
@@ -280,7 +299,23 @@ class DeviceRecord extends Model
         $this->where($this->primaryKey, $this->getKey())->delete();
         try {
             return parent::delete();
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
+
+        }
+    }
+
+    /**
+     * 强制删除方法.
+     * 这里为了兼容数据强制删除和字段强制删除.
+     *
+     * @return bool|null
+     */
+    public function forceDelete()
+    {
+        $this->where($this->primaryKey, $this->getKey())->forceDelete();
+        try {
+            return parent::forceDelete();
+        } catch (Exception $exception) {
 
         }
     }

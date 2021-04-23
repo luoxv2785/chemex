@@ -11,7 +11,7 @@ class PartRecordCreateUpdateTrackAction extends RowAction
     public function __construct()
     {
         parent::__construct();
-        $this->title = '💻 ' . admin_trans_label('Track Create Update');
+        $this->title = '<i class="fa fa-fw feather icon-monitor"></i> ' . admin_trans_label('Track Create Update');
     }
 
     /**

@@ -11,7 +11,7 @@ class DeviceRecordUpdateSSHAction extends RowAction
     public function __construct()
     {
         parent::__construct();
-        $this->title = '✍ ' . admin_trans_label('Update SSH');
+        $this->title = '<i class="fa fa-fw feather icon-clipboard"></i> ' . admin_trans_label('Update SSH');
     }
 
     /**

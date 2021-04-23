@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Grid\BatchAction\UserBatchDeleteAction;
+use App\Admin\Actions\Grid\BatchAction\UserBatchForceDeleteAction;
 use App\Admin\Actions\Grid\RowAction\UserDeleteAction;
 use App\Admin\Actions\Grid\ToolAction\UserImportAction;
 use App\Admin\Grid\Displayers\RowActions;
@@ -231,6 +232,10 @@ class UserController extends BaseUserController
                 // @permissions
                 if (Admin::user()->can('user.batch.delete')) {
                     $batchActions->add(new UserBatchDeleteAction());
+                }
+                // @permissions
+                if (Admin::user()->can('user.batch.force.delete')) {
+                    $batchActions->add(new UserBatchForceDeleteAction());
                 }
             });
 

@@ -11,7 +11,7 @@ class DeviceRecordBatchCreateUpdateTrackAction extends BatchAction
     public function __construct()
     {
         parent::__construct();
-        $this->title = '👨‍💼 ' . admin_trans_label('Batch Track Create Update');
+        $this->title = '<i class="fa fa-fw feather icon-user-plus"></i> ' . admin_trans_label('Batch Track Create Update');
     }
 
     /**

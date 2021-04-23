@@ -78,7 +78,7 @@
 
 `git`，用于管理版本，部署和升级必要工具。
 
-`PHP 7.4 +` ，已经支持 PHP8 ，建议使用 PHP8。
+`PHP 8+` ，仅支持 PHP8。
 
 `MySQL 8 +`，数据库引擎，理论上 `MariaDB 10.2 +` 兼容支持。
 
@@ -112,6 +112,8 @@
 下载地址：[https://pan.baidu.com/s/1AuTv5UMxzzMkTdP9Ca5J_A](https://pan.baidu.com/s/1AuTv5UMxzzMkTdP9Ca5J_A)，提取码：`8mok`。
 
 OVF 中包含以下组件：Nginx MySQL PHP7.4，网络通过 NAT 实现。
+
+> 此 OVF 中的 chemex 版本为支持 PHP7.4 的版本，但 chemex 从 3.0.4 开始将仅支持 PHP8.0 。
 
 Ubuntu 账密：chemex/chemex
 

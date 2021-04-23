@@ -24,6 +24,6 @@ class ConsumableInAction extends AbstractTool
         return Modal::make()
             ->lg()
             ->body(new ConsumableRecordInForm())
-            ->button("<a class='btn btn-success' style='color: white;'><i class='feather icon-package'></i>&nbsp;$this->title</a>");
+            ->button("<a class='btn btn-success' style='color: white;'><i class='feather icon-plus'></i>&nbsp;$this->title</a>");
     }
 }

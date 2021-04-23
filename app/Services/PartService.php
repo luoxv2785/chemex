@@ -59,4 +59,19 @@ class PartService
             $part->delete();
         }
     }
+
+    /**
+     * 删除配件（强制）.
+     *
+     * @param $part_id
+     */
+    public static function partForceDelete($part_id)
+    {
+        $part_record = PartRecord::where('id', $part_id)
+            ->withTrashed()
+            ->first();
+        if (!empty($part_record)) {
+            $part_record->forceDelete();
+        }
+    }
 }

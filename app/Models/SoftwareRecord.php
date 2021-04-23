@@ -139,7 +139,23 @@ class SoftwareRecord extends Model
         try {
             return parent::delete();
         } catch (Exception $e) {
-            
+
+        }
+    }
+
+    /**
+     * 强制删除方法.
+     * 这里为了兼容数据强制删除和字段强制删除.
+     *
+     * @return bool|null
+     */
+    public function forceDelete()
+    {
+        $this->where($this->primaryKey, $this->getKey())->forceDelete();
+        try {
+            return parent::forceDelete();
+        } catch (Exception $exception) {
+
         }
     }
 }

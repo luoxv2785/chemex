@@ -12,7 +12,7 @@ class ServiceRecordDeleteAction extends RowAction
     public function __construct()
     {
         parent::__construct();
-        $this->title = '🔨 ' . admin_trans_label('Delete');
+        $this->title = '<i class="fa fa-fw feather icon-trash"></i> ' . admin_trans_label('Delete');
     }
 
     /**

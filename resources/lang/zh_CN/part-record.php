@@ -11,9 +11,9 @@ return [
         'Depreciation Rule' => '折旧规则',
         'Batch Delete' => '批量删除配件',
         'Batch Delete Confirm' => '您确定要删除选中的配件吗？',
-        'Batch Delete Success' => '批量删除配件成功！',
+        'Batch Force Delete' => '批量强制删除配件（不可恢复）',
+        'Batch Force Delete Confirm' => '您确定要强制删除选中的配件吗？（此操作不可逆）',
         'Delete' => '删除配件',
-        'Delete Success' => '成功删除配件！',
         'Delete Confirm' => '确认删除？',
         'Delete Confirm Description' => '删除的同时将会解除所有与之关联的归属关系',
         'Track Create Update' => '归属设备',
@@ -25,7 +25,7 @@ return [
         'Track Delete Confirm' => '确认解除与此用户的关联？'
     ],
     'fields' => [
-        'qrcode' => '二维码',
+        'asset_number_qrcode' => '二维码',
         'name' => '名称',
         'description' => '描述',
         'category' => [

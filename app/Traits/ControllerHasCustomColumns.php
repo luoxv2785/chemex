@@ -63,7 +63,7 @@ trait ControllerHasCustomColumns
      *
      * @return mixed
      */
-    public static function getCustomColumns($table_name)
+    public static function getCustomColumns($table_name): mixed
     {
         return CustomColumn::where('table_name', $table_name)->get();
     }

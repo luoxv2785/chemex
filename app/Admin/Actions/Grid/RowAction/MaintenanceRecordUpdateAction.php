@@ -11,7 +11,7 @@ class MaintenanceRecordUpdateAction extends RowAction
     public function __construct()
     {
         parent::__construct();
-        $this->title = '🧱 ' . admin_trans_label('Update');
+        $this->title = '<i class="fa fa-fw feather icon-check-square"></i> ' . admin_trans_label('Update');
     }
 
     /**

@@ -35,7 +35,7 @@ class UserImportForm extends Form
                 $rows = Excel::import($file_path)->first()->toArray();
                 foreach ($rows as $row) {
                     try {
-                        if (!empty($row['工号']) && !empty($row['姓名']) && !empty($row['性别'])) {
+                        if (!empty($row['用户名']) && !empty($row['姓名']) && !empty($row['性别'])) {
                             $department = Department::where('name', $row['部门'])->first();
                             if (empty($department)) {
                                 $department = new Department();
@@ -43,12 +43,12 @@ class UserImportForm extends Form
                                 $department->save();
                             }
                             $user = new User();
-                            $user->username = $row['工号'];
+                            $user->username = $row['用户名'];
                             $user->name = $row['姓名'];
                             $user->department_id = $department->id;
                             $user->gender = $row['性别'];
                             if (empty($row['密码'])) {
-                                $user->password = bcrypt($row['工号']);
+                                $user->password = bcrypt($row['用户名']);
                             } else {
                                 $user->password = bcrypt($row['密码']);
                             }
