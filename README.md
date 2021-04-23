@@ -113,6 +113,8 @@
 
 OVF 中包含以下组件：Nginx MySQL PHP7.4，网络通过 NAT 实现。
 
+> 此 OVF 中的 chemex 版本为支持 PHP7.4 的版本，但 chemex 从 3.0.4 开始将仅支持 PHP8.0 。
+
 Ubuntu 账密：chemex/chemex
 
 Web 程序主目录：/var/www/html
