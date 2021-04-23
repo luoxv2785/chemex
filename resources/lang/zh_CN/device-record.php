@@ -97,6 +97,7 @@ return [
         'file' => '文件',
         'purchased_channel_id' => '购入途径',
         'depreciation_rule_id' => '折旧规则',
+        'device_status' => '设备状态'
     ],
     'options' => [
     ],
