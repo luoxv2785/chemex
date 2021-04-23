@@ -27,6 +27,21 @@ class SoftwareService
     }
 
     /**
+     * 删除配件（强制）.
+     *
+     * @param $software_id
+     */
+    public static function softwareForceDelete($software_id)
+    {
+        $software = SoftwareRecord::where('id', $software_id)
+            ->withTrashed()
+            ->first();
+        if (!empty($software)) {
+            $software->forceDelete();
+        }
+    }
+
+    /**
      * 软件履历导出.
      *
      * @param $software_id

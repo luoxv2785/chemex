@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @method static where(string $key, string $value1, string $value2 = null)
  * @method static pluck(string $string, string $string1)
+ * @property int id
  */
 class ConsumableRecord extends Model
 {
@@ -97,6 +98,22 @@ class ConsumableRecord extends Model
         try {
             return parent::delete();
         } catch (Exception $e) {
+
+        }
+    }
+
+    /**
+     * 强制删除方法.
+     * 这里为了兼容数据强制删除和字段强制删除.
+     *
+     * @return bool|null
+     */
+    public function forceDelete()
+    {
+        $this->where($this->primaryKey, $this->getKey())->forceDelete();
+        try {
+            return parent::forceDelete();
+        } catch (Exception $exception) {
 
         }
     }

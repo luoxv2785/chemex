@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Grid\BatchAction\PartRecordBatchDeleteAction;
+use App\Admin\Actions\Grid\BatchAction\PartRecordBatchForceDeleteAction;
 use App\Admin\Actions\Grid\RowAction\MaintenanceRecordCreateAction;
 use App\Admin\Actions\Grid\RowAction\PartRecordCreateUpdateTrackAction;
 use App\Admin\Actions\Grid\RowAction\PartRecordDeleteAction;
@@ -39,6 +40,7 @@ use Dcat\Admin\Widgets\Tab;
  * @property float price
  * @property string purchased
  * @property DateTime deleted_at
+ * @property string asset_number
  *
  * @method device()
  * @method track()
@@ -79,9 +81,9 @@ class PartRecordController extends AdminController
             $grid->column('asset_number', '', $sort_columns)->display(function ($asset_number) {
                 return "<span class='badge badge-secondary'>$asset_number</span>";
             });
-//            $grid->column('qrcode', '', $column_sort)->qrcode(function () {
-//                return 'part:'.$this->id;
-//            }, 200, 200);
+            $grid->column('asset_number_qrcode', '', $sort_columns)->qrcode(function () {
+                return $this->asset_number;
+            });
             $grid->column('price', '', $sort_columns);
             $grid->column('purchased', '', $sort_columns);
             $grid->column('name', '', $sort_columns);
@@ -143,7 +145,7 @@ class PartRecordController extends AdminController
                     'category.name',
                     'vendor.name',
                     'specification',
-                    'device.name',
+                    'device.asset_number',
                 ], ControllerHasCustomColumns::makeQuickSearch((new PartRecord())->getTable()))
             )
                 ->placeholder(trans('main.quick_search'))
@@ -174,6 +176,10 @@ class PartRecordController extends AdminController
                 // @permissions
                 if (Admin::user()->can('part.record.batch.delete')) {
                     $batchActions->add(new PartRecordBatchDeleteAction());
+                }
+                // @permissions
+                if (Admin::user()->can('part.record.batch.force.delete')) {
+                    $batchActions->add(new PartRecordBatchForceDeleteAction());
                 }
             });
 

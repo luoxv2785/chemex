@@ -2,8 +2,12 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Grid\BatchAction\ConsumableRecordBatchDeleteAction;
+use App\Admin\Actions\Grid\BatchAction\ConsumableRecordBatchForceDeleteAction;
+use App\Admin\Actions\Grid\RowAction\ConsumableRecordDeleteAction;
 use App\Admin\Actions\Grid\ToolAction\ConsumableInAction;
 use App\Admin\Actions\Grid\ToolAction\ConsumableOutAction;
+use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\ConsumableRecord;
 use App\Form;
 use App\Grid;
@@ -18,6 +22,7 @@ use App\Traits\ControllerHasDeviceRelatedGrid;
 use App\Traits\ControllerHasTab;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\Tools;
+use Dcat\Admin\Grid\Tools\BatchActions;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Tab;
@@ -77,6 +82,13 @@ class ConsumableRecordController extends AdminController
              */
             $grid->showColumnSelector();
 
+            $grid->actions(function (RowActions $actions) {
+                // @permissions
+                if (Admin::user()->can('consumable.record.delete')) {
+                    $actions->append(new ConsumableRecordDeleteAction());
+                }
+            });
+
             /**
              * 工具按钮.
              */
@@ -88,6 +100,20 @@ class ConsumableRecordController extends AdminController
                 // @permissions
                 if (Admin::user()->can('consumable.record.out')) {
                     $tools->append(new ConsumableOutAction());
+                }
+            });
+
+            /**
+             * 批量操作.
+             */
+            $grid->batchActions(function (BatchActions $batchActions) {
+                // @permissions
+                if (Admin::user()->can('consumable.record.batch.delete')) {
+                    $batchActions->add(new ConsumableRecordBatchDeleteAction());
+                }
+                // @permissions
+                if (Admin::user()->can('consumable.record.batch.force.delete')) {
+                    $batchActions->add(new ConsumableRecordBatchForceDeleteAction());
                 }
             });
 
@@ -124,7 +150,6 @@ class ConsumableRecordController extends AdminController
                 ControllerHasCustomColumns::makeFilter((new ConsumableRecord())->getTable(), $filter);
             });
 
-            //TODO 耗材的删除功能（逻辑和权限）
             $grid->disableBatchDelete();
             $grid->disableDeleteButton();
             $grid->enableDialogCreate();
@@ -239,6 +264,8 @@ class ConsumableRecordController extends AdminController
 
             $form->display('created_at');
             $form->display('updated_at');
+
+            $form->disableDeleteButton();
         });
     }
 }

@@ -10,9 +10,9 @@ return [
         'Counts Help' => '"-1"表示无限制。',
         'Batch Delete' => '批量删除软件',
         'Batch Delete Confirm' => '您确定要删除选中的软件吗？',
-        'Batch Delete Success' => '批量删除软件成功！',
+        'Batch Force Delete' => '批量强制删除软件（不可恢复）',
+        'Batch Force Delete Confirm' => '您确定要强制删除选中的软件吗？（此操作不可逆）',
         'Delete' => '删除软件',
-        'Delete Success' => '成功删除软件！',
         'Delete Confirm' => '确认删除？',
         'Delete Confirm Description' => '删除的同时将会解除所有与之关联的归属关系',
         'Track Create Update' => '归属到设备',
@@ -21,7 +21,7 @@ return [
         'Deleted' => '已删除'
     ],
     'fields' => [
-        'qrcode' => '二维码',
+        'asset_number_qrcode' => '二维码',
         'name' => '名称',
         'description' => '描述',
         'category' => [

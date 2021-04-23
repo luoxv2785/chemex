@@ -11,7 +11,7 @@ class PartTrackDeleteAction extends RowAction
     public function __construct()
     {
         parent::__construct();
-        $this->title = '🔗 ' . admin_trans_label('Delete');
+        $this->title = '<i class="fa fa-fw feather icon-link-2"></i> ' . admin_trans_label('Delete');
     }
 
     /**

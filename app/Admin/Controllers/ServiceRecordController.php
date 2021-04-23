@@ -2,6 +2,8 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Grid\BatchAction\ServiceRecordBatchDeleteAction;
+use App\Admin\Actions\Grid\BatchAction\ServiceRecordBatchForceDeleteAction;
 use App\Admin\Actions\Grid\RowAction\ServiceRecordCreateIssueAction;
 use App\Admin\Actions\Grid\RowAction\ServiceRecordCreateUpdateTrackAction;
 use App\Admin\Actions\Grid\RowAction\ServiceRecordDeleteAction;
@@ -21,6 +23,7 @@ use App\Traits\ControllerHasDeviceRelatedGrid;
 use App\Traits\ControllerHasTab;
 use DateTime;
 use Dcat\Admin\Admin;
+use Dcat\Admin\Grid\Tools\BatchActions;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show\Tools;
@@ -99,6 +102,20 @@ class ServiceRecordController extends AdminController
             });
 
             /**
+             * 批量操作.
+             */
+            $grid->batchActions(function (BatchActions $batchActions) {
+                // @permissions
+                if (Admin::user()->can('service.record.batch.delete')) {
+                    $batchActions->add(new ServiceRecordBatchDeleteAction());
+                }
+                // @permissions
+                if (Admin::user()->can('service.record.batch.force.delete')) {
+                    $batchActions->add(new ServiceRecordBatchForceDeleteAction());
+                }
+            });
+
+            /**
              * 字段过滤.
              */
             $grid->showColumnSelector();
@@ -136,9 +153,8 @@ class ServiceRecordController extends AdminController
              * 按钮控制.
              */
             $grid->enableDialogCreate();
-            $grid->disableRowSelector();
             $grid->disableDeleteButton();
-            $grid->disableBatchActions();
+            $grid->disableBatchDelete();
             $grid->toolsWithOutline(false);
             if (!request('_scope_')) {
                 // @permissions

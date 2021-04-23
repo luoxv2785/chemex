@@ -13,7 +13,7 @@ class MaintenanceRecordCreateAction extends RowAction
     public function __construct($item)
     {
         parent::__construct();
-        $this->title = '🔧 ' . admin_trans_label('Maintenance Create');
+        $this->title = '<i class="fa fa-fw feather icon-box"></i> ' . admin_trans_label('Maintenance Create');
         $this->item = $item;
     }
 

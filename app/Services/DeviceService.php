@@ -96,4 +96,19 @@ class DeviceService
             $device_record->delete();
         }
     }
+
+    /**
+     * 删除设备（强制）.
+     *
+     * @param $device_id
+     */
+    public static function deviceForceDelete($device_id)
+    {
+        $device_record = DeviceRecord::where('id', $device_id)
+            ->withTrashed()
+            ->first();
+        if (!empty($device_record)) {
+            $device_record->forceDelete();
+        }
+    }
 }

@@ -12,8 +12,9 @@ return [
         'Admin Password Help' => '管理员密码，可以代表计算机管理员账户密码以及打印机管理员密码等。',
         'Depreciation Rule Help' => '设备记录的折旧规则将优先于其分类所指定的折旧规则。',
         'Batch Delete' => '批量删除设备',
+        'Batch Force Delete' => '批量强制删除设备（不可恢复）',
+        'Batch Force Delete Confirm' => '您确定要强制删除选中的设备吗？（此操作不可逆）',
         'Batch Delete Confirm' => '您确定要删除选中的设备吗？',
-        'Batch Delete Success' => '批量删除设备成功！',
 //        'Delete' => '发起报废审批',
         'Delete' => '删除设备',
         'Delete Confirm' => '确认删除设备',
@@ -31,7 +32,7 @@ return [
         'Track Delete Confirm' => '确认解除与此用户的关联？'
     ],
     'fields' => [
-        'qrcode' => '二维码',
+        'asset_number_qrcode' => '二维码',
         'description' => '描述',
         'category' => [
             'name' => '分类',

@@ -88,9 +88,7 @@ class DeviceRecordImportForm extends Form
                             $device_record->purchased_channel_id = $purchased_channel->id;
                         }
 
-                        /*
-                         * 处理自定义字段的导入
-                         */
+                        // 处理自定义字段的导入
                         $custom_fields = CustomColumn::where('table_name', $device_record->getTable())->get();
                         foreach ($custom_fields as $custom_field) {
                             $name = $custom_field->name;
@@ -111,9 +109,8 @@ class DeviceRecordImportForm extends Form
                     } else {
                         $fail++;
                     }
-                } catch (Exception $exception) {
+                } catch (Exception) {
                     $fail++;
-//                    return $this->response()->error($exception->getMessage());
                 }
             }
             $return = $this->response()
@@ -124,12 +121,10 @@ class DeviceRecordImportForm extends Form
                 ->response()
                 ->error(trans('main.file_io_error') . $e->getMessage());
         } catch (UnsupportedTypeException $e) {
-            $return = $this
-                ->response()
+            $return = $this->response()
                 ->error(trans('main.file_format') . $e->getMessage());
         } catch (FileNotFoundException $e) {
-            $return = $this
-                ->response()
+            $return = $this->response()
                 ->error(trans('file.file_none') . $e->getMessage());
         }
 

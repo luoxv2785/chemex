@@ -11,7 +11,7 @@ class PartRecordBatchDeleteAction extends BatchAction
     public function __construct($title = null)
     {
         parent::__construct($title);
-        $this->title = '🔨 ' . admin_trans_label('Batch Delete');
+        $this->title = '<i class="fa fa-fw feather icon-trash-2"></i> ' . admin_trans_label('Batch Delete');
     }
 
     /**

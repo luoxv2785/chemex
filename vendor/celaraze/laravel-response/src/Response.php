@@ -14,12 +14,12 @@ class Response
      * 通用的接口返回构造数组.
      * @param int $code
      * @param string $message
-     * @param array $data
+     * @param null $data
      * @param bool $array
      * @return array|JsonResponse
      */
     #[ArrayShape(['code' => "integer", 'message' => "string", "data" => "mixed"])]
-    public static function make(int $code, string $message, array $data = [], bool $array = false): JsonResponse|array
+    public static function make(int $code, string $message, $data = null, bool $array = false): JsonResponse|array
     {
         $return = [];
         $return['code'] = $code;
