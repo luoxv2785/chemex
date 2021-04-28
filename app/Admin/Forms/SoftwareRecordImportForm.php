@@ -36,7 +36,7 @@ class SoftwareRecordImportForm extends Form
             $rows = Excel::import($file_path)->first()->toArray();
             foreach ($rows as $row) {
                 try {
-                    if (!empty($row['资产编号']) && !empty($row['分类']) && !empty($row['厂商'] && !empty($row['版本']))) {
+                    if (!empty($row['资产编号']) && !empty($row['名称']) && !empty($row['分类']) && !empty($row['厂商'] && !empty($row['版本']))) {
                         $category = SoftwareRecord::where('name', $row['分类'])->first();
                         $vendor = VendorRecord::where('name', $row['厂商'])->first();
                         if (empty($category)) {
@@ -51,6 +51,7 @@ class SoftwareRecordImportForm extends Form
                         }
                         $software_record = new SoftwareRecord();
                         $software_record->asset_number = $row['资产编号'];
+                        $software_record->name = $row['名称'];
                         $exist = SoftwareRecord::where('asset_number', $row['资产编号'])->withTrashed()->first();
                         if (!empty($exist)) {
                             $fail++;
@@ -72,6 +73,9 @@ class SoftwareRecordImportForm extends Form
                         }
                         if (!empty($row['过保日期'])) {
                             $software_record->expired = $row['过保日期'];
+                        }
+                        if (!empty($row['授权数量'])) {
+                            $software_record->counts = $row['授权数量'];
                         }
                         if (!empty($row['购入途径'])) {
                             $purchased_channel = PurchasedChannel::where('name', $row['购入途径'])->first();
@@ -100,6 +104,7 @@ class SoftwareRecordImportForm extends Form
                     }
                 } catch (Exception $exception) {
                     $fail++;
+//                    dd($exception->getLine() . $exception->getMessage());
 //                    return $this->response()->error($exception->getMessage());
                 }
             }

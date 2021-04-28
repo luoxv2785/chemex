@@ -29,7 +29,7 @@ class CustomColumnUpdateAction extends RowAction
 
         return Modal::make()
             ->lg()
-            ->title(admin_trans_label('Update Column'))
+            ->title(admin_trans_label('Update'))
             ->body($form)
             ->button($this->title);
     }
