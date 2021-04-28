@@ -10,6 +10,7 @@ use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Card;
 use Exception;
 use Illuminate\Contracts\Translation\Translator;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Artisan;
 use JetBrains\PhpStorm\ArrayShape;
 
@@ -42,11 +43,11 @@ class ToolDatabaseBackupController extends Controller
     }
 
     /**
-     * 备份数据
-     * @return array
+     * 备份数据.
+     * @return \Illuminate\Http\JsonResponse|array
      */
     #[ArrayShape(['code' => "int", 'message' => "string", "data" => "mixed"])]
-    public function backup(): array
+    public function backup(): JsonResponse|array
     {
         $data = [];
         try {
