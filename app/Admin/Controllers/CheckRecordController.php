@@ -190,9 +190,11 @@ class CheckRecordController extends AdminController
 
             $grid->actions(function (RowActions $actions) {
                 if ($this->status == 0) {
+                    // @permissions
                     if (Admin::user()->can('check.record.update.yes')) {
                         $actions->append(new CheckRecordUpdateYesAction());
                     }
+                    // @permissions
                     if (Admin::user()->can('check.record.update.no')) {
                         $actions->append(new CheckRecordUpdateNoAction());
                     }
@@ -204,12 +206,20 @@ class CheckRecordController extends AdminController
             $grid->toolsWithOutline(false);
 
             $grid->enableDialogCreate();
+            if (!request('_scope_')) {
+                // @permissions
+                if (!Admin::user()->can('check.record.create')) {
+                    $grid->disableCreateButton();
+                }
+            }
 
             $grid->quickSearch('id', 'user.name')
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
-
-            $grid->export();
+            // @permissions
+            if (Admin::user()->can('check.record.export')) {
+                $grid->export();
+            }
         });
     }
 

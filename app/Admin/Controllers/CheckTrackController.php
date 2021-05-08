@@ -75,6 +75,7 @@ class CheckTrackController extends AdminController
             $grid->disableDeleteButton();
 
             $grid->actions(function (RowActions $actions) {
+                // @permissions
                 if (Admin::user()->can('check.track.update') && $this->status == 0) {
                     $actions->append(new CheckTrackUpdateAction());
                 }
