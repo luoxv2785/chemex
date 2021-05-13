@@ -21,6 +21,7 @@ use App\Admin\Controllers\SoftwareRecordController;
 use App\Admin\Controllers\SoftwareStatisticsController;
 use App\Admin\Controllers\UserController;
 use App\Admin\Controllers\VendorRecordController;
+use App\Admin\Controllers\SiteVersionController;
 use Dcat\Admin\Admin;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
@@ -38,7 +39,6 @@ Route::group([
     /**
      * 辅助信息.
      */
-    $router->get('/version', 'VersionController@index');
     $router->get('/action/upgrade', 'VersionController@upgrade')
         ->name('action.upgrade');
     $router->get('/action/database_backup', 'ToolDatabaseBackupController@backup')
@@ -243,4 +243,6 @@ Route::group([
         ->name('site.ldap.index');
     $router->get('/site/ldap/test', [SiteLDAPController::class, 'test'])
         ->name('site.ldap.test');
+    $router->get('/site/version', [SiteVersionController::class, 'index'])
+        ->name('site.version.index');
 });

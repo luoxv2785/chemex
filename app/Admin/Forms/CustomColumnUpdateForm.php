@@ -88,7 +88,6 @@ class CustomColumnUpdateForm extends Form implements Renderable
                     $column_sort->name = $new_name;
                 }
                 $column_sort->save();
-//                DB::commit();
                 return $this->response()
                     ->success(trans('main.success'))
                     ->refresh();
@@ -97,9 +96,8 @@ class CustomColumnUpdateForm extends Form implements Renderable
                     ->error(trans('main.fail'));
             }
         } catch (Exception $exception) {
-//            DB::rollBack();
             return $this->response()
-                ->error(trans('main.fail') . '：' . $exception->getMessage());
+                ->refresh();
         }
     }
 

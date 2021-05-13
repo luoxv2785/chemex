@@ -21,6 +21,7 @@ class SiteUIController extends Controller
                 $tab->addLink(trans('main.site_setting'), admin_route('site.setting.index'));
                 $tab->add(trans('main.site_ui'), new SiteUIForm(), true);
                 $tab->addLink(trans('main.site_ldap'), admin_route('site.ldap.index'));
+                $tab->addLink(trans('main.site_version'), admin_route('site.version.index'));
                 $row->column(12, $tab->withCard());
             });
     }

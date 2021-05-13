@@ -22,7 +22,7 @@
         "celaraze/laravel-response": "dev-master",
         "celaraze/pour": "dev-master",
         "dcat/easy-excel": "^1.0",
-        "dcat/laravel-admin": "2.0.23-beta",
+        "dcat/laravel-admin": "^2.0",
         "doctrine/dbal": "^3.0",
         "enlightn/enlightn": "^1.7",
         "fideloper/proxy": "^4.2",
