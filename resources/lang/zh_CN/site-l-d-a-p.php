@@ -2,8 +2,8 @@
 
 return [
     'labels' => [
-        'title' => '站点',
-        'description' => '与咖啡壶站点相关的配置',
+        'title' => '配置',
+        'description' => '与站点相关的配置',
         'ldap' => 'LDAP',
         'Configuration Success' => 'LDAP配置更新成功！',
         'Host Primary Help' => '域控主机的域名地址或者ip地址。',

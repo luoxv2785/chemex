@@ -119,6 +119,7 @@ return [
     'site_setting' => '配置',
     'site_ui' => '界面',
     'site_ldap' => 'LDAP',
+    'site_version' => '版本',
     'asset_number_exist' => '资产编号已经存在，请更换后尝试。',
     'select_create' => '快速创建',
     'approval_record' => '审批',

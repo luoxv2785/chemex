@@ -2,18 +2,16 @@
 
 namespace App\Admin\Controllers;
 
-use Adldap\Auth\BindException;
-use Adldap\Auth\PasswordRequiredException;
-use Adldap\Auth\UsernameRequiredException;
-use App\Admin\Forms\SiteLDAPForm;
-use App\Support\LDAP;
-use Dcat\Admin\Http\Controllers\AdminController;
+use App\Http\Controllers\Controller;
+use App\Support\Version;
+use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
+use Dcat\Admin\Widgets\Card;
 use Dcat\Admin\Widgets\Tab;
 use Illuminate\Contracts\Translation\Translator;
 
-class SiteLDAPController extends AdminController
+class SiteVersionController extends Controller
 {
     /**
      * 页面.
@@ -31,8 +29,8 @@ class SiteLDAPController extends AdminController
                 $tab = new Tab();
                 $tab->addLink(trans('main.site_setting'), admin_route('site.setting.index'));
                 $tab->addLink(trans('main.site_ui'), admin_route('site.ui.index'));
-                $tab->add(trans('main.site_ldap'), new SiteLDAPForm(), true);
-                $tab->addLink(trans('main.site_version'), admin_route('site.version.index'));
+                $tab->addLink(trans('main.site_ldap'), admin_route('site.ldap.index'));
+                $tab->add(trans('main.site_version'), $this->render(), true);
                 $row->column(12, $tab->withCard());
             });
     }
@@ -43,24 +41,17 @@ class SiteLDAPController extends AdminController
     }
 
     /**
-     * AD登录验证
-     *
-     * @return bool|int|string
+     * 重写渲染为自定义.
+     * @return Row
      */
-    public function test(): bool|int|string
+    public function render(): Row
     {
-        try {
-            if (!admin_setting('ad_enabled')) {
-                return -3;
-            }
-
-            return LDAP::auth();
-        } catch (BindException $e) {
-            return $e->getMessage();
-        } catch (PasswordRequiredException) {
-            return -1;
-        } catch (UsernameRequiredException) {
-            return -2;
-        }
+        return new Row(function (Column $column) {
+            $version = config('admin.chemex_version');
+            $description = Version::list()['geisha'];
+            $column->row(new Card(view('version.upgrade')));
+            $column->row(new Card(admin_trans_label('Current Version'), $version));
+            $column->row(new Card($description['name'], $description['description']));
+        });
     }
 }

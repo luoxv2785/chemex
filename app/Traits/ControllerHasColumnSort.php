@@ -23,7 +23,7 @@ use Dcat\Admin\Widgets\Form as WidgetForm;
 use Exception;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Pour\Plus\LaravelAdmin;
+use Pour\Uni;
 
 trait ControllerHasColumnSort
 {
@@ -170,7 +170,7 @@ trait ControllerHasColumnSort
             ->options(Data::customColumnTypes())
             ->required();
         $form->radio('is_nullable')
-            ->options(LaravelAdmin::yesOrNo())
+            ->options(Uni::yesOrNo())
             ->help(admin_trans_label('Is Nullable Help'))
             ->default(0);
 
@@ -253,7 +253,7 @@ trait ControllerHasColumnSort
                                 if ($type == 'select') {
                                     $type = 'string';
                                 }
-                                if ($custom_column->is_nullable == 1 || ($type == 'date' || $type == 'dateTime')) {
+                                if ($custom_column->is_nullable == 1 || ($type == 'date' || $type == 'dateTime' || $type == 'select')) {
                                     $table->$type($custom_column->name)->nullable();
                                 } else {
                                     $table->$type($custom_column->name)->default(0);
