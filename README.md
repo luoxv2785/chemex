@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/Latest Release-3.0.7-orange" />
+    <img src="https://img.shields.io/badge/Latest Release-3.0.9-orange" />
     <img src="https://img.shields.io/badge/PHP-7.4+-green" />
     <img src="https://img.shields.io/badge/MySQL-8+-blueviolet" />
     <img src="https://img.shields.io/badge/License-GPL3.0-blue" />
@@ -63,16 +63,6 @@
 简洁优雅的使用体验。
 
 灵活的可配置自定义字段。
-
-### 版本
-
-咖啡壶（Chemex）将会以咖啡豆品种作为 `major` 版本的命名，例如 `1.x` 版本称为 `肯亚（Kenya）`，旨在为 ICT 运维人员提供管理能力的同时，普及咖啡知识，静下心喝一杯属于当前版本的冲煮咖啡。
-
-|major|版本名|状态|支持|
-|----|----|----|----|
-|1.x|肯亚（Kenya）|已废弃|已停止
-|2.x|耶加雪菲（Yirgacheffe）|已废弃|已停止
-|3.x|瑰夏（Gesha）|3.0.0-rc|2022-4-1
 
 ## 环境要求
 
@@ -155,15 +145,13 @@ MySQL 账密：chemex/chemex
 
 ### 线上
 
-部署完成后需要将 PHP 的 `exec()` 函数从禁用列表中移除，使其生效。之后即可使用线上更新，操作步骤为 设置 - 版本信息 - 升级。
+部署完成后需要将 PHP 的 `exec()` 函数从禁用列表中移除。之后即可使用线上更新，操作步骤为 设置 - 版本信息 - 升级。
 
-### 手动，通过Git Pull方式
+### 手动
 
 随时随地保持更新可以在项目根目录中执行 `sudo git fetch --all && git reset --hard origin/main && git pull` 命令，将会同步分支的最新修改内容。
 
 接着，执行 `php artisan chemex:update` 来进行升级。
-
-> 如果从2.0升级到3.0，需要额外执行 `php artisan chemex:refresh-user`。
 
 ## 截图
 

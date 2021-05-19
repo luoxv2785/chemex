@@ -16,12 +16,12 @@ use App\Admin\Controllers\ServiceStatisticsController;
 use App\Admin\Controllers\SiteLDAPController;
 use App\Admin\Controllers\SiteSettingController;
 use App\Admin\Controllers\SiteUIController;
+use App\Admin\Controllers\SiteVersionController;
 use App\Admin\Controllers\SoftwareCategoryController;
 use App\Admin\Controllers\SoftwareRecordController;
 use App\Admin\Controllers\SoftwareStatisticsController;
 use App\Admin\Controllers\UserController;
 use App\Admin\Controllers\VendorRecordController;
-use App\Admin\Controllers\SiteVersionController;
 use Dcat\Admin\Admin;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
@@ -181,16 +181,6 @@ Route::group([
         ->names('check.records');
     $router->resource('/check/tracks', 'CheckTrackController')
         ->names('check.tracks');
-
-    /**
-     * 流程审批
-     */
-    $router->resource('/approval/records', 'ApprovalRecordController')
-        ->names('approval.records');
-    $router->resource('/approval/tracks', 'ApprovalTrackController')
-        ->names('approval.tracks');
-    $router->resource('/approval/histories', 'ApprovalHistoryController')
-        ->names('approval.histories');
 
     /**
      * 故障维护.

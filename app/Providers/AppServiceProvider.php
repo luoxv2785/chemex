@@ -57,7 +57,5 @@ class AppServiceProvider extends ServiceProvider
         User::observe(UserObserver::class);
         // 待办的观察者
         TodoRecord::observe(TodoRecordObserver::class);
-        // 审批流程的观察者
-        ApprovalRecord::observe(ApprovalRecordObserver::class);
     }
 }
