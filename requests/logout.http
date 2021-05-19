@@ -1,6 +1,0 @@
-### 注销
-# 注销用户的登录态
-
-POST http://{{server}}/api/auth/logout
-Content-Type: application/json
-Authorization: Bearer {{token}}

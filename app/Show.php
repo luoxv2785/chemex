@@ -18,7 +18,7 @@ class Show extends \Dcat\Admin\Show
     {
         $order = 99;
         if (!empty($sorts)) {
-            $field = array_column($sorts, 'field');
+            $field = array_column($sorts, 'name');
             $key = array_search($name, $field);
             if ($key !== false) {
                 if (isset($sorts[$key])) {
