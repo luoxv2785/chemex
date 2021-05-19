@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit5f2b1d34ee5f537a2450f49b2a303c27
+class ComposerStaticInit35f2cb1663b276f41611fe4c784b77b8
 {
     public static $files = array (
         '9b38cf48e83f5d8f60375221cd213eee' => __DIR__ . '/..' . '/phpstan/phpstan/bootstrap.php',
@@ -955,6 +955,7 @@ class ComposerStaticInit5f2b1d34ee5f537a2450f49b2a303c27
         'App\\Admin\\Controllers\\SiteLDAPController' => __DIR__ . '/../..' . '/app/Admin/Controllers/SiteLDAPController.php',
         'App\\Admin\\Controllers\\SiteSettingController' => __DIR__ . '/../..' . '/app/Admin/Controllers/SiteSettingController.php',
         'App\\Admin\\Controllers\\SiteUIController' => __DIR__ . '/../..' . '/app/Admin/Controllers/SiteUIController.php',
+        'App\\Admin\\Controllers\\SiteVersionController' => __DIR__ . '/../..' . '/app/Admin/Controllers/SiteVersionController.php',
         'App\\Admin\\Controllers\\SoftwareCategoryController' => __DIR__ . '/../..' . '/app/Admin/Controllers/SoftwareCategoryController.php',
         'App\\Admin\\Controllers\\SoftwareColumnController' => __DIR__ . '/../..' . '/app/Admin/Controllers/SoftwareColumnController.php',
         'App\\Admin\\Controllers\\SoftwareRecordController' => __DIR__ . '/../..' . '/app/Admin/Controllers/SoftwareRecordController.php',
@@ -1273,8 +1274,10 @@ class ComposerStaticInit5f2b1d34ee5f537a2450f49b2a303c27
         'Box\\Spout\\Writer\\Common\\Helper\\FileSystemWithRootFolderHelperInterface' => __DIR__ . '/..' . '/box/spout/src/Spout/Writer/Common/Helper/FileSystemWithRootFolderHelperInterface.php',
         'Box\\Spout\\Writer\\Common\\Helper\\ZipHelper' => __DIR__ . '/..' . '/box/spout/src/Spout/Writer/Common/Helper/ZipHelper.php',
         'Box\\Spout\\Writer\\Common\\Manager\\CellManager' => __DIR__ . '/..' . '/box/spout/src/Spout/Writer/Common/Manager/CellManager.php',
+        'Box\\Spout\\Writer\\Common\\Manager\\RegisteredStyle' => __DIR__ . '/..' . '/box/spout/src/Spout/Writer/Common/Manager/RegisteredStyle.php',
         'Box\\Spout\\Writer\\Common\\Manager\\RowManager' => __DIR__ . '/..' . '/box/spout/src/Spout/Writer/Common/Manager/RowManager.php',
         'Box\\Spout\\Writer\\Common\\Manager\\SheetManager' => __DIR__ . '/..' . '/box/spout/src/Spout/Writer/Common/Manager/SheetManager.php',
+        'Box\\Spout\\Writer\\Common\\Manager\\Style\\PossiblyUpdatedStyle' => __DIR__ . '/..' . '/box/spout/src/Spout/Writer/Common/Manager/Style/PossiblyUpdatedStyle.php',
         'Box\\Spout\\Writer\\Common\\Manager\\Style\\StyleManager' => __DIR__ . '/..' . '/box/spout/src/Spout/Writer/Common/Manager/Style/StyleManager.php',
         'Box\\Spout\\Writer\\Common\\Manager\\Style\\StyleManagerInterface' => __DIR__ . '/..' . '/box/spout/src/Spout/Writer/Common/Manager/Style/StyleManagerInterface.php',
         'Box\\Spout\\Writer\\Common\\Manager\\Style\\StyleMerger' => __DIR__ . '/..' . '/box/spout/src/Spout/Writer/Common/Manager/Style/StyleMerger.php',
@@ -3724,6 +3727,7 @@ class ComposerStaticInit5f2b1d34ee5f537a2450f49b2a303c27
         'Illuminate\\Console\\Events\\ArtisanStarting' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Console/Events/ArtisanStarting.php',
         'Illuminate\\Console\\Events\\CommandFinished' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Console/Events/CommandFinished.php',
         'Illuminate\\Console\\Events\\CommandStarting' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Console/Events/CommandStarting.php',
+        'Illuminate\\Console\\Events\\ScheduledBackgroundTaskFinished' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Console/Events/ScheduledBackgroundTaskFinished.php',
         'Illuminate\\Console\\Events\\ScheduledTaskFailed' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Console/Events/ScheduledTaskFailed.php',
         'Illuminate\\Console\\Events\\ScheduledTaskFinished' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Console/Events/ScheduledTaskFinished.php',
         'Illuminate\\Console\\Events\\ScheduledTaskSkipped' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Console/Events/ScheduledTaskSkipped.php',
@@ -3791,6 +3795,7 @@ class ComposerStaticInit5f2b1d34ee5f537a2450f49b2a303c27
         'Illuminate\\Contracts\\Database\\Eloquent\\CastsInboundAttributes' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Database/Eloquent/CastsInboundAttributes.php',
         'Illuminate\\Contracts\\Database\\Eloquent\\DeviatesCastableAttributes' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Database/Eloquent/DeviatesCastableAttributes.php',
         'Illuminate\\Contracts\\Database\\Eloquent\\SerializesCastableAttributes' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Database/Eloquent/SerializesCastableAttributes.php',
+        'Illuminate\\Contracts\\Database\\Eloquent\\SupportsPartialRelations' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Database/Eloquent/SupportsPartialRelations.php',
         'Illuminate\\Contracts\\Database\\Events\\MigrationEvent' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Database/Events/MigrationEvent.php',
         'Illuminate\\Contracts\\Database\\ModelIdentifier' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Database/ModelIdentifier.php',
         'Illuminate\\Contracts\\Debug\\ExceptionHandler' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Debug/ExceptionHandler.php',
@@ -3816,6 +3821,7 @@ class ComposerStaticInit5f2b1d34ee5f537a2450f49b2a303c27
         'Illuminate\\Contracts\\Mail\\Mailer' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Mail/Mailer.php',
         'Illuminate\\Contracts\\Notifications\\Dispatcher' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Notifications/Dispatcher.php',
         'Illuminate\\Contracts\\Notifications\\Factory' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Notifications/Factory.php',
+        'Illuminate\\Contracts\\Pagination\\CursorPaginator' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Pagination/CursorPaginator.php',
         'Illuminate\\Contracts\\Pagination\\LengthAwarePaginator' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Pagination/LengthAwarePaginator.php',
         'Illuminate\\Contracts\\Pagination\\Paginator' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Pagination/Paginator.php',
         'Illuminate\\Contracts\\Pipeline\\Hub' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Pipeline/Hub.php',
@@ -3941,6 +3947,7 @@ class ComposerStaticInit5f2b1d34ee5f537a2450f49b2a303c27
         'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/Relations/BelongsTo.php',
         'Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/Relations/BelongsToMany.php',
         'Illuminate\\Database\\Eloquent\\Relations\\Concerns\\AsPivot' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/Relations/Concerns/AsPivot.php',
+        'Illuminate\\Database\\Eloquent\\Relations\\Concerns\\CanBeOneOfMany' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/Relations/Concerns/CanBeOneOfMany.php',
         'Illuminate\\Database\\Eloquent\\Relations\\Concerns\\ComparesRelatedModels' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/Relations/Concerns/ComparesRelatedModels.php',
         'Illuminate\\Database\\Eloquent\\Relations\\Concerns\\InteractsWithDictionary' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/Relations/Concerns/InteractsWithDictionary.php',
         'Illuminate\\Database\\Eloquent\\Relations\\Concerns\\InteractsWithPivotTable' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/Relations/Concerns/InteractsWithPivotTable.php',
@@ -4254,7 +4261,11 @@ class ComposerStaticInit5f2b1d34ee5f537a2450f49b2a303c27
         'Illuminate\\Notifications\\NotificationServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/NotificationServiceProvider.php',
         'Illuminate\\Notifications\\RoutesNotifications' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/RoutesNotifications.php',
         'Illuminate\\Notifications\\SendQueuedNotifications' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Notifications/SendQueuedNotifications.php',
+        'Illuminate\\Pagination\\AbstractCursorPaginator' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Pagination/AbstractCursorPaginator.php',
         'Illuminate\\Pagination\\AbstractPaginator' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Pagination/AbstractPaginator.php',
+        'Illuminate\\Pagination\\Cursor' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Pagination/Cursor.php',
+        'Illuminate\\Pagination\\CursorPaginationException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Pagination/CursorPaginationException.php',
+        'Illuminate\\Pagination\\CursorPaginator' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Pagination/CursorPaginator.php',
         'Illuminate\\Pagination\\LengthAwarePaginator' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Pagination/LengthAwarePaginator.php',
         'Illuminate\\Pagination\\PaginationServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Pagination/PaginationServiceProvider.php',
         'Illuminate\\Pagination\\PaginationState' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Pagination/PaginationState.php',
@@ -7586,10 +7597,10 @@ class ComposerStaticInit5f2b1d34ee5f537a2450f49b2a303c27
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit5f2b1d34ee5f537a2450f49b2a303c27::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit5f2b1d34ee5f537a2450f49b2a303c27::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit5f2b1d34ee5f537a2450f49b2a303c27::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit5f2b1d34ee5f537a2450f49b2a303c27::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit35f2cb1663b276f41611fe4c784b77b8::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit35f2cb1663b276f41611fe4c784b77b8::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit35f2cb1663b276f41611fe4c784b77b8::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit35f2cb1663b276f41611fe4c784b77b8::$classMap;
 
         }, null, ClassLoader::class);
     }

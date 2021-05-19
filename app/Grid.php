@@ -15,11 +15,11 @@ class Grid extends \Dcat\Admin\Grid
      *
      * @return Column
      */
-    public function column($name, $label = '', $sorts = []): Column
+    public function column($name, $label = '', array $sorts = []): Column
     {
         $order = 99;
         if (!empty($sorts)) {
-            $field = array_column($sorts, 'field');
+            $field = array_column($sorts, 'name');
             $key = array_search($name, $field);
             if ($key !== false) {
                 if (isset($sorts[$key])) {
@@ -40,7 +40,7 @@ class Grid extends \Dcat\Admin\Grid
      *
      * @return Column
      */
-    protected function addColumn($field = '', $label = '', $order = 99): Column
+    protected function addColumn($field = '', $label = '', int $order = 99): Column
     {
         $column = $this->newColumn($field, $label, $order);
 
@@ -57,7 +57,7 @@ class Grid extends \Dcat\Admin\Grid
      *
      * @return Column
      */
-    public function newColumn($field = '', $label = '', $order = 99): Column
+    public function newColumn($field = '', $label = '', int $order = 99): Column
     {
         $column = new Column($field, $label);
         $column->setGrid($this);
