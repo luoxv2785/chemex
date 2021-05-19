@@ -6,6 +6,7 @@ use App\Admin\Actions\Grid\RowAction\TodoRecordUpdateAction;
 use App\Admin\Actions\Grid\ToolAction\TodoRecordCreateAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\TodoRecord;
+use App\Form;
 use App\Grid;
 use App\Models\ColumnSort;
 use App\Models\DeviceRecord;
@@ -18,7 +19,6 @@ use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Show;
-use Dcat\Admin\Widgets\Alert;
 use Illuminate\Contracts\Translation\Translator;
 
 /**
@@ -159,10 +159,12 @@ class TodoRecordController extends AdminController
     /**
      * Make a form builder.
      *
-     * @return Alert
+     * @return \App\Form
      */
-    protected function form(): Alert
+    protected function form(): Form
     {
-        return Data::unsupportedOperationWarning();
+        return Form::make(new TodoRecord(), function (Form $form) {
+
+        });
     }
 }
