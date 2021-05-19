@@ -2995,6 +2995,18 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2021-05-08 14:43:56',
                 'updated_at' => '2021-05-08 14:43:56',
             ),
+            248 => 
+            array (
+                'id' => 279,
+                'name' => '通知已读',
+                'slug' => 'notification.read',
+                'http_method' => 'GET',
+                'http_path' => 'notifications/read_all,notifications/read/*',
+                'order' => 249,
+                'parent_id' => 89,
+                'created_at' => '2021-05-19 14:28:15',
+                'updated_at' => '2021-05-19 14:28:15',
+            ),
         ));
         
         
