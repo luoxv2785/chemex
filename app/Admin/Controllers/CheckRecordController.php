@@ -199,8 +199,6 @@ class CheckRecordController extends AdminController
                         $actions->append(new CheckRecordUpdateNoAction());
                     }
                 }
-                $report_url = admin_route('export.check.report', ['check_id' => $this->id]);
-                $actions->append("<a href='$report_url' target='_blank'>✨ " . admin_trans_label('Report') . '</a>');
             });
 
             $grid->toolsWithOutline(false);
