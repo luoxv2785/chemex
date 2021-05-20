@@ -20,21 +20,6 @@
                     </div>
                 </a>
             </li>
-            <li class="scrollable-container media-list ps ps--active-y">
-                <a class="media d-flex justify-content-between" href="https://gitee.com/celaraze/chemex/wikis/pages"
-                   target="_blank">
-                    <div class="d-flex align-items-start">
-                        <div class="media-left">
-                        </div>
-                        <div class="media-body">
-                            <h6 class="primary media-heading">官方文档</h6>
-                            <small class="notification-text">
-                                在这里你能够找到针对使用过程的一些说明文档。
-                            </small>
-                        </div>
-                    </div>
-                </a>
-            </li>
             <li class="scrollable-container media-list ps ps--active-y" style="max-height: none;">
                 <a class="media d-flex justify-content-between" href="https://jq.qq.com/?_wv=1027&k=Ow82UKc0"
                    target="_blank">
