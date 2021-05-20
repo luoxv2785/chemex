@@ -32,7 +32,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '92a7ebd4b3a7f8a8a104181ba7a3697820c46578',
+    'reference' => 'b46fbd0ecfb9204e6257a1b849ca5bca35a83d13',
     'name' => 'celaraze/chemex',
   ),
   'versions' => 
@@ -89,7 +89,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '92a7ebd4b3a7f8a8a104181ba7a3697820c46578',
+      'reference' => 'b46fbd0ecfb9204e6257a1b849ca5bca35a83d13',
     ),
     'celaraze/laravel-response' => 
     array (
