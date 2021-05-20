@@ -285,7 +285,7 @@ return [
         // default, blue, blue-light, green
         'color' => 'default',
 
-        'body_class' => 'dark-mode',
+        'body_class' => '',
 
         'sidebar_collapsed' => false,
 
@@ -315,7 +315,7 @@ return [
     |
     | Whether enable default breadcrumb for every page content.
     */
-    'enable_default_breadcrumb' => true,
+    'enable_default_breadcrumb' => false,
 
     /*
     |--------------------------------------------------------------------------
