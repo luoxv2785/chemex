@@ -30,9 +30,11 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "hhxsv5/laravel-s": "~3.7.0",
         "laravel/framework": "^8.0",
+        "laravel/octane": "^1.0",
         "laravel/tinker": "^2.0",
         "orangehill/iseed": "^3.0",
         "overtrue/laravel-pinyin": "~4.0",
+        "spiral/roadrunner": "^2.0",
         "tecnickcom/tcpdf": "^6.3",
         "tymon/jwt-auth": "^1.0"
     },

@@ -15,3 +15,5 @@ database.db
 composer.lock
 /packages/celaraze
 /dcat-admin-extensions/*
+rr
+.rr.yaml
