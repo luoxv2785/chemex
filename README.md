@@ -3,9 +3,8 @@
 </p>
 
 <p align="center">
-    <a href="https://chemex.celaraze.com" target="_blank">官方网站</a> |
     <a href="https://chemex-demo.celaraze.com" target="_blank">演示地址</a>（账密都是：admin） |
-    <a href="https://jq.qq.com/?_wv=1027&k=tnV2HCWU">官方QQ群</a>
+    <a href="https://jq.qq.com/?_wv=1027&k=tnV2HCWU">用户交流群（QQ）</a>
 </p>
 
 <p align="center">
@@ -92,11 +91,11 @@
 
 ## 部署
 
-### 高性能（推荐）
+### 高性能
 
 高性能模式使用了 `Laravel Octane` 实现，不仅大大提升 I/O 性能，同时也一定程度上简化了部署过程。
 
-1：1：为你的计算机安装 `PHP8` 环境，参考：[PHP官方](https://www.php.net/downloads) 。
+1：为你的计算机安装 `PHP8` 环境，参考：[PHP官方](https://www.php.net/downloads) 。
 
 2：为你的计算机安装 `MySQL` 或者 `mariadb`。
 
@@ -124,22 +123,18 @@
 
 4：在项目根目录中，复制 `.env.example` 文件为一份新的，并重命名为 `.env`。
 
-5：在 `.env` 中配置数据库信息。
+5：根据 `.env` 文件中注释的指引进行配置。
 
-6：进入项目根目录，执行 `php artisan chemex:install` 进行安装。
-
-7：你可能使用的web服务器为 `nginx` 以及 `apache`，无论怎样，应用的起始路径在 `/public` 目录，请确保指向正确，同时程序的根目录权限应该调整为：拥有者和你的 Web 服务器运行用户一致，例如 www
+6：你可能使用的web服务器为 `nginx` 以及 `apache`，无论怎样，应用的起始路径在 `/public` 目录，请确保指向正确，同时程序的根目录权限应该调整为：拥有者和你的 Web 服务器运行用户一致，例如 www
 用户，且根目录权限为 `755`。`/storage` 目录设置为 `777` 权限。
 
-8：修改web服务器的伪静态规则为：`try_files $uri $uri/ /index.php?$args;`。
+7：修改web服务器的伪静态规则为：`try_files $uri $uri/ /index.php?$args;`。
 
-9：此时可以通过访问 `http://your_domain` 来使用咖啡壶。管理员账号密码为：`admin / admin`。
-
-10：最后，根据需要对是否使用线上更新继续配置。
+8：此时可以通过访问 `http://your_domain` 来使用咖啡壶。管理员账号密码为：`admin / admin`。
 
 ### OVF
 
-已同步更新至版本 `3.0.1` 。
+> 此部署方式版本暂停在 3.0.1，近期将会恢复更新
 
 考虑到部署复杂性，我们也提供了基于 Ubuntu 20.04 Server 制作的 OVF 包。OVF 支持 VMware ESXi 6.5+ 或 VMware Workstation 14.x+ 或 VMware Fusion
 10.x+。
@@ -158,13 +153,19 @@ MySQL 账密：chemex/chemex
 
 部署完成后，LNMP 服务会自启，先查看此虚拟机 IP，然后在其它主机直接通过 IP 访问 Web 服务即可。
 
-## 更新
+## 版本更新
 
 随时随地保持更新可以在项目根目录中执行 `sudo git fetch --all && git reset --hard origin/main && git pull` 命令，将会同步分支的最新修改内容。
 
 接着，执行 `php artisan chemex:update` 来进行升级。
 
 > 注意，如果提示 permission denied 错误，需要通过 sudo 身份执行。
+
+## 反馈问题
+
+请随时牢记，这是一个开源项目，作者有自己的生活、自己的工作，QQ群建立的目的是提供一个场所供用户们互相交流，作者不会提供1对1的服务。
+
+最好的反馈方式即是在本代码仓库中提交 Issue，我们在空余时间检查并解决。
 
 ## 截图
 
