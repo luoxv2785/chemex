@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'f457fea67e7fc969fbd2e7d6756fb9527e9562d2',
+    'reference' => 'be9c2f6fac22fb2b40b7c59bbb27c8055fb0532c',
     'name' => 'celaraze/chemex',
   ),
   'versions' => 
@@ -63,7 +63,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'f457fea67e7fc969fbd2e7d6756fb9527e9562d2',
+      'reference' => 'be9c2f6fac22fb2b40b7c59bbb27c8055fb0532c',
     ),
     'celaraze/laravel-response' => 
     array (
@@ -387,15 +387,6 @@
       ),
       'reference' => '8c3d0a3f6af734494ad8f6fbbee0ba92422859f3',
     ),
-    'hhxsv5/laravel-s' => 
-    array (
-      'pretty_version' => 'v3.7.19',
-      'version' => '3.7.19.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '6435c55b351a2e804647ae5b39310dfc86a15a2c',
-    ),
     'illuminate/auth' => 
     array (
       'replaced' => 
@@ -664,15 +655,6 @@
       array (
       ),
       'reference' => 'fd430412c39b3cd60e901e1eb6edc55ebd1f3735',
-    ),
-    'laravel/sail' => 
-    array (
-      'pretty_version' => 'v1.7.0',
-      'version' => '1.7.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'd1f703d73f782af5427697cdc5023395cd341963',
     ),
     'laravel/tinker' => 
     array (
@@ -1376,15 +1358,6 @@
       array (
       ),
       'reference' => '15f7faf8508e04471f666633addacf54c0ab5933',
-    ),
-    'swoole/ide-helper' => 
-    array (
-      'pretty_version' => '4.6.7',
-      'version' => '4.6.7.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '0d1409b8274117addfe64d3ea412812a69807411',
     ),
     'symfony/console' => 
     array (

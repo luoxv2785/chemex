@@ -55,7 +55,6 @@
                                     placeholder="{{ trans('admin.password') }}"
                                     required
                                     autocomplete="current-password"
-                                    autofocus
                                 >
 
                                 <div class="form-control-position">
