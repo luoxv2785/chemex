@@ -13,6 +13,7 @@ use Dcat\Admin\Layout\Navbar;
 use Dcat\Admin\Layout\SectionManager;
 use Dcat\Admin\Repositories\EloquentRepository;
 use Dcat\Admin\Support\Composer;
+use Dcat\Admin\Support\Helper;
 use Dcat\Admin\Traits\HasAssets;
 use Dcat\Admin\Traits\HasHtml;
 use Dcat\Admin\Traits\HasPermissions;
@@ -30,7 +31,7 @@ class Admin
     use HasAssets;
     use HasHtml;
 
-    const VERSION = '2.0.24-beta';
+    const VERSION = '2.1.0-beta';
 
     const SECTION = [
         // 往 <head> 标签内输入内容
@@ -377,6 +378,61 @@ class Admin
     public static function getIgnoreQueryNames()
     {
         return static::context()->ignoreQueries ?? [];
+    }
+
+    /**
+     * 中断默认的渲染逻辑.
+     *
+     * @param string|\Illuminate\Contracts\Support\Renderable|\Closure $value
+     */
+    public static function prevent($value)
+    {
+        if ($value !== null) {
+            static::context()->add('contents', $value);
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    public static function shouldPrevent()
+    {
+        return count(static::context()->getArray('contents')) > 0;
+    }
+
+    /**
+     * 渲染内容.
+     *
+     * @return string|void
+     */
+    public static function renderContents()
+    {
+        if (! static::shouldPrevent()) {
+            return;
+        }
+
+        $results = '';
+
+        foreach (static::context()->getArray('contents') as $content) {
+            $results .= Helper::render($content);
+        }
+
+        // 等待JS脚本加载完成
+        static::script('Dcat.wait()', true);
+
+        $asset = static::asset();
+
+        static::baseCss([], false);
+        static::baseJs([], false);
+        static::headerJs([], false);
+        static::fonts([]);
+
+        return $results
+            .static::html()
+            .$asset->jsToHtml()
+            .$asset->cssToHtml()
+            .$asset->scriptToHtml()
+            .$asset->styleToHtml();
     }
 
     /**

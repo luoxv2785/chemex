@@ -90,6 +90,15 @@ The `hasConfigFile` method will also make the config file publishable. Users of 
 php artisan vendor:publish --tag=your-package-name-config
 ```
 
+Should your package have multiple config files, you can pass their names as an array to `hasConfigFile`
+
+```php
+$package
+    ->name('your-package-name')
+    ->hasConfigFile(['my-config-file', 'another-config-file']);
+```
+
+
 ### Working with views
 
 Any views your package provides, should be placed in the `<package root>/resources/views` directory.
@@ -192,6 +201,23 @@ trans('your-package-name::translations.translatable'); // returns 'translation'
 
 If your package name starts with `laravel-` then you should leave that off in the example above.
 
+Coding with translation strings as keys, you should create JSON files in `<package root>/resources/lang/<language-code>.json`.
+
+For example, creating `<package root>/resources/lang/it.json` file like so:
+
+```json
+{
+    "Hello!": "Ciao!"
+}
+```
+
+...the output of...
+
+```php
+trans('Hello!');
+``` 
+
+...will be `Ciao!` if the application uses the Italian language.  
 
 Calling `hasTranslations` will also make translations publishable. Users of your package will be able to publish the translations with this command:
 

@@ -14,10 +14,13 @@ class LDAPService
      *
      * @param $mode
      *
-     * @return string
+     * @return int[]
      */
-    public static function importUserDepartments($mode): string
+    public static function importUserDepartments($mode): array
     {
+        $success = 0;
+        $fail = 0;
+
         try {
             // 如果模式是复写，先执行清空表
             if ($mode == 'rewrite') {
@@ -25,6 +28,7 @@ class LDAPService
             }
             $ous = Adldap::search()->ous()->get();
             $ous = json_decode($ous, true);
+            dd($ous);
             // 遍历所有的OU
             foreach ($ous as $ou) {
                 // 单个OU的名字
@@ -65,12 +69,12 @@ class LDAPService
                     $department->parent_id = $parent_department_id;
                 }
                 $department->save();
+                $success++;
             }
-
-            return true;
         } catch (Exception $exception) {
-            return $exception->getMessage();
+            $fail++;
         }
+        return [$success, $fail];
     }
 
     /**
