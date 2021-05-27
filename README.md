@@ -3,13 +3,12 @@
 </p>
 
 <p align="center">
-    <a href="https://chemex.celaraze.com" target="_blank">官方网站</a> |
     <a href="https://chemex-demo.celaraze.com" target="_blank">演示地址</a>（账密都是：admin） |
-    <a href="https://jq.qq.com/?_wv=1027&k=tnV2HCWU">官方QQ群</a>
+    <a href="https://jq.qq.com/?_wv=1027&k=tnV2HCWU">用户交流群（QQ）</a>
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/Latest Release-3.0.9-orange" />
+    <img src="https://img.shields.io/badge/Latest Release-3.1.0-orange" />
     <img src="https://img.shields.io/badge/PHP-7.4+-green" />
     <img src="https://img.shields.io/badge/MySQL-8+-blueviolet" />
     <img src="https://img.shields.io/badge/License-GPL3.0-blue" />
@@ -56,13 +55,13 @@
 
 ## 特点
 
-经典的 LNMP 环境即可运行。
-
 使用先进的 Web 框架进行开发。
 
 简洁优雅的使用体验。
 
-灵活的可配置自定义字段。
+灵活可配置的自定义字段。
+
+高性能 Web 服务解决方案（Octane）。
 
 ## 环境要求
 
@@ -92,9 +91,50 @@
 
 ## 部署
 
+### 高性能
+
+高性能模式使用了 `Laravel Octane` 实现，不仅大大提升 I/O 性能，同时也一定程度上简化了部署过程。
+
+1：为你的计算机安装 `PHP8` 环境，参考：[PHP官方](https://www.php.net/downloads) 。
+
+2：为你的计算机安装 `MySQL` 或者 `mariadb`。
+
+3：在你想要的目录中，执行 `git clone https://gitee.com/celaraze/chemex.git` 完成下载。
+
+4：在项目根目录中，复制 `.env.example` 文件为一份新的，并重命名为 `.env`。
+
+5：根据 `.env` 文件中注释的指引进行配置。
+
+6：在项目根目录中，执行 `php artisan octane:start --server=roadrunner --host=0.0.0.0 --rpc-port=6001 --port=80` 启动服务器。
+
+7：此时可以通过访问 `http://your_domain` 来使用咖啡壶。管理员账号密码为：`admin / admin`。
+
+> 注意：此部署方式默认无后台运行模式，也就是说命令行关闭后，服务器也会关闭。在生产环境中，我们推荐使用 supervisor 管理守护进程。通过宝塔面板安装的服务器环境，也可以安装其 supervisor管理器 插件进行启动。
+
+### 经典 Nginx & PHP-fpm
+
+生产环境下为遵守安全策略，非常建议在服务器本地进行部署，暂时不提供相关线上初始化安装的功能。因此，虽然前期部署的步骤较多，但已经为大家自动化处理了很大部分的流程，只需要跟着下面的命令一步步执行，一般是不会有部署问题的。
+
+1：为你的计算机安装 `PHP8` 环境，参考：[PHP官方](https://www.php.net/downloads) 。
+
+2：为你的计算机安装 `MySQL` 或者 `mariadb`。
+
+3：在你想要的目录中，执行 `git clone https://gitee.com/celaraze/chemex.git` 完成下载。
+
+4：在项目根目录中，复制 `.env.example` 文件为一份新的，并重命名为 `.env`。
+
+5：根据 `.env` 文件中注释的指引进行配置。
+
+6：你可能使用的web服务器为 `nginx` 以及 `apache`，无论怎样，应用的起始路径在 `/public` 目录，请确保指向正确，同时程序的根目录权限应该调整为：拥有者和你的 Web 服务器运行用户一致，例如 www
+用户，且根目录权限为 `755`。`/storage` 目录设置为 `777` 权限。
+
+7：修改web服务器的伪静态规则为：`try_files $uri $uri/ /index.php?$args;`。
+
+8：此时可以通过访问 `http://your_domain` 来使用咖啡壶。管理员账号密码为：`admin / admin`。
+
 ### OVF
 
-已同步更新至版本 `3.0.1` 。
+> 此部署方式版本暂停在 3.0.1，近期将会恢复更新
 
 考虑到部署复杂性，我们也提供了基于 Ubuntu 20.04 Server 制作的 OVF 包。OVF 支持 VMware ESXi 6.5+ 或 VMware Workstation 14.x+ 或 VMware Fusion
 10.x+。
@@ -113,45 +153,19 @@ MySQL 账密：chemex/chemex
 
 部署完成后，LNMP 服务会自启，先查看此虚拟机 IP，然后在其它主机直接通过 IP 访问 Web 服务即可。
 
-### 手动
-
-生产环境下为遵守安全策略，非常建议在服务器本地进行部署，暂时不提供相关线上初始化安装的功能。因此，虽然前期部署的步骤较多，但已经为大家自动化处理了很大部分的流程，只需要跟着下面的命令一步步执行，一般是不会有部署问题的。
-
-1：为你的计算机安装 `git`，Windows 环境请安装 [Git for Windows](https://git-scm.com/download/win) ，Linux
-环境一般都会自带，如果没有就执行 `yum install git` 或者 `apt install git` 命令来安装即可。
-
-2：为你的计算机安装 `PHP` 环境，参考：[PHP官方](https://www.php.net/downloads) 。
-
-3：为你的计算机安装 `mariaDB`。
-
-4：在你想要的目录中，执行 `git clone https://gitee.com/celaraze/chemex.git` 完成下载。
-
-5：在项目根目录中，复制 `.env.example` 文件为一份新的，并重命名为 `.env`。
-
-6：在 `.env` 中配置数据库信息。
-
-7：进入项目根目录，执行 `php artisan chemex:install` 进行安装。
-
-8：你可能使用的web服务器为 `nginx` 以及 `apache`，无论怎样，应用的起始路径在 `/public` 目录，请确保指向正确，同时程序的根目录权限应该调整为：拥有者和你的 Web 服务器运行用户一致，例如 www
-用户，且根目录权限为 `755`。`/storage` 目录设置为 `777` 权限。
-
-9：修改web服务器的伪静态规则为：`try_files $uri $uri/ /index.php?$args;`。
-
-10：此时可以通过访问 `http://your_domain` 来使用 咖啡壶。管理员账号密码为：`admin / admin`。
-
-11：最后，根据需要对是否使用线上更新继续配置。
-
-## 更新
-
-### 线上
-
-部署完成后需要将 PHP 的 `exec()` 函数从禁用列表中移除。之后即可使用线上更新，操作步骤为 设置 - 版本信息 - 升级。
-
-### 手动
+## 版本更新
 
 随时随地保持更新可以在项目根目录中执行 `sudo git fetch --all && git reset --hard origin/main && git pull` 命令，将会同步分支的最新修改内容。
 
 接着，执行 `php artisan chemex:update` 来进行升级。
+
+> 注意，如果提示 permission denied 错误，需要通过 sudo 身份执行。
+
+## 反馈问题
+
+请随时牢记，这是一个开源项目，作者有自己的生活、自己的工作，QQ群建立的目的是提供一个场所供用户们互相交流，作者不会提供1对1的服务。
+
+最好的反馈方式即是在本代码仓库中提交 Issue，我们在空余时间检查并解决。
 
 ## 截图
 
