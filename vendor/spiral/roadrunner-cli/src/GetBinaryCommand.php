@@ -128,7 +128,7 @@ class GetBinaryCommand extends Command
         if ($file === null) {
             $io->warning('RoadRunner has not been installed');
 
-            return self::FAILURE;
+            return 1;
         }
 
         $io->success('Your project is now ready in ' . $file->getPath());
@@ -144,7 +144,7 @@ class GetBinaryCommand extends Command
             '<comment>$ ' . $file->getFilename() . ' serve</comment>',
         ]);
 
-        return self::SUCCESS;
+        return 0;
     }
 
     /**
@@ -324,28 +324,6 @@ class GetBinaryCommand extends Command
             }, $temp);
         } finally {
             $progress->clear();
-        }
-    }
-
-    /**
-     * @param OutputInterface $output
-     * @param string $name
-     */
-    private function footer(OutputInterface $output, string $name): void
-    {
-
-        $messages = [
-            '',
-            '  For more detailed documentation, see the ' .
-            '<info><href=https://roadrunner.dev>https://roadrunner.dev</></info>',
-            '  To run the application, use the following command:',
-            '',
-            '   <comment>$ ' . $name . ' serve</comment>',
-            '',
-        ];
-
-        foreach ($messages as $line) {
-            $output->writeln($line);
         }
     }
 }
