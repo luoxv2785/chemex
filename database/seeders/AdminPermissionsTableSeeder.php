@@ -3007,6 +3007,66 @@ class AdminPermissionsTableSeeder extends Seeder
                 'created_at' => '2021-05-19 14:28:15',
                 'updated_at' => '2021-05-19 14:28:15',
             ),
+            249 => 
+            array (
+                'id' => 280,
+                'name' => '设备字段恢复默认排序',
+                'slug' => 'device.column.sort.delete',
+                'http_method' => '',
+                'http_path' => '',
+                'order' => 250,
+                'parent_id' => 111,
+                'created_at' => '2021-05-28 16:26:58',
+                'updated_at' => '2021-05-28 16:26:58',
+            ),
+            250 => 
+            array (
+                'id' => 281,
+                'name' => '软件字段恢复默认排序',
+                'slug' => 'software.column.sort.delete',
+                'http_method' => '',
+                'http_path' => '',
+                'order' => 251,
+                'parent_id' => 160,
+                'created_at' => '2021-05-28 16:27:14',
+                'updated_at' => '2021-05-28 16:27:14',
+            ),
+            251 => 
+            array (
+                'id' => 282,
+                'name' => '配件字段恢复默认排序',
+                'slug' => 'part.column.sort.delete',
+                'http_method' => '',
+                'http_path' => '',
+                'order' => 252,
+                'parent_id' => 136,
+                'created_at' => '2021-05-28 16:27:31',
+                'updated_at' => '2021-05-28 16:27:31',
+            ),
+            252 => 
+            array (
+                'id' => 283,
+                'name' => '耗材字段恢复默认排序',
+                'slug' => 'consumable.column.sort.delete',
+                'http_method' => '',
+                'http_path' => '',
+                'order' => 253,
+                'parent_id' => 185,
+                'created_at' => '2021-05-28 16:27:54',
+                'updated_at' => '2021-05-28 16:27:54',
+            ),
+            253 => 
+            array (
+                'id' => 284,
+                'name' => '服务字段恢复默认排序',
+                'slug' => 'service.column.sort.delete',
+                'http_method' => '',
+                'http_path' => '',
+                'order' => 254,
+                'parent_id' => 204,
+                'created_at' => '2021-05-28 16:28:31',
+                'updated_at' => '2021-05-28 16:28:31',
+            ),
         ));
         
         

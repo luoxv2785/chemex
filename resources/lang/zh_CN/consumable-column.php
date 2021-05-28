@@ -12,6 +12,8 @@ return [
         'Update' => '编辑字段',
         'Delete Confirm' => '确认删除？',
         'Delete Confirm Description' => '删除的同时将会删除此字段的全部用户数据且无法恢复',
+        'Custom Column Sort Delete' => '恢复默认排序',
+        'Custom Column Delete Confirm' => '确定恢复默认排序？'
     ],
     'fields' => [
         'name' => '名称',

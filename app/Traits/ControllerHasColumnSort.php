@@ -4,6 +4,11 @@ namespace App\Traits;
 
 use App\Admin\Actions\Tree\RowAction\CustomColumnDeleteAction;
 use App\Admin\Actions\Tree\RowAction\CustomColumnUpdateAction;
+use App\Admin\Actions\Tree\ToolAction\ConsumableColumnSortDeleteAction;
+use App\Admin\Actions\Tree\ToolAction\DeviceColumnSortDeleteAction;
+use App\Admin\Actions\Tree\ToolAction\PartColumnSortDeleteAction;
+use App\Admin\Actions\Tree\ToolAction\ServiceColumnSortDeleteAction;
+use App\Admin\Actions\Tree\ToolAction\SoftwareColumnSortDeleteAction;
 use App\Admin\Repositories\ConsumableRecord;
 use App\Admin\Repositories\DeviceRecord;
 use App\Admin\Repositories\PartRecord;
@@ -107,6 +112,29 @@ trait ControllerHasColumnSort
                 $actions->disableQuickEdit();
                 $actions->disableEdit();
                 $actions->disableDelete();
+            });
+
+            $tree->tools(function (Tree\Tools $tools) {
+                // @permissions
+                if ($this->repository() instanceof DeviceRecord && Admin::user()->can('device.column.sort.delete')) {
+                    $tools->add(new DeviceColumnSortDeleteAction());
+                }
+                // @permissions
+                if ($this->repository() instanceof PartRecord && Admin::user()->can('part.column.sort.delete')) {
+                    $tools->add(new PartColumnSortDeleteAction());
+                }
+                // @permissions
+                if ($this->repository() instanceof SoftwareRecord && Admin::user()->can('software.column.sort.delete')) {
+                    $tools->add(new SoftwareColumnSortDeleteAction());
+                }
+                // @permissions
+                if ($this->repository() instanceof ConsumableRecord && Admin::user()->can('consumable.column.sort.delete')) {
+                    $tools->add(new ConsumableColumnSortDeleteAction());
+                }
+                // @permissions
+                if ($this->repository() instanceof ServiceRecord && Admin::user()->can('service.column.sort.delete')) {
+                    $tools->add(new ServiceColumnSortDeleteAction());
+                }
             });
 
             /**
