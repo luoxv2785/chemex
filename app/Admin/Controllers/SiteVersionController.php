@@ -49,7 +49,7 @@ class SiteVersionController extends Controller
         return new Row(function (Column $column) {
             $version = config('admin.chemex_version');
             $description = Version::list()['geisha'];
-            $column->row(new Card(view('version.upgrade')));
+//            $column->row(new Card(view('version.upgrade')));
             $column->row(new Card(admin_trans_label('Current Version'), $version));
             $column->row(new Card($description['name'], $description['description']));
         });

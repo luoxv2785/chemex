@@ -9,8 +9,6 @@ use Laravel\Octane\Events\TickReceived;
 use Laravel\Octane\Events\WorkerErrorOccurred;
 use Laravel\Octane\Events\WorkerStarting;
 use Laravel\Octane\Events\WorkerStopping;
-use Laravel\Octane\Listeners\CollectGarbage;
-use Laravel\Octane\Listeners\DisconnectFromDatabases;
 use Laravel\Octane\Listeners\EnsureUploadedFilesAreValid;
 use Laravel\Octane\Listeners\FlushTemporaryContainerInstances;
 use Laravel\Octane\Listeners\ReportException;
@@ -67,6 +65,9 @@ return [
             ...Octane::prepareApplicationForNextOperation(),
             ...Octane::prepareApplicationForNextRequest(),
             //
+
+            // 开启对 Dcat Admin 的支持
+            Dcat\Admin\Octane\Listeners\FlushAdminState::class,
         ],
 
         RequestHandled::class => [
