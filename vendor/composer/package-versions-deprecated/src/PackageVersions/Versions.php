@@ -69,7 +69,7 @@ final class Versions
   'justinrainbow/json-schema' => '5.2.10@2ba9c8c862ecd5510ed16c6340aa9f6eadb4f31b',
   'laminas/laminas-diactoros' => '2.6.0@7d2034110ae18afe05050b796a3ee4b3fe177876',
   'laminas/laminas-zendframework-bridge' => '1.2.0@6cccbddfcfc742eb02158d6137ca5687d92cee32',
-  'laravel/framework' => 'v8.43.0@3ec63771a07e251f4fb6c7ef2411a79a314bba65',
+  'laravel/framework' => 'v8.44.0@7b3b27dc8911ab02a69731af2ba97b5130b2ddb8',
   'laravel/octane' => 'v1.0.2@fd430412c39b3cd60e901e1eb6edc55ebd1f3735',
   'laravel/tinker' => 'v2.6.1@04ad32c1a3328081097a181875733fa51f402083',
   'lcobucci/jwt' => '3.2.5@82be04b4753f8b7693b62852b7eab30f97524f9b',
@@ -186,7 +186,7 @@ final class Versions
   'sebastian/type' => '2.3.1@81cd61ab7bbf2de744aba0ea61fae32f721df3d2',
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'theseer/tokenizer' => '1.2.0@75a63c33a8577608444246075ea0af0d052e452a',
-  'celaraze/chemex' => 'dev-main@ec5b1170c71704eec15416ac7c6881c3e3b7480f',
+  'celaraze/chemex' => 'dev-main@dd577055dab9ce86a1240ea1c196091c0b86dc8c',
 );
 
     private function __construct()

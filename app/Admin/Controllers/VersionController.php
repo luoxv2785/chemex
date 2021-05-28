@@ -40,7 +40,7 @@ class VersionController extends Controller
                     $column->row(new Card($description['name'], $description['description']));
                 });
             });
-    }
+    }/**/
 
     public function title(): array|string|Translator|null
     {
