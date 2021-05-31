@@ -9,7 +9,7 @@
 
 <p align="center">
     <img src="https://img.shields.io/badge/Latest Release-3.1.0-orange" />
-    <img src="https://img.shields.io/badge/PHP-7.4+-green" />
+    <img src="https://img.shields.io/badge/PHP-8+-green" />
     <img src="https://img.shields.io/badge/MySQL-8+-blueviolet" />
     <img src="https://img.shields.io/badge/License-GPL3.0-blue" />
 </p>
