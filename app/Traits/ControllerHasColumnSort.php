@@ -254,10 +254,8 @@ trait ControllerHasColumnSort
                      * 这里是对字段创建拦截处理，拦截表单提交后自行代码实现字段新建的动作
                      * 然后直接return请求，达到拦截并转而创建字段的目的.
                      */
-                    $exist = CustomColumn::where('table_name', $table_name)
-                        ->where('name', $form->input('name'))
-                        ->first();
-                    if (!empty($exist)) {
+                    $exist_columns = Schema::getColumnListing($table_name);
+                    if (in_array($form->input('name'), $exist_columns)) {
                         return $form->response()
                             ->error(trans('main.record_same'));
                     }
@@ -281,7 +279,7 @@ trait ControllerHasColumnSort
                                 if ($type == 'select') {
                                     $type = 'string';
                                 }
-                                if ($custom_column->is_nullable == 1 || ($type == 'date' || $type == 'dateTime' || $type == 'select')) {
+                                if ((bool)$custom_column->is_nullable == 1 || ($type == 'date' || $type == 'dateTime' || $type == 'select')) {
                                     $table->$type($custom_column->name)->nullable();
                                 } else {
                                     $table->$type($custom_column->name)->default(0);

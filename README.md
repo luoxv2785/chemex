@@ -91,26 +91,6 @@
 
 ## 部署
 
-### 高性能
-
-高性能模式使用了 `Laravel Octane` 实现，不仅大大提升 I/O 性能，同时也一定程度上简化了部署过程。
-
-1：为你的计算机安装 `PHP8` 环境，参考：[PHP官方](https://www.php.net/downloads) 。
-
-2：为你的计算机安装 `MySQL` 或者 `mariadb`。
-
-3：在你想要的目录中，执行 `git clone https://gitee.com/celaraze/chemex.git` 完成下载。
-
-4：在项目根目录中，复制 `.env.example` 文件为一份新的，并重命名为 `.env`。
-
-5：根据 `.env` 文件中注释的指引进行配置。
-
-6：在项目根目录中，执行 `php artisan octane:start --server=roadrunner --host=0.0.0.0 --rpc-port=6001 --port=80` 启动服务器。
-
-7：此时可以通过访问 `http://your_domain` 来使用咖啡壶。管理员账号密码为：`admin / admin`。
-
-> 注意：此部署方式默认无后台运行模式，也就是说命令行关闭后，服务器也会关闭。在生产环境中，我们推荐使用 supervisor 管理守护进程。通过宝塔面板安装的服务器环境，也可以安装其 supervisor管理器 插件进行启动。
-
 ### 经典 Nginx & PHP-fpm
 
 生产环境下为遵守安全策略，非常建议在服务器本地进行部署，暂时不提供相关线上初始化安装的功能。因此，虽然前期部署的步骤较多，但已经为大家自动化处理了很大部分的流程，只需要跟着下面的命令一步步执行，一般是不会有部署问题的。
