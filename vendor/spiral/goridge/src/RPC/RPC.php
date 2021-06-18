@@ -10,40 +10,52 @@ declare(strict_types=1);
 
 namespace Spiral\Goridge\RPC;
 
-use Spiral\Goridge\Exception\GoridgeException;
 use Spiral\Goridge\Frame;
-use Spiral\Goridge\RelayInterface as Relay;
+use Spiral\Goridge\Relay;
+use Spiral\Goridge\RelayInterface;
 use Spiral\Goridge\RPC\Codec\JsonCodec;
 use Spiral\Goridge\RPC\Exception\RPCException;
-use Spiral\Goridge\StringableRelayInterface;
+use Spiral\Goridge\RPC\Exception\ServiceException;
 
 class RPC implements RPCInterface
 {
-    private Relay $relay;
+    /**
+     * @var RelayInterface
+     */
+    private RelayInterface $relay;
+
+    /**
+     * @var CodecInterface
+     */
     private CodecInterface $codec;
+
+    /**
+     * @var string|null
+     */
     private ?string $service = null;
 
-    /** @var int */
+    /**
+     * @var positive-int
+     */
     private static int $seq = 1;
 
     /**
-     * @param Relay               $relay
+     * @param RelayInterface $relay
      * @param CodecInterface|null $codec
      */
-    public function __construct(Relay $relay, CodecInterface $codec = null)
+    public function __construct(RelayInterface $relay, CodecInterface $codec = null)
     {
         $this->relay = $relay;
         $this->codec = $codec ?? new JsonCodec();
     }
 
     /**
-     * Create RPC instance with service specific prefix.
-     *
-     * @param string $service
-     * @return RPCInterface
+     * {@inheritDoc}
+     * @psalm-pure
      */
     public function withServicePrefix(string $service): RPCInterface
     {
+        /** @psalm-suppress ImpureVariable */
         $rpc = clone $this;
         $rpc->service = $service;
 
@@ -51,13 +63,12 @@ class RPC implements RPCInterface
     }
 
     /**
-     * Create RPC instance with service specific codec.
-     *
-     * @param CodecInterface $codec
-     * @return RPCInterface
+     * {@inheritDoc}
+     * @psalm-pure
      */
     public function withCodec(CodecInterface $codec): RPCInterface
     {
+        /** @psalm-suppress ImpureVariable */
         $rpc = clone $this;
         $rpc->codec = $codec;
 
@@ -65,85 +76,73 @@ class RPC implements RPCInterface
     }
 
     /**
-     * Invoke remove RoadRunner service method using given payload (depends on codec).
-     *
-     * @param string $method
-     * @param mixed  $payload
-     * @return mixed
-     * @throws GoridgeException
-     * @throws RPCException
+     * {@inheritDoc}
      */
-    public function call(string $method, $payload)
+    public function call(string $method, $payload, $options = null)
     {
         $this->relay->send($this->packFrame($method, $payload));
 
         // wait for the frame confirmation
         $frame = $this->relay->waitFrame();
 
-        if (count($frame->options) !== 2) {
-            throw new Exception\RPCException('invalid RPC frame, options missing');
+        if (\count($frame->options) !== 2) {
+            throw new RPCException('Invalid RPC frame, options missing');
         }
 
         if ($frame->options[0] !== self::$seq) {
-            throw new Exception\RPCException('invalid RPC frame, sequence mismatch');
+            throw new RPCException('Invalid RPC frame, sequence mismatch');
         }
 
         self::$seq++;
 
-        return $this->decodeResponse($frame);
+        return $this->decodeResponse($frame, $options);
     }
 
     /**
-     * @param string              $connection
+     * @param string $connection
      * @param CodecInterface|null $codec
      * @return RPCInterface
      */
     public static function create(string $connection, CodecInterface $codec = null): RPCInterface
     {
-        $relay = \Spiral\Goridge\Relay::create($connection);
+        $relay = Relay::create($connection);
 
         return new self($relay, $codec);
     }
 
     /**
      * @param Frame $frame
+     * @param mixed|null $options
      * @return mixed
      *
      * @throws Exception\ServiceException
      */
-    private function decodeResponse(Frame $frame)
+    private function decodeResponse(Frame $frame, $options = null)
     {
         // exclude method name
-        $body = substr((string)$frame->payload, $frame->options[1]);
+        $body = \substr((string)$frame->payload, $frame->options[1]);
 
         if ($frame->hasFlag(Frame::ERROR)) {
-            throw new Exception\ServiceException(
-                sprintf(
-                    "error '%s' on %s",
-                    $body,
-                    $this->relay instanceof StringableRelayInterface ? (string) $this->relay : get_class($this->relay)
-                )
-            );
+            $name = $this->relay instanceof \Stringable ? (string)$this->relay : \get_class($this->relay);
+
+            throw new ServiceException(\sprintf("Error '%s' on %s", $body, $name));
         }
 
-        return $this->codec->decode($body);
+        return $this->codec->decode($body, $options);
     }
 
     /**
      * @param string $method
-     * @param mixed  $payload
+     * @param mixed $payload
      * @return Frame
      */
     private function packFrame(string $method, $payload): Frame
     {
         if ($this->service !== null) {
-            $method = $this->service . '.' . ucfirst($method);
+            $method = $this->service . '.' . \ucfirst($method);
         }
 
-        return new Frame(
-            $method . $this->codec->encode($payload),
-            [self::$seq, strlen($method)],
-            $this->codec->getIndex()
-        );
+        $body = $method . $this->codec->encode($payload);
+        return new Frame($body, [self::$seq, \strlen($method)], $this->codec->getIndex());
     }
 }

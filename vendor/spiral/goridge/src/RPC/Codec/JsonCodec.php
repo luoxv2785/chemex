@@ -17,9 +17,7 @@ use Spiral\Goridge\RPC\Exception\CodecException;
 final class JsonCodec implements CodecInterface
 {
     /**
-     * Coded index, uniquely identified by remote server.
-     *
-     * @return int
+     * {@inheritDoc}
      */
     public function getIndex(): int
     {
@@ -27,28 +25,34 @@ final class JsonCodec implements CodecInterface
     }
 
     /**
-     * @param mixed $payload
-     * @return string
+     * {@inheritDoc}
      */
     public function encode($payload): string
     {
-        $result = json_encode($payload);
-        if ($result === false) {
-            $lastError = json_last_error_msg();
-            if ($lastError !== null) {
-                throw new CodecException(sprintf('json encode: %s', $lastError));
-            }
+        try {
+            $result = \json_encode($payload, \JSON_THROW_ON_ERROR);
+        } catch (\JsonException $e) {
+            throw new CodecException(\sprintf('Json encode: %s', $e->getMessage()), (int)$e->getCode(), $e);
         }
 
         return $result;
     }
 
     /**
-     * @param string $payload
-     * @return mixed
+     * {@inheritDoc}
      */
-    public function decode(string $payload)
+    public function decode(string $payload, $options = null)
     {
-        return json_decode($payload, true);
+        try {
+            $flags = \JSON_THROW_ON_ERROR;
+
+            if (\is_int($options)) {
+                $flags |= $options;
+            }
+
+            return \json_decode($payload, true, 512, $flags);
+        } catch (\JsonException $e) {
+            throw new CodecException(\sprintf('Json decode: %s', $e->getMessage()), (int)$e->getCode(), $e);
+        }
     }
 }

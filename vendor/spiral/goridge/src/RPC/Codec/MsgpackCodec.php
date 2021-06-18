@@ -14,9 +14,22 @@ use MessagePack\MessagePack;
 use Spiral\Goridge\Frame;
 use Spiral\Goridge\RPC\CodecInterface;
 
+/**
+ * @psalm-type PackHandler = \Closure(mixed): string
+ * @psalm-type UnpackHandler = \Closure(string, mixed|null): mixed
+ */
 final class MsgpackCodec implements CodecInterface
 {
+    /**
+     * @var PackHandler
+     * @psalm-suppress PropertyNotSetInConstructor Reason: Initialized via private method
+     */
     private \Closure $pack;
+
+    /**
+     * @var UnpackHandler
+     * @psalm-suppress PropertyNotSetInConstructor Reason: Initialized via private method
+     */
     private \Closure $unpack;
 
     /**
@@ -28,9 +41,7 @@ final class MsgpackCodec implements CodecInterface
     }
 
     /**
-     * Coded index, uniquely identified by remote server.
-     *
-     * @return int
+     * {@inheritDoc}
      */
     public function getIndex(): int
     {
@@ -38,8 +49,7 @@ final class MsgpackCodec implements CodecInterface
     }
 
     /**
-     * @param mixed $payload
-     * @return string
+     * {@inheritDoc}
      */
     public function encode($payload): string
     {
@@ -47,35 +57,48 @@ final class MsgpackCodec implements CodecInterface
     }
 
     /**
-     * @param string $payload
-     * @return mixed
+     * {@inheritDoc}
      */
-    public function decode(string $payload)
+    public function decode(string $payload, $options = null)
     {
-        return ($this->unpack)($payload);
+        return ($this->unpack)($payload, $options);
     }
 
     /**
      * Init pack and unpack functions.
+     *
+     * @psalm-suppress MixedArgument
      */
     private function initPacker(): void
     {
-        if (function_exists('msgpack_pack') && function_exists('msgpack_unpack')) {
-            $this->pack = static function ($payload) {
+        // Is native extension supported
+        if (\function_exists('msgpack_pack') && \function_exists('msgpack_unpack')) {
+            $this->pack = static function ($payload): string {
                 return msgpack_pack($payload);
             };
 
-            $this->unpack = static function ($payload) {
+            $this->unpack = static function (string $payload, $options = null) {
+                if ($options !== null) {
+                    return msgpack_unpack($payload, $options);
+                }
+
                 return msgpack_unpack($payload);
             };
-        } else {
-            $this->pack = static function ($payload) {
+
+            return;
+        }
+
+        // Is composer's library supported
+        if (\class_exists(MessagePack::class)) {
+            $this->pack = static function ($payload): string {
                 return MessagePack::pack($payload);
             };
 
-            $this->unpack = static function ($payload) {
-                return MessagePack::unpack($payload);
+            $this->unpack = static function (string $payload, $options = null) {
+                return MessagePack::unpack($payload, $options);
             };
         }
+
+        throw new \LogicException('Could not initialize codec, please install msgpack extension or library');
     }
 }
