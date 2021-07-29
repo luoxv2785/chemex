@@ -20,6 +20,8 @@ use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\ShouldNotHappenException;
 use PHPStan\Type\Generic\GenericObjectType;
 use PHPStan\Type\Generic\TemplateMixedType;
+use PHPStan\Type\Generic\TemplateObjectType;
+use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 use PHPStan\Type\TypeWithClassName;
 
@@ -86,6 +88,14 @@ final class EloquentBuilderForwardsCallsExtension implements MethodsClassReflect
             return null;
         }
 
+        if ($modelType instanceof TemplateObjectType) {
+            $modelType = $modelType->getBound();
+
+            if ($modelType->equals(new ObjectType(Model::class))) {
+                return null;
+            }
+        }
+
         if ($modelType instanceof TypeWithClassName) {
             $modelReflection = $modelType->getClassReflection();
         } else {
@@ -102,7 +112,7 @@ final class EloquentBuilderForwardsCallsExtension implements MethodsClassReflect
             // Special case for `SoftDeletes` trait
             if (
                 in_array($methodName, ['withTrashed', 'onlyTrashed', 'withoutTrashed'], true) &&
-                $modelReflection->hasTraitUse(SoftDeletes::class)
+                in_array(SoftDeletes::class, array_keys($modelReflection->getTraits(true)))
             ) {
                 $ref = $this->reflectionProvider->getClass(SoftDeletes::class)->getMethod($methodName, new OutOfClassScope());
 

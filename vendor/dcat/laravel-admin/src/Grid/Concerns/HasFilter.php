@@ -150,13 +150,11 @@ trait HasFilter
             <<<JS
 var count = {$this->filter()->countConditions()};
 
-if (count > 0) {
-    $('.async-{$this->getTableId()}').find('.filter-count').text('('+count+')');
-}
+$('.async-{$this->getTableId()}').find('.filter-count').text(count > 0 ? ('('+count+')') : '');
 JS
         );
 
-        $url = Helper::fullUrlWithoutQuery(['_pjax']);
+        $url = Helper::urlWithoutQuery($this->filter()->urlWithoutFilters(), ['_pjax', static::ASYNC_NAME]);
 
         Admin::script("$('.grid-filter-form').attr('action', '{$url}');", true);
     }

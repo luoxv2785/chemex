@@ -33,9 +33,9 @@ public function user(){
 
 #### 安装
 
-仅支持 Laravel 8 + 以及 PHP 8 +
-
 ```composer require celaraze/laravel-response```
+
+---
 
 #### 参与贡献
 

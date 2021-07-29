@@ -186,6 +186,10 @@ class GetBinaryCommand extends Command
             $out->writeln($message);
 
             $extractor->next();
+
+            if (! $file->isExecutable()) {
+                @chmod($file->getRealPath(), 0755);
+            }
         }
 
         return $file;
@@ -202,7 +206,7 @@ class GetBinaryCommand extends Command
     {
         $to .= '/.rr.yaml';
 
-        if (\is_file($to)) {
+        if (\is_file($to) || \is_file(\getcwd().'/.rr.yaml')) {
             return false;
         }
 

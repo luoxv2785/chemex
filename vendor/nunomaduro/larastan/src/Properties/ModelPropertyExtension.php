@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace NunoMaduro\Larastan\Properties;
 
+use ArrayObject;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use PHPStan\PhpDoc\TypeStringResolver;
@@ -165,8 +166,8 @@ final class ModelPropertyExtension implements PropertiesClassReflectionExtension
      */
     private function getReadableAndWritableTypes(SchemaColumn $column, Model $modelInstance): array
     {
-        $readableType = 'mixed';
-        $writableType = 'mixed';
+        $readableType = $column->readableType;
+        $writableType = $column->writeableType;
 
         if (in_array($column->name, $modelInstance->getDates(), true)) {
             return [$this->getDateClass().($column->nullable ? '|null' : ''), $this->getDateClass().'|string'.($column->nullable ? '|null' : '')];
@@ -212,6 +213,10 @@ final class ModelPropertyExtension implements PropertiesClassReflectionExtension
     {
         $casts = $modelInstance->getCasts();
         foreach ($casts as $name => $type) {
+            if (! array_key_exists($name, $this->tables[$modelInstance->getTable()]->columns)) {
+                continue;
+            }
+
             switch ($type) {
                 case 'boolean':
                 case 'bool':
@@ -239,18 +244,24 @@ final class ModelPropertyExtension implements PropertiesClassReflectionExtension
                     break;
                 case 'date':
                 case 'datetime':
-                    $realType = $this->dateClass;
+                    $realType = $this->getDateClass();
                     break;
                 case 'collection':
                     $realType = '\Illuminate\Support\Collection';
+                    break;
+                case 'Illuminate\Database\Eloquent\Casts\AsArrayObject':
+                    $realType = ArrayObject::class;
+                    break;
+                case 'Illuminate\Database\Eloquent\Casts\AsCollection':
+                    $realType = '\Illuminate\Support\Collection<mixed, mixed>';
                     break;
                 default:
                     $realType = class_exists($type) ? ('\\'.$type) : 'mixed';
                     break;
             }
 
-            if (! array_key_exists($name, $this->tables[$modelInstance->getTable()]->columns)) {
-                continue;
+            if ($this->tables[$modelInstance->getTable()]->columns[$name]->nullable) {
+                $realType .= '|null';
             }
 
             $this->tables[$modelInstance->getTable()]->columns[$name]->readableType = $realType;
