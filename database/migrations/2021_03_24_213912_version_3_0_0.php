@@ -23,13 +23,7 @@ class Version300 extends Migration
      */
     public function up()
     {
-        Schema::create($this->config('database.users_table'), function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('username', 120)->unique();
-            $table->string('password', 80);
-            $table->string('name');
-            $table->string('avatar')->nullable();
-            $table->string('remember_token', 100)->nullable();
+        Schema::table('admin_users', function (Blueprint $table) {
             $table->integer('department_id')->default(0);
             $table->char('gender')->default('无');
             $table->string('title')->nullable();
@@ -38,65 +32,6 @@ class Version300 extends Migration
             $table->integer('ad_tag')->default(0);
             $table->string('extended_fields')->nullable();
             $table->softDeletes();
-            $table->timestamps();
-        });
-
-        Schema::create($this->config('database.roles_table'), function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name', 50);
-            $table->string('slug', 50)->unique();
-            $table->timestamps();
-        });
-
-        Schema::create($this->config('database.permissions_table'), function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name', 50);
-            $table->string('slug', 50)->unique();
-            $table->string('http_method')->nullable();
-            $table->text('http_path')->nullable();
-            $table->integer('order')->default(0);
-            $table->bigInteger('parent_id')->default(0);
-            $table->timestamps();
-        });
-
-        Schema::create($this->config('database.menu_table'), function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('parent_id')->default(0);
-            $table->integer('order')->default(0);
-            $table->string('title', 50);
-            $table->string('icon', 50)->nullable();
-            $table->string('uri', 50)->nullable();
-            $table->tinyInteger('show')->default(1);
-            $table->string('extension', 50)->default('');
-            $table->timestamps();
-        });
-
-        Schema::create($this->config('database.role_users_table'), function (Blueprint $table) {
-            $table->bigInteger('role_id');
-            $table->bigInteger('user_id');
-            $table->unique(['role_id', 'user_id']);
-            $table->timestamps();
-        });
-
-        Schema::create($this->config('database.role_permissions_table'), function (Blueprint $table) {
-            $table->bigInteger('role_id');
-            $table->bigInteger('permission_id');
-            $table->unique(['role_id', 'permission_id']);
-            $table->timestamps();
-        });
-
-        Schema::create($this->config('database.role_menu_table'), function (Blueprint $table) {
-            $table->bigInteger('role_id');
-            $table->bigInteger('menu_id');
-            $table->unique(['role_id', 'menu_id']);
-            $table->timestamps();
-        });
-
-        Schema::create($this->config('database.permission_menu_table'), function (Blueprint $table) {
-            $table->bigInteger('permission_id');
-            $table->bigInteger('menu_id');
-            $table->unique(['permission_id', 'menu_id']);
-            $table->timestamps();
         });
 
         Schema::create('failed_jobs', function (Blueprint $table) {
@@ -107,12 +42,6 @@ class Version300 extends Migration
             $table->longText('payload');
             $table->longText('exception');
             $table->timestamp('failed_at')->useCurrent();
-        });
-
-        Schema::create($this->config('database.settings_table') ?: 'admin_settings', function (Blueprint $table) {
-            $table->string('slug', 100)->primary();
-            $table->longText('value');
-            $table->timestamps();
         });
 
         Schema::create('software_categories', function (Blueprint $table) {
@@ -270,30 +199,6 @@ class Version300 extends Migration
             $table->string('return_description')->nullable();
             $table->softDeletes();
             $table->timestamps();
-        });
-
-        Schema::create($this->config('database.extensions_table') ?: 'admin_extensions', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
-            $table->string('name', 100)->unique();
-            $table->string('version', 20)->default('');
-            $table->tinyInteger('is_enabled')->default(0);
-            $table->text('options')->nullable();
-            $table->timestamps();
-
-            $table->engine = 'InnoDB';
-        });
-
-        Schema::create($this->config('database.extension_histories_table') ?: 'admin_extension_histories', function (Blueprint $table) {
-            $table->bigIncrements('id')->unsigned();
-            $table->string('name', 100);
-            $table->tinyInteger('type')->default(1);
-            $table->string('version', 20)->default(0);
-            $table->text('detail')->nullable();
-
-            $table->index('name');
-            $table->timestamps();
-
-            $table->engine = 'InnoDB';
         });
 
         Schema::create('check_records', function (Blueprint $table) {
@@ -497,17 +402,17 @@ class Version300 extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists($this->config('database.users_table'));
-        Schema::dropIfExists($this->config('database.roles_table'));
-        Schema::dropIfExists($this->config('database.permissions_table'));
-        Schema::dropIfExists($this->config('database.menu_table'));
-        Schema::dropIfExists($this->config('database.role_users_table'));
-        Schema::dropIfExists($this->config('database.role_permissions_table'));
-        Schema::dropIfExists($this->config('database.role_menu_table'));
-        Schema::dropIfExists($this->config('database.permission_menu_table'));
-        Schema::dropIfExists($this->config('database.settings_table') ?: 'admin_settings');
-        Schema::dropIfExists($this->config('database.extensions_table') ?: 'admin_extensions');
-        Schema::dropIfExists($this->config('database.extension_histories_table') ?: 'admin_extension_histories');
+        Schema::table('admin_users', function (Blueprint $table) {
+            $table->dropColumn('department_id');
+            $table->dropColumn('gender');
+            $table->dropColumn('title');
+            $table->dropColumn('mobile');
+            $table->dropColumn('email');
+            $table->dropColumn('ad_tag');
+            $table->dropColumn('extended_fields');
+            $table->dropSoftDeletes();
+        });
+
         Schema::dropIfExists('failed_jobs');
         Schema::dropIfExists('software_categories');
         Schema::dropIfExists('vendor_records');

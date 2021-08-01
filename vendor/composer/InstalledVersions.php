@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'f0f9b1f60ff5bae8915afc57b9e35e10c83b89e1',
+    'reference' => '308feb8702b3efc1c9e1d93b9ff07fb4ead4b4a4',
     'name' => 'celaraze/chemex',
   ),
   'versions' => 
@@ -87,7 +87,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'f0f9b1f60ff5bae8915afc57b9e35e10c83b89e1',
+      'reference' => '308feb8702b3efc1c9e1d93b9ff07fb4ead4b4a4',
     ),
     'celaraze/laravel-ace' => 
     array (
@@ -187,12 +187,12 @@ private static $installed = array (
     ),
     'dcat/laravel-admin' => 
     array (
-      'pretty_version' => '2.1.1-beta',
-      'version' => '2.1.1.0-beta',
+      'pretty_version' => '2.1.2-beta',
+      'version' => '2.1.2.0-beta',
       'aliases' => 
       array (
       ),
-      'reference' => '8d951a9e8185335aa783b40f9056785988ca7af0',
+      'reference' => 'd7358a089fb9c26e14f1ca3f2f1c050c0ca1c44d',
     ),
     'dflydev/dot-access-data' => 
     array (

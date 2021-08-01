@@ -484,6 +484,14 @@ class Model
     {
         $this->paginator = $paginator;
 
+        if ($this->simple) {
+            if (method_exists($paginator, 'withQueryString')) {
+                $paginator->withQueryString();
+            } else {
+                $paginator->appends(request()->all());
+            }
+        }
+
         $paginator->setPageName($this->getPageName());
     }
 
@@ -660,6 +668,34 @@ class Model
     public function getSortDescMethods()
     {
         return ['orderByDesc', 'latest'];
+    }
+
+    /**
+     * @param Builder $query
+     * @param bool $fetch
+     * @param string[] $columns
+     *
+     * @return Builder|Paginator|Collection
+     */
+    public function apply($query, bool $fetch = false, $columns = null)
+    {
+        $this->getQueries()->unique()->each(function ($value) use (&$query, $fetch, $columns) {
+            if (! $fetch && in_array($value['method'], ['paginate', 'simplePaginate', 'get'], true)) {
+                return;
+            }
+
+            if ($columns) {
+                if (in_array($value['method'], ['paginate', 'simplePaginate'], true)) {
+                    $value['arguments'][1] = $columns;
+                } elseif ($value['method'] === 'get') {
+                    $value['arguments'] = [$columns];
+                }
+            }
+
+            $query = call_user_func_array([$query, $value['method']], $value['arguments'] ?? []);
+        });
+
+        return $query;
     }
 
     /**

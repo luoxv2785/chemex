@@ -47,7 +47,7 @@ final class Versions
   'composer/spdx-licenses' => '1.5.5@de30328a7af8680efdc03e396aad24befd513200',
   'composer/xdebug-handler' => '2.0.2@84674dd3a7575ba617f5a76d7e9e29a7d3891339',
   'dcat/easy-excel' => '1.0.5@da0565ae0a31b306947222c4e014054a7172e4c4',
-  'dcat/laravel-admin' => '2.1.1-beta@8d951a9e8185335aa783b40f9056785988ca7af0',
+  'dcat/laravel-admin' => '2.1.2-beta@d7358a089fb9c26e14f1ca3f2f1c050c0ca1c44d',
   'dflydev/dot-access-data' => 'v3.0.0@e04ff030d24a33edc2421bef305e32919dd78fc3',
   'doctrine/cache' => '2.1.1@331b4d5dbaeab3827976273e9356b3b453c300ce',
   'doctrine/dbal' => '3.1.1@8e0fde2b90e3f61361013d1e928621beeea07bc0',
@@ -189,7 +189,7 @@ final class Versions
   'sebastian/type' => '2.3.4@b8cd8a1c753c90bc1a0f5372170e3e489136f914',
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'theseer/tokenizer' => '1.2.1@34a41e998c2183e22995f158c581e7b5e755ab9e',
-  'celaraze/chemex' => 'dev-main@f0f9b1f60ff5bae8915afc57b9e35e10c83b89e1',
+  'celaraze/chemex' => 'dev-main@308feb8702b3efc1c9e1d93b9ff07fb4ead4b4a4',
 );
 
     private function __construct()

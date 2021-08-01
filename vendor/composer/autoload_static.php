@@ -56,9 +56,9 @@ class ComposerStaticInit35f2cb1663b276f41611fe4c784b77b8
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'dc1275c308c5b416beb314b6317daca2' => __DIR__ . '/..' . '/overtrue/pinyin/src/const.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
-        '044fc72df35e84c745ee0d4120dc15d2' => __DIR__ . '/..' . '/dcat/laravel-admin/src/Support/helpers.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
         'cda2d2f579338909929d3104d0afc501' => __DIR__ . '/..' . '/overtrue/laravel-pinyin/src/helpers.php',
+        '044fc72df35e84c745ee0d4120dc15d2' => __DIR__ . '/..' . '/dcat/laravel-admin/src/Support/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (

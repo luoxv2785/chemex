@@ -1060,17 +1060,17 @@
         },
         {
             "name": "dcat/laravel-admin",
-            "version": "2.1.1-beta",
-            "version_normalized": "2.1.1.0-beta",
+            "version": "2.1.2-beta",
+            "version_normalized": "2.1.2.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jqhph/dcat-admin.git",
-                "reference": "8d951a9e8185335aa783b40f9056785988ca7af0"
+                "reference": "d7358a089fb9c26e14f1ca3f2f1c050c0ca1c44d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jqhph/dcat-admin/zipball/8d951a9e8185335aa783b40f9056785988ca7af0",
-                "reference": "8d951a9e8185335aa783b40f9056785988ca7af0",
+                "url": "https://api.github.com/repos/jqhph/dcat-admin/zipball/d7358a089fb9c26e14f1ca3f2f1c050c0ca1c44d",
+                "reference": "d7358a089fb9c26e14f1ca3f2f1c050c0ca1c44d",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1092,7 +1092,7 @@
                 "phpstan/phpstan": "^0.12.0",
                 "phpunit/phpunit": "^7.5|~9"
             },
-            "time": "2021-07-11T14:15:15+00:00",
+            "time": "2021-08-01T15:01:21+00:00",
             "type": "library",
             "extra": {
                 "laravel": {
@@ -1132,7 +1132,7 @@
             ],
             "support": {
                 "issues": "https://github.com/jqhph/dcat-admin/issues",
-                "source": "https://github.com/jqhph/dcat-admin/tree/2.1.1-beta"
+                "source": "https://github.com/jqhph/dcat-admin/tree/2.1.2-beta"
             },
             "install-path": "../dcat/laravel-admin"
         },
