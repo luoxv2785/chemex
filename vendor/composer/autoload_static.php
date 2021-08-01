@@ -17,14 +17,12 @@ class ComposerStaticInit35f2cb1663b276f41611fe4c784b77b8
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
-        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
-        '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
-        'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
@@ -35,6 +33,7 @@ class ComposerStaticInit35f2cb1663b276f41611fe4c784b77b8
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
         '7e9bd612cc444b3eed788ebbe46263a0' => __DIR__ . '/..' . '/laminas/laminas-zendframework-bridge/src/autoload.php',
+        '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         'fe62ba7e10580d903cc46d808b5961a4' => __DIR__ . '/..' . '/tightenco/collect/src/Collect/Support/helpers.php',
         'caf31cc6ec7cf2241cb6f12c226c3846' => __DIR__ . '/..' . '/tightenco/collect/src/Collect/Support/alias.php',
         '9cdd7b9056abc3081735233ba9dd9c7f' => __DIR__ . '/..' . '/facade/flare-client-php/src/helpers.php',
@@ -56,6 +55,7 @@ class ComposerStaticInit35f2cb1663b276f41611fe4c784b77b8
         '751a5a3f463e4be759be31748b61737c' => __DIR__ . '/..' . '/laminas/laminas-diactoros/src/functions/parse_cookie_header.legacy.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'dc1275c308c5b416beb314b6317daca2' => __DIR__ . '/..' . '/overtrue/pinyin/src/const.php',
+        'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '044fc72df35e84c745ee0d4120dc15d2' => __DIR__ . '/..' . '/dcat/laravel-admin/src/Support/helpers.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
         'cda2d2f579338909929d3104d0afc501' => __DIR__ . '/..' . '/overtrue/laravel-pinyin/src/helpers.php',
@@ -126,7 +126,6 @@ class ComposerStaticInit35f2cb1663b276f41611fe4c784b77b8
         ),
         'R' => 
         array (
-            'Response\\' => 9,
             'React\\Promise\\' => 14,
             'Ramsey\\Uuid\\' => 12,
             'Ramsey\\Collection\\' => 18,
@@ -141,7 +140,6 @@ class ComposerStaticInit35f2cb1663b276f41611fe4c784b77b8
             'Psr\\EventDispatcher\\' => 20,
             'Psr\\Container\\' => 14,
             'Prophecy\\' => 9,
-            'Pour\\' => 5,
             'PhpParser\\' => 10,
             'PhpOption\\' => 10,
             'PackageVersions\\' => 16,
@@ -244,6 +242,7 @@ class ComposerStaticInit35f2cb1663b276f41611fe4c784b77b8
             'App\\' => 4,
             'Adldap\\Laravel\\' => 15,
             'Adldap\\' => 7,
+            'Ace\\' => 4,
         ),
     );
 
@@ -438,10 +437,6 @@ class ComposerStaticInit35f2cb1663b276f41611fe4c784b77b8
         array (
             0 => __DIR__ . '/..' . '/seld/jsonlint/src/Seld/JsonLint',
         ),
-        'Response\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/celaraze/laravel-response/src',
-        ),
         'React\\Promise\\' => 
         array (
             0 => __DIR__ . '/..' . '/react/promise/src',
@@ -486,10 +481,6 @@ class ComposerStaticInit35f2cb1663b276f41611fe4c784b77b8
         'Prophecy\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy',
-        ),
-        'Pour\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/celaraze/pour/src',
         ),
         'PhpParser\\' => 
         array (
@@ -744,6 +735,10 @@ class ComposerStaticInit35f2cb1663b276f41611fe4c784b77b8
         array (
             0 => __DIR__ . '/..' . '/adldap2/adldap2/src',
         ),
+        'Ace\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/celaraze/laravel-ace/src',
+        ),
     );
 
     public static $prefixesPsr0 = array (
@@ -764,6 +759,9 @@ class ComposerStaticInit35f2cb1663b276f41611fe4c784b77b8
     );
 
     public static $classMap = array (
+        'Ace\\DateTime' => __DIR__ . '/..' . '/celaraze/laravel-ace/src/DateTime.php',
+        'Ace\\System' => __DIR__ . '/..' . '/celaraze/laravel-ace/src/System.php',
+        'Ace\\Uni' => __DIR__ . '/..' . '/celaraze/laravel-ace/src/Uni.php',
         'Adldap\\Adldap' => __DIR__ . '/..' . '/adldap2/adldap2/src/Adldap.php',
         'Adldap\\AdldapException' => __DIR__ . '/..' . '/adldap2/adldap2/src/AdldapException.php',
         'Adldap\\AdldapInterface' => __DIR__ . '/..' . '/adldap2/adldap2/src/AdldapInterface.php',
@@ -6260,9 +6258,6 @@ class ComposerStaticInit35f2cb1663b276f41611fe4c784b77b8
         'PhpParser\\Parser\\Tokens' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Parser/Tokens.php',
         'PhpParser\\PrettyPrinterAbstract' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/PrettyPrinterAbstract.php',
         'PhpParser\\PrettyPrinter\\Standard' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/PrettyPrinter/Standard.php',
-        'Pour\\DateTime' => __DIR__ . '/..' . '/celaraze/pour/src/DateTime.php',
-        'Pour\\System' => __DIR__ . '/..' . '/celaraze/pour/src/System.php',
-        'Pour\\Uni' => __DIR__ . '/..' . '/celaraze/pour/src/Uni.php',
         'Prophecy\\Argument' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Argument.php',
         'Prophecy\\Argument\\ArgumentsWildcard' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Argument/ArgumentsWildcard.php',
         'Prophecy\\Argument\\Token\\AnyValueToken' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Argument/Token/AnyValueToken.php',
@@ -6683,7 +6678,6 @@ class ComposerStaticInit35f2cb1663b276f41611fe4c784b77b8
         'React\\Promise\\PromisorInterface' => __DIR__ . '/..' . '/react/promise/src/PromisorInterface.php',
         'React\\Promise\\RejectedPromise' => __DIR__ . '/..' . '/react/promise/src/RejectedPromise.php',
         'React\\Promise\\UnhandledRejectionException' => __DIR__ . '/..' . '/react/promise/src/UnhandledRejectionException.php',
-        'Response\\Response' => __DIR__ . '/..' . '/celaraze/laravel-response/src/Response.php',
         'SebastianBergmann\\CliParser\\AmbiguousOptionException' => __DIR__ . '/..' . '/sebastian/cli-parser/src/exceptions/AmbiguousOptionException.php',
         'SebastianBergmann\\CliParser\\Exception' => __DIR__ . '/..' . '/sebastian/cli-parser/src/exceptions/Exception.php',
         'SebastianBergmann\\CliParser\\OptionDoesNotAllowArgumentException' => __DIR__ . '/..' . '/sebastian/cli-parser/src/exceptions/OptionDoesNotAllowArgumentException.php',

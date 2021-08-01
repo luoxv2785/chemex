@@ -53,7 +53,6 @@ return array(
     'Spatie\\EloquentSortable\\' => array($vendorDir . '/spatie/eloquent-sortable/src'),
     'Seld\\PharUtils\\' => array($vendorDir . '/seld/phar-utils/src'),
     'Seld\\JsonLint\\' => array($vendorDir . '/seld/jsonlint/src/Seld/JsonLint'),
-    'Response\\' => array($vendorDir . '/celaraze/laravel-response/src'),
     'React\\Promise\\' => array($vendorDir . '/react/promise/src'),
     'Ramsey\\Uuid\\' => array($vendorDir . '/ramsey/uuid/src'),
     'Ramsey\\Collection\\' => array($vendorDir . '/ramsey/collection/src'),
@@ -65,7 +64,6 @@ return array(
     'Psr\\EventDispatcher\\' => array($vendorDir . '/psr/event-dispatcher/src'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src/Prophecy'),
-    'Pour\\' => array($vendorDir . '/celaraze/pour/src'),
     'PhpParser\\' => array($vendorDir . '/nikic/php-parser/lib/PhpParser'),
     'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src/PhpOption'),
     'PackageVersions\\' => array($vendorDir . '/composer/package-versions-deprecated/src/PackageVersions'),
@@ -129,4 +127,5 @@ return array(
     'App\\' => array($baseDir . '/app'),
     'Adldap\\Laravel\\' => array($vendorDir . '/adldap2/adldap2-laravel/src'),
     'Adldap\\' => array($vendorDir . '/adldap2/adldap2/src'),
+    'Ace\\' => array($vendorDir . '/celaraze/laravel-ace/src'),
 );

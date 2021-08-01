@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use Ace\Uni;
 use App\Http\Controllers\Controller;
 use Celaraze\Response;
 use Dcat\Admin\Layout\Column;
@@ -55,6 +56,6 @@ class ToolDatabaseBackupController extends Controller
         } catch (Exception $exception) {
             $data = $exception;
         }
-        return Response::make(200, '备份成功', $data);
+        return Uni::response(200, '备份成功', $data);
     }
 }

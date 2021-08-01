@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Ace\Uni;
 use App\Models\DeviceRecord;
 use App\Models\PartRecord;
 use App\Models\SoftwareRecord;
@@ -38,7 +39,7 @@ class QueryController extends Controller
             }
             $asset->category = $asset->category()->value('name');
             $asset->vendor = $asset->vendor()->value('name');
-            return Response::make(200, '查询成功', [$asset]);
+            return Uni::response(200, '查询成功', [$asset]);
         }
 
         $asset = PartRecord::where('asset_number', $asset_number)->first();
@@ -50,7 +51,7 @@ class QueryController extends Controller
             }
             $asset->category = $asset->category()->value('name');
             $asset->vendor = $asset->vendor()->value('name');
-            return Response::make(200, '查询成功', [$asset]);
+            return Uni::response(200, '查询成功', [$asset]);
         }
 
         $asset = SoftwareRecord::where('asset_number', $asset_number)->first();
@@ -62,9 +63,9 @@ class QueryController extends Controller
             }
             $asset->category = $asset->category()->value('name');
             $asset->vendor = $asset->vendor()->value('name');
-            return Response::make(200, '查询成功', [$asset]);
+            return Uni::response(200, '查询成功', [$asset]);
         }
 
-        return Response::make(404, '没有查询到对应资产');
+        return Uni::response(404, '没有查询到对应资产');
     }
 }

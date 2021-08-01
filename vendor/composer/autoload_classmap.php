@@ -6,6 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Ace\\DateTime' => $vendorDir . '/celaraze/laravel-ace/src/DateTime.php',
+    'Ace\\System' => $vendorDir . '/celaraze/laravel-ace/src/System.php',
+    'Ace\\Uni' => $vendorDir . '/celaraze/laravel-ace/src/Uni.php',
     'Adldap\\Adldap' => $vendorDir . '/adldap2/adldap2/src/Adldap.php',
     'Adldap\\AdldapException' => $vendorDir . '/adldap2/adldap2/src/AdldapException.php',
     'Adldap\\AdldapInterface' => $vendorDir . '/adldap2/adldap2/src/AdldapInterface.php',
@@ -5502,9 +5505,6 @@ return array(
     'PhpParser\\Parser\\Tokens' => $vendorDir . '/nikic/php-parser/lib/PhpParser/Parser/Tokens.php',
     'PhpParser\\PrettyPrinterAbstract' => $vendorDir . '/nikic/php-parser/lib/PhpParser/PrettyPrinterAbstract.php',
     'PhpParser\\PrettyPrinter\\Standard' => $vendorDir . '/nikic/php-parser/lib/PhpParser/PrettyPrinter/Standard.php',
-    'Pour\\DateTime' => $vendorDir . '/celaraze/pour/src/DateTime.php',
-    'Pour\\System' => $vendorDir . '/celaraze/pour/src/System.php',
-    'Pour\\Uni' => $vendorDir . '/celaraze/pour/src/Uni.php',
     'Prophecy\\Argument' => $vendorDir . '/phpspec/prophecy/src/Prophecy/Argument.php',
     'Prophecy\\Argument\\ArgumentsWildcard' => $vendorDir . '/phpspec/prophecy/src/Prophecy/Argument/ArgumentsWildcard.php',
     'Prophecy\\Argument\\Token\\AnyValueToken' => $vendorDir . '/phpspec/prophecy/src/Prophecy/Argument/Token/AnyValueToken.php',
@@ -5925,7 +5925,6 @@ return array(
     'React\\Promise\\PromisorInterface' => $vendorDir . '/react/promise/src/PromisorInterface.php',
     'React\\Promise\\RejectedPromise' => $vendorDir . '/react/promise/src/RejectedPromise.php',
     'React\\Promise\\UnhandledRejectionException' => $vendorDir . '/react/promise/src/UnhandledRejectionException.php',
-    'Response\\Response' => $vendorDir . '/celaraze/laravel-response/src/Response.php',
     'SebastianBergmann\\CliParser\\AmbiguousOptionException' => $vendorDir . '/sebastian/cli-parser/src/exceptions/AmbiguousOptionException.php',
     'SebastianBergmann\\CliParser\\Exception' => $vendorDir . '/sebastian/cli-parser/src/exceptions/Exception.php',
     'SebastianBergmann\\CliParser\\OptionDoesNotAllowArgumentException' => $vendorDir . '/sebastian/cli-parser/src/exceptions/OptionDoesNotAllowArgumentException.php',

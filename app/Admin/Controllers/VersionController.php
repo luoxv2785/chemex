@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use Ace\Uni;
 use App\Http\Controllers\Controller;
 use App\Services\VersionService;
 use App\Support\Version;
@@ -56,6 +57,6 @@ class VersionController extends Controller
     public function upgrade(): JsonResponse|array
     {
         $result = VersionService::upgrade();
-        return Response::make(200, '更新成功！', [$result]);
+        return Uni::response(200, '更新成功！', [$result]);
     }
 }
