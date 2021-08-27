@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-    <a href="https://chemex-demo.celaraze.com" target="_blank">演示地址</a>（账密都是：admin） |
+    <a href="https://chemex.celaraze.com" target="_blank">演示地址</a>（账密都是：admin） |
     <a href="https://jq.qq.com/?_wv=1027&k=tnV2HCWU">用户交流群（QQ）</a>
 </p>
 
