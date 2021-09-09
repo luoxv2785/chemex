@@ -31,9 +31,6 @@ return [
         'vendor' => [
             'name' => '厂商',
         ],
-        'channel' => [
-            'name' => '购入途径',
-        ],
         'price' => '价格',
         'purchased' => '购入时间',
         'expired' => '过保时间',
@@ -52,7 +49,6 @@ return [
         'vendor_id' => '厂商',
         'depreciation_id' => '折旧规则',
         'file' => '文件',
-        'purchased_channel_id' => '购入途径',
     ],
     'options' => [
     ],

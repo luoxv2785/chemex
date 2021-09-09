@@ -151,23 +151,11 @@ class DepartmentController extends AdminController
             $form->text('name')->required();
             $form->divider();
             $form->text('description');
-            if (Support::ifSelectCreate()) {
-                $form->selectCreate('parent_id')
-                    ->options(\App\Models\Department::class)
-                    ->ajax(admin_route('selection.organization.departments'))
-                    ->url(admin_route('organization.departments.create'))
-                    ->default(0);
-                $form->selectCreate('role_id')
-                    ->options(Role::class)
-                    ->ajax(admin_route('selection.organization.roles'))
-                    ->url(admin_route('organization.roles.create'));
-            } else {
-                $form->select('parent_id')
-                    ->options(\App\Models\Department::pluck('name', 'id'))
-                    ->default(0);
-                $form->select('role_id')
-                    ->options(Role::pluck('name', 'id'));
-            }
+            $form->select('parent_id')
+                ->options(\App\Models\Department::pluck('name', 'id'))
+                ->default(0);
+            $form->select('role_id')
+                ->options(Role::pluck('name', 'id'));
 
 
             $form->display('created_at');

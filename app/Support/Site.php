@@ -110,7 +110,7 @@ class Site
      */
     public function injectFields()
     {
-        Form::extend('selectCreate', SelectCreate::class);
+//        Form::extend('selectCreate', SelectCreate::class);
     }
 
     /**

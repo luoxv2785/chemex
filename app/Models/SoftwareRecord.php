@@ -22,7 +22,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int vendor_id
  * @property float price
  * @property string expired
- * @property int purchased_channel_id
  * @property string asset_number
  * @property int counts
  * @property int distribution
@@ -41,7 +40,6 @@ class SoftwareRecord extends Model
     public array $sortIncludeColumns = [
         'category.name',
         'vendor.name',
-        'channel.name',
         'left_counts',
         'expiration_left_days',
 
@@ -55,7 +53,6 @@ class SoftwareRecord extends Model
     public array $sortExceptColumns = [
         'category_id',
         'vendor_id',
-        'purchased_channel_id',
         'deleted_at',
     ];
 
@@ -91,16 +88,6 @@ class SoftwareRecord extends Model
     public function vendor(): HasOne
     {
         return $this->hasOne(VendorRecord::class, 'id', 'vendor_id');
-    }
-
-    /**
-     * 软件记录有一个购入途径.
-     *
-     * @return HasOne
-     */
-    public function channel(): HasOne
-    {
-        return $this->hasOne(PurchasedChannel::class, 'id', 'purchased_channel_id');
     }
 
     /**

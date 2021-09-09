@@ -110,22 +110,10 @@ class DeviceCategoryController extends AdminController
             $form->display('id');
             $form->text('name')->required();
             $form->text('description');
-
-            if (Support::ifSelectCreate()) {
-                $form->selectCreate('parent_id')
-                    ->options(\App\Models\DeviceCategory::class)
-                    ->ajax(admin_route('selection.device.categories'))
-                    ->url(admin_route('device.categories.create'));
-                $form->selectCreate('depreciation_rule_id')
-                    ->options(DepreciationRule::class)
-                    ->ajax(admin_route('selection.depreciation.rules'))
-                    ->url(admin_route('depreciation.rules.create'));
-            } else {
-                $form->select('parent_id')
-                    ->options(\App\Models\DeviceCategory::pluck('name', 'id'));
-                $form->select('depreciation_rule_id')
-                    ->options(DepreciationRule::pluck('name', 'id'));
-            }
+            $form->select('parent_id')
+                ->options(\App\Models\DeviceCategory::pluck('name', 'id'));
+            $form->select('depreciation_rule_id')
+                ->options(DepreciationRule::pluck('name', 'id'));
 
             $form->display('created_at');
             $form->display('updated_at');

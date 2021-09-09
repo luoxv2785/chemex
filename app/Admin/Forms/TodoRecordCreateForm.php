@@ -5,6 +5,7 @@ namespace App\Admin\Forms;
 use App\Models\TodoRecord;
 use App\Support\Data;
 use App\Support\Support;
+use Dcat\Admin\Form\Row;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Widgets\Form;
 use Exception;
@@ -57,17 +58,28 @@ class TodoRecordCreateForm extends Form
      */
     public function form()
     {
-        $this->text('name')->required();
-        $this->datetime('start')->required();
-        $this->divider();
-        $this->select('priority')
-            ->options(Data::priority())
-            ->default('normal');
-        $this->textarea('description');
+        $this->row(function (Row $row) {
+            $row->text('name')->required();
+            $row->width(6)
+                ->datetime('start')
+                ->required();
+            $row->width(6)
+                ->select('priority')
+                ->options(Data::priority())
+                ->default('normal');
+        });
 
-        $this->select('user_id', admin_trans_label('User Id'))
-            ->options(Support::selectUsers('id'));
-        $this->tags('tags')
-            ->help(admin_trans_label('Tag Help'));
+        $this->row(function (Row $row) {
+            $row->textarea('description');
+        });
+
+        $this->row(function (Row $row) {
+            $row->width(6)
+                ->select('user_id', admin_trans_label('User Id'))
+                ->options(Support::selectUsers('id'));
+            $row->width(6)
+                ->tags('tags')
+                ->help(admin_trans_label('Tag Help'));
+        });
     }
 }

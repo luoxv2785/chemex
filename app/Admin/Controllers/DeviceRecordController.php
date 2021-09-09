@@ -17,7 +17,6 @@ use App\Models\ColumnSort;
 use App\Models\Department;
 use App\Models\DepreciationRule;
 use App\Models\DeviceCategory;
-use App\Models\PurchasedChannel;
 use App\Models\VendorRecord;
 use App\Services\DeviceService;
 use App\Services\ExpirationService;
@@ -123,23 +122,21 @@ class DeviceRecordController extends AdminController
      */
     protected function detail(int $id): Show
     {
-        return Show::make($id, new DeviceRecord(['category', 'vendor', 'channel', 'admin_user', 'admin_user.department', 'depreciation']), function (Show $show) {
+        return Show::make($id, new DeviceRecord(['category', 'vendor', 'admin_user', 'admin_user.department', 'depreciation']), function (Show $show) {
             $sort_columns = $this->sortColumns();
             $show->field('id', '', $sort_columns);
             $show->field('asset_number', '', $sort_columns);
             $show->field('description', '', $sort_columns);
             $show->field('category.name', '', $sort_columns);
             $show->field('vendor.name', '', $sort_columns);
-            $show->field('channel.name', '', $sort_columns);
             $show->field('mac', '', $sort_columns);
             $show->field('ip', '', $sort_columns);
             $show->field('photo', '', $sort_columns)->image();
             $show->field('price', '', $sort_columns);
-            $show->field('expiration_left_days', '', $sort_columns)->as(function () {
+            $show->field('depreciation_price', '', $sort_columns)->as(function () {
                 $device_record = \App\Models\DeviceRecord::where('id', $this->id)->first();
                 if (!empty($device_record)) {
                     $depreciation_rule_id = Support::getDepreciationRuleId($device_record);
-
                     return Support::depreciationPrice($this->price, $this->purchased, $depreciation_rule_id);
                 }
             });
@@ -186,6 +183,18 @@ class DeviceRecordController extends AdminController
     }
 
     /**
+     * 返回字段排序.
+     *
+     * @return array
+     */
+    public function sortColumns(): array
+    {
+        return ColumnSort::where('table_name', (new DeviceRecord())->getTable())
+            ->get(['name', 'order'])
+            ->toArray();
+    }
+
+    /**
      * 提供selectCreate的ajax请求.
      *
      * @param Request $request
@@ -218,7 +227,7 @@ class DeviceRecordController extends AdminController
      */
     protected function grid(): Grid
     {
-        return Grid::make(new DeviceRecord(['category', 'vendor', 'admin_user', 'admin_user.department', 'channel', 'depreciation']), function (Grid $grid) {
+        return Grid::make(new DeviceRecord(['category', 'vendor', 'admin_user', 'admin_user.department', 'depreciation']), function (Grid $grid) {
             $sort_columns = $this->sortColumns();
             $grid->column('id', '', $sort_columns);
             $grid->column('photo', '', $sort_columns)->image('', 50, 50);
@@ -254,7 +263,6 @@ class DeviceRecordController extends AdminController
             $grid->column('expiration_left_days', '', $sort_columns)->display(function () {
                 return ExpirationService::itemExpirationLeftDaysRender('device', $this->id);
             });
-            $grid->column('channel.name', '', $sort_columns);
             $grid->column('depreciation.name', '', $sort_columns);
             $grid->column('created_at', '', $sort_columns);
             $grid->column('updated_at', '', $sort_columns);
@@ -318,12 +326,12 @@ class DeviceRecordController extends AdminController
              */
             $grid->showColumnSelector();
             $grid->hideColumns([
+                'id',
                 'photo',
                 'vendor.name',
                 'description',
                 'price',
                 'expired',
-                'channel.name',
                 'depreciation.name',
                 'expiration_left_days',
                 'admin_user.department.name',
@@ -396,18 +404,6 @@ class DeviceRecordController extends AdminController
     }
 
     /**
-     * 返回字段排序.
-     *
-     * @return array
-     */
-    public function sortColumns(): array
-    {
-        return ColumnSort::where('table_name', (new DeviceRecord())->getTable())
-            ->get(['name', 'order'])
-            ->toArray();
-    }
-
-    /**
      * Make a form builder.
      *
      * @return Form
@@ -415,70 +411,52 @@ class DeviceRecordController extends AdminController
     protected function form(): Form
     {
         return Form::make(new DeviceRecord(), function (Form $form) {
-            $form->display('id');
-            if ($form->isCreating() || empty($form->model()->asset_number)) {
-                $form->text('asset_number')->required();
-            } else {
-                $form->display('asset_number')->required();
-            }
-            if (Support::ifSelectCreate()) {
-                $form->selectCreate('category_id')
-                    ->options(DeviceCategory::class)
-                    ->ajax(admin_route('selection.device.categories'))
-                    ->url(admin_route('device.categories.create'))
-                    ->required();
-                $form->selectCreate('vendor_id')
-                    ->options(VendorRecord::class)
-                    ->ajax(admin_route('selection.vendor.records'))
-                    ->url(admin_route('vendor.records.create'))
-                    ->required();
-            } else {
-                $form->select('category_id')
+            $form->row(function (\Dcat\Admin\Form\Row $row) use ($form) {
+                if ($form->isCreating() || empty($form->model()->asset_number)) {
+                    $row->text('asset_number')->required();
+                } else {
+                    $row->display('asset_number')->required();
+                }
+
+                $row->width(6)
+                    ->select('category_id')
                     ->options(DeviceCategory::pluck('name', 'id'))
                     ->required();
-                $form->select('vendor_id')
+                $row->width(6)
+                    ->select('vendor_id')
                     ->options(VendorRecord::pluck('name', 'id'))
                     ->required();
-            }
-
-            $form->divider();
-
-            if (Support::ifSelectCreate()) {
-                $form->selectCreate('purchased_channel_id')
-                    ->options(PurchasedChannel::class)
-                    ->ajax(admin_route('selection.purchased.channels'))
-                    ->url(admin_route('purchased.channels.create'));
-                $form->selectCreate('depreciation_rule_id')
-                    ->options(DepreciationRule::class)
-                    ->ajax(admin_route('selection.depreciation.rules'))
-                    ->url(admin_route('depreciation.rules.create'))
-                    ->help(admin_trans_label('Depreciation Rule Help'));
-            } else {
-                $form->select('purchased_channel_id')
-                    ->options(PurchasedChannel::pluck('name', 'id'));
-                $form->select('depreciation_rule_id')
+                $row->width(6)
+                    ->text('mac');
+                $row->width(6)
+                    ->text('ip');
+                $row->width(6)
+                    ->currency('price');
+                $row->width(6)
+                    ->select('depreciation_rule_id')
                     ->options(DepreciationRule::pluck('name', 'id'))
                     ->help(admin_trans_label('Depreciation Rule Help'));
-            }
-            $form->text('description');
-            $form->text('mac');
-            $form->text('ip');
-            $form->image('photo')
-                ->autoUpload()
-                ->uniqueName()
-                ->help(admin_trans_label('Photo Help'));
-            $form->currency('price');
-            $form->date('purchased');
-            $form->date('expired')
-                ->attribute('autocomplete', 'off');
+                $row->width(6)
+                    ->date('purchased');
+                $row->width(6)
+                    ->date('expired')
+                    ->attribute('autocomplete', 'off');
 
-            /**
-             * 自定义字段.
-             */
-            ControllerHasCustomColumns::makeForm((new DeviceRecord())->getTable(), $form);
+                $row->width()
+                    ->text('description');
+                $row->width()
+                    ->image('photo')
+                    ->autoUpload()
+                    ->uniqueName()
+                    ->help(admin_trans_label('Photo Help'));
 
-            $form->display('created_at');
-            $form->display('updated_at');
+                /**
+                 * 自定义字段
+                 */
+                foreach (ControllerHasCustomColumns::getCustomColumns((new DeviceRecord())->getTable()) as $custom_column) {
+                    ControllerHasCustomColumns::makeForm($custom_column, $row);
+                }
+            });
 
             /**
              * 按钮控制.

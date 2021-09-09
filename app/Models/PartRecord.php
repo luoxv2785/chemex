@@ -25,7 +25,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string name
  * @property string description
  * @property string sn
- * @property int purchased_channel_id
  * @property string asset_number
  * @property int id
  */
@@ -44,7 +43,6 @@ class PartRecord extends Model
     public array $sortIncludeColumns = [
         'category.name',
         'vendor.name',
-        'channel.name',
         'depreciation.name',
         'expiration_left_days',
     ];
@@ -57,7 +55,6 @@ class PartRecord extends Model
     public array $sortExceptColumns = [
         'category_id',
         'vendor_id',
-        'purchased_channel_id',
         'depreciation_rule_id',
         'deleted_at',
     ];
@@ -94,16 +91,6 @@ class PartRecord extends Model
     public function vendor(): HasOne
     {
         return $this->hasOne(VendorRecord::class, 'id', 'vendor_id');
-    }
-
-    /**
-     * 配件记录有一个购入途径.
-     *
-     * @return HasOne
-     */
-    public function channel(): HasOne
-    {
-        return $this->hasOne(PurchasedChannel::class, 'id', 'purchased_channel_id');
     }
 
     /**

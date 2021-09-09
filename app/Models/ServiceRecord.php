@@ -28,7 +28,7 @@ class ServiceRecord extends Model
      * @var string[]
      */
     public array $sortIncludeColumns = [
-        'channel.name',
+
     ];
 
     /**
@@ -37,7 +37,6 @@ class ServiceRecord extends Model
      * @var string[]
      */
     public array $sortExceptColumns = [
-        'purchased_channel_id',
         'deleted_at',
     ];
 
@@ -53,16 +52,6 @@ class ServiceRecord extends Model
                 abort(401, 'you can not do that.');
             }
         });
-    }
-
-    /**
-     * 配件记录有一个购入途径.
-     *
-     * @return HasOne
-     */
-    public function channel(): HasOne
-    {
-        return $this->hasOne(PurchasedChannel::class, 'id', 'purchased_channel_id');
     }
 
     /**

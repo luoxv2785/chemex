@@ -6,7 +6,7 @@
         </a>
         <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right shadow-200">
             <li class="scrollable-container media-list ps ps--active-y">
-                <a class="media d-flex justify-content-between" href="https://gitee.com/celaraze/chemex/issues"
+                <a class="media d-flex justify-content-between" href="https://gitee.com/dcat-phper/chemex/issues"
                    target="_blank">
                     <div class="d-flex align-items-start">
                         <div class="media-left">

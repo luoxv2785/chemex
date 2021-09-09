@@ -2,70 +2,56 @@
 
 namespace App\Traits;
 
-use App\Form;
 use App\Grid;
 use App\Models\CustomColumn;
 use App\Show;
+use Dcat\Admin\Form\Field;
+use Dcat\Admin\Form\Row;
 
 trait ControllerHasCustomColumns
 {
     /**
      * 构建自定义字段Form结构.
      *
-     * @param $table_name
-     * @param Form $form
-     *
-     * @return Form
+     * @param $custom_column
+     * @param \Dcat\Admin\Form\Row $row
+     * @return \Dcat\Admin\Form\Field
      */
-    public static function makeForm($table_name, Form $form): Form
+    public static function makeForm($custom_column, Row $row): Field
     {
-        foreach (self::getCustomColumns($table_name) as $custom_column) {
-            switch ($custom_column->type) {
-                case 'date':
-                    $form->date($custom_column->name, $custom_column->nick_name);
-                    break;
-                case 'dateTime':
-                    $form->datetime($custom_column->name, $custom_column->nick_name);
-                    break;
-                case 'integer':
-                    $form->number($custom_column->name, $custom_column->nick_name);
-                    break;
-                case 'double':
-                case 'float':
-                    $form->currency($custom_column->name, $custom_column->nick_name);
-                    break;
-                case 'longText':
-                    $form->textarea($custom_column->name, $custom_column->nick_name);
-                    break;
-                case 'select':
-                    $options = [];
-                    foreach ($custom_column->select_options as $select_option) {
-                        $options[$select_option['item']] = $select_option['item'];
-                    }
-                    $form->select($custom_column->name, $custom_column->nick_name)
-                        ->options($options);
-                    break;
-                default:
-                    $form->text($custom_column->name, $custom_column->nick_name);
-            }
-            if ($custom_column->is_nullable == 1) {
-                $form->field($custom_column->name)->required();
-            }
+        switch ($custom_column->type) {
+            case 'date':
+                $row = $row->date($custom_column->name, $custom_column->nick_name);
+                break;
+            case 'dateTime':
+                $row = $row->datetime($custom_column->name, $custom_column->nick_name);
+                break;
+            case 'integer':
+                $row = $row->number($custom_column->name, $custom_column->nick_name);
+                break;
+            case 'double':
+            case 'float':
+                $row = $row->currency($custom_column->name, $custom_column->nick_name);
+                break;
+            case 'longText':
+                $row = $row->textarea($custom_column->name, $custom_column->nick_name);
+                break;
+            case 'select':
+                $options = [];
+                foreach ($custom_column->select_options as $select_option) {
+                    $options[$select_option['item']] = $select_option['item'];
+                }
+                $row = $row->select($custom_column->name, $custom_column->nick_name)
+                    ->options($options);
+                break;
+            default:
+                $row = $row->text($custom_column->name, $custom_column->nick_name);
+        }
+        if ($custom_column->is_nullable == 0) {
+            $row->width()->required();
         }
 
-        return $form;
-    }
-
-    /**
-     * 获取自定义字段.
-     *
-     * @param $table_name
-     *
-     * @return mixed
-     */
-    public static function getCustomColumns($table_name): mixed
-    {
-        return CustomColumn::where('table_name', $table_name)->get();
+        return $row;
     }
 
     /**
@@ -83,6 +69,18 @@ trait ControllerHasCustomColumns
         }
 
         return $show;
+    }
+
+    /**
+     * 获取自定义字段.
+     *
+     * @param $table_name
+     *
+     * @return mixed
+     */
+    public static function getCustomColumns($table_name): mixed
+    {
+        return CustomColumn::where('table_name', $table_name)->get();
     }
 
     /**

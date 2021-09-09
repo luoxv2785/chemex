@@ -7,7 +7,6 @@ return [
         'records' => '配件',
         'Category' => '分类',
         'Vendor' => '厂商',
-        'Purchased Channel' => '购入途径',
         'Depreciation Rule' => '折旧规则',
         'Batch Delete' => '批量删除配件',
         'Batch Delete Confirm' => '您确定要删除选中的配件吗？',
@@ -34,9 +33,6 @@ return [
         'vendor' => [
             'name' => '厂商',
         ],
-        'channel' => [
-            'name' => '购入途径',
-        ],
         'device' => [
             'asset_number' => '所属设备',
         ],
@@ -50,6 +46,7 @@ return [
         ],
         'asset_number' => '资产编号',
         'expiration_left_days' => '剩余保固时间',
+        'depreciation_price' => '折旧后价格',
         'category_id' => '分类',
         'vendor_id' => '厂商',
         'depreciation_id' => '折旧规则',

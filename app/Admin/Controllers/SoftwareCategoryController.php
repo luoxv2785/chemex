@@ -106,16 +106,8 @@ class SoftwareCategoryController extends AdminController
             $form->display('id');
             $form->text('name')->required();
             $form->text('description');
-
-            if (Support::ifSelectCreate()) {
-                $form->selectCreate('parent_id')
-                    ->options(\App\Models\SoftwareCategory::class)
-                    ->ajax(admin_route('selection.software.categories'))
-                    ->url(admin_route('software.categories.create'));
-            } else {
-                $form->select('parent_id')
-                    ->options(\App\Models\SoftwareCategory::pluck('name', 'id'));
-            }
+            $form->select('parent_id')
+                ->options(\App\Models\SoftwareCategory::pluck('name', 'id'));
 
             $form->display('created_at');
             $form->display('updated_at');

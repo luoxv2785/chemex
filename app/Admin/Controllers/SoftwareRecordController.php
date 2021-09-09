@@ -129,7 +129,7 @@ class SoftwareRecordController extends AdminController
      */
     protected function detail(int $id): Show
     {
-        return Show::make($id, new SoftwareRecord(['category', 'vendor', 'channel']), function (Show $show) {
+        return Show::make($id, new SoftwareRecord(['category', 'vendor']), function (Show $show) {
             $sort_columns = $this->sortColumns();
             $show->field('id', '', $sort_columns);
             $show->field('name', '', $sort_columns);
@@ -138,7 +138,6 @@ class SoftwareRecordController extends AdminController
             $show->field('category.name', '', $sort_columns);
             $show->field('version', '', $sort_columns);
             $show->field('vendor.name', '', $sort_columns);
-            $show->field('channel.name', '', $sort_columns);
             $show->field('price', '', $sort_columns);
             $show->field('purchased', '', $sort_columns);
             $show->field('expired', '', $sort_columns);
@@ -162,6 +161,18 @@ class SoftwareRecordController extends AdminController
                 $show->disableEditButton();
             }
         });
+    }
+
+    /**
+     * 返回字段排序.
+     *
+     * @return array
+     */
+    public function sortColumns(): array
+    {
+        return ColumnSort::where('table_name', (new SoftwareRecord())->getTable())
+            ->get(['name', 'order'])
+            ->toArray();
     }
 
     /**
@@ -242,6 +253,7 @@ class SoftwareRecordController extends AdminController
              */
             $grid->showColumnSelector();
             $grid->hideColumns([
+                'id',
                 'description',
                 'price',
                 'expired',
@@ -330,18 +342,6 @@ class SoftwareRecordController extends AdminController
     }
 
     /**
-     * 返回字段排序.
-     *
-     * @return array
-     */
-    public function sortColumns(): array
-    {
-        return ColumnSort::where('table_name', (new SoftwareRecord())->getTable())
-            ->get(['name', 'order'])
-            ->toArray();
-    }
-
-    /**
      * Make a form builder.
      *
      * @return Form
@@ -349,65 +349,50 @@ class SoftwareRecordController extends AdminController
     protected function form(): Form
     {
         return Form::make(new SoftwareRecord(), function (Form $form) {
-            $form->display('id');
-            if ($form->isCreating() || empty($form->model()->asset_number)) {
-                $form->text('asset_number')->required();
-            } else {
-                $form->display('asset_number')->required();
-            }
-            $form->text('name')->required();
-            $form->text('version')->required();
-            $form->select('distribution')
-                ->options(Data::distribution())
-                ->default('u')
-                ->required();
-            $form->number('counts')
-                ->default(-1)
-                ->required()
-                ->help(admin_trans_label('Counts Help'));
-            if (Support::ifSelectCreate()) {
-                $form->selectCreate('category_id')
-                    ->options(SoftwareCategory::class)
-                    ->ajax(admin_route('selection.software.categories'))
-                    ->url(admin_route('software.categories.create'))
+            $form->row(function (\Dcat\Admin\Form\Row $row) use ($form) {
+                if ($form->isCreating() || empty($form->model()->asset_number)) {
+                    $row->text('asset_number')->required();
+                } else {
+                    $row->display('asset_number')->required();
+                }
+                $row->width(6)
+                    ->text('name')->required();
+                $row->width(6)
+                    ->text('version')->required();
+                $row->width(6)
+                    ->select('distribution')
+                    ->options(Data::distribution())
+                    ->default('u')
                     ->required();
-                $form->selectCreate('vendor_id')
-                    ->options(VendorRecord::class)
-                    ->ajax(admin_route('selection.vendor.records'))
-                    ->url(admin_route('vendor.records.create'))
-                    ->required();
-            } else {
-                $form->select('category_id')
+                $row->width(6)
+                    ->number('counts')
+                    ->default(-1)
+                    ->required()
+                    ->help(admin_trans_label('Counts Help'));
+                $row->width(6)
+                    ->select('category_id')
                     ->options(SoftwareCategory::selectOptions())
                     ->required();
-                $form->select('vendor_id')
+                $row->width(6)
+                    ->select('vendor_id')
                     ->options(VendorRecord::pluck('name', 'id'))
                     ->required();
-            }
+                $row->width()
+                    ->text('description');
+                $row->width()
+                    ->currency('price')->default(0);
+                $row->width(6)
+                    ->date('purchased');
+                $row->width(6)
+                    ->date('expired');
 
-            $form->divider();
-
-            if (Support::ifSelectCreate()) {
-                $form->selectCreate('purchased_channel_id')
-                    ->options(VendorRecord::class)
-                    ->ajax(admin_route('selection.purchased.channels'))
-                    ->url(admin_route('purchased.channels.create'));
-            } else {
-                $form->select('purchased_channel_id')
-                    ->options(PurchasedChannel::pluck('name', 'id'));
-            }
-            $form->text('description');
-            $form->currency('price')->default(0);
-            $form->date('purchased');
-            $form->date('expired');
-
-            /**
-             * 自定义字段.
-             */
-            ControllerHasCustomColumns::makeForm((new SoftwareRecord())->getTable(), $form);
-
-            $form->display('created_at');
-            $form->display('updated_at');
+                /**
+                 * 自定义字段
+                 */
+                foreach (ControllerHasCustomColumns::getCustomColumns((new SoftwareRecord())->getTable()) as $custom_column) {
+                    ControllerHasCustomColumns::makeForm($custom_column, $row);
+                }
+            });
 
             /**
              * 按钮控制.

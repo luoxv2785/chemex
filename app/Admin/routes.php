@@ -149,14 +149,6 @@ Route::group([
         ->name('selection.vendor.records');
 
     /**
-     * 购入途径管理.
-     */
-    $router->resource('/purchased/channels', 'PurchasedChannelController')
-        ->names('purchased.channels');
-    $router->get('/selection/purchased/channels', [PurchasedChannelController::class, 'selectList'])
-        ->name('selection.purchased.channels');
-
-    /**
      * 组织管理.
      */
     $router->resource('/organization/users', 'UserController')

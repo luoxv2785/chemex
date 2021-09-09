@@ -5,7 +5,6 @@ namespace App\Admin\Forms;
 use App\Models\DeviceRecord;
 use App\Models\ServiceRecord;
 use App\Models\ServiceTrack;
-use App\Support\Support;
 use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Traits\LazyWidget;
@@ -83,18 +82,9 @@ class ServiceRecordCreateUpdateTrackForm extends Form implements LazyRenderable
      */
     public function form()
     {
-        if (Support::ifSelectCreate()) {
-            $this->selectCreate('device_id', trans('main.device_id'))
-                ->options(DeviceRecord::class)
-                ->ajax(admin_route('selection.device.records'))
-                ->url(admin_route('device.records.create'))
-                ->help(trans('main.service_record_create_update_track_device_id_help'))
-                ->required();
-        } else {
-            $this->select('device_id', trans('main.device_id'))
-                ->options(DeviceRecord::pluck('asset_number', 'id'))
-                ->help(trans('main.service_record_create_update_track_device_id_help'))
-                ->required();
-        }
+        $this->select('device_id', trans('main.device_id'))
+            ->options(DeviceRecord::pluck('asset_number', 'id'))
+            ->help(trans('main.service_record_create_update_track_device_id_help'))
+            ->required();
     }
 }

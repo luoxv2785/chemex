@@ -141,9 +141,11 @@ class TodoRecordController extends AdminController
             $show->field('id');
             $show->field('name');
             $show->field('description');
-            $show->field('start');
+            $show->field('start')->width(6);
+            $show->field('priority')
+                ->using(Data::priority())
+                ->width(6);
             $show->field('end');
-            $show->field('priority')->using(Data::priority());
             $show->field('user.name');
             $show->field('tags');
             $show->field('done_description');

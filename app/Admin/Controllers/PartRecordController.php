@@ -17,7 +17,6 @@ use App\Models\ColumnSort;
 use App\Models\DepreciationRule;
 use App\Models\DeviceRecord;
 use App\Models\PartCategory;
-use App\Models\PurchasedChannel;
 use App\Models\VendorRecord;
 use App\Services\ExpirationService;
 use App\Show;
@@ -132,7 +131,12 @@ class PartRecordController extends AdminController
              * 字段过滤.
              */
             $grid->showColumnSelector();
-            $grid->hideColumns(['description', 'price', 'expired']);
+            $grid->hideColumns([
+                'id',
+                'description',
+                'price',
+                'expired'
+            ]);
 
             /**
              * 快速搜索.
@@ -239,18 +243,17 @@ class PartRecordController extends AdminController
      */
     protected function detail(int $id): Show
     {
-        return Show::make($id, new PartRecord(['category', 'vendor', 'channel', 'device', 'depreciation']), function (Show $show) {
+        return Show::make($id, new PartRecord(['category', 'vendor', 'device', 'depreciation']), function (Show $show) {
             $sort_columns = $this->sortColumns();
             $show->field('id', '', $sort_columns);
             $show->field('asset_number', '', $sort_columns);
             $show->field('description', '', $sort_columns);
             $show->field('category.name', '', $sort_columns);
             $show->field('vendor.name', '', $sort_columns);
-            $show->field('channel.name', '', $sort_columns);
             $show->field('device.asset_number', '', $sort_columns);
             $show->field('specification', '', $sort_columns);
             $show->field('price', '', $sort_columns);
-            $show->field('expiration_left_days', '', $sort_columns)->as(function () {
+            $show->field('depreciation_price', '', $sort_columns)->as(function () {
                 $part_record = \App\Models\PartRecord::where('id', $this->id)->first();
                 if (!empty($part_record)) {
                     $depreciation_rule_id = Support::getDepreciationRuleId($part_record);
@@ -306,70 +309,38 @@ class PartRecordController extends AdminController
     {
         return Form::make(new PartRecord(), function (Form $form) {
             $form->display('id');
-            if ($form->isCreating() || empty($form->model()->asset_number)) {
-                $form->text('asset_number')->required();
-            } else {
-                $form->display('asset_number')->required();
-            }
-            if (Support::ifSelectCreate()) {
-                $form->selectCreate('category_id', admin_trans_label('Category'))
-                    ->options(PartCategory::class)
-                    ->ajax(admin_route('selection.part.categories'))
-                    ->url(admin_route('part.categories.create'))
-                    ->required();
-            } else {
-                $form->select('category_id', admin_trans_label('Category'))
+
+            $form->row(function (\Dcat\Admin\Form\Row $row) use ($form) {
+                if ($form->isCreating() || empty($form->model()->asset_number)) {
+                    $row->text('asset_number')->required();
+                } else {
+                    $row->display('asset_number')->required();
+                }
+                $row->width(6)
+                    ->select('category_id', admin_trans_label('Category'))
                     ->options(PartCategory::selectOptions())
                     ->required();
-            }
-            $form->text('specification')->required();
-            if (Support::ifSelectCreate()) {
-                $form->selectCreate('vendor_id', admin_trans_label('Vendor'))
-                    ->options(VendorRecord::class)->ajax(admin_route('selection.vendor.records'))
-                    ->ajax(admin_route('selection.vendor.records'))
-                    ->url(admin_route('vendor.records.create'))
-                    ->required();
-            } else {
-                $form->select('vendor_id', admin_trans_label('Vendor'))
+                $row->width(6)
+                    ->text('specification')->required();
+                $row->width(6)
+                    ->select('vendor_id', admin_trans_label('Vendor'))
                     ->options(VendorRecord::pluck('name', 'id'))
                     ->required();
-            }
-
-            $form->divider();
-
-            $form->text('description');
-
-            if (Support::ifSelectCreate()) {
-                $form->selectCreate('purchased_channel_id', admin_trans_label('Purchased Channel'))
-                    ->options(PurchasedChannel::class)->ajax(admin_route('selection.purchased.channels'))
-                    ->ajax(admin_route('selection.purchased.channels'))
-                    ->url(admin_route('purchased.channels.create'));
-            } else {
-                $form->select('purchased_channel_id', admin_trans_label('Purchased Channel'))
-                    ->options(PurchasedChannel::pluck('name', 'id'));
-            }
-
-            $form->currency('price');
-            $form->date('purchased');
-            $form->date('expired');
-
-            if (Support::ifSelectCreate()) {
-                $form->selectCreate('depreciation_rule_id', admin_trans_label('Depreciation Rule'))
-                    ->options(DepreciationRule::class)
-                    ->ajax(admin_route('selection.depreciation.rules'))
-                    ->url(admin_route('depreciation.rules.create'));
-            } else {
-                $form->select('depreciation_rule_id', admin_trans_label('Depreciation Rule'))
+                $row->width(6)
+                    ->currency('price');
+                $row->width()->text('description');
+                $row->width(6)->date('purchased');
+                $row->width(6)->date('expired');
+                $row->width()->select('depreciation_rule_id', admin_trans_label('Depreciation Rule'))
                     ->options(DepreciationRule::pluck('name', 'id'));
-            }
 
-            /**
-             * 自定义字段.
-             */
-            ControllerHasCustomColumns::makeForm((new PartRecord())->getTable(), $form);
-
-            $form->display('created_at');
-            $form->display('updated_at');
+                /**
+                 * 自定义字段
+                 */
+                foreach (ControllerHasCustomColumns::getCustomColumns((new PartRecord())->getTable()) as $custom_column) {
+                    ControllerHasCustomColumns::makeForm($custom_column, $row);
+                }
+            });
 
             /**
              * 按钮控制.

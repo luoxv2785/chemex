@@ -15,7 +15,6 @@ return [
         'Batch Force Delete' => '批量强制删除设备（不可恢复）',
         'Batch Force Delete Confirm' => '您确定要强制删除选中的设备吗？（此操作不可逆）',
         'Batch Delete Confirm' => '您确定要删除选中的设备吗？',
-//        'Delete' => '发起报废审批',
         'Delete' => '删除设备',
         'Delete Confirm' => '确认删除设备',
         'Delete Confirm Description' => '删除设备将会同时删除所有与之关联的信息',
@@ -39,9 +38,6 @@ return [
         ],
         'vendor' => [
             'name' => '厂商',
-        ],
-        'channel' => [
-            'name' => '购入途径',
         ],
         'mac' => 'MAC',
         'ip' => 'IP',
@@ -94,8 +90,8 @@ return [
         'user_same' => '用户已存在',
         'user_id' => '用户',
         'expiration_left_days' => '保固剩余时间',
+        'depreciation_price' => '折旧后价格',
         'file' => '文件',
-        'purchased_channel_id' => '购入途径',
         'depreciation_rule_id' => '折旧规则',
         'device_status' => '设备状态'
     ],

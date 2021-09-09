@@ -4,6 +4,7 @@ namespace App\Admin\Forms;
 
 use App\Models\ConsumableRecord;
 use App\Models\ConsumableTrack;
+use Dcat\Admin\Form\Row;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Widgets\Form;
 use Exception;
@@ -67,14 +68,21 @@ class ConsumableRecordInForm extends Form
      */
     public function form()
     {
-        $this->select('consumable_id')
-            ->options(ConsumableRecord::pluck('name', 'id'))
-            ->required();
-        $this->currency('number')
-            ->symbol('')
-            ->required();
-        $this->date('purchased');
-        $this->date('expired');
-        $this->textarea('description');
+        $this->row(function (Row $row) {
+            $row->width(6)
+                ->select('consumable_id')
+                ->options(ConsumableRecord::pluck('name', 'id'))
+                ->required();
+            $row->width(6)
+                ->currency('number')
+                ->symbol('')
+                ->required();
+            $row->width(6)
+                ->date('purchased');
+            $row->width(6)
+                ->date('expired');
+            $row->width()
+                ->textarea('description');
+        });
     }
 }

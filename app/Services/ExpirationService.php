@@ -65,7 +65,6 @@ class ExpirationService
      */
     public static function itemExpirationLeftDays($item_type, $id): int|string
     {
-        $item = null;
         $item = Support::getItemRecordByClass($item_type, $id);
         $day = 0;
         if ($item) {

@@ -16,7 +16,6 @@ use App\Models\ConsumableCategory;
 use App\Models\VendorRecord;
 use App\Show;
 use App\Support\Data;
-use App\Support\Support;
 use App\Traits\ControllerHasCustomColumns;
 use App\Traits\ControllerHasDeviceRelatedGrid;
 use App\Traits\ControllerHasTab;
@@ -229,41 +228,28 @@ class ConsumableRecordController extends AdminController
     protected function form(): Form
     {
         return Form::make(new ConsumableRecord(), function (Form $form) {
-            $form->display('id');
-            $form->text('name')
-                ->required();
-            $form->text('specification')
-                ->required();
-            if (Support::ifSelectCreate()) {
-                $form->selectCreate('category_id')
-                    ->options(ConsumableCategory::class)
-                    ->ajax(admin_route('selection.consumable.categories'))
-                    ->url(admin_route('consumable.categories.create'))
+            $form->row(function (\Dcat\Admin\Form\Row $row) {
+                $row->text('name')
                     ->required();
-                $form->selectCreate('vendor_id')
-                    ->options(VendorRecord::class)
-                    ->ajax(admin_route('selection.vendor.records'))
-                    ->url(admin_route('vendor.records.create'))
+                $row->text('specification')
                     ->required();
-            } else {
-                $form->select('category_id')
+                $row->select('category_id')
                     ->options(ConsumableCategory::pluck('name', 'id'))
                     ->required();
-                $form->select('vendor_id')
+                $row->select('vendor_id')
                     ->options(VendorRecord::pluck('name', 'id'))
                     ->required();
-            }
-            $form->divider();
-            $form->text('description');
-            $form->text('price');
+                $row->divider();
+                $row->text('description');
+                $row->text('price');
 
-            /**
-             * 自定义字段.
-             */
-            ControllerHasCustomColumns::makeForm((new ConsumableRecord())->getTable(), $form);
-
-            $form->display('created_at');
-            $form->display('updated_at');
+                /**
+                 * 自定义字段
+                 */
+                foreach (ControllerHasCustomColumns::getCustomColumns((new ConsumableRecord())->getTable()) as $custom_column) {
+                    ControllerHasCustomColumns::makeForm($custom_column, $row);
+                }
+            });
 
             $form->disableDeleteButton();
         });

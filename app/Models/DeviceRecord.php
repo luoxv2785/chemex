@@ -31,7 +31,6 @@ use Illuminate\Translation\Translator;
  * @property float price
  * @property string purchased
  * @property string expired
- * @property int purchased_channel_id
  * @property string asset_number
  * @property int id
  * @property PartRecord part
@@ -60,7 +59,6 @@ class DeviceRecord extends Model
         'user.name',
         'user.department.name',
         'expiration_left_days',
-        'channel.name',
         'depreciation.name',
         'qrcode',
     ];
@@ -73,7 +71,6 @@ class DeviceRecord extends Model
     public array $sortExceptColumns = [
         'category_id',
         'vendor_id',
-        'purchased_channel_id',
         'depreciation_rule_id',
         'deleted_at',
     ];
@@ -110,16 +107,6 @@ class DeviceRecord extends Model
     public function vendor(): HasOne
     {
         return $this->hasOne(VendorRecord::class, 'id', 'vendor_id');
-    }
-
-    /**
-     * 设备记录有一个购入途径.
-     *
-     * @return HasOne
-     */
-    public function channel(): HasOne
-    {
-        return $this->hasOne(PurchasedChannel::class, 'id', 'purchased_channel_id');
     }
 
     /**
@@ -218,21 +205,6 @@ class DeviceRecord extends Model
     }
 
     /**
-     * 判断设备是否借用状态
-     *
-     * @return bool
-     */
-    public function isLend(): bool
-    {
-        $result = $this->track()->value('lend_time');
-        if ($result == null) {
-            return false;
-        }
-
-        return true;
-    }
-
-    /**
      * 返回设备状态.
      *
      * @return array|string|\Illuminate\Translation\Translator|\Illuminate\Contracts\Foundation\Application|null
@@ -256,6 +228,21 @@ class DeviceRecord extends Model
     }
 
     /**
+     * 判断设备是否借用状态
+     *
+     * @return bool
+     */
+    public function isLend(): bool
+    {
+        $result = $this->track()->value('lend_time');
+        if ($result == null) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * 设备有很多归属记录.
      *
      * @return HasMany
@@ -264,31 +251,6 @@ class DeviceRecord extends Model
     {
         return $this->hasMany(DeviceTrack::class, 'device_id', 'id');
     }
-
-//    /**
-//     * 设备有审批历史.
-//     * @return HasOne
-//     */
-//    public function approvalHistory(): HasOne
-//    {
-//        return $this->hasOne(ApprovalHistory::class, 'item_id', 'id')
-//            ->where('item', get_class($this));
-//    }
-
-//    /**
-//     * 返回流程名称.
-//     * @return null
-//     */
-//    public function isInApproval()
-//    {
-//        $approval_history = $this->approvalHistory()->first();
-//        if (empty($approval_history)) {
-//            return null;
-//        }
-////        dd($this->approvalHistory()->first());
-//        $approval_record = $approval_history->approval()->first();
-//        return $approval_record->name;
-//    }
 
     /**
      * 删除方法.

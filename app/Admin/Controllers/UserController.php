@@ -79,17 +79,9 @@ class UserController extends BaseUserController
             $form->select('gender')
                 ->options(Data::genders())
                 ->required();
-            if (Support::ifSelectCreate()) {
-                $form->selectCreate('department_id', admin_trans_label('Department'))
-                    ->options(Department::class)
-                    ->ajax(admin_route('selection.organization.departments'))
-                    ->url(admin_route('organization.departments.create'))
-                    ->default(0);
-            } else {
-                $form->select('department_id', admin_trans_label('Department'))
-                    ->options(Department::selectOptions())
-                    ->required();
-            }
+            $form->select('department_id', admin_trans_label('Department'))
+                ->options(Department::selectOptions())
+                ->required();
             $form->divider();
 
             if ($id) {

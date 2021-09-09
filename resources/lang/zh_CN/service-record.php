@@ -30,13 +30,9 @@ return [
         'price' => '价格',
         'purchased' => '购入日期',
         'expired' => '过保日期',
-        'channel' => [
-            'name' => '购入途径',
-        ],
         'device_id' => '设备',
         'issue' => '异常',
         'start' => '开始时间',
-        'purchased_channel_id' => '购入途径',
     ],
     'options' => [
     ],

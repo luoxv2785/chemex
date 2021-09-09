@@ -14,10 +14,8 @@ use App\Form;
 use App\Grid;
 use App\Models\ColumnSort;
 use App\Models\DeviceRecord;
-use App\Models\PurchasedChannel;
 use App\Show;
 use App\Support\Data;
-use App\Support\Support;
 use App\Traits\ControllerHasCustomColumns;
 use App\Traits\ControllerHasDeviceRelatedGrid;
 use App\Traits\ControllerHasTab;
@@ -64,7 +62,7 @@ class ServiceRecordController extends AdminController
      */
     protected function grid(): Grid
     {
-        return Grid::make(new ServiceRecord(['device', 'channel']), function (Grid $grid) {
+        return Grid::make(new ServiceRecord(['device']), function (Grid $grid) {
             $sort_columns = $this->sortColumns();
             $grid->column('id', '', $sort_columns);
             $grid->column('name', '', $sort_columns);
@@ -75,7 +73,6 @@ class ServiceRecordController extends AdminController
                     return admin_route('device.records.show', [$this->device['id']]);
                 }
             });
-            $grid->column('channel.name', '', $sort_columns);
             $grid->column('created_at', '', $sort_columns);
             $grid->column('updated_at', '', $sort_columns);
 
@@ -194,7 +191,7 @@ class ServiceRecordController extends AdminController
      */
     protected function detail(int $id): Show
     {
-        return Show::make($id, new ServiceRecord(['channel', 'device']), function (Show $show) {
+        return Show::make($id, new ServiceRecord(['device']), function (Show $show) {
             $sort_columns = $this->sortColumns();
             $show->field('id', '', $sort_columns);
             $show->field('name', '', $sort_columns);
@@ -203,7 +200,6 @@ class ServiceRecordController extends AdminController
             $show->field('price', '', $sort_columns);
             $show->field('purchased', '', $sort_columns);
             $show->field('expired', '', $sort_columns);
-            $show->field('channel.name', '', $sort_columns);
 
             /**
              * 自定义字段.
@@ -247,34 +243,29 @@ class ServiceRecordController extends AdminController
     protected function form(): Form
     {
         return Form::make(new ServiceRecord(), function (Form $form) {
-            $form->display('id');
-            $form->text('name')->required();
-            $form->divider();
-            $form->text('description');
-            $form->switch('status')
-                ->default(0)
-                ->help(admin_trans_label('Status Help'));
-            $form->currency('price');
-            $form->date('purchased');
-            $form->date('expired');
+            $form->row(function (\Dcat\Admin\Form\Row $row) {
+                $row->width()
+                    ->text('name')->required();
+                $row->width()
+                    ->text('description');
+                $row->width(6)
+                    ->switch('status')
+                    ->default(0)
+                    ->help(admin_trans_label('Status Help'));
+                $row->width(6)
+                    ->currency('price');
+                $row->width(6)
+                    ->date('purchased');
+                $row->width(6)
+                    ->date('expired');
 
-            if (Support::ifSelectCreate()) {
-                $form->selectCreate('purchased_channel_id')
-                    ->options(PurchasedChannel::class)->ajax(admin_route('selection.purchased.channels'))
-                    ->ajax(admin_route('selection.purchased.channels'))
-                    ->url(admin_route('purchased.channels.create'));
-            } else {
-                $form->select('purchased_channel_id')
-                    ->options(PurchasedChannel::pluck('name', 'id'));
-            }
-
-            /**
-             * 自定义字段.
-             */
-            ControllerHasCustomColumns::makeForm((new ServiceRecord())->getTable(), $form);
-
-            $form->display('created_at');
-            $form->display('updated_at');
+                /**
+                 * 自定义字段
+                 */
+                foreach (ControllerHasCustomColumns::getCustomColumns((new ServiceRecord())->getTable()) as $custom_column) {
+                    ControllerHasCustomColumns::makeForm($custom_column, $row);
+                }
+            });
 
             /**
              * 按钮控制.
