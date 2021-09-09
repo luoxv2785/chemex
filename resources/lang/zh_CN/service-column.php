@@ -25,9 +25,6 @@ return [
         'price' => '价格',
         'purchased' => '购入日期',
         'expired' => '过保日期',
-        'channel' => [
-            'name' => '购入途径',
-        ],
         'issue' => '异常',
         'start' => '开始时间',
         'nick_name' => '字段别名',

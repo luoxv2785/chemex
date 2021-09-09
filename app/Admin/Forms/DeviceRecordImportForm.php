@@ -6,7 +6,6 @@ use App\Models\CustomColumn;
 use App\Models\DeviceCategory;
 use App\Models\DeviceRecord;
 use App\Models\DeviceTrack;
-use App\Models\PurchasedChannel;
 use App\Models\User;
 use App\Models\VendorRecord;
 use Box\Spout\Common\Exception\IOException;
@@ -77,15 +76,6 @@ class DeviceRecordImportForm extends Form
                         }
                         if (!empty($row['过保日期'])) {
                             $device_record->expired = $row['过保日期'];
-                        }
-                        if (!empty($row['购入途径'])) {
-                            $purchased_channel = PurchasedChannel::where('name', $row['购入途径'])->first();
-                            if (empty($purchased_channel)) {
-                                $purchased_channel = new PurchasedChannel();
-                                $purchased_channel->name = $row['购入途径'];
-                                $purchased_channel->save();
-                            }
-                            $device_record->purchased_channel_id = $purchased_channel->id;
                         }
 
                         // 处理自定义字段的导入

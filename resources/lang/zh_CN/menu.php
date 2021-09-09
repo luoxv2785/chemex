@@ -14,7 +14,6 @@ return [
         'scaffold' => '代码生成器',
         'icons' => '图标',
 
-        'purchased_channels' => '购入途径',
         'vendor_records' => '厂商',
         'device' => '设备',
         'device_categories' => '设备分类',

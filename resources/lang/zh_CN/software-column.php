@@ -26,9 +26,6 @@ return [
         'vendor' => [
             'name' => '厂商',
         ],
-        'channel' => [
-            'name' => '购入途径',
-        ],
         'price' => '价格',
         'purchased' => '购入时间',
         'expired' => '过保时间',

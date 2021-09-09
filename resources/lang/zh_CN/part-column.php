@@ -25,9 +25,6 @@ return [
         'vendor' => [
             'name' => '厂商',
         ],
-        'channel' => [
-            'name' => '购入途径',
-        ],
         'device' => [
             'name' => '所属设备',
         ],

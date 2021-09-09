@@ -79,7 +79,6 @@ class DatabaseBackup extends Command
             'part_categories',
             'part_records',
             'part_tracks',
-            'purchased_channels',
             'service_issues',
             'service_records',
             'service_tracks',

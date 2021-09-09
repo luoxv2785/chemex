@@ -5,7 +5,6 @@ namespace App\Admin\Forms;
 use App\Models\CustomColumn;
 use App\Models\PartCategory;
 use App\Models\PartRecord;
-use App\Models\PurchasedChannel;
 use App\Models\VendorRecord;
 use Box\Spout\Common\Exception\IOException;
 use Box\Spout\Common\Exception\UnsupportedTypeException;
@@ -76,15 +75,6 @@ class PartRecordImportForm extends Form
                         }
                         if (!empty($row['过保日期'])) {
                             $part_record->expired = $row['过保日期'];
-                        }
-                        if (!empty($row['购入途径'])) {
-                            $purchased_channel = PurchasedChannel::where('name', $row['购入途径'])->first();
-                            if (empty($purchased_channel)) {
-                                $purchased_channel = new PurchasedChannel();
-                                $purchased_channel->name = $row['购入途径'];
-                                $purchased_channel->save();
-                            }
-                            $part_record->purchased_channel_id = $purchased_channel->id;
                         }
 
                         /*

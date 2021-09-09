@@ -32,9 +32,6 @@ return [
         'vendor' => [
             'name' => '厂商',
         ],
-        'channel' => [
-            'name' => '购入途径',
-        ],
         'user' => [
             'name' => '用户',
             'department' => [

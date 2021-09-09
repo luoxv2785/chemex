@@ -3,7 +3,6 @@
 namespace App\Admin\Forms;
 
 use App\Models\CustomColumn;
-use App\Models\PurchasedChannel;
 use App\Models\SoftwareCategory;
 use App\Models\SoftwareRecord;
 use App\Models\VendorRecord;
@@ -76,15 +75,6 @@ class SoftwareRecordImportForm extends Form
                         }
                         if (!empty($row['授权数量'])) {
                             $software_record->counts = $row['授权数量'];
-                        }
-                        if (!empty($row['购入途径'])) {
-                            $purchased_channel = PurchasedChannel::where('name', $row['购入途径'])->first();
-                            if (empty($purchased_channel)) {
-                                $purchased_channel = new PurchasedChannel();
-                                $purchased_channel->name = $row['购入途径'];
-                                $purchased_channel->save();
-                            }
-                            $software_record->purchased_channel_id = $purchased_channel->id;
                         }
 
                         /*
