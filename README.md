@@ -139,7 +139,9 @@ MySQL 账密：chemex/chemex
 
 随时随地保持更新可以在项目根目录中执行 `sudo git fetch --all && git reset --hard origin/main && git pull` 命令，将会同步分支的最新修改内容。
 
-接着，执行 `php artisan chemex:update` 来进行升级。
+然后，执行 `composer update -vvv` 来更新依赖包。
+
+最后，执行 `php artisan chemex:update` 来进行升级。
 
 > 注意，如果提示 permission denied 错误，需要通过 sudo 身份执行。
 
