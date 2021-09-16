@@ -13,4 +13,4 @@ npm-debug.log
 yarn-error.log
 composer.lock
 /vendor
-
+.DS_Store
