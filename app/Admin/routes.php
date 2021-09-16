@@ -10,7 +10,6 @@ use App\Admin\Controllers\DeviceStatisticsController;
 use App\Admin\Controllers\NotificationController;
 use App\Admin\Controllers\PartCategoryController;
 use App\Admin\Controllers\PartStatisticsController;
-use App\Admin\Controllers\PurchasedChannelController;
 use App\Admin\Controllers\RoleController;
 use App\Admin\Controllers\ServiceStatisticsController;
 use App\Admin\Controllers\SiteLDAPController;
@@ -214,7 +213,7 @@ Route::group([
      * 菜单.
      */
     $router->resource('/menu', 'MenuController')
-        ->names('menu');
+        ->names('site.menu');
 
     $router->get('/site/setting', [SiteSettingController::class, 'index'])
         ->name('site.setting.index');
