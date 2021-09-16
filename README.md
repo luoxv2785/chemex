@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-    <a href="https://chemex.celaraze.com" target="_blank">演示地址</a>（账密都是：admin） |
+    演示地址（迁移中） |
     <a href="https://jq.qq.com/?_wv=1027&k=tnV2HCWU">用户交流群（QQ）</a>
 </p>
 
@@ -41,7 +41,7 @@
 <img src="https://tva1.sinaimg.cn/large/008eGmZEly1gov9g3tzrnj30u00wj0tn.jpg" width="150"/>
 </a>
 
-[Laravel](https://laravel.com/) ，优雅的 PHP Web 框架。
+[Laravel](https://laravel.com) ，优雅的 PHP Web 框架。
 
 [Dcat Admin](https://dcatadmin.com) ，高颜值、高效率的后台开发框架。
 
@@ -68,6 +68,8 @@
 `git`，用于管理版本，部署和升级必要工具。
 
 `PHP 8+` ，仅支持 PHP8。
+
+`composer`，PHP 的包管理工具，用于安装必要的依赖包。
 
 `MySQL 5.7+`，数据库引擎，理论上 `MariaDB 10.2 +` 兼容支持。
 
@@ -99,18 +101,20 @@
 
 2：为你的计算机安装 `MySQL` 或者 `mariadb`。
 
-3：在你想要的目录中，执行 `git clone https://gitee.com/celaraze/chemex.git` 完成下载。
+3：在你想要的目录中，执行 `git clone https://gitee.com/dcat-phper/chemex.git` 完成下载。
 
 4：在项目根目录中，复制 `.env.example` 文件为一份新的，并重命名为 `.env`。
 
 5：根据 `.env` 文件中注释的指引进行配置。
 
-6：你可能使用的web服务器为 `nginx` 以及 `apache`，无论怎样，应用的起始路径在 `/public` 目录，请确保指向正确，同时程序的根目录权限应该调整为：拥有者和你的 Web 服务器运行用户一致，例如 www
+6：在项目根目录中，执行 `composer update -vvv`。
+
+7：你可能使用的web服务器为 `nginx` 以及 `apache`，无论怎样，应用的起始路径在 `/public` 目录，请确保指向正确，同时程序的根目录权限应该调整为：拥有者和你的 Web 服务器运行用户一致，例如 www
 用户，且根目录权限为 `755`。`/storage` 目录设置为 `777` 权限。
 
-7：修改web服务器的伪静态规则为：`try_files $uri $uri/ /index.php?$args;`。
+8：修改web服务器的伪静态规则为：`try_files $uri $uri/ /index.php?$args;`。
 
-8：此时可以通过访问 `http://your_domain` 来使用咖啡壶。管理员账号密码为：`admin / admin`。
+9：此时可以通过访问 `http://your_domain` 来使用咖啡壶。管理员账号密码为：`admin / admin`。
 
 ### OVF
 
