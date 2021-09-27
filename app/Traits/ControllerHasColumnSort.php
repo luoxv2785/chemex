@@ -2,7 +2,6 @@
 
 namespace App\Traits;
 
-use Ace\Uni;
 use App\Admin\Actions\Tree\RowAction\CustomColumnDeleteAction;
 use App\Admin\Actions\Tree\RowAction\CustomColumnUpdateAction;
 use App\Admin\Actions\Tree\ToolAction\ConsumableColumnSortDeleteAction;
@@ -197,9 +196,9 @@ trait ControllerHasColumnSort
             })
             ->options(Data::customColumnTypes())
             ->required();
-        $form->radio('is_nullable')
-            ->options(Uni::yesOrNo())
-            ->help(admin_trans_label('Is Nullable Help'))
+        $form->radio('must')
+            ->options(['否', '是'])
+            ->help(admin_trans_label('Must Help'))
             ->default(0);
 
         return Box::make(trans('admin.new'), $form);
@@ -267,7 +266,7 @@ trait ControllerHasColumnSort
                     if ($custom_column->type == 'select') {
                         $custom_column->select_options = $form->input('select_options');
                     }
-                    $custom_column->is_nullable = $form->input('is_nullable');
+                    $custom_column->must = $form->input('must');
 
                     /**
                      * 创建自定义字段的数据库迁移动作.
@@ -279,7 +278,7 @@ trait ControllerHasColumnSort
                                 if ($type == 'select') {
                                     $type = 'string';
                                 }
-                                if ((bool)$custom_column->is_nullable == 1 || ($type == 'date' || $type == 'dateTime' || $type == 'select')) {
+                                if ((bool)$custom_column->must == 0 || ($type == 'date' || $type == 'dateTime' || $type == 'select')) {
                                     $table->$type($custom_column->name)->nullable();
                                 } else {
                                     $table->$type($custom_column->name)->default(0);

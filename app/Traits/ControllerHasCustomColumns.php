@@ -47,7 +47,7 @@ trait ControllerHasCustomColumns
             default:
                 $row = $row->text($custom_column->name, $custom_column->nick_name);
         }
-        if ($custom_column->is_nullable == 0) {
+        if ($custom_column->must == 1) {
             $row->width()->required();
         }
 

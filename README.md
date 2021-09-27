@@ -25,11 +25,11 @@
 
 ## Gitee Star 趋势
 
-[![Stargazers over time](https://whnb.wang/img/celaraze/chemex)](https://whnb.wang/celaraze/chemex)
+[![Giteye chart](https://chart.giteye.net/gitee/dcat-phper/chemex/UWZGY8HM.png)](https://giteye.net/chart/UWZGY8HM)
 
 ## 贡献者
 
-[![Giteye chart](https://chart.giteye.net/gitee/celaraze/chemex/E8FNVV4W.png)](https://giteye.net/chart/E8FNVV4W)
+[![Giteye chart](https://chart.giteye.net/gitee/dcat-phper/chemex/5H7WBLM7.png)](https://giteye.net/chart/5H7WBLM7)
 
 ## 鸣谢
 

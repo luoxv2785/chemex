@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string table_name
  * @property string name
  * @property string type
- * @property int is_nullable
+ * @property int must
  * @property string nick_name
  * @property string|null select_options
  *

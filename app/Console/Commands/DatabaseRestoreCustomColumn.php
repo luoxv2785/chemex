@@ -49,7 +49,7 @@ class DatabaseRestoreCustomColumn extends Command
             try {
                 Schema::table($custom_column->table_name, function (Blueprint $table) use ($custom_column) {
                     $type = $custom_column->type;
-                    if ($custom_column->is_nullable == 0) {
+                    if ($custom_column->must == 1) {
                         $nullable = false;
                     } else {
                         $nullable = true;

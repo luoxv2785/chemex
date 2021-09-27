@@ -370,7 +370,7 @@ class Version300 extends Migration
             $table->string('name');
             $table->string('nick_name');
             $table->string('type');
-            $table->integer('is_nullable');
+            $table->integer('must');
             $table->longText('select_options')->nullable();
             $table->softDeletes();
             $table->timestamps();
