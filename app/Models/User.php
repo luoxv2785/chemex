@@ -79,23 +79,6 @@ class User extends Administrator implements JWTSubject
     }
 
     /**
-     * 设备记录在远处有一个使用者（用户）.
-     *
-     * @return HasManyThrough
-     */
-    public function device(): HasManyThrough
-    {
-        return $this->hasManyThrough(
-            DeviceRecord::class,  // 远程表
-            DeviceTrack::class,   // 中间表
-            'user_id',    // 中间表对主表的关联字段
-            'id',   // 远程表对中间表的关联字段
-            'id',   // 主表对中间表的关联字段
-            'device_id'
-        ); // 中间表对远程表的关联字段
-    }
-
-    /**
      * 用户的资产总价值
      *
      * @return int
@@ -117,5 +100,32 @@ class User extends Administrator implements JWTSubject
         }
 
         return $price;
+    }
+
+    /**
+     * 用户的设备数量
+     *
+     * @return int
+     */
+    public function deviceCounts(): int
+    {
+        return $this->device()->count();
+    }
+
+    /**
+     * 设备记录在远处有一个使用者（用户）.
+     *
+     * @return HasManyThrough
+     */
+    public function device(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            DeviceRecord::class,  // 远程表
+            DeviceTrack::class,   // 中间表
+            'user_id',    // 中间表对主表的关联字段
+            'id',   // 远程表对中间表的关联字段
+            'id',   // 主表对中间表的关联字段
+            'device_id'
+        ); // 中间表对远程表的关联字段
     }
 }

@@ -125,5 +125,6 @@ return [
     'approval_record' => '审批',
     'approval_track' => '流程',
     'approval_history' => '历史',
-    'parameter_missing' => '缺失必要的字段'
+    'parameter_missing' => '缺失必要的字段',
+    'my_device_counts' => '我的设备总数'
 ];

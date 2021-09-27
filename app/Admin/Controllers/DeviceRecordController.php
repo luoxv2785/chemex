@@ -365,6 +365,7 @@ class DeviceRecordController extends AdminController
                     $filter->panel();
                 }
                 $filter->scope('history', admin_trans_label('Deleted'))->onlyTrashed();
+                $filter->scope('no_user', admin_trans_label('No User'))->doesntHave('admin_user');
                 $filter->equal('category_id')->select(DeviceCategory::pluck('name', 'id'));
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
                 $filter->equal('admin_user.name')->select(Support::selectUsers('name'));

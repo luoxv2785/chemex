@@ -28,7 +28,8 @@ return [
         'File Help' => '导入支持xlsx、csv文件，且表格头必填栏位【资产编号、分类、厂商】，支持咖啡壶导出的Excel文件直接导入。',
         'Deleted' => '已删除',
         'Track Delete' => '解除归属',
-        'Track Delete Confirm' => '确认解除与此用户的关联？'
+        'Track Delete Confirm' => '确认解除与此用户的关联？',
+        'No User' => '闲置'
     ],
     'fields' => [
         'asset_number_qrcode' => '二维码',
@@ -93,7 +94,8 @@ return [
         'depreciation_price' => '折旧后价格',
         'file' => '文件',
         'depreciation_rule_id' => '折旧规则',
-        'device_status' => '设备状态'
+        'device_status' => '设备状态',
+        'no_user' => '闲置'
     ],
     'options' => [
     ],

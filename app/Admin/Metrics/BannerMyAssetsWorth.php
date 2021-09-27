@@ -22,8 +22,8 @@ class BannerMyAssetsWorth extends Card
             $content->simple();
         }
         $user = User::find(auth('admin')->user()->id);
-        $value = $user->itemsPrice();
-        $text = trans('main.my_assets_worth');
+        $value = $user->deviceCounts();
+        $text = trans('main.my_device_counts');
         $html = <<<HTML
 <div class="small-box" style="padding:0 20px;height:100px;margin-bottom: 0;border-radius: .25rem;background: url('static/images/green.png') no-repeat;background-size: 100% 100%;">
     <div class="inner">
