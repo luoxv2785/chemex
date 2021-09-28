@@ -14,7 +14,9 @@ class Version321 extends Migration
     public function up()
     {
         Schema::table('custom_columns', function (Blueprint $table) {
-            $table->renameColumn('is_nullable', 'must');
+            if (Schema::hasColumn('custom_columns', 'is_nullable')) {
+                $table->renameColumn('is_nullable', 'must');
+            }
         });
     }
 
@@ -25,8 +27,6 @@ class Version321 extends Migration
      */
     public function down()
     {
-        Schema::table('custom_columns', function (Blueprint $table) {
-            $table->renameColumn('must', 'is_nullable');
-        });
+
     }
 }

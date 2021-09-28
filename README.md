@@ -3,7 +3,6 @@
 </p>
 
 <p align="center">
-    演示地址（迁移中） |
     <a href="https://jq.qq.com/?_wv=1027&k=tnV2HCWU">用户交流群（QQ）</a>
 </p>
 
