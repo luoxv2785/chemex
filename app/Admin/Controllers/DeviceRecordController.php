@@ -36,6 +36,7 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Card;
 use Dcat\Admin\Widgets\Tab;
+use DcatRoutes;
 use Illuminate\Http\Request;
 
 /**
@@ -50,6 +51,7 @@ use Illuminate\Http\Request;
  * @method track()
  * @method status()
  */
+#[DcatRoutes(DeviceRecord::class)]
 class DeviceRecordController extends AdminController
 {
     use ControllerHasDeviceRelatedGrid;

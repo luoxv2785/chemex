@@ -12,8 +12,6 @@
 */
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CheckController;
-use App\Http\Controllers\QueryController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -24,7 +22,3 @@ Route::group([
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('me', [AuthController::class, 'me']);
 });
-
-Route::get('query/{asset_number}', [QueryController::class, 'handle']);
-Route::get('check/{string}', [CheckController::class, 'check']);
-Route::post('check/do', [CheckController::class, 'checkDo']);
