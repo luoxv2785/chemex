@@ -34,7 +34,7 @@
         "spiral/roadrunner": "^2.0",
         "tecnickcom/tcpdf": "^6.3",
         "tymon/jwt-auth": "^1.0",
-        "celaraze/dcat-routes": "dev-main"
+        "celaraze/dcat-routes": "dev-master"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
