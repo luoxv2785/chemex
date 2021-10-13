@@ -2,7 +2,6 @@
 
 namespace Celaraze\DcatRoutes;
 
-use Celaraze\DcatRoutes\Http\Middleware\MiddleInject;
 use Dcat\Admin\Extend\ServiceProvider as BaseServiceProvider;
 
 /**
@@ -22,7 +21,7 @@ class ServiceProvider extends BaseServiceProvider
 
         ],
         'middle' => [
-            MiddleInject::class,
+//            MiddleInject::class,
         ],
         'after' => [
 
