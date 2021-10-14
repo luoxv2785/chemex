@@ -33,8 +33,7 @@
         "overtrue/laravel-pinyin": "~4.0",
         "spiral/roadrunner": "^2.0",
         "tecnickcom/tcpdf": "^6.3",
-        "tymon/jwt-auth": "^1.0",
-        "celaraze/dcat-routes": "dev-master"
+        "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -78,11 +77,5 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ]
-    },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "./dcat-admin-extensions/celaraze/dcat-routes"
-        }
-    ]
+    }
 }
