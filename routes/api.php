@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\AssetController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,5 @@ Route::group([
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('me', [AuthController::class, 'me']);
 });
+
+Route::resource('assets', AssetController::class);
