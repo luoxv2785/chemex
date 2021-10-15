@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/Latest Release-3.2.1-orange" />
+    <img src="https://img.shields.io/badge/Latest Release-3.3.0-orange" />
     <img src="https://img.shields.io/badge/PHP-8+-green" />
     <img src="https://img.shields.io/badge/MySQL-5.7+-blueviolet" />
     <img src="https://img.shields.io/badge/License-GPL3.0-blue" />
@@ -112,27 +112,6 @@
 8：修改web服务器的伪静态规则为：`try_files $uri $uri/ /index.php?$args;`。
 
 9：此时可以通过访问 `http://your_domain` 来使用咖啡壶。管理员账号密码为：`admin / admin`。
-
-### OVF
-
-> 此部署方式版本暂停在 3.0.1，近期将会恢复更新
-
-考虑到部署复杂性，我们也提供了基于 Ubuntu 20.04 Server 制作的 OVF 包。OVF 支持 VMware ESXi 6.5+ 或 VMware Workstation 14.x+ 或 VMware Fusion
-10.x+。
-
-下载地址：[https://pan.baidu.com/s/1AuTv5UMxzzMkTdP9Ca5J_A](https://pan.baidu.com/s/1AuTv5UMxzzMkTdP9Ca5J_A)，提取码：`8mok`。
-
-OVF 中包含以下组件：Nginx MySQL PHP7.4，网络通过 NAT 实现。
-
-> 此 OVF 中的 chemex 版本为支持 PHP7.4 的版本，但 chemex 从 3.0.4 开始将仅支持 PHP8.0 。
-
-Ubuntu 账密：chemex/chemex
-
-Web 程序主目录：/var/www/html
-
-MySQL 账密：chemex/chemex
-
-部署完成后，LNMP 服务会自启，先查看此虚拟机 IP，然后在其它主机直接通过 IP 访问 Web 服务即可。
 
 ## 版本更新
 
