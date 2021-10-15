@@ -6,15 +6,16 @@ use App\Admin\Forms\MaintenanceRecordCreateForm;
 use Dcat\Admin\Grid\RowAction;
 use Dcat\Admin\Widgets\Modal;
 
+
 class MaintenanceRecordCreateAction extends RowAction
 {
-    protected ?string $item = null;
+    protected ?string $asset_number = null;
 
-    public function __construct($item)
+    public function __construct($asset_number)
     {
         parent::__construct();
         $this->title = '<i class="fa fa-fw feather icon-box"></i> ' . admin_trans_label('Maintenance Create');
-        $this->item = $item;
+        $this->asset_number = $asset_number;
     }
 
     /**
@@ -25,8 +26,7 @@ class MaintenanceRecordCreateAction extends RowAction
     public function render(): Modal
     {
         $form = MaintenanceRecordCreateForm::make()->payload([
-            'item' => $this->item,
-            'item_id' => $this->getKey(),
+            'asset_number' => $this->asset_number
         ]);
 
         return Modal::make()

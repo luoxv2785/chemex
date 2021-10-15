@@ -122,7 +122,7 @@ class PartRecordController extends AdminController
                     }
                     // @permissions
                     if (Admin::user()->can('part.maintenance.create')) {
-                        $actions->append(new MaintenanceRecordCreateAction('part'));
+                        $actions->append(new MaintenanceRecordCreateAction($this->asset_number));
                     }
                 }
             });

@@ -11,11 +11,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static whereBetween(string $string, array $array)
  * @method static count()
  *
- * @property string item
- * @property int item_id
  * @property string ng_description
  * @property string ng_time
  * @property int status
+ * @property string $asset_number
  */
 class MaintenanceRecord extends Model
 {

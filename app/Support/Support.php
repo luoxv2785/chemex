@@ -162,24 +162,6 @@ class Support
     }
 
     /**
-     * 物品id换取物品名称.
-     *
-     * @param $item
-     * @param $item_id
-     *
-     * @return null|string
-     */
-    public static function itemIdToItemAssetNumber($item, $item_id): ?string
-    {
-        $item_record = self::getItemRecordByClass($item, $item_id);
-        if (empty($item_record)) {
-            return '失踪了';
-        } else {
-            return $item_record->asset_number;
-        }
-    }
-
-    /**
      * 通过类名获取对应物资的模型.
      *
      * @param $item
@@ -189,19 +171,11 @@ class Support
      */
     public static function getItemRecordByClass($item, $item_id)
     {
-        $item_record = null;
-        switch ($item) {
-            case 'part':
-                $item_record = PartRecord::where('id', $item_id)->first();
-                break;
-            case 'software':
-                $item_record = SoftwareRecord::where('id', $item_id)->first();
-                break;
-            default:
-                $item_record = DeviceRecord::where('id', $item_id)->first();
-        }
-
-        return $item_record;
+        return match ($item) {
+            'part' => PartRecord::where('id', $item_id)->first(),
+            'software' => SoftwareRecord::where('id', $item_id)->first(),
+            default => DeviceRecord::where('id', $item_id)->first(),
+        };
     }
 
     /**

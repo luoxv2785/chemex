@@ -19,7 +19,7 @@ class AuthController extends Controller
      * @return array|\Illuminate\Http\JsonResponse
      */
     #[ArrayShape(['code' => "int", 'message' => "string", "data" => "mixed"])]
-    public function login()
+    public function login(): JsonResponse|array
     {
         $credentials = request(['username', 'password']);
 
@@ -38,7 +38,7 @@ class AuthController extends Controller
      * @return array|\Illuminate\Http\JsonResponse
      */
     #[ArrayShape(['code' => "int", 'message' => "string", "data" => "mixed"])]
-    protected function respondWithToken(string $token)
+    protected function respondWithToken(string $token): JsonResponse|array
     {
         $token = [
             'access_token' => $token,
@@ -63,7 +63,7 @@ class AuthController extends Controller
      * @return array|\Illuminate\Http\JsonResponse
      */
     #[ArrayShape(['code' => "int", 'message' => "string", "data" => "mixed"])]
-    public function logout()
+    public function logout(): JsonResponse|array
     {
         auth('api')->logout();
 
@@ -74,10 +74,10 @@ class AuthController extends Controller
      * 刷新token，如果开启黑名单，以前的token便会失效。
      * 值得注意的是用上面的getToken再获取一次Token并不算做刷新，两次获得的Token是并行的，即两个都可用。
      *
-     * @return JsonResponse
+     * @return array|JsonResponse
      */
     #[ArrayShape(['code' => "int", 'message' => "string", "data" => "mixed"])]
-    public function refresh(): JsonResponse
+    public function refresh(): JsonResponse|array
     {
         return $this->respondWithToken(auth('api')->refresh());
     }

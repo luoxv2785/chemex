@@ -36,7 +36,6 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Card;
 use Dcat\Admin\Widgets\Tab;
-use DcatRoutes;
 use Illuminate\Http\Request;
 
 /**
@@ -318,7 +317,7 @@ class DeviceRecordController extends AdminController
                     }
                     // @permissions
                     if (Admin::user()->can('device.maintenance.create')) {
-                        $actions->append(new MaintenanceRecordCreateAction('device'));
+                        $actions->append(new MaintenanceRecordCreateAction($this->asset_number));
                     }
                 }
             });

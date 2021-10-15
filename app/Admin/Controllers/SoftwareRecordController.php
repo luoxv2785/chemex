@@ -15,7 +15,6 @@ use App\Form;
 use App\Grid;
 use App\Models\ColumnSort;
 use App\Models\DeviceRecord;
-use App\Models\PurchasedChannel;
 use App\Models\SoftwareCategory;
 use App\Models\VendorRecord;
 use App\Services\ExpirationService;
@@ -81,7 +80,7 @@ class SoftwareRecordController extends AdminController
                 } else {
                     $row->column(6, $this->detail($id));
                     $row->column(6, function (Column $column) use ($id, $history) {
-                        $grid = Grid::make(new SoftwareTrack(['software', 'device', 'device.user']), function (Grid $grid) use ($id) {
+                        $grid = Grid::make(new SoftwareTrack(['software', 'device', 'device.admin_user']), function (Grid $grid) use ($id) {
                             $grid->model()->where('software_id', '=', $id);
                             $grid->tableCollapse(false);
                             $grid->withBorder();

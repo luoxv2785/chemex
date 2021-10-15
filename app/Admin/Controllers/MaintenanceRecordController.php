@@ -6,7 +6,6 @@ use App\Admin\Actions\Grid\RowAction\MaintenanceRecordUpdateAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\MaintenanceRecord;
 use App\Support\Data;
-use App\Support\Support;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Grid\Tools\Selector;
@@ -53,10 +52,7 @@ class MaintenanceRecordController extends AdminController
             $grid->model()->orderBy('status', 'ASC');
 
             $grid->column('id');
-            $grid->column('item')->using(Data::items());
-            $grid->column('item_id')->display(function () {
-                return Support::itemIdToItemAssetNumber($this->item, $this->item_id);
-            });
+            $grid->column('asset_number');
             $grid->column('ng_description')->limit(30);
             $grid->column('ok_description')->limit(30);
             $grid->column('ng_time');
@@ -73,7 +69,10 @@ class MaintenanceRecordController extends AdminController
                 }
             });
 
-            $grid->quickSearch('id', 'item', 'ng_description', 'ok_description')
+            $grid->quickSearch('id',
+                'ng_description',
+                'ok_description',
+                'asset_number')
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
 
