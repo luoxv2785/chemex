@@ -87,7 +87,7 @@ return [
     | Html title for all pages.
     |
     */
-    'title' => env('ADMIN_TITLE', '咖啡壶'),
+    'title' => env('ADMIN_TITLE', '资产管理系统'),
 
     /*
     |--------------------------------------------------------------------------
