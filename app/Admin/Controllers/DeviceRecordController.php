@@ -450,7 +450,7 @@ class DeviceRecordController extends AdminController
                     ->date('expired')
                     ->attribute('autocomplete', 'off');
 
-                $row->width()
+                $row->width(6)
                     ->text('description');
                 $row->width()
                     ->image('photo')
@@ -462,7 +462,7 @@ class DeviceRecordController extends AdminController
                  * 自定义字段
                  */
                 foreach (ControllerHasCustomColumns::getCustomColumns((new DeviceRecord())->getTable()) as $custom_column) {
-                    ControllerHasCustomColumns::makeForm($custom_column, $row);
+                    ControllerHasCustomColumns::makeForm($custom_column, $row->width(6));
                 }
             });
 
