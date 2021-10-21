@@ -15,41 +15,46 @@
         .STYLE4 {color: #ffffff}
         -->
 
-
     </style>
+
+
+
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
     <script type="text/javascript" src="/static/printjs/qr/jquery-1.4.4.min.js"></script>
     <script type="text/javascript" src="/static/printjs/qrcode.js"></script>
     <script type="text/javascript" src="/static/printjs/qr/jquery.jqprint-0.3.js"></script>
-
+<script type="text/javascript" src="/static/printjs/qr/jquery-migrate-1.1.0.js"></script>
 </head>
 <body>
-<script language="javascript">
-
-    function aa(){
-        $("#ddd").jqprint();
-    }
+<script type="text/javascript">
+function prints(o1){
+	$(o1).remove();
+	window.print();
+}
+function initbody(){
+	
+}
 </script>
 
+				
+
+
+@foreach($data as $service)
 
 
 
-<div id="ddd">
-    @foreach($data as $service)
-
-    <table border="0" cellpadding="0" cellspacing="0"  >
-
-        <tr>
+<table border="0" cellpadding="0" cellspacing="0"  >
+<tr>
 
 
 
-            <td>
+<td>
 
                 <table width="235" border="1" cellpadding="0" cellspacing="0" style="color: #ffffff;font-weight: bold;font-size:11px;font-family:微软雅黑;">
 
                     <input id="text{{$service['asset_number']}}" type="hidden" value="http://203.25.212.205:9999/device/shouji/{{$service['id']}}" >
                     <tr>
-                        <td colspan="2"><img src="/static/printjs/images/asset_logo4.gif" width="235" height="23" /></td>
+                        <td colspan="2"><img src="/static/printjs/images/asset_logo4.gif" width="235" height="30" /></td>
                     </tr>
                     <tr>
                         <td width="165" bgcolor="#23b14d"><span class="STYLE4">名称：{{$service['name']}}</span></td>
@@ -81,26 +86,36 @@
                             </script></td>
                     </tr>
                     <tr bgcolor="#23b14d">
-                        <td width="165"><span class="STYLE4">编号：{{$service['asset_number']}}</span></td>
+                        <td width="165; height:70px; "><span class="STYLE4">编号：{{$service['asset_number']}}</span></td>
                     </tr>
                     <tr bgcolor="#23b14d">
-                        <td width="165"><span class="STYLE4">人员：{{$service->admin_user()->value('name')}}</span></td>
+                        <td width="165; height:70px; "><span class="STYLE4">人员：{{$service->admin_user()->value('name')}}</span></td>
 
                     </tr>
                 </table>
-
+ 
             </td>
             <td width="15"></td>
-            </tr><tr height=7><td colspan=6></td></tr><tr>
+            </tr><tr height=13><td colspan=6></td></tr><tr>
+
 
     </table>
-    @endforeach
-</div>
+   @endforeach
+
+
+
 
 </div>
 
-<script>
-    $("#ddd").jqprint();
+</div>
+<script type="text/javascript">
+  window.print();
+  clearTimeout(timeout);
+  timeout=setTimeout(window.print(),1000); //留意window.print()的写法
 </script>
+
+
+
+
 </body>
 </html>
