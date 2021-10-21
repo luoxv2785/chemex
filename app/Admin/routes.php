@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Admin\Controllers\CheckRecordController;
 use App\Admin\Controllers\ConsumableCategoryController;
 use App\Admin\Controllers\DepartmentController;
