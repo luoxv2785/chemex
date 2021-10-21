@@ -127,6 +127,7 @@ class DeviceRecordController extends AdminController
         return Show::make($id, new DeviceRecord(['category', 'vendor', 'admin_user', 'admin_user.department', 'depreciation']), function (Show $show) {
             $sort_columns = $this->sortColumns();
             $show->field('id', '', $sort_columns);
+            $show->field('name', '', $sort_columns);
             $show->field('asset_number', '', $sort_columns);
             $show->field('description', '', $sort_columns);
             $show->field('category.name', '', $sort_columns);
@@ -232,6 +233,7 @@ class DeviceRecordController extends AdminController
         return Grid::make(new DeviceRecord(['category', 'vendor', 'admin_user', 'admin_user.department', 'depreciation']), function (Grid $grid) {
             $sort_columns = $this->sortColumns();
             $grid->column('id', '', $sort_columns);
+            $grid->column('name', '', $sort_columns);
             $grid->column('photo', '', $sort_columns)->image('', 50, 50);
             $grid->column('asset_number_qrcode', '', $sort_columns)->qrcode(function () {
                 return $this->asset_number;
@@ -355,6 +357,7 @@ class DeviceRecordController extends AdminController
                     'description',
                     'category.name',
                     'vendor.name',
+                    'name',
                     'mac',
                     'ip',
                     'price',
@@ -420,6 +423,7 @@ class DeviceRecordController extends AdminController
     {
         return Form::make(new DeviceRecord(), function (Form $form) {
             $form->row(function (\Dcat\Admin\Form\Row $row) use ($form) {
+                $row->width(6)->text('name')->required();
                 if ($form->isCreating() || empty($form->model()->asset_number)) {
                     $row->text('asset_number')->required();
                 } else {
