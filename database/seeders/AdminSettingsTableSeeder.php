@@ -99,14 +99,14 @@ class AdminSettingsTableSeeder extends Seeder
             11 =>
                 array(
                     'slug' => 'site_logo_text',
-                    'value' => '咖啡壶',
+                    'value' => '资产管理系统',
                     'created_at' => '2020-12-20 13:57:11',
                     'updated_at' => '2021-01-28 20:34:45',
                 ),
             12 =>
                 array(
                     'slug' => 'site_title',
-                    'value' => '咖啡壶',
+                    'value' => '资产管理系统',
                     'created_at' => '2020-12-20 13:57:11',
                     'updated_at' => '2021-01-28 20:34:45',
                 ),
