@@ -17,8 +17,6 @@
 
     </style>
 
-
-
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
     <script type="text/javascript" src="/static/printjs/qr/jquery-1.4.4.min.js"></script>
     <script type="text/javascript" src="/static/printjs/qrcode.js"></script>
