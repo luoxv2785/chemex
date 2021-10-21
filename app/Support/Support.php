@@ -35,17 +35,17 @@ class Support
 
         foreach ($device_records as $device_record) {
             if (!empty($device_record->asset_number)) {
-                array_push($data, $device_record->asset_number . '&#10;');
+                array_push($data, 'device:'.$device_record->asset_number . '&#10;');
             }
         }
         foreach ($part_records as $part_record) {
             if (!empty($part_record->asset_number)) {
-                array_push($data, $part_record->asset_number . '&#10;');
+                array_push($data, 'device:'.$part_record->asset_number . '&#10;');
             }
         }
         foreach ($software_records as $software_record) {
             if (!empty($software_record->asset_number)) {
-                array_push($data, $software_record->asset_number . '&#10;');
+                array_push($data, 'device:'.$software_record->asset_number . '&#10;');
             }
         }
 
