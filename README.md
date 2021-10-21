@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-    <a href="https://jq.qq.com/?_wv=1027&k=tnV2HCWU">用户交流群（QQ）</a>
+    <a href="https://jq.qq.com/?_wv=1027&k=jKgSLPCS">资产管理系统交流群</a>
 </p>
 
 <p align="center">
@@ -30,9 +30,9 @@
 
 [![Giteye chart](https://chart.giteye.net/gitee/dcat-phper/chemex/5H7WBLM7.png)](https://giteye.net/chart/5H7WBLM7)
 
-## 鸣谢
+## 鸣谢（咖啡壶）
 
-没有它们就没有 咖啡壶（Chemex）：
+没有它们就没有 资产管理系统（Chemex）：
 
 `JetBrains` 提供优秀的IDE。
 
