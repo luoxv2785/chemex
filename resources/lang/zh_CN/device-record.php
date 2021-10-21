@@ -10,7 +10,7 @@ return [
         'Photo Help' => '可以选择提供一张设备的照片作为概览。',
         'Security Password Help' => '安全密码，可以代表BIOS密码等。',
         'Admin Password Help' => '管理员密码，可以代表计算机管理员账户密码以及打印机管理员密码等。',
-        'Depreciation Rule Help' => '设备记录的折旧规则将优先于其分类所指定的折旧规则。',
+        'Depreciation Rule Help' => '设备折旧规所指定的折旧规则。',
         'Batch Delete' => '批量删除设备',
         'Batch Force Delete' => '批量强制删除设备（不可恢复）',
         'Batch Force Delete Confirm' => '您确定要强制删除选中的设备吗？（此操作不可逆）',
