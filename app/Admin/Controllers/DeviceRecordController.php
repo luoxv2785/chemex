@@ -11,6 +11,8 @@ use App\Admin\Actions\Grid\ToolAction\DeviceRecordImportAction;
 use App\Admin\Actions\Show\DeviceRecordDeleteTrackAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\DeviceRecord;
+use App\Admin\Actions\Grid\DeviceShebeiPrint;
+use App\Admin\Actions\Grid\DeviceBiaoqianPrint;
 use App\Form;
 use App\Grid;
 use App\Models\ColumnSort;
@@ -50,7 +52,6 @@ use Illuminate\Http\Request;
  * @method track()
  * @method status()
  */
-#[DcatRoutes(DeviceRecord::class)]
 class DeviceRecordController extends AdminController
 {
     use ControllerHasDeviceRelatedGrid;
@@ -296,6 +297,12 @@ class DeviceRecordController extends AdminController
              */
             $grid->tools(function (Tools $tools) {
                 // @permissions
+                if (Admin::user()->can('device.biaoqian.print')) {
+                    $tools->append(new DeviceBiaoqianPrint());
+                }
+                if (Admin::user()->can('device.shebei.print')) {
+                    $tools->append(new DeviceShebeiPrint());
+                }
                 if (Admin::user()->can('device.record.import')) {
                     $tools->append(new DeviceRecordImportAction());
                 }
@@ -317,7 +324,7 @@ class DeviceRecordController extends AdminController
                     }
                     // @permissions
                     if (Admin::user()->can('device.maintenance.create')) {
-                        $actions->append(new MaintenanceRecordCreateAction($this->asset_number));
+                        $actions->append(new MaintenanceRecordCreateAction('device'));
                     }
                 }
             });
@@ -366,7 +373,6 @@ class DeviceRecordController extends AdminController
                     $filter->panel();
                 }
                 $filter->scope('history', admin_trans_label('Deleted'))->onlyTrashed();
-                $filter->scope('no_user', admin_trans_label('No User'))->doesntHave('admin_user');
                 $filter->equal('category_id')->select(DeviceCategory::pluck('name', 'id'));
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
                 $filter->equal('admin_user.name')->select(Support::selectUsers('name'));
