@@ -27,6 +27,7 @@ class Version300 extends Migration
             $table->integer('department_id')->default(0);
             $table->char('gender')->default('无');
             $table->string('title')->nullable();
+            $table->integer('zhzt')->nullable('1');//账号状态
             $table->string('mobile')->nullable();
             $table->string('email')->nullable();
             $table->integer('ad_tag')->default(0);
@@ -71,6 +72,7 @@ class Version300 extends Migration
             $table->integer('category_id'); //软件分类
             $table->string('version');  //版本
             $table->integer('vendor_id');   //厂商
+            $table->string('sn')->nullable();   //软件序列号
             $table->double('price')->nullable();    //价格
             $table->date('purchased')->nullable();   //购买日
             $table->date('expired')->nullable(); //有效期
@@ -95,10 +97,12 @@ class Version300 extends Migration
 
         Schema::create('part_records', function (Blueprint $table) {
             $table->id();
+            $table->string('name'); //软件名称
             $table->string('description')->nullable();
             $table->integer('category_id');
             $table->integer('vendor_id');
             $table->string('specification');
+            $table->string('sn')->nullable();   //配件序列号
             $table->double('price')->nullable();
             $table->date('purchased')->nullable();
             $table->date('expired')->nullable();
@@ -122,6 +126,7 @@ class Version300 extends Migration
 
         Schema::create('device_records', function (Blueprint $table) {
             $table->id();
+            $table->string('name'); //设备名称
             $table->string('description')->nullable();
             $table->integer('category_id');
             $table->integer('vendor_id');
