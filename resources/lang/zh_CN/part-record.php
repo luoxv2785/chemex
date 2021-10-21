@@ -38,6 +38,7 @@ return [
         ],
         'specification' => '规格',
         'price' => '价格',
+        'sn' => '配件序列号',
         'purchased' => '购入日期',
         'expired' => '过保日期',
         'depreciation' => [
