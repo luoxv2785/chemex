@@ -98,7 +98,7 @@
 
 2：为你的计算机安装 `MySQL` 或者 `mariadb`。
 
-3：在你想要的目录中，执行 `git clone https://gitee.com/dcat-phper/chemex.git` 完成下载。
+3：在你想要的目录中，执行 `git clone https://gitee.com/liuming5678/chemex.git` 完成下载。
 
 4：在项目根目录中，复制 `.env.example` 文件为一份新的，并重命名为 `.env`。
 
@@ -112,7 +112,7 @@
 8：修改web服务器的伪静态规则为：`try_files $uri $uri/ /index.php?$args;`。
 
 9：此时可以通过访问 `http://your_domain` 来使用咖啡壶。管理员账号密码为：`admin / admin`。
-
+10:重置账户密码命令：php artisan chemex:admin-reset
 ## 版本更新
 
 随时随地保持更新可以在项目根目录中执行 `sudo git fetch --all && git reset --hard origin/main && git pull` 命令，将会同步分支的最新修改内容。
