@@ -353,7 +353,7 @@ class SoftwareRecordController extends AdminController
         return Form::make(new SoftwareRecord(), function (Form $form) {
             $form->row(function (\Dcat\Admin\Form\Row $row) use ($form) {
                 if ($form->isCreating() || empty($form->model()->asset_number)) {
-                    $row->text('asset_number')->required();
+                $row->width(6)->text('asset_number')->required();
                 } else {
                     $row->display('asset_number')->required();
                 }
@@ -383,7 +383,7 @@ class SoftwareRecordController extends AdminController
                     ->text('description');
                 $row->width(6)
                     ->text('sn');
-                $row->width()
+                $row->width(6)
                     ->currency('price')->default(0);
                 $row->width(6)
                     ->date('purchased');
