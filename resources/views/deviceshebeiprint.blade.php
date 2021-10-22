@@ -61,7 +61,7 @@
                 </tr>
                 <tr>
                     <th colspan="3">使用人：{{$service->admin_user()->value('name')}}</th>
-                    <th colspan="4">设备状态：{{$service['statuss']}}</th>
+                    <th colspan="4">设备分类：{{$service->category()->value('name')}}</th>
 
                 </tr>
                 <tr>
