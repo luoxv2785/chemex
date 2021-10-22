@@ -6,7 +6,7 @@
         </a>
         <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right shadow-200">
             <li class="scrollable-container media-list ps ps--active-y">
-                <a class="media d-flex justify-content-between" href="https://gitee.com/dcat-phper/chemex/issues"
+                <a class="media d-flex justify-content-between" href="https://gitee.com/liuming5678/chemex/issues"
                    target="_blank">
                     <div class="d-flex align-items-start">
                         <div class="media-left">
@@ -21,7 +21,7 @@
                 </a>
             </li>
             <li class="scrollable-container media-list ps ps--active-y" style="max-height: none;">
-                <a class="media d-flex justify-content-between" href="https://jq.qq.com/?_wv=1027&k=Ow82UKc0"
+                <a class="media d-flex justify-content-between" href="https://jq.qq.com/?_wv=1027&k=jKgSLPCS"
                    target="_blank">
                     <div class="d-flex align-items-start">
                         <div class="media-left">
@@ -29,7 +29,7 @@
                         <div class="media-body">
                             <h6 class="primary media-heading">加入QQ群</h6>
                             <small class="notification-text">
-                                与其它咖啡壶用户进行交流。
+                                与其它资产管理系统用户进行交流。
                             </small>
                         </div>
                     </div>
