@@ -16,7 +16,7 @@ return [
     ],
     'fields' => [
         'check_id' => '任务ID',
-        'item_id' => '物件',
+        'item_id' => '资产编号',
         'status' => '状态',
         'checker' => [
             'name' => '盘点人员',
