@@ -39,7 +39,7 @@ return [
             'name' => '盘点人',
         ],
         'check_id' => '任务ID',
-        'item_id' => '物件',
+        'item_id' => '资产编号',
         'status' => '状态',
         'creator' => '创建者',
         'check_all_counts' => '盘点总数',
