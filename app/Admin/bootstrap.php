@@ -29,7 +29,15 @@ $site->injectFields();
 $site->footerRemove();
 $site->gridRowActionsRight();
 $site->customCSS();
-
+$script = <<<JS
+      $("#grid-table > tbody > tr").on("dblclick",function() {
+         var obj = $(this).find(".feather.icon-edit");
+         if (obj.length == 1) {
+             obj.trigger("click")
+         }
+      })
+JS;
+Admin::script($script);
 // 获取当前用户的通知
 $user = User::where('id', auth('admin')->id())->first();
 $notifications = [];
