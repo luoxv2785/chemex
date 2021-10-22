@@ -223,7 +223,7 @@ Route::group([
     /**
      * 菜单.
      */
-    $router->resource('/auth/menu', 'MenuController')
+    $router->resource('/menu', 'MenuController')
         ->names('site.menu');
 
     $router->get('/site/setting', [SiteSettingController::class, 'index'])
