@@ -107,13 +107,13 @@
 6：在项目根目录中，执行 `composer update -vvv`。
 
 7：你可能使用的web服务器为 `nginx` 以及 `apache`，无论怎样，应用的起始路径在 `/public` 目录，请确保指向正确，同时程序的根目录权限应该调整为：拥有者和你的 Web 服务器运行用户一致，例如 www
-用户，且根目录权限为 `755`。`/storage` 目录设置为 `777` 权限。
+用户，切记切记！！！！！且根目录权限为 `755`。`/storage` 目录设置为 `777` 权限。`/public` 目录设置为 `777` 权限。
 
 8：修改web服务器的伪静态规则为：`try_files $uri $uri/ /index.php?$args;`。
 
 9：此时可以通过访问 `http://your_domain` 来使用咖啡壶。管理员账号密码为：`admin / admin`。
 
-10:重置账户密码命令：php artisan chemex:admin-reset。
+10:重置账户密码命令：        php artisan chemex:admin-reset。
 
 ## 版本更新
 
