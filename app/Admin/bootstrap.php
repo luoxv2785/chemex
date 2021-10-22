@@ -42,3 +42,8 @@ Admin::navbar(function (Navbar $navbar) use ($notifications) {
     $navbar->left(view('nav_left'));
     $navbar->right(view('nav_right')->with('notifications', $notifications));
 });
+Admin::navbar(function (Navbar $navbar) {
+
+    $navbar->right(\App\Admin\Actions\Clear::make()->render());
+
+});
