@@ -13,8 +13,10 @@ return [
         'Batch Force Delete' => '批量强制删除耗材（不可恢复）',
         'Batch Force Delete Confirm' => '您确定要强制删除选中的耗材吗？（此操作不可逆）',
         'Delete' => '删除耗材',
+        'Import' => '导入',
         'Delete Confirm' => '确认删除？',
         'Delete Confirm Description' => '删除的同时将会删除所有与之关联的历史记录',
+        'File Help' => '导入支持xlsx、csv文件，且表格头必填栏位【名称、规格、分类、厂商】，支持资产管理系统导出的Excel文件直接导入。',
     ],
     'fields' => [
         'name' => '名称',
@@ -32,6 +34,7 @@ return [
         'expired' => '过保日期',
         'category_id' => '分类',
         'vendor_id' => '厂商',
+        'file' => '文件',
         'consumable_id' => '耗材',
         'track' => [
             'number' => '总数',
