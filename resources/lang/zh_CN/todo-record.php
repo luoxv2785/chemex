@@ -2,7 +2,7 @@
 
 return [
     'labels' => [
-        'title' => '待办',
+        'title' => '待办事项',
         'description' => '轻量的 TODO 功能',
         'records' => '待办',
         'User Id' => '用户',
