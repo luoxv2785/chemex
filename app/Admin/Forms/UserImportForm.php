@@ -55,6 +55,9 @@ class UserImportForm extends Form
                             if (!empty($row['职位'])) {
                                 $user->title = $row['职位'];
                             }
+                            if (!empty($row['账号状态'])) {
+                                $user->title = $row['账号状态'];
+                            }
                             if (!empty($row['手机'])) {
                                 $user->mobile = $row['手机'];
                             }
