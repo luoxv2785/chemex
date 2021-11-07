@@ -84,7 +84,7 @@ class AssetController extends Controller
         return Uni::response(404, '无法查询到相关信息');
     }
 
-    /**
+    /**的
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
