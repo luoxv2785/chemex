@@ -7,6 +7,7 @@ use App\Admin\Actions\Grid\BatchAction\ConsumableRecordBatchForceDeleteAction;
 use App\Admin\Actions\Grid\RowAction\ConsumableRecordDeleteAction;
 use App\Admin\Actions\Grid\ToolAction\ConsumableInAction;
 use App\Admin\Actions\Grid\ToolAction\ConsumableOutAction;
+use App\Admin\Actions\Grid\ToolAction\ConsumableImportAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\ConsumableRecord;
 use App\Form;
@@ -15,10 +16,12 @@ use App\Models\ColumnSort;
 use App\Models\ConsumableCategory;
 use App\Models\VendorRecord;
 use App\Show;
-use App\Support\Data;
 use App\Traits\ControllerHasCustomColumns;
 use App\Traits\ControllerHasDeviceRelatedGrid;
 use App\Traits\ControllerHasTab;
+use App\Support\Data;
+use App\Support\Support;
+use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Grid\Tools;
 use Dcat\Admin\Grid\Tools\BatchActions;
@@ -99,6 +102,13 @@ class ConsumableRecordController extends AdminController
                 // @permissions
                 if (Admin::user()->can('consumable.record.out')) {
                     $tools->append(new ConsumableOutAction());
+
+                }
+                    if (Admin::user()->can('consumable.record.import')) {
+                        $tools->append(new ConsumableImportAction());
+
+
+
                 }
             });
 
@@ -228,26 +238,38 @@ class ConsumableRecordController extends AdminController
     protected function form(): Form
     {
         return Form::make(new ConsumableRecord(), function (Form $form) {
-            $form->row(function (\Dcat\Admin\Form\Row $row) {
-                $row->text('name')
+            $form->row(function (\Dcat\Admin\Form\Row $row) use ($form) {
+                $row->width(6)->text('name')->required();
+                $row->width(6)->text('specification')
+                ->required();
+            if (Support::ifSelectCreate()) {
+                $row->width(6)->selectCreate('category_id')
+                    ->options(ConsumableCategory::class)
+                    ->ajax(admin_route('selection.consumable.categories'))
+                    ->url(admin_route('consumable.categories.create'))
                     ->required();
-                $row->text('specification')
+                $row->width(6)->selectCreate('vendor_id')
+                    ->options(VendorRecord::class)
+                    ->ajax(admin_route('selection.vendor.records'))
+                    ->url(admin_route('vendor.records.create'))
                     ->required();
-                $row->select('category_id')
+            } else {
+                $row->width(6)->select('category_id')
                     ->options(ConsumableCategory::pluck('name', 'id'))
                     ->required();
-                $row->select('vendor_id')
+                $row->width(6)->select('vendor_id')
                     ->options(VendorRecord::pluck('name', 'id'))
                     ->required();
-                $row->divider();
-                $row->text('description');
-                $row->text('price');
+            }
 
-                /**
-                 * 自定义字段
-                 */
+                $row->width(6)->text('description');
+                $row->width(6)->text('price');
+
+            /**
+             * 自定义字段.
+             */
                 foreach (ControllerHasCustomColumns::getCustomColumns((new ConsumableRecord())->getTable()) as $custom_column) {
-                    ControllerHasCustomColumns::makeForm($custom_column, $row);
+                    ControllerHasCustomColumns::makeForm($custom_column, $row->width(6));
                 }
             });
 
@@ -255,3 +277,4 @@ class ConsumableRecordController extends AdminController
         });
     }
 }
+

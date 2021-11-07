@@ -76,6 +76,7 @@ class UserController extends BaseUserController
                 ->creationRules(['required', "unique:$connection.$userTable"])
                 ->updateRules(['required', "unique:$connection.$userTable,username,$id"]);
             $form->text('name', trans('admin.name'))->required();
+            $form->radio('zhzt')->options([1 => '账号正常', 0 => '账户冻结'])->default(1);
             $form->select('gender')
                 ->options(Data::genders())
                 ->required();
@@ -179,6 +180,14 @@ class UserController extends BaseUserController
                 return $name;
             });
             $grid->column('gender');
+            $grid->column('zhzt')->using([
+                1 => '账户正常',
+                0 => '账户冻结',
+            ])->badge([
+                'default' => 'success', // 设置默认颜色，不设置则默认为 default
+                1 => 'success',
+                0 => 'danger',
+            ]);
             $grid->column('department.name');
             $grid->column('title');
             $grid->column('mobile');
@@ -266,7 +275,7 @@ class UserController extends BaseUserController
                     $filter->panel();
                 }
                 $filter->scope('history', admin_trans_label('Deleted'))->onlyTrashed();
-                $filter->equal('department.name')->select(Department::pluck('name', 'id'));
+                $filter->equal('department_id')->select(Department::pluck('name', 'id'));
             });
 
             /**
@@ -312,6 +321,7 @@ class UserController extends BaseUserController
             $show->field('avatar', __('admin.avatar'))->image();
             $show->field('department.name');
             $show->field('gender');
+            $show->field('zhzt')->using(["0" => "账号冻结", '1' => "账号正常"]);
             $show->field('title');
             $show->field('mobile');
             $show->field('email');

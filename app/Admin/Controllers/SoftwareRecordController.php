@@ -136,6 +136,7 @@ class SoftwareRecordController extends AdminController
             $show->field('description', '', $sort_columns);
             $show->field('category.name', '', $sort_columns);
             $show->field('version', '', $sort_columns);
+            $show->field('sn', '', $sort_columns);
             $show->field('vendor.name', '', $sort_columns);
             $show->field('price', '', $sort_columns);
             $show->field('purchased', '', $sort_columns);
@@ -206,6 +207,7 @@ class SoftwareRecordController extends AdminController
             $grid->column('description', '', $sort_columns);
             $grid->column('category.name', '', $sort_columns);
             $grid->column('version', '', $sort_columns);
+            $grid->column('sn', '', $sort_columns);
             $grid->column('vendor.name', '', $sort_columns);
             $grid->column('price', '', $sort_columns);
             $grid->column('purchased', '', $sort_columns);
@@ -266,6 +268,7 @@ class SoftwareRecordController extends AdminController
                 array_merge([
                     'id',
                     'name',
+                    'sn',
                     'asset_number',
                     'category.name',
                     'version',
@@ -350,7 +353,7 @@ class SoftwareRecordController extends AdminController
         return Form::make(new SoftwareRecord(), function (Form $form) {
             $form->row(function (\Dcat\Admin\Form\Row $row) use ($form) {
                 if ($form->isCreating() || empty($form->model()->asset_number)) {
-                    $row->text('asset_number')->required();
+                $row->width(6)->text('asset_number')->required();
                 } else {
                     $row->display('asset_number')->required();
                 }
@@ -376,9 +379,11 @@ class SoftwareRecordController extends AdminController
                     ->select('vendor_id')
                     ->options(VendorRecord::pluck('name', 'id'))
                     ->required();
-                $row->width()
+                $row->width(6)
                     ->text('description');
-                $row->width()
+                $row->width(6)
+                    ->text('sn');
+                $row->width(6)
                     ->currency('price')->default(0);
                 $row->width(6)
                     ->date('purchased');
@@ -389,7 +394,7 @@ class SoftwareRecordController extends AdminController
                  * 自定义字段
                  */
                 foreach (ControllerHasCustomColumns::getCustomColumns((new SoftwareRecord())->getTable()) as $custom_column) {
-                    ControllerHasCustomColumns::makeForm($custom_column, $row);
+                    ControllerHasCustomColumns::makeForm($custom_column, $row->width(6));
                 }
             });
 

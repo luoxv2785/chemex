@@ -29,7 +29,15 @@ $site->injectFields();
 $site->footerRemove();
 $site->gridRowActionsRight();
 $site->customCSS();
-
+$script = <<<JS
+      $("#grid-table > tbody > tr").on("dblclick",function() {
+         var obj = $(this).find(".feather.icon-edit");
+         if (obj.length == 1) {
+             obj.trigger("click")
+         }
+      })
+JS;
+Admin::script($script);
 // 获取当前用户的通知
 $user = User::where('id', auth('admin')->id())->first();
 $notifications = [];
@@ -41,4 +49,9 @@ if (!empty($user)) {
 Admin::navbar(function (Navbar $navbar) use ($notifications) {
     $navbar->left(view('nav_left'));
     $navbar->right(view('nav_right')->with('notifications', $notifications));
+});
+Admin::navbar(function (Navbar $navbar) {
+
+    $navbar->right(\App\Admin\Actions\Clear::make()->render());
+
 });

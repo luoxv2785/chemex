@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Ace\Uni;
+use Celaraze\Response;
 use Illuminate\Http\JsonResponse;
 use JetBrains\PhpStorm\ArrayShape;
 
@@ -24,7 +24,7 @@ class AuthController extends Controller
         $credentials = request(['username', 'password']);
 
         if (!$token = auth('api')->attempt($credentials)) {
-            return Uni::response(401, '未授权的操作');
+            return Response::make(401, '未授权的操作');
         }
 
         return $this->respondWithToken($token);
@@ -44,7 +44,7 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type' => 'bearer',
         ];
-        return Uni::response(200, 'successfully', $token);
+        return Response::make(200, 'successfully', $token);
     }
 
     /**
@@ -67,7 +67,7 @@ class AuthController extends Controller
     {
         auth('api')->logout();
 
-        return Uni::response(200, '成功登出');
+        return Response::make(200, '成功登出');
     }
 
     /**

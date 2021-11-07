@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-    <a href="https://jq.qq.com/?_wv=1027&k=tnV2HCWU">用户交流群（QQ）</a>
+    <a href="https://jq.qq.com/?_wv=1027&k=tnV2HCWU">用户交流群</a>
 </p>
 
 <p align="center">
@@ -30,9 +30,9 @@
 
 [![Giteye chart](https://chart.giteye.net/gitee/dcat-phper/chemex/5H7WBLM7.png)](https://giteye.net/chart/5H7WBLM7)
 
-## 鸣谢
+## 鸣谢（咖啡壶）
 
-没有它们就没有 咖啡壶（Chemex）：
+没有它们就没有 资产管理系统（Chemex）：
 
 `JetBrains` 提供优秀的IDE。
 
@@ -98,7 +98,7 @@
 
 2：为你的计算机安装 `MySQL` 或者 `mariadb`。
 
-3：在你想要的目录中，执行 `git clone https://gitee.com/dcat-phper/chemex.git` 完成下载。
+3：在你想要的目录中，执行 `git clone https://gitee.com/liuming5678/chemex.git` 完成下载。
 
 4：在项目根目录中，复制 `.env.example` 文件为一份新的，并重命名为 `.env`。
 
@@ -107,11 +107,21 @@
 6：在项目根目录中，执行 `composer update -vvv`。
 
 7：你可能使用的web服务器为 `nginx` 以及 `apache`，无论怎样，应用的起始路径在 `/public` 目录，请确保指向正确，同时程序的根目录权限应该调整为：拥有者和你的 Web 服务器运行用户一致，例如 www
-用户，且根目录权限为 `755`。`/storage` 目录设置为 `777` 权限。
+用户，切记切记！！！！！且根目录权限为 `755`。`/storage` 目录设置为 `777` 权限。`/public` 目录设置为 `777` 权限。
 
 8：修改web服务器的伪静态规则为：`try_files $uri $uri/ /index.php?$args;`。
 
 9：此时可以通过访问 `http://your_domain` 来使用咖啡壶。管理员账号密码为：`admin / admin`。
+
+10:重置账户密码命令：        php artisan chemex:admin-reset。
+
+11：配置应用信息(重要），在env文件中
+APP_NAME=chemex # 应用名称，一般不需要修改
+APP_ENV=local
+APP_URL=http://127.0.0.1:9999 # 修改默认应用地址和站点配置中地址相同配合上传LOGO使用，在站点配置中设置站点地址！
+
+12：执行安装命令
+# 在项目根目录中执行 php artisan chemex:install
 
 ## 版本更新
 

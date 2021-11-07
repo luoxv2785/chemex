@@ -87,6 +87,7 @@ class PartRecordController extends AdminController
             $grid->column('purchased', '', $sort_columns);
             $grid->column('name', '', $sort_columns);
             $grid->column('description', '', $sort_columns);
+            $grid->column('sn', '', $sort_columns);
             $grid->column('category.name', '', $sort_columns);
             $grid->column('vendor.name', '', $sort_columns);
             $grid->column('specification', '', $sort_columns);
@@ -146,6 +147,7 @@ class PartRecordController extends AdminController
                     'id',
                     'asset_number',
                     'description',
+                    'sn',
                     'category.name',
                     'vendor.name',
                     'specification',
@@ -250,6 +252,7 @@ class PartRecordController extends AdminController
             $show->field('description', '', $sort_columns);
             $show->field('category.name', '', $sort_columns);
             $show->field('vendor.name', '', $sort_columns);
+            $show->field('sn', '', $sort_columns);
             $show->field('device.asset_number', '', $sort_columns);
             $show->field('specification', '', $sort_columns);
             $show->field('price', '', $sort_columns);
@@ -311,8 +314,9 @@ class PartRecordController extends AdminController
             $form->display('id');
 
             $form->row(function (\Dcat\Admin\Form\Row $row) use ($form) {
+                $row->width(6)->text('name')->required();
                 if ($form->isCreating() || empty($form->model()->asset_number)) {
-                    $row->text('asset_number')->required();
+                $row->text('asset_number')->required();
                 } else {
                     $row->display('asset_number')->required();
                 }
@@ -328,17 +332,18 @@ class PartRecordController extends AdminController
                     ->required();
                 $row->width(6)
                     ->currency('price');
-                $row->width()->text('description');
+                $row->width(6)->text('description');
+                $row->width(6)->text('sn');
                 $row->width(6)->date('purchased');
                 $row->width(6)->date('expired');
-                $row->width()->select('depreciation_rule_id', admin_trans_label('Depreciation Rule'))
+                $row->width(6)->select('depreciation_rule_id', admin_trans_label('Depreciation Rule'))
                     ->options(DepreciationRule::pluck('name', 'id'));
 
                 /**
                  * 自定义字段
                  */
                 foreach (ControllerHasCustomColumns::getCustomColumns((new PartRecord())->getTable()) as $custom_column) {
-                    ControllerHasCustomColumns::makeForm($custom_column, $row);
+                    ControllerHasCustomColumns::makeForm($custom_column, $row->width(6));
                 }
             });
 

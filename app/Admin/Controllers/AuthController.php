@@ -158,9 +158,11 @@ class AuthController extends BaseAuthController
 
         /** @var \Illuminate\Validation\Validator $validator */
         $validator = Validator::make($credentials, [
-            $this->username() => 'required',
-            'password' => 'required',
-        ]);
+            $this->username() => 'required|string|exists:admin_users,username,zhzt,1',
+            'password' => 'required|string',
+        ], [
+    'exists' => '该账户已停用!，请联系管理员',
+]);
 
         if ($validator->fails()) {
             return $this->validationErrorsResponse($validator);

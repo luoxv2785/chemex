@@ -87,7 +87,7 @@ return [
     | Html title for all pages.
     |
     */
-    'title' => env('ADMIN_TITLE', '咖啡壶'),
+    'title' => env('ADMIN_TITLE', '资产管理系统'),
 
     /*
     |--------------------------------------------------------------------------
@@ -324,5 +324,5 @@ return [
     */
 
     'demo' => env('ADMIN_DEMO', false),
-    'chemex_version' => '3.3.0',
+    'chemex_version' => '3.5.2',
 ];

@@ -15,6 +15,7 @@ return [
         'version'     => '版本',
         'enable'      => '启用',
         'config'      => '配置',
+        'extension' => '上传扩展',
         'imported'    => '导入',
     ],
     'options' => [
