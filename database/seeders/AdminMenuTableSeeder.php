@@ -253,6 +253,19 @@ class AdminMenuTableSeeder extends Seeder
                 'updated_at' => '2021-05-13 08:11:00',
                 'uri' => 'site/setting',
             ),
+            18 => 
+            array (
+                'created_at' => '2021-10-22 12:13:49',
+                'extension' => '',
+                'icon' => 'feather icon-settings',
+                'id' => 38,
+                'order' => 22,
+                'parent_id' => 0,
+                'show' => 1,
+                'title' => 'Menu',
+                'updated_at' => '2021-10-22 12:13:49',
+                'uri' => '/auth/menu',
+            ),
         ));
         
         

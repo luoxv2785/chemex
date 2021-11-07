@@ -11,6 +11,8 @@ use App\Admin\Actions\Grid\ToolAction\DeviceRecordImportAction;
 use App\Admin\Actions\Show\DeviceRecordDeleteTrackAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\DeviceRecord;
+use App\Admin\Actions\Grid\DeviceShebeiPrint;
+use App\Admin\Actions\Grid\DeviceBiaoqianPrint;
 use App\Form;
 use App\Grid;
 use App\Models\ColumnSort;
@@ -50,7 +52,6 @@ use Illuminate\Http\Request;
  * @method track()
  * @method status()
  */
-#[DcatRoutes(DeviceRecord::class)]
 class DeviceRecordController extends AdminController
 {
     use ControllerHasDeviceRelatedGrid;
@@ -126,6 +127,7 @@ class DeviceRecordController extends AdminController
         return Show::make($id, new DeviceRecord(['category', 'vendor', 'admin_user', 'admin_user.department', 'depreciation']), function (Show $show) {
             $sort_columns = $this->sortColumns();
             $show->field('id', '', $sort_columns);
+            $show->field('name', '', $sort_columns);
             $show->field('asset_number', '', $sort_columns);
             $show->field('description', '', $sort_columns);
             $show->field('category.name', '', $sort_columns);
@@ -231,6 +233,7 @@ class DeviceRecordController extends AdminController
         return Grid::make(new DeviceRecord(['category', 'vendor', 'admin_user', 'admin_user.department', 'depreciation']), function (Grid $grid) {
             $sort_columns = $this->sortColumns();
             $grid->column('id', '', $sort_columns);
+            $grid->column('name', '', $sort_columns);
             $grid->column('photo', '', $sort_columns)->image('', 50, 50);
             $grid->column('asset_number_qrcode', '', $sort_columns)->qrcode(function () {
                 return $this->asset_number;
@@ -296,6 +299,12 @@ class DeviceRecordController extends AdminController
              */
             $grid->tools(function (Tools $tools) {
                 // @permissions
+                if (Admin::user()->can('device.biaoqian.print')) {
+                    $tools->append(new DeviceBiaoqianPrint());
+                }
+                if (Admin::user()->can('device.shebei.print')) {
+                    $tools->append(new DeviceShebeiPrint());
+                }
                 if (Admin::user()->can('device.record.import')) {
                     $tools->append(new DeviceRecordImportAction());
                 }
@@ -317,7 +326,7 @@ class DeviceRecordController extends AdminController
                     }
                     // @permissions
                     if (Admin::user()->can('device.maintenance.create')) {
-                        $actions->append(new MaintenanceRecordCreateAction($this->asset_number));
+                        $actions->append(new MaintenanceRecordCreateAction('device'));
                     }
                 }
             });
@@ -348,6 +357,7 @@ class DeviceRecordController extends AdminController
                     'description',
                     'category.name',
                     'vendor.name',
+                    'name',
                     'mac',
                     'ip',
                     'price',
@@ -366,7 +376,6 @@ class DeviceRecordController extends AdminController
                     $filter->panel();
                 }
                 $filter->scope('history', admin_trans_label('Deleted'))->onlyTrashed();
-                $filter->scope('no_user', admin_trans_label('No User'))->doesntHave('admin_user');
                 $filter->equal('category_id')->select(DeviceCategory::pluck('name', 'id'));
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
                 $filter->equal('admin_user.name')->select(Support::selectUsers('name'));
@@ -414,6 +423,7 @@ class DeviceRecordController extends AdminController
     {
         return Form::make(new DeviceRecord(), function (Form $form) {
             $form->row(function (\Dcat\Admin\Form\Row $row) use ($form) {
+                $row->width(6)->text('name')->required();
                 if ($form->isCreating() || empty($form->model()->asset_number)) {
                     $row->text('asset_number')->required();
                 } else {
@@ -444,7 +454,7 @@ class DeviceRecordController extends AdminController
                     ->date('expired')
                     ->attribute('autocomplete', 'off');
 
-                $row->width()
+                $row->width(6)
                     ->text('description');
                 $row->width()
                     ->image('photo')
@@ -456,7 +466,7 @@ class DeviceRecordController extends AdminController
                  * 自定义字段
                  */
                 foreach (ControllerHasCustomColumns::getCustomColumns((new DeviceRecord())->getTable()) as $custom_column) {
-                    ControllerHasCustomColumns::makeForm($custom_column, $row);
+                    ControllerHasCustomColumns::makeForm($custom_column, $row->width(6));
                 }
             });
 

@@ -1,9 +1,12 @@
 <?php
 
+
 use App\Admin\Controllers\CheckRecordController;
 use App\Admin\Controllers\ConsumableCategoryController;
 use App\Admin\Controllers\DepartmentController;
 use App\Admin\Controllers\DepreciationRuleController;
+use App\Admin\Controllers\DeviceShebeiPrintController;
+use App\Admin\Controllers\DeviceBiaoqianPrintController;
 use App\Admin\Controllers\DeviceCategoryController;
 use App\Admin\Controllers\DeviceRecordController;
 use App\Admin\Controllers\DeviceStatisticsController;
@@ -194,6 +197,14 @@ Route::group([
         ->name('export.device.history');
     $router->get('/export/check/{check_id}/report', [CheckRecordController::class, 'exportReport'])
         ->name('export.check.report');
+
+    $router->get('/device/shebei/print', [DeviceShebeiPrintController::class, 'deviceshebeiPrint'])
+        ->name('device.shebei.print');
+
+    $router->get('/device/biaoqian/print', [DeviceBiaoqianPrintController::class, 'devicebiaoqianPrint'])
+        ->name('device.biaoqian.print');
+
+
 
     /**
      * 通知.

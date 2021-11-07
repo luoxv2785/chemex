@@ -28,6 +28,7 @@ class AdminUsersTableSeeder extends Seeder
                     'avatar' => NULL,
                     'remember_token' => NULL,
                     'department_id' => '1',
+                    'zhzt' => '1',
                     'gender' => '男',
                     'title' => NULL,
                     'mobile' => NULL,

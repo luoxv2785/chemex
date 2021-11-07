@@ -5,6 +5,8 @@ namespace App\Admin\Controllers;
 use App\Admin\Actions\Grid\RowAction\CheckRecordUpdateNoAction;
 use App\Admin\Actions\Grid\RowAction\CheckRecordUpdateYesAction;
 use App\Admin\Actions\Grid\RowAction\CheckTrackUpdateAction;
+use App\Admin\Actions\Grid\RowAction\CheckTrackDeleteAction;
+use App\Admin\Actions\Grid\RowAction\CheckRecordDeleteAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\CheckRecord;
 use App\Form;
@@ -100,6 +102,9 @@ class CheckRecordController extends AdminController
             $grid->actions(function (RowActions $actions) {
                 if (Admin::user()->can('check.track') && $this->status == 0) {
                     $actions->append(new CheckTrackUpdateAction());
+                }
+                if (Admin::user()->can('check.track.delete') && $this->status == 0) {
+                    $actions->append(new CheckTrackDeleteAction());
                 }
             });
 
@@ -197,6 +202,9 @@ class CheckRecordController extends AdminController
                     // @permissions
                     if (Admin::user()->can('check.record.update.no')) {
                         $actions->append(new CheckRecordUpdateNoAction());
+                    }
+                    if (Admin::user()->can('check.record.delete')) {
+                        $actions->append(new CheckRecordDeleteAction());
                     }
                 }
             });

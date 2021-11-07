@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Grid\RowAction\CheckTrackUpdateAction;
+use App\Admin\Actions\Grid\RowAction\CheckTrackDeleteAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\CheckTrack;
 use App\Models\CheckRecord;
@@ -78,6 +79,9 @@ class CheckTrackController extends AdminController
                 // @permissions
                 if (Admin::user()->can('check.track.update') && $this->status == 0) {
                     $actions->append(new CheckTrackUpdateAction());
+                }
+                if (Admin::user()->can('check.track.delete') && $this->status == 0) {
+                    $actions->append(new CheckTrackDeleteAction());
                 }
             });
 
