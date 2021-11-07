@@ -21,7 +21,7 @@ class Site
             $logo = admin_setting('site_logo_text');
         } else {
             $logo = Storage::disk(config('admin.upload.disk'))->url(admin_setting('site_logo'));
-            $logo = "<img src='$logo'>";
+            $logo = "<img src='$logo' height='40' width='100%' />";
         }
 
         /**
