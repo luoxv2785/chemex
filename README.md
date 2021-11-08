@@ -113,21 +113,20 @@
 
 9：此时可以通过访问 `http://your_domain` 来使用咖啡壶。管理员账号密码为：`admin / admin`。
 
-10:重置账户密码命令：        php artisan chemex:admin-reset。
+10:重置账户密码命令： php artisan chemex:admin-reset。
 
-11：配置应用信息(重要），在env文件中
-APP_NAME=chemex # 应用名称，一般不需要修改
-APP_ENV=local
-APP_URL=http://127.0.0.1:9999 # 修改默认应用地址和站点配置中地址相同配合上传LOGO使用，在站点配置中设置站点地址！
+11：配置应用信息(重要），在env文件中 APP_NAME=chemex # 应用名称，一般不需要修改 APP_ENV=local APP_URL=http://127.0.0.1:9999 #
+修改默认应用地址和站点配置中地址相同配合上传LOGO使用，在站点配置中设置站点地址！
 
 12：执行安装命令
+
 # 在项目根目录中执行 php artisan chemex:install
 
 ## 版本更新
 
 随时随地保持更新可以在项目根目录中执行 `sudo git fetch --all && git reset --hard origin/main && git pull` 命令，将会同步分支的最新修改内容。
 
-然后，执行 `composer update -vvv` 来更新依赖包。
+然后，执行 `composer dump-autoload` 来清理依赖包缓存。
 
 最后，执行 `php artisan chemex:update` 来进行升级。
 
