@@ -7,14 +7,6 @@
     <link rel="stylesheet" href="{{asset("static/printjs/bootstarp.css")}}" crossorigin="anonymous">
 
 
-
-
-
-
-
-
-
-
 </head>
 <body>
 
@@ -30,10 +22,12 @@
         .table-bordered > tfoot > tr > td {
             text-align: left;
         }
+
         .card {
             position: relative;
         }
-        .card .postImg{
+
+        .card .postImg {
             width: 160px;
             height: 100px;
             position: absolute;
@@ -41,7 +35,8 @@
             top: 80px;
             z-index: 999;
         }
-        .card .postImg img{
+
+        .card .postImg img {
             width: 100%;
         }
 

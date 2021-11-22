@@ -9,7 +9,6 @@ use App\Models\Role;
 use App\Models\RoleUser;
 use App\Models\User;
 use App\Support\Data;
-use App\Support\Support;
 use App\Traits\ControllerHasTab;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Http\Controllers\AdminController;

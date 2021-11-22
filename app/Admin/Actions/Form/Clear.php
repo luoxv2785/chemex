@@ -16,7 +16,7 @@ class Clear extends AbstractTool
     /**
      * @return string
      */
-	protected $title = '点击继续';
+    protected $title = '点击继续';
 
     /**
      * Handle the action request.
@@ -41,20 +41,20 @@ class Clear extends AbstractTool
     }
 
     /**
+     * @return string|array|void
+     */
+    public function confirm()
+    {
+        return ['Confirm?', 'contents'];
+    }
+
+    /**
      * @return string|void
      */
     protected function href()
     {
         // return admin_url('auth/users');
     }
-
-    /**
-	 * @return string|array|void
-	 */
-	public function confirm()
-	{
-		 return ['Confirm?', 'contents'];
-	}
 
     /**
      * @param Model|Authenticatable|HasPermissions|null $user

@@ -2,8 +2,9 @@
 
 namespace App\Services;
 
-use App\Models\CheckTrack;
 use App\Models\CheckRecord;
+use App\Models\CheckTrack;
+
 class CheckServiceDelete
 {
     /**
@@ -27,6 +28,7 @@ class CheckServiceDelete
             $checkrecord->delete();
         }
     }
+
     /**
      * 删除盘点记录（强制）.
      *

@@ -3,12 +3,8 @@
 namespace App\Admin\Actions;
 
 use Dcat\Admin\Actions\Action;
-use Dcat\Admin\Actions\Response;
-use Dcat\Admin\Traits\HasPermissions;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use Dcat\Admin\Widgets\Modal;
+
 class Clear extends Action
 {
     protected $title = '清理缓存';

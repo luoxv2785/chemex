@@ -5,10 +5,10 @@ use App\Admin\Controllers\CheckRecordController;
 use App\Admin\Controllers\ConsumableCategoryController;
 use App\Admin\Controllers\DepartmentController;
 use App\Admin\Controllers\DepreciationRuleController;
-use App\Admin\Controllers\DeviceShebeiPrintController;
 use App\Admin\Controllers\DeviceBiaoqianPrintController;
 use App\Admin\Controllers\DeviceCategoryController;
 use App\Admin\Controllers\DeviceRecordController;
+use App\Admin\Controllers\DeviceShebeiPrintController;
 use App\Admin\Controllers\DeviceStatisticsController;
 use App\Admin\Controllers\NotificationController;
 use App\Admin\Controllers\PartCategoryController;
@@ -35,7 +35,7 @@ Route::group([
     'namespace' => config('admin.route.namespace'),
     'middleware' => config('admin.route.middleware'),
 ], function (Router $router) {
-    $router->get('/', 'HomeController@index')
+    $router->get('/home', 'HomeController@index')
         ->name('home');
 
     /**
@@ -203,7 +203,6 @@ Route::group([
 
     $router->get('/device/biaoqian/print', [DeviceBiaoqianPrintController::class, 'devicebiaoqianPrint'])
         ->name('device.biaoqian.print');
-
 
 
     /**

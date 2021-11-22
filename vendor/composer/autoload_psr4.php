@@ -73,6 +73,7 @@ return array(
     'NunoMaduro\\Larastan\\' => array($vendorDir . '/nunomaduro/larastan/src'),
     'NunoMaduro\\Collision\\' => array($vendorDir . '/nunomaduro/collision/src'),
     'Namshi\\JOSE\\' => array($vendorDir . '/namshi/jose/src/Namshi/JOSE'),
+    'Mosiboom\\DcatIframeTab\\' => array($vendorDir . '/mosiboom/dcat-iframe-tab/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'League\\MimeTypeDetection\\' => array($vendorDir . '/league/mime-type-detection/src'),
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),

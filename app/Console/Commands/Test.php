@@ -40,7 +40,7 @@ class Test extends Command
         $content = file_get_contents(admin_path('routes.php'));
         preg_match_all("/^(.*resource.*)$/mi", $content, $results);
         $routes = $results[1];
-        foreach ($routes as $route){
+        foreach ($routes as $route) {
             dd($route);
         }
         dd($routes);

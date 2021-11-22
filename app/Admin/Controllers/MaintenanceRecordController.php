@@ -2,9 +2,9 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\Grid\RowAction\MaintenanceRecordUpdateAction;
 use App\Admin\Actions\Grid\RowAction\MaintenanceRecordDeleteAction;
 use App\Admin\Actions\Grid\RowAction\MaintenanceRecordForceDeleteAction;
+use App\Admin\Actions\Grid\RowAction\MaintenanceRecordUpdateAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\MaintenanceRecord;
 use App\Support\Data;
@@ -67,12 +67,12 @@ class MaintenanceRecordController extends AdminController
             $grid->actions(function (RowActions $actions) {
                 // @permissions
                 if ($this->status == 0 && Admin::user()->can('maintenance.record.delete')) {
-                        $actions->append(new MaintenanceRecordDeleteAction());
-                    }
+                    $actions->append(new MaintenanceRecordDeleteAction());
+                }
 
                 if ($this->status == 0 && Admin::user()->can('maintenance.record.forcedelete')) {
-                        $actions->append(new MaintenanceRecordForceDeleteAction());
-                    }
+                    $actions->append(new MaintenanceRecordForceDeleteAction());
+                }
                 if ($this->status == 0 && Admin::user()->can('maintenance.record.update')) {
                     $actions->append(new MaintenanceRecordUpdateAction());
                 }

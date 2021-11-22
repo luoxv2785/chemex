@@ -42,4 +42,5 @@ return array(
     '044fc72df35e84c745ee0d4120dc15d2' => $vendorDir . '/dcat/laravel-admin/src/Support/helpers.php',
     'ed962a97bd972bc82007176b647d4e36' => $vendorDir . '/facade/ignition/src/helpers.php',
     'cda2d2f579338909929d3104d0afc501' => $vendorDir . '/overtrue/laravel-pinyin/src/helpers.php',
+    'b670c7ffff63265cc064eb6fd1051ae1' => $vendorDir . '/mosiboom/dcat-iframe-tab/src/helpers.php',
 );

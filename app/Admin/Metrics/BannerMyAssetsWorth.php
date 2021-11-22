@@ -2,8 +2,8 @@
 
 namespace App\Admin\Metrics;
 
-use App\Models\User;
 use App\Models\Devicerecord;
+use App\Models\User;
 use Closure;
 use Dcat\Admin\Grid\LazyRenderable as LazyGrid;
 use Dcat\Admin\Traits\LazyWidget;
@@ -25,7 +25,7 @@ class BannerMyAssetsWorth extends Card
         $user = User::find(auth('admin')->user()->id);
         $value = DeviceRecord::count();
         $text = trans('main.device_counts');
-        $route=admin_route('device.records.index');
+        $route = admin_route('device.records.index');
         $html = <<<HTML
 <a href="{$route}">
 <div class="small-box" style="padding:0 20px;height:100px;margin-bottom: 0;border-radius: .25rem;background: url('static/images/green.png') no-repeat;background-size: 100% 100%;">

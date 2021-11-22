@@ -43,6 +43,7 @@ class ComposerStaticInitdf19cfe7bee06335baf31d3db8519a59
         '044fc72df35e84c745ee0d4120dc15d2' => __DIR__ . '/..' . '/dcat/laravel-admin/src/Support/helpers.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
         'cda2d2f579338909929d3104d0afc501' => __DIR__ . '/..' . '/overtrue/laravel-pinyin/src/helpers.php',
+        'b670c7ffff63265cc064eb6fd1051ae1' => __DIR__ . '/..' . '/mosiboom/dcat-iframe-tab/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -142,6 +143,7 @@ class ComposerStaticInitdf19cfe7bee06335baf31d3db8519a59
         ),
         'M' => 
         array (
+            'Mosiboom\\DcatIframeTab\\' => 23,
             'Monolog\\' => 8,
         ),
         'L' => 
@@ -499,6 +501,10 @@ class ComposerStaticInitdf19cfe7bee06335baf31d3db8519a59
         'Namshi\\JOSE\\' => 
         array (
             0 => __DIR__ . '/..' . '/namshi/jose/src/Namshi/JOSE',
+        ),
+        'Mosiboom\\DcatIframeTab\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mosiboom/dcat-iframe-tab/src',
         ),
         'Monolog\\' => 
         array (
@@ -4467,6 +4473,7 @@ class ComposerStaticInitdf19cfe7bee06335baf31d3db8519a59
         'Illuminate\\Support\\HtmlString' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/HtmlString.php',
         'Illuminate\\Support\\InteractsWithTime' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/InteractsWithTime.php',
         'Illuminate\\Support\\ItemNotFoundException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Collections/ItemNotFoundException.php',
+        'Illuminate\\Support\\Js' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/Js.php',
         'Illuminate\\Support\\LazyCollection' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Collections/LazyCollection.php',
         'Illuminate\\Support\\Manager' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/Manager.php',
         'Illuminate\\Support\\MessageBag' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/MessageBag.php',
@@ -5229,6 +5236,8 @@ class ComposerStaticInitdf19cfe7bee06335baf31d3db8519a59
         'Monolog\\SignalHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/SignalHandler.php',
         'Monolog\\Test\\TestCase' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Test/TestCase.php',
         'Monolog\\Utils' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Utils.php',
+        'Mosiboom\\DcatIframeTab\\Controllers\\IframeController' => __DIR__ . '/..' . '/mosiboom/dcat-iframe-tab/src/Controllers/IframeController.php',
+        'Mosiboom\\DcatIframeTab\\IframeTabProvider' => __DIR__ . '/..' . '/mosiboom/dcat-iframe-tab/src/IframeTabProvider.php',
         'Namshi\\JOSE\\Base64\\Base64Encoder' => __DIR__ . '/..' . '/namshi/jose/src/Namshi/JOSE/Base64/Base64Encoder.php',
         'Namshi\\JOSE\\Base64\\Base64UrlSafeEncoder' => __DIR__ . '/..' . '/namshi/jose/src/Namshi/JOSE/Base64/Base64UrlSafeEncoder.php',
         'Namshi\\JOSE\\Base64\\Encoder' => __DIR__ . '/..' . '/namshi/jose/src/Namshi/JOSE/Base64/Encoder.php',

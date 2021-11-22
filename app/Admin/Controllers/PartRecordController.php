@@ -316,7 +316,7 @@ class PartRecordController extends AdminController
             $form->row(function (\Dcat\Admin\Form\Row $row) use ($form) {
                 $row->width(6)->text('name')->required();
                 if ($form->isCreating() || empty($form->model()->asset_number)) {
-                $row->text('asset_number')->required();
+                    $row->text('asset_number')->required();
                 } else {
                     $row->display('asset_number')->required();
                 }
