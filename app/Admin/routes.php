@@ -5,10 +5,9 @@ use App\Admin\Controllers\CheckRecordController;
 use App\Admin\Controllers\ConsumableCategoryController;
 use App\Admin\Controllers\DepartmentController;
 use App\Admin\Controllers\DepreciationRuleController;
-use App\Admin\Controllers\DeviceBiaoqianPrintController;
 use App\Admin\Controllers\DeviceCategoryController;
+use App\Admin\Controllers\DevicePrintController;
 use App\Admin\Controllers\DeviceRecordController;
-use App\Admin\Controllers\DeviceShebeiPrintController;
 use App\Admin\Controllers\DeviceStatisticsController;
 use App\Admin\Controllers\NotificationController;
 use App\Admin\Controllers\PartCategoryController;
@@ -73,6 +72,10 @@ Route::group([
         ->name('selection.device.records');
     $router->get('/selection/device/categories', [DeviceCategoryController::class, 'selectList'])
         ->name('selection.device.categories');
+    $router->get('/device/print/tag', [DevicePrintController::class, 'tag'])
+        ->name('device.print.tag');
+    $router->get('/device/print/list', [DevicePrintController::class, 'list'])
+        ->name('device.print.list');
 
     /**
      * 配件管理.
@@ -197,12 +200,6 @@ Route::group([
         ->name('export.device.history');
     $router->get('/export/check/{check_id}/report', [CheckRecordController::class, 'exportReport'])
         ->name('export.check.report');
-
-    $router->get('/device/shebei/print', [DeviceShebeiPrintController::class, 'deviceshebeiPrint'])
-        ->name('device.shebei.print');
-
-    $router->get('/device/biaoqian/print', [DeviceBiaoqianPrintController::class, 'devicebiaoqianPrint'])
-        ->name('device.biaoqian.print');
 
 
     /**

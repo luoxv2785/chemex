@@ -75,7 +75,7 @@ class UserController extends BaseUserController
                 ->creationRules(['required', "unique:$connection.$userTable"])
                 ->updateRules(['required', "unique:$connection.$userTable,username,$id"]);
             $form->text('name', trans('admin.name'))->required();
-            $form->radio('zhzt')->options([1 => '账号正常', 0 => '账户冻结'])->default(1);
+            $form->radio('status')->options(['账户冻结', '账号正常'])->default(1);
             $form->select('gender')
                 ->options(Data::genders())
                 ->required();
@@ -179,13 +179,11 @@ class UserController extends BaseUserController
                 return $name;
             });
             $grid->column('gender');
-            $grid->column('zhzt')->using([
-                1 => '账户正常',
-                0 => '账户冻结',
-            ])->badge([
+            $grid->column('status')->using(['账户冻结', '账户正常'])->badge([
                 'default' => 'success', // 设置默认颜色，不设置则默认为 default
-                1 => 'success',
                 0 => 'danger',
+                1 => 'success'
+
             ]);
             $grid->column('department.name');
             $grid->column('title');
@@ -320,7 +318,7 @@ class UserController extends BaseUserController
             $show->field('avatar', __('admin.avatar'))->image();
             $show->field('department.name');
             $show->field('gender');
-            $show->field('zhzt')->using(["0" => "账号冻结", '1' => "账号正常"]);
+            $show->field('status')->using(['账号冻结', '账号正常']);
             $show->field('title');
             $show->field('mobile');
             $show->field('email');

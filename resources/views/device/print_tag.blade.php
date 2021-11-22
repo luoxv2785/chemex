@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
-<head lang="en">
-    <meta charset="UTF-8">
+<head lang="zh">
+    <meta charset="UTF-8" content="">
     <title>设备打印标签</title>
     <style type="text/css">
         <!--
@@ -10,7 +10,7 @@
             color: #ffffff;
             font-weight: bold;
             font-size: 11px;
-            font-family: "微软雅黑";
+            font-family: "微软雅黑", sans-serif;
 
         }
 
@@ -22,12 +22,11 @@
 
     </style>
 
-
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
-    <script type="text/javascript" src="/static/printjs/qr/jquery-1.4.4.min.js"></script>
-    <script type="text/javascript" src="/static/printjs/qrcode.js"></script>
-    <script type="text/javascript" src="/static/printjs/qr/jquery.jqprint-0.3.js"></script>
-    <script type="text/javascript" src="/static/printjs/qr/jquery-migrate-1.1.0.js"></script>
+    <script type="text/javascript" src="/static/js/print/qr/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="/static/js/print/qrcode.js"></script>
+    <script type="text/javascript" src="/static/js/print/qr/jquery.jqprint-0.3.js"></script>
+    <script type="text/javascript" src="/static/js/print/qr/jquery-migrate-1.1.0.js"></script>
 </head>
 <body>
 <script type="text/javascript">
@@ -58,7 +57,8 @@
                     <input id="text{{$service['asset_number']}}" type="hidden"
                            value="http://203.25.212.205:9999/device/shouji/{{$service['id']}}">
                     <tr>
-                        <td colspan="2"><img src="/static/printjs/images/asset_logo4.gif" width="235" height="30"/></td>
+                        <td colspan="2"><img src="/static/js/print/images/asset_logo4.gif" width="235" height="30"/>
+                        </td>
                     </tr>
                     <tr>
                         <td width="165" bgcolor="#23b14d"><span class="STYLE4">名称：{{$service['name']}}</span></td>
@@ -81,7 +81,7 @@
                                 $("#text").on("blur", function () {
                                     makeCode();
                                 }).on("keydown", function (e) {
-                                    if (e.keyCode == 13) {
+                                    if (e.keyCode === 13) {
                                         makeCode();
                                     }
                                 });

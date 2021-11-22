@@ -52,6 +52,4 @@ Admin::navbar(function (Navbar $navbar) use ($notifications) {
 });
 Admin::navbar(function (Navbar $navbar) {
 
-    $navbar->right(\App\Admin\Actions\Clear::make()->render());
-
 });

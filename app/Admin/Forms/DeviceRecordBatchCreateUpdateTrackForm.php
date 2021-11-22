@@ -23,7 +23,6 @@ class DeviceRecordBatchCreateUpdateTrackForm extends Form implements LazyRendera
      */
     public function handle(array $input): JsonResponse
     {
-        dd($this->payload['ids']);
         // 获取设备id
         $device_id = $this->payload['id'] ?? null;
 
@@ -114,7 +113,6 @@ class DeviceRecordBatchCreateUpdateTrackForm extends Form implements LazyRendera
      */
     public function form()
     {
-        dd($this->getKey());
         $users = User::pluck('name', 'id');
         $this->radio('type')
             ->when('track', function (Form $form) use ($users) {

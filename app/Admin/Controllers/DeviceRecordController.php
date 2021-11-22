@@ -4,8 +4,8 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Grid\BatchAction\DeviceRecordBatchDeleteAction;
 use App\Admin\Actions\Grid\BatchAction\DeviceRecordBatchForceDeleteAction;
-use App\Admin\Actions\Grid\DeviceBiaoqianPrint;
-use App\Admin\Actions\Grid\DeviceShebeiPrint;
+use App\Admin\Actions\Grid\DevicePrintListAction;
+use App\Admin\Actions\Grid\DevicePrintTagAction;
 use App\Admin\Actions\Grid\RowAction\DeviceRecordCreateUpdateTrackAction;
 use App\Admin\Actions\Grid\RowAction\DeviceRecordDeleteAction;
 use App\Admin\Actions\Grid\RowAction\MaintenanceRecordCreateAction;
@@ -299,11 +299,11 @@ class DeviceRecordController extends AdminController
              */
             $grid->tools(function (Tools $tools) {
                 // @permissions
-                if (Admin::user()->can('device.biaoqian.print')) {
-                    $tools->append(new DeviceBiaoqianPrint());
+                if (Admin::user()->can('device.print.tag')) {
+                    $tools->append(new DevicePrintTagAction());
                 }
-                if (Admin::user()->can('device.shebei.print')) {
-                    $tools->append(new DeviceShebeiPrint());
+                if (Admin::user()->can('device.print.list')) {
+                    $tools->append(new DevicePrintListAction());
                 }
                 if (Admin::user()->can('device.record.import')) {
                     $tools->append(new DeviceRecordImportAction());
@@ -345,6 +345,9 @@ class DeviceRecordController extends AdminController
                 'depreciation.name',
                 'expiration_left_days',
                 'admin_user.department.name',
+                'created_at',
+                'updated_at',
+                'asset_number_qrcode'
             ]);
 
             /**

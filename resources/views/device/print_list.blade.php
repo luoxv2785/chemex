@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
+<head lang="zh">
     <meta charset="UTF-8">
     <title>设备打印详细单</title>
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="{{asset("static/printjs/bootstarp.css")}}" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset("static/js/print/bootstarp.css")}}" crossorigin="anonymous">
 
 
 </head>
 <body>
 
 
-<script src="/static/printjs/jquery-qrcode.min.js"></script>
+<script src="/static/js/print/jquery-qrcode.min.js"></script>
 
 <div class="print">
     <style>
@@ -45,7 +45,7 @@
     @foreach($data as $service)
         <div class="card ">
             <table class="table table-bordered">
-                <i class="postImg"><img src="/static/printjs/images/stamp_0003.png"/></i>
+                <i class="postImg"><img src="/static/js/print/images/stamp_0003.png"/></i>
 
                 <caption class="text-center"><h3>设备标签单</h3></caption>
                 <thead>
@@ -97,9 +97,9 @@
 
 </body>
 
-<script src="/static/printjs/qrcode.js"></script>
-<script language="javascript" src="/static/printjs/jquery.js"></script>
-<script language="javascript" src="/static/printjs/jquery.print.js"></script>
+<script src="/static/js/print/qrcode.js"></script>
+<script src="/static/js/print/jquery.js"></script>
+<script src="/static/js/print/jquery.print.js"></script>
 <script>
     $(".print").jqprint();
 </script>

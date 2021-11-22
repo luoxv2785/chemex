@@ -27,7 +27,6 @@ class Version300 extends Migration
             $table->integer('department_id')->default(0);
             $table->char('gender')->default('无');
             $table->string('title')->nullable();
-            $table->integer('zhzt')->nullable('1');//账号状态
             $table->string('mobile')->nullable();
             $table->string('email')->nullable();
             $table->integer('ad_tag')->default(0);

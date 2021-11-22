@@ -28,7 +28,6 @@ class LDAPService
             }
             $ous = Adldap::search()->ous()->get();
             $ous = json_decode($ous, true);
-            dd($ous);
             // 遍历所有的OU
             foreach ($ous as $ou) {
                 // 单个OU的名字

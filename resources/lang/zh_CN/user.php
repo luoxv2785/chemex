@@ -34,7 +34,7 @@ return [
         'mobile' => '手机',
         'email' => '邮箱',
         'mode' => '模式',
-        'zhzt' => '账号状态',
+        'status' => '账号状态',
         'department_id' => '部门',
         'file' => '文件',
     ],
