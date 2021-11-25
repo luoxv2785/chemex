@@ -244,9 +244,9 @@ class ServiceRecordController extends AdminController
     {
         return Form::make(new ServiceRecord(), function (Form $form) {
             $form->row(function (\Dcat\Admin\Form\Row $row) {
-                $row->width()
+                $row->width(6)
                     ->text('name')->required();
-                $row->width()
+                $row->width(6)
                     ->text('description');
                 $row->width(6)
                     ->switch('status')
@@ -263,7 +263,7 @@ class ServiceRecordController extends AdminController
                  * 自定义字段
                  */
                 foreach (ControllerHasCustomColumns::getCustomColumns((new ServiceRecord())->getTable()) as $custom_column) {
-                    ControllerHasCustomColumns::makeForm($custom_column, $row);
+                    ControllerHasCustomColumns::makeForm($custom_column, $row->width(6));
                 }
             });
 
