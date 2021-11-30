@@ -52,6 +52,7 @@ class DeviceRecordImportForm extends Form
                             $vendor_record->save();
                         }
                         $device_record = new DeviceRecord();
+                        $device_record->name = $row['名称'];
                         $device_record->asset_number = $row['资产编号'];
                         $device_record->category_id = $device_category->id;
                         $device_record->vendor_id = $vendor_record->id;
@@ -70,6 +71,9 @@ class DeviceRecordImportForm extends Form
                         }
                         if (!empty($row['价格'])) {
                             $device_record->price = $row['价格'];
+                        }
+                        if (!empty($row['照片'])) {
+                            $device_record->photo = $row['照片'];
                         }
                         if (!empty($row['购入日期'])) {
                             $device_record->purchased = $row['购入日期'];
