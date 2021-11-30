@@ -80,9 +80,6 @@ class CheckTrackController extends AdminController
                 if (Admin::user()->can('check.track.update') && $this->status == 0) {
                     $actions->append(new CheckTrackUpdateAction());
                 }
-                if (Admin::user()->can('check.track.delete') && $this->status == 0) {
-                    $actions->append(new CheckTrackDeleteAction());
-                }
             });
 
             $grid->toolsWithOutline(false);

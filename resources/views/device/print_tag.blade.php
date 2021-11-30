@@ -52,7 +52,7 @@
             <td>
 
                 <table width="235" border="1" cellpadding="0" cellspacing="0"
-                       style="color: #ffffff;font-weight: bold;font-size:11px;font-family:微软雅黑;">
+                       style="color: #ffffff;font-weight: bold;font-size:11px;font-family:微软雅黑,sans-serif;">
 
                     <input id="text{{$service['asset_number']}}" type="hidden"
                            value="http://203.25.212.205:9999/device/shouji/{{$service['id']}}">

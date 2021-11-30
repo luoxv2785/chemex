@@ -219,7 +219,7 @@ class Version300 extends Migration
         Schema::create('check_tracks', function (Blueprint $table) {
             $table->id();
             $table->integer('check_id');
-            $table->text('item_id');
+            $table->integer('item_id');
             $table->integer('status');
             $table->integer('checker');
             $table->string('description')->nullable();

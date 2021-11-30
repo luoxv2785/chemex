@@ -72,9 +72,6 @@ class DeviceRecordImportForm extends Form
                         if (!empty($row['价格'])) {
                             $device_record->price = $row['价格'];
                         }
-                        if (!empty($row['照片'])) {
-                            $device_record->photo = $row['照片'];
-                        }
                         if (!empty($row['购入日期'])) {
                             $device_record->purchased = $row['购入日期'];
                         }

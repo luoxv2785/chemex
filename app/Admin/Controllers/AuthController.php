@@ -161,7 +161,7 @@ class AuthController extends BaseAuthController
             $this->username() => 'required|string|exists:admin_users,username,status,1',
             'password' => 'required|string',
         ], [
-            'exists' => '该账户已停用！请联系管理员',
+            'exists' => '该账户已停用，请联系管理员！',
         ]);
 
         if ($validator->fails()) {
