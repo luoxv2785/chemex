@@ -49,6 +49,7 @@ class PartRecordImportForm extends Form
                             $vendor->save();
                         }
                         $part_record = new PartRecord();
+                        $part_record->name = $row['名称'];
                         $part_record->asset_number = $row['资产编号'];
                         $exist = PartRecord::where('asset_number', $row['资产编号'])->withTrashed()->first();
                         if (!empty($exist)) {
