@@ -15,7 +15,7 @@ class VersionService
      */
     public static function getLatestVersionFromGitee(): ?string
     {
-        $response = Http::get('https://gitee.com/api/v5/repos/liuming5678/chemex/tags')->json();
+        $response = Http::get('https://gitee.com/api/v5/repos/dcat-phper/chemex/tags')->json();
         if (empty($response)) {
             return null;
         }
@@ -65,7 +65,7 @@ class VersionService
     {
         try {
             exec('git remote remove origin' . ' 2>&1');
-            exec('git remote add origin https://gitee.com/liuming5678/chemex.git' . ' 2>&1');
+            exec('git remote add origin https://gitee.com/dcat-phper/chemex.git' . ' 2>&1');
             exec('git fetch --all' . ' 2>&1');
             exec('git reset --hard origin/main' . ' 2>&1', $out, $status);
             Artisan::call('chemex:update');
