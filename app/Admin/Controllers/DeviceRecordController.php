@@ -4,11 +4,11 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Grid\BatchAction\DeviceRecordBatchDeleteAction;
 use App\Admin\Actions\Grid\BatchAction\DeviceRecordBatchForceDeleteAction;
-use App\Admin\Actions\Grid\DevicePrintListAction;
-use App\Admin\Actions\Grid\DevicePrintTagAction;
 use App\Admin\Actions\Grid\RowAction\DeviceRecordCreateUpdateTrackAction;
 use App\Admin\Actions\Grid\RowAction\DeviceRecordDeleteAction;
 use App\Admin\Actions\Grid\RowAction\MaintenanceRecordCreateAction;
+use App\Admin\Actions\Grid\ToolAction\DevicePrintListAction;
+use App\Admin\Actions\Grid\ToolAction\DevicePrintTagAction;
 use App\Admin\Actions\Grid\ToolAction\DeviceRecordImportAction;
 use App\Admin\Actions\Show\DeviceRecordDeleteTrackAction;
 use App\Admin\Grid\Displayers\RowActions;
