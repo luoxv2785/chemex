@@ -98,7 +98,7 @@
 
 2：为你的计算机安装 `MySQL` 或者 `mariadb`。
 
-3：在你想要的目录中，执行 `git clone https://gitee.com/liuming5678/chemex.git` 完成下载。
+3：在你想要的目录中，执行 `git clone https://gitee.com/dcat-phper/chemex.git` 完成下载。
 
 4：在项目根目录中，复制 `.env.example` 文件为一份新的，并重命名为 `.env`。
 
