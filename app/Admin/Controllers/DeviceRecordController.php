@@ -236,7 +236,7 @@ class DeviceRecordController extends AdminController
             $grid->column('name', '', $sort_columns);
             $grid->column('photo', '', $sort_columns)->image('', 50, 50);
             $grid->column('asset_number_qrcode', '', $sort_columns)->qrcode(function () {
-                return $this->asset_number;
+                return 'device:'.$this->asset_number;
             });
             $grid->column('asset_number', '', $sort_columns)->display(function ($asset_number) {
                 $asset_number = "<span class='badge badge-secondary'>$asset_number</span>";

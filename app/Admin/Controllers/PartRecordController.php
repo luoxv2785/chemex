@@ -81,7 +81,7 @@ class PartRecordController extends AdminController
                 return "<span class='badge badge-secondary'>$asset_number</span>";
             });
             $grid->column('asset_number_qrcode', '', $sort_columns)->qrcode(function () {
-                return $this->asset_number;
+                return 'part:'.$this->asset_number;
             });
             $grid->column('price', '', $sort_columns);
             $grid->column('purchased', '', $sort_columns);
