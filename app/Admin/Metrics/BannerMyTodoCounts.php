@@ -24,9 +24,10 @@ class BannerMyTodoCounts extends Card
         $value = TodoRecord::where('user_id', auth('admin')->user()->id)->count();
         $text = trans('main.my_todo_counts');
         $route = admin_route('todo.records.index', ['user_id' => auth('admin')->user()->id]);
+        $bg = url('static/images/blue.png');
         $html = <<<HTML
 <a href="{$route}">
-    <div class="small-box" style="padding:0 20px;height:100px;margin-bottom: 0;border-radius: .25rem;background: url('static/images/blue.png') no-repeat;background-size: 100% 100%;">
+    <div class="small-box" style="padding:0 20px;height:100px;margin-bottom: 0;border-radius: .25rem;background: url('{$bg}') no-repeat;background-size: 100% 100%;">
     <div class="inner">
         <h4 style="color: white;font-size: 30px;text-shadow: #888888 1px 1px 2px;">{$value}</h4>
         <p style="color: white;text-shadow: #888888 1px 1px 2px;">{$text}</p>

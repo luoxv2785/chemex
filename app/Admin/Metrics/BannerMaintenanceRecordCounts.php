@@ -24,9 +24,10 @@ class BannerMaintenanceRecordCounts extends Card
         $value = MaintenanceRecord::count();
         $text = trans('main.maintenance_record_counts');
         $route = admin_route('maintenance.records.index');
+        $bg = url('static/images/purple.png');
         $html = <<<HTML
 <a href="{$route}">
-    <div class="small-box" style="padding:0 20px;height:100px;margin-bottom: 0;border-radius: .25rem;background: url('static/images/purple.png') no-repeat;background-size: 100% 100%;">
+    <div class="small-box" style="padding:0 20px;height:100px;margin-bottom: 0;border-radius: .25rem;background: url('{$bg}') no-repeat;background-size: 100% 100%;">
     <div class="inner">
         <h4 style="color: white;font-size: 30px;text-shadow: #888888 1px 1px 2px;">{$value}</h4>
         <p style="color: white;text-shadow: #888888 1px 1px 2px;">{$text}</p>
