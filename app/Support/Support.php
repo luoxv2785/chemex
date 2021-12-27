@@ -40,12 +40,12 @@ class Support
         }
         foreach ($part_records as $part_record) {
             if (!empty($part_record->asset_number)) {
-                array_push($data, 'device:' . $part_record->asset_number . '&#10;');
+                array_push($data, 'part:' . $part_record->asset_number . '&#10;');
             }
         }
         foreach ($software_records as $software_record) {
             if (!empty($software_record->asset_number)) {
-                array_push($data, 'device:' . $software_record->asset_number . '&#10;');
+                array_push($data, 'soft:' . $software_record->asset_number . '&#10;');
             }
         }
 

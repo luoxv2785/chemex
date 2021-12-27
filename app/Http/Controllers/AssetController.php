@@ -63,22 +63,31 @@ class AssetController extends Controller
      */
     public function show(string $asset_number): array|JsonResponse
     {
-        $device = DeviceRecord::where('asset_number', $asset_number)->first();
-        if (!empty($device)) {
-            $device->asset_type = 'device';
-            return Uni::response(200, '查询成功', $device);
-        }
-
-        $part = PartRecord::where('asset_number', $asset_number)->first();
-        if (!empty($part)) {
-            $part->asset_type = 'part';
-            return Uni::response(200, '查询成功', $part);
-        }
-
-        $software = SoftwareRecord::where('asset_number', $asset_number)->first();
-        if (!empty($software)) {
-            $software->asset_type = 'part';
-            return Uni::response(200, '查询成功', $software);
+         // 分割类型和编码
+        [$type, $asset_number] = explode(':', $asset_number);
+        switch ($type) {
+            case 'part':
+                $part = PartRecord::where('asset_number', $asset_number)->first();
+                if (!empty($part)) {
+                    $part->asset_type = 'part';
+                    return Uni::response(200, '查询成功', $part);
+                }
+                break;
+            case 'soft':
+                $software = SoftwareRecord::where('asset_number', $asset_number)->first();
+                if (!empty($software)) {
+                    $software->asset_type = 'soft';
+                    return Uni::response(200, '查询成功', $software);
+                }
+                break;
+            default:
+                $device = DeviceRecord::with([
+                    'category', 'vendor', 'admin_user', 'admin_user.department', 'depreciation',
+                ])->where('asset_number', $asset_number)->first();
+                if (!empty($device)) {
+                    $device->asset_type = 'device';
+                    return Uni::response(200, '查询成功', $device);
+                }
         }
 
         return Uni::response(404, '无法查询到相关信息');
