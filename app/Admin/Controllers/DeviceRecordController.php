@@ -236,7 +236,7 @@ class DeviceRecordController extends AdminController
             $grid->column('name', '', $sort_columns);
             $grid->column('photo', '', $sort_columns)->image('', 50, 50);
             $grid->column('asset_number_qrcode', '', $sort_columns)->qrcode(function () {
-                return $this->asset_number;
+                return 'device:'.$this->asset_number;
             });
             $grid->column('asset_number', '', $sort_columns)->display(function ($asset_number) {
                 $asset_number = "<span class='badge badge-secondary'>$asset_number</span>";
@@ -364,6 +364,8 @@ class DeviceRecordController extends AdminController
                     'mac',
                     'ip',
                     'price',
+                    'purchased',
+                    'expired',
                     'admin_user.name',
                     'admin_user.department.name',
                 ], ControllerHasCustomColumns::makeQuickSearch((new DeviceRecord())->getTable()))
@@ -379,11 +381,21 @@ class DeviceRecordController extends AdminController
                     $filter->panel();
                 }
                 $filter->scope('history', admin_trans_label('Deleted'))->onlyTrashed();
+                $filter->scope('lend', trans('main.lend'))->whereHas('track', function($query) {
+                    $query->whereNotNUll('lend_time');
+                });
+                $filter->scope('using', trans('main.using'))->has('admin_user');
+                $filter->scope('dead', trans('main.dead'))->doesntHave('admin_user')->where('expired', '<', now());
+                $filter->scope('idle', trans('main.idle'))
+                    ->doesntHave('admin_user')
+                    ->whereNull('expired');
                 $filter->equal('category_id')->select(DeviceCategory::pluck('name', 'id'));
                 $filter->equal('vendor_id')->select(VendorRecord::pluck('name', 'id'));
                 $filter->equal('admin_user.name')->select(Support::selectUsers('name'));
                 $filter->equal('admin_user.department_id')->select(Department::pluck('name', 'id'));
                 $filter->equal('depreciation_id')->select(DepreciationRule::pluck('name', 'id'));
+                $filter->date('purchased');
+                $filter->date('expired');
                 /**
                  * 自定义字段.
                  */
