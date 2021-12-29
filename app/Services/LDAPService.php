@@ -111,7 +111,7 @@ class LDAPService
                         $department_id = $department->id;
                     }
                 }
-                $user = User::where('name', $user_name)->first();
+                $user = User::withTrashed()->where('name', $user_name)->first();
                 if (empty($user)) {
                     $user = new User();
                     $user->username = $user_name;
