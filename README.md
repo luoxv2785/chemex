@@ -125,8 +125,8 @@
 
 增加了通过docker安装的方式。
 
-1. 执行 `docker-compose build` 构建本地镜像。
-2. 执行 `cp .env.docker .env` 创建环境变量文件。
+1. 执行 `cp .env.docker .env` 创建环境变量文件。
+2. 执行 `docker-compose build` 构建本地镜像。
 3. 编辑 `.env` 文件，根据指引进行配置。
 4. 随后执行 `docker-compose up -d` 启动服务。
 
