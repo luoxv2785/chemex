@@ -39,7 +39,7 @@
             function getVal() {
                 var val = clone.val();
 
-                if (!val || val === "NaN") {
+                if (! val || val === "NaN") {
                     return 0;
                 }
 
@@ -99,7 +99,8 @@
 
                 if ((min && n < min)) {
                     setText(min);
-                } else if (max && n > max) {
+                }
+                else if (max && n > max) {
                     setText(max);
                 }
             });

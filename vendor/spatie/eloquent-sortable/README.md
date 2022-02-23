@@ -15,7 +15,9 @@ Spatie is a webdesign agency in Antwerp, Belgium. You'll find an overview of all
 
 ## Support us
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/eloquent-sortable.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/eloquent-sortable)
+Learn how to create a package like this one, by watching our premium video course:
+
+[![Laravel Package training](https://spatie.be/github/package-training.jpg)](https://laravelpackage.training)
 
 We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
 
@@ -76,9 +78,8 @@ To add sortable behaviour to your model you must:
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 
-class MyModel extends Eloquent implements Sortable
+class MyModel extends Model implements Sortable
 {
-
     use SortableTrait;
 
     public $sortable = [
@@ -86,7 +87,7 @@ class MyModel extends Eloquent implements Sortable
         'sort_when_creating' => true,
     ];
 
-    ...
+    // ...
 }
 ```
 
@@ -195,10 +196,12 @@ MyModel::swapOrder($myModel, $anotherModel);
 If your model/table has a grouping field (usually a foreign key): `id, `**`user_id`**`, title, order_column`
 and you'd like the above methods to take it into considerations, you can create a `buildSortQuery` method at your model:
 ```php
-  public function buildSortQuery()
-    {
-        return static::query()->where('user_id', $this->user_id);
-    }
+// MyModel.php
+
+public function buildSortQuery()
+{
+    return static::query()->where('user_id', $this->user_id);
+}
 ```
 This will restrict the calculations to fields value of the model instance.
 

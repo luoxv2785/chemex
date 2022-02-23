@@ -29,14 +29,22 @@ final class NativeResponse implements ResponseInterface, StreamableInterface
     use CommonResponseTrait;
     use TransportResponseTrait;
 
+    /**
+     * @var resource
+     */
     private $context;
-    private $url;
+    private string $url;
     private $resolver;
     private $onProgress;
-    private $remaining;
+    private ?int $remaining = null;
+
+    /**
+     * @var resource|null
+     */
     private $buffer;
+
     private $multi;
-    private $pauseExpiry = 0;
+    private float $pauseExpiry = 0.0;
 
     /**
      * @internal
@@ -81,7 +89,7 @@ final class NativeResponse implements ResponseInterface, StreamableInterface
     /**
      * {@inheritdoc}
      */
-    public function getInfo(string $type = null)
+    public function getInfo(string $type = null): mixed
     {
         if (!$info = $this->finalInfo) {
             $info = $this->info;
@@ -194,6 +202,7 @@ final class NativeResponse implements ResponseInterface, StreamableInterface
         }
 
         $host = parse_url($this->info['redirect_url'] ?? $this->url, \PHP_URL_HOST);
+        $this->multi->lastTimeout = null;
         $this->multi->openHandles[$this->id] = [&$this->pauseExpiry, $h, $this->buffer, $this->onProgress, &$this->remaining, &$this->info, $host];
         $this->multi->hosts[$host] = 1 + ($this->multi->hosts[$host] ?? 0);
     }

@@ -23,12 +23,12 @@ use Symfony\Component\HttpClient\Exception\TransportException;
  */
 trait HttpClientTrait
 {
-    private static $CHUNK_SIZE = 16372;
+    private static int $CHUNK_SIZE = 16372;
 
     /**
      * {@inheritdoc}
      */
-    public function withOptions(array $options): self
+    public function withOptions(array $options): static
     {
         $clone = clone $this;
         $clone->defaultOptions = self::mergeDefaultOptions($options, $this->defaultOptions);
@@ -159,7 +159,10 @@ trait HttpClientTrait
 
         // Finalize normalization of options
         $options['http_version'] = (string) ($options['http_version'] ?? '') ?: null;
-        $options['timeout'] = (float) ($options['timeout'] ?? ini_get('default_socket_timeout'));
+        if (0 > $options['timeout'] = (float) ($options['timeout'] ?? ini_get('default_socket_timeout'))) {
+            $options['timeout'] = 172800.0; // 2 days
+        }
+
         $options['max_duration'] = isset($options['max_duration']) ? (float) $options['max_duration'] : 0;
 
         return [$url, $options];
@@ -248,7 +251,7 @@ trait HttpClientTrait
         $normalizedHeaders = [];
 
         foreach ($headers as $name => $values) {
-            if (\is_object($values) && method_exists($values, '__toString')) {
+            if ($values instanceof \Stringable) {
                 $values = (string) $values;
             }
 
@@ -353,11 +356,9 @@ trait HttpClientTrait
     }
 
     /**
-     * @param string|string[] $fingerprint
-     *
      * @throws InvalidArgumentException When an invalid fingerprint is passed
      */
-    private static function normalizePeerFingerprint($fingerprint): array
+    private static function normalizePeerFingerprint(mixed $fingerprint): array
     {
         if (\is_string($fingerprint)) {
             switch (\strlen($fingerprint = str_replace(':', '', $fingerprint))) {
@@ -379,22 +380,16 @@ trait HttpClientTrait
     }
 
     /**
-     * @param mixed $value
-     *
      * @throws InvalidArgumentException When the value cannot be json-encoded
      */
-    private static function jsonEncode($value, int $flags = null, int $maxDepth = 512): string
+    private static function jsonEncode(mixed $value, int $flags = null, int $maxDepth = 512): string
     {
         $flags = $flags ?? (\JSON_HEX_TAG | \JSON_HEX_APOS | \JSON_HEX_AMP | \JSON_HEX_QUOT | \JSON_PRESERVE_ZERO_FRACTION);
 
         try {
-            $value = json_encode($value, $flags | (\PHP_VERSION_ID >= 70300 ? \JSON_THROW_ON_ERROR : 0), $maxDepth);
+            $value = json_encode($value, $flags | \JSON_THROW_ON_ERROR, $maxDepth);
         } catch (\JsonException $e) {
             throw new InvalidArgumentException('Invalid value for "json" option: '.$e->getMessage());
-        }
-
-        if (\PHP_VERSION_ID < 70300 && \JSON_ERROR_NONE !== json_last_error() && (false === $value || !($flags & \JSON_PARTIAL_OUTPUT_ON_ERROR))) {
-            throw new InvalidArgumentException('Invalid value for "json" option: '.json_last_error_msg());
         }
 
         return $value;

@@ -33,7 +33,7 @@ class TraceableResponse implements ResponseInterface, StreamableInterface
 {
     private $client;
     private $response;
-    private $content;
+    private mixed $content;
     private $event;
 
     public function __construct(HttpClientInterface $client, ResponseInterface $response, &$content, StopwatchEvent $event = null)
@@ -132,7 +132,7 @@ class TraceableResponse implements ResponseInterface, StreamableInterface
         }
     }
 
-    public function getInfo(string $type = null)
+    public function getInfo(string $type = null): mixed
     {
         return $this->response->getInfo($type);
     }
