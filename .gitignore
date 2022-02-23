@@ -3,6 +3,7 @@
 /public/storage
 /public/uploads/*
 /storage/*.key
+/data/
 /.idea
 .env
 .env.backup

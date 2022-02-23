@@ -94,33 +94,41 @@
 
 生产环境下为遵守安全策略，非常建议在服务器本地进行部署，暂时不提供相关线上初始化安装的功能。因此，虽然前期部署的步骤较多，但已经为大家自动化处理了很大部分的流程，只需要跟着下面的命令一步步执行，一般是不会有部署问题的。
 
-1：为你的计算机安装 `PHP8` 环境，参考：[PHP官方](https://www.php.net/downloads) 。
+1. 为你的计算机安装 `PHP8` 环境，参考：[PHP官方](https://www.php.net/downloads) 。
 
-2：为你的计算机安装 `MySQL` 或者 `mariadb`。
+2. 为你的计算机安装 `MySQL` 或者 `mariadb`。
 
-3：在你想要的目录中，执行 `git clone https://gitee.com/dcat-phper/chemex.git` 完成下载。
+3. 在你想要的目录中，执行 `git clone https://gitee.com/dcat-phper/chemex.git` 完成下载。
 
-4：在项目根目录中，复制 `.env.example` 文件为一份新的，并重命名为 `.env`。
+4. 在项目根目录中，复制 `.env.example` 文件为一份新的，并重命名为 `.env`。
 
-5：根据 `.env` 文件中注释的指引进行配置。
+5. 根据 `.env` 文件中注释的指引进行配置。
 
-6：在项目根目录中，执行 `composer update -vvv`。
+6. 在项目根目录中，执行 `composer update -vvv`。
 
-7：你可能使用的web服务器为 `nginx` 以及 `apache`，无论怎样，应用的起始路径在 `/public` 目录，请确保指向正确，同时程序的根目录权限应该调整为：拥有者和你的 Web 服务器运行用户一致，例如 www
+7. 你可能使用的web服务器为 `nginx` 以及 `apache`，无论怎样，应用的起始路径在 `/public` 目录，请确保指向正确，同时程序的根目录权限应该调整为：拥有者和你的 Web 服务器运行用户一致，例如 www
 用户，切记切记！！！！！且根目录权限为 `755`。`/storage` 目录设置为 `777` 权限。`/public` 目录设置为 `777` 权限。
 
-8：修改web服务器的伪静态规则为：`try_files $uri $uri/ /index.php?$args;`。
+8. 修改web服务器的伪静态规则为：`try_files $uri $uri/ /index.php?$args;`。
 
-9：此时可以通过访问 `http://your_domain` 来使用咖啡壶。管理员账号密码为：`admin / admin`。
+9. 此时可以通过访问 `http://your_domain` 来使用咖啡壶。管理员账号密码为：`admin / admin`。
 
-10:重置账户密码命令： php artisan chemex:admin-reset。
+10. 重置账户密码命令： php artisan chemex:admin-reset。
 
-11：配置应用信息(重要），在env文件中 APP_NAME=chemex # 应用名称，一般不需要修改 APP_ENV=local APP_URL=http://127.0.0.1:9999 #
+11. 配置应用信息(重要），在env文件中 APP_NAME=chemex # 应用名称，一般不需要修改 APP_ENV=local APP_URL=http://127.0.0.1:9999 #
 修改默认应用地址和站点配置中地址相同配合上传LOGO使用，在站点配置中设置站点地址！
 
-12：执行安装命令
+12. 执行安装命令
+    > 在项目根目录中执行 php artisan chemex:install
 
-# 在项目根目录中执行 php artisan chemex:install
+### Docker 安装
+
+增加了通过docker安装的方式。
+
+1. 执行 `cp .env.docker .env` 创建环境变量文件。
+2. 执行 `docker-compose build` 构建本地镜像。
+3. 编辑 `.env` 文件，根据指引进行配置。
+4. 随后执行 `docker-compose up -d` 启动服务。
 
 ## 版本更新
 
@@ -131,6 +139,8 @@
 最后，执行 `php artisan chemex:update` 来进行升级。
 
 > 注意，如果提示 permission denied 错误，需要通过 sudo 身份执行。
+
+如果是 Docker 安装，重新执行docker的安装步骤，跳过2、3两步。
 
 ## 反馈问题
 
