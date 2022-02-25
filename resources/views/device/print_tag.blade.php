@@ -55,7 +55,7 @@
                        style="color: #ffffff;font-weight: bold;font-size:11px;font-family:微软雅黑,sans-serif;">
 
                     <input id="text{{$service['asset_number']}}" type="hidden"
-                           value="http://203.25.212.205:9999/device/shouji/{{$service['id']}}">
+                           value="{{config('app.url')}}/device/shouji/{{$service['id']}}">
                     <tr>
                         <td colspan="2"><img src="/static/js/print/images/asset_logo4.gif" width="235" height="30"/>
                         </td>
