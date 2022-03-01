@@ -18,10 +18,10 @@ stages:
         name: build_docker
         displayName: 镜像构建
         type: account
-        repository: https://hub.docker.com/repository/docker
+        repository: https://hub.docker.com/repositories
         username: celaraze
         password: aiyanyan1314
-        tag: chemex:latest
+        tag: celaraze/chemex:latest
         dockerfile: ./docker/Dockerfile
         isCache: false
 permissions:
