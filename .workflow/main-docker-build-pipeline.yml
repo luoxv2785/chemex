@@ -18,7 +18,7 @@ stages:
         name: build_docker
         displayName: 镜像构建
         type: account
-        repository: https://hub.docker.com/repository/docker/celaraze/chemex
+        repository: https://hub.docker.com/repositories
         username: celaraze
         password: aiyanyan1314
         tag: chemex:latest
