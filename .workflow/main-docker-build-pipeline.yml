@@ -17,11 +17,9 @@ stages:
       - step: build@docker
         name: build_docker
         displayName: 镜像构建
-        type: account
-        repository: https://hub.docker.com/r/celaraze/chemex
-        username: celaraze
-        password: aiyanyan1314
-        tag: 3.4.2
+        type: cert
+        certificate: 736d1ae0-7b9e-013a-0a92-3a7ff233c483
+        tag: latest
         dockerfile: ./docker/Dockerfile
         isCache: false
 permissions:
