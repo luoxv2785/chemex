@@ -23,8 +23,6 @@ stages:
         password: aiyanyan1314
         tag: 3.4.2
         dockerfile: ./docker/Dockerfile
-        artifacts:
-          - ${BUILD_ARTIFACT}
         isCache: false
 permissions:
   - role: admin
