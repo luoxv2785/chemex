@@ -21,6 +21,8 @@ stages:
         certificate: 736d1ae0-7b9e-013a-0a92-3a7ff233c483
         tag: latest
         dockerfile: ./docker/Dockerfile
+        artifacts:
+          - ${BUILD_ARTIFACT}
         isCache: false
 permissions:
   - role: admin
