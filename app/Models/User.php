@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
-use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
  * @method static where(string $key, string $value1, string $value2 = null)
@@ -33,30 +32,12 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property DeviceRecord device
  * @property DateTime|null deleted_at
  */
-class User extends Administrator implements JWTSubject
+class User extends Administrator
 {
     use HasFactory;
     use HasDateTimeFormatter;
     use Notifiable;
     use SoftDeletes;
-
-    /**
-     * 获取JWT验证器.
-     */
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-
-    /**
-     * 构造JWT自定义的声明key-values.
-     *
-     * @return array
-     */
-    public function getJWTCustomClaims(): array
-    {
-        return [];
-    }
 
     /**
      * 用户有一个组织部门记录.

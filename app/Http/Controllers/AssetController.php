@@ -12,11 +12,6 @@ use Illuminate\Http\Request;
 
 class AssetController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('jwt.auth', ['except' => ['login']]);
-    }
-
     /**
      * Display a listing of the resource.
      *
