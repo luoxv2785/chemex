@@ -17,12 +17,12 @@ stages:
       - step: build@docker
         name: build_docker
         displayName: 镜像构建
-        type: cert
-        certificate: 736d1ae0-7b9e-013a-0a92-3a7ff233c483
+        type: account
+        repository: https://hub.docker.com/repository/docker/celaraze/chemex
+        username: celaraze
+        password: aiyanyan1314
         tag: latest
         dockerfile: ./docker/Dockerfile
-        artifacts:
-          - ${BUILD_ARTIFACT}
         isCache: false
 permissions:
   - role: admin
