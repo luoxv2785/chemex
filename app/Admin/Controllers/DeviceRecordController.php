@@ -236,7 +236,7 @@ class DeviceRecordController extends AdminController
             $grid->column('name', '', $sort_columns);
             $grid->column('photo', '', $sort_columns)->image('', 50, 50);
             $grid->column('asset_number_qrcode', '', $sort_columns)->qrcode(function () {
-                return 'device:'.$this->asset_number;
+                return 'device:' . $this->asset_number;
             });
             $grid->column('asset_number', '', $sort_columns)->display(function ($asset_number) {
                 $asset_number = "<span class='badge badge-secondary'>$asset_number</span>";
@@ -326,7 +326,7 @@ class DeviceRecordController extends AdminController
                     }
                     // @permissions
                     if (Admin::user()->can('device.maintenance.create')) {
-                        $actions->append(new MaintenanceRecordCreateAction('device'));
+                        $actions->append(new MaintenanceRecordCreateAction($this->asset_number));
                     }
                 }
             });
@@ -381,7 +381,7 @@ class DeviceRecordController extends AdminController
                     $filter->panel();
                 }
                 $filter->scope('history', admin_trans_label('Deleted'))->onlyTrashed();
-                $filter->scope('lend', trans('main.lend'))->whereHas('track', function($query) {
+                $filter->scope('lend', trans('main.lend'))->whereHas('track', function ($query) {
                     $query->whereNotNUll('lend_time');
                 });
                 $filter->scope('using', trans('main.using'))->has('admin_user');

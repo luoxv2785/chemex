@@ -58,7 +58,7 @@ class AssetController extends Controller
      */
     public function show(string $asset_number): array|JsonResponse
     {
-         // 分割类型和编码
+        // 分割类型和编码
         [$type, $asset_number] = explode(':', $asset_number);
         switch ($type) {
             case 'part':
