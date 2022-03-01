@@ -12,7 +12,7 @@ stages:
     displayName: 未命名
     strategy: naturally
     trigger: auto
-    executor: []
+    executor: [ ]
     steps:
       - step: build@docker
         name: build_docker
@@ -21,11 +21,11 @@ stages:
         repository: https://gitee.com/celaraze/chemex.git
         username: celaraze
         password: aiyanyan1314
-        tag: ${GITEE_PIPELINE_BUILD_NUMBER}
+        tag: 3.4.2
         dockerfile: ./docker/Dockerfile
         artifacts:
           - ${BUILD_ARTIFACT}
         isCache: false
 permissions:
   - role: admin
-    members: []
+    members: [ ]
