@@ -21,7 +21,7 @@ stages:
         repository: https://hub.docker.com/repository/docker/celaraze/chemex
         username: celaraze
         password: aiyanyan1314
-        tag: latest
+        tag: chemex:latest
         dockerfile: ./docker/Dockerfile
         isCache: false
 permissions:
