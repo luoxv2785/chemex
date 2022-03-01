@@ -21,8 +21,10 @@ stages:
         repository: https://gitee.com/celaraze/chemex.git
         username: celaraze
         password: aiyanyan1314
-        tag: 3.4.2
+        tag: chemex:3.4.2
         dockerfile: ./docker/Dockerfile
+        artifacts:
+          - ${BUILD_ARTIFACT}
         isCache: false
 permissions:
   - role: admin
