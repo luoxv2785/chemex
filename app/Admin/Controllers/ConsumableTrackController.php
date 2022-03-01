@@ -43,7 +43,6 @@ class ConsumableTrackController extends AdminController
 
             $grid->column('id');
             $grid->column('consumable.name');
-            $grid->column('operator');
             $grid->column('number');
             $grid->column('change');
             $grid->column('user.name');
@@ -85,7 +84,6 @@ class ConsumableTrackController extends AdminController
         return Show::make($id, new ConsumableTrack(['consumable', 'user']), function (Show $show) {
             $show->field('id');
             $show->field('consumable.name');
-            $show->field('operator');
             $show->field('number');
             $show->field('change');
             $show->field('user.name');

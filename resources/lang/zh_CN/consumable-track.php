@@ -10,7 +10,6 @@ return [
         'consumable' => [
             'name' => '耗材',
         ],
-        'operator' => '发生人',
         'user' => [
             'name' => '用户（领用人）',
         ],
