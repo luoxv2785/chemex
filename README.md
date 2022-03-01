@@ -23,14 +23,6 @@
     <img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2FCelaraze%2FChemex.svg?type=large" />
 </p>
 
-## Gitee Star 趋势
-
-[![Giteye chart](https://chart.giteye.net/gitee/dcat-phper/chemex/UWZGY8HM.png)](https://giteye.net/chart/UWZGY8HM)
-
-## 贡献者
-
-[![Giteye chart](https://chart.giteye.net/gitee/dcat-phper/chemex/5H7WBLM7.png)](https://giteye.net/chart/5H7WBLM7)
-
 ## 鸣谢（咖啡壶）
 
 没有它们就没有 资产管理系统（Chemex）：
