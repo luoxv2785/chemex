@@ -2,17 +2,17 @@ version: '1.0'
 name: docker-build-prd
 displayName: docker-build-prd
 triggers:
-  trigger: auto
+  trigger: manual
   push:
-    tags:
-      prefix:
-        - ''
+    branches:
+      precise:
+        - main
 stages:
   - name: stage-528ebcf8
     displayName: 未命名
     strategy: naturally
     trigger: auto
-    executor: [ ]
+    executor: []
     steps:
       - step: build@docker
         name: build_docker
@@ -28,4 +28,4 @@ stages:
         isCache: false
 permissions:
   - role: admin
-    members: [ ]
+    members: []
