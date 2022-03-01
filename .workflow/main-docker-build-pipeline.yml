@@ -18,10 +18,10 @@ stages:
         name: build_docker
         displayName: 镜像构建
         type: account
-        repository: https://gitee.com/celaraze/chemex.git
+        repository: https://hub.docker.com/r/celaraze/chemex
         username: celaraze
         password: aiyanyan1314
-        tag: chemex:3.4.2
+        tag: 3.4.2
         dockerfile: ./docker/Dockerfile
         artifacts:
           - ${BUILD_ARTIFACT}
