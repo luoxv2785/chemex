@@ -1,5 +1,5 @@
 FROM php:8.1.3-apache
-#COPY ./sources.list /etc/apt/sources.list
+COPY ./sources.list /etc/apt/sources.list
 RUN apt-get update && \
     apt-get install -y git zip unzip libldap-2.4-2=2.4.47+dfsg-3+deb10u6 zlib1g=1:1.2.11.dfsg-1 libzip-dev libldap-dev mariadb-client --allow-downgrades && \
     apt-get clean
