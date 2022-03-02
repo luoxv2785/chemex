@@ -1,21 +1,23 @@
-version: "3.4"
+version: "3.4.2"
 
 services:
   db:
     image: mariadb:10
+    container_name: chemex-db
     volumes:
       - ./data/db:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - "60002:3306"
     env_file:
       - .env
 
   web:
     image: celaraze/chemex
+    container_name: chemex-app
     build: .
     depends_on:
       - db
     ports:
-      - "80:80"
+      - "60001:80"
     volumes:
       - .env:/var/www/chemex/.env

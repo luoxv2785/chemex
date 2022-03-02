@@ -12,7 +12,7 @@ stages:
     displayName: 未命名
     strategy: naturally
     trigger: auto
-    executor: []
+    executor: [ ]
     steps:
       - step: build@docker
         name: build_docker
@@ -26,4 +26,4 @@ stages:
         isCache: false
 permissions:
   - role: admin
-    members: []
+    members: [ ]
