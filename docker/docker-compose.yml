@@ -12,7 +12,7 @@ services:
       - database.env
 
   web:
-    image: celaraze/chemex
+    image: celaraze/chemex:3.4.2
     container_name: chemex-app
     build: .
     depends_on:
