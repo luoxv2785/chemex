@@ -1,27 +1,17 @@
 version: "2"
 
 services:
-  db:
-    image: mariadb:10
-    container_name: chemex-db
-    volumes:
-      - ./data/db:/var/lib/mysql
-    ports:
-      - "60002:3306"
-    env_file:
-      - database.env
-    networks:
-      - bridge
-
   web:
     image: celaraze/chemex:3.4.2
     container_name: chemex-app
     build: .
-    depends_on:
-      - db
     ports:
       - "60001:80"
-    volumes:
-      - ./.env:/var/www/chemex/.env
     networks:
       - bridge
+    environment:
+      APP_DATABASE_HOST: 127.0.0.1
+      APP_DATABASE_PORT: 3306
+      APP_DATABASE_DB: chemex
+      APP_DATABASE_USERNAME: root
+      APP_DATABASE_PASSWORD: root
