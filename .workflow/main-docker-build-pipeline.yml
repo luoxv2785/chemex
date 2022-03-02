@@ -12,18 +12,18 @@ stages:
     displayName: 未命名
     strategy: naturally
     trigger: auto
-    executor: [ ]
+    executor: []
     steps:
       - step: build@docker
         name: build_docker
         displayName: 镜像构建
         type: account
-        repository: https://index.docker.io/v1/
+        repository: https://ghcr.io
         username: celaraze
-        password: aiyanyan1314
+        password: famio.cn@0625
         tag: celaraze/chemex:latest
         dockerfile: ./docker/Dockerfile
         isCache: false
 permissions:
   - role: admin
-    members: [ ]
+    members: []
