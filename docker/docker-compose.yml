@@ -9,7 +9,7 @@ services:
     ports:
       - "60002:3306"
     env_file:
-      - docker.env
+      - database.env
 
   web:
     image: celaraze/chemex
@@ -20,4 +20,4 @@ services:
     ports:
       - "60001:80"
     volumes:
-      - docker.env:/var/www/chemex/.env
+      - ./.env:/var/www/chemex/.env
