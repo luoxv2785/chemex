@@ -7,8 +7,6 @@ services:
     build: .
     ports:
       - "60001:80"
-    networks:
-      - bridge
     environment:
       APP_DATABASE_HOST: 127.0.0.1
       APP_DATABASE_PORT: 3306
