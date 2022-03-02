@@ -8,7 +8,7 @@ RUN a2enmod rewrite
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
 RUN git clone https://gitee.com/celaraze/chemex.git /var/www/chemex/
-COPY ./docker/.env /var/www.chemex/.env
+COPY .env /var/www.chemex/.env
 
 WORKDIR /var/www/chemex/
 RUN composer update
