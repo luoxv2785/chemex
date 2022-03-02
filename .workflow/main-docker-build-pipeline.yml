@@ -18,10 +18,10 @@ stages:
         name: build_docker
         displayName: 镜像构建
         type: account
-        repository: ccr.ccs.tencentyun.com/celaraze/chemex
+        repository: ccr.ccs.tencentyun.com
         username: '690938288'
         password: aiyanyan1314
-        tag: latest
+        tag: celaraze/chemex:latest
         dockerfile: ./docker/Dockerfile
         isCache: false
 permissions:
