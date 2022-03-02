@@ -18,10 +18,10 @@ stages:
         name: build_docker
         displayName: 镜像构建
         type: account
-        repository: https://ghcr.io
-        username: celaraze
-        password: famio.cn@0625
-        tag: celaraze/chemex:latest
+        repository: ccr.ccs.tencentyun.com/celaraze/chemex
+        username: '690938288'
+        password: aiyanyan1314
+        tag: latest
         dockerfile: ./docker/Dockerfile
         isCache: false
 permissions:
