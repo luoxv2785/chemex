@@ -13,6 +13,7 @@ done
 # 初始化应用程序
 # [ -z "${APP_KEY}" ]
 php artisan chemex:install
+php artisan chemex:update
 
 # 启动应用程序
 apache2-foreground
