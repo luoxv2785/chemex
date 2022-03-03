@@ -22,7 +22,7 @@ stages:
         username: '690938288'
         password: aiyanyan1314
         tag: celaraze/chemex:latest
-        dockerfile: ./docker/Dockerfile
+        dockerfile: ./docker-compose/gitee/Dockerfile
         isCache: false
 permissions:
   - role: admin
