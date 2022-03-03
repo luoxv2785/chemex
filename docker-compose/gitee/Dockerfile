@@ -1,4 +1,4 @@
-FROM celaraze/chemex:latest
+FROM ccr.ccs.tencentyun.com/celaraze/chemex:latest
 RUN apt-get update
 
 COPY ./.env.docker /var/www/chemex/.env
