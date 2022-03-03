@@ -17,10 +17,8 @@ stages:
       - step: build@docker
         name: build_docker
         displayName: 镜像构建
-        type: account
-        repository: hub.docker.com
-        username: celaraze
-        password: aiyanyan1314
+        type: cert
+        certificate: 736d1ae0-7b9e-013a-0a92-3a7ff233c483
         tag: celaraze/chemex:latest
         dockerfile: ./docker-compose/gitee/Dockerfile
         isCache: false
