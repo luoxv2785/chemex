@@ -6,7 +6,7 @@ WORKDIR /var/www/chemex/
 RUN git reset --hard && git pull --force
 RUN composer update
 
-COPY ./docker-compose/docker-entrypoint.sh /docker-entrypoint.sh
+COPY ./docker-compose/build/docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
 entrypoint ["/docker-entrypoint.sh"]
