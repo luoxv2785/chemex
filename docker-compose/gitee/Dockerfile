@@ -1,7 +1,7 @@
 FROM celaraze/chemex:latest
 RUN apt-get update
 
-COPY ./.env.docker /var/www/chemex/.env
+COPY ./docker-compose/build/.env.docker /var/www/chemex/.env
 WORKDIR /var/www/chemex/
 RUN git reset --hard && git pull --force
 RUN composer update
