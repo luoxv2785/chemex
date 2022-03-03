@@ -18,7 +18,7 @@ stages:
         name: build_docker
         displayName: 镜像构建
         type: cert
-        certificate: 736d1ae0-7b9e-013a-0a92-3a7ff233c483
+        certificate: a8f9bd10-7cbe-013a-9c35-2e64bcce1955
         tag: celaraze/chemex:latest
         dockerfile: ./docker-compose/gitee/Dockerfile
         isCache: false
