@@ -18,8 +18,8 @@ stages:
         name: build_docker
         displayName: 镜像构建
         type: account
-        repository: ccr.ccs.tencentyun.com
-        username: '690938288'
+        repository: hub.docker.com
+        username: celaraze
         password: aiyanyan1314
         tag: celaraze/chemex:latest
         dockerfile: ./docker-compose/gitee/Dockerfile
