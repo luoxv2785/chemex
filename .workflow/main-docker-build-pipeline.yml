@@ -2,7 +2,7 @@ version: '1.0'
 name: docker-build-prd
 displayName: docker-build-prd
 triggers:
-  trigger: manual
+  trigger: auto
   push:
     branches:
       precise:
