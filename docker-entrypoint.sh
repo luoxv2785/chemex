@@ -5,7 +5,7 @@ set -e
 source /var/www/chemex/.env
 
 # 等待数据库服务启动
-while ! mysqladmin ping -h"$APP_DATABASE_HOST" -u"$APP_DATABASE_USERNAME" -p"$APP_DATABASE_PASSWORD" -P"${APP_DATABASE_PORT:-3306}" --silent; do
+while ! mysqladmin ping -h"$DB_HOST" -u"$DB_USERNAME" -p"$DB_PASSWORD" -P"${DB_PORT:-3306}" --silent; do
     echo "数据库服务还未响应，继续等待"
     sleep 3
 done
