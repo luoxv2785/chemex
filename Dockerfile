@@ -1,7 +1,5 @@
-FROM celaraze/chemex:latest
-RUN apt-get update
+FROM celaraze/php-web:latest
 
-RUN rm /var/www/chemex -rf
 COPY . /var/www/chemex/
 COPY .env.docker /var/www/chemex/.env
 WORKDIR /var/www/chemex/
