@@ -697,11 +697,11 @@ class AdminPermissionsTableSeeder extends Seeder
                     'name' => '管理仪表盘',
                     'slug' => 'home.dashboard',
                     'http_method' => '',
-                    'http_path' => '',
+                    'http_path' => 'dashboard*',
                     'order' => 2,
                     'parent_id' => 89,
                     'created_at' => '2021-02-12 11:38:03',
-                    'updated_at' => '2021-03-10 18:39:02',
+                    'updated_at' => '2022-03-10 13:29:17',
                 ),
             57 =>
                 array(
