@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Admin\Controllers\CheckRecordController;
 use App\Admin\Controllers\ConsumableCategoryController;
 use App\Admin\Controllers\DepartmentController;
@@ -34,8 +33,8 @@ Route::group([
     'namespace' => config('admin.route.namespace'),
     'middleware' => config('admin.route.middleware'),
 ], function (Router $router) {
-    $router->get('/home', 'HomeController@index')
-        ->name('home');
+    $router->get('/dashboard', 'HomeController@index')
+        ->name('dashboard');
 
     /**
      * 辅助信息.

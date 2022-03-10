@@ -20,7 +20,7 @@ stages:
         type: cert
         certificate: d66c3ab0-7cc8-013a-6066-5a7ac4d3e693
         tag: celaraze/chemex:latest
-        dockerfile: ./docker-compose/gitee/Dockerfile
+        dockerfile: ./Dockerfile
         isCache: false
 permissions:
   - role: admin
