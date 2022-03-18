@@ -15,6 +15,9 @@ return [
     ],
     'fields' => [
         'check_item' => '资产类别',
+        'item' => [
+            'asset_number' => '资产编号'
+        ],
         'check_id' => '任务ID',
         'item_id' => '资产编号',
         'status' => '状态',

@@ -48,20 +48,6 @@ class CheckTrackController extends AdminController
             $grid->column('id');
             $grid->column('check_item')->using(Data::items());
             $grid->column('check_id');
-//            $grid->column('item_id')->display(function ($item_id) {
-//                $check = CheckRecord::where('id', $this->check_id)->first();
-//                if (empty($check)) {
-//                    return admin_trans_label('Record None');
-//                } else {
-//                    $check_item = $check->check_item;
-//                    $item = Support::getItemRecordByClass($check_item, $item_id);
-//                    if (empty($item)) {
-//                        return admin_trans_label('Item None');
-//                    } else {
-//                        return $item->name;
-//                    }
-//                }
-//            });
             $grid->column('item.asset_number');
             $grid->column('status')->using(Data::checkTrackStatus());
             $grid->column('checker.name');
@@ -84,7 +70,7 @@ class CheckTrackController extends AdminController
 
             $grid->toolsWithOutline(false);
 
-            $grid->quickSearch('id', 'check_id', 'checker.name')
+            $grid->quickSearch('id', 'item.asset_number', 'check_id', 'checker.name')
                 ->placeholder(trans('main.quick_search'))
                 ->auto(false);
         });

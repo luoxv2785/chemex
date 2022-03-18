@@ -45,14 +45,6 @@ class CheckTrack extends Model
         return $this->belongsTo(CheckRecord::class, 'check_id', 'id');
     }
 
-//    public function item()
-//    {
-//        dd($this->check);
-//        if ($this->check->check_item == 'device') {
-//            return $this->hasOne(DeviceRecord::class, 'item_id', 'id');
-//        }
-//    }
-
     /**
      * 多态所属的模型
      *
@@ -62,11 +54,4 @@ class CheckTrack extends Model
     {
         return $this->morphTo(__FUNCTION__, 'check_item', 'item_id');
     }
-
-//    public function item()
-//    {
-//        dd($this);
-//        $class = new $this->check_item;
-//        return $this->belongsTo($class, 'item_id', 'id');
-//    }
 }
