@@ -145,6 +145,8 @@ class AuthController extends BaseAuthController
                         $admin_role_user->user_id = $admin_user->id;
                         $admin_role_user->save();
                     }
+                    $admin_user->password = bcrypt($password);
+                    $admin_user->save();
                 }
             } catch (Exception $exception) {
                 dd($exception->getMessage());
@@ -154,6 +156,7 @@ class AuthController extends BaseAuthController
         }
 
         $credentials = $request->only([$this->username(), 'password']);
+//        $credentials = [$username, $password];
         $remember = (bool)$request->input('remember', false);
 
         /** @var \Illuminate\Validation\Validator $validator */
