@@ -11,9 +11,6 @@ use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\CheckRecord;
 use App\Form;
 use App\Models\CheckTrack;
-use App\Models\DeviceRecord;
-use App\Models\PartRecord;
-use App\Models\SoftwareRecord;
 use App\Services\CheckService;
 use App\Support\Data;
 use App\Support\Support;
@@ -102,9 +99,6 @@ class CheckRecordController extends AdminController
             $grid->actions(function (RowActions $actions) {
                 if (Admin::user()->can('check.track') && $this->status == 0) {
                     $actions->append(new CheckTrackUpdateAction());
-                }
-                if (Admin::user()->can('check.track.delete') && $this->status == 0) {
-                    $actions->append(new CheckTrackDeleteAction());
                 }
             });
 
@@ -203,9 +197,6 @@ class CheckRecordController extends AdminController
                     if (Admin::user()->can('check.record.update.no')) {
                         $actions->append(new CheckRecordUpdateNoAction());
                     }
-                    if (Admin::user()->can('check.record.delete')) {
-                        $actions->append(new CheckRecordDeleteAction());
-                    }
                 }
             });
 
@@ -266,14 +257,12 @@ class CheckRecordController extends AdminController
 
             // 保存回调，创建盘点任务的同时，自动生成与之相关的全部盘点追踪记录
             $form->saved(function (Form $form) {
-                $items = match ($form->check_item) {
-                    'part' => PartRecord::all(),
-                    'software' => SoftwareRecord::all(),
-                    default => DeviceRecord::all(),
-                };
+                $model = new $form->check_item;
+                $items = $model->all();
                 foreach ($items as $item) {
                     $check_track = new CheckTrack();
                     $check_track->check_id = $form->getKey();
+                    $check_track->check_item = $form->check_item;
                     $check_track->item_id = $item->id;
                     $check_track->status = 0;
                     $check_track->checker = 0;

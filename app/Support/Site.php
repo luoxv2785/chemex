@@ -61,7 +61,7 @@ class Site
             admin_setting('ad_host_primary'),
         ];
         if (!empty(admin_setting('ad_host_secondary'))) {
-            array_push($ad_hosts, admin_setting('ad_host_secondary'));
+            $ad_hosts[] = admin_setting('ad_host_secondary');
         }
 
         /**

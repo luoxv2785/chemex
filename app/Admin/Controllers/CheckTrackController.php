@@ -6,9 +6,7 @@ use App\Admin\Actions\Grid\RowAction\CheckTrackDeleteAction;
 use App\Admin\Actions\Grid\RowAction\CheckTrackUpdateAction;
 use App\Admin\Grid\Displayers\RowActions;
 use App\Admin\Repositories\CheckTrack;
-use App\Models\CheckRecord;
 use App\Support\Data;
-use App\Support\Support;
 use App\Traits\ControllerHasTab;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Grid;
@@ -46,23 +44,25 @@ class CheckTrackController extends AdminController
      */
     protected function grid(): Grid
     {
-        return Grid::make(new CheckTrack(['checker']), function (Grid $grid) {
+        return Grid::make(new CheckTrack(['checker', 'item']), function (Grid $grid) {
             $grid->column('id');
+            $grid->column('check_item')->using(Data::items());
             $grid->column('check_id');
-            $grid->column('item_id')->display(function ($item_id) {
-                $check = CheckRecord::where('id', $this->check_id)->first();
-                if (empty($check)) {
-                    return admin_trans_label('Record None');
-                } else {
-                    $check_item = $check->check_item;
-                    $item = Support::getItemRecordByClass($check_item, $item_id);
-                    if (empty($item)) {
-                        return admin_trans_label('Item None');
-                    } else {
-                        return $item->name;
-                    }
-                }
-            });
+//            $grid->column('item_id')->display(function ($item_id) {
+//                $check = CheckRecord::where('id', $this->check_id)->first();
+//                if (empty($check)) {
+//                    return admin_trans_label('Record None');
+//                } else {
+//                    $check_item = $check->check_item;
+//                    $item = Support::getItemRecordByClass($check_item, $item_id);
+//                    if (empty($item)) {
+//                        return admin_trans_label('Item None');
+//                    } else {
+//                        return $item->name;
+//                    }
+//                }
+//            });
+            $grid->column('item.asset_number');
             $grid->column('status')->using(Data::checkTrackStatus());
             $grid->column('checker.name');
             $grid->column('created_at');

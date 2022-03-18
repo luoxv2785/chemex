@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\DeviceRecord;
 use Illuminate\Console\Command;
 
 class Test extends Command
@@ -37,13 +38,9 @@ class Test extends Command
      */
     public function handle()
     {
-        $content = file_get_contents(admin_path('routes.php'));
-        preg_match_all("/^(.*resource.*)$/mi", $content, $results);
-        $routes = $results[1];
-        foreach ($routes as $route) {
-            dd($route);
-        }
-        dd($routes);
+        $string = 'App\Admin\Repositories\DeviceRecord';
+        $class = new $string;
+        dd($class);
         return 0;
     }
 }

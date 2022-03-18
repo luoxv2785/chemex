@@ -49,13 +49,13 @@ class Data
      *
      * @return string[]
      */
-    #[ArrayShape(['device' => "string", 'part' => "string", 'software' => "string"])]
+    #[ArrayShape(['DeviceRecord' => "string", 'PartRecord' => "string", 'SoftwareRecord' => "string"])]
     public static function items(): array
     {
         return [
-            'device' => '设备',
-            'part' => '配件',
-            'software' => '软件',
+            get_class(new \App\Models\DeviceRecord()) => '设备',
+            get_class(new \App\Models\PartRecord()) => '配件',
+            get_class(new \App\Models\SoftwareRecord()) => '软件',
         ];
     }
 

@@ -4,7 +4,9 @@ namespace App\Models;
 
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -14,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int item_id
  * @property int status
  * @property string checker
+ * @property string $check_item
  */
 class CheckTrack extends Model
 {
@@ -35,10 +38,35 @@ class CheckTrack extends Model
     /**
      * 盘点追踪有一个盘点任务.
      *
-     * @return HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function check(): HasOne
+    public function check(): BelongsTo
     {
-        return $this->hasOne(CheckRecord::class, 'id', 'check_id');
+        return $this->belongsTo(CheckRecord::class, 'check_id', 'id');
     }
+
+//    public function item()
+//    {
+//        dd($this->check);
+//        if ($this->check->check_item == 'device') {
+//            return $this->hasOne(DeviceRecord::class, 'item_id', 'id');
+//        }
+//    }
+
+    /**
+     * 多态所属的模型
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
+    public function item(): MorphTo
+    {
+        return $this->morphTo(__FUNCTION__, 'check_item', 'item_id');
+    }
+
+//    public function item()
+//    {
+//        dd($this);
+//        $class = new $this->check_item;
+//        return $this->belongsTo($class, 'item_id', 'id');
+//    }
 }

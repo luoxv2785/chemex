@@ -11,10 +11,10 @@ return [
         'Delete Confirm Description' => '删除的同时将无法盘点到此设备',
         'Record None' => '没有此盘点任务',
         'Item None' => '没有此物资',
-        'Update Track' => '处理盘点',
         'Update Delete Action' => '删除盘点',
     ],
     'fields' => [
+        'check_item' => '资产类别',
         'check_id' => '任务ID',
         'item_id' => '资产编号',
         'status' => '状态',

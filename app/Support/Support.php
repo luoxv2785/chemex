@@ -35,17 +35,17 @@ class Support
 
         foreach ($device_records as $device_record) {
             if (!empty($device_record->asset_number)) {
-                array_push($data, 'device:' . $device_record->asset_number . '&#10;');
+                $data[] = 'device:' . $device_record->asset_number . '&#10;';
             }
         }
         foreach ($part_records as $part_record) {
             if (!empty($part_record->asset_number)) {
-                array_push($data, 'part:' . $part_record->asset_number . '&#10;');
+                $data[] = 'part:' . $part_record->asset_number . '&#10;';
             }
         }
         foreach ($software_records as $software_record) {
             if (!empty($software_record->asset_number)) {
-                array_push($data, 'soft:' . $software_record->asset_number . '&#10;');
+                $data[] = 'soft:' . $software_record->asset_number . '&#10;';
             }
         }
 
@@ -65,11 +65,11 @@ class Support
     {
         $template['status'] = '+';
         $template['datetime'] = json_decode($item_track, true)['created_at'];
-        array_push($data, $template);
+        $data[] = $template;
         if (!empty($item_track->deleted_at)) {
             $template['status'] = '-';
             $template['datetime'] = json_decode($item_track, true)['deleted_at'];
-            array_push($data, $template);
+            $data[] = $template;
         }
 
         return $data;
@@ -90,33 +90,20 @@ class Support
             return 0;
         }
 
-        switch ($type) {
-            // 盘盈
-            case 'Y':
-                $count = CheckTrack::where('check_id', $check_id)
-                    ->where('status', 1)
-                    ->count();
-                break;
-            // 盘亏
-            case 'N':
-                $count = CheckTrack::where('check_id', $check_id)
-                    ->where('status', 2)
-                    ->count();
-                break;
-            // 剩余
-            case 'L':
-                $count = CheckTrack::where('check_id', $check_id)
-                    ->where('status', 0)
-                    ->count();
-                break;
-            default:
-                $count = CheckTrack::where('check_id', $check_id)
-                    ->withTrashed()
-                    ->count();
-
-        }
-
-        return $count;
+        return match ($type) {
+            'Y' => CheckTrack::where('check_id', $check_id)
+                ->where('status', 1)
+                ->count(),
+            'N' => CheckTrack::where('check_id', $check_id)
+                ->where('status', 2)
+                ->count(),
+            'L' => CheckTrack::where('check_id', $check_id)
+                ->where('status', 0)
+                ->count(),
+            default => CheckTrack::where('check_id', $check_id)
+                ->withTrashed()
+                ->count(),
+        };
     }
 
     /**
@@ -296,7 +283,7 @@ class Support
                 if ($service_issue->status == 1) {
                     $service->status = 1;
                     $issue = $service_issue->issue . '<br>';
-                    array_push($issues, $issue);
+                    $issues[] = $issue;
                 }
                 // 如果是修复的
                 if ($service_issue->status == 2) {
@@ -315,7 +302,7 @@ class Support
                             $service->end = $service_issue->end;
                         }
                     }
-                    array_push($issues, $issue);
+                    $issues[] = $issue;
                 }
             }
             // 如果暂停了
@@ -325,9 +312,7 @@ class Support
             }
             $service->issues = $issues;
         }
-        $services = json_decode($services, true);
-
-        return $services;
+        return json_decode($services, true);
     }
 
     /**
@@ -338,7 +323,7 @@ class Support
      *
      * @return string
      */
-    public static function makeYearDate($year, $field = 'from'): string
+    public static function makeYearDate($year, string $field = 'from'): string
     {
         $from = date('Y-m-d', mktime(0, 0, 0, 1, 1, $year));
         $to = date('Y-m-d', mktime(23, 59, 59, 12, 31, $year));
@@ -379,13 +364,13 @@ class Support
                 ],
             ];
             foreach ($device_record->part as $part) {
-                array_push($return['children'][0]['children'], ['name' => $part->asset_number]);
+                $return['children'][0]['children'][] = ['name' => $part->asset_number];
             }
             foreach ($device_record->software as $software) {
-                array_push($return['children'][1]['children'], ['name' => $software->name]);
+                $return['children'][1]['children'][] = ['name' => $software->name];
             }
             foreach ($device_record->service as $service) {
-                array_push($return['children'][2]['children'], ['name' => $service->name]);
+                $return['children'][2]['children'][] = ['name' => $service->name];
             }
         }
 
