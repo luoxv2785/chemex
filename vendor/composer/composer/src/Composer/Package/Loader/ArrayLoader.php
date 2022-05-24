@@ -185,7 +185,7 @@ class ArrayLoader implements LoaderInterface
             }
             $package->setSourceType($config['source']['type']);
             $package->setSourceUrl($config['source']['url']);
-            $package->setSourceReference($config['source']['reference'] ?? null);
+            $package->setSourceReference(isset($config['source']['reference']) ? (string) $config['source']['reference'] : null);
             if (isset($config['source']['mirrors'])) {
                 $package->setSourceMirrors($config['source']['mirrors']);
             }
@@ -202,7 +202,7 @@ class ArrayLoader implements LoaderInterface
             }
             $package->setDistType($config['dist']['type']);
             $package->setDistUrl($config['dist']['url']);
-            $package->setDistReference($config['dist']['reference'] ?? null);
+            $package->setDistReference(isset($config['dist']['reference']) ? (string) $config['dist']['reference'] : null);
             $package->setDistSha1Checksum($config['dist']['shasum'] ?? null);
             if (isset($config['dist']['mirrors'])) {
                 $package->setDistMirrors($config['dist']['mirrors']);
@@ -357,10 +357,10 @@ class ArrayLoader implements LoaderInterface
     }
 
     /**
-     * @param  string                $source        source package name
-     * @param  string                $sourceVersion source package version (pretty version ideally)
-     * @param  string                $description   link description (e.g. requires, replaces, ..)
-     * @param  array<string, string> $links         array of package name => constraint mappings
+     * @param  string                    $source        source package name
+     * @param  string                    $sourceVersion source package version (pretty version ideally)
+     * @param  string                    $description   link description (e.g. requires, replaces, ..)
+     * @param  array<string|int, string> $links         array of package name => constraint mappings
      *
      * @return Link[]
      *
@@ -370,7 +370,7 @@ class ArrayLoader implements LoaderInterface
     {
         $res = array();
         foreach ($links as $target => $constraint) {
-            $target = strtolower($target);
+            $target = strtolower((string) $target);
             $res[$target] = $this->createLink($source, $sourceVersion, $description, $target, $constraint);
         }
 
@@ -421,6 +421,8 @@ class ArrayLoader implements LoaderInterface
 
         if (isset($config['extra']['branch-alias']) && \is_array($config['extra']['branch-alias'])) {
             foreach ($config['extra']['branch-alias'] as $sourceBranch => $targetBranch) {
+                $sourceBranch = (string) $sourceBranch;
+
                 // ensure it is an alias to a -dev package
                 if ('-dev' !== substr($targetBranch, -4)) {
                     continue;

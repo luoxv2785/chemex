@@ -21,6 +21,8 @@ use Composer\Util\Git as GitUtil;
 use Composer\Util\HttpDownloader;
 use Composer\Util\ProcessExecutor;
 use Composer\Util\Svn as SvnUtil;
+use React\Promise\CancellablePromiseInterface;
+use Symfony\Component\Process\Process;
 
 /**
  * Try to guess the current version number based on different VCS configuration.
@@ -307,27 +309,42 @@ class VersionGuesser
                 return strnatcasecmp($b, $a);
             });
 
-            foreach ($branches as $candidate) {
-                $candidateVersion = Preg::replace('{^remotes/\S+/}', '', $candidate);
+            $promises = [];
+            $this->process->setMaxJobs(30);
+            try {
+                foreach ($branches as $candidate) {
+                    $candidateVersion = Preg::replace('{^remotes/\S+/}', '', $candidate);
 
-                // do not compare against itself or other feature branches
-                if ($candidate === $branch || $this->isFeatureBranch($packageConfig, $candidateVersion)) {
-                    continue;
-                }
-
-                $cmdLine = str_replace(array('%candidate%', '%branch%'), array($candidate, $branch), $scmCmdline);
-                if (0 !== $this->process->execute($cmdLine, $output, $path)) {
-                    continue;
-                }
-
-                if (strlen($output) < $length) {
-                    $length = strlen($output);
-                    $version = $this->versionParser->normalizeBranch($candidateVersion);
-                    $prettyVersion = 'dev-' . $candidateVersion;
-                    if ($length === 0) {
-                        break;
+                    // do not compare against itself or other feature branches
+                    if ($candidate === $branch || $this->isFeatureBranch($packageConfig, $candidateVersion)) {
+                        continue;
                     }
+
+                    $cmdLine = str_replace(array('%candidate%', '%branch%'), array($candidate, $branch), $scmCmdline);
+                    $promises[] = $this->process->executeAsync($cmdLine, $path)->then(function (Process $process) use (&$length, &$version, &$prettyVersion, $candidateVersion, &$promises): void {
+                        if (!$process->isSuccessful()) {
+                            return;
+                        }
+
+                        $output = $process->getOutput();
+                        if (strlen($output) < $length) {
+                            $length = strlen($output);
+                            $version = $this->versionParser->normalizeBranch($candidateVersion);
+                            $prettyVersion = 'dev-' . $candidateVersion;
+                            if ($length === 0) {
+                                foreach ($promises as $promise) {
+                                    if ($promise instanceof CancellablePromiseInterface) {
+                                        $promise->cancel();
+                                    }
+                                }
+                            }
+                        }
+                    });
                 }
+
+                $this->process->wait();
+            } finally {
+                $this->process->resetMaxJobs();
             }
         }
 

@@ -20,6 +20,8 @@ use Composer\IO\IOInterface;
 use Composer\Json\JsonFile;
 use Composer\Pcre\Preg;
 use Composer\Spdx\SpdxLicenses;
+use Seld\JsonLint\DuplicateKeyException;
+use Seld\JsonLint\JsonParser;
 
 /**
  * Validates a composer configuration.
@@ -56,6 +58,7 @@ class ConfigValidator
 
         // validate json schema
         $laxValid = false;
+        $manifest = null;
         try {
             $json = new JsonFile($file, null, $this->io);
             $manifest = $json->read();
@@ -75,6 +78,16 @@ class ConfigValidator
             $errors[] = $e->getMessage();
 
             return array($errors, $publishErrors, $warnings);
+        }
+
+        if (is_array($manifest)) {
+            $jsonParser = new JsonParser();
+            try {
+                $jsonParser->parse((string) file_get_contents($file), JsonParser::DETECT_KEY_CONFLICTS);
+            } catch (DuplicateKeyException $e) {
+                $details = $e->getDetails();
+                $warnings[] = 'Key '.$details['key'].' is a duplicate in '.$file.' at line '.$details['line'];
+            }
         }
 
         // validate actual data

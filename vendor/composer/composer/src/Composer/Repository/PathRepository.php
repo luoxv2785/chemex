@@ -13,6 +13,7 @@
 namespace Composer\Repository;
 
 use Composer\Config;
+use Composer\EventDispatcher\EventDispatcher;
 use Composer\IO\IOInterface;
 use Composer\Json\JsonFile;
 use Composer\Package\CompleteAliasPackage;
@@ -21,6 +22,7 @@ use Composer\Package\Loader\ArrayLoader;
 use Composer\Package\Version\VersionGuesser;
 use Composer\Package\Version\VersionParser;
 use Composer\Pcre\Preg;
+use Composer\Util\HttpDownloader;
 use Composer\Util\Platform;
 use Composer\Util\ProcessExecutor;
 use Composer\Util\Filesystem;
@@ -109,7 +111,7 @@ class PathRepository extends ArrayRepository implements ConfigurableRepositoryIn
      * @param IOInterface $io
      * @param Config      $config
      */
-    public function __construct(array $repoConfig, IOInterface $io, Config $config)
+    public function __construct(array $repoConfig, IOInterface $io, Config $config, HttpDownloader $httpDownloader = null, EventDispatcher $dispatcher = null, ProcessExecutor $process = null)
     {
         if (!isset($repoConfig['url'])) {
             throw new \RuntimeException('You must specify the `url` configuration for the path repository');
@@ -117,7 +119,7 @@ class PathRepository extends ArrayRepository implements ConfigurableRepositoryIn
 
         $this->loader = new ArrayLoader(null, true);
         $this->url = Platform::expandPath($repoConfig['url']);
-        $this->process = new ProcessExecutor($io);
+        $this->process = $process ?? new ProcessExecutor($io);
         $this->versionGuesser = new VersionGuesser($config, $this->process, new VersionParser());
         $this->repoConfig = $repoConfig;
         $this->options = $repoConfig['options'] ?? array();
@@ -209,7 +211,6 @@ class PathRepository extends ArrayRepository implements ConfigurableRepositoryIn
                 $package['dist']['reference'] = trim($output);
             }
 
-            $needsAlias = false;
             if (!isset($package['version'])) {
                 $versionData = $this->versionGuesser->guessVersion($package, $path);
                 if (is_array($versionData) && $versionData['pretty_version']) {
@@ -222,16 +223,10 @@ class PathRepository extends ArrayRepository implements ConfigurableRepositoryIn
                     $package['version'] = $versionData['pretty_version'];
                 } else {
                     $package['version'] = 'dev-main';
-                    $needsAlias = true;
                 }
             }
 
-            $package = $this->loader->load($package);
-            if ($needsAlias && $package instanceof CompletePackage) {
-                // keep a dev-master alias to dev-main for BC
-                $package = new CompleteAliasPackage($package, 'dev-master', 'dev-master');
-            }
-            $this->addPackage($package);
+            $this->addPackage($this->loader->load($package));
         }
     }
 

@@ -618,13 +618,8 @@ class PlatformRepository extends ArrayRepository
 
     /**
      * Parses the version and adds a new package to the repository
-     *
-     * @param string      $name
-     * @param null|string $prettyVersion
-     *
-     * @return void
      */
-    private function addExtension(string $name, ?string $prettyVersion): void
+    private function addExtension(string $name, string $prettyVersion): void
     {
         $extraDescription = null;
 
@@ -664,15 +659,18 @@ class PlatformRepository extends ArrayRepository
 
     /**
      * @param string      $name
-     * @param string      $prettyVersion
+     * @param string|null $prettyVersion
      * @param string|null $description
      * @param string[]    $replaces
      * @param string[]    $provides
      *
      * @return void
      */
-    private function addLibrary(string $name, string $prettyVersion, ?string $description = null, array $replaces = array(), array $provides = array()): void
+    private function addLibrary(string $name, ?string $prettyVersion, ?string $description = null, array $replaces = array(), array $provides = array()): void
     {
+        if (null === $prettyVersion) {
+            return;
+        }
         try {
             $version = $this->versionParser->normalize($prettyVersion);
         } catch (\UnexpectedValueException $e) {

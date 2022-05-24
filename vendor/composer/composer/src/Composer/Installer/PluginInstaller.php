@@ -38,7 +38,7 @@ class PluginInstaller extends LibraryInstaller
     /**
      * @inheritDoc
      */
-    public function supports($packageType)
+    public function supports(string $packageType)
     {
         return $packageType === 'composer-plugin' || $packageType === 'composer-installer';
     }
@@ -63,7 +63,7 @@ class PluginInstaller extends LibraryInstaller
     {
         $promise = parent::install($repo, $package);
         if (!$promise instanceof PromiseInterface) {
-            $promise = \React\Promise\resolve();
+            $promise = \React\Promise\resolve(null);
         }
 
         return $promise->then(function () use ($package, $repo): void {
@@ -83,7 +83,7 @@ class PluginInstaller extends LibraryInstaller
     {
         $promise = parent::update($repo, $initial, $target);
         if (!$promise instanceof PromiseInterface) {
-            $promise = \React\Promise\resolve();
+            $promise = \React\Promise\resolve(null);
         }
 
         return $promise->then(function () use ($initial, $target, $repo): void {

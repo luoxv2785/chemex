@@ -89,7 +89,7 @@ class FileDownloader implements DownloaderInterface, ChangeReportInterface
         $this->eventDispatcher = $eventDispatcher;
         $this->httpDownloader = $httpDownloader;
         $this->cache = $cache;
-        $this->process = $process ?: new ProcessExecutor($io);
+        $this->process = $process ?? new ProcessExecutor($io);
         $this->filesystem = $filesystem ?: new Filesystem($this->process);
 
         if ($this->cache && $this->cache->gcIsNecessary()) {
@@ -296,7 +296,7 @@ class FileDownloader implements DownloaderInterface, ChangeReportInterface
      */
     public function prepare(string $type, PackageInterface $package, string $path, PackageInterface $prevPackage = null): PromiseInterface
     {
-        return \React\Promise\resolve();
+        return \React\Promise\resolve(null);
     }
 
     /**
@@ -327,7 +327,7 @@ class FileDownloader implements DownloaderInterface, ChangeReportInterface
             }
         }
 
-        return \React\Promise\resolve();
+        return \React\Promise\resolve(null);
     }
 
     /**
@@ -355,7 +355,7 @@ class FileDownloader implements DownloaderInterface, ChangeReportInterface
             }
         }
 
-        return \React\Promise\resolve();
+        return \React\Promise\resolve(null);
     }
 
     /**
@@ -476,7 +476,7 @@ class FileDownloader implements DownloaderInterface, ChangeReportInterface
      * @inheritDoc
      * @throws \RuntimeException
      */
-    public function getLocalChanges(PackageInterface $package, string $targetDir): ?string
+    public function getLocalChanges(PackageInterface $package, string $path): ?string
     {
         $prevIO = $this->io;
 
@@ -485,7 +485,7 @@ class FileDownloader implements DownloaderInterface, ChangeReportInterface
         $e = null;
         $output = '';
 
-        $targetDir = Filesystem::trimTrailingSlash($targetDir);
+        $targetDir = Filesystem::trimTrailingSlash($path);
         try {
             if (is_dir($targetDir.'_compare')) {
                 $this->filesystem->removeDirectory($targetDir.'_compare');

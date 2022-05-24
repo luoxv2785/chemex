@@ -11,13 +11,16 @@ declare(strict_types=1);
 
 namespace Spiral\RoadRunner\Http;
 
+use Generator;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestFactoryInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
+use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UploadedFileFactoryInterface;
 use Psr\Http\Message\UploadedFileInterface;
 use Spiral\RoadRunner\WorkerInterface;
+use Stringable;
 
 /**
  * Manages PSR-7 request and response.
@@ -27,6 +30,12 @@ use Spiral\RoadRunner\WorkerInterface;
  */
 class PSR7Worker implements PSR7WorkerInterface
 {
+    /**
+     * @var int Preferred chunk size for streaming output.
+     *      if not greater than 0, then streaming response is turned off
+     */
+    public int $chunkSize = 0;
+
     /**
      * @var HttpWorker
      */
@@ -108,11 +117,45 @@ class PSR7Worker implements PSR7WorkerInterface
      */
     public function respond(ResponseInterface $response): void
     {
-        $this->httpWorker->respond(
-            $response->getStatusCode(),
-            (string)$response->getBody(),
-            $response->getHeaders()
-        );
+        if ($this->chunkSize > 0) {
+            $this->httpWorker->respondStream(
+                $response->getStatusCode(),
+                $this->streamToGenerator($response->getBody()),
+                $response->getHeaders()
+            );
+        } else {
+            $this->httpWorker->respond(
+                $response->getStatusCode(),
+                (string)$response->getBody(),
+                $response->getHeaders());
+        }
+    }
+
+    /**
+     * @return Generator<mixed, scalar|Stringable, mixed, Stringable|scalar|null> Compatible
+     *         with {@see \Spiral\RoadRunner\Http\HttpWorker::respondStream()}.
+     */
+    private function streamToGenerator(StreamInterface $stream): Generator
+    {
+        $stream->rewind();
+        $size = $stream->getSize();
+        if ($size !== null && $size < $this->chunkSize) {
+            return (string)$stream;
+        }
+        $sum = 0;
+        while (!$stream->eof()) {
+            if ($size === null) {
+                $chunk = $stream->read($this->chunkSize);
+            } else {
+                $left = $size - $sum;
+                $chunk = $stream->read(\min($this->chunkSize, $left));
+                if ($left <= $this->chunkSize && \strlen($chunk) === $left) {
+                    return $chunk;
+                }
+            }
+            $sum += \strlen($chunk);
+            yield $chunk;
+        }
     }
 
     /**

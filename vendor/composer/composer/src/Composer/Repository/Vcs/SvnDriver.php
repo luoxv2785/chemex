@@ -31,9 +31,9 @@ class SvnDriver extends VcsDriver
 {
     /** @var string */
     protected $baseUrl;
-    /** @var array<string, string> Map of tag name to identifier */
+    /** @var array<int|string, string> Map of tag name to identifier */
     protected $tags;
-    /** @var array<string, string> Map of branch name to identifier */
+    /** @var array<int|string, string> Map of branch name to identifier */
     protected $branches;
     /** @var ?string */
     protected $rootIdentifier;
@@ -148,7 +148,7 @@ class SvnDriver extends VcsDriver
                     throw $e;
                 }
                 // remember a not-existent composer.json
-                $composer = '';
+                $composer = null;
             }
 
             if ($this->shouldCache($identifier)) {
@@ -156,6 +156,11 @@ class SvnDriver extends VcsDriver
             }
 
             $this->infoCache[$identifier] = $composer;
+        }
+
+        // old cache files had '' stored instead of null due to af3783b5f40bae32a23e353eaf0a00c9b8ce82e2, so we make sure here that we always return null or array
+        if (!is_array($this->infoCache[$identifier])) {
+            return null;
         }
 
         return $this->infoCache[$identifier];
@@ -396,11 +401,11 @@ class SvnDriver extends VcsDriver
      * Build the identifier respecting "package-path" config option
      *
      * @param string $baseDir  The path to trunk/branch/tag
-     * @param int    $revision The revision mark to add to identifier
+     * @param string $revision The revision mark to add to identifier
      *
      * @return string
      */
-    protected function buildIdentifier(string $baseDir, int $revision): string
+    protected function buildIdentifier(string $baseDir, string $revision): string
     {
         return rtrim($baseDir, '/') . $this->packagePath . '/@' . $revision;
     }

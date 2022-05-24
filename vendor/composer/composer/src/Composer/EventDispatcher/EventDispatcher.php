@@ -71,7 +71,7 @@ class EventDispatcher
     {
         $this->composer = $composer;
         $this->io = $io;
-        $this->process = $process ?: new ProcessExecutor($io);
+        $this->process = $process ?? new ProcessExecutor($io);
         $this->eventStack = array();
     }
 
@@ -91,14 +91,17 @@ class EventDispatcher
     /**
      * Dispatch an event
      *
-     * @param  string $eventName An event name
-     * @param  Event  $event
-     * @return int    return code of the executed script if any, for php scripts a false return
+     * @param  string|null $eventName The event name, required if no $event is provided
+     * @param  Event       $event An event instance, required if no $eventName is provided
+     * @return int         return code of the executed script if any, for php scripts a false return
      *                          value is changed to 1, anything else to 0
      */
-    public function dispatch(string $eventName, Event $event = null): int
+    public function dispatch(?string $eventName, Event $event = null): int
     {
         if (null === $event) {
+            if (null === $eventName) {
+                throw new \InvalidArgumentException('If no $event is passed in to '.__METHOD__.' you have to pass in an $eventName, got null.');
+            }
             $event = new Event($eventName);
         }
 
@@ -391,13 +394,13 @@ class EventDispatcher
     /**
      * Add a listener for a particular event
      *
-     * @param string   $eventName The event name - typically a constant
-     * @param callable $listener  A callable expecting an event argument
-     * @param int      $priority  A higher value represents a higher priority
+     * @param string          $eventName The event name - typically a constant
+     * @param callable|string $listener  A callable expecting an event argument, or a command string to be executed (same as a composer.json "scripts" entry)
+     * @param int             $priority  A higher value represents a higher priority
      *
      * @return void
      */
-    public function addListener(string $eventName, callable $listener, int $priority = 0): void
+    public function addListener(string $eventName, $listener, int $priority = 0): void
     {
         $this->listeners[$eventName][$priority][] = $listener;
     }
@@ -568,7 +571,11 @@ class EventDispatcher
     private function ensureBinDirIsInPath(): void
     {
         $pathEnv = 'PATH';
-        if (false === Platform::getEnv('PATH') && false !== Platform::getEnv('Path')) {
+
+        // checking if only Path and not PATH is set then we probably need to update the Path env
+        // on Windows getenv is case-insensitive so we cannot check it via Platform::getEnv and
+        // we need to check in $_SERVER directly
+        if (!isset($_SERVER[$pathEnv]) && isset($_SERVER['Path'])) {
             $pathEnv = 'Path';
         }
 
@@ -576,7 +583,7 @@ class EventDispatcher
         $binDir = $this->composer->getConfig()->get('bin-dir');
         if (is_dir($binDir)) {
             $binDir = realpath($binDir);
-            $pathValue = Platform::getEnv($pathEnv);
+            $pathValue = (string) Platform::getEnv($pathEnv);
             if (!Preg::isMatch('{(^|'.PATH_SEPARATOR.')'.preg_quote($binDir).'($|'.PATH_SEPARATOR.')}', $pathValue)) {
                 Platform::putEnv($pathEnv, $binDir.PATH_SEPARATOR.$pathValue);
             }

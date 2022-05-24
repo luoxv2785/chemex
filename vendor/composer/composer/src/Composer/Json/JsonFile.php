@@ -30,6 +30,7 @@ class JsonFile
 {
     public const LAX_SCHEMA = 1;
     public const STRICT_SCHEMA = 2;
+    public const AUTH_SCHEMA = 3;
 
     /** @deprecated Use \JSON_UNESCAPED_SLASHES */
     public const JSON_UNESCAPED_SLASHES = 64;
@@ -186,7 +187,9 @@ class JsonFile
      * @param  string|null             $schemaFile a path to the schema file
      * @throws JsonValidationException
      * @throws ParsingException
-     * @return bool                    true on success
+     * @return true                    true on success
+     *
+     * @phpstan-param self::*_SCHEMA $schema
      */
     public function validateSchema(int $schema = self::STRICT_SCHEMA, ?string $schemaFile = null): bool
     {
@@ -197,6 +200,22 @@ class JsonFile
             self::validateSyntax($content, $this->path);
         }
 
+        return self::validateJsonSchema($this->path, $data, $schema, $schemaFile);
+    }
+
+    /**
+     * Validates the schema of the current json file according to composer-schema.json rules
+     *
+     * @param  mixed                   $data       Decoded JSON data to validate
+     * @param  int                     $schema     a JsonFile::*_SCHEMA constant
+     * @param  string|null             $schemaFile a path to the schema file
+     * @throws JsonValidationException
+     * @return true                    true on success
+     *
+     * @phpstan-param self::*_SCHEMA $schema
+     */
+    public static function validateJsonSchema(string $source, $data, int $schema, ?string $schemaFile = null): bool
+    {
         $isComposerSchemaFile = false;
         if (null === $schemaFile) {
             $isComposerSchemaFile = true;
@@ -216,6 +235,8 @@ class JsonFile
         } elseif ($schema === self::STRICT_SCHEMA && $isComposerSchemaFile) {
             $schemaData->additionalProperties = false;
             $schemaData->required = array('name', 'description');
+        } elseif ($schema === self::AUTH_SCHEMA && $isComposerSchemaFile) {
+            $schemaData = (object) array('$ref' => $schemaFile.'#/properties/config', '$schema'=> "https://json-schema.org/draft-04/schema#");
         }
 
         $validator = new Validator();
@@ -226,7 +247,7 @@ class JsonFile
             foreach ((array) $validator->getErrors() as $error) {
                 $errors[] = ($error['property'] ? $error['property'].' : ' : '').$error['message'];
             }
-            throw new JsonValidationException('"'.$this->path.'" does not match the expected JSON schema', $errors);
+            throw new JsonValidationException('"'.$source.'" does not match the expected JSON schema', $errors);
         }
 
         return true;
