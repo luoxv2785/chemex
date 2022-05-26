@@ -212,19 +212,19 @@ class DeviceRecord extends Model
     public function status(): array|string|Translator|Application|null
     {
         if ($this->isLend()) {
-            return "<span class='badge badge-primary'>" . trans('main.lend') . "</span>";
+            return ["<span class='badge badge-primary'>" . trans('main.lend') . "</span>", trans('main.lend')];
         }
 
         $user = $this->admin_user()->first();
         if (!empty($user)) {
-            return "<span class='badge badge-success'>" . trans('main.using') . "</span>";
+            return ["<span class='badge badge-success'>" . trans('main.using') . "</span>", trans('main.using')];
         }
 
-        if (empty($user) && !empty($this->expired) && (time() > strtotime($this->expired))) {
-            return "<span class='badge badge-danger'>" . trans('main.dead') . "</span>";
+        if (!empty($this->expired) && (time() > strtotime($this->expired))) {
+            return ["<span class='badge badge-danger'>" . trans('main.dead') . "</span>", trans('main.dead')];
         }
 
-        return "<span class='badge badge-info'>" . trans('main.idle') . "</span>";
+        return ["<span class='badge badge-info'>" . trans('main.idle') . "</span>", trans('main.idle')];
     }
 
     /**

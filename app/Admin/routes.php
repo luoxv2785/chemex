@@ -200,6 +200,13 @@ Route::group([
     $router->get('/export/check/{check_id}/report', [CheckRecordController::class, 'exportReport'])
         ->name('export.check.report');
 
+    /**
+     * 导入日志.
+     */
+    $router->resource('/import_logs', 'ImportLogController')
+        ->names('import_logs');
+    $router->resource('/import_log_details', 'ImportLogDetailController')
+        ->names('import_log_details');
 
     /**
      * 通知.

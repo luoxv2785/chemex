@@ -6,15 +6,17 @@ use App\Models\CustomColumn;
 use App\Models\DeviceCategory;
 use App\Models\DeviceRecord;
 use App\Models\DeviceTrack;
+use App\Models\ImportLog;
 use App\Models\User;
 use App\Models\VendorRecord;
 use Box\Spout\Common\Exception\IOException;
 use Box\Spout\Common\Exception\UnsupportedTypeException;
+use Dcat\Admin\Admin;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Widgets\Form;
 use Dcat\EasyExcel\Excel;
 use Exception;
-use League\Flysystem\FileNotFoundException;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class DeviceRecordImportForm extends Form
 {
@@ -32,6 +34,11 @@ class DeviceRecordImportForm extends Form
 
         $success = 0;
         $fail = 0;
+
+        $import_log = new ImportLog();
+        $import_log->item = 'DeviceRecord';
+        $import_log->operator = Admin::user()->id;
+        $import_log->save();
 
         try {
             $rows = Excel::import($file_path)->first()->toArray();
@@ -97,11 +104,25 @@ class DeviceRecordImportForm extends Form
                         }
 
                         $success++;
+                        // 导入日志写入
+                        $import_log->details()->create([
+                            'log_id' => $import_log->id,
+                            'status' => 1,
+                            'log' => $row['资产编号'] . '：导入成功！'
+                        ]);
                     } else {
                         $fail++;
+                        $import_log->details()->create([
+                            'log_id' => $import_log->id,
+                            'log' => $row['资产编号'] . '：导入失败，缺少必要的字段：资产编号、分类、厂商！'
+                        ]);
                     }
-                } catch (Exception) {
+                } catch (Exception $exception) {
                     $fail++;
+                    $import_log->details()->create([
+                        'log_id' => $import_log->id,
+                        'log' => $row['资产编号'] . '：导入失败，' . $exception->getMessage()
+                    ]);
                 }
             }
             $return = $this->response()

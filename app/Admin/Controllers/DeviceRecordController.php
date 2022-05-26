@@ -247,7 +247,7 @@ class DeviceRecordController extends AdminController
                 return $asset_number;
             });
             $grid->column('device_status', '', $sort_columns)->display(function () {
-                return $this->status();
+                return $this->status()[0];
             });
             $grid->column('description', '', $sort_columns);
             $grid->column('category.name', '', $sort_columns);
@@ -424,7 +424,29 @@ class DeviceRecordController extends AdminController
             }
             // @permissions
             if (Admin::user()->can('device.record.export')) {
-                $grid->export();
+                $grid->export()->rows(function ($rows) {
+                    foreach ($rows as $row) {
+                        $device = \App\Models\DeviceRecord::query()
+                            ->where('id', $row['id'])
+                            ->first();
+                        //导出分类定义
+                        $row['category.name'] = DeviceCategory::query()
+                            ->where('id', $row['category_id'])
+                            ->value('name');
+                        //导出厂商定义
+                        $row['vendor.name'] = VendorRecord::query()
+                            ->where('id', $row['vendor_id'])
+                            ->value('name');
+                        //导出用户定义
+                        $row['admin_user.name'] = $device?->admin_user->name;
+                        //导出部门定义
+                        $row['admin_user.department.name'] = $device?->admin_user?->department->name;
+                        //导出折旧规则定义
+                        $row['depreciation.name'] = $device?->depreciation->name;
+                        $row['device_status'] = $device?->status()[1];
+                    }
+                    return $rows;
+                });
             }
         });
     }
