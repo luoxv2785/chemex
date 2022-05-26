@@ -338,7 +338,28 @@ class SoftwareRecordController extends AdminController
             }
             // @permissions
             if (Admin::user()->can('software.record.export')) {
-                $grid->export();
+                $grid->export()->rows(function ($rows) {
+                    foreach ($rows as $row) {
+                        $software = \App\Models\SoftwareRecord::query()
+                            ->where('id', $row['id'])
+                            ->first();
+                        //导出分类定义
+                        $row['category.name'] = SoftwareCategory::query()
+                            ->where('id', $row['category_id'])
+                            ->value('name');
+                        //导出厂商定义
+                        $row['vendor.name'] = VendorRecord::query()
+                            ->where('id', $row['vendor_id'])
+                            ->value('name');
+                        //导出发行方式定义
+                        $row['distribution'] = Data::distribution()[$software['distribution']];
+                        //导出剩余授权数量定义
+                        $row['left_counts'] = $software->leftCounts();
+                        //导出保固剩余天数定义
+                        $row['expiration_left_days'] = ExpirationService::itemExpirationLeftDays('software', $software->id);
+                    }
+                    return $rows;
+                });
             }
         });
     }

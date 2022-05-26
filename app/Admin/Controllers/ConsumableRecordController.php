@@ -69,7 +69,7 @@ class ConsumableRecordController extends AdminController
             $grid->column('category.name', '', $sort_columns);
             $grid->column('vendor.name', '', $sort_columns);
             $grid->column('price', '', $sort_columns);
-            $grid->column('track.number');
+            $grid->column('track.number', '', $sort_columns);
             $grid->column('created_at', '', $sort_columns);
             $grid->column('updated_at', '', $sort_columns);
 
@@ -173,7 +173,20 @@ class ConsumableRecordController extends AdminController
             }
             // @permissions
             if (Admin::user()->can('consumable.record.export')) {
-                $grid->export();
+                $grid->export()->rows(function ($rows) {
+                    foreach ($rows as $row) {
+                        $consumable = \App\Models\ConsumableRecord::query()
+                            ->where('id', $row['id'])
+                            ->first();
+                        //导出耗材分类定义
+                        $row['category.name'] = $consumable?->category->name;
+                        //导出厂商定义
+                        $row['vendor.name'] = $consumable?->vendor->name;
+                        //导出总数定义
+                        $row['track.number'] = $consumable?->track->number;
+                    }
+                    return $rows;
+                });
             }
         });
     }

@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use Ace\Uni;
 use App\Admin\Actions\Grid\BatchAction\ServiceRecordBatchDeleteAction;
 use App\Admin\Actions\Grid\BatchAction\ServiceRecordBatchForceDeleteAction;
 use App\Admin\Actions\Grid\RowAction\ServiceRecordCreateIssueAction;
@@ -165,7 +166,18 @@ class ServiceRecordController extends AdminController
             }
             // @permissions
             if (Admin::user()->can('service.record.export')) {
-                $grid->export();
+                $grid->export()->rows(function ($rows) {
+                    foreach ($rows as $row) {
+                        $service = \App\Models\ServiceRecord::query()
+                            ->where('id', $row['id'])
+                            ->first();
+                        //导出服务状态定义
+                        $row['status'] = Uni::yesOrNo()[$service->status];
+                        //导出所属设备定义
+                        $row['device.asset_number'] = $service?->device?->asset_number;
+                    }
+                    return $rows;
+                });
             }
         });
     }

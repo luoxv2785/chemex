@@ -443,7 +443,10 @@ class DeviceRecordController extends AdminController
                         $row['admin_user.department.name'] = $device?->admin_user?->department->name;
                         //导出折旧规则定义
                         $row['depreciation.name'] = $device?->depreciation->name;
+                        //导出设备状态定义
                         $row['device_status'] = $device?->status()[1];
+                        //导出保固剩余天数定义
+                        $row['expiration_left_days'] = ExpirationService::itemExpirationLeftDays('device', $device->id);
                     }
                     return $rows;
                 });

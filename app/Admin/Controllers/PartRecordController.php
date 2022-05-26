@@ -219,7 +219,28 @@ class PartRecordController extends AdminController
             }
             // @permissions
             if (Admin::user()->can('part.record.export')) {
-                $grid->export();
+                $grid->export()->rows(function ($rows) {
+                    foreach ($rows as $row) {
+                        $part = \App\Models\PartRecord::query()
+                            ->where('id', $row['id'])
+                            ->first();
+                        //导出分类定义
+                        $row['category.name'] = PartCategory::query()
+                            ->where('id', $row['category_id'])
+                            ->value('name');
+                        //导出厂商定义
+                        $row['vendor.name'] = VendorRecord::query()
+                            ->where('id', $row['vendor_id'])
+                            ->value('name');
+                        //导出所属设备定义
+                        $row['device.asset_number'] = $part?->device?->asset_number;
+                        //导出折旧规则定义
+                        $row['depreciation.name'] = $part?->depreciation->name;
+                        //导出保固剩余天数定义
+                        $row['expiration_left_days'] = ExpirationService::itemExpirationLeftDays('part', $part->id);
+                    }
+                    return $rows;
+                });
             }
         });
     }
