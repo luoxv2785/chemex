@@ -2,11 +2,15 @@
 
 namespace App\Admin\Controllers;
 
+use Ace\Uni;
 use App\Admin\Repositories\ImportLogDetail;
+use App\Support\Data;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
+use Dcat\Admin\Grid\Tools;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
+use Dcat\Admin\Widgets\Alert;
 
 class ImportLogDetailController extends AdminController
 {
@@ -15,19 +19,34 @@ class ImportLogDetailController extends AdminController
      *
      * @return Grid
      */
-    protected function grid()
+    protected function grid(): Grid
     {
         return Grid::make(new ImportLogDetail(), function (Grid $grid) {
-            $grid->column('id')->sortable();
+            $grid->column('id');
             $grid->column('log_id');
-            $grid->column('status');
+            $grid->column('status')->using(Data::successOrFail());
             $grid->column('log');
             $grid->column('created_at');
-            $grid->column('updated_at')->sortable();
-        
+            $grid->column('updated_at');
+
+            $grid->toolsWithOutline(false);
+            $grid->disableCreateButton();
+            $grid->disableActions();
+
+            /**
+             * 筛选器.
+             */
             $grid->filter(function (Grid\Filter $filter) {
-                $filter->equal('id');
-        
+                $filter->panel();
+                $filter->equal('log_id');
+            });
+
+            /**
+             * 工具按钮.
+             */
+            $grid->tools(function (Tools $tools) {
+                $url = admin_route('import_logs.index');
+                $tools->append("<a class='btn btn-warning' href='$url'>返回导入日志</a>");
             });
         });
     }
@@ -35,37 +54,22 @@ class ImportLogDetailController extends AdminController
     /**
      * Make a show builder.
      *
-     * @param mixed $id
+     * @param int $id
      *
-     * @return Show
+     * @return \Dcat\Admin\Widgets\Alert
      */
-    protected function detail($id)
+    protected function detail(int $id): Alert
     {
-        return Show::make($id, new ImportLogDetail(), function (Show $show) {
-            $show->field('id');
-            $show->field('log_id');
-            $show->field('status');
-            $show->field('log');
-            $show->field('created_at');
-            $show->field('updated_at');
-        });
+        return Data::unsupportedOperationWarning();
     }
 
     /**
      * Make a form builder.
      *
-     * @return Form
+     * @return \Dcat\Admin\Widgets\Alert
      */
-    protected function form()
+    protected function form(): Alert
     {
-        return Form::make(new ImportLogDetail(), function (Form $form) {
-            $form->display('id');
-            $form->text('log_id');
-            $form->text('status');
-            $form->text('log');
-        
-            $form->display('created_at');
-            $form->display('updated_at');
-        });
+        return Data::unsupportedOperationWarning();
     }
 }

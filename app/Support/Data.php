@@ -7,6 +7,12 @@ use App\Admin\Repositories\DeviceRecord;
 use App\Admin\Repositories\PartRecord;
 use App\Admin\Repositories\ServiceRecord;
 use App\Admin\Repositories\SoftwareRecord;
+use App\Models\ConsumableCategory;
+use App\Models\Department;
+use App\Models\DeviceCategory;
+use App\Models\PartCategory;
+use App\Models\SoftwareCategory;
+use App\Models\User;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Widgets\Alert;
 use JetBrains\PhpStorm\ArrayShape;
@@ -194,6 +200,32 @@ class Data
     }
 
     /**
+     * 返回控制器图标.
+     *
+     * @param $string
+     *
+     * @return string
+     */
+    public static function icon($string): string
+    {
+        $array = [
+            'record' => '<i class="fa feather icon-list"></i> ',
+            'category' => '<i class="fa feather icon-pie-chart"></i> ',
+            'track' => '<i class="fa feather icon-archive"></i> ',
+            'issue' => '<i class="fa feather icon-alert-triangle"></i> ',
+            'user' => '<i class="fa feather icon-users"></i> ',
+            'department' => '<i class="fa feather icon-copy"></i> ',
+            'role' => '<i class="fa feather icon-users"></i> ',
+            'permission' => '<i class="fa feather icon-lock"></i> ',
+            'statistics' => '<i class="fa feather icon-bar-chart-2"></i> ',
+            'column' => '<i class="fa feather icon-edit-2"></i> ',
+            'history' => '<i class="fa feather icon-clock"></i> ',
+        ];
+
+        return $array[$string];
+    }
+
+    /**
      * 保固状态
      *
      * @return string[]
@@ -262,32 +294,6 @@ class Data
     }
 
     /**
-     * 返回控制器图标.
-     *
-     * @param $string
-     *
-     * @return string
-     */
-    public static function icon($string): string
-    {
-        $array = [
-            'record' => '<i class="fa feather icon-list"></i> ',
-            'category' => '<i class="fa feather icon-pie-chart"></i> ',
-            'track' => '<i class="fa feather icon-archive"></i> ',
-            'issue' => '<i class="fa feather icon-alert-triangle"></i> ',
-            'user' => '<i class="fa feather icon-users"></i> ',
-            'department' => '<i class="fa feather icon-copy"></i> ',
-            'role' => '<i class="fa feather icon-users"></i> ',
-            'permission' => '<i class="fa feather icon-lock"></i> ',
-            'statistics' => '<i class="fa feather icon-bar-chart-2"></i> ',
-            'column' => '<i class="fa feather icon-edit-2"></i> ',
-            'history' => '<i class="fa feather icon-clock"></i> ',
-        ];
-
-        return $array[$string];
-    }
-
-    /**
      * 返回优先级的键值对.
      *
      * @return string[]
@@ -351,6 +357,22 @@ class Data
             get_class(new \App\Models\SoftwareRecord()) => trans('main.software'),
             get_class(new \App\Models\ConsumableRecord()) => trans('main.consumable'),
             get_class(new \App\Models\ServiceRecord()) => trans('main.service'),
+            get_class(new Department()) => trans('main.department'),
+            get_class(new User()) => trans('main.user'),
+            get_class(new DeviceCategory()) => trans('main.device_category'),
+            get_class(new PartCategory()) => trans('main.part_category'),
+            get_class(new SoftwareCategory()) => trans('main.software_category'),
+            get_class(new ConsumableCategory()) => trans('main.consumable_category'),
         ];
+    }
+
+    /**
+     * 成功或失败.
+     *
+     * @return string[]
+     */
+    public static function successOrFail(): array
+    {
+        return ['失败', '成功'];
     }
 }

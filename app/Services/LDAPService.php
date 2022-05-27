@@ -4,7 +4,10 @@ namespace App\Services;
 
 use Adldap\Laravel\Facades\Adldap;
 use App\Models\Department;
+use App\Models\ImportLog;
+use App\Models\ImportLogDetail;
 use App\Models\User;
+use Dcat\Admin\Admin;
 use Exception;
 
 class LDAPService
@@ -20,6 +23,11 @@ class LDAPService
     {
         $success = 0;
         $fail = 0;
+
+        $import_log = new ImportLog();
+        $import_log->item = get_class(new Department());
+        $import_log->operator = Admin::user()->id;
+        $import_log->save();
 
         try {
             // 如果模式是复写，先执行清空表
@@ -41,7 +49,7 @@ class LDAPService
                 // 默认父级部门ID为0，即为根
                 $parent_department_id = 0;
                 // 如果DN中，下标为1存在OU=，就是说当前的部门有父级部门
-                if (strpos($ou_level_up, 'OU=') !== false) {
+                if (str_contains($ou_level_up, 'OU=')) {
                     $parent_ou_name = str_replace('OU=', '', $ou_level_up);
                     if ($ou_name != $parent_ou_name) {
                         $parent_department = Department::where('name', $parent_ou_name)
@@ -69,9 +77,19 @@ class LDAPService
                 }
                 $department->save();
                 $success++;
+                ImportLogDetail::query()->create([
+                    'log_id' => $import_log->id,
+                    'status' => 1,
+                    'log' => $ou_name . '：导入成功！'
+                ]);
             }
         } catch (Exception $exception) {
             $fail++;
+            // 导入日志写入
+            ImportLogDetail::query()->create([
+                'log_id' => $import_log->id,
+                'log' => '未知：导入失败，' . $exception->getMessage()
+            ]);
         }
         return [$success, $fail];
     }
@@ -87,6 +105,11 @@ class LDAPService
     {
         $success = 0;
         $fail = 0;
+
+        $import_log = new ImportLog();
+        $import_log->item = get_class(new User());
+        $import_log->operator = Admin::user()->id;
+        $import_log->save();
 
         try {
             // 如果模式是复写，先执行清空表
@@ -104,7 +127,7 @@ class LDAPService
                 // 默认写入的部门ID为0，也就是根部门
                 $department_id = 0;
                 // 如果用户有所属部门
-                if (strpos($user_dn_up, 'OU=') !== false) {
+                if (str_contains($user_dn_up, 'OU=')) {
                     $user_dn_department = explode('=', $user_dn_up)[1];
                     $department = Department::where('name', $user_dn_department)->first();
                     if (!empty($department)) {
@@ -121,10 +144,20 @@ class LDAPService
                     $user->ad_tag = 1;
                     $user->save();
                     $success++;
+                    ImportLogDetail::query()->create([
+                        'log_id' => $import_log->id,
+                        'status' => 1,
+                        'log' => $user_name . '：导入成功！'
+                    ]);
                 }
             }
         } catch (Exception $exception) {
             $fail++;
+            // 导入日志写入
+            ImportLogDetail::query()->create([
+                'log_id' => $import_log->id,
+                'log' => '未知：导入失败，' . $exception->getMessage()
+            ]);
         }
 
         return [$success, $fail];

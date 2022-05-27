@@ -3,16 +3,19 @@
 namespace App\Admin\Forms;
 
 use App\Models\CustomColumn;
+use App\Models\ImportLog;
+use App\Models\ImportLogDetail;
 use App\Models\SoftwareCategory;
 use App\Models\SoftwareRecord;
 use App\Models\VendorRecord;
 use Box\Spout\Common\Exception\IOException;
 use Box\Spout\Common\Exception\UnsupportedTypeException;
+use Dcat\Admin\Admin;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Widgets\Form;
 use Dcat\EasyExcel\Excel;
 use Exception;
-use League\Flysystem\FileNotFoundException;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class SoftwareRecordImportForm extends Form
 {
@@ -25,11 +28,16 @@ class SoftwareRecordImportForm extends Form
      */
     public function handle(array $input): JsonResponse
     {
+        $file = $input['file'];
+        $file_path = public_path('uploads/' . $file);
+
         $success = 0;
         $fail = 0;
 
-        $file = $input['file'];
-        $file_path = public_path('uploads/' . $file);
+        $import_log = new ImportLog();
+        $import_log->item = get_class(new SoftwareRecord());
+        $import_log->operator = Admin::user()->id;
+        $import_log->save();
 
         try {
             $rows = Excel::import($file_path)->first()->toArray();
@@ -54,6 +62,11 @@ class SoftwareRecordImportForm extends Form
                         $exist = SoftwareRecord::where('asset_number', $row['资产编号'])->withTrashed()->first();
                         if (!empty($exist)) {
                             $fail++;
+                            // 导入日志写入
+                            ImportLogDetail::query()->create([
+                                'log_id' => $import_log->id,
+                                'log' => $row['资产编号'] . '：导入失败，资产编号已经存在！'
+                            ]);
                             continue;
                         }
                         $software_record->category_id = $category->id;
@@ -89,30 +102,44 @@ class SoftwareRecordImportForm extends Form
 
                         $software_record->save();
                         $success++;
+                        // 导入日志写入
+                        ImportLogDetail::query()->create([
+                            'log_id' => $import_log->id,
+                            'status' => 1,
+                            'log' => $row['资产编号'] . '：导入成功！'
+                        ]);
                     } else {
                         $fail++;
+                        // 导入日志写入
+                        ImportLogDetail::query()->create([
+                            'log_id' => $import_log->id,
+                            'log' => $row['资产编号'] ?? '未知' . '：导入失败，缺少必要的字段：资产编号、名称、分类、厂商、版本！'
+                        ]);
                     }
                 } catch (Exception $exception) {
                     $fail++;
-//                    dd($exception->getLine() . $exception->getMessage());
-//                    return $this->response()->error($exception->getMessage());
+                    // 导入日志写入
+                    ImportLogDetail::query()->create([
+                        'log_id' => $import_log->id,
+                        'log' => $row['资产编号'] ?? '未知' . '：导入失败，' . $exception->getMessage()
+                    ]);
                 }
             }
             $return = $this->response()
-                ->success(trans('main.success') . ': ' . $success . ' ; ' . trans('main.fail') . ': ' . $fail)
+                ->success(trans('main.success') . ': ' . $success . ' ; ' . trans('main.fail') . ': ' . $fail . '，导入结果详情请至导入日志查看。')
                 ->refresh();
-        } catch (IOException $e) {
+        } catch (IOException $exception) {
             $return = $this
                 ->response()
-                ->error(trans('main.file_io_error') . $e->getMessage());
-        } catch (UnsupportedTypeException $e) {
+                ->error(trans('main.file_io_error') . $exception->getMessage());
+        } catch (UnsupportedTypeException $exception) {
             $return = $this
                 ->response()
-                ->error(trans('main.file_format') . $e->getMessage());
-        } catch (FileNotFoundException $e) {
+                ->error(trans('main.file_format') . $exception->getMessage());
+        } catch (FileNotFoundException $exception) {
             $return = $this
                 ->response()
-                ->error(trans('main.file_none') . $e->getMessage());
+                ->error(trans('main.file_none') . $exception->getMessage());
         }
 
         return $return;

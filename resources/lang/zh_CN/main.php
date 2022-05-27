@@ -127,5 +127,11 @@ return [
     'approval_history' => '历史',
     'parameter_missing' => '缺失必要的字段',
     'my_device_counts' => '我的设备总数',
-    'shortage_in_number' => '数量不足'
+    'shortage_in_number' => '数量不足',
+    'department' => '部门',
+    'user' => '用户',
+    'device_category' => '设备分类',
+    'part_category' => '配件分类',
+    'software_category' => '软件分类',
+    'consumable_category' => '耗材分类'
 ];

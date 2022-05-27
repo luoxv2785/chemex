@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitdf19cfe7bee06335baf31d3db8519a59
+class ComposerStaticInit40a5d1023a6a415d17e7054e4e4d2d49
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -959,6 +959,8 @@ class ComposerStaticInitdf19cfe7bee06335baf31d3db8519a59
         'App\\Admin\\Controllers\\DeviceStatisticsController' => __DIR__ . '/../..' . '/app/Admin/Controllers/DeviceStatisticsController.php',
         'App\\Admin\\Controllers\\DeviceTrackController' => __DIR__ . '/../..' . '/app/Admin/Controllers/DeviceTrackController.php',
         'App\\Admin\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Admin/Controllers/HomeController.php',
+        'App\\Admin\\Controllers\\ImportLogController' => __DIR__ . '/../..' . '/app/Admin/Controllers/ImportLogController.php',
+        'App\\Admin\\Controllers\\ImportLogDetailController' => __DIR__ . '/../..' . '/app/Admin/Controllers/ImportLogDetailController.php',
         'App\\Admin\\Controllers\\MaintenanceRecordController' => __DIR__ . '/../..' . '/app/Admin/Controllers/MaintenanceRecordController.php',
         'App\\Admin\\Controllers\\MenuController' => __DIR__ . '/../..' . '/app/Admin/Controllers/MenuController.php',
         'App\\Admin\\Controllers\\NotificationController' => __DIR__ . '/../..' . '/app/Admin/Controllers/NotificationController.php',
@@ -1073,6 +1075,8 @@ class ComposerStaticInitdf19cfe7bee06335baf31d3db8519a59
         'App\\Admin\\Repositories\\DeviceCategory' => __DIR__ . '/../..' . '/app/Admin/Repositories/DeviceCategory.php',
         'App\\Admin\\Repositories\\DeviceRecord' => __DIR__ . '/../..' . '/app/Admin/Repositories/DeviceRecord.php',
         'App\\Admin\\Repositories\\DeviceTrack' => __DIR__ . '/../..' . '/app/Admin/Repositories/DeviceTrack.php',
+        'App\\Admin\\Repositories\\ImportLog' => __DIR__ . '/../..' . '/app/Admin/Repositories/ImportLog.php',
+        'App\\Admin\\Repositories\\ImportLogDetail' => __DIR__ . '/../..' . '/app/Admin/Repositories/ImportLogDetail.php',
         'App\\Admin\\Repositories\\MaintenanceRecord' => __DIR__ . '/../..' . '/app/Admin/Repositories/MaintenanceRecord.php',
         'App\\Admin\\Repositories\\PartCategory' => __DIR__ . '/../..' . '/app/Admin/Repositories/PartCategory.php',
         'App\\Admin\\Repositories\\PartRecord' => __DIR__ . '/../..' . '/app/Admin/Repositories/PartRecord.php',
@@ -1122,6 +1126,8 @@ class ComposerStaticInitdf19cfe7bee06335baf31d3db8519a59
         'App\\Models\\DeviceCategory' => __DIR__ . '/../..' . '/app/Models/DeviceCategory.php',
         'App\\Models\\DeviceRecord' => __DIR__ . '/../..' . '/app/Models/DeviceRecord.php',
         'App\\Models\\DeviceTrack' => __DIR__ . '/../..' . '/app/Models/DeviceTrack.php',
+        'App\\Models\\ImportLog' => __DIR__ . '/../..' . '/app/Models/ImportLog.php',
+        'App\\Models\\ImportLogDetail' => __DIR__ . '/../..' . '/app/Models/ImportLogDetail.php',
         'App\\Models\\MaintenanceRecord' => __DIR__ . '/../..' . '/app/Models/MaintenanceRecord.php',
         'App\\Models\\Menu' => __DIR__ . '/../..' . '/app/Models/Menu.php',
         'App\\Models\\Notification' => __DIR__ . '/../..' . '/app/Models/Notification.php',
@@ -8058,10 +8064,10 @@ class ComposerStaticInitdf19cfe7bee06335baf31d3db8519a59
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitdf19cfe7bee06335baf31d3db8519a59::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitdf19cfe7bee06335baf31d3db8519a59::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitdf19cfe7bee06335baf31d3db8519a59::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitdf19cfe7bee06335baf31d3db8519a59::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit40a5d1023a6a415d17e7054e4e4d2d49::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit40a5d1023a6a415d17e7054e4e4d2d49::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit40a5d1023a6a415d17e7054e4e4d2d49::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit40a5d1023a6a415d17e7054e4e4d2d49::$classMap;
 
         }, null, ClassLoader::class);
     }

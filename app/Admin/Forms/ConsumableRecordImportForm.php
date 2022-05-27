@@ -4,14 +4,17 @@ namespace App\Admin\Forms;
 
 use App\Models\ConsumableCategory;
 use App\Models\ConsumableRecord;
+use App\Models\ImportLog;
+use App\Models\ImportLogDetail;
 use App\Models\VendorRecord;
 use Box\Spout\Common\Exception\IOException;
 use Box\Spout\Common\Exception\UnsupportedTypeException;
+use Dcat\Admin\Admin;
 use Dcat\Admin\Http\JsonResponse;
 use Dcat\Admin\Widgets\Form;
 use Dcat\EasyExcel\Excel;
 use Exception;
-use League\Flysystem\FileNotFoundException;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class ConsumableRecordImportForm extends Form
 {
@@ -30,12 +33,19 @@ class ConsumableRecordImportForm extends Form
         $success = 0;
         $fail = 0;
 
+        $import_log = new ImportLog();
+        $import_log->item = get_class(new ConsumableRecord());
+        $import_log->operator = Admin::user()->id;
+        $import_log->save();
+
         try {
             $rows = Excel::import($file_path)->first()->toArray();
             foreach ($rows as $row) {
                 try {
                     if (!empty($row['名称']) && !empty($row['规格'])) {
-                        $consumable_category = ConsumableCategory::where('name', $row['分类'])->first();
+                        $consumable_category = ConsumableCategory::query()
+                            ->where('name', $row['分类'])
+                            ->first();
                         if (empty($consumable_category)) {
                             $consumable_category = new ConsumableCategory();
                             $consumable_category->name = $row['分类'];
@@ -62,26 +72,41 @@ class ConsumableRecordImportForm extends Form
                         }
                         $consumable_record->save();
                         $success++;
+                        ImportLogDetail::query()->create([
+                            'log_id' => $import_log->id,
+                            'status' => 1,
+                            'log' => $row['名称'] . '：导入成功！'
+                        ]);
                     } else {
                         $fail++;
+                        // 导入日志写入
+                        ImportLogDetail::query()->create([
+                            'log_id' => $import_log->id,
+                            'log' => $row['名称'] ?? '未知' . '：导入失败，缺少必要的字段：名称、规格！'
+                        ]);
                     }
                 } catch (Exception $exception) {
                     $fail++;
+                    // 导入日志写入
+                    ImportLogDetail::query()->create([
+                        'log_id' => $import_log->id,
+                        'log' => $row['名称'] ?? '未知' . '：导入失败，' . $exception->getMessage()
+                    ]);
                 }
             }
 
             return $this->response()
-                ->success(trans('main.success') . ': ' . $success . ' ; ' . trans('main.fail') . ': ' . $fail)
+                ->success(trans('main.success') . ': ' . $success . ' ; ' . trans('main.fail') . ': ' . $fail . '，导入结果详情请至导入日志查看。')
                 ->refresh();
-        } catch (IOException $e) {
+        } catch (IOException $exception) {
             return $this->response()
-                ->error(trans('main.file_io_error') . $e->getMessage());
-        } catch (UnsupportedTypeException $e) {
+                ->error(trans('main.file_io_error') . $exception->getMessage());
+        } catch (UnsupportedTypeException $exception) {
             return $this->response()
-                ->error(trans('main.file_format') . $e->getMessage());
-        } catch (FileNotFoundException $e) {
+                ->error(trans('main.file_format') . $exception->getMessage());
+        } catch (FileNotFoundException $exception) {
             return $this->response()
-                ->error(trans('main.file_none') . $e->getMessage());
+                ->error(trans('main.file_none') . $exception->getMessage());
         }
     }
 

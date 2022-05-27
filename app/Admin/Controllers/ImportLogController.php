@@ -3,10 +3,12 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Repositories\ImportLog;
+use App\Support\Data;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
+use Dcat\Admin\Widgets\Alert;
 
 class ImportLogController extends AdminController
 {
@@ -15,20 +17,33 @@ class ImportLogController extends AdminController
      *
      * @return Grid
      */
-    protected function grid()
+    protected function grid(): Grid
     {
-        return Grid::make(new ImportLog(), function (Grid $grid) {
-            $grid->column('id')->sortable();
-            $grid->column('item');
+        return Grid::make(new ImportLog(['operator']), function (Grid $grid) {
+            $grid->model()->orderByDesc('id');
+            $grid->column('id');
+            $grid->column('item')
+                ->display(function ($item) {
+                    return Data::itemNameByModel()[$item];
+                })
+                ->link(function () {
+                    return admin_route('import_log_details.index', ['log_id' => $this->id]);
+                }, false);
             $grid->column('succeed');
             $grid->column('failed');
-            $grid->column('operator');
+            $grid->column('operator.name');
             $grid->column('created_at');
-            $grid->column('updated_at')->sortable();
-        
+            $grid->column('updated_at');
+
+            $grid->toolsWithOutline(false);
+            $grid->disableCreateButton();
+            $grid->disableActions();
+
+            /**
+             * 筛选器.
+             */
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-        
             });
         });
     }
@@ -36,39 +51,22 @@ class ImportLogController extends AdminController
     /**
      * Make a show builder.
      *
-     * @param mixed $id
+     * @param int $id
      *
-     * @return Show
+     * @return \Dcat\Admin\Widgets\Alert
      */
-    protected function detail($id)
+    protected function detail(int $id): Alert
     {
-        return Show::make($id, new ImportLog(), function (Show $show) {
-            $show->field('id');
-            $show->field('item');
-            $show->field('succeed');
-            $show->field('failed');
-            $show->field('operator');
-            $show->field('created_at');
-            $show->field('updated_at');
-        });
+        return Data::unsupportedOperationWarning();
     }
 
     /**
      * Make a form builder.
      *
-     * @return Form
+     * @return \Dcat\Admin\Widgets\Alert
      */
-    protected function form()
+    protected function form(): Alert
     {
-        return Form::make(new ImportLog(), function (Form $form) {
-            $form->display('id');
-            $form->text('item');
-            $form->text('succeed');
-            $form->text('failed');
-            $form->text('operator');
-        
-            $form->display('created_at');
-            $form->display('updated_at');
-        });
+        return Data::unsupportedOperationWarning();
     }
 }

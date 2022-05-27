@@ -7,6 +7,7 @@ use App\Models\DeviceCategory;
 use App\Models\DeviceRecord;
 use App\Models\DeviceTrack;
 use App\Models\ImportLog;
+use App\Models\ImportLogDetail;
 use App\Models\User;
 use App\Models\VendorRecord;
 use Box\Spout\Common\Exception\IOException;
@@ -36,7 +37,7 @@ class DeviceRecordImportForm extends Form
         $fail = 0;
 
         $import_log = new ImportLog();
-        $import_log->item = 'DeviceRecord';
+        $import_log->item = get_class(new DeviceRecord());
         $import_log->operator = Admin::user()->id;
         $import_log->save();
 
@@ -69,6 +70,10 @@ class DeviceRecordImportForm extends Form
                         $exist = DeviceRecord::where('asset_number', $row['资产编号'])->withTrashed()->first();
                         if (!empty($exist)) {
                             $fail++;
+                            ImportLogDetail::query()->create([
+                                'log_id' => $import_log->id,
+                                'log' => $row['资产编号'] . '：导入失败，资产编号已经存在！'
+                            ]);
                             continue;
                         }
                         $device_record->mac = $row['MAC'];
@@ -105,39 +110,41 @@ class DeviceRecordImportForm extends Form
 
                         $success++;
                         // 导入日志写入
-                        $import_log->details()->create([
+                        ImportLogDetail::query()->create([
                             'log_id' => $import_log->id,
                             'status' => 1,
                             'log' => $row['资产编号'] . '：导入成功！'
                         ]);
                     } else {
                         $fail++;
-                        $import_log->details()->create([
+                        // 导入日志写入
+                        ImportLogDetail::query()->create([
                             'log_id' => $import_log->id,
-                            'log' => $row['资产编号'] . '：导入失败，缺少必要的字段：资产编号、分类、厂商！'
+                            'log' => $row['资产编号'] ?? '未知' . '：导入失败，缺少必要的字段：资产编号、分类、厂商！'
                         ]);
                     }
                 } catch (Exception $exception) {
                     $fail++;
-                    $import_log->details()->create([
+                    // 导入日志写入
+                    ImportLogDetail::query()->create([
                         'log_id' => $import_log->id,
-                        'log' => $row['资产编号'] . '：导入失败，' . $exception->getMessage()
+                        'log' => $row['资产编号'] ?? '未知' . '：导入失败，' . $exception->getMessage()
                     ]);
                 }
             }
             $return = $this->response()
-                ->success(trans('main.success') . ': ' . $success . ' ; ' . trans('main.fail') . ': ' . $fail)
+                ->success(trans('main.success') . ': ' . $success . ' ; ' . trans('main.fail') . ': ' . $fail . '，导入结果详情请至导入日志查看。')
                 ->refresh();
-        } catch (IOException $e) {
+        } catch (IOException $exception) {
             $return = $this
                 ->response()
-                ->error(trans('main.file_io_error') . $e->getMessage());
-        } catch (UnsupportedTypeException $e) {
+                ->error(trans('main.file_io_error') . $exception->getMessage());
+        } catch (UnsupportedTypeException $exception) {
             $return = $this->response()
-                ->error(trans('main.file_format') . $e->getMessage());
-        } catch (FileNotFoundException $e) {
+                ->error(trans('main.file_format') . $exception->getMessage());
+        } catch (FileNotFoundException $exception) {
             $return = $this->response()
-                ->error(trans('file.file_none') . $e->getMessage());
+                ->error(trans('file.file_none') . $exception->getMessage());
         }
 
         return $return;

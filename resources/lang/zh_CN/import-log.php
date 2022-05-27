@@ -1,4 +1,4 @@
-<?php 
+<?php
 return [
     'labels' => [
         'ImportLog' => '导入日志',
@@ -8,7 +8,9 @@ return [
         'item' => '资产',
         'succeed' => '成功',
         'failed' => '失败',
-        'operator' => '执行者',
+        'operator' => [
+            'name' => '执行者'
+        ],
     ],
     'options' => [
     ],
