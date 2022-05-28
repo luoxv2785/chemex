@@ -179,11 +179,11 @@ class ConsumableRecordController extends AdminController
                             ->where('id', $row['id'])
                             ->first();
                         //导出耗材分类定义
-                        $row['category.name'] = $consumable?->category->name;
+                        $row['category.name'] = $consumable?->category->name ?? '未知';
                         //导出厂商定义
-                        $row['vendor.name'] = $consumable?->vendor->name;
+                        $row['vendor.name'] = $consumable?->vendor->name ?? '未知';
                         //导出总数定义
-                        $row['track.number'] = $consumable?->track->number;
+                        $row['track.number'] = $consumable?->track->number ?? '未知';
                     }
                     return $rows;
                 });

@@ -352,11 +352,11 @@ class SoftwareRecordController extends AdminController
                             ->where('id', $row['vendor_id'])
                             ->value('name');
                         //导出发行方式定义
-                        $row['distribution'] = Data::distribution()[$software['distribution']];
+                        $row['distribution'] = Data::distribution()[$software['distribution']] ?? '未知';
                         //导出剩余授权数量定义
-                        $row['left_counts'] = $software->leftCounts();
+                        $row['left_counts'] = $software->leftCounts() ?? '未知';
                         //导出保固剩余天数定义
-                        $row['expiration_left_days'] = ExpirationService::itemExpirationLeftDays('software', $software->id);
+                        $row['expiration_left_days'] = ExpirationService::itemExpirationLeftDays('software', $software->id) ?? '未知';
                     }
                     return $rows;
                 });

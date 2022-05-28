@@ -1,9 +1,6 @@
 FROM celaraze/php-web:latest
 
 RUN git clone --recursive https://gitee.com/celaraze/chemex.git /var/www/chemex/
-#    cd /var/www/chemex && \
-#    git submodule init && \
-#    git submodule update
 COPY .env.docker /var/www/chemex/.env
 WORKDIR /var/www/chemex/
 

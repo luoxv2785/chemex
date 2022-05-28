@@ -233,9 +233,9 @@ class PartRecordController extends AdminController
                             ->where('id', $row['vendor_id'])
                             ->value('name');
                         //导出所属设备定义
-                        $row['device.asset_number'] = $part?->device?->asset_number;
+                        $row['device.asset_number'] = $part?->device?->asset_number ?? '未知';
                         //导出折旧规则定义
-                        $row['depreciation.name'] = $part?->depreciation->name;
+                        $row['depreciation.name'] = $part?->depreciation->name ?? '未知';
                         //导出保固剩余天数定义
                         $row['expiration_left_days'] = ExpirationService::itemExpirationLeftDays('part', $part->id);
                     }

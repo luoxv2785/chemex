@@ -438,13 +438,13 @@ class DeviceRecordController extends AdminController
                             ->where('id', $row['vendor_id'])
                             ->value('name');
                         //导出用户定义
-                        $row['admin_user.name'] = $device?->admin_user->name;
+                        $row['admin_user.name'] = $device?->admin_user->name ?? '未知';
                         //导出部门定义
-                        $row['admin_user.department.name'] = $device?->admin_user?->department->name;
+                        $row['admin_user.department.name'] = $device?->admin_user?->department->name ?? '未知';
                         //导出折旧规则定义
-                        $row['depreciation.name'] = $device?->depreciation->name;
+                        $row['depreciation.name'] = $device?->depreciation->name ?? '未知';
                         //导出设备状态定义
-                        $row['device_status'] = $device?->status()[1];
+                        $row['device_status'] = $device?->status()[1] ?? '未知';
                         //导出保固剩余天数定义
                         $row['expiration_left_days'] = ExpirationService::itemExpirationLeftDays('device', $device->id);
                     }
