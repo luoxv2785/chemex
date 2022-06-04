@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-    <a href="https://chemex-docs.celaraze.com/">官方文档</a>
+    <a href="http://chemex-docs.celaraze.com:20002/">官方文档</a>
     <a href="https://jq.qq.com/?_wv=1027&k=tnV2HCWU">用户交流群</a>
 </p>
 
