@@ -723,6 +723,11 @@ class ComposerStaticInit40a5d1023a6a415d17e7054e4e4d2d49
     );
 
     public static $classMap = array (
+        'Ace\\Arr' => __DIR__ . '/..' . '/celaraze/laravel-ace/src/Arr.php',
+        'Ace\\DateTime' => __DIR__ . '/..' . '/celaraze/laravel-ace/src/DateTime.php',
+        'Ace\\System' => __DIR__ . '/..' . '/celaraze/laravel-ace/src/System.php',
+        'Ace\\Traits\\EloquentPlus' => __DIR__ . '/..' . '/celaraze/laravel-ace/src/Traits/EloquentPlus.php',
+        'Ace\\Uni' => __DIR__ . '/..' . '/celaraze/laravel-ace/src/Uni.php',
         'Adldap\\Adldap' => __DIR__ . '/..' . '/adldap2/adldap2/src/Adldap.php',
         'Adldap\\AdldapException' => __DIR__ . '/..' . '/adldap2/adldap2/src/AdldapException.php',
         'Adldap\\AdldapInterface' => __DIR__ . '/..' . '/adldap2/adldap2/src/AdldapInterface.php',
@@ -1098,6 +1103,7 @@ class ComposerStaticInit40a5d1023a6a415d17e7054e4e4d2d49
         'App\\Form' => __DIR__ . '/../..' . '/app/Form.php',
         'App\\Grid' => __DIR__ . '/../..' . '/app/Grid.php',
         'App\\Http\\Controllers\\AssetController' => __DIR__ . '/../..' . '/app/Http/Controllers/AssetController.php',
+        'App\\Http\\Controllers\\CheckController' => __DIR__ . '/../..' . '/app/Http/Controllers/CheckController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',

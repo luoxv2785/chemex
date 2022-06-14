@@ -39,6 +39,7 @@ class VendorRecordImportForm extends Form
         try {
             $rows = Excel::import($file_path)->first()->toArray();
             foreach ($rows as $row) {
+                $name = $row['名称'] ?? '未知';
                 try {
                     if (!empty($row['名称'])) {
                         $vendor_record = new VendorRecord();
@@ -65,7 +66,7 @@ class VendorRecordImportForm extends Form
                         // 导入日志写入
                         ImportLogDetail::query()->create([
                             'log_id' => $import_log->id,
-                            'log' => $row['名称'] ?? '未知' . '：导入失败，缺少必要的字段：名称！'
+                            'log' => $name . '：导入失败，缺少必要的字段：名称！'
                         ]);
                     }
                 } catch (Exception $exception) {
@@ -73,7 +74,7 @@ class VendorRecordImportForm extends Form
                     // 导入日志写入
                     ImportLogDetail::query()->create([
                         'log_id' => $import_log->id,
-                        'log' => $row['名称'] ?? '未知' . '：导入失败，' . $exception->getMessage()
+                        'log' => $name . '：导入失败，' . $exception->getMessage()
                     ]);
                 }
             }

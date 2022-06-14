@@ -6,6 +6,11 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Ace\\Arr' => $vendorDir . '/celaraze/laravel-ace/src/Arr.php',
+    'Ace\\DateTime' => $vendorDir . '/celaraze/laravel-ace/src/DateTime.php',
+    'Ace\\System' => $vendorDir . '/celaraze/laravel-ace/src/System.php',
+    'Ace\\Traits\\EloquentPlus' => $vendorDir . '/celaraze/laravel-ace/src/Traits/EloquentPlus.php',
+    'Ace\\Uni' => $vendorDir . '/celaraze/laravel-ace/src/Uni.php',
     'Adldap\\Adldap' => $vendorDir . '/adldap2/adldap2/src/Adldap.php',
     'Adldap\\AdldapException' => $vendorDir . '/adldap2/adldap2/src/AdldapException.php',
     'Adldap\\AdldapInterface' => $vendorDir . '/adldap2/adldap2/src/AdldapInterface.php',
@@ -381,6 +386,7 @@ return array(
     'App\\Form' => $baseDir . '/app/Form.php',
     'App\\Grid' => $baseDir . '/app/Grid.php',
     'App\\Http\\Controllers\\AssetController' => $baseDir . '/app/Http/Controllers/AssetController.php',
+    'App\\Http\\Controllers\\CheckController' => $baseDir . '/app/Http/Controllers/CheckController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',

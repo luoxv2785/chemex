@@ -42,6 +42,7 @@ class PartRecordImportForm extends Form
         try {
             $rows = Excel::import($file_path)->first()->toArray();
             foreach ($rows as $row) {
+                $asset_number = $row['资产编号'] ?? '未知';
                 try {
                     if (!empty($row['资产编号']) && !empty($row['分类']) && !empty($row['厂商'] && !empty($row['规格']))) {
                         $category = PartCategory::where('name', $row['分类'])->first();
@@ -114,7 +115,7 @@ class PartRecordImportForm extends Form
                         // 导入日志写入
                         ImportLogDetail::query()->create([
                             'log_id' => $import_log->id,
-                            'log' => $row['资产编号'] ?? '未知' . '：导入失败，缺少必要的字段：资产编号、分类、厂商、规格！'
+                            'log' => $asset_number . '：导入失败，缺少必要的字段：资产编号、分类、厂商、规格！'
                         ]);
                     }
                 } catch (Exception $exception) {
@@ -122,7 +123,7 @@ class PartRecordImportForm extends Form
                     // 导入日志写入
                     ImportLogDetail::query()->create([
                         'log_id' => $import_log->id,
-                        'log' => $row['资产编号'] ?? '未知' . '：导入失败，' . $exception->getMessage()
+                        'log' => $asset_number . '：导入失败，' . $exception->getMessage()
                     ]);
                 }
             }
