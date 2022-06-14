@@ -68,7 +68,7 @@ class AssetController extends Controller
                     return Uni::response(200, '查询成功', $part);
                 }
                 break;
-            case 'soft':
+            case 'software':
                 $software = SoftwareRecord::where('asset_number', $asset_number)->first();
                 if (!empty($software)) {
                     $software->asset_type = 'soft';

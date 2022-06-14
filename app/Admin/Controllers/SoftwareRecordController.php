@@ -201,7 +201,7 @@ class SoftwareRecordController extends AdminController
                 return "<span class='badge badge-secondary'>$asset_number</span>";
             });
             $grid->column('asset_number_qrcode', '', $sort_columns)->qrcode(function () {
-                return 'soft:' . $this->asset_number;
+                return 'software:' . $this->asset_number;
             });
             $grid->column('name', '', $sort_columns);
             $grid->column('description', '', $sort_columns);
